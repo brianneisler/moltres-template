@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+
+program
+  .description('delete value from config file')
+  .arguments('<key>')
+  .option('-g, --global', 'use global config file')
+  .option('-p, --project', 'use project config file')
+  .option('-u, --user', 'use user config file')
+  .action((key, options) => {
+    const cli = require('../dist/cli')
+    cli.init()
+    cli.command('CONFIG_DELETE', { key, options })
+  })
+  .parse(process.argv)
+
+if (!program.args.length) {
+  program.help()
+}

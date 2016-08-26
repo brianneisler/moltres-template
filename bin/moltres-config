@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+
+program
+  .command('delete <key>', 'delete a config value')
+  .command('get <key>', 'get a config value')
+  .command('set <key> <value>', 'set a config value')
+  .parse(process.argv)

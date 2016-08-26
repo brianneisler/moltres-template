@@ -3,6 +3,7 @@
   "env": {
     "browser": true,
     "es6": true,
+    "mocha": true,
     "node": true
   },
   "ecmaFeatures": {
@@ -27,7 +28,7 @@
     "no-var": 2,
     "prefer-const": 2,
     "quotes": [2, "single"],
-    "semi": [2, "always"],
+    "semi": [2, "never"],
     "spaced-comment": 0,
     "strict": [2, "never"]
   }

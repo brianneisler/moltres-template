@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+
+program
+    .arguments('<recipe-query>')
+    .description('uninstall a package')
+    .action((name, version, options) => {
+        var UninstallCommand = require('..').commands.UninstallCommand;
+        UninstallCommand.run(name, version, options)
+            .then((uninstalledRecipes) => {
+                if (uninstalledRecipes.length > 0) {
+                    console.log('Recipes uninstalled');
+                    uninstalledRecipes.forEach(function(uninstalledRecipe) {
+                        console.log('- ' + uninstalledRecipe.name + '@' + uninstalledRecipe.version);
+                    });
+                } else {
+                    console.log('No recipes found for query ' + recipeQuery);
+                }
+                if (uninstalledRecipes) {
+                    console.log('Recipe uninstalled ' + uninstalledRecipe.name + '@' + uninstalledRecipe.version);
+                } else {
+                    console.log('No installed recipe found for ' + name + '@' + version);
+                }
+                process.exit();
+            })
+            .catch((error) => {
+                console.log('Uninstall failed.');
+                console.log(error);
+                process.exit(1);
+            });
+    })
+    .parse(process.argv);
+
+if (!program.args.length) {
+    program.help();
+}

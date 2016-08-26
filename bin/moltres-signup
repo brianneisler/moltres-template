@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+
+program
+  .description('signup for gulprecipe')
+  .option('-g, --global', 'use global config file')
+  .option('-p, --project', 'use project config file')
+  .option('-u, --user', 'use user config file')
+  .parse(process.argv)
+
+((options) => {
+  const cli = require('../dist/cli')
+  cli.init()
+  cli.command('SIGNUP', { options })
+})(program)

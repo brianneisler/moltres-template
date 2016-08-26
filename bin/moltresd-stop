@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var program = require('commander')
+
+program
+  .description('start moltres daemon')
+  .parse(process.argv)
+
+((options) => {
+  const cli = require('../dist/cli')
+  cli.init()
+  cli.command('STOP_DAEMON', { options })
+})(program)
