@@ -5,10 +5,9 @@ import { Driver } from '../../../driver'
 export default class MiddlewareDriver extends Driver {
 
   createState(state, drivers) {
-    return {
-      ...state,
+    return _.assoc(state, {
       middleware: this.generateMiddleware(state, drivers)
-    }
+    })
   }
 
   createEnhancer(state) {
@@ -25,6 +24,6 @@ export default class MiddlewareDriver extends Driver {
         }
       }
       return middlewares
-    }, [])
+    }, _.im([]))
   }
 }

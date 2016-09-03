@@ -9,10 +9,9 @@ export default class EnhancersDriver extends Driver {
   }
 
   createState(state, drivers) {
-    return {
-      ...state,
+    return _.assoc(state, {
       enhancers: this.generateEnhancers(state, drivers)
-    }
+    })
   }
 
   generateEnhancers(state, drivers) {
@@ -24,6 +23,6 @@ export default class EnhancersDriver extends Driver {
         }
       }
       return enhancers
-    }, [])
+    }, _.im([]))
   }
 }

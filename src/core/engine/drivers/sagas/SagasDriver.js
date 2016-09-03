@@ -10,10 +10,9 @@ export default class SagasDriver extends Driver {
   }
 
   createState(state, drivers) {
-    return {
-      ...state,
+    return _.assoc(state, {
       sagas: this.generateSagas(state, drivers)
-    }
+    })
   }
 
   generateSagas(state, drivers) {
@@ -25,6 +24,6 @@ export default class SagasDriver extends Driver {
         }
       }
       return sagas
-    }, [])
+    }, _.im([]))
   }
 }

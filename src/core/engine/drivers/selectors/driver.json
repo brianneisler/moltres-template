@@ -1,0 +1,6 @@
+{
+  "name": "selectors",
+  "dependencies": {
+    "higherorder": "*"
+  }
+}

@@ -97,7 +97,7 @@ export default class Engine {
   }
 
   static createState(state, drivers) {
-    return _.reduce(drivers, (reduction, driver) => {
+    return _.reduce(_.reverse(drivers), (reduction, driver) => {
       if (_.isFunction(_.get(driver, 'createState'))) {
         return driver.createState(reduction, drivers)
       }

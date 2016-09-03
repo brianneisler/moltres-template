@@ -9,10 +9,9 @@ export default class ReducersDriver extends Driver {
   }
 
   createState(state, drivers) {
-    return {
-      ...state,
+    return _.assoc(state, {
       reducers: this.generateReducers(state, drivers)
-    }
+    })
   }
 
   generateReducers(state, drivers) {
@@ -25,6 +24,6 @@ export default class ReducersDriver extends Driver {
         }
       }
       return reducers
-    }, {})
+    }, _.im({}))
   }
 }

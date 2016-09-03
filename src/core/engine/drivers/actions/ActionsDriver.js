@@ -1,6 +1,6 @@
 import _ from 'mudash'
+import o from 'duxtape'
 import { Driver } from '../../../driver'
-import { mapReducer } from '../../../util'
 import { createAction, handleActions } from 'redux-actions'
 
 const SET_ACTIONS = 'SET_ACTIONS'
@@ -16,22 +16,18 @@ export default class ActionsDriver extends Driver {
   }
 
   createReducer() {
-    return mapReducer({
+    return o.mapReducer({
       actions: handleActions({
         [SET_ACTIONS]: (state, action) => action.payload,
-        [UPDATE_ACTIONS]: (state, action) => ({
-          ...state,
-          ...action.payload
-        })
+        [UPDATE_ACTIONS]: (state, action) => _.assoc(state, action.payload)
       })
     })
   }
 
   createState(state, drivers) {
-    return {
-      ...state,
+    return _.assoc(state, {
       actions: this.generateActions(state, drivers)
-    }
+    })
   }
 
   generateActions(state, drivers) {
@@ -40,6 +36,6 @@ export default class ActionsDriver extends Driver {
         return _.merge(actions, driver.createActions(state, drivers))
       }
       return actions
-    }, {})
+    }, _.im({}))
   }
 }
