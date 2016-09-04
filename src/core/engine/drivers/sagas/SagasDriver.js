@@ -4,7 +4,7 @@ import { Driver } from '../../../driver'
 
 export default class SagasDriver extends Driver {
 
-  createMiddleware(reducer, state) {
+  createMiddleware(state) {
     const sagas = _.get(state, 'sagas')
     return createSagaMiddleware(...sagas)
   }

@@ -20,19 +20,23 @@ export default class DriverRegistry {
     const depGraph = _.reduce(DriverRegistry.driverMap, (graph, driver) => {
       const { name } = driver.info
       graph.addNode(name, driver)
+      return graph
     }, new DepGraph())
     DriverRegistry.driverDependencyGraph = _.reduce(DriverRegistry.driverMap, (graph, driver) => {
       const { dependencies, name } = driver.info
       _.each(dependencies, (depVersion, depName) => {
         graph.addDependency(name, depName)
       })
+      return graph
     }, depGraph)
+    DriverRegistry.dependencyGraphValid = true
   }
 
   static getDriversInDependencyOrder() {
     if (!DriverRegistry.dependencyGraphValid) {
       DriverRegistry.buildDependencyGraph()
     }
-    return DriverRegistry.driverDependencyGraph.overallOrder()
+    return _.map(DriverRegistry.driverDependencyGraph.overallOrder(),
+      (name) => DriverRegistry.driverDependencyGraph.getNodeData(name))
   }
 }

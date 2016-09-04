@@ -1,11 +1,12 @@
 import _ from 'mudash'
+import o from 'duxtape'
 import { Driver } from '../../../driver'
 
 export default class ReducersDriver extends Driver {
 
   composeReducer(reducer, state) {
     const reducers = _.get(state, 'reducers')
-    return _.compose(..._.reverse(reducers), reducer)
+    return o.reduceReducers(..._.reverse(_.values(reducers)), reducer)
   }
 
   createState(state, drivers) {

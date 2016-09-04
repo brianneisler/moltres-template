@@ -4,7 +4,7 @@ import { Driver } from '../../../driver'
 
 export default class SelectorsDriver extends Driver {
 
-  createHigherOrder(reducer, state) {
+  createHigherOrder(state) {
     const selectors = _.get(state, 'selectors')
     return createSelectorHigherOrder(...selectors)
   }

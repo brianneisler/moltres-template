@@ -10,11 +10,13 @@ export default class DriverFactory {
     if (_.isFunction(factory)) {
       if (isDriverClass(factory)) {
         driver = new factory(info)
+      } else {
+        driver = factory(info)
       }
-      driver = factory(info)
     }
     if (!driver) {
       warning('Driver did not declare an entry point')
     }
+    return driver
   }
 }

@@ -16,7 +16,7 @@ export default class ActionsDriver extends Driver {
   }
 
   createReducer() {
-    return o.mapReducer({
+    return o.mapReducers({
       actions: handleActions({
         [SET_ACTIONS]: (state, action) => action.payload,
         [UPDATE_ACTIONS]: (state, action) => _.assoc(state, action.payload)
