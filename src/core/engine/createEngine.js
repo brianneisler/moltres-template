@@ -55,12 +55,12 @@ export default function createEngine() {
 
   function getStore() {
     if (!store) {
-      generateStore({})
+      generateStore()
     }
     return store
   }
 
-  function updateBlueprint(blueprint) {
+  function updateBlueprint(blueprint = _.im({})) {
     let { drivers } = blueprint
     drivers = _.assign({}, internalDrivers, drivers)
     _.each(drivers, (schema) => {
@@ -70,7 +70,7 @@ export default function createEngine() {
         DriverRegistry.registerDriver(driver)
       }
     })
-    generateStore({blueprint})
+    generateStore(_.im({blueprint}))
     trySubscribe()
     updateState()
     initDrivers()

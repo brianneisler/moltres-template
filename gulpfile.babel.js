@@ -42,7 +42,8 @@ gulp.task('babel', function() {
       loadMaps: true
     }))
     .pipe(babel({
-      presets: ['es2015', 'stage-1', 'stage-2']
+      presets: ['es2015', 'stage-1', 'stage-2'],
+      plugins: ['transform-decorators-legacy']
     }))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./dist'))

@@ -33,7 +33,7 @@ export default class ActionsDriver extends Driver {
   generateActions(state, drivers) {
     return _.reduce(drivers, (actions, driver) => {
       if (_.isFunction(_.get(driver, 'createActions'))) {
-        return _.merge(actions, driver.createActions(state, drivers))
+        return _.assoc(actions, driver.createActions(state, drivers))
       }
       return actions
     }, _.im({}))

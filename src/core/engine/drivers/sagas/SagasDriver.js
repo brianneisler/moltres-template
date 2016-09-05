@@ -1,12 +1,21 @@
 import _ from 'mudash'
 import createSagaMiddleware from 'redux-saga'
-import { Driver } from '../../../driver'
+import { fork } from 'redux-saga/effects'
+import { Driver, select } from '../../../driver'
 
+@select({
+  sagas: (sagas) => ({sagas})
+})
 export default class SagasDriver extends Driver {
 
-  createMiddleware(state) {
-    const sagas = _.get(state, 'sagas')
-    return createSagaMiddleware(...sagas)
+  constructor(info) {
+    super(info)
+    this.sagaMiddleware = null
+  }
+
+  createMiddleware() {
+    this.sagaMiddleware = createSagaMiddleware()
+    return this.sagaMiddleware
   }
 
   createState(state, drivers) {
@@ -25,5 +34,17 @@ export default class SagasDriver extends Driver {
       }
       return sagas
     }, _.im([]))
+  }
+
+  initDriver() {
+    const sagas = _.get(this.state, 'sagas')
+    const sagaMiddleware = this.sagaMiddleware
+    sagaMiddleware.run(buildRootSaga(sagas))
+  }
+}
+
+function buildRootSaga(sagas) {
+  return function* rootSaga() {
+    yield _.map(_.mutable(sagas), fork)
   }
 }
