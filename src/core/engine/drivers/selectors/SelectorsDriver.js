@@ -1,12 +1,12 @@
 import _ from 'mudash'
-import { createSelectorHigherOrder } from 'redux-selectors'
+import o from 'duxtape'
 import { Driver } from '../../../driver'
 
 export default class SelectorsDriver extends Driver {
 
   createHigherOrder(state) {
     const selectors = _.get(state, 'selectors')
-    return createSelectorHigherOrder(...selectors)
+    return o.createSelectorHigherOrder(...selectors)
   }
 
   createState(state, drivers) {

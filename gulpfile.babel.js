@@ -85,7 +85,7 @@ gulp.task('clean', () => {
   ])
 })
 
-gulp.task('cleanse', () => {
+gulp.task('cleanse', ['clean'], () => {
   return del([
     'node_modules'
   ])
@@ -96,19 +96,19 @@ gulp.task('cleanse', () => {
 // Gulp Watchers
 //-------------------------------------------------------------------------------
 
-gulp.task('babel-watch', function() {
+gulp.task('babel-watch', () => {
   gulp.watch(sources.babel, ['babel'])
 })
 
-gulp.task('lint-watch', function() {
+gulp.task('lint-watch', () => {
   const lintAndPrint = eslint()
   lintAndPrint.pipe(eslint.formatEach())
 
-  return gulp.watch('src/**/*.js', function (event) {
+  return gulp.watch('src/**/*.js', (event) => {
     if (event.type !== 'deleted') {
       gulp.src(event.path)
         .pipe(lintAndPrint, {end: false})
-        .on('error', function (error) {
+        .on('error', (error) => {
           util.log(error)
         })
     }
