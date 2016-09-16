@@ -1,5 +1,5 @@
 {
-  "name": "enhancers",
+  "name": "graphql",
   "nodeDependencies": {
     "mudash": "^0.0.5"
   }

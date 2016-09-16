@@ -2,5 +2,9 @@
   "name": "selectors",
   "dependencies": {
     "higherorder": "*"
+  },
+  "nodeDependencies": {
+    "duxtape": "^0.0.5",
+    "mudash": "^0.0.5"
   }
 }
