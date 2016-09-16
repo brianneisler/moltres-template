@@ -1,6 +1,6 @@
 import { GraphQLString } from 'graphql'
 
-export function createdAtField(): any {
+export function createdAtField() {
   return {
     type: GraphQLString,
     description:
@@ -8,7 +8,7 @@ export function createdAtField(): any {
   }
 }
 
-export function updatedAtField(): any {
+export function updatedAtField() {
   return {
     type: GraphQLString,
     description:
