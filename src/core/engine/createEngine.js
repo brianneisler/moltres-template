@@ -70,7 +70,7 @@ export default function createEngine() {
         DriverRegistry.registerDriver(driver)
       }
     })
-    generateStore(_.im({blueprint}))
+    generateStore(_.assoc(_.im({}), { blueprint }))
     trySubscribe()
     updateState()
     initDrivers()
