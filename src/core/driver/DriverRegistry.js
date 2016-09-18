@@ -24,7 +24,8 @@ export default class DriverRegistry {
     }, new DepGraph())
     DriverRegistry.driverDependencyGraph = _.reduce(DriverRegistry.driverMap, (graph, driver) => {
       const { dependencies, name } = driver.info
-      _.each(dependencies, (depVersion, depName) => {
+      const driverDependencies = _.get(dependencies, 'drivers')
+      _.each(driverDependencies, (depVersion, depName) => {
         graph.addDependency(name, depName)
       })
       return graph

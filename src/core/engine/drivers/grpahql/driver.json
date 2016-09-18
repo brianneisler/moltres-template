@@ -1,6 +1,8 @@
 {
   "name": "graphql",
-  "nodeDependencies": {
-    "mudash": "^0.0.5"
+  "dependencies": {
+    "npm": {
+      "mudash": "^0.0.5"
+    }
   }
 }

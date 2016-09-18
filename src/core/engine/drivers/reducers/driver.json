@@ -1,7 +1,9 @@
 {
   "name": "reducers",
-  "nodeDependencies": {
-    "duxtape": "^0.0.5",
-    "mudash": "^0.0.5"
+  "dependencies": {
+    "npm": {
+      "duxtape": "^0.0.5",
+      "mudash": "^0.0.5"
+    }
   }
 }
