@@ -1,12 +1,12 @@
 {
   "name": "moltres",
   "version": "0.0.9",
+  "description": "Redux application framework",
   "main": "./index.js",
   "bin": {
     "moltres": "./bin/moltres",
     "moltresd": "./bin/moltresd"
   },
-  "description": "Redux application framework",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brianneisler/moltres.git"

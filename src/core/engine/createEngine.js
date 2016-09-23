@@ -1,18 +1,19 @@
 import _ from 'mudash'
 import invariant from 'invariant'
 import { createStore } from 'redux'
-import * as internalDrivers from './drivers'
+
 
 const PASS = arg => arg
 
 export default function createEngine() {
 
-  let DriverFactory    = null
-  let DriverRegistry   = null
-  let SchemaCache      = null
+  let DriverFactory     = null
+  let DriverRegistry    = null
+  let SchemaCache       = null
 
-  let store            = null
-  let storeState       = null
+  let store             = null
+  let storeState        = null
+  let engine            = null
 
   const injection = {
     injectDriverFactory(InjectedDriverFactory) {
@@ -61,12 +62,11 @@ export default function createEngine() {
   }
 
   function updateBlueprint(blueprint = _.im({})) {
-    let { drivers } = blueprint
-    drivers = _.assign({}, internalDrivers, drivers)
+    const { drivers } = blueprint
     _.each(drivers, (schema) => {
       if (!SchemaCache.has(schema)) {
         SchemaCache.set(schema)
-        const driver = DriverFactory.factoryDriver(schema)
+        const driver = DriverFactory.factoryDriver(schema, engine)
         DriverRegistry.registerDriver(driver)
       }
     })
@@ -181,7 +181,7 @@ export default function createEngine() {
     updateState()
   }
 
-  return {
+  engine = {
     getDriver,
     getDriversInDependencyOrder,
     getStore,
@@ -189,4 +189,6 @@ export default function createEngine() {
     tryUnsubscribe,
     updateBlueprint
   }
+
+  return engine
 }

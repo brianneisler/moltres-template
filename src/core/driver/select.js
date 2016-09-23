@@ -27,8 +27,8 @@ export default function select(selector) {
 
     class Select extends ExtendedDriver {
 
-      constructor(info) {
-        super(info)
+      constructor(...args) {
+        super(...args)
         this.selectState = buildSelector(selector, defaultSelectState)
       }
 
