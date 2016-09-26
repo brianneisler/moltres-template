@@ -1,8 +1,8 @@
-const commands = {
-  factory: require('./commands').default,
-  info: require('./commands/driver.json')
-}
-
+const commands = require('./commands')
+const daemon = require('./daemon')
+const rebuild = require('./rebuild')
 export {
-  commands
+  commands,
+  daemon,
+  rebuild
 }

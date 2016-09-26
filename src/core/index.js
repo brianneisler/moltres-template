@@ -1,9 +1,6 @@
-/**
- * @providesModule moltres
- */
-
 export * from './driver'
 export * from './engine'
+export * from './m'
 export * from './plugin'
 export * from './util'
 export { default as boot } from './boot'

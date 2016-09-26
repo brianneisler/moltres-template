@@ -11,6 +11,7 @@ const result = program
   .command('login', 'login to a registry user account')
   .command('logout', 'logout from a registry user account')
   .command('publish', 'publish a package to the registry')
+  .command('rebuild', 'rebuild dependencies')
   .command('signup', 'create a new registry user account')
   .command('uninstall <package-query> ', 'uninstall a package')
   .command('update [package-query]', 'update a package and it\'s dependencies')

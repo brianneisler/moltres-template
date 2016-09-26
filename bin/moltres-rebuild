@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
+require('babel-polyfill')
 var program = require('commander')
 
 program
-  .description('get value in config file')
-  .arguments('<key>')
+  .description('rebuild package dependencies')
+  .arguments('[path]')
   .option('-g, --global', 'use global config file')
   .option('-p, --project', 'use project config file')
   .option('-u, --user', 'use user config file')
-  .action((key, options) => {
-    const cli = require('../dist/cli')
-    cli.init()
-    cli.command('CONFIG_GET', { key, options })
+  .action((path, options) => {
+    const { init } = require('../dist/cli')
+    const cli = init()
+    cli.command('REBUILD_DEPENDENCIES', { options, path })
   })
   .parse(process.argv)
 

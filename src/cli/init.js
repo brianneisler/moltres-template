@@ -1,11 +1,16 @@
-import { Engine, MoltresDefaultInjection } from '../core'
+import _ from 'mudash'
+import { boot } from '../core'
 import * as drivers from './drivers'
+import * as m from '../core/m'
+import { command } from './drivers/commands/actions'
 
-const blueprint = {
+const blueprint = _.merge(m, {
   drivers
-}
+})
 
 export default function init() {
-  MoltresDefaultInjection.inject()
-  Engine.updateBlueprint(blueprint)
+  const engine = boot(blueprint)
+  return {
+    command: _.compose(engine.dispatch, command)
+  }
 }

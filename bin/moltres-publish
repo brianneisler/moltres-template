@@ -13,7 +13,7 @@ program
 
 ((options) => {
   const path = _.first(program.args)
-  const cli = require('../dist/cli')
-  cli.init()
+  const { init } = require('../dist/cli')
+  cli = init()
   cli.command('PUBLISH', { options, path })
 })(program)

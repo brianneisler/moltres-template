@@ -1,12 +1,13 @@
 import * as actions from './actions'
+import * as commands from './commands'
 import * as sagas from './sagas'
 
 const info = require('./driver.json')
 
-export { default } from './CommandsDriver'
-export * from './createCommand'
+export { default } from './RebuildDriver'
 export {
   actions,
+  commands,
   info,
   sagas
 }

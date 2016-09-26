@@ -7,4 +7,5 @@ export default function boot(blueprint, injection = MoltresDefaultInjection) {
   if (blueprint) {
     engine.updateBlueprint(blueprint)
   }
+  return engine
 }

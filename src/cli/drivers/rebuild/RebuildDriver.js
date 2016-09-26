@@ -4,7 +4,7 @@ import * as commands from './commands'
 import saga from './sagas'
 
 
-export default class DaemonDriver extends Driver {
+export default class RebuildDriver extends Driver {
 
   createActions() {
     return actions

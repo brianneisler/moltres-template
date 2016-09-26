@@ -7,8 +7,8 @@ const PASS = arg => arg
 
 export default function createEngine() {
 
-  let DriverFactory     = null
-  let DriverRegistry    = null
+  let Factories         = {}
+  let Registry          = null
   let SchemaCache       = null
 
   let store             = null
@@ -16,21 +16,21 @@ export default function createEngine() {
   let engine            = null
 
   const injection = {
-    injectDriverFactory(InjectedDriverFactory) {
+    injectFactory(type, InjectedFactory) {
       invariant(
-        !DriverFactory,
-        `DriverFactory: Cannot inject driver factory more than once.
+        !Factories[type],
+        `Factory(${type}): Cannot inject ${type} Factory more than once.
         You are likely trying to load more than one copy of Moltres.`
       )
-      DriverFactory = InjectedDriverFactory
+      Factories = _.assoc(Factories, type, InjectedFactory)
     },
-    injectDriverRegistry(InjectedDriverRegistry) {
+    injectRegistry(InjectedRegistry) {
       invariant(
-        !DriverRegistry,
-        `DriverRegistry: Cannot inject driver registry more than once.
+        !Registry,
+        `Registry: Cannot inject Registry more than once.
         You are likely trying to load more than one copy of Moltres.`
       )
-      DriverRegistry = InjectedDriverRegistry
+      Registry = InjectedRegistry
     },
     injectSchemaCache(InjectedSchemaCache) {
       invariant(
@@ -42,17 +42,18 @@ export default function createEngine() {
     }
   }
 
-  function dispatch(action) {
-    getStore().dispatch(action)
-  }
-
-  function getDriver(name) {
-    return DriverRegistry.getDriver(name)
-  }
-
   function getDriversInDependencyOrder() {
-    return DriverRegistry.getDriversInDependencyOrder()
+    return Registry.getInDependencyOrder(['drivers', 'plugins'])
   }
+
+  function getModule(type, name) {
+    return Registry.get(type, name)
+  }
+
+  function getModulesInDependencyOrder(types) {
+    return Registry.getInDependencyOrder(types)
+  }
+
 
   function getStore() {
     if (!store) {
@@ -61,14 +62,31 @@ export default function createEngine() {
     return store
   }
 
+  function dispatch(action) {
+    getStore().dispatch(action)
+  }
+
+  function validateSchema(schema, type, name) {
+    invariant(
+      _.has(schema, 'info'),
+      `Schema(${type}:${name}): Could not find info for module schema`
+    )
+  }
+
   function updateBlueprint(blueprint = _.im({})) {
-    const { drivers } = blueprint
-    _.each(drivers, (schema) => {
-      if (!SchemaCache.has(schema)) {
-        SchemaCache.set(schema)
-        const driver = DriverFactory.factoryDriver(schema, engine)
-        DriverRegistry.registerDriver(driver)
-      }
+    _.each(blueprint, (modules, type) => {
+      _.each(modules, (schema, name) => {
+        validateSchema(schema, type, name)
+        if (!SchemaCache.has(type, schema)) {
+          SchemaCache.set(type, schema)
+          const Factory = Factories[type]
+          let module = schema
+          if (Factory) {
+            module = Factory.factory(schema, engine)
+          }
+          Registry.register(type, module)
+        }
+      })
     })
     generateStore(_.assoc(_.im({}), { blueprint }))
     trySubscribe()
@@ -182,8 +200,9 @@ export default function createEngine() {
   }
 
   engine = {
-    getDriver,
-    getDriversInDependencyOrder,
+    dispatch,
+    getModule,
+    getModulesInDependencyOrder,
     getStore,
     injection,
     tryUnsubscribe,

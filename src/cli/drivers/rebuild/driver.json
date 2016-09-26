@@ -1,5 +1,5 @@
 {
-  "name": "daemon",
+  "name": "rebuild",
   "version": "0.0.1",
   "dependencies": {
     "drivers": {
