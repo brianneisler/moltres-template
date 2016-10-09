@@ -1,9 +1,13 @@
 {
+  "namespace": "moltres",
+  "type": "driver",
   "name": "rebuild",
   "version": "0.0.1",
   "dependencies": {
-    "drivers": {
-      "commands": "^0.0.1"
+    "driver": {
+      "actions": "^0.0.1",
+      "commands": "^0.0.1",
+      "sagas": "^0.0.1"
     }
   }
 }

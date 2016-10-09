@@ -1,0 +1,12 @@
+{
+  "namespace": "moltres",
+  "type": "driver",
+  "name": "client",
+  "version": "0.0.1",
+  "dependencies": {
+    "driver": {
+      "actions": "^0.0.1",
+      "sagas": "^0.0.1"
+    }
+  }
+}

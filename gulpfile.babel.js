@@ -2,10 +2,12 @@
 // Imports
 //-------------------------------------------------------------------------------
 
+import 'babel-polyfill'
 import gulp from 'gulp'
 import babel from 'gulp-babel'
 import eslint from 'gulp-eslint'
 import mocha from 'gulp-mocha'
+import moltres from 'gulp-moltres'
 import sourcemaps from 'gulp-sourcemaps'
 import util from 'gulp-util'
 import del from 'del'
@@ -20,6 +22,20 @@ const sources = {
   babel: [
     'src/**',
     '!**/tests/**'
+  ],
+  lint: [
+    '**/*.js',
+    '!node_modules/**',
+    '!dist/**'
+  ],
+  moltres: [
+    'src/**',
+    'node_modules/**'
+  ],
+  tests: [
+    '**/__tests__/*.js',
+    '!node_modules/**',
+    '!dist/**'
   ]
 }
 
@@ -30,9 +46,9 @@ const sources = {
 
 gulp.task('default', ['prod'])
 
-gulp.task('prod', ['babel'])
+gulp.task('prod', ['babel', 'moltres'])
 
-gulp.task('dev', ['babel', 'lint', 'babel-watch', 'lint-watch'])
+gulp.task('dev', ['babel', 'moltres', 'lint', 'babel-watch', 'lint-watch', 'moltres-watch'])
 
 gulp.task('test', ['lint', 'mocha'])
 
@@ -52,26 +68,29 @@ gulp.task('babel', function() {
     })
 })
 
+gulp.task('moltres', () => {
+  return gulp.src(sources.moltres)
+    .pipe(moltres.install({
+      ignore: ['node_modules']
+    }))
+    .pipe(gulp.dest('./dist'))
+    .on('error', (error) => {
+      util.log(error)
+    })
+})
+
 gulp.task('lint', () => {
-  return gulp.src([
-    '**/*.js',
-    '!node_modules/**',
-    '!dist/**'
-  ])
+  return gulp.src(sources.lint)
   .pipe(eslint())
   .pipe(eslint.formatEach())
   .pipe(eslint.failOnError())
-  .on('error', function (error) {
+  .on('error', (error) => {
     util.log('Stream Exiting With Error', error)
   })
 })
 
 gulp.task('mocha', () => {
-  return gulp.src([
-    '**/__tests__/*.js',
-    '!node_modules/**',
-    '!dist/**'
-  ])
+  return gulp.src(sources.tests)
   .pipe(mocha({
     compilers: {
       js: babelRegister
@@ -97,10 +116,25 @@ gulp.task('cleanse', ['clean'], () => {
 //-------------------------------------------------------------------------------
 
 gulp.task('babel-watch', () => {
-  gulp.watch(sources.babel, ['babel'])
+  return gulp.watch(sources.babel, ['babel'])
 })
 
 gulp.task('lint-watch', () => {
+  const lintAndPrint = eslint()
+  lintAndPrint.pipe(eslint.formatEach())
+
+  return gulp.watch(sources.lint, (event) => {
+    if (event.type !== 'deleted') {
+      gulp.src(event.path)
+        .pipe(lintAndPrint, {end: false})
+        .on('error', (error) => {
+          util.log(error)
+        })
+    }
+  })
+})
+
+gulp.task('moltres-watch', () => {
   const lintAndPrint = eslint()
   lintAndPrint.pipe(eslint.formatEach())
 

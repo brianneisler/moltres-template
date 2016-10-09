@@ -1,4 +1,4 @@
-import { Driver } from '../../../core/driver'
+import { Driver } from 'moltres'
 import * as actions from './actions'
 import * as commands from './commands'
 import saga from './sagas'

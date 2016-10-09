@@ -1,9 +1,0 @@
-{
-  "name": "reducers",
-  "dependencies": {
-    "npm": {
-      "duxtape": "^0.0.5",
-      "mudash": "^0.0.5"
-    }
-  }
-}
