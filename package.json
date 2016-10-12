@@ -1,6 +1,6 @@
 {
   "name": "moltres",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Redux application framework",
   "main": "./index.js",
   "bin": {
@@ -34,7 +34,7 @@
     "graphql": "^0.7.0",
     "immutable": "^3.7.6",
     "invariant": "^2.2.1",
-    "moltres-projects": "^0.0.2",
+    "moltres-projects": "^0.0.3",
     "mudash": "^0.0.5",
     "node-ipc": "^8.1.0",
     "pm2": "^1.1.3",
@@ -58,14 +58,11 @@
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
     "gulp-mocha": "^3.0.0",
-    "gulp-moltres": "^0.0.1",
+    "gulp-moltres": "^0.0.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "immutable-devtools": "^0.0.7"
   },
-  "bundledDependencies": [
-    "@moltres/drivers"
-  ],
   "license": "MIT",
   "keywords": [
     "moltres",

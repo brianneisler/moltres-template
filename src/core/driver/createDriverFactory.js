@@ -1,5 +1,6 @@
 import _ from 'mudash'
-import { isDriverClass, warning } from '../util'
+import isDriverClass from './isDriverClass'
+import { warning } from '../util'
 
 export default function createDriverFactory() {
 

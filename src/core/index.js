@@ -1,7 +1,7 @@
 export * from './driver'
 export * from './engine'
-export * from './m'
 export * from './plugin'
+export * from './registry'
 export * from './util'
 export { default as boot } from './boot'
 export { default as MoltresDefaultInjection } from './MoltresDefaultInjection'

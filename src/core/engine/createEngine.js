@@ -43,7 +43,7 @@ export default function createEngine() {
   }
 
   function getDriversInDependencyOrder() {
-    return Registry.getInDependencyOrder(['drivers', 'plugins'])
+    return Registry.getInDependencyOrder(['driver', 'plugin'])
   }
 
   function getModule(type, name) {
@@ -201,6 +201,7 @@ export default function createEngine() {
 
   engine = {
     dispatch,
+    getDriversInDependencyOrder,
     getModule,
     getModulesInDependencyOrder,
     getStore,
