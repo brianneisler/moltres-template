@@ -1,5 +1,6 @@
 import _ from 'mudash'
 import { DepGraph } from 'dependency-graph'
+import { makeModuleKey, moduleKey, modulePath, reduceModules } from '../util'
 
 export default function createRegistry() {
 
@@ -7,42 +8,41 @@ export default function createRegistry() {
   let dependencyGraph = null
   let dependencyGraphValid = false
 
-  function moduleKey(type, name) {
-    return `${type}.${name}`
-  }
 
-  function register(type, module) {
-    const { name } = module.info
-    moduleMap = _.assoc(moduleMap, moduleKey(type, name), module)
+  function register(module) {
+    moduleMap = _.assoc(moduleMap, modulePath(module), module)
     dependencyGraphValid = false
   }
 
-  function get(type, name) {
-    return _.get(moduleMap, moduleKey(type, name))
+  function hasExact(module) {
+    return _.get(moduleMap, modulePath(module)) === module
+  }
+
+  function get(namespace, type, name) {
+    return _.get(moduleMap, makeModulePath(namespace, type, name))
+  }
+
+  function getMap() {
+    return moduleMap
   }
 
   function buildDependencyGraph() {
-    const depGraph = _.reduce(moduleMap, (final, modules, type) => {
-      return _.reduce(modules, (graph, module) => {
-        const { name } = module.info
-        graph.addNode(`${type}:${name}`, module)
-        return graph
-      }, final)
+    const depGraph = reduceModules(moduleMap, (graph, module) => {
+      graph.addNode(moduleKey(module), module)
+      return graph
     }, new DepGraph())
-    dependencyGraph = _.reduce(moduleMap, (final, modules, type) => {
-      return _.reduce(modules, (graph, module) => {
-        const { dependencies, name } = module.info
-        _.each(dependencies, (typeDependencies, depType) => {
+    dependencyGraph = reduceModules(moduleMap, (graph, module) => {
+      const { dependencies } = module.info
+      _.each(dependencies, (typeDependencies, depType) => {
 
-          //TODO BRN: Figure out how to abstract this check
-          if (depType !== 'npm') {
-            _.each(typeDependencies, (depVersion, depName) => {
-              graph.addDependency(`${type}:${name}`, `${depType}:${depName}`)
-            })
-          }
-        })
-        return graph
-      }, final)
+        //TODO BRN: Figure out how to abstract this check
+        if (depType !== 'npm') {
+          _.each(typeDependencies, (depVersion, depName) => {
+            graph.addDependency(moduleKey(module), makeModuleKey('moltres', depType, depName))
+          })
+        }
+      })
+      return graph
     }, depGraph)
     dependencyGraphValid = true
   }
@@ -53,14 +53,14 @@ export default function createRegistry() {
     }, {})
   }
 
-  function getInDependencyOrder(types = []) {
+  function getInDependencyOrder(namespace, types = []) {
     types = typeMap(types)
     if (!dependencyGraphValid) {
       buildDependencyGraph()
     }
     const modules = _.filter(dependencyGraph.overallOrder(), (key) => {
-      const [type] = key.split(':')
-      return _.has(types, type)
+      const [ns, type] = key.split(':')
+      return ns === namespace && _.has(types, type)
     })
     return _.map(modules,
       (key) => dependencyGraph.getNodeData(key))
@@ -69,6 +69,8 @@ export default function createRegistry() {
   return {
     get,
     getInDependencyOrder,
+    getMap,
+    hasExact,
     register
   }
 }

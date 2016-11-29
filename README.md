@@ -1,2 +1,2 @@
 # moltres
-Redux application framework
+CMS for react and react-native

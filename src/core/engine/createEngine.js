@@ -1,19 +1,17 @@
 import _ from 'mudash'
 import invariant from 'invariant'
-import { createStore } from 'redux'
-
-
-const PASS = arg => arg
+import stutter from 'stutter'
+import { createStore, updateStore } from 'duxtape'
+import { eachModules, reduceModules } from '../util'
 
 export default function createEngine() {
 
   let Factories         = {}
-  let Registry          = null
-  let SchemaCache       = null
+  let ModuleRegistry    = null
 
-  let store             = null
-  let storeState        = null
+  let booted            = false
   let engine            = null
+  let initialized       = false
 
   const injection = {
     injectFactory(type, InjectedFactory) {
@@ -24,190 +22,157 @@ export default function createEngine() {
       )
       Factories = _.assoc(Factories, type, InjectedFactory)
     },
-    injectRegistry(InjectedRegistry) {
+    injectModuleRegistry(InjectedRegistry) {
       invariant(
-        !Registry,
-        `Registry: Cannot inject Registry more than once.
+        !ModuleRegistry,
+        `ModuleRegistry: Cannot inject ModuleRegistry more than once.
         You are likely trying to load more than one copy of Moltres.`
       )
-      Registry = InjectedRegistry
-    },
-    injectSchemaCache(InjectedSchemaCache) {
-      invariant(
-        !SchemaCache,
-        `SchemaCache: Cannot inject schema cache more than once.
-        You are likely trying to load more than one copy of Moltres.`
-      )
-      SchemaCache = InjectedSchemaCache
+      ModuleRegistry = InjectedRegistry
     }
   }
 
-  function getDriversInDependencyOrder() {
-    return Registry.getInDependencyOrder(['driver', 'plugin'])
+  function getModule(type, name, namespace = 'moltres') {
+    return ModuleRegistry.get(namespace, type, name)
   }
 
-  function getModule(type, name) {
-    return Registry.get(type, name)
+  function getModules(type, namespace = 'motlres') {
+    return ModuleRegistry.get(namespace, type)
   }
 
-  function getModulesInDependencyOrder(types) {
-    return Registry.getInDependencyOrder(types)
+  function getModuleMap() {
+    return ModuleRegistry.getMap()
   }
 
-
-  function getStore() {
-    if (!store) {
-      generateStore()
-    }
-    return store
+  function getModulesInDependencyOrder(types, namespace = 'moltres') {
+    return ModuleRegistry.getInDependencyOrder(namespace, types)
   }
 
-  function dispatch(action) {
-    getStore().dispatch(action)
-  }
-
-  function validateSchema(schema, type, name) {
+  function validateModule(module, name, type, namespace) {
+    const info = _.get(module, 'info')
     invariant(
-      _.has(schema, 'info'),
-      `Schema(${type}:${name}): Could not find info for module schema`
+      !!info,
+      `Module(${info.namespace}:${info.type}:${info.name}): Could not find info for module`
+    )
+    invariant(
+      info.namespace === namespace,
+      `Module(${info.namespace}:${info.type}:${info.name}): Module namespace does not match mapping`
+    )
+    invariant(
+      info.type === type,
+      `Module(${info.namespace}:${info.type}:${info.name}): Module type does not match mapping`
+    )
+    invariant(
+      info.name === name,
+      `Module(${info.namespace}:${info.type}:${info.name}): Module name does not match mapping`
     )
   }
 
-  function updateBlueprint(blueprint = _.im({})) {
-    _.each(blueprint, (modules, type) => {
-      _.each(modules, (schema, name) => {
-        validateSchema(schema, type, name)
-        if (!SchemaCache.has(type, schema)) {
-          SchemaCache.set(type, schema)
-          const Factory = Factories[type]
-          let module = schema
-          if (Factory) {
-            module = Factory.factory(schema, engine)
-          }
-          Registry.register(type, module)
-        }
-      })
+  function registerModules(modules = _.im({})) {
+    let changedModules = []
+    eachModules(modules, (module, name, type, namespace) => {
+      validateModule(module, name, type, namespace)
+      if (!ModuleRegistry.hasExact(module)) {
+        ModuleRegistry.register(module)
+        changedModules = _.push(changedModules, module)
+      }
     })
-    generateStore(_.assoc(_.im({}), { blueprint }))
+    if (booted) {
+      update(changedModules)
+    }
+  }
+
+  function boot() {
+    invariant(
+      !booted,
+      'Engine: Already booted, call update if trying to boot new modules'
+    )
+    booted = true
+    bootModules()
+  }
+
+  function init() {
+    invariant(
+      !initialized,
+      'App: Already initialized, call update if trying to init new modules'
+    )
+    generateStore(_.im({}))
     trySubscribe()
     updateState()
     initDrivers()
   }
 
-  function generateStore(state) {
-    const drivers = getDriversInDependencyOrder()
-    if (!store) {
-      store = createEngineStore(state, drivers)
-    } else {
-      store = updateStore(state, drivers)
-    }
-    return store
-  }
-
-  function createEngineStore(state, drivers) {
-    state = createState(state, drivers)
-    return createStore(
-      composeReducer(state, drivers),
-      state,
-      composeEnhancer(state, drivers)
-    )
-  }
-
-  function createState(state, drivers) {
-    return _.reduce(_.reverse(drivers), (reduction, driver) => {
-      if (_.isFunction(_.get(driver, 'createState'))) {
-        return driver.createState(reduction, drivers)
-      }
-      return reduction
-    }, state)
-  }
-
-  function composeReducer(state, drivers) {
-    return _.reduce(drivers, (reducer, driver) => {
-      if (_.isFunction(_.get(driver, 'composeReducer'))) {
-        return driver.composeReducer(reducer, state, drivers)
-      }
-      return reducer
-    }, PASS)
-  }
-
-  function composeEnhancer(state, drivers) {
-    return _.reduce(drivers, (enhancer, driver) => {
-      if (_.isFunction(_.get(driver, 'composeEnhancer'))) {
-        return driver.composeEnhancer(enhancer, state, drivers)
-      }
-      return enhancer
-    }, PASS)
-  }
-
   function initDrivers() {
-    const drivers = getDriversInDependencyOrder()
+    const drivers = getModulesInDependencyOrder(['driver', 'plugin'])
     _.each(drivers, (driver) => {
       if (!driver.initialized) {
         driver.initialized = true
-        if (_.isFunction(driver.initDriver)) {
-          driver.initDriver()
+        if (_.isFunction(_.get(driver, 'init'))) {
+          driver.init()
         }
       }
     })
   }
 
-  function updateState() {
-    const state = store.getState()
-    const drivers = getDriversInDependencyOrder()
-    _.each(drivers, (driver) => {
-      driver.updateState(state, dispatch)
+
+  function generateStore(state) {
+    const modules = engine.getModulesInDependencyOrder()
+    if (!store) {
+      store = createStore(modules, state)
+    } else {
+      store = updateStore(store, modules, state)
+    }
+    return store
+  }
+
+  function bootModules() {
+    const modules = getModulesInDependencyOrder()
+    _.each(modules, (module) => {
+      if (_.isFunction(_.get(module, 'boot'))) {
+        module.boot({
+          engine,
+          info: module.info,
+          module
+        })
+      }
     })
   }
 
-  function updateStore(state, drivers) {
-    // const state       = store.getState() TODO BRN: Deal with existing state
-    return store.replaceReducer(composeReducer(state, drivers))
+  function factory(module, properties) {
+    const { info } = module
+    const Factory = Factories[info.type]
+    let instance = module
+    if (Factory) {
+      instance = Factory.factory({ engine, info, module, properties })
+    }
+    return instance
   }
 
-  let unsubscribe
-
-  function isSubscribed() {
-    return typeof unsubscribe === 'function'
+  function getLang() {
+    const moduleMap = getModuleMap()
+    reduceModules(moduleMap, (reduction, module, name, type, namespace) => {
+      if (_.has(module, 'lang')) {
+        return _.set(reduction, `${namespace}.${type}.${name}`, module.lang)
+      }
+      return reduction
+    }, {})
   }
 
-  function trySubscribe() {
-    if (!isSubscribed()) {
-      unsubscribe = store.subscribe(handleChange)
-    }
-  }
-
-  function tryUnsubscribe() {
-    if (isSubscribed()) {
-      unsubscribe()
-      unsubscribe = null
-    }
-  }
-
-  function handleChange() {
-    if (!isSubscribed()) {
-      return
-    }
-
-    const currentStoreState = store.getState()
-    const prevStoreState = storeState
-    if (prevStoreState === currentStoreState) {
-      return
-    }
-
-    storeState = currentStoreState
-    updateState()
+  async function run(blueprint, options = {}) {
+    const lang = getLang()
+    return await stutter.run(blueprint, {
+      ...options,
+      lang
+    })
   }
 
   engine = {
-    dispatch,
-    getDriversInDependencyOrder,
+    boot,
     getModule,
     getModulesInDependencyOrder,
-    getStore,
     injection,
-    tryUnsubscribe,
-    updateBlueprint
+    registerModules,
+    run
   }
 
   return engine

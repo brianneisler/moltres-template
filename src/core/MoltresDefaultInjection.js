@@ -1,7 +1,5 @@
 import invariant from 'invariant'
-import { createDriverFactory } from './driver'
-import { createPluginFactory } from './plugin'
-import { createRegistry, createSchemaCache } from './registry'
+import { createRegistry } from './registry'
 
 export default class MoltresDefaultInjection {
 
@@ -13,9 +11,6 @@ export default class MoltresDefaultInjection {
       'MoltresDefaultInjection: Cannot inject Moltres twice'
     )
     MoltresDefaultInjection.injected = true
-    engine.injection.injectFactory('driver', createDriverFactory())
-    engine.injection.injectFactory('plugin', createPluginFactory())
-    engine.injection.injectRegistry(createRegistry())
-    engine.injection.injectSchemaCache(createSchemaCache())
+    engine.injection.injectModuleRegistry(createRegistry())
   }
 }

@@ -1,10 +1,10 @@
 import _ from 'mudash'
 import { boot } from '../core'
-import * as blueprint from './blueprint'
+import modules from './modules'
 import { command } from './drivers/commands/actions'
 
 export default function init() {
-  const engine = boot(blueprint)
+  const engine = boot(modules)
   return {
     command: _.compose(engine.dispatch, command)
   }

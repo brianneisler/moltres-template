@@ -49,14 +49,7 @@ async function findMoltresModules(targetPath) {
 
 }
 
-const MOLTRES_TYPES = {
-  app: 'app',
-  component: 'component',
-  driver: 'driver',
-  flareon: 'flareon',
-  plugin: 'plugin',
-  scene: 'scene'
-}
+
 function findMoltresJsonFiles(targetPath) {
   return new Promise((resolve) => {
     const items = []

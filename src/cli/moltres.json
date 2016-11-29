@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "driver": {
-      "client": "file:./drivers/client",
-      "daemon": "file:./drivers/daemon",
-      "rebuild": "file:./drivers/rebuild"
-    }
-  }
-}

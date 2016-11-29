@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects'
-import { createCommand } from '../commands'
+import { createCommand } from '@moltres/driver/commands'
 import * as actions from './actions'
 
 const START_DAEMON = 'START_DAEMON'

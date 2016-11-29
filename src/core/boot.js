@@ -1,11 +1,12 @@
 import MoltresDefaultInjection from './MoltresDefaultInjection'
 import { createEngine } from './engine'
 
-export default function boot(blueprint, injection = MoltresDefaultInjection) {
+export default function boot(modules, injection = MoltresDefaultInjection) {
   const engine = createEngine()
   injection.inject(engine)
-  if (blueprint) {
-    engine.updateBlueprint(blueprint)
+  if (modules) {
+    engine.registerModules(modules)
   }
+  engine.boot()
   return engine
 }
