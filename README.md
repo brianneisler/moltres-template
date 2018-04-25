@@ -1,2 +1,2 @@
 # moltres
-CMS for react and react-native
+CMS for firebase

@@ -1,72 +1,49 @@
 {
   "name": "moltres",
-  "version": "0.0.11",
-  "description": "CMS for react and react-native",
+  "version": "0.1.0",
+  "description": "CMS for firebase",
   "main": "./index.js",
   "bin": {
-    "moltres": "./bin/moltres",
-    "moltresd": "./bin/moltresd"
+    "moltres": "./bin/moltres"
   },
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brianneisler/moltres.git"
   },
-  "author": "Brian Neisler <me@brianneisler.com>",
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres#readme",
   "bugs": {
     "url": "https://github.com/brianneisler/moltres/issues"
   },
-  "homepage": "https://github.com/brianneisler/moltres#readme",
-  "scripts": {
-    "clean": "gulp clean",
-    "cleanse": "gulp cleanse",
-    "dev": "gulp dev",
-    "test": "gulp test"
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.16.0",
-    "bluebird": "^3.4.1",
-    "commander": "^2.9.0",
-    "dependency-graph": "^0.5.0",
-    "duxtape": "^0.0.6",
-    "es6-symbol": "^3.1.0",
-    "fs-extra": "^0.30.0",
-    "fs-promise": "^0.5.0",
-    "graphql": "^0.7.2",
-    "immutable": "^3.8.1",
-    "invariant": "^2.2.1",
-    "moltres-projects": "0.0.3",
-    "mudash": "0.0.10",
-    "node-ipc": "^8.9.2",
-    "pm2": "^1.1.3",
-    "prompt": "^1.0.0",
-    "redux": "^3.5.2",
-    "redux-actions": "^0.11.0",
-    "redux-saga": "^0.11.0",
-    "reselect": "^2.5.4"
-  },
-  "devDependencies": {
-    "babel-core": "^6.17.0",
-    "babel-eslint": "^6.1.2",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-stage-1": "^6.16.0",
-    "babel-preset-stage-2": "^6.17.0",
-    "chai": "^3.5.0",
-    "del": "^2.2.1",
-    "eslint": "^3.8.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-eslint": "^3.0.1",
-    "gulp-mocha": "^3.0.0",
-    "gulp-moltres": "^0.0.2",
-    "gulp-sourcemaps": "^1.8.1",
-    "gulp-util": "^3.0.7",
-    "immutable-devtools": "^0.0.7"
-  },
-  "license": "MIT",
   "keywords": [
     "moltres",
     "CMS",
     "redux"
-  ]
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "clean": "node ./scripts/clean.js",
+    "cleanse": "node ./scripts/cleanse.js",
+    "lint": "node ./scripts/lint.js",
+    "test": "node ./scripts/test.js",
+    "watch": "node ./scripts/watch.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^5.0.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "firebase": "^4.13.0",
+    "firebase-admin": "^5.12.0",
+    "jest": "^22.0.6"
+  }
 }

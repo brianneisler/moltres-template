@@ -1,5 +1,8 @@
 {
-  "plugins": ["transform-decorators-legacy"],
-  "presets": ["es2015", "stage-1", "stage-2"],
-  "ignore": ["**/*.json"]
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    ["transform-object-rest-spread", { "useBuiltIns": true }]
+  ]
 }

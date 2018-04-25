@@ -1,21 +1,32 @@
-# build
-dist
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
 
-# config
-config/config.json
-config/config-dev.json
+pids
+logs
+results
+
+# node js
+node_modules
+npm-debug.log
 
 # IntelliJ resources
-.idea/
 *.iml
 *.ipr
 *.iws
+.idea
 
 # mac
 .DS_Store
 
-# node
-node_modules/
-npm-debug.log
+# development
 .env
-.npmrc
+.eslintcache
+dist
+etc
+tmp
