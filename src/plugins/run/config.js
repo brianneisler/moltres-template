@@ -1,0 +1,9 @@
+import action from './action'
+import { createAction } from '.././'
+
+const config = (cli) =>
+  cli
+    .command('run <script>', 'runs a script')
+    .action(action)
+
+export default config
