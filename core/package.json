@@ -1,0 +1,50 @@
+{
+  "name": "moltres",
+  "version": "0.1.0",
+  "description": "CMS for firebase",
+  "main": "./dist/index.js",
+  "bin": {
+    "moltres": "./bin/moltres"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "CMS",
+    "moltres",
+    "redux"
+  ],
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "clean": "./scripts/clean.sh",
+    "cleanse": "./scripts/cleanse.sh",
+    "lint": "./scripts/lint.sh",
+    "test": "./scripts/test.sh",
+    "watch": "./scripts/watch.sh"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bluebird": "^3.5.1",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^5.0.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "firebase": "^4.13.0",
+    "firebase-admin": "^5.12.0",
+    "jest": "^22.0.6"
+  }
+}

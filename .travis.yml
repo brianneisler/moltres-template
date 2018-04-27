@@ -1,22 +1,18 @@
 language: node_js
 sudo: false
 node_js:
+- 4
+- 6
 - 8
+install:
+- npm run setup
 script:
-- npm run clean
-- npm run build
 - npm run lint
 - npm test
+after_success:
+- npm run deploy
 env:
   global:
   - FIREBASE_API_KEY=AIzaSyDmDqVttwfQwBDTfl3frWl3oMaBez6Wuu8
   - FIREBASE_PROJECT_ID=moltres-test
   - FIREBASE_MESSAGING_SENDER_ID=524696319278
-deploy:
-  provider: npm
-  email: hello@brianneisler.com
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
-    repo: brianneisler/moltres

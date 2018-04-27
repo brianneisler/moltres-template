@@ -1,3 +1,9 @@
+set -e
 npm run clean
-rm -rf ./node_modules
+cd core
+npm run cleanse
+cd ../cli
+npm run cleanse
+cd ..
+rm -rf node_modules
 rm -f package-lock.json
