@@ -1,5 +1,5 @@
 import action from './action'
-import { createAction } from '.././'
+import { createAction } from '../../util'
 
 const config = (cli) =>
   cli

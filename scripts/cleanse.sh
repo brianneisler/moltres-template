@@ -1,6 +1,11 @@
 set -e
-npm run clean
-cd core
+cd utils
+npm run cleanse
+cd ../test
+npm run cleanse
+cd ../core
+npm run cleanse
+cd ../tools
 npm run cleanse
 cd ../cli
 npm run cleanse

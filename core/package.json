@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "CMS for firebase",
   "main": "./dist/index.js",
-  "bin": {
-    "moltres": "./bin/moltres"
-  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -27,12 +24,14 @@
     "cleanse": "./scripts/cleanse.sh",
     "lint": "./scripts/lint.sh",
     "test": "./scripts/test.sh",
-    "watch": "./scripts/watch.sh"
+    "watch:build": "./scripts/watch-build.sh",
+    "watch:test": "./scripts/watch-test.sh"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "source-map-support": "^0.5.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

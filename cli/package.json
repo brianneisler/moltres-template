@@ -1,7 +1,7 @@
 {
   "name": "moltres-cli",
   "version": "0.1.0",
-  "description": "CLI tools for the moltres CMS for firebase",
+  "description": "CLI for the Moltres CMS for Firebase",
   "main": "./dist/index.js",
   "bin": {
     "moltres": "./bin/moltres"
@@ -27,14 +27,17 @@
     "cleanse": "./scripts/cleanse.sh",
     "lint": "./scripts/lint.sh",
     "test": "./scripts/test.sh",
-    "watch": "./scripts/watch.sh"
+    "watch:build": "./scripts/watch-build.sh",
+    "watch:test": "./scripts/watch-test.sh"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "chalk": "^2.4.0",
     "image-to-ascii": "^3.0.11",
+    "moltres-tools": "file:../tools",
     "ramda": "^0.25.0",
+    "source-map-support": "^0.5.5",
     "vorpal": "^1.12.0"
   },
   "devDependencies": {

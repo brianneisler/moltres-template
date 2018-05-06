@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import * as plugins from './plugins'
 import { createCli, createContext, loadApp } from './util'
 

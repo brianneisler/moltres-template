@@ -1,0 +1,8 @@
+export { default as compact } from './compact'
+export { default as deferredPromise } from './deferredPromise'
+export { default as delay } from './delay'
+export { default as forEachIndexed } from './forEachIndexed'
+export { default as mapIndexed } from './mapIndexed'
+export { default as rate } from './rate'
+export { default as reduceIndexed } from './reduceIndexed'
+export { default as reduceObjIndexed } from './reduceObjIndexed'

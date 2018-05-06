@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brianneisler/moltres"
+    "url": "git+https://github.com/brianneisler/moltres.git"
   },
   "scripts": {
     "build": "./scripts/build.sh",
@@ -16,8 +16,8 @@
     "lint": "./scripts/lint.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
-    "test:watch": "./scripts/test-watch.sh",
-    "watch": "./scripts/watch.sh"
+    "watch:build": "./scripts/watch.sh build",
+    "watch:test": "./scripts/watch.sh test"
   },
   "dependencies": {
     "ramda": "^0.25.0"

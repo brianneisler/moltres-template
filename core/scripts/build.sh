@@ -1,3 +1,4 @@
+set -e
 rm -rf dist
 mkdir -p dist
 babel src -d dist --source-maps --ignore "**/*.test.js"

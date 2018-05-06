@@ -1,26 +1,32 @@
 const { spawn } = require('child_process')
 const { resolve } = require('path')
-const { forEachObjIndexed } = require('ramda')
+const { forEachObjIndexed, prop } = require('ramda')
+const build = require('./build')
+const test = require('./test')
 
 const projects = {
   'cli': './cli',
-  'core': './core'
+  'core': './core',
+  'test': './test',
+  'tools': './tools',
+  'utils': './utils'
 }
 
-forEachObjIndexed((path, name) => {
-  const watcher = spawn('npm', [ 'run', 'watch' ], {
-    cwd: resolve(process.cwd(), path)
-  })
+const COMMANDS = {
+  build,
+  test
+}
 
-  watcher.stdout.on('data', (data) => {
-    console.log(`${name}: ${data}`) // eslint-disable-line no-console
-  })
+const exec = () => {
+  const commandName = process.argv[2]
+  const command = prop(commandName, COMMANDS)
+  if (!command) {
+    throw new Error(`watch does not recognize the command ${commandName}`)
+  }
+  forEachObjIndexed(
+    (path, name) => command(path, name)
+    projects
+  )
+}
 
-  watcher.stderr.on('data', (data) => {
-    console.log(`${name} ERROR: ${data}`) // eslint-disable-line no-console
-  })
-
-  watcher.on('close', (code) => {
-    console.log(`${name} watcher exited with ${code}`) // eslint-disable-line no-console
-  })
-}, projects)
+exec()
