@@ -1,3 +1,4 @@
+export { default as applyIfHas } from './applyIfHas'
 export { default as compact } from './compact'
 export { default as deferredPromise } from './deferredPromise'
 export { default as delay } from './delay'

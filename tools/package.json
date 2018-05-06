@@ -1,5 +1,5 @@
 {
-  "name": "moltres",
+  "name": "moltres-tools",
   "version": "0.1.0",
   "description": "Tools for managing a Moltres app",
   "main": "./dist/index.js",

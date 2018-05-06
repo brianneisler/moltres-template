@@ -24,7 +24,7 @@ const exec = () => {
     throw new Error(`watch does not recognize the command ${commandName}`)
   }
   forEachObjIndexed(
-    (path, name) => command(path, name)
+    (path, name) => command(path, name),
     projects
   )
 }

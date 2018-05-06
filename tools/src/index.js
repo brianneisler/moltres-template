@@ -3,7 +3,6 @@ if (!global._babelPolyfill) { // eslint-disable-line no-underscore-dangle
 }
 require('source-map-support/register') // eslint-disable-line global-require
 
-const modules = require('./modules')
 const build = require('./build')
 const clean = require('./clean')
 const cleanse = require('./cleanse')
@@ -15,7 +14,6 @@ const start = require('./start')
 const test = require('./test')
 
 export {
-  modules,
   build,
   clean,
   cleanse,

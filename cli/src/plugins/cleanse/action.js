@@ -1,4 +1,4 @@
-import { run } from 'moltres-tools'
+import { cleanse } from 'moltres-tools'
 
 const action = async (args) => {
   //const { cwd } = context
