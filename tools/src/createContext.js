@@ -1,17 +1,18 @@
-import { findModules, getStage, loadProject } from './util'
+import { findModules, getStage, loadProject, newContext } from './util'
 
 const createContext = async (options) => {
-  const { plugins } = options
+  const { logger, plugins } = options
   const cwd = process.cwd()
   const project = await loadProject(cwd)
   const stage = getStage(options)
 
-  return {
+  return newContext({
     cwd,
+    logger,
     plugins,
     project,
     stage
-  }
+  })
 }
 
 export default createContext

@@ -1,6 +1,11 @@
+import createLogger from './createLogger'
+
 const createAction = (action, context) =>
   async function(args) {
-    return action(this, args, context)
+    const instance = this
+    return action(instance, args, context.merge({
+      logger: createLogger(instance)
+    }))
   }
 
 export default createAction

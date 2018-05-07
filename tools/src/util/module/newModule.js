@@ -1,8 +1,8 @@
 import { pick } from 'ramda'
 
-const newModule = (def) => pick([
+const newModule = (props) => pick([
   'name',
   'path'
-], def)
+], props)
 
 export default newModule

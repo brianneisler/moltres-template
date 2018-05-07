@@ -1,12 +1,12 @@
 import { pick } from 'ramda'
 
-const newProject = (def) => pick([
+const newProject = (props) => pick([
   'modules',
   'name',
   'path',
   'projects',
   'scripts',
   'version'
-], def)
+], props)
 
 export default newProject
