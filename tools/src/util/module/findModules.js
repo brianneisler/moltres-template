@@ -10,13 +10,16 @@ import loadModule from './loadModule'
 const findModules = async (path) => {
   const modulesDir = resolve(path, MODULES_DIR_NAME)
   const moduleDirNames = await readdir(modulesDir)
+  console.log('modulesDir:', modulesDir)
+  console.log('moduleDirNames:', moduleDirNames)
   const loadedModules = await all(map(async (moduleDirName) => {
     const modulePath = resolve(modulesDir, moduleDirName)
     if (await isModulePath(modulePath)) {
       return loadModule(modulePath)
     }
     return null
-  }, {}, moduleDirNames))
+  }, moduleDirNames))
+  console.log('loadedModules:', compact(loadedModules))
   return indexBy(prop('name'), compact(loadedModules))
 }
 

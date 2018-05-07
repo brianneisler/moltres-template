@@ -3,20 +3,22 @@ if (!global._babelPolyfill) { // eslint-disable-line no-underscore-dangle
 }
 require('source-map-support/register') // eslint-disable-line global-require
 
-const build = require('./build')
-const clean = require('./clean')
-const cleanse = require('./cleanse')
-const deploy = require('./deploy')
-const lint = require('./lint')
-const run = require('./run')
-const setup = require('./setup')
-const start = require('./start')
-const test = require('./test')
+const build = require('./build').default
+const clean = require('./clean').default
+const cleanse = require('./cleanse').default
+const createContext = require('./createContext').default
+const deploy = require('./deploy').default
+const lint = require('./lint').default
+const run = require('./run').default
+const setup = require('./setup').default
+const start = require('./start').default
+const test = require('./test').default
 
 export {
   build,
   clean,
   cleanse,
+  createContext,
   deploy,
   lint,
   run,

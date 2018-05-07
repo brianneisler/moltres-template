@@ -5,3 +5,5 @@ const getStage = () => {
   }
   return stage
 }
+
+export default getStage

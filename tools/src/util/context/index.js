@@ -1,1 +1,1 @@
-export { default as createContext } from './createContext'
+export { default as getStage } from './getStage'
