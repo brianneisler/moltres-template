@@ -1,5 +1,5 @@
 import createContext from './createContext'
-import { cleanProject, cleanseProject } from './util'
+import { cleanProject, cleanseProject } from './plugins'
 
 const cleanse = async (options, context = createContext(options)) => {
   await cleanProject(context.project, context)

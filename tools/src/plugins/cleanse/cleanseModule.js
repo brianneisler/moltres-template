@@ -1,5 +1,5 @@
 import { join, resolve } from 'path'
-import execScripts from '../script/execScripts'
+import { execScripts } from '../../util'
 
 const cleanseModule = async (module, context) => {
   const { logger } = context
@@ -7,7 +7,7 @@ const cleanseModule = async (module, context) => {
   const moduleNodeModules = resolve(module.path, 'node_modules')
   const modulePackageLock = resolve(module.path, 'package-lock.json')
   return execScripts([
-    `rm -rf ${moduleNodeModules}`
+    `rm -rf ${moduleNodeModules}`,
     `rm -f ${modulePackageLock}`
   ], {
     cwd: module.modulesDir,

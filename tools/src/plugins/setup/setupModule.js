@@ -1,4 +1,5 @@
-import execScripts from '../script/execScripts'
+import os from 'os'
+import { execScripts } from '../../util'
 
 const setupModule = async (module, context) => {
   const { logger } = context

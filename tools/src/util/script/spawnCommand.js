@@ -10,6 +10,7 @@ const spawnCommand = async (command, args, options) => {
       console.log(data.toString()) // eslint-disable-line no-console
     })
     commandProcess.on('close', (code) => {
+      console.log('complete:', command, ' ', args, ' ', options)
       if (code) {
         return reject(new Error('Command errored'))
       }

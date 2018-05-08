@@ -1,5 +1,5 @@
 import { join, resolve } from 'path'
-import execScripts from '../script/execScripts'
+import { execScripts } from '../../util'
 
 const buildModule = async (module, context) => {
   const { logger } = context

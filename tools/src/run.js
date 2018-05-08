@@ -1,5 +1,5 @@
 import createContext from './createContext'
-import { runProject } from './util'
+import { runProject } from './plugins'
 
 const run = async (options, context = createContext(options)) =>
   runProject(context.project, context)

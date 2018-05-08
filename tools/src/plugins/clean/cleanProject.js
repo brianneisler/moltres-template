@@ -1,8 +1,7 @@
 import { all } from 'bluebird'
 import { resolve } from 'path'
 import { has, isEmpty, map, values } from 'ramda'
-import mapModules from '../module/mapModules'
-import execScript from '../script/execScript'
+import { execScript, mapModules } from '../../util'
 import cleanModule from './cleanModule'
 
 const cleanProject = async (project, context) => {

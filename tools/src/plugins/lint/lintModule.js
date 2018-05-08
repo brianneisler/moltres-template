@@ -1,4 +1,4 @@
-import execScripts from '../script/execScripts'
+import { execScripts } from '../../util'
 
 const lintModule = async (module, context) => {
   const { logger } = context

@@ -2,21 +2,21 @@ import { all } from 'bluebird'
 import { resolve } from 'path'
 import { has, isEmpty, map, values } from 'ramda'
 import { execScript, mapModules } from '../../util'
-import lintModule from './lintModule'
+import startModule from './startModule'
 
-const lintProject = async (project, context) => {
+const startProject = async (project, context) => {
   const { logger } = context
-  logger.log(`linting project ${project.name}`)
-  await mapModules(project.modules, context, lintModule)
+  logger.log(`starting project ${project.name}`)
+  await mapModules(project.modules, context, startModule)
 
   if (!isEmpty(project.projects)) {
     await all(map(
-      (childProject) => lintProject(childProject, context),
+      (childProject) => startProject(childProject, context),
       values(project.projects)
     ))
   }
-  if (has('lint', project.scripts)) {
-    await execScript(project.scripts.lint, {
+  if (has('start', project.scripts)) {
+    await execScript(project.scripts.start, {
       cwd: project.path,
       env: {
         ...process.env,
@@ -24,7 +24,7 @@ const lintProject = async (project, context) => {
       }
     })
   }
-  logger.log('project lint complete')
+  logger.log('project start complete')
 }
 
-export default lintProject
+export default startProject

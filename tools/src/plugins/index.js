@@ -1,5 +1,8 @@
 export * from './build'
 export * from './clean'
 export * from './cleanse'
-
+export * from './deploy'
+export * from './lint'
 export * from './setup'
+export * from './start'
+export * from './test'

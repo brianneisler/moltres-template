@@ -1,5 +1,5 @@
 import createContext from './createContext'
-import { setupProject, deployProject } from './util'
+import { deployProject, setupProject } from './plugins'
 
 const deploy = async (options, context = createContext(options)) => {
   await buildProject(context.project, context)
