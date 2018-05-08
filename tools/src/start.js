@@ -1,9 +1,7 @@
-import { createContext, getProject, startProject } from './util'
+import createContext from './createContext'
+import { startProject } from './util'
 
-const start = async (options) => {
-  const context = createContext(options)
-  const project = await getProject()
-  return startProject(project, context)
-}
+const start = async (options, context = createContext(options)) =>
+  startProject(context.project, context)
 
 export default start

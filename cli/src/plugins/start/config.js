@@ -1,9 +1,9 @@
 import action from './action'
-import { createAction } from '../../util'
 
-const config = (cli) =>
-  cli
-    .command('start', 'locally runs a moltres project')
-    .action(action)
+const config = {
+  command: 'start',
+  description: 'locally runs a moltres project',
+  action
+}
 
 export default config

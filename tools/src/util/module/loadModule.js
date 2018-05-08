@@ -4,7 +4,8 @@ import { MODULE_FILE_NAME } from '../constants'
 import loadModuleFile from './loadModuleFile'
 import newModule from './newModule'
 
-const loadModule = async (modulePath) => {
+const loadModule = async (modulesDir, moduleDirName) => {
+  const modulePath = resolve(modulesDir, moduleDirName)
   const filePath = resolve(modulePath, MODULE_FILE_NAME)
   if (!await pathExists(filePath)) {
     throw new Error(`Cannot find ${MODULE_FILE_NAME} at ${modulePath}`)
@@ -12,7 +13,8 @@ const loadModule = async (modulePath) => {
   const data = await loadModuleFile(filePath)
   return newModule({
     ...data,
-    path: modulePath
+    path: modulePath,
+    modulesDir
   })
 }
 

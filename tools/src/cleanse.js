@@ -1,10 +1,9 @@
-import { cleanProject, cleanseProject, createContext, getProject } from './util'
+import createContext from './createContext'
+import { cleanProject, cleanseProject } from './util'
 
-const cleanse = async (options) => {
-  const context = createContext(options)
-  const project = await getProject()
-  await cleanProject(project, context)
-  return cleanseProject(project, context)
+const cleanse = async (options, context = createContext(options)) => {
+  await cleanProject(context.project, context)
+  return cleanseProject(context.project, context)
 }
 
 export default cleanse

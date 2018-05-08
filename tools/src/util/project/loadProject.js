@@ -1,5 +1,7 @@
+import { props } from 'bluebird'
 import { pathExists } from 'fs-extra'
 import { resolve } from 'path'
+import { mapObjIndexed } from 'ramda'
 import { PROJECT_FILE_NAME } from '../constants'
 import findModules from '../module/findModules'
 import loadProjectFile from './loadProjectFile'
@@ -12,9 +14,14 @@ const loadProject = async (projectPath) => {
   }
   const data = await loadProjectFile(filePath)
   const modules = await findModules(projectPath)
+  const projects = await props(mapObjIndexed(
+    (childProjectPath) => loadProject(resolve(projectPath, childProjectPath)),
+    data.projects || {}
+  ))
   return newProject({
     ...data,
     modules,
+    projects,
     path: projectPath
   })
 }

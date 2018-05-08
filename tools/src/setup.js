@@ -1,10 +1,9 @@
-import { buildProject, createContext, getProject, setupProject } from './util'
+import createContext from './createContext'
+import { buildProject, setupProject } from './util'
 
-const setup = async (options) => {
-  const context = createContext(options)
-  const project = await getProject()
-  await setupProject(project, context)
-  return buildProject(project, context)
+const setup = async (options, context = createContext(options)) => {
+  await setupProject(context.project, context)
+  return buildProject(context.project, context)
 }
 
 export default setup

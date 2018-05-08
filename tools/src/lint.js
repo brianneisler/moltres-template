@@ -1,9 +1,7 @@
-import { createContext, getProject, lintProject } from './util'
+import createContext from './createContext'
+import { lintProject } from './util'
 
-const lint = async (options) => {
-  const context = createContext(options)
-  const project = await getProject()
-  return lintProject(project, context)
-}
+const lint = async (options, context = createContext(options)) =>
+  lintProject(context.project, context)
 
 export default lint

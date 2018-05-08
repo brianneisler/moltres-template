@@ -1,9 +1,9 @@
 import action from './action'
-import { createAction } from '../../util'
 
-const config = (cli) =>
-  cli
-    .command('cleanse', 'cleans as well as removes install artifacts from setup')
-    .action(action)
+const config = {
+  command: 'cleanse',
+  description: 'cleans as well as removes install artifacts from setup',
+  action
+}
 
 export default config

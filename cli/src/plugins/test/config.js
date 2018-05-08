@@ -1,9 +1,9 @@
 import action from './action'
-import { createAction } from '../../util'
 
-const config = (cli) =>
-  cli
-    .command('test', 'runs tests on a moltres project')
-    .action(action)
+const config = {
+  command: 'test',
+  description: 'runs tests on a moltres project',
+  action
+}
 
 export default config
