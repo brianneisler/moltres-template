@@ -24,7 +24,7 @@ const cleanseProject = async (project, context) => {
       }
     })
   }
-  logger.log('project cleanse complete')
+  logger.log(`project ${project.name} cleansed`)
 }
 
 export default cleanseProject

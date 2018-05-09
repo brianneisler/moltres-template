@@ -1,8 +1,6 @@
 import { test } from 'moltres-tools'
 
-const action = async (instance, args, context) => {
-  const result = await test({}, context)
-  instance.log('result:', result)
-}
+const action = async (instance, args, context) =>
+  test({}, context)
 
 export default action

@@ -24,7 +24,7 @@ const buildProject = async (project, context) => {
       }
     })
   }
-  logger.log('project build complete')
+  logger.log(`project ${project.name} built`)
 }
 
 export default buildProject

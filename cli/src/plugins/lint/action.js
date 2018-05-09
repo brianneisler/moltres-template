@@ -1,8 +1,6 @@
 import { lint } from 'moltres-tools'
 
-const action = async (instance, args, context) => {
-  const result = await lint({}, context)
-  instance.log('result:', result)
-}
+const action = async (instance, args, context) =>
+  lint({}, context)
 
 export default action

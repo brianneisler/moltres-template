@@ -24,7 +24,7 @@ const deployProject = async (project, context) => {
       }
     })
   }
-  logger.log('project deploy complete')
+  logger.log(`project ${project.name} deployed`)
 }
 
 export default deployProject

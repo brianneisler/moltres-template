@@ -24,7 +24,7 @@ const startProject = async (project, context) => {
       }
     })
   }
-  logger.log('project start complete')
+  logger.log(`project ${project.name} started`)
 }
 
 export default startProject

@@ -1,8 +1,7 @@
 import { cleanse } from 'moltres-tools'
 
-const action = async (instance, args, context) => {
-  const result = await cleanse({}, context)
-  instance.log('result:', result)
-}
+const action = async (instance, args, context) =>
+  cleanse({}, context)
+
 
 export default action

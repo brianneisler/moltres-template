@@ -24,7 +24,7 @@ const setupProject = async (project, context) => {
       }
     })
   }
-  logger.log('project setup complete')
+  logger.log(`project ${project.name} setup complete`)
 }
 
 export default setupProject

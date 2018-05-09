@@ -24,7 +24,7 @@ const lintProject = async (project, context) => {
       }
     })
   }
-  logger.log('project lint complete')
+  logger.log(`project ${project.name} linted`)
 }
 
 export default lintProject

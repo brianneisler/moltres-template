@@ -1,7 +1,5 @@
 import { deploy } from 'moltres-tools'
 
-const action = async (instance, args, context) => {
-  const result = await deploy({}, context)
-  instance.log('result:', result)
-}
+const action = async (instance, args, context) =>
+  await deploy({}, context)
 export default action
