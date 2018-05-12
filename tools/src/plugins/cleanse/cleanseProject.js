@@ -5,7 +5,7 @@ const cleanseProject = async (project, context) => {
   const { logger } = context
   logger.log(`cleansing project ${project.name}`)
   await mapModules(project.modules, context, cleanseModule)
-  await execProjectScript('cleanse', project)
+  await execProjectScript('cleanse', project, context)
   logger.log(`project ${project.name} cleansed`)
 }
 

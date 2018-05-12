@@ -9,6 +9,9 @@ const spawnCommand = async (command, args, options) => {
     commandProcess.stderr.on('data', (data) => {
       console.log(data.toString()) // eslint-disable-line no-console
     })
+    commandProcess.on('error', (error) => {
+      return reject(error)
+    })
     commandProcess.on('close', (code) => {
       if (code) {
         return reject(new Error('Command errored'))

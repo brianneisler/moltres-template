@@ -8,6 +8,7 @@ const start = async () => {
   try {
     await cli.start()
     if (!cli.isInteractive) {
+      console.log('process exiting')
       process.exit(0)
     }
   } catch (error) {

@@ -23,7 +23,7 @@ const traverseNode = (context, node, traverser) => {
   const result = traverser(graph.node(node), node)
   return newTraverseContext({
     ...updatedContext,
-    results: assoc(node, result, context.results)
+    results: assoc(node, result, updatedContext.results)
   })
 }
 

@@ -9,7 +9,10 @@ const cleanModule = async (module, context) => {
     `rm -rf ${moduleDist}`
   ], {
     cwd: module.modulesDir,
-    env: process.env
+    env: {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

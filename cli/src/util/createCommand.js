@@ -1,5 +1,6 @@
-import { has, is, reduce } from 'ramda'
+import { has, is, reduce, values } from 'ramda'
 import createAction from './createAction'
+import createOption from './createOption'
 
 const createCommand = (config, context) => {
   if (is(Function, config)) {
@@ -18,12 +19,12 @@ const createCommand = (config, context) => {
     }
     if (has('options', config)) {
       instance = reduce(
-        (inst, option) => inst.option(...option),
+        (inst, option) => createOption(option, inst),
         instance,
-        config.options
+        values(config.options)
       )
     }
-    return instance.action(createAction(config.action, context))
+    return instance.action(createAction(config.action, config, context))
   }
 }
 

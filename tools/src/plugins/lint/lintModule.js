@@ -7,7 +7,10 @@ const lintModule = async (module, context) => {
     `eslint ${module.path} --cache`
   ], {
     cwd: module.modulesDir,
-    env: process.env
+    env: {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

@@ -9,7 +9,10 @@ const setupModule = async (module, context) => {
     `${npmCommand} install`
   ], {
     cwd: module.path,
-    env: process.env
+    env: {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

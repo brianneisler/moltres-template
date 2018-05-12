@@ -18,7 +18,10 @@ const buildModule = async (module, context) => {
     `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc} ${moduleDist}`
   ], {
     cwd: module.modulesDir,
-    env: process.env
+    env:  {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

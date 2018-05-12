@@ -1,0 +1,3 @@
+- need a second phase variable resolution. Right now values have to be resolved
+during build and cannot then be changed during deployment. Would be best if it
+were possible to apply the variables last minute during deploy.

@@ -11,7 +11,10 @@ const cleanseModule = async (module, context) => {
     `rm -f ${modulePackageLock}`
   ], {
     cwd: module.modulesDir,
-    env: process.env
+    env: {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

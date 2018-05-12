@@ -7,7 +7,10 @@ const testModule = async (module, context) => {
     `jest ${module.path}`
   ], {
     cwd: module.modulesDir,
-    env: process.env
+    env: {
+      ...process.env,
+      MOLTRES_STAGE: context.stage
+    }
   })
 }
 

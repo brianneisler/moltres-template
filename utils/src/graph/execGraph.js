@@ -3,19 +3,23 @@ import { assoc, curry, map, prop } from 'ramda'
 import getOutNodes from './getOutNodes'
 import traversePostorder from './traversePostorder'
 
-const execNode = async (graph, node, fn) => fn(graph.node(node), node)
-
 const execGraph = curry(async (fn, graph) => {
   let promises = {}
-  return props(traversePostorder(async (value, node) => {
-    await all(map(
+  const execNode = async (graph, node, fn) => {
+    const foundPromises = map(
       (outNode) => prop(outNode, promises),
       getOutNodes(graph, node)
-    ))
-    const promise = execNode(graph, node)
+    )
+    await all(foundPromises)
+    return fn(graph.node(node), node)
+  }
+
+  traversePostorder((value, node) => {
+    const promise = execNode(graph, node, fn)
     promises = assoc(node, promise, promises)
-    return promise
-  }, graph))
+  }, graph)
+
+  return props(promises)
 })
 
 export default execGraph
