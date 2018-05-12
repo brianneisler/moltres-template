@@ -31,6 +31,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
+    "graphlib": "^2.1.5",
     "ramda": "^0.25.0",
     "source-map-support": "^0.5.5"
   },

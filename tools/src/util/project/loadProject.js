@@ -1,13 +1,13 @@
-import { props } from 'bluebird'
+import { all, props } from 'bluebird'
 import { pathExists } from 'fs-extra'
 import { resolve } from 'path'
-import { mapObjIndexed } from 'ramda'
+import { map, mapObjIndexed, memoize } from 'ramda'
 import { PROJECT_FILE_NAME } from '../constants'
 import findModules from '../module/findModules'
 import loadProjectFile from './loadProjectFile'
 import newProject from './newProject'
 
-const loadProject = async (projectPath) => {
+const loadProject = memoize(async (projectPath) => {
   const filePath = resolve(projectPath, PROJECT_FILE_NAME)
   if (!await pathExists(filePath)) {
     throw new Error(`Cannot find ${PROJECT_FILE_NAME} at ${projectPath}`)
@@ -18,12 +18,17 @@ const loadProject = async (projectPath) => {
     (childProjectPath) => loadProject(resolve(projectPath, childProjectPath)),
     data.projects || {}
   ))
+  const dependsOn = await all(map(
+    (dependsOnProjectPath) => loadProject(resolve(projectPath, dependsOnProjectPath)),
+    data.dependsOn || []
+  ))
   return newProject({
     ...data,
+    dependsOn,
     modules,
     projects,
     path: projectPath
   })
-}
+})
 
 export default loadProject

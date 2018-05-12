@@ -1,9 +1,10 @@
 import createContext from './createContext'
 import { buildProject, setupProject } from './plugins'
+import { execContext } from './util'
 
 const setup = async (options, context = createContext(options)) => {
-  await setupProject(context.project, context)
-  return buildProject(context.project, context)
+  await execContext(setupProject, context)
+  return execContext(buildProject, context)
 }
 
 export default setup

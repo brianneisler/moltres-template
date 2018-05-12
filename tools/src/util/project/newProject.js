@@ -1,6 +1,7 @@
 import { pick } from 'ramda'
 
 const newProject = (props) => pick([
+  'dependsOn',
   'modules',
   'name',
   'path',

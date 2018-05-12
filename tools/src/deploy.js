@@ -1,9 +1,10 @@
 import createContext from './createContext'
 import { deployProject, setupProject } from './plugins'
+import { execContext } from './util'
 
 const deploy = async (options, context = createContext(options)) => {
-  await buildProject(context.project, context)
-  return deployProject(context.project, context)
+  await execContext(buildProject, context)
+  return execContext(deployProject, context)
 }
 
 export default deploy

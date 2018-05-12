@@ -1,7 +1,8 @@
 import createContext from './createContext'
 import { startProject } from './plugins'
+import { execContext } from './util'
 
 const start = async (options, context = createContext(options)) =>
-  startProject(context.project, context)
+  execContext(startProject, context)
 
 export default start
