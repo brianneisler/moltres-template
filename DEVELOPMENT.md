@@ -14,10 +14,12 @@ nvm use 8
 
 ## Setup
 
+To install all dependencies and do an initial build of all source files
+
 ```sh
 git clone https://github.com/brianneisler/moltres.git
 cd moltres
-npm install
+npm run setup
 ```
 
 
@@ -39,13 +41,32 @@ npm run clean
 ```
 
 
+## Cleanse
+
+To clean as well as cleanse moltres of all package-lock.json file and node_modules folders
+
+```sh
+npm run cleanse
+```
+
+
 ## Watch
 
 To watch moltres and build on every file change
 
 ```sh
-npm run watch
+npm run watch:build
 ```
+
+
+## Lint
+
+To lint the moltres project
+
+```sh
+npm run lint
+```
+
 
 ## Test
 
