@@ -1,4 +1,5 @@
 import { test } from 'moltres-tools'
+import { path } from 'ramda'
 
 const action = async (instance, args, context) =>
   test(

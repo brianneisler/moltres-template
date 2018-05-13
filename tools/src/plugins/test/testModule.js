@@ -1,10 +1,16 @@
+import { join, resolve } from 'path'
 import { execScripts } from '../../util'
 
 const testModule = async (module, context) => {
   const { logger } = context
   logger.log(`testing module ${module.name}`)
+  const jest = resolve(
+    require.resolve('jest').replace(join('jest', 'build', 'jest.js'), ''),
+    '.bin',
+    'jest'
+  )
   return execScripts([
-    `jest ${module.path}`
+    `${jest} ${module.path}`
   ], {
     cwd: module.modulesDir,
     env: {
