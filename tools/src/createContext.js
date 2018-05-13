@@ -8,7 +8,6 @@ const createContext = async (options) => {
   const logger = prop('logger', options) || newLogger()
   const plugins = prop('plugins', options) || await loadPlugins(DEFAULT_PLUGINS)
   const graph = await loadExecGraph(cwd)
-  console.log('graph:', graph)
   const stage = getStage(options)
 
   return newContext({

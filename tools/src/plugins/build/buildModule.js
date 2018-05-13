@@ -12,7 +12,6 @@ const buildModule = async (module, context) => {
   const moduleSrc = resolve(module.path, 'src')
   const moduleDist = resolve(module.path, 'dist')
   return execScripts([
-    `rm -rf ${moduleDist}`,
     `mkdir -p ${moduleDist}`,
     `${babel} ${moduleSrc} -d ${moduleDist} --source-maps`,
     `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc} ${moduleDist}`
