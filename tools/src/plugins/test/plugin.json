@@ -1,0 +1,13 @@
+{
+  "name": "test",
+  "command": "test",
+  "description": "runs tests on a moltres project",
+  "options": {
+    "stage": {
+      "option": "-s, --stage [name]",
+      "description": "Set the stage",
+      "default": "dev"
+    }
+  },
+  "plugin": "./plugin.js"
+}

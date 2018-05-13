@@ -1,0 +1,6 @@
+{
+  "name": "run",
+  "command": "run <script>",
+  "description": "runs a script",
+  "plugin": "./plugin.js"
+}

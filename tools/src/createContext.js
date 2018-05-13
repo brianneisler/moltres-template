@@ -1,10 +1,14 @@
-import { findModules, getStage, loadProject, newContext, newProjectGraph } from './util'
+import { prop } from 'ramda'
+import { DEFAULT_PLUGINS, findModules, getStage, loadExecGraph, newContext, newLogger } from './util'
+import loadPlugins from './loadPlugins'
+
 
 const createContext = async (options) => {
-  const { logger, plugins } = options
-  const cwd = process.cwd()
-  const project = await loadProject(cwd)
-  const graph = newProjectGraph(project)
+  const cwd = prop('cwd', options) || process.cwd()
+  const logger = prop('logger', options) || newLogger()
+  const plugins = prop('plugins', options) || await loadPlugins(DEFAULT_PLUGINS)
+  const graph = await loadExecGraph(cwd)
+  console.log('graph:', graph)
   const stage = getStage(options)
 
   return newContext({
@@ -12,7 +16,6 @@ const createContext = async (options) => {
     graph,
     logger,
     plugins,
-    project,
     stage
   })
 }

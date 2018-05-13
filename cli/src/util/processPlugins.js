@@ -3,14 +3,17 @@ import createCommand from './createCommand'
 
 const processPlugins = (cli) => {
   forEachObjIndexed((plugin) => {
-    const pluginConfig = plugin.config
-    if (pluginConfig && pluginConfig.command) {
-      const baseCommand = pluginConfig.command.replace(/\s\[.*\]/, '')
-      if (baseCommand === cli.currentCommand) {
-        cli.disableAutoHelp = true
-      }
+    if (!plugin.command) {
+      throw new Errpr(`A plugin must declare a command. This plugin doesn't have one ${plugin}`)
     }
-    cli.use(createCommand(plugin.config, cli.context))
+    const baseCommand = plugin.command.replace(/\s\[.*\]/, '')
+    if (baseCommand === cli.currentCommand) {
+      cli.disableAutoHelp = true
+    }
+    cli.use(createCommand({
+      ...plugin,
+      action: plugin.plugin.action
+    }, cli.context))
   }, cli.context.plugins)
   return cli
 }

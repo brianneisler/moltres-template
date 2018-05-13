@@ -1,0 +1,13 @@
+{
+  "name": "setup",
+  "command": "setup",
+  "description": "sets up a moltres project, installs all dependencies and runs an initial build",
+  "options": {
+    "stage": {
+      "option": "-s, --stage [name]",
+      "description": "Set the stage",
+      "default": "dev"
+    }
+  },
+  "plugin": "./plugin.js"
+}

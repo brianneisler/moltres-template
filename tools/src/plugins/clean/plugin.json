@@ -1,0 +1,6 @@
+{
+  "name": "clean",
+  "command": "clean",
+  "description": "removes build artifacts from a moltres project",
+  "plugin": "./plugin.js"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "lint",
+  "command": "lint",
+  "description": "lints a moltres project",
+  "plugin": "./plugin.js"
+}

@@ -6,7 +6,6 @@ const newContext = (props) => {
     'graph',
     'logger',
     'plugins',
-    'project',
     'stage'
   ], props)
 

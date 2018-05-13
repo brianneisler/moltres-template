@@ -1,9 +1,8 @@
 import { createContext } from 'moltres-tools'
-import * as plugins from './plugins'
 import { createCli } from './util'
 
 const start = async () => {
-  let context = await createContext({ plugins })
+  const context = await createContext()
   const cli = createCli(context)
   try {
     await cli.start()

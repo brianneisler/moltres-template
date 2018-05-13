@@ -7,15 +7,15 @@ const build = (path, name) => {
   })
 
   watcher.stdout.on('data', (data) => {
-    console.log(`${name}: ${data}`) // eslint-disable-line no-console
+    console.log((`${name}: ${data}`).trim()) // eslint-disable-line no-console
   })
 
   watcher.stderr.on('data', (data) => {
-    console.log(`${name} ERROR: ${data}`) // eslint-disable-line no-console
+    console.log((`${name} ERROR: ${data}`).trim()) // eslint-disable-line no-console
   })
 
   watcher.on('close', (code) => {
-    console.log(`${name} watcher exited with ${code}`) // eslint-disable-line no-console
+    console.log((`${name} watcher exited with ${code}`).trim()) // eslint-disable-line no-console
   })
 }
 

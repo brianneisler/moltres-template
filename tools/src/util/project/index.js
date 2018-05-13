@@ -1,4 +1,5 @@
 export { default as execProjectScript } from './execProjectScript'
+export { default as isProjectPath } from './isProjectPath'
 export { default as loadProject } from './loadProject'
 export { default as loadProjectFile } from './loadProjectFile'
 export { default as newProject } from './newProject'

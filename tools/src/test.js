@@ -1,8 +1,7 @@
 import createContext from './createContext'
-import { testProject } from './plugins'
-import { execContext } from './util'
+import { execPlugin } from './util'
 
 const test = async (options, context = createContext(options)) =>
-  execContext(testProject, context)
+  execPlugin('test', context)
 
 export default test

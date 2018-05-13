@@ -14,7 +14,7 @@ const findModules = async (path) => {
     const loadedModules = await all(map(async (moduleDirName) => {
       const modulePath = resolve(modulesDir, moduleDirName)
       if (await isModulePath(modulePath)) {
-        return loadModule(modulesDir, moduleDirName)
+        return loadModule(modulePath, { modulesDir })
       }
       return null
     }, moduleDirNames))

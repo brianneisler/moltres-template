@@ -1,8 +1,7 @@
 import createContext from './createContext'
-import { buildProject } from './plugins'
-import { execContext } from './util'
+import { execPlugin } from './util'
 
 const build = async (options, context = createContext(options)) =>
-  execContext(buildProject, context)
+  execPlugin('build', context)
 
 export default build

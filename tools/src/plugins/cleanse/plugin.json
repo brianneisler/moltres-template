@@ -1,0 +1,6 @@
+{
+  "name": "cleanse",
+  "command": "cleanse",
+  "description": "cleans as well as removes install artifacts from setup",
+  "plugin": "./plugin.js"
+}

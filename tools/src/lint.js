@@ -1,8 +1,7 @@
 import createContext from './createContext'
-import { lintProject } from './plugins'
-import { execContext } from './util'
+import { execPlugin } from './util'
 
 const lint = async (options, context = createContext(options)) =>
-  execContext(lintProject, context)
+  execPlugin('lint', context)
 
 export default lint
