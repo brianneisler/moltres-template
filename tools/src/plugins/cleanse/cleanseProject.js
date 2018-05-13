@@ -1,10 +1,8 @@
-import { execProjectScript, mapModules } from '../../util'
-import cleanseModule from './cleanseModule'
+import { execProjectScript } from '../../util'
 
 const cleanseProject = async (project, context) => {
   const { logger } = context
   logger.log(`cleansing project ${project.name}`)
-  await mapModules(project.modules, context, cleanseModule)
   await execProjectScript('cleanse', project, context)
   logger.log(`project ${project.name} cleansed`)
 }

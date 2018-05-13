@@ -1,10 +1,8 @@
-import { execProjectScript, mapModules } from '../../util'
-import deployModule from './deployModule'
+import { execProjectScript } from '../../util'
 
 const deployProject = async (project, context) => {
   const { logger } = context
   logger.log(`deploying project ${project.name}`)
-  await mapModules(project.modules, context, deployModule)
   await execProjectScript('deploy', project, context)
   logger.log(`project ${project.name} deployed`)
 }

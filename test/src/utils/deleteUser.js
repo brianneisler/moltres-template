@@ -1,4 +1,4 @@
-import rate from '../util/rate'
+import { rate } from 'moltres-utils'
 
 const deleteUser = rate(
   async (app, uid) => app.auth().deleteUser(uid),
