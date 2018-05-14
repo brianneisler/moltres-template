@@ -1,17 +1,16 @@
 import { newGraph } from 'moltres-utils'
 import { forEach, forEachObjIndexed } from 'ramda'
+import generateModuleGraph from '../module/generateModuleGraph'
+import moduleNodeId from '../module/moduleNodeId'
+import projectNodeId from './projectNodeId'
 import walkProject from './walkProject'
 
-const moduleNodeId = (mod) => `module:${mod.name}`
-const projectNodeId = (project) => `project:${project.name}`
-
-const newProjectGraph = (project) => {
-  const graph = newGraph()
+const generateProjectGraph = (project, graph = newGraph()) => {
   walkProject(
     (proj) => {
       graph.setNode(projectNodeId(proj), proj)
       forEachObjIndexed(
-        (mod) => graph.setNode(moduleNodeId(mod), mod),
+        (mod) => generateModuleGraph(mod, graph),
         proj.modules
       )
     },
@@ -46,4 +45,4 @@ const newProjectGraph = (project) => {
   return graph
 }
 
-export default newProjectGraph
+export default generateProjectGraph
