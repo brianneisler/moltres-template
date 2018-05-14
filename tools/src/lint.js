@@ -1,7 +1,9 @@
 import createContext from './createContext'
 import { execPlugin } from './util'
 
-const lint = async (options, context = createContext(options)) =>
-  execPlugin('lint', context)
+const lint = async (options, context) => {
+  const updatedContext = await createContext(options, context)
+  return execPlugin('lint', updatedContext)
+}
 
 export default lint

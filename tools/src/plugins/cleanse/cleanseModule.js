@@ -13,6 +13,7 @@ const cleanseModule = async (module, context) => {
     cwd: module.modulesDir,
     env: {
       ...process.env,
+      ...context.env,
       MOLTRES_STAGE: context.stage
     }
   })

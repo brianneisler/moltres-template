@@ -1,12 +1,9 @@
-import dotenv from 'dotenv' // eslint-disable-line import/no-extraneous-dependencies
 import admin from 'firebase-admin' // eslint-disable-line import/no-extraneous-dependencies
 import uuid from 'uuid/v1' // eslint-disable-line import/no-extraneous-dependencies
 import createTestAnonymousUser from './createTestAnonymousUser'
 // import deleteAllUsers from './deleteAllUsers'
 import getServiceAccount from './getServiceAccount'
 import initAdminApp from './initAdminApp'
-
-dotenv.config()
 
 // const config = {
 //   apiKey: process.env.FIREBASE_API_KEY,

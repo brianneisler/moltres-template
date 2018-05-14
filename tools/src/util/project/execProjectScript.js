@@ -9,6 +9,7 @@ const execProjectScript = async (name, project, context) => {
       cwd: project.path,
       env: {
         ...process.env,
+        ...context.env,
         PATH: `${process.env.PATH}:${resolve(project.path, 'node_modules', '.bin')}`,
         MOLTRES_STAGE: context.stage
       }

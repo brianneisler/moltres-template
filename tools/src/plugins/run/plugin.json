@@ -2,5 +2,16 @@
   "name": "run",
   "command": "run <script>",
   "description": "runs a script",
+  "options": {
+    "env": {
+      "option": "-e, --env [path]",
+      "description": "Set the path to a .env file"
+    },
+    "stage": {
+      "option": "-s, --stage [name]",
+      "description": "Set the stage",
+      "default": "dev"
+    }
+  },
   "plugin": "./plugin.js"
 }

@@ -13,12 +13,13 @@ const buildModule = async (module, context) => {
   const moduleDist = resolve(module.path, 'dist')
   return execScripts([
     `mkdir -p ${moduleDist}`,
-    `${babel} ${moduleSrc} -d ${moduleDist} --source-maps --ignore "**/*.test.js" --ignore "*.test.js"`,
+    `${babel} ${moduleSrc} -d ${moduleDist} --source-maps --ignore **/*.test.js`,
     `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc} ${moduleDist}`
   ], {
     cwd: module.modulesDir,
     env:  {
       ...process.env,
+      ...context.env,
       MOLTRES_STAGE: context.stage
     }
   })

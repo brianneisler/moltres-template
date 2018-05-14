@@ -1,10 +1,7 @@
-import { path } from 'ramda'
+import { prop } from 'ramda'
 import deploy from '../../deploy'
 
 const action = async (instance, args, context) =>
-  await deploy(
-    { stage: path([ 'options', 'stage' ], args) },
-    context
-  )
+  deploy(prop('options', args), context)
 
 export default action

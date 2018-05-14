@@ -1,7 +1,3 @@
-import dotenv from 'dotenv' // eslint-disable-line import/no-extraneous-dependencies
-
-dotenv.config()
-
 const getServiceAccount = () => ({
   type: 'service_account',
   project_id: process.env.FIREBASE_PROJECT_ID,

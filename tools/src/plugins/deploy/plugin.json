@@ -3,6 +3,10 @@
   "command": "deploy",
   "description": "deploys a moltres project to firebase",
   "options": {
+    "env": {
+      "option": "-e, --env [path]",
+      "description": "Set the path to a .env file"
+    },
     "stage": {
       "option": "-s, --stage [name]",
       "description": "Set the stage",

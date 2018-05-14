@@ -11,6 +11,7 @@ const setupModule = async (module, context) => {
     cwd: module.path,
     env: {
       ...process.env,
+      ...context.env,
       MOLTRES_STAGE: context.stage
     }
   })

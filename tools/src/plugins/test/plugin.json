@@ -3,6 +3,10 @@
   "command": "test",
   "description": "runs tests on a moltres project",
   "options": {
+    "env": {
+      "option": "-e, --env [path]",
+      "description": "Set the path to a .env file"
+    },
     "stage": {
       "option": "-s, --stage [name]",
       "description": "Set the stage",
