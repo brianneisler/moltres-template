@@ -2,5 +2,11 @@
   "name": "cleanse",
   "command": "cleanse",
   "description": "cleans as well as removes install artifacts from setup",
+  "options": {
+    "path": {
+      "option": "-p, --path [path]",
+      "description": "The path to target"
+    }
+  },
   "plugin": "./plugin.js"
 }

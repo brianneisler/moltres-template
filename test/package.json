@@ -22,7 +22,10 @@
     "build": "./scripts/build.sh",
     "clean": "./scripts/clean.sh",
     "cleanse": "./scripts/cleanse.sh",
+    "deploy": "./scripts/deploy.sh",
     "lint": "./scripts/lint.sh",
+    "predeploy": "./scripts/predeploy.sh",
+    "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
     "watch:build": "./scripts/watch-build.sh",
     "watch:test": "./scripts/watch-test.sh"

@@ -2,5 +2,11 @@
   "name": "lint",
   "command": "lint",
   "description": "lints a moltres project",
+  "options": {
+    "path": {
+      "option": "-p, --path [path]",
+      "description": "The path to target"
+    }
+  },
   "plugin": "./plugin.js"
 }

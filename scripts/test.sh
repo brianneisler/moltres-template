@@ -1,12 +1,2 @@
-set -e
-cd utils
-npm test
-cd ../test
-npm test
-cd ../core
-npm test
-cd ../tools
-npm test
-cd ../cli
-npm test
-cd ..
+#!/usr/bin/env bash
+node ./scripts/test/exec.js

@@ -22,7 +22,10 @@
     "build": "./scripts/build.sh",
     "clean": "./scripts/clean.sh",
     "cleanse": "./scripts/cleanse.sh",
+    "deploy": "./scripts/deploy.sh",
     "lint": "./scripts/lint.sh",
+    "predeploy": "./scripts/predeploy.sh",
+    "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
     "watch:build": "./scripts/watch-build.sh",
     "watch:test": "./scripts/watch-test.sh"
@@ -30,7 +33,9 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
+    "duxegg": "0.0.4",
     "ramda": "^0.25.0",
+    "redux": "^4.0.0",
     "source-map-support": "^0.5.5"
   },
   "devDependencies": {

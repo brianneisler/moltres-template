@@ -1,16 +1,11 @@
 const { spawn } = require('child_process')
 const { resolve } = require('path')
-const { forEachObjIndexed, prop } = require('ramda')
+const { forEach, prop } = require('ramda')
 const build = require('./build')
 const test = require('./test')
+const getProjects = require('../common/getProjects')
 
-const projects = {
-  'cli': './cli',
-  'core': './core',
-  'test': './test',
-  'tools': './tools',
-  'utils': './utils'
-}
+const projects = getProjects()
 
 const COMMANDS = {
   build,
@@ -23,8 +18,8 @@ const exec = () => {
   if (!command) {
     throw new Error(`watch does not recognize the command ${commandName}`)
   }
-  forEachObjIndexed(
-    (path, name) => command(path, name),
+  forEach(
+    ({ path, name }) => command(path, name),
     projects
   )
 }

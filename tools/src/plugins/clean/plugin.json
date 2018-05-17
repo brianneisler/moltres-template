@@ -2,5 +2,11 @@
   "name": "clean",
   "command": "clean",
   "description": "removes build artifacts from a moltres project",
+  "options": {
+    "path": {
+      "option": "-p, --path [path]",
+      "description": "The path to target"
+    }
+  },
   "plugin": "./plugin.js"
 }

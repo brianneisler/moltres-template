@@ -1,14 +1,5 @@
+#!/usr/bin/env bash
 set -e
-cd utils
-npm run cleanse
-cd ../test
-npm run cleanse
-cd ../core
-npm run cleanse
-cd ../tools
-npm run cleanse
-cd ../cli
-npm run cleanse
-cd ..
+node ./scripts/cleanse/exec.js
 rm -rf node_modules
 rm -f package-lock.json

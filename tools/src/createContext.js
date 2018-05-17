@@ -1,10 +1,16 @@
-import { loadEnv } from 'moltres-utils'
+import { findPath, loadEnv } from 'moltres-utils'
+import { resolve } from 'path'
 import { is, prop } from 'ramda'
 import { DEFAULT_PLUGINS, findModules, getStage, loadExecGraph, newContext, newLogger } from './util'
 import loadPlugins from './loadPlugins'
 
 const createContext = async (options, context) => {
-  const cwd = prop('cwd', options) || prop('cwd', context) || process.cwd()
+  const cwd = resolve(findPath(
+    prop('cwd', options),
+    prop('path', options),
+    prop('cwd', context),
+    process.cwd()
+  ))
   const logger = prop('logger', options) || prop('logger', context) || newLogger()
   const plugins = prop('plugins', options) || prop('plugins', context) || await loadPlugins(DEFAULT_PLUGINS)
   const graph = await loadExecGraph(cwd)

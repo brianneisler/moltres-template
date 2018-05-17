@@ -1,0 +1,23 @@
+{
+  "name": "@moltres/modules",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "clean": "./scripts/clean.sh",
+    "cleanse": "./scripts/cleanse.sh",
+    "deploy": "./scripts/deploy.sh",
+    "lint": "./scripts/lint.sh",
+    "predeploy": "./scripts/predeploy.sh",
+    "setup": "./scripts/setup.sh",
+    "test": "./scripts/test.sh",
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}

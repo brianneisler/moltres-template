@@ -6,9 +6,11 @@ require('source-map-support/register') // eslint-disable-line global-require
 const data = require('./data')
 const env = require('./env')
 const graph = require('./graph')
+const path = require('./path')
 
 module.exports = {
   ...data,
   ...env,
-  ...graph
+  ...graph,
+  ...path
 }

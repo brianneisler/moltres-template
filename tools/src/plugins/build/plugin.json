@@ -1,11 +1,14 @@
 {
-  "name": "build",
   "command": "build",
   "description": "builds a moltres project",
   "options": {
     "env": {
-      "option": "-e, --env [path]",
+      "option": "-e, --env [env path]",
       "description": "Set the path to a .env file"
+    },
+    "path": {
+      "option": "-p, --path [path]",
+      "description": "The path to target"
     },
     "stage": {
       "option": "-s, --stage [name]",

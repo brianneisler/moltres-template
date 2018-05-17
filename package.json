@@ -19,7 +19,7 @@
     "watch:build": "./scripts/watch.sh build",
     "watch:test": "./scripts/watch.sh test"
   },
-  "dependencies": {
+  "devDependencies": {
     "ramda": "^0.25.0"
   }
 }
