@@ -9,6 +9,7 @@ const cleanse = require('./cleanse').default
 const createContext = require('./createContext').default
 const deploy = require('./deploy').default
 const lint = require('./lint').default
+const loadEnv = require('./loadEnv').default
 const loadPlugins = require('./loadPlugins').default
 const run = require('./run').default
 const setup = require('./setup').default
@@ -22,6 +23,7 @@ export {
   createContext,
   deploy,
   lint,
+  loadEnv,
   loadPlugins,
   run,
   setup,

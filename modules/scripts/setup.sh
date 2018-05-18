@@ -1,2 +1,10 @@
+set -e
 npm install
-../cli/bin/moltres setup --path ..
+cd saga
+npm install
+cd ../saga
+npm install
+cd ../api
+npm install
+cd ..
+npm run build

@@ -1,1 +1,8 @@
-../cli/bin/moltres test --path ..
+set -e
+cd saga
+jest .
+cd ../app
+jest .
+cd ../api
+jest .
+cd ..
