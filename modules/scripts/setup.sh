@@ -2,7 +2,7 @@ set -e
 npm install
 cd saga
 npm install
-cd ../saga
+cd ../app
 npm install
 cd ../api
 npm install

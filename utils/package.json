@@ -35,14 +35,14 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "graphlib": "^2.1.5",
-    "ramda": "^0.25.0",
-    "source-map-support": "^0.5.5"
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-jest": "^22.2.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "caniuse-lite": "^1.0.30000843",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",

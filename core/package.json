@@ -35,8 +35,7 @@
     "bluebird": "^3.5.1",
     "duxegg": "^0.0.6",
     "ramda": "^0.25.0",
-    "redux": "^4.0.0",
-    "source-map-support": "^0.5.5"
+    "redux": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -1,14 +1,16 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { compose } from 'ramda'
+import { reduce } from 'ramda'
 import filterApis from './filterApis'
 
 const createApi = (modules, context) => {
   const app = express()
   app.use(bodyParser.urlencoded({ extended: false }));
   const apis = filterApis(modules)
-  const apiBuilder = compose(...apis)
-  return apiBuilder(app)
+  return reduce(
+    (accum, apiBuilder) => apiBuilder(accum, context),
+    apis
+  )
 }
 
 export default createApi
