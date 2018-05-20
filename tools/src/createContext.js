@@ -5,18 +5,18 @@ import { DEFAULT_PLUGINS, findModules, getStage, loadExecGraph, newContext, newL
 import loadEnv from './loadEnv'
 import loadPlugins from './loadPlugins'
 
-const createContext = async (options, context) => {
+const createContext = async (options) => {
   const cwd = resolve(findPath(
     prop('cwd', options),
     prop('path', options),
-    prop('cwd', context),
     process.cwd()
   ))
-  const logger = prop('logger', options) || prop('logger', context) || newLogger()
-  const plugins = prop('plugins', options) || prop('plugins', context) || await loadPlugins(DEFAULT_PLUGINS)
+  const logger = prop('logger', options) || newLogger()
+  const plugins = prop('plugins', options) || await loadPlugins(DEFAULT_PLUGINS)
   const graph = await loadExecGraph(cwd)
   const stage = getStage(options)
-  let env = prop('env', options) || prop('env', context) || '.'
+
+  let env = prop('env', options) || '.'
   if (is(String, env)) {
     env = loadEnv(env, { cwd, stage })
   }

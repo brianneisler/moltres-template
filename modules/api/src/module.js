@@ -7,13 +7,13 @@ const module = ({ firebaseApp }) => {
   }
 
   const buildApi = () => {
-    const modules = store.getModules()
+    const modules = storeCache.getModules()
     return createApi(modules, { firebaseApp })
   }
 
   return {
     buildApi,
-    configure
+    run
   }
 }
 

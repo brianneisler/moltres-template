@@ -7,9 +7,11 @@ if (!global._babelPolyfill) { // eslint-disable-line no-underscore-dangle
 const data = require('./data')
 const graph = require('./graph')
 const path = require('./path')
+const walk = require('./walk')
 
 module.exports = {
   ...data,
   ...graph,
-  ...path
+  ...path,
+  ...walk
 }

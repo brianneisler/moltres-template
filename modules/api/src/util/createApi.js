@@ -9,6 +9,7 @@ const createApi = (modules, context) => {
   const apis = filterApis(modules)
   return reduce(
     (accum, apiBuilder) => apiBuilder(accum, context),
+    app,
     apis
   )
 }
