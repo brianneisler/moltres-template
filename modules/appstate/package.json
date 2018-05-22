@@ -1,0 +1,36 @@
+{
+  "name": "@moltres/appstate",
+  "version": "0.0.1",
+  "description": "A moltres module that provides access to the app state",
+  "main": "./dist/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/modules/appstate#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "appstate",
+    "CMS",
+    "firebase",
+    "moltres",
+    "moltres-module"
+  ],
+  "dependencies": {
+    "moltres-react": "^0.1.0",
+    "moltres-utils": "^0.1.0",
+    "ramda": "^0.25.0",
+    "redux-actions": "^2.3.2",
+    "redux-saga": "^0.16.0"
+  },
+  "peerDependencies": {
+    "moltres": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

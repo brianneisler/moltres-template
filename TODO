@@ -9,3 +9,21 @@ ${option.someoption}
 - make dependsOn declarations an object instead of an array
 - allow config to be specified when declaring dependencies
 - support dependency resolution in both react-native (requires statically outputting dependencies)
+
+
+TODO
+- [x] fix permissions on all new scripts
+- [ ] update all package json files for publishing to npm
+- [ ] add README files to all projects and modules
+- [x] update copyright files in all projects/modules
+- [ ] update all dependencies to use actual version numbers instead of file references
+- [x] export redux-actions from core
+- [x] export redux-saga from core
+- [ ] update modules scripts to use node utils to exec module scripts in correct order
+- [ ] ensure all version numbers are the same across all projects/modules
+- [ ] rewrite all additional modules to adhere to new module format
+- [x] setup moltres npm org
+- [x] add encrypted values to travis file for moltres
+- [x] update all homepage urls in package.json
+- [ ] publish versions of all projects to npm
+- [ ] complete moltres-react

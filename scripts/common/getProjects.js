@@ -9,6 +9,7 @@ const PROJECTS = [
   join(ROOT_PATH, 'utils'),
   join(ROOT_PATH, 'test'),
   join(ROOT_PATH, 'core'),
+  join(ROOT_PATH, 'react'),
   join(ROOT_PATH, 'tools'),
   join(ROOT_PATH, 'cli'),
   join(ROOT_PATH, 'modules')

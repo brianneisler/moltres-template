@@ -16,10 +16,16 @@
     "lint": "./scripts/lint.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
     "watch:build": "./scripts/watch.sh build",
     "watch:test": "./scripts/watch.sh test"
   },
   "devDependencies": {
+    "bluebird": "^3.5.1",
+    "fs-extra": "^6.0.1",
+    "graphlib": "^2.1.5",
     "ramda": "^0.25.0"
   }
 }

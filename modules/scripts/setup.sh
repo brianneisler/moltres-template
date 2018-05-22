@@ -1,10 +1,3 @@
-set -e
+#!/usr/bin/env bash
 npm install
-cd saga
-npm install
-cd ../app
-npm install
-cd ../api
-npm install
-cd ..
-npm run build
+node ./scripts/setup/exec.js

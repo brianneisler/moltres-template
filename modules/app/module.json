@@ -1,6 +1,0 @@
-{
-  "name": "api",
-  "dependsOn": [
-    "../saga"
-  ]
-}

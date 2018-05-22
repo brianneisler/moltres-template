@@ -1,8 +1,2 @@
-set -e
-cd saga
-jest .
-cd ../app
-jest .
-cd ../api
-jest .
-cd ..
+#!/usr/bin/env bash
+node ./scripts/test/exec.js

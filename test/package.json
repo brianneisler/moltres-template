@@ -9,14 +9,15 @@
     "url": "git+https://github.com/brianneisler/moltres.git"
   },
   "author": "Brian Neisler <hello@brianneisler.com>",
-  "homepage": "https://github.com/brianneisler/moltres#readme",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/test#readme",
   "bugs": {
     "url": "https://github.com/brianneisler/moltres/issues"
   },
   "keywords": [
     "CMS",
+    "firebase",
     "moltres",
-    "redux"
+    "testing"
   ],
   "scripts": {
     "build": "./scripts/build.sh",
@@ -27,6 +28,9 @@
     "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
     "watch:build": "./scripts/watch-build.sh",
     "watch:test": "./scripts/watch-test.sh"
   },
@@ -34,7 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "firebase-admin": "^5.12.0",
-    "moltres-utils": "file:../utils",
+    "moltres-utils": "^0.1.0",
     "ramda": "^0.25.0",
     "source-map-support": "^0.5.5"
   },
