@@ -1,19 +1,19 @@
-# moltres-cli
+# @moltres/form
 
-This module provides the cli tooling for the moltres CMS
+This moltres module adds core forms functionality to your app
 
 
 ## Build Status
 
-[![npm version](https://badge.fury.io/js/moltres-cli.svg)](https://badge.fury.io/js/moltres-cli)<br />
+[![npm version](https://badge.fury.io/js/%40moltres%2Fform.svg)](https://badge.fury.io/js/%40moltres%2Fform)<br />
 [![Build Status](https://travis-ci.org/brianneisler/moltres.svg)](https://travis-ci.org/brianneisler/moltres)<br />
-[![NPM](https://nodei.co/npm/moltres-cli.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/moltres-cli/)
+[![NPM](https://nodei.co/npm/@moltres/form.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@moltres/form/)
 
 
 ## Install
 
 ```bash
-npm install -g moltres-cli
+moltres install form
 ```
 
 

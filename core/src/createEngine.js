@@ -7,7 +7,7 @@ const createEngine = (modules, config) => {
   const store = createStore({
     app,
     saga,
-    ..modules
+    ...modules
   }, config)
   return store
 }

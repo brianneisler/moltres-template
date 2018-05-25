@@ -20,12 +20,11 @@
     "moltres-module"
   ],
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
     "ramda": "^0.25.0"
   },
   "peerDependencies": {
-    "moltres": "^0.1.0"
+    "moltres": "^0.1.0",
+    "react-native": "^0.55.1"
   },
   "publishConfig": {
     "access": "public"

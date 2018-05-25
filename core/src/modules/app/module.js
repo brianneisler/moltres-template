@@ -1,12 +1,9 @@
-import call from '../../call'
-import reducer from './reducers'
-import { setupApp } from './util'
+import reducer from './reducer'
+import saga from './saga'
 
-function* saga(modules) {
-  const spawns = yield call(setupApp, modules)
-}
-
-export default {
+const module = {
   reducer,
   saga
 }
+
+export default module

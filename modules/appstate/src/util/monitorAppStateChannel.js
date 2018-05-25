@@ -1,9 +1,10 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, watchChannel } from 'moltres'
 import { setAppState } from '../actions'
-import watchAppStateChannel from './watchAppStateChannel'
+import createAppStateChannel from './createAppStateChannel'
 
 function* monitorAppStateChannel() {
-  yield call(watchAppStateChannel, function* (appState) {
+  const channel = createAppStateChannel()
+  return yield call(watchChannel, channel, function* (appState) {
     yield put(setAppState(appState))
   })
 }

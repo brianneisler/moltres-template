@@ -22,10 +22,12 @@
     "router"
   ],
   "dependencies": {
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "react-router-redux": "^5.0.0-alpha.9"
   },
   "peerDependencies": {
-    "moltres": "^0.1.0"
+    "moltres": "^0.1.0",
+    "moltres-react": "^0.1.0"
   },
   "publishConfig": {
     "access": "public"

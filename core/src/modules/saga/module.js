@@ -1,8 +1,8 @@
 import createSagaMiddleware from 'redux-saga'
 import call from '../../call'
 import take from '../../take'
-import { runSaga } from './actions'
-import createRootSaga from './util/createRootSaga'
+import { runSaga } from '../../actions'
+import { createRootSaga } from './util'
 
 function* _saga() {
   while (true) {
@@ -25,8 +25,8 @@ function* _saga() {
 const module = () => {
   const middleware  = createSagaMiddleware()
 
-  const run = (modules) =>  {
-    middleware.run(createRootSaga(modules))
+  const run = (store) =>  {
+    middleware.run(createRootSaga(store))
   }
 
   return {

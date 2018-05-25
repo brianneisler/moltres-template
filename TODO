@@ -14,14 +14,14 @@ ${option.someoption}
 TODO
 - [x] fix permissions on all new scripts
 - [ ] update all package json files for publishing to npm
-- [ ] add README files to all projects and modules
+- [x] add README files to all projects and modules
 - [x] update copyright files in all projects/modules
 - [ ] update all dependencies to use actual version numbers instead of file references
 - [x] export redux-actions from core
 - [x] export redux-saga from core
-- [ ] update modules scripts to use node utils to exec module scripts in correct order
-- [ ] ensure all version numbers are the same across all projects/modules
-- [ ] rewrite all additional modules to adhere to new module format
+- [x] update modules scripts to use node utils to exec module scripts in correct order
+- [x] ensure all version numbers are the same across all projects/modules
+- [x] rewrite all additional modules to adhere to new module format
 - [x] setup moltres npm org
 - [x] add encrypted values to travis file for moltres
 - [x] update all homepage urls in package.json

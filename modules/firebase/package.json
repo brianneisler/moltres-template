@@ -23,6 +23,7 @@
     "ramda": "^0.25.0"
   },
   "peerDependencies": {
+    "firebase": ">=3 <=5",
     "moltres": "^0.1.0"
   },
   "publishConfig": {

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from 'moltres'
 
 const setAppState = createAction('SET_APP_STATE')
 

@@ -1,19 +1,19 @@
-# moltres-cli
+# @moltres/ui
 
-This module provides the cli tooling for the moltres CMS
+This moltres module adds ui functionality to your app
 
 
 ## Build Status
 
-[![npm version](https://badge.fury.io/js/moltres-cli.svg)](https://badge.fury.io/js/moltres-cli)<br />
+[![npm version](https://badge.fury.io/js/%40moltres%2Fui.svg)](https://badge.fury.io/js/%40moltres%2Fui)<br />
 [![Build Status](https://travis-ci.org/brianneisler/moltres.svg)](https://travis-ci.org/brianneisler/moltres)<br />
-[![NPM](https://nodei.co/npm/moltres-cli.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/moltres-cli/)
+[![NPM](https://nodei.co/npm/@moltres/ui.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@moltres/ui/)
 
 
 ## Install
 
 ```bash
-npm install -g moltres-cli
+moltres install ui
 ```
 
 
