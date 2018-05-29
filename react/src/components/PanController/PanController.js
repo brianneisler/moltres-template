@@ -259,7 +259,7 @@ const enhance = compose(
       vertical,
       xMode,
       yMode
-    }) => (...args) => {
+    }) => (/* ...args */) => {
       // if (this.props.onPanResponderGrant) {
       //   this.props.onPanResponderGrant(...args)
       // }
@@ -269,7 +269,7 @@ const enhance = compose(
     },
     onPanResponderMove: ({
       direction,
-      locked,
+      // locked,
       panX,
       panY,
       xBounds,

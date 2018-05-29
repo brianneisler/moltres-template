@@ -44,6 +44,6 @@ config
 docs
 etc
 examples
+jest.config.js
 scripts
 src
-test

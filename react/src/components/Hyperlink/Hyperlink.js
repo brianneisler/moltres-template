@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Linking, StyleSheet } from 'react-native'
+import { Linking, StyleSheet, Text } from 'react-native'
 import { compose, setPropTypes, withHandlers, withProps } from 'recompose'
-import TouchableHoverableOpacity from '../TouchableHoverableOpacity'
+// import TouchableHoverableOpacity from '../TouchableHoverableOpacity'
 
 const enhance = compose(
   setPropTypes({

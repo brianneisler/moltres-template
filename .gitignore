@@ -14,6 +14,7 @@ results
 # node js
 node_modules
 npm-debug.log
+.npmrc
 
 # IntelliJ resources
 *.iml
@@ -25,8 +26,9 @@ npm-debug.log
 .DS_Store
 
 # development
-.env
+.env*
 .eslintcache
+coverage
 dist
 etc
 tmp

@@ -1,3 +1,4 @@
+const os = require('os')
 const { execModulesGraph, loadModulesGraph } = require('../common')
 const run = require('../../../scripts/common/run')
 

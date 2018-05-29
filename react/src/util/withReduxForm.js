@@ -1,7 +1,6 @@
 import { compose, setDisplayName, withProps, wrapDisplayName } from 'recompose'
 import { reduxForm } from 'redux-form'
 
-
 const defaultMapProps = (props) => props
 
 const withReduxForm = (initialState, mapProps = defaultMapProps) => {

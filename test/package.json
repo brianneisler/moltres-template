@@ -38,7 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "firebase-admin": "^5.12.0",
-    "moltres-utils": "^0.1.0",
+    "moltres-utils": "0.1.x",
     "ramda": "^0.25.0",
     "source-map-support": "^0.5.5"
   },
@@ -52,6 +52,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "firebase": "^5.0.2",
-    "jest": "^22.0.6"
+    "jest": "^22.0.6",
+    "moltres-utils": "file:../utils"
   }
 }

@@ -1,3 +1,4 @@
+import { noop } from 'moltres-utils'
 import PropTypes from 'prop-types'
 import { is } from 'ramda'
 import React from 'react'
@@ -9,7 +10,6 @@ import {
   withHandlers,
   withStateHandlers
 } from 'recompose'
-import { noop } from '../../util'
 
 
 const enhance = compose(
@@ -52,22 +52,18 @@ const enhance = compose(
   ),
   withHandlers({
     handleRequestClose: ({ closeModal }) => () => {
-      console.log('handleRequestClose')
       closeModal()
     },
     handleDismiss: ({ onDismiss }) => () => {
-      console.log('handleDismiss Overlay')
       if (is(Function, onDismiss)) {
-        console.log('has onDismiss')
         onDismiss()
       }
     }
   })
 )
 
-export default enhance(({ children, handleDismiss, handleRequestClose, modalVisible, styles }) => {
-  console.log('modalVisible:', modalVisible, ' handleDismiss:', handleDismiss)
-  return <View style={styles.container}>
+export default enhance(({ children, handleDismiss, handleRequestClose, modalVisible, styles }) =>
+  <View style={styles.container}>
     <Modal
       visible={modalVisible}
       animationType={'slide'}
@@ -87,4 +83,4 @@ export default enhance(({ children, handleDismiss, handleRequestClose, modalVisi
       </View>
     </Modal>
   </View>
-})
+)

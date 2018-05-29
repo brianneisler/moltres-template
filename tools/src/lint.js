@@ -1,9 +1,10 @@
 import createContext from './createContext'
-import { execPlugin } from './util'
+import { execWithPlugin, validateWithPlugin } from './util'
 
 const lint = async (options, context) => {
   const updatedContext = await createContext(options, context)
-  return execPlugin('lint', updatedContext)
+  await validateWithPlugin('lint', updatedContext)
+  return execWithPlugin('lint', updatedContext)
 }
 
 export default lint

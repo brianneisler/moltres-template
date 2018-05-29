@@ -9,4 +9,4 @@ function* monitorDimensions() {
   })
 }
 
-export defautl monitorDimensions
+export default monitorDimensions

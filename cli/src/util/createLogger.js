@@ -1,5 +1,11 @@
+import { green, red, yellow } from 'chalk'
+import { map } from 'ramda'
+
 const createLogger = (instance) => ({
-  log: (...args) => instance.log(...args)
+  error: (...args) => instance.log(...map(red, args)),
+  log: (...args) => instance.log(...args),
+  reassure: (...args) => instance.log(...map(green, args)),
+  warn: (...args) => instance.log(...map(yellow, args))
 })
 
 export default createLogger

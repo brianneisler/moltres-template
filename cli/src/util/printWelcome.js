@@ -1,8 +1,8 @@
 import loadWelcome from './loadWelcome'
 
-const printWelcome = async (cli) => {
+const printWelcome = async (logger) => {
   const welcome = await loadWelcome()
-  cli.log(welcome)
+  logger.log(welcome)
 }
 
 export default printWelcome

@@ -1,3 +1,4 @@
+import { noop } from 'moltres-utils'
 import emoji from 'node-emoji'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -7,8 +8,6 @@ import {
   defaultProps,
   setPropTypes
 } from 'recompose'
-import { Colors } from '../../styles'
-import { noop } from '../../util'
 
 
 const enhance = compose(

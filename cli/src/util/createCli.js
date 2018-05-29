@@ -3,14 +3,22 @@ import { contains, equals, reject } from 'ramda'
 import createDelimeter from './createDelimeter'
 import newCli from './newCli'
 import parseCommand from './parseCommand'
+import printCoreVersion from './printCoreVersion'
 import printWelcome from './printWelcome'
 
-const createCli = (context) => {
-  const cli = newCli(context)
+const createCli = (plugins) => {
+  const cli = newCli(plugins)
 
-  const start = async () => {
+  const start = async (context) => {
+    cli.context = context
+    if (cli.isCoreVersionCommand) {
+      printCoreVersion(context.logger)
+      if (!cli.isInteractive) {
+        return null
+      }
+    }
     if (cli.isInteractive) {
-      await printWelcome(cli)
+      await printWelcome(context.logger)
       process.argv = reject(equals('-i'), process.argv)
       return cli
         .delimiter(createDelimeter(context))

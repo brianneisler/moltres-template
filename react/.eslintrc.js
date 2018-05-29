@@ -5,11 +5,6 @@ module.exports = {
     "es6": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "experimentalObjectRestSpread": true,
-    "jsx": true,
-    "modules": true
-  },
   "parser": "babel-eslint",
   "plugins": [
     "react"
@@ -25,7 +20,7 @@ module.exports = {
     "curly": "error",
     "eol-last": "error",
     "generator-star-spacing": ["error", "after"],
-    "id-length": ["error", {"min": 2, "max": 50, "properties": "never", "exceptions": ["e", "i", "x", "y", "z", "_", "R"]}],
+    "id-length": ["error", {"min": 2, "max": 50, "properties": "never", "exceptions": ["e", "i", "t", "x", "y", "z", "_", "R"]}],
     "indent": ["error", 2, {"SwitchCase": 1}],
     "no-alert": "error",
     "no-console": "error",

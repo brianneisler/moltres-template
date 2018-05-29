@@ -1,3 +1,4 @@
+const { join, resolve } = require('path')
 const { execModulesGraph, loadModulesGraph } = require('../common')
 const run = require('../../../scripts/common/run')
 

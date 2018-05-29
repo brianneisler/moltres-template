@@ -13,7 +13,7 @@ const loadExecGraph = async (cwd) => {
     const project = await loadProject(cwd)
     return generateProjectGraph(project)
   }
-  throw new Error(`Could not find a project or a module at the path ${cwd}`)
+  return null
 }
 
 export default loadExecGraph

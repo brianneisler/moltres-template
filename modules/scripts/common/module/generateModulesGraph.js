@@ -1,12 +1,11 @@
-const { reduce } = require('ramda')
+const { reduce, values } = require('ramda')
 const newGraph = require('../graph/newGraph')
+const generateModuleGraph = require('./generateModuleGraph')
 
-const generateModulesGraph = (modules) => {
-  return reduce(
-    (graph, mod) => generateModuleGraph(mod, graph),
-    newGraph(),
-    modules
-  )
-}
+const generateModulesGraph = (modules) => reduce(
+  (graph, mod) => generateModuleGraph(mod, graph),
+  newGraph(),
+  values(modules)
+)
 
-module.exports = generateModuleGraph
+module.exports = generateModulesGraph

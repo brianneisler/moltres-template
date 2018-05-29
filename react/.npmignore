@@ -39,10 +39,11 @@ CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 DEVELOPMENT.md
 TODO
+__snapshots__
 __tests__
 config
 docs
 etc
 examples
+jest.config.js
 scripts
-test

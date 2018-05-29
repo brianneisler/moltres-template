@@ -1,9 +1,10 @@
 import createContext from './createContext'
-import { execPlugin } from './util'
+import { execWithPlugin, validateWithPlugin } from './util'
 
 const clean = async (options, context) => {
   const updatedContext = await createContext(options, context)
-  return execPlugin('clean', updatedContext)
+  await validateWithPlugin('clean', updatedContext)
+  return execWithPlugin('clean', updatedContext)
 }
 
 export default clean
