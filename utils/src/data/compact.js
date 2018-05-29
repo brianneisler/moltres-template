@@ -1,5 +1,5 @@
-import { filter, isNil, not, pipe } from 'ramda'
+import { isNil, reject } from 'ramda'
 
-const compact = filter(pipe(isNil, not))
+const compact = reject(isNil)
 
 export default compact

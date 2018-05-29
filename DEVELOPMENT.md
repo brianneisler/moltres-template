@@ -1,11 +1,13 @@
 # Development
 
+This doc outlines how to develop the moltres projects themselves.
+
 # Requirements
 
 * node.js 8.0+
 * npm 5.0+
 
-*NOTE:* we recommend using nvm
+*NOTE:* we recommend using home brew and nvm
 ```sh
 brew install nvm
 nvm install 8
@@ -58,6 +60,12 @@ To watch moltres and build on every file change
 npm run watch:build
 ```
 
+To watch moltres and test on every file change
+
+```sh
+npm run watch:test
+```
+
 
 ## Lint
 
@@ -74,4 +82,27 @@ To run tests against moltres
 
 ```sh
 npm test
+```
+
+
+## Version
+
+(WARNING: this does not bump dependencies. That currently has to be done manually)
+
+To bump the major version of all projects and modules
+
+```sh
+npm run version:major
+```
+
+To bump the minor version of all projects and modules
+
+```sh
+npm run version:minor
+```
+
+To bump the patch version of all projects and modules
+
+```sh
+npm run version:patch
 ```

@@ -1,17 +1,22 @@
 import { createContext } from 'moltres-tools'
-import { createCli } from './util'
+import { createCli, createLogger } from './util'
 
 const start = async () => {
-  const context = await createContext()
-  const cli = createCli(context)
+  let context = await createContext()
+  const cli = createCli(context.plugins)
+  const logger = createLogger(cli)
+  context = context.merge({
+    logger
+  })
   try {
-    await cli.start()
+    await cli.start(context)
     if (!cli.isInteractive) {
-      console.log('process exiting')
+      logger.log('process exiting')
       process.exit(0)
     }
   } catch (error) {
-    console.log(error)
+    logger.error('An unexpected error occurred.')
+    logger.log(error)
     process.exit(1)
   }
 }

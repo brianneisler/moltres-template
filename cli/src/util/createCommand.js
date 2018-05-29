@@ -2,7 +2,7 @@ import { has, is, reduce, values } from 'ramda'
 import createAction from './createAction'
 import createOption from './createOption'
 
-const createCommand = (config, context) => {
+const createCommand = (config) => {
   if (is(Function, config)) {
     return config
   }
@@ -24,7 +24,7 @@ const createCommand = (config, context) => {
         values(config.options)
       )
     }
-    return instance.action(createAction(config.action, config, context))
+    return instance.action(createAction(config.action, config))
   }
 }
 

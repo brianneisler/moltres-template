@@ -8,9 +8,13 @@
     "cleanse": "./scripts/cleanse.sh",
     "deploy": "./scripts/deploy.sh",
     "lint": "./scripts/lint.sh",
-    "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
-    "test": "./scripts/test.sh"
+    "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
+    "watch:build": "./scripts/watch.sh build",
+    "watch:test": "./scripts/watch.sh test"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

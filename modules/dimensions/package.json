@@ -1,0 +1,32 @@
+{
+  "name": "@moltres/dimensions",
+  "version": "0.1.0",
+  "description": "A moltres module for screen dimensions",
+  "main": "./dist/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/modules/dimensions#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "CMS",
+    "firebase",
+    "moltres",
+    "moltres-module"
+  ],
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
+  "peerDependencies": {
+    "moltres": "^0.1.0",
+    "react-native": "^0.55.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

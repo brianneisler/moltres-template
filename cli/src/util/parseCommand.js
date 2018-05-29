@@ -16,14 +16,7 @@ const parseCommand = async (cli, argv) => {
     return value
   }, args)
 
-  return new Promise((resolve, reject) => {
-    cli.exec(args.join(' '), (error) => {
-      if (!isNil(error)) {
-        return reject(error)
-      }
-      return resolve()
-    })
-  })
+  return cli.exec(args.join(' '))
 }
 
 export default parseCommand

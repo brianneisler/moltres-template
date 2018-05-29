@@ -9,7 +9,7 @@
     "url": "git+https://github.com/brianneisler/moltres.git"
   },
   "author": "Brian Neisler <hello@brianneisler.com>",
-  "homepage": "https://github.com/brianneisler/moltres#readme",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/utils#readme",
   "bugs": {
     "url": "https://github.com/brianneisler/moltres/issues"
   },
@@ -28,6 +28,9 @@
     "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
     "watch:build": "./scripts/watch-build.sh",
     "watch:test": "./scripts/watch-test.sh"
   },

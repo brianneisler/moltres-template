@@ -1,4 +1,7 @@
+const dotenv = require('dotenv')
+
 const run = (exec) => {
+  dotenv.config()
   exec()
     .then(() => {
       process.exit()

@@ -15,8 +15,8 @@
   },
   "keywords": [
     "CMS",
-    "moltres",
-    "redux"
+    "firebase",
+    "moltres"
   ],
   "scripts": {
     "build": "./scripts/build.sh",
@@ -27,15 +27,21 @@
     "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
     "watch:build": "./scripts/watch-build.sh",
     "watch:test": "./scripts/watch-test.sh"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
-    "duxegg": "^0.0.7",
+    "duxegg": "^0.0.8",
+    "moltres-utils": "0.1.x",
     "ramda": "^0.25.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-actions": "^2.3.2",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -48,6 +54,7 @@
     "eslint-plugin-import": "^2.8.0",
     "firebase": "^4.13.0",
     "firebase-admin": "^5.12.0",
-    "jest": "^22.0.6"
+    "jest": "^22.0.6",
+    "moltres-utils": "file:../utils"
   }
 }

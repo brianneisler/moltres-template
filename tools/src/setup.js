@@ -1,10 +1,12 @@
 import createContext from './createContext'
-import { execPlugin } from './util'
+import { execWithPlugin, validateWithPlugin } from './util'
 
 const setup = async (options, context) => {
   const updatedContext = await createContext(options, context)
-  await execPlugin('setup', updatedContext)
-  return execPlugin('build', updatedContext)
+  await validateWithPlugin('setup', updatedContext)
+  await execWithPlugin('setup', updatedContext)
+  await validateWithPlugin('build', updatedContext)
+  return execWithPlugin('build', updatedContext)
 }
 
 export default setup

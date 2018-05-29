@@ -1,0 +1,79 @@
+{
+  "name": "moltres-react",
+  "version": "0.1.0",
+  "description": "React integration with moltres CMS",
+  "main": "src/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/react#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "CMS",
+    "moltres",
+    "react"
+  ],
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "clean": "./scripts/clean.sh",
+    "cleanse": "./scripts/cleanse.sh",
+    "deploy": "./scripts/deploy.sh",
+    "lint": "./scripts/lint.sh",
+    "predeploy": "./scripts/predeploy.sh",
+    "setup": "./scripts/setup.sh",
+    "test": "./scripts/test.sh",
+    "version:major": "./scripts/version.sh major",
+    "version:minor": "./scripts/version.sh minor",
+    "version:patch": "./scripts/version.sh patch",
+    "watch:build": "./scripts/watch-build.sh",
+    "watch:test": "./scripts/watch-test.sh"
+  },
+  "dependencies": {
+    "history": "^4.7.2",
+    "moltres-utils": "0.1.x",
+    "node-emoji": "^1.8.1",
+    "prop-types": "^15.6.1",
+    "ramda": "^0.25.0",
+    "react-native-config": "^0.11.5",
+    "react-router-dom": "^4.2.2",
+    "react-router-native": "^4.2.0",
+    "recompose": "^0.27.1",
+    "redux-form": "^7.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.0",
+    "babel-plugin-react-native-web": "^0.7.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-native": "^4.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.8.2",
+    "jest": "^23.0.0",
+    "moltres": "file:../core",
+    "moltres-utils": "file:../utils",
+    "react": "^16.4.0",
+    "react-art": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-native": "^0.55.4",
+    "react-native-web": "^0.7.3",
+    "react-redux": "^5.0.7",
+    "react-test-renderer": "^16.4.0",
+    "redux": "^4.0.0"
+  },
+  "peerDependencies": {
+    "moltres": ">=0.1.0",
+    "react": ">=15.0.0",
+    "react-native": ">=0.24.0"
+  }
+}
