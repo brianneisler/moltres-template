@@ -1,6 +1,6 @@
 {
   "name": "@moltres/modules",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "./scripts/build.sh",
@@ -8,6 +8,7 @@
     "cleanse": "./scripts/cleanse.sh",
     "deploy": "./scripts/deploy.sh",
     "lint": "./scripts/lint.sh",
+    "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
     "version:major": "./scripts/version.sh major",

@@ -1,6 +1,6 @@
 {
   "name": "moltres-tools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tools for managing a Moltres app",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
@@ -39,7 +39,7 @@
     "bluebird": "^3.5.1",
     "eslint": "^4.15.0",
     "fs-extra": "^6.0.0",
-    "moltres-utils": "file:../utils",
+    "moltres-utils": "0.1.x",
     "ramda": "^0.25.0",
     "jest": "^22.0.6",
     "source-map-support": "^0.5.5"

@@ -1,8 +1,8 @@
-import { isNil, prop } from 'ramda'
+import { isNil } from 'ramda'
 
 const validate = async (context) => {
-  if (isNil(prop('graph', context))) {
-    throw new Error(`Could not find a project or a module at the path ${cwd}`)
+  if (isNil(context.graph)) {
+    throw new Error(`Could not find a project or a module at the path ${context.cwd}`)
   }
 }
 

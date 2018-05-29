@@ -1,8 +1,8 @@
-import { has } from 'ramda'
+import { isNil } from 'ramda'
 
 const validate = async (context) => {
-  if (!has('graph', context)) {
-    throw new Error(`Could not find a project or a module at the path ${cwd}`)
+  if (!isNil(context.graph)) {
+    throw new Error(`Could not find a project or a module at the path ${context.cwd}`)
   }
 }
 
