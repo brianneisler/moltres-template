@@ -1,6 +1,6 @@
 import { createStore } from 'duxegg'
-import app from './modules/app'
-import saga from './modules/saga'
+import * as app from './modules/app'
+import * as saga from './modules/saga'
 
 // TODO BRN: instead of passing modules into this method they should be loaded from moltres.json
 const createEngine = (modules, config) => {

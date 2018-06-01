@@ -11,7 +11,7 @@ const call = require('./call').default
 const cancel = require('./cancel').default
 const cancelled = require('./cancelled').default
 const channel = require('./channel').default
-const combineAction = require('./combineAction').default
+const combineActions = require('./combineActions').default
 const cps = require('./cps').default
 const createAction = require('./createAction').default
 const createActions = require('./createActions').default
@@ -24,7 +24,7 @@ const getContext = require('./getContext').default
 const handleAction = require('./handleAction').default
 const handleActions = require('./handleActions').default
 const join = require('./join').default
-const put = reqire('./put').default
+const put = require('./put').default
 const race = require('./race').default
 const select = require('./select').default
 const selectWait = require('./selectWait').default
@@ -47,7 +47,7 @@ module.exports = {
   cancel,
   cancelled,
   channel,
-  combineAction,
+  combineActions,
   cps,
   createAction,
   createActions,
