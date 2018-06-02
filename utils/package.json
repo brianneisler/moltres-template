@@ -1,6 +1,6 @@
 {
   "name": "moltres-utils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Utils for Moltres apps",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
