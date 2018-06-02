@@ -1,5 +1,5 @@
 import { call, put, watchChannel } from 'moltres'
-import { dimensionsChanged } from './actions'
+import { dimensionsChanged } from '../actions'
 import createDimensionsChannel from './createDimensionsChannel'
 
 function* monitorDimensions() {

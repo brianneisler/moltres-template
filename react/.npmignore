@@ -41,7 +41,7 @@ DEVELOPMENT.md
 TODO
 __snapshots__
 __tests__
-config
+coverage
 docs
 etc
 examples

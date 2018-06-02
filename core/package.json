@@ -54,7 +54,6 @@
     "eslint-plugin-import": "^2.8.0",
     "firebase": "^4.13.0",
     "firebase-admin": "^5.12.0",
-    "jest": "^22.0.6",
-    "moltres-utils": "file:../utils"
+    "jest": "^22.0.6"
   }
 }

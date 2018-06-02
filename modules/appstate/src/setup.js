@@ -1,6 +1,7 @@
 import { put, spawn } from 'moltres'
 import { AppState } from 'react-native'
-import { setAppState } from '../actions'
+import { setAppState } from './actions'
+import { monitorAppStateChannel } from './util'
 
 function* setup() {
   yield put(setAppState(AppState.currentState))

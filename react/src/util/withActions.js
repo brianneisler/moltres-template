@@ -1,8 +1,7 @@
+import { wrapActionCreators } from 'moltres'
 import { is } from 'ramda'
 import { compose, getContext, setDisplayName, withProps, wrapDisplayName } from 'recompose'
 import storeShape from './storeShape'
-import wrapActionCreators from './wrapActionCreators'
-
 
 const defaultMapActionsToProps = (dispatch) => ({ dispatch })
 

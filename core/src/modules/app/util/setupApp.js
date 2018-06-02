@@ -1,7 +1,8 @@
-import { all, call } from 'moltres'
 import { compact } from 'moltres-utils'
 import { flatten, keys, map, prop } from 'ramda'
 import setupModule from './setupModule'
+import all from '../../../all'
+import call from '../../../call'
 
 function* setupApp(store) {
   const modules = store.getModules()
