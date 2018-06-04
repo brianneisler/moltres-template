@@ -14,7 +14,8 @@ const buildModule = async (module, context) => {
   return execScripts([
     `mkdir -p ${moduleDist}`,
     `${babel} ${moduleSrc} -d ${moduleDist} --source-maps --ignore **/*.test.js`,
-    `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc} ${moduleDist}`
+    `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc}/ ${moduleDist}/`,
+    `npm pack`
   ], {
     cwd: module.modulesDir,
     env:  {
