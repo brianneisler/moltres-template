@@ -1,11 +1,12 @@
 import os from 'os'
 import { execScripts } from '../../util'
+import { buildModule } from '../build'
 
 const setupModule = async (module, context) => {
   const { logger } = context
   logger.log(`setting up module ${module.name}`)
   const npmCommand = os.platform().startsWith('win') ? 'npm.cmd' : 'npm'
-  return execScripts([
+  await execScripts([
     `${npmCommand} install`
   ], {
     cwd: module.path,
@@ -15,6 +16,7 @@ const setupModule = async (module, context) => {
       MOLTRES_STAGE: context.stage
     }
   })
+  return buildModule(module, context)
 }
 
 export default setupModule
