@@ -1,1 +1,1 @@
-export { default as setApp } from './setApp'
+export { default as setFirebaseApp } from './setFirebaseApp'

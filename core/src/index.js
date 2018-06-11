@@ -11,10 +11,12 @@ const call = require('./call').default
 const cancel = require('./cancel').default
 const cancelled = require('./cancelled').default
 const channel = require('./channel').default
+const conifg = require('./config').default
 const combineActions = require('./combineActions').default
 const cps = require('./cps').default
 const createAction = require('./createAction').default
 const createActions = require('./createActions').default
+const createChannel = require('./createChannel').default
 const createEngine = require('./createEngine').default
 const delay = require('./delay').default
 const eventChannel = require('./eventChannel').default
@@ -48,9 +50,11 @@ module.exports = {
   cancelled,
   channel,
   combineActions,
+  config,
   cps,
   createAction,
   createActions,
+  createChannel,
   createEngine,
   delay,
   eventChannel,

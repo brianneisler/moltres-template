@@ -1,19 +1,18 @@
-import { createApi } from './util'
+import { setupApi } from './util'
 
-const module = ({ firebaseApp }) => {
-  let storeCache
-  const run = (store) => {
-    storeCache = store
+const module = () => {
+  let api
+  const getApi = () => {
+    return api
   }
 
-  const buildApi = () => {
-    const modules = storeCache.getModules()
-    return createApi(modules, { firebaseApp })
+  const setup = (store) => {
+    api = setupApi(store)
   }
 
   return {
-    buildApi,
-    run
+    getApi,
+    setup
   }
 }
 

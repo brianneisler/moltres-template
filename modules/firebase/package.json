@@ -24,7 +24,8 @@
   },
   "peerDependencies": {
     "firebase": ">=3 <=5",
-    "moltres": "^0.1.0"
+    "firebase-admin": ">=3 <=5",
+    "moltres": ">=0.1.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,4 +1,5 @@
 export { default as createHistory } from './createHistory'
+export { default as setupConfig } from './setupConfig'
 export { default as storeShape } from './storeShape'
 export { default as withActions } from './withActions'
 export { default as withModalControls } from './withModalControls'

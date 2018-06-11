@@ -1,0 +1,32 @@
+{
+  "name": "@moltres/google_cloud",
+  "version": "0.1.4",
+  "description": "A moltres module for setting up Google Cloud",
+  "main": "./dist/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/modules/google_cloud#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "CMS",
+    "gcp",
+    "moltres",
+    "moltres-module"
+  ],
+  "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
+    "ramda": "^0.25.0"
+  },
+  "peerDependencies": {
+    "moltres": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
