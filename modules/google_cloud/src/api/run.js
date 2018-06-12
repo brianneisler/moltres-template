@@ -1,5 +1,5 @@
 import { call } from 'moltres'
-import initializeGoogleCloudStorage from '../initializeGoogleCloudStorage'
+import initializeGoogleCloudStorage from './initializeGoogleCloudStorage'
 
 function* run() {
   yield call(initializeGoogleCloudStorage, 'default')

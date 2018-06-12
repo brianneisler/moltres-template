@@ -1,8 +1,8 @@
 import Storage from '@google-cloud/storage'
 import { pick, put, select } from 'moltres'
 import { setGoogleCloudStorage } from '../actions'
-import selectGoogleCloudConfig from './selectGoogleCloudConfig'
-import selectGoogleCloudStorage from './selectGoogleCloudStorage'
+import selectGoogleCloudConfig from '../selectGoogleCloudConfig'
+import selectGoogleCloudStorage from '../selectGoogleCloudStorage'
 
 function* initializeGoogleCloudStorage(name = 'default') {
   const config = yield select(selectGoogleCloudConfig(name))

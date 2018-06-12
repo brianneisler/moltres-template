@@ -1,13 +1,11 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { isNil, prop, reduce } from 'ramda'
-import filterApiSetups from './filterApiSetups'
+import { isNil, keys, prop, reduce } from 'ramda'
 
 const setupApi = (store) => {
   const modules = store.getModules()
   const app = express()
   app.use(bodyParser.urlencoded({ extended: false }))
-  const apiSetups = filterApiSetups(modules)
   return reduce(
     (accum, name) => {
       const mod = prop(name, modules)
