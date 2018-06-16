@@ -6,6 +6,17 @@ const setupApi = (store) => {
   const modules = store.getModules()
   const app = express()
   app.use(bodyParser.urlencoded({ extended: false }))
+
+  // TODO BRN: Update this to generate an api instance that uses redux under
+  // the hood and taps into express.
+  const api =
+
+  app.use((req, res) => {
+    // TODO BRN: generate an http event based on req
+
+    res.send('Hello World')
+  })
+
   return reduce(
     (accum, name) => {
       const mod = prop(name, modules)

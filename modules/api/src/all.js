@@ -1,0 +1,1 @@
+const all = (path, handler)

@@ -36,7 +36,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
-    "moltres-utils": "0.1.x",
+    "moltres-utils": "file:../utils",
     "ramda": "^0.25.0",
     "redux": "^4.0.0",
     "redux-actions": "^2.3.2",

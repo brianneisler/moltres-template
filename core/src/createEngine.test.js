@@ -7,8 +7,7 @@ describe('createEngine', () => {
     const engine = createEngine(testModules, testConfig)
 
     expect(engine.getModules()).toMatchObject({
-      app: expect.any(Object),
-      saga: expect.any(Object)
+      core: expect.any(Object)
     })
 
     expect(engine.getConfig()).toBe(testConfig)

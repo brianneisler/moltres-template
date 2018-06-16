@@ -8,6 +8,10 @@ const module = () => {
 
   const setup = (store) => {
     api = setupApi(store)
+    store.setContext({
+      api
+    })
+    return store
   }
 
   return {

@@ -1,9 +1,15 @@
-import { buildReducer } from '../util'
-import run from './run'
+import initializeFirebaseAdminApp from './initializeFirebaseAdminApp'
 
 const module = (config) => ({
-  reducer: buildReducer(config),
-  run
+  setup: (store) => {
+    const app = initializeFirebaseAdminApp('default')
+    const database = app.database()
+    store.setContext({
+      app,
+      database
+    })
+    return store
+  }
 })
 
 export default module

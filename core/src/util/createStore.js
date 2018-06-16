@@ -5,10 +5,18 @@ import startStore from './startStore'
 
 const createStore = (modules, config) => {
   const builtModules = buildModules(modules, config)
+  let context = {}
   const store = {
     ...buildStore(builtModules),
     getModules: () => builtModules,
-    getConfig: () => config
+    getConfig: () => config,
+    getContext: () => context,
+    setContext: (props) => {
+      context = {
+        ...context,
+        ...props
+      }
+    }
   }
   return startStore(setupStore(store))
 }

@@ -1,9 +1,13 @@
-import buildReducer from './buildReducer'
-import run from './run'
+import initializeGoogleCloudStorage from './initializeGoogleCloudStorage'
 
 const module = (config) => ({
-  reducer: buildReducer(config),
-  run
+  setup: (store) => {
+    const storage = initializeGoogleCloudStorage('default', config)
+    store.setContext({
+      storage
+    })
+    return store
+  }
 })
 
 export default module

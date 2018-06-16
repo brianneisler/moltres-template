@@ -1,19 +1,10 @@
 import Storage from '@google-cloud/storage'
-import { pick, put, select } from 'moltres'
-import { setGoogleCloudStorage } from '../actions'
-import selectGoogleCloudConfig from '../selectGoogleCloudConfig'
-import selectGoogleCloudStorage from '../selectGoogleCloudStorage'
+import { pick, prop } from 'ramda'
 
-function* initializeGoogleCloudStorage(name = 'default') {
-  const config = yield select(selectGoogleCloudConfig(name))
-  let storage = yield select(selectGoogleCloudStorage(name))
-  if (storage) {
-    return storage
-  }
+const initializeGoogleCloudStorage = (name, configs) => {
+  const config = prop(name, configs)
   // https://github.com/GoogleCloudPlatform/google-cloud-node/blob/master/docs/authentication.md
-  storage = new Storage(pick([ 'projectId', 'credentials' ], config))
-  yield put(setGoogleCloudStorage(name, storage))
-  return storage
+  return new Storage(pick([ 'projectId', 'credentials' ], config))
 }
 
 export default initializeGoogleCloudStorage
