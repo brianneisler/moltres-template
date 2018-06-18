@@ -1,4 +1,4 @@
-import { contains } from 'ramda'
+import { contains } from 'moltres-utils'
 import vorpal from 'vorpal'
 import processPlugins from './processPlugins'
 

@@ -1,4 +1,4 @@
-import { is, isNil, mapObjIndexed, prop } from 'ramda'
+import { is, isNil, mapObjIndexed, prop } from 'moltres-utils'
 
 const buildModules = (moduleBuilders, config) => mapObjIndexed((moduleBuilder, name) => {
   if (isNil(moduleBuilder)) {

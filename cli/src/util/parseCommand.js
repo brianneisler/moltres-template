@@ -1,5 +1,5 @@
 import Promise from 'bluebird'
-import { addIndex, drop, isNil, map } from 'ramda'
+import { addIndex, drop, isNil, map } from 'moltres-utils'
 
 const mapIndexed = addIndex(map)
 

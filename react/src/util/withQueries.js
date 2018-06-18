@@ -1,4 +1,13 @@
-import { assoc, forEachObjIndexed, has, keys, mapObjIndexed, omit, prop, reduce } from 'ramda'
+import {
+  assoc,
+  forEachObjIndexed,
+  has,
+  keys,
+  mapObjIndexed,
+  omit,
+  prop,
+  reduce
+} from 'moltres-utils'
 import { createFactory, Component } from 'react'
 import { setDisplayName, shallowEqual, wrapDisplayName } from 'recompose'
 

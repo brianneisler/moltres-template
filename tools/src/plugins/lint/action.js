@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 import lint from '../../lint'
 
 const action = async (instance, args, context) =>

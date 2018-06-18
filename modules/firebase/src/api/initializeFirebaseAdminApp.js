@@ -1,5 +1,5 @@
 import admin from 'firebase-admin'
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 
 const initializeFirebaseAdminApp = (name, configs) => {
   const config = prop(name, configs)

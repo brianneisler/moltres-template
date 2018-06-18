@@ -1,5 +1,4 @@
-import { is } from 'ramda'
-import compose from './compose'
+import { compose, is } from 'moltres-utils'
 
 const createFactory = (func) => (props, ...rest) => {
   if (is(Function, props)) {

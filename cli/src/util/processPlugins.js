@@ -1,4 +1,4 @@
-import { contains, forEachObjIndexed } from 'ramda'
+import { contains, forEachObjIndexed } from 'moltres-utils'
 import createCommand from './createCommand'
 
 const processPlugins = (cli, plugins) => {

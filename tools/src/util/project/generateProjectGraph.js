@@ -1,5 +1,4 @@
-import { newGraph } from 'moltres-utils'
-import { forEach, forEachObjIndexed } from 'ramda'
+import { forEach, forEachObjIndexed, newGraph } from 'moltres-utils'
 import generateModuleGraph from '../module/generateModuleGraph'
 import moduleNodeId from '../module/moduleNodeId'
 import projectNodeId from './projectNodeId'

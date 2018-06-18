@@ -1,4 +1,4 @@
-import { append, reduce, values } from 'ramda'
+import { append, reduce, values } from 'moltres-utils'
 
 const filterMiddleware = (modules) => reduce(
   (middlewares, module) => {

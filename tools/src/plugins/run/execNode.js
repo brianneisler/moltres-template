@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 import runModule from './runModule'
 import runProject from './runProject'
 

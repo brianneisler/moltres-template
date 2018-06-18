@@ -1,4 +1,4 @@
-import { is, merge } from 'ramda'
+import { is, merge } from 'moltres-utils'
 import mapProps from './mapProps'
 
 const withProps = (input) =>

@@ -1,5 +1,13 @@
-import { walk } from 'moltres-utils'
-import { assoc, curry, forEach, forEachObjIndexed, has, pick, values } from 'ramda'
+import {
+  assoc,
+  curry,
+  forEach,
+  forEachObjIndexed,
+  has,
+  pick,
+  values,
+  walk
+} from 'moltres-utils'
 
 const newWalkContext = (data) => pick([
   'visited'

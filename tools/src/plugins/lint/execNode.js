@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 import lintModule from './lintModule'
 import lintProject from './lintProject'
 

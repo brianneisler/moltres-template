@@ -1,5 +1,4 @@
-import { newGraph } from 'moltres-utils'
-import { forEach } from 'ramda'
+import { forEach, newGraph } from 'moltres-utils'
 import moduleNodeId from './moduleNodeId'
 import walkModule from './walkModule'
 

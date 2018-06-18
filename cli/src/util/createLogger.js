@@ -1,5 +1,5 @@
 import { green, red, yellow } from 'chalk'
-import { map } from 'ramda'
+import { map } from 'moltres-utils'
 
 const createLogger = (instance) => ({
   error: (...args) => instance.log(...map(red, args)),

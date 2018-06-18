@@ -1,4 +1,4 @@
-import { pick } from 'ramda'
+import { pick } from 'moltres-utils'
 
 const newContext = (props) => {
   const context = pick([

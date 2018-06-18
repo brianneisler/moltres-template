@@ -1,4 +1,4 @@
-import { curry, path } from 'ramda'
+import { curry, path } from 'moltres-utils'
 
 const getPlugin = curry((pluginName, context) => {
   const { plugin } = path([ 'plugins', pluginName ], context)

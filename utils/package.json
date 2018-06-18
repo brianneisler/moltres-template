@@ -38,6 +38,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "graphlib": "^2.1.5",
+    "invariant": "^2.2.4",
     "ramda": "^0.25.0"
   },
   "devDependencies": {

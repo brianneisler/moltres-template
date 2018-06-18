@@ -44,7 +44,6 @@
     "image-to-ascii": "^3.0.11",
     "moltres-tools": "0.1.x",
     "moltres-utils": "0.1.x",
-    "ramda": "^0.25.0",
     "source-map-support": "^0.5.5",
     "vorpal": "^1.12.0"
   },

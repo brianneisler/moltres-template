@@ -1,5 +1,5 @@
 import { wrapActionCreators } from 'moltres'
-import { is } from 'ramda'
+import { is } from 'moltres-utils'
 import { compose, getContext, setDisplayName, withProps, wrapDisplayName } from 'recompose'
 import storeShape from './storeShape'
 

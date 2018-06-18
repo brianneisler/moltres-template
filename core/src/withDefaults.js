@@ -1,4 +1,4 @@
-import { merge } from 'ramda'
+import { merge } from 'moltres-utils'
 import createFactory from './createFactory'
 
 const withDefaults = (defaultProps) => (factory) =>

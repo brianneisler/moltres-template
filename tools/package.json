@@ -41,7 +41,6 @@
     "eslint": "^4.15.0",
     "fs-extra": "^6.0.0",
     "moltres-utils": "0.1.x",
-    "ramda": "^0.25.0",
     "jest": "^22.0.6",
     "source-map-support": "^0.5.5"
   },

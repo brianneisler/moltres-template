@@ -1,5 +1,4 @@
-import { castPath, isFunction } from 'moltres-utils'
-import { assocPath, path } from 'ramda'
+import { assocPath, castPath, isFunction, path } from 'moltres-utils'
 import { getContext } from 'redux-saga/effects'
 
 const getConfig = function* (selector) {

@@ -1,4 +1,4 @@
-import { forEachObjIndexed, is } from 'ramda'
+import { forEachObjIndexed, is } from 'moltres-utils'
 
 const setupStore = (store) => {
   forEachObjIndexed(

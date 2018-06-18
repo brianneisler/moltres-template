@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@google-cloud/storage": "^1.7.0",
-    "ramda": "^0.25.0"
+    "moltres-utils": "0.1.x"
   },
   "peerDependencies": {
     "moltres": "^0.1.0"

@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 import deployModule from './deployModule'
 import deployProject from './deployProject'
 

@@ -21,8 +21,8 @@
     "moltres-module"
   ],
   "dependencies": {
-    "redux-form": "^7.2.3",
-    "ramda": "^0.25.0"
+    "moltres-utils": "0.1.x",
+    "redux-form": "^7.2.3"
   },
   "peerDependencies": {
     "moltres": "^0.1.0"

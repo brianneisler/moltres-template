@@ -1,5 +1,5 @@
 import { handleActions } from 'moltres'
-import { assoc } from 'ramda'
+import { assoc } from 'moltres-utils'
 import { setAppState } from '../actions'
 
 const reducer = handleActions({

@@ -1,4 +1,4 @@
-import { isNil } from 'ramda'
+import { isNil } from 'moltres-utils'
 import call from './call'
 import select from './select'
 import take from './take'

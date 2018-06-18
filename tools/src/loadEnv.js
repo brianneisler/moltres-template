@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { readFileSync } from 'fs-extra'
+import { prepend } from 'moltres-utils'
 import { isAbsolute, resolve } from 'path'
-import { prepend } from 'ramda'
 
 const loadEnv = (envPath, options = {}) => {
   const { cwd, stage } = options

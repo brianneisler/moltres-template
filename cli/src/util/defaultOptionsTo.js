@@ -1,5 +1,13 @@
-import { reduceObjIndexed } from 'moltres-utils'
-import { assoc, defaultTo, has, mapObjIndexed, path, prop, propOr } from 'ramda'
+import {
+  assoc,
+  defaultTo,
+  has,
+  mapObjIndexed,
+  path,
+  prop,
+  propOr,
+  reduceObjIndexed
+} from 'moltres-utils'
 
 const defaultOptionsTo = (args, config) =>
   assoc(

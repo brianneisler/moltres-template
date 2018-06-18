@@ -1,4 +1,4 @@
-import { has } from 'ramda'
+import { has } from 'moltres-utils'
 import getPlugin from './getPlugin'
 
 const validateWithPlugin = async (pluginName, context) => {

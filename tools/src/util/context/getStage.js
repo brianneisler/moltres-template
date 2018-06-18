@@ -1,4 +1,4 @@
-import { isEmpty, isNil, prop } from 'ramda'
+import { isEmpty, isNil, prop } from 'moltres-utils'
 
 const getStage = (options) => {
   let stage = prop('stage', options) || process.env.MOLTRES_STAGE

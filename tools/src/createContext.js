@@ -1,6 +1,5 @@
-import { findPath } from 'moltres-utils'
+import { findPath, is, prop } from 'moltres-utils'
 import { resolve } from 'path'
-import { is, prop } from 'ramda'
 import { DEFAULT_PLUGINS, findModules, getStage, loadExecGraph, newContext, newLogger } from './util'
 import loadEnv from './loadEnv'
 import loadPlugins from './loadPlugins'

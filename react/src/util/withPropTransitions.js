@@ -1,4 +1,4 @@
-import { equals, forEach, keys, isNil, prop } from 'ramda'
+import { equals, forEach, keys, isNil, prop } from 'moltres-utils'
 import { lifecycle, setDisplayName, wrapDisplayName } from 'recompose'
 
 

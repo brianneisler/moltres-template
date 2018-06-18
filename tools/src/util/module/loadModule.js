@@ -1,7 +1,7 @@
 import { all } from 'bluebird'
 import { pathExists } from 'fs-extra'
+import { identity, map, memoizeWith } from 'moltres-utils'
 import { resolve } from 'path'
-import { identity, map, memoizeWith } from 'ramda'
 import { MODULE_FILE_NAME } from '../constants'
 import loadModuleFile from './loadModuleFile'
 import newModule from './newModule'

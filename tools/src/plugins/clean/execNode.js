@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { prop } from 'moltres-utils'
 import cleanModule from './cleanModule'
 import cleanProject from './cleanProject'
 

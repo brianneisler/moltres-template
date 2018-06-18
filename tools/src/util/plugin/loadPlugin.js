@@ -1,6 +1,6 @@
 import { pathExists } from 'fs-extra'
+import { isEmpty, isNil, memoize } from 'moltres-utils'
 import { resolve } from 'path'
-import { isEmpty, isNil, memoize } from 'ramda'
 import { PLUGIN_FILE_NAME } from '../constants'
 import loadPluginFile from './loadPluginFile'
 import newPlugin from './newPlugin'

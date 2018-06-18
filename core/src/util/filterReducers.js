@@ -1,4 +1,4 @@
-import { assoc, keys, prop, reduce } from 'ramda'
+import { assoc, keys, prop, reduce } from 'moltres-utils'
 
 const filterReducers = (modules) => reduce(
   (reducers, key) => {

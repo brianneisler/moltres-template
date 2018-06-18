@@ -1,5 +1,5 @@
 import Storage from '@google-cloud/storage'
-import { pick, prop } from 'ramda'
+import { pick, prop } from 'moltres-utils'
 
 const initializeGoogleCloudStorage = (name, configs) => {
   const config = prop(name, configs)

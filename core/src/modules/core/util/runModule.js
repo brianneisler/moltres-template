@@ -1,4 +1,4 @@
-import { is } from 'ramda'
+import { is } from 'moltres-utils'
 import spawn from '../../../spawn'
 
 function* runModule(module, name, config) {

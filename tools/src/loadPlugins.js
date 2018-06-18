@@ -1,5 +1,5 @@
 import { props } from 'bluebird'
-import { mapObjIndexed } from 'ramda'
+import { mapObjIndexed } from 'moltres-utils'
 import { loadPlugin } from './util'
 
 const loadPlugins = async (plugins) => props(mapObjIndexed(

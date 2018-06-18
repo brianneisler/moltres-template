@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions'
 import { config } from 'moltres'
-import { reduceObjIndexed } from 'moltres-utils'
-import { assoc, toUpper } from 'ramda'
+import { assoc, reduceObjIndexed, toUpper } from 'moltres-utils'
 
 const setupConfig = () => {
   console.log('functions.config():', JSON.stringify(functions.config()))

@@ -9,9 +9,9 @@ function* run() {
   while (true) {
     const { payload: { reject, resolve, saga, args } } = yield take(runSaga)
     try {
-      console.log('run - saga:', saga)
+      // console.log('run - saga:', saga)
       const result = yield call(saga, ...args)
-      console.log('run - result:', result)
+      // console.log('run - result:', result)
       if (resolve) {
         resolve(result)
       }

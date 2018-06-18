@@ -38,7 +38,6 @@
     "moltres-utils": "0.1.x",
     "node-emoji": "^1.8.1",
     "prop-types": "^15.6.1",
-    "ramda": "^0.25.0",
     "react-native-config": "^0.11.5",
     "react-router-dom": "^4.2.2",
     "react-router-native": "^4.2.0",

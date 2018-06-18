@@ -1,4 +1,4 @@
-import { split, trim } from 'ramda'
+import { split, trim } from 'moltres-utils'
 import spawnCommand from './spawnCommand'
 
 const execScript = async (script, { cwd, env }) => {

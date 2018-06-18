@@ -1,5 +1,4 @@
-import { newException } from 'moltres-utils'
-import { isNil } from 'ramda'
+import { isNil, newException } from 'moltres-utils'
 
 const validate = async (context) => {
   if (isNil(context.graph)) {

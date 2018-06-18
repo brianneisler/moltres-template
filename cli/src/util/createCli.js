@@ -1,5 +1,5 @@
 import path from 'path'
-import { contains, equals, reject } from 'ramda'
+import { contains, equals, reject } from 'moltres-utils'
 import createDelimeter from './createDelimeter'
 import newCli from './newCli'
 import parseCommand from './parseCommand'

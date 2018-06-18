@@ -1,7 +1,7 @@
 import { all, props } from 'bluebird'
 import { pathExists } from 'fs-extra'
+import { map, mapObjIndexed, memoize } from 'moltres-utils'
 import { resolve } from 'path'
-import { map, mapObjIndexed, memoize } from 'ramda'
 import { PROJECT_FILE_NAME } from '../constants'
 import findModules from '../module/findModules'
 import loadProjectFile from './loadProjectFile'

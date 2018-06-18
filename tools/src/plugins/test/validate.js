@@ -1,4 +1,4 @@
-import { isNil } from 'ramda'
+import { isNil } from 'moltres-utils'
 
 const validate = async (context) => {
   if (isNil(context.graph)) {

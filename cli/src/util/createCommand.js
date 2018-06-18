@@ -1,4 +1,4 @@
-import { has, is, reduce, values } from 'ramda'
+import { has, is, reduce, values } from 'moltres-utils'
 import createAction from './createAction'
 import createOption from './createOption'
 

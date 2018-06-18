@@ -22,7 +22,7 @@
     "router"
   ],
   "dependencies": {
-    "ramda": "^0.25.0",
+    "moltres-utils": "0.1.x",
     "react-router-redux": "^5.0.0-alpha.9"
   },
   "peerDependencies": {

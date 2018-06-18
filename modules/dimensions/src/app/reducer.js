@@ -1,5 +1,5 @@
 import { handleActions } from 'moltres'
-import { merge } from 'ramda'
+import { merge } from 'moltres-utils'
 import { Dimensions } from 'react-native'
 import { dimensionsChanged } from '../actions'
 

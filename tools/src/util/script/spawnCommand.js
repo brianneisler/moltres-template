@@ -1,5 +1,5 @@
 import { spawn } from 'child_process'
-import { trim } from 'ramda'
+import { trim } from 'moltres-utils'
 
 const spawnCommand = async (command, args, options) => {
   const commandProcess = spawn(command, args, options)

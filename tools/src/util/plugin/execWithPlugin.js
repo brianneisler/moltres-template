@@ -1,5 +1,4 @@
-import { execGraph } from 'moltres-utils'
-import { path } from 'ramda'
+import { execGraph, path } from 'moltres-utils'
 import getPlugin from './getPlugin'
 
 const execWithPlugin = async (pluginName, context) => {

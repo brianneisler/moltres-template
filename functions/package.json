@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "moltres-utils": "0.1.x",
-    "ramda": "^0.25.0",
     "source-map-support": "^0.5.5"
   },
   "devDependencies": {

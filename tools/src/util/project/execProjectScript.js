@@ -1,5 +1,5 @@
+import { has, prop } from 'moltres-utils'
 import { resolve } from 'path'
-import { has, prop } from 'ramda'
 import mapModules from '../module/mapModules'
 import execScript from '../script/execScript'
 

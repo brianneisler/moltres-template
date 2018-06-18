@@ -1,5 +1,4 @@
-import { compact } from 'moltres-utils'
-import { flatten, keys, map, prop } from 'ramda'
+import { compact, flatten, keys, map, prop } from 'moltres-utils'
 import all from '../../../all'
 import call from '../../../call'
 import runModule from './runModule'

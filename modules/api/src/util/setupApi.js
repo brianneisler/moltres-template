@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { isNil, keys, prop, reduce } from 'ramda'
+import { isNil, keys, prop, reduce } from 'moltres-utils'
 
 const setupApi = (store) => {
   const modules = store.getModules()

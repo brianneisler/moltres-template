@@ -1,6 +1,5 @@
-import { noop } from 'moltres-utils'
+import { is, noop } from 'moltres-utils'
 import PropTypes from 'prop-types'
-import { is } from 'ramda'
 import React from 'react'
 import { Button, Modal, StyleSheet, View } from 'react-native'
 import {
