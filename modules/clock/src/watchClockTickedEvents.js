@@ -1,9 +1,9 @@
-import { actionChannel, buffers, call, watchChannel } from 'moltres'
+import { actionChannel, buffers, watchChannel } from 'moltres'
 import { clockTicked } from './actions'
 
 function* watchClockTickedEvents(handler) {
   const channel = yield actionChannel(clockTicked, buffers.sliding(1))
-  return yield call(watchChannel, channel, handler)
+  return yield watchChannel(channel, handler)
 }
 
 export default watchClockTickedEvents

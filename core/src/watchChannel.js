@@ -1,10 +1,16 @@
 import call from './call'
 import take from './take'
 
-function* watchChannel(channel, handler) {
-  while (true) {
-    const value = yield take(channel)
-    yield call(handler, value)
+const watchChannel = function*(channel, handler) {
+  try {
+    while (true) {
+      const value = yield take(channel)
+      yield call(handler, value)
+    }
+  } finally {
+    if (yield cancelled()) {
+      yield call([ channel, 'close' ])
+    }
   }
 }
 

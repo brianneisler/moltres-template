@@ -1,4 +1,4 @@
-import { assocPath, castPath, isFunction, path } from 'moltres-utils'
+import { assocPath, castPath, isFunction, isString, path } from 'moltres-utils'
 import { getContext as getContextEffect } from 'redux-saga/effects'
 
 const getContext = function* (selector) {
@@ -9,12 +9,15 @@ const getContext = function* (selector) {
   if (isFunction(selector)) {
     return selector(context)
   }
+  if (isString(selector)) {
     const parts = castPath(selector, context)
     return assocPath(
       parts,
       path(parts, context),
       {}
     )
+  }
+  return context
 }
 
 export default getContext

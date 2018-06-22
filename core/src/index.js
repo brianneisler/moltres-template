@@ -6,6 +6,7 @@ const actions = require('./actions')
 const actionChannel = require('./actionChannel').default
 const all = require('./all').default
 const apply = require('./apply').default
+const asyncChannel = require('./asyncChannel').default
 const buffers = require('./buffers').default
 const call = require('./call').default
 const cancel = require('./cancel').default
@@ -21,6 +22,7 @@ const createChannel = require('./createChannel').default
 const createEngine = require('./createEngine').default
 const createFactory = require('./createFactory').default
 const delay = require('./delay').default
+const END = require('./END').default
 const eventChannel = require('./eventChannel').default
 const flush = require('./flush').default
 const fork = require('./fork').default
@@ -28,6 +30,7 @@ const getConfig = require('./getConfig').default
 const getContext = require('./getContext').default
 const handleAction = require('./handleAction').default
 const handleActions = require('./handleActions').default
+const isEnd = require('./isEnd').default
 const join = require('./join').default
 const mapProps = require('./mapProps').default
 const put = require('./put').default
@@ -42,6 +45,7 @@ const take = require('./take').default
 const takeEvery = require('./takeEvery').default
 const takeLatest = require('./takeLatest').default
 const throttle = require('./throttle').default
+const updatedContext = require('./updateContext').default
 const watchChannel = require('./watchChannel').default
 const withConfig = require('./withConfig').default
 const withContext = require('./withContext').default
@@ -54,6 +58,7 @@ module.exports = {
   actionChannel,
   all,
   apply,
+  asyncChannel,
   buffers,
   call,
   cancel,
@@ -69,6 +74,7 @@ module.exports = {
   createEngine,
   createFactory,
   delay,
+  END,
   eventChannel,
   flush,
   fork,
@@ -76,6 +82,7 @@ module.exports = {
   getContext,
   handleAction,
   handleActions,
+  isEnd,
   join,
   mapProps,
   put,
@@ -90,6 +97,7 @@ module.exports = {
   takeEvery,
   takeLatest,
   throttle,
+  updateContext,
   watchChannel,
   withConfig,
   withContext,

@@ -1,13 +1,10 @@
-const post = (path, handler) => {
-  // TODO BRN: Need to convert the returned response from the handler into a proper response from express
-// (even) {
-//
-//
-//   console.log('req.body:', req.body)
-//
-//   res.writeHead(200, {'Content-Type': 'application/json'})
-//   res.end(JSON.strn)
-// })
+import { call } from 'moltres'
+import route from './route'
+
+const POST_METHOD = 'post'
+
+const post = function* (path, handler) {
+  yield call(route, path, POST_METHOD, handler)
 }
 
 export default post

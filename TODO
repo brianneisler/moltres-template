@@ -17,4 +17,4 @@ ${option.someoption}
 
 
 TODO
-- [ ] complete/test moltres-react
+- [x] add support for http api methods in api modules

@@ -3,7 +3,6 @@ import { config } from 'moltres'
 import { assoc, reduceObjIndexed, toUpper } from 'moltres-utils'
 
 const setupConfig = () => {
-  console.log('functions.config():', JSON.stringify(functions.config()))
   const functionsConfig = reduceObjIndexed((subConfigAccum, subConfig, subConfigName) => {
     return reduceObjIndexed((accum, value, name) => assoc(
       `${toUpper(subConfigName)}_${toUpper(name)}`,

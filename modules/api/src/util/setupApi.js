@@ -1,23 +1,14 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { isNil, keys, prop, reduce } from 'moltres-utils'
+import { append, isNil, keys, prop, reduce } from 'moltres-utils'
+import createRouter from './createRouter'
 
 const setupApi = (store) => {
   const modules = store.getModules()
-  const app = express()
+  let app = express()
   app.use(bodyParser.urlencoded({ extended: false }))
 
-  // TODO BRN: Update this to generate an api instance that uses redux under
-  // the hood and taps into express.
-  const api =
-
-  app.use((req, res) => {
-    // TODO BRN: generate an http event based on req
-
-    res.send('Hello World')
-  })
-
-  return reduce(
+  app = reduce(
     (accum, name) => {
       const mod = prop(name, modules)
       const apiSetup = prop('setupApi', mod)
@@ -33,6 +24,25 @@ const setupApi = (store) => {
     app,
     keys(modules)
   )
+
+  let routes = []
+  let router = createRouter(routes)
+  app.use((req, res, next) => {
+    router(req, res, next)
+  })
+  return {
+    getApp: () => app,
+    getRoutes: () => routes,
+    getRouter: () => router,
+    addRoute: (route) => {
+      routes = append(route, routes)
+      router = createRouter(routes)
+    },
+    removeRoute: (route) => {
+      routes = without([ route ], routes)
+      router = createRouter(routes)
+    }
+  }
 }
 
 export default setupApi

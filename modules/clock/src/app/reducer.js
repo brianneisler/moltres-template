@@ -3,8 +3,8 @@ import { assoc } from 'moltres-utils'
 import { setCurrentClock } from '../actions'
 
 const reducer = handleActions({
-  [setCurrentClock]: (state, action) =>
-    assoc('current', action.payload, state)
+  [setCurrentClock]: (state, { payload }) =>
+    assoc('current', payload.timestamp, state)
 },{
   current: 0
 })
