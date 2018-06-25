@@ -1,6 +1,6 @@
 {
   "name": "@moltres/ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A moltres module for core ui events",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
