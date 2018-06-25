@@ -60,7 +60,6 @@
     "eslint-plugin-react": "^7.8.2",
     "jest": "^23.0.0",
     "moltres": "file:../core",
-    "moltres-utils": "file:../utils",
     "react": "^16.4.0",
     "react-art": "^16.4.0",
     "react-dom": "^16.4.0",

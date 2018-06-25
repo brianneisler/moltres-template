@@ -11,7 +11,7 @@ const exec = async () => {
       'jest'
     )
     return [
-      `${jest} ${module.path} --passWithNoTests`
+      `${jest} ${mod.path} --passWithNoTests`
     ]
   }, graph)
 }

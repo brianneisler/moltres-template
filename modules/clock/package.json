@@ -23,8 +23,11 @@
   "dependencies": {
     "moltres-utils": "0.1.x"
   },
+  "devDependencies": {
+    "moltres": "file:../../core"
+  },
   "peerDependencies": {
-    "moltres": "^0.1.0"
+    "moltres": ">=0.1.0"
   },
   "publishConfig": {
     "access": "public"

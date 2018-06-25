@@ -51,7 +51,6 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "firebase": "^5.0.2",
-    "jest": "^22.0.6",
-    "moltres-utils": "file:../utils"
+    "jest": "^22.0.6"
   }
 }

@@ -22,9 +22,13 @@
   "dependencies": {
     "moltres-utils": "0.1.x"
   },
-  "peerDependencies": {
-    "moltres": "^0.1.0",
+  "devDependencies": {
+    "moltres": "file:../../core",
     "react-native": "^0.55.1"
+  },
+  "peerDependencies": {
+    "moltres": ">=0.1.0",
+    "react-native": ">=0.55.1"
   },
   "publishConfig": {
     "access": "public"

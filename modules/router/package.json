@@ -25,9 +25,18 @@
     "moltres-utils": "0.1.x",
     "react-router-redux": "^5.0.0-alpha.9"
   },
+  "devDependencies": {
+    "moltres": "file:../../core",
+    "moltres-react": "file:../../react",
+    "react": "^16.4.1",
+    "react-art": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-native": "^0.55.4",
+    "react-native-web": "^0.8.4"
+  },
   "peerDependencies": {
-    "moltres": "^0.1.0",
-    "moltres-react": "^0.1.0"
+    "moltres": ">=0.1.0",
+    "moltres-react": ">=0.1.0"
   },
   "publishConfig": {
     "access": "public"
