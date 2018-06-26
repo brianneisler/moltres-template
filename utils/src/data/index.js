@@ -1,4 +1,7 @@
+import toString from './toString'
+
 export { default as addIndex } from './addIndex'
+export { default as always } from './always'
 export { default as append } from './append'
 export { default as applyIfHas } from './applyIfHas'
 export { default as arrayLikeKeys } from './arrayLikeKeys'
@@ -102,7 +105,6 @@ export { default as splitMapJoin } from './splitMapJoin'
 export { default as stringSize } from './stringSize'
 export { default as stringToArray } from './stringToArray'
 export { default as stringToPath } from './stringToPath'
-export { dafault as toString } from './toString'
 export { default as toUpper } from './toUpper'
 export { default as trim } from './trim'
 export { default as unicodeSize } from './unicodeSize'
@@ -112,3 +114,7 @@ export { default as upperFirst } from './upperFirst'
 export { default as values } from './values'
 export { default as weakMemoizeWith } from './weakMemoizeWith'
 export { default as without } from './without'
+
+export {
+  toString
+}

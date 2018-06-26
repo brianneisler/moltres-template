@@ -3,7 +3,8 @@ describe('index', () => {
     const mod = require('./')
     expect(mod).toMatchObject({
       map: expect.any(Function),
-      reduce: expect.any(Function)
+      reduce: expect.any(Function),
+      toString: expect.any(Function)
     })
   })
 })

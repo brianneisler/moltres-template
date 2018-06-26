@@ -36,13 +36,13 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
-    "moltres-utils": "0.1.x",
+    "moltres-utils": "file:../utils",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-jest": "^22.2.2",
+    "babel-jest": "^23.2.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "caniuse-lite": "^1.0.30000843",
@@ -52,6 +52,6 @@
     "eslint-plugin-import": "^2.8.0",
     "firebase": "^4.13.0",
     "firebase-admin": "^5.12.0",
-    "jest": "^22.0.6"
+    "jest": "^23.2.0"
   }
 }

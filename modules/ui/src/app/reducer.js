@@ -1,6 +1,6 @@
 import { handleActions } from 'moltres'
 import { assoc } from 'moltres-utils'
-import { uiDeinitialized, uiInitialized } from './actions'
+import { uiDeinitialized, uiInitialized } from '../actions'
 
 const reducer = handleActions({
   [uiDeinitialized]: (state) => assoc('initialized', false, state),

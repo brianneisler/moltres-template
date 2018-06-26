@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-jest": "^22.2.2",
+    "babel-jest": "^23.2.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^22.0.6"
+    "jest": "^23.2.0"
   }
 }

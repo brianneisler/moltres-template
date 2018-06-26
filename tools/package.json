@@ -41,11 +41,11 @@
     "eslint": "^4.15.0",
     "fs-extra": "^6.0.0",
     "moltres-utils": "0.1.x",
-    "jest": "^22.0.6",
+    "jest": "^23.2.0",
     "source-map-support": "^0.5.5"
   },
   "devDependencies": {
-    "babel-jest": "^22.2.2",
+    "babel-jest": "^23.2.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint-config-airbnb-base": "^12.1.0",

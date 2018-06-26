@@ -18,7 +18,7 @@ const handleActions = (handlers, defaultProps, options = {}) => {
   )
   const flattenedReducerMap = flattenReducerMap(handlers, options)
   const reducers = map(
-    (type) => handleAction(type, get(type, flattenedReducerMap), defaultProps),
+    (type) => handleAction(get(type, flattenedReducerMap), type, defaultProps),
     keys(flattenedReducerMap)
   )
   const reducer = reduceReducers(...reducers)

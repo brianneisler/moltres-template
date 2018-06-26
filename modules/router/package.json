@@ -26,13 +26,14 @@
     "react-router-redux": "^5.0.0-alpha.9"
   },
   "devDependencies": {
+    "babel-jest": "^23.2.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-native": "^4.0.0",
     "moltres": "file:../../core",
     "moltres-react": "file:../../react",
     "react": "^16.4.1",
-    "react-art": "^16.4.1",
-    "react-dom": "^16.4.1",
     "react-native": "^0.55.4",
-    "react-native-web": "^0.8.4"
+    "react-router-native": "^4.3.0"
   },
   "peerDependencies": {
     "moltres": ">=0.1.0",

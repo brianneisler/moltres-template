@@ -5,10 +5,10 @@ const spawnCommand = async (command, args, options) => {
   const commandProcess = spawn(command, args, options)
   return new Promise((resolve, reject) => {
     commandProcess.stdout.on('data', (data) => {
-      console.log(trim(data.toString())) // eslint-disable-line no-console
+      console.log(`${options.prefix ? options.prefix + ': ' : ''}${trim(data.toString())}`) // eslint-disable-line no-console
     })
     commandProcess.stderr.on('data', (data) => {
-      console.log(trim(data.toString())) // eslint-disable-line no-console
+      console.log(`${options.prefix ? options.prefix + ': ' : ''}${trim(data.toString())}`) // eslint-disable-line no-console
     })
     commandProcess.on('error', (error) => {
       return reject(error)

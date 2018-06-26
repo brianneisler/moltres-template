@@ -1,4 +1,5 @@
 import {
+  always,
   contains,
   identity,
   invariant,
@@ -12,8 +13,8 @@ import {
 } from 'moltres-utils'
 import { ACTION_TYPE_DELIMITER } from './constants'
 
-const handleAction = (type, handler = identity, defaultProps = {}) => {
-  let typeFilter = () => true
+const handleAction = (handler = identity, type = always(true), defaultProps = {}) => {
+  let typeFilter = type
   if (isString(type)) {
     const types = split(ACTION_TYPE_DELIMITER, toString(type))
     typeFilter = (action) => {
@@ -23,8 +24,6 @@ const handleAction = (type, handler = identity, defaultProps = {}) => {
       }
       return true
     }
-  } else {
-    typeFilter = type
   }
   invariant(
     isFunction(typeFilter),

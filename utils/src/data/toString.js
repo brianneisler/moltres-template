@@ -8,7 +8,7 @@ const INFINITY = 1 / 0
 const symbolProto = Symbol ? Symbol.prototype : undefined
 const symbolToString = symbolProto ? symbolProto.toString : undefined
 
-const toString = (value) => {
+const _toString = (value) => {
   if (value == null) {
     return ''
   }
@@ -27,4 +27,4 @@ const toString = (value) => {
   return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result
 }
 
-export default toString
+export default _toString

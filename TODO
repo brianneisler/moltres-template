@@ -18,3 +18,15 @@ ${option.someoption}
 
 TODO
 - [x] add support for http api methods in api modules
+- [x] Get tests passing in all projects
+- [ ] get build scripts working in all versions of node
+- [ ] add codecov support
+- [ ] Get lint passing in all projects
+  - [ ] setup prettier
+- [ ] add .github config
+- [ ] Figure out how handleAction ties into higher order handlers
+- [ ] Write test for handleAction
+
+FEATURES
+- [ ] add first template project
+- [ ] add support for init command

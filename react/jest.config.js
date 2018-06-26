@@ -10,5 +10,10 @@ module.exports = {
   snapshotSerializers: [
     'enzyme-to-json/serializer',
     'react-native-web/jest/serializer'
+  ],
+  testMatch: [ '**/__tests__/**/*.js?(x)', '**/+(*.)+(spec|test).js?(x)' ],
+  testPathIgnorePatterns: [ '/node_modules/', '/dist/' ],
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-native|react-router-native|react-native-config|react-native-web)/)'
   ]
 }
