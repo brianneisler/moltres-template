@@ -1,6 +1,6 @@
 {
   "name": "moltres-functions",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Utilities for functions running in backend function apps",
   "main": "./dist/index.js",
   "license": "Apache-2.0",

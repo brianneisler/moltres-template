@@ -1,6 +1,6 @@
 {
   "name": "moltres-react",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "React integration with moltres CMS",
   "main": "src/index.js",
   "license": "Apache-2.0",
