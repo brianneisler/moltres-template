@@ -15,6 +15,7 @@
     "deploy": "./scripts/deploy.sh",
     "lint": "./scripts/lint.sh",
     "setup": "./scripts/setup.sh",
+    "setup:ci": "./scripts/setup-ci.sh",
     "test": "./scripts/test.sh",
     "version:major": "./scripts/version.sh major",
     "version:minor": "./scripts/version.sh minor",
