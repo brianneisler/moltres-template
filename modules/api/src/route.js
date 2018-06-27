@@ -1,4 +1,4 @@
-import { asyncChannel, call, fork, watchChannel } from 'moltres'
+import { asyncChannel, call, fork, handleAction, watchChannel } from 'moltres'
 import { httpRequest } from './actions'
 import { addRoute, removeRoute } from './util'
 
@@ -16,6 +16,7 @@ const route = function* (path, method, handler) {
     }
   })
 
+  const wrappedHandler = handleAction(handler)
   yield fork(watchChannel, channel, function* ({ req, res }) {
     const event = httpRequest({
       body: req.body,
@@ -27,7 +28,7 @@ const route = function* (path, method, handler) {
       query: req.query,
       route: req.route
     })
-    const response = yield call(handler, event)
+    const response = yield call(wrappedHandler, event)
     // { statusCode, headers, body }
 
     res.writeHead(response.statusCode, response.headers)

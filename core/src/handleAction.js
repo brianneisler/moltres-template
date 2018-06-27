@@ -7,6 +7,7 @@ import {
   isNil,
   isPlainObject,
   isString,
+  isUndefined,
   map,
   split,
   toString
@@ -53,7 +54,7 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
       return props
     }
 
-    if (action.error === true) {
+    if (action && action.error === true) {
       return throwHandler(props, action)
     }
     return nextHandler(props, action)

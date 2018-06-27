@@ -1,4 +1,9 @@
-import { flatten, head, identity, init, last, length } from 'ramda'
+import flatten from './flatten'
+import head from './head'
+import identity from './identity'
+import init from './init'
+import last from './last'
+import length from './length'
 import reduceRight from './reduceRight'
 
 const compose = (...funcs) => {
