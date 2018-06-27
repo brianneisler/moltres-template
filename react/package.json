@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "^2.6.1",
     "eslint-plugin-react": "^7.10.0",
     "jest": "^23.2.0",
-    "moltres": "file:../core",
+    "moltres": "0.1.x",
     "prettier": "^1.13.6",
     "react": "^16.4.0",
     "react-art": "^16.4.0",

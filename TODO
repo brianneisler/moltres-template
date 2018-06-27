@@ -21,6 +21,8 @@ TODO
 - [x] Get tests passing in all projects
 - [x] Figure out how handleAction ties into higher order handlers
 - [x] Write test for handleAction
+- [ ] remove "file:.." entries from package.json files
+- [ ] add separate "link" step in build for linking files after install
 - [ ] fix travis builds
   - [ ] get travis builds passing in all versions of node
   - [x] modify travis to force upgrade npm to npm 6

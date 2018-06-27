@@ -24,7 +24,7 @@
     "moltres-utils": "0.1.x"
   },
   "devDependencies": {
-    "moltres": "file:../../core"
+    "moltres": "0.1.x"
   },
   "peerDependencies": {
     "moltres": ">=0.1.0"

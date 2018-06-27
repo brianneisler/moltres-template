@@ -26,7 +26,7 @@
     "babel-jest": "^23.2.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react-native": "^4.0.0",
-    "moltres": "file:../../core",
+    "moltres": "0.1.x",
     "react": "^16.4.1",
     "react-native": "^0.55.4"
   },

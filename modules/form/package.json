@@ -25,7 +25,7 @@
     "redux-form": "^7.4.2"
   },
   "devDependencies": {
-    "moltres": "file:../../core",
+    "moltres": "0.1.x",
     "react": "^16.4.1",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"
