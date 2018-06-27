@@ -1,17 +1,13 @@
 import { findPath, is, prop } from 'moltres-utils'
 import { resolve } from 'path'
-import { DEFAULT_PLUGINS, findModules, getStage, loadExecGraph, newContext, newLogger } from './util'
+import { DEFAULT_PLUGINS, getStage, loadExecGraph, newContext, newLogger } from './util'
 import loadEnv from './loadEnv'
 import loadPlugins from './loadPlugins'
 
 const createContext = async (options) => {
-  const cwd = resolve(findPath(
-    prop('cwd', options),
-    prop('path', options),
-    process.cwd()
-  ))
+  const cwd = resolve(findPath(prop('cwd', options), prop('path', options), process.cwd()))
   const logger = prop('logger', options) || newLogger()
-  const plugins = prop('plugins', options) || await loadPlugins(DEFAULT_PLUGINS)
+  const plugins = prop('plugins', options) || (await loadPlugins(DEFAULT_PLUGINS))
   const graph = await loadExecGraph(cwd)
   const stage = getStage(options)
 

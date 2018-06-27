@@ -4,9 +4,6 @@ import filterEnhancers from './filterEnhancers'
 import filterReducers from './filterReducers'
 
 const buildStore = (modules) =>
-  composeStore(
-    combineReducers(filterReducers(modules)),
-    filterEnhancers(modules)
-  )
+  composeStore(combineReducers(filterReducers(modules)), filterEnhancers(modules))
 
 export default buildStore

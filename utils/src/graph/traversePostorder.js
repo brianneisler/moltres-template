@@ -2,11 +2,7 @@ import { assoc, curry, forEach, has, pick, reduce } from 'ramda'
 import getOutNodes from './getOutNodes'
 import isGraph from './isGraph'
 
-const newTraverseContext = (data) => pick([
-  'graph',
-  'results',
-  'visited'
-], data)
+const newTraverseContext = (data) => pick(['graph', 'results', 'visited'], data)
 
 const traverseNode = (context, node, traverser) => {
   const { graph } = context
@@ -29,18 +25,15 @@ const traverseNode = (context, node, traverser) => {
 
 const traversePostorder = curry((traverser, graph) => {
   if (!isGraph(graph)) {
-    throw new Error(`traversePostorder expects a Graph, instead received ${value}`)
+    throw new Error(`traversePostorder expects a Graph, instead received ${graph}`)
   }
   const context = newTraverseContext({
     graph,
     visited: {},
     results: {}
   })
-  return reduce(
-    (ctx, source) => traverseNode(ctx, source, traverser),
-    context,
-    graph.sources()
-  ).results
+  return reduce((ctx, source) => traverseNode(ctx, source, traverser), context, graph.sources())
+    .results
 })
 
 export default traversePostorder

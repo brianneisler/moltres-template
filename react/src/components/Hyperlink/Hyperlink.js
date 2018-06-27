@@ -28,14 +28,11 @@ const enhance = compose(
       if (onPress) {
         return onPress(href)
       }
-      Linking.canOpenURL(href)
-        .then((supported) => supported && Linking.openURL(href))
+      Linking.canOpenURL(href).then((supported) => supported && Linking.openURL(href))
     }
   })
 )
 
-export default enhance(({ handlePress, handleLongPress, ...props }) =>
-  <Text {...props}
-    onPress={handlePress}
-    onLongPress={handleLongPress}/>
-)
+export default enhance(({ handlePress, handleLongPress, ...props }) => (
+  <Text {...props} onPress={handlePress} onLongPress={handleLongPress} />
+))

@@ -1,6 +1,4 @@
-const objectProto = Object.prototype
-const hasOwnProperty = objectProto.hasOwnProperty
-const toString = objectProto.toString
+const { hasOwnProperty, toString } = Object.prototype
 const symToStringTag = typeof Symbol != 'undefined' ? Symbol.toStringTag : undefined
 
 const baseGetTag = (value) => {

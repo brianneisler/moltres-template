@@ -7,7 +7,9 @@ import { createRootSaga } from './util'
 
 function* run() {
   while (true) {
-    const { payload: { reject, resolve, saga, args } } = yield take(runSaga)
+    const {
+      payload: { reject, resolve, saga, args }
+    } = yield take(runSaga)
     try {
       // console.log('run - saga:', saga)
       const result = yield call(saga, ...args)
@@ -15,7 +17,7 @@ function* run() {
       if (resolve) {
         resolve(result)
       }
-    } catch(error) {
+    } catch (error) {
       if (reject) {
         reject(error)
       } else {
@@ -26,7 +28,7 @@ function* run() {
 }
 
 const module = () => {
-  const middleware  = createSagaMiddleware()
+  const middleware = createSagaMiddleware()
 
   const start = (store) => {
     middleware.run(createRootSaga(store))

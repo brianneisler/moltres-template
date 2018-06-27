@@ -7,7 +7,7 @@ import newPlugin from './newPlugin'
 
 const loadPlugin = memoize(async (pluginPath) => {
   const filePath = resolve(pluginPath, PLUGIN_FILE_NAME)
-  if (!await pathExists(filePath)) {
+  if (!(await pathExists(filePath))) {
     throw new Error(`Cannot find ${PLUGIN_FILE_NAME} at ${pluginPath}`)
   }
   const data = await loadPluginFile(filePath)

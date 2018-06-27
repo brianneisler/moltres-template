@@ -12,9 +12,8 @@ import {
 import momentumCenter from './momentumCenter'
 import velocityAtBounds from './velocityAtBounds'
 
-
-const ModePropType = PropTypes.oneOf([ 'decay', 'snap', 'spring-origin' ])
-const OvershootPropType = PropTypes.oneOf([ 'spring', 'clamp' ])
+const ModePropType = PropTypes.oneOf(['decay', 'snap', 'spring-origin'])
+const OvershootPropType = PropTypes.oneOf(['spring', 'clamp'])
 const AnimatedPropType = PropTypes.any
 
 const handleResponderGrant = (anim, mode) => {
@@ -60,10 +59,10 @@ const handleSnappedScroll = (anim, min, max, velocity, spacing, deceleration) =>
   let endX = momentumCenter(anim._value, velocity, spacing, deceleration)
   endX = Math.max(endX, min)
   endX = Math.min(endX, max)
-  const bounds = [ endX - spacing / 2, endX + spacing / 2 ]
+  const bounds = [endX - spacing / 2, endX + spacing / 2]
   const endV = velocityAtBounds(anim._value, velocity, bounds, deceleration)
 
-  const listener = anim.addListener(( { value } ) => {
+  const listener = anim.addListener(({ value }) => {
     if (value > bounds[0] && value < bounds[1]) {
       Animated.spring(anim, {
         toValue: endX,
@@ -80,7 +79,16 @@ const handleSnappedScroll = (anim, min, max, velocity, spacing, deceleration) =>
   })
 }
 
-const handleMomentumScroll = (anim, min, max, velocity, overshoot, deceleration, onOvershoot, overshootSpringConfig) => {
+const handleMomentumScroll = (
+  anim,
+  min,
+  max,
+  velocity,
+  overshoot,
+  deceleration,
+  onOvershoot,
+  overshootSpringConfig
+) => {
   const listener = anim.addListener(({ value }) => {
     if (value < min) {
       anim.removeListener(listener)
@@ -126,7 +134,19 @@ const handleMomentumScroll = (anim, min, max, velocity, overshoot, deceleration,
   })
 }
 
-const handleResponderRelease = (anim, min, max, velocity, overshoot, mode, snapSpacing, deceleration, onOvershoot, overshootSpringConfig, springOriginConfig) => {
+const handleResponderRelease = (
+  anim,
+  min,
+  max,
+  velocity,
+  overshoot,
+  mode,
+  snapSpacing,
+  deceleration,
+  onOvershoot,
+  overshootSpringConfig,
+  springOriginConfig
+) => {
   anim.flattenOffset()
 
   if (anim._value < min) {
@@ -162,14 +182,22 @@ const handleResponderRelease = (anim, min, max, velocity, overshoot, mode, snapS
         break
     }
   } else {
-
     switch (mode) {
       case 'snap':
         handleSnappedScroll(anim, min, max, velocity, snapSpacing, overshoot, deceleration)
         break
 
       case 'decay':
-        handleMomentumScroll(anim, min, max, velocity, overshoot, deceleration, onOvershoot, overshootSpringConfig)
+        handleMomentumScroll(
+          anim,
+          min,
+          max,
+          velocity,
+          overshoot,
+          deceleration,
+          onOvershoot,
+          overshootSpringConfig
+        )
         break
 
       case 'spring-origin':
@@ -183,10 +211,8 @@ const handleResponderRelease = (anim, min, max, velocity, overshoot, mode, snapS
   }
 }
 
-
 const enhance = compose(
   setPropTypes({
-
     // Component Config
     locked: PropTypes.bool,
     lockDirection: PropTypes.bool,
@@ -226,8 +252,8 @@ const enhance = compose(
     lockDirection: true,
     overshootX: 'spring',
     overshootY: 'spring',
-    xBounds: [ -Infinity, Infinity ],
-    yBounds: [ -Infinity, Infinity ],
+    xBounds: [-Infinity, Infinity],
+    yBounds: [-Infinity, Infinity],
     yMode: 'decay',
     xMode: 'decay',
     overshootSpringConfig: { friction: 7, tension: 40 },
@@ -265,7 +291,7 @@ const enhance = compose(
       // }
       handleResponderGrant(panX, xMode)
       handleResponderGrant(panY, yMode)
-      setDirection(horizontal && !vertical ? 'x' : (vertical && !horizontal ? 'y' : null))
+      setDirection(horizontal && !vertical ? 'x' : vertical && !horizontal ? 'y' : null)
     },
     onPanResponderMove: ({
       direction,
@@ -304,12 +330,12 @@ const enhance = compose(
       // }
 
       if (horizontal && (!lockDirection || direction === 'x')) {
-        const [ xMin, xMax ] = xBounds
+        const [xMin, xMax] = xBounds
         handleResponderMove(panX, dx, xMin, xMax, overshootX, overshootReductionFactor)
       }
 
       if (vertical && (!lockDirection || direction === 'y')) {
-        const [ yMin, yMax ] = yBounds
+        const [yMin, yMax] = yBounds
         handleResponderMove(panY, dy, yMin, yMax, overshootY, overshootReductionFactor)
       }
     },
@@ -340,26 +366,52 @@ const enhance = compose(
       let cancel = false
 
       if (onRelease) {
-        cancel = (false === onRelease({ vx, vy, dx, dy }))
+        cancel = false === onRelease({ vx, vy, dx, dy })
       }
 
       if (!cancel && horizontal && (!lockDirection || direction === 'x')) {
-        const [ xMin, xMax ] = xBounds
+        const [xMin, xMax] = xBounds
         if (onReleaseX) {
-          cancel = (false === onReleaseX({ vx, vy, dx, dy }))
+          cancel = false === onReleaseX({ vx, vy, dx, dy })
         }
-        !cancel && handleResponderRelease(panX, xMin, xMax, vx, overshootX, xMode, snapSpacingX, momentumDecayConfig.deceleration, onOvershoot, overshootSpringConfig, springOriginConfig)
+        !cancel &&
+          handleResponderRelease(
+            panX,
+            xMin,
+            xMax,
+            vx,
+            overshootX,
+            xMode,
+            snapSpacingX,
+            momentumDecayConfig.deceleration,
+            onOvershoot,
+            overshootSpringConfig,
+            springOriginConfig
+          )
       }
 
       if (!cancel && vertical && (!lockDirection || direction === 'y')) {
-        const [ yMin, yMax ] = yBounds
+        const [yMin, yMax] = yBounds
         if (onReleaseY) {
           cancel = false === onReleaseY({ vx, vy, dx, dy })
         }
-        !cancel && handleResponderRelease(panY, yMin, yMax, vy, overshootY, yMode, snapSpacingY, momentumDecayConfig.deceleration, onOvershoot, overshootSpringConfig, springOriginConfig)
+        !cancel &&
+          handleResponderRelease(
+            panY,
+            yMin,
+            yMax,
+            vy,
+            overshootY,
+            yMode,
+            snapSpacingY,
+            momentumDecayConfig.deceleration,
+            onOvershoot,
+            overshootSpringConfig,
+            springOriginConfig
+          )
       }
 
-      setDirection(horizontal && !vertical ? 'x' : (vertical && !horizontal ? 'y' : null))
+      setDirection(horizontal && !vertical ? 'x' : vertical && !horizontal ? 'y' : null)
       return cancel
     }
   }),
@@ -403,13 +455,8 @@ const enhance = compose(
   )
 )
 
-const PanController = enhance(({ children, style, responder }) =>
-  <View
-    children={children}
-    style={style}
-    removeClippedSubviews={true}
-    {...responder.panHandlers}
-  />
-)
+const PanController = enhance(({ children, style, responder }) => (
+  <View children={children} style={style} removeClippedSubviews={true} {...responder.panHandlers} />
+))
 
 export default PanController

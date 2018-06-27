@@ -13,8 +13,7 @@ const unflattenActionCreators = (
   ) {
     const nextNamespace = camelCaseAction(partialFlatActionTypePath.shift())
     if (isEmpty(partialFlatActionTypePath)) {
-      partialNestedActionCreators[nextNamespace] =
-        flatActionCreators[flatActionType]
+      partialNestedActionCreators[nextNamespace] = flatActionCreators[flatActionType]
     } else {
       if (!partialNestedActionCreators[nextNamespace]) {
         partialNestedActionCreators[nextNamespace] = {}
@@ -28,15 +27,9 @@ const unflattenActionCreators = (
   }
 
   const nestedActionCreators = {}
-  Object.getOwnPropertyNames(flatActionCreators).forEach(type => {
-    const unprefixedType = prefix
-      ? type.replace(`${prefix}${namespace}`, '')
-      : type
-    return unflatten(
-      type,
-      nestedActionCreators,
-      unprefixedType.split(namespace)
-    )
+  Object.getOwnPropertyNames(flatActionCreators).forEach((type) => {
+    const unprefixedType = prefix ? type.replace(`${prefix}${namespace}`, '') : type
+    return unflatten(type, nestedActionCreators, unprefixedType.split(namespace))
   })
 
   return nestedActionCreators

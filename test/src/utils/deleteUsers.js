@@ -19,9 +19,6 @@ import deleteUser from './deleteUser'
 //   )
 // }
 
-const deleteUsers = async (app, uids) => Promise.all(map(
-  async (uid) => deleteUser(app, uid),
-  uids
-))
+const deleteUsers = async (app, uids) => Promise.all(map(async (uid) => deleteUser(app, uid), uids))
 
 export default deleteUsers

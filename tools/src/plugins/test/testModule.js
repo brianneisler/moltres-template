@@ -9,9 +9,7 @@ const testModule = async (module, context) => {
     '.bin',
     'jest'
   )
-  return execScripts([
-    `${jest} ${module.path} --passWithNoTests`
-  ], {
+  return execScripts([`${jest} ${module.path} --passWithNoTests`], {
     cwd: module.modulesDir,
     env: {
       ...process.env,

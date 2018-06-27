@@ -1,6 +1,5 @@
 import { forEach, is } from 'ramda'
 
-
 const makeCacheChain = () => ({
   strongMap: new Map(),
   weakMap: new WeakMap()
@@ -12,20 +11,6 @@ const makeCacheLink = () => ({
 })
 
 const isWeakKey = is(Object)
-
-const deleteCacheKey = (cacheChain, key) => {
-  if (isWeakKey(key)) {
-    return cacheChain.weakMap.delete(key)
-  }
-  return cacheChain.strongMap.delete(key)
-}
-
-const hasCacheKey = (cacheChain, key) => {
-  if (isWeakKey(key)) {
-    return cacheChain.weakMap.has(key)
-  }
-  return cacheChain.strongMap.has(key)
-}
 
 const setCacheKey = (cacheChain, key, value) => {
   if (isWeakKey(key)) {
@@ -49,7 +34,6 @@ const linkCacheKey = (cacheChain, key) => {
   }
   return link
 }
-
 
 const cache = makeCacheChain()
 const cacheChain = (...args) => {

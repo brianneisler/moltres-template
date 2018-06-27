@@ -1,13 +1,8 @@
 import React from 'react'
 import { Modal, StyleSheet, View } from 'react-native'
-import {
-  compose,
-  defaultProps,
-  setPropTypes
-} from 'recompose'
+import { compose, defaultProps, setPropTypes } from 'recompose'
 import Emoji from '../Emoji'
 import { Colors } from '../../styles'
-
 
 const enhance = compose(
   setPropTypes({
@@ -54,29 +49,18 @@ const enhance = compose(
 )
 
 export default enhance(({ children, onRequestClose, styles, transparent, ...rest }) => {
-  let modalStyle = [ styles.modal ]
+  let modalStyle = [styles.modal]
   if (transparent) {
-    modalStyle = [ ...modalStyle, styles.modalTransparent ]
+    modalStyle = [...modalStyle, styles.modalTransparent]
   }
   return (
     <View style={styles.container}>
-      <Modal
-        onRequestClose={onRequestClose}
-        transparent={transparent}
-        {...rest}
-      >
+      <Modal onRequestClose={onRequestClose} transparent={transparent} {...rest}>
         <View style={styles.modalContainer}>
           <View style={styles.innerContainer}>
-            <View
-              style={modalStyle}>
-              <Emoji
-                name="x"
-                onPress={onRequestClose}
-                style={styles.closeButton}
-              />
-              <View style={styles.content}>
-                {children}
-              </View>
+            <View style={modalStyle}>
+              <Emoji name="x" onPress={onRequestClose} style={styles.closeButton} />
+              <View style={styles.content}>{children}</View>
             </View>
           </View>
         </View>

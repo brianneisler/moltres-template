@@ -20,7 +20,7 @@ const baseToString = (value) => {
     return symbolToString ? symbolToString.call(value) : ''
   }
   const result = `${value}`
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result
 }
 
 export default baseToString

@@ -26,21 +26,15 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
       return true
     }
   }
-  invariant(
-    isFunction(typeFilter),
-    'Expected type to be a string or a filter function'
-  )
+  invariant(isFunction(typeFilter), 'Expected type to be a string or a filter function')
   invariant(
     isFunction(handler) || isPlainObject(handler),
     'Expected handler to be a function or object with next and throw methods'
   )
 
-  const [ nextHandler, throwHandler ] = isFunction(handler)
-    ? [ handler, handler ]
-    : map(
-        (aHandler) => (isNil(aHandler) ? identity : aHandler),
-        [ handler.next, handler.throw ]
-      )
+  const [nextHandler, throwHandler] = isFunction(handler)
+    ? [handler, handler]
+    : map((aHandler) => (isNil(aHandler) ? identity : aHandler), [handler.next, handler.throw])
 
   return (props, action) => {
     if (!action && props && props.type) {

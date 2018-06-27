@@ -1,4 +1,3 @@
-const asciiToArray = (string) =>
-  string.split('')
+const asciiToArray = (string) => string.split('')
 
 export default asciiToArray

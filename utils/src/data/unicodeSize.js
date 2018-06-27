@@ -18,7 +18,8 @@ const rsZWJ = '\\u200d'
 /** Used to compose unicode regexes. */
 const reOptMod = `${rsModifier}?`
 const rsOptVar = `[${rsVarRange}]?`
-const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar + reOptMod})*`
+const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar +
+  reOptMod})*`
 const rsSeq = rsOptVar + reOptMod + rsOptJoin
 const rsNonAstralCombo = `${rsNonAstral}${rsCombo}?`
 const rsSymbol = `(?:${[rsNonAstralCombo, rsCombo, rsRegional, rsSurrPair, rsAstral].join('|')})`
@@ -27,7 +28,7 @@ const rsSymbol = `(?:${[rsNonAstralCombo, rsCombo, rsRegional, rsSurrPair, rsAst
 const reUnicode = RegExp(`${rsFitz}(?=${rsFitz})|${rsSymbol + rsSeq}`, 'g')
 
 const unicodeSize = (string) => {
-  let result = reUnicode.lastIndex = 0
+  let result = (reUnicode.lastIndex = 0)
   while (reUnicode.test(string)) {
     ++result
   }

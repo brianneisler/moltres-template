@@ -12,10 +12,7 @@ import { flattenReducerMap } from './util'
 import handleAction from './handleAction'
 
 const handleActions = (handlers, defaultProps, options = {}) => {
-  invariant(
-    isPlainObject(handlers) || isMap(handlers),
-    'Expected handlers to be a plain object.'
-  )
+  invariant(isPlainObject(handlers) || isMap(handlers), 'Expected handlers to be a plain object.')
   const flattenedReducerMap = flattenReducerMap(handlers, options)
   const reducers = map(
     (type) => handleAction(get(type, flattenedReducerMap), type, defaultProps),

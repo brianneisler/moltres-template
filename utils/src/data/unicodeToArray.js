@@ -19,7 +19,8 @@ const rsZWJ = '\\u200d'
 /** Used to compose unicode regexes. */
 const reOptMod = `${rsModifier}?`
 const rsOptVar = `[${rsVarRange}]?`
-const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar + reOptMod})*`
+const rsOptJoin = `(?:${rsZWJ}(?:${[rsNonAstral, rsRegional, rsSurrPair].join('|')})${rsOptVar +
+  reOptMod})*`
 const rsSeq = rsOptVar + reOptMod + rsOptJoin
 const rsNonAstralCombo = `${rsNonAstral}${rsCombo}?`
 const rsSymbol = `(?:${[rsNonAstralCombo, rsCombo, rsRegional, rsSurrPair, rsAstral].join('|')})`
@@ -27,7 +28,6 @@ const rsSymbol = `(?:${[rsNonAstralCombo, rsCombo, rsRegional, rsSurrPair, rsAst
 /** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
 const reUnicode = RegExp(`${rsFitz}(?=${rsFitz})|${rsSymbol + rsSeq}`, 'g')
 
-const unicodeToArray = (string) =>
-  string.match(reUnicode) || []
+const unicodeToArray = (string) => string.match(reUnicode) || []
 
 export default unicodeToArray

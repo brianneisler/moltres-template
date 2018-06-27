@@ -21,8 +21,6 @@ const depthFirstWalkee = (value, data, iteratee, recur) => {
   return result
 }
 
-const walkDepthFirst = curry(
-  (iteratee, value) => walk(depthFirstWalkee, iteratee, value)
-)
+const walkDepthFirst = curry((iteratee, value) => walk(depthFirstWalkee, iteratee, value))
 
 export default walkDepthFirst

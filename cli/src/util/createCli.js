@@ -1,5 +1,4 @@
-import path from 'path'
-import { contains, equals, reject } from 'moltres-utils'
+import { equals, reject } from 'moltres-utils'
 import createDelimeter from './createDelimeter'
 import newCli from './newCli'
 import parseCommand from './parseCommand'
@@ -27,7 +26,7 @@ const createCli = (plugins) => {
     }
 
     if (!cli.disableAutoHelp && process.argv.length <= 3) {
-      process.argv = [ ...process.argv, [ '--help' ]]
+      process.argv = [...process.argv, ['--help']]
     }
 
     return parseCommand(cli, process.argv)

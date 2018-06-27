@@ -1,7 +1,7 @@
 import { assocPath, castPath, isFunction, isString, path } from 'moltres-utils'
 import { getContext as getContextEffect } from 'redux-saga/effects'
 
-const getContext = function* (selector) {
+const getContext = function*(selector) {
   // NOTE BRN: HACK since you can only get a property and not the entire
   // context using the getContext effect, we stick the entire context into
   // the "context" property so that we can retrieve the entire thing
@@ -11,11 +11,7 @@ const getContext = function* (selector) {
   }
   if (isString(selector)) {
     const parts = castPath(selector, context)
-    return assocPath(
-      parts,
-      path(parts, context),
-      {}
-    )
+    return assocPath(parts, path(parts, context), {})
   }
   return context
 }

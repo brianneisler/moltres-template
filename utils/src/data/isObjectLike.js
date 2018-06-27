@@ -20,7 +20,6 @@
  * isObjectLike(null)
  * // => false
  */
-const isObjectLike = (value) =>
-  typeof value == 'object' && value !== null
+const isObjectLike = (value) => typeof value == 'object' && value !== null
 
 export default isObjectLike

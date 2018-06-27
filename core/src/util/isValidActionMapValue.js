@@ -6,7 +6,7 @@ const isValidActionMapValue = (actionMapValue) => {
   }
 
   if (isArray(actionMapValue)) {
-    const [ payload = identity, meta ] = actionMapValue
+    const [payload = identity, meta] = actionMapValue
     return isFunction(payload) && isFunction(meta)
   }
 

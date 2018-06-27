@@ -1,17 +1,6 @@
-import {
-  assoc,
-  curry,
-  forEach,
-  forEachObjIndexed,
-  has,
-  pick,
-  values,
-  walk
-} from 'moltres-utils'
+import { assoc, curry, forEach, has, pick, walk } from 'moltres-utils'
 
-const newWalkContext = (data) => pick([
-  'visited'
-], data)
+const newWalkContext = (data) => pick(['visited'], data)
 
 const moduleWalkee = (context) => {
   let updatedContext = context
@@ -33,11 +22,7 @@ const walkModule = curry((iteratee, mod) => {
   const context = newWalkContext({
     visited: {}
   })
-  return walk(
-    moduleWalkee(context),
-    iteratee,
-    mod
-  )
+  return walk(moduleWalkee(context), iteratee, mod)
 })
 
 export default walkModule

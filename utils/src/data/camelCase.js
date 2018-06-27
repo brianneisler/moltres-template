@@ -18,11 +18,10 @@ import words from './words'
  * camelCase('__FOO_BAR__')
  * // => 'fooBar'
  */
-const camelCase = (string) => (
+const camelCase = (string) =>
   words(`${string}`.replace(/['\u2019]/g, '')).reduce((result, word, index) => {
     word = word.toLowerCase()
     return result + (index ? capitalize(word) : word)
   }, '')
-)
 
 export default camelCase

@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser'
 import express from 'express'
-import { append, isNil, keys, prop, reduce } from 'moltres-utils'
+import { append, isNil, keys, prop, reduce, without } from 'moltres-utils'
 import createRouter from './createRouter'
 
 const setupApi = (store) => {
@@ -15,7 +15,9 @@ const setupApi = (store) => {
       if (!isNil(apiSetup)) {
         const api = apiSetup(accum)
         if (isNil(api)) {
-          throw new Error(`${name} module's setupApi did not return an api. Did you forget to return it?`)
+          throw new Error(
+            `${name} module's setupApi did not return an api. Did you forget to return it?`
+          )
         }
         return api
       }
@@ -39,7 +41,7 @@ const setupApi = (store) => {
       router = createRouter(routes)
     },
     removeRoute: (route) => {
-      routes = without([ route ], routes)
+      routes = without([route], routes)
       router = createRouter(routes)
     }
   }

@@ -18,13 +18,13 @@ const _toString = (value) => {
   }
   if (Array.isArray(value)) {
     // Recursively convert values (susceptible to call stack limits).
-    return `${map((other) => other == null ? other : toString(other), value)}`
+    return `${map((other) => (other == null ? other : toString(other)), value)}`
   }
   if (isSymbol(value)) {
     return symbolToString ? symbolToString.call(value) : ''
   }
   const result = `${value}`
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result
 }
 
 export default _toString

@@ -3,7 +3,7 @@ import route from './route'
 
 const GET_METHOD = 'get'
 
-const get = function* (path, handler) {
+const get = function*(path, handler) {
   yield call(route, path, GET_METHOD, handler)
 }
 

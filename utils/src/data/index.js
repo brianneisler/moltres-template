@@ -42,6 +42,7 @@ export { default as head } from './head'
 export { default as hasUnicode } from './hasUnicode'
 export { default as identity } from './identity'
 export { default as indexBy } from './indexBy'
+export { default as indexOf } from './indexOf'
 export { default as init } from './init'
 export { default as invariant } from './invariant'
 export { default as is } from './is'
@@ -82,6 +83,7 @@ export { default as memoizeWith } from './memoizeWith'
 export { default as merge } from './merge'
 export { default as nodeTypes } from './nodeTypes'
 export { default as noop } from './noop'
+export { default as nth } from './nth'
 export { default as omit } from './omit'
 export { default as once } from './once'
 export { default as padStart } from './padStart'
@@ -118,6 +120,4 @@ export { default as values } from './values'
 export { default as weakMemoizeWith } from './weakMemoizeWith'
 export { default as without } from './without'
 
-export {
-  toString
-}
+export { toString }

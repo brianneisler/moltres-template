@@ -1,4 +1,4 @@
-import { assocPath, isString, path, pathEq, split }  from 'moltres-utils'
+import { assocPath, isString, path, pathEq, split } from 'moltres-utils'
 
 const config = (data) => {
   const get = (configPath) => {

@@ -6,7 +6,7 @@ import isPrototype from './isPrototype'
 import isTypedArray from './isTypedArray'
 
 /** Used to check objects for own properties. */
-const hasOwnProperty = Object.prototype.hasOwnProperty
+const { hasOwnProperty } = Object.prototype
 
 /**
  * Checks if `value` is an empty object, collection, map, or set.
@@ -44,9 +44,15 @@ const isEmpty = (value) => {
   if (value == null) {
     return true
   }
-  if (isArrayLike(value) &&
-      (Array.isArray(value) || typeof value == 'string' || typeof value.splice == 'function' ||
-        isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+  if (
+    isArrayLike(value) &&
+    (Array.isArray(value) ||
+      typeof value == 'string' ||
+      typeof value.splice == 'function' ||
+      isBuffer(value) ||
+      isTypedArray(value) ||
+      isArguments(value))
+  ) {
     return !value.length
   }
   const tag = getTag(value)

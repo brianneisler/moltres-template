@@ -3,19 +3,18 @@ import buffers from './buffers'
 import call from './call'
 import channel from './channel'
 
-const asyncChannel = function* (subscribe, buffer = buffers.none()) {
-  let closed = false
+const asyncChannel = function*(subscribe, buffer = buffers.none()) {
   let unsubscribe
 
   const chan = channel(buffer)
-  const close = function* () {
+  const close = function*() {
     if (isFunction(unsubscribe)) {
       yield call(unsubscribe)
     }
     chan.close()
   }
 
-  unsubscribe = yield call(subscribe, input => {
+  unsubscribe = yield call(subscribe, (input) => {
     chan.put(input)
   })
 
@@ -28,7 +27,7 @@ const asyncChannel = function* (subscribe, buffer = buffers.none()) {
   return {
     take: chan.take,
     flush: chan.flush,
-    close,
+    close
   }
 }
 

@@ -1,9 +1,4 @@
-import {
-  compose,
-  withHandlers,
-  withStateHandlers
-} from 'recompose'
-
+import { compose, withHandlers, withStateHandlers } from 'recompose'
 
 const withModalControls = compose(
   withStateHandlers(

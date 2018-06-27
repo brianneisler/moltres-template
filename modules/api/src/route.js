@@ -2,8 +2,8 @@ import { asyncChannel, call, fork, handleAction, watchChannel } from 'moltres'
 import { httpRequest } from './actions'
 import { addRoute, removeRoute } from './util'
 
-const route = function* (path, method, handler) {
-  const channel = yield asyncChannel(function* (emitter) {
+const route = function*(path, method, handler) {
+  const channel = yield asyncChannel(function*(emitter) {
     const channelRoute = {
       path,
       method,
@@ -11,13 +11,13 @@ const route = function* (path, method, handler) {
     }
     yield call(addRoute, channelRoute)
 
-    return function* () {
+    return function*() {
       yield call(removeRoute, channelRoute)
     }
   })
 
   const wrappedHandler = handleAction(handler)
-  yield fork(watchChannel, channel, function* ({ req, res }) {
+  yield fork(watchChannel, channel, function*({ req, res }) {
     const event = httpRequest({
       body: req.body,
       headers: req.headers,

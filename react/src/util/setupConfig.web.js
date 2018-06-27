@@ -1,7 +1,8 @@
 import { config } from 'moltres'
 
-const setupConfig = () => config({
-  ...process.env
-})
+const setupConfig = () =>
+  config({
+    ...process.env
+  })
 
 export default setupConfig

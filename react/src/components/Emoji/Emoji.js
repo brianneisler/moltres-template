@@ -3,12 +3,7 @@ import emoji from 'node-emoji'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
-import {
-  compose,
-  defaultProps,
-  setPropTypes
-} from 'recompose'
-
+import { compose, defaultProps, setPropTypes } from 'recompose'
 
 const enhance = compose(
   setPropTypes({
@@ -29,10 +24,4 @@ const enhance = compose(
   })
 )
 
-export default enhance(({ name, ...rest }) =>
-  <Text
-    {...rest}
-  >
-    {emoji.get(name)}
-  </Text>
-)
+export default enhance(({ name, ...rest }) => <Text {...rest}>{emoji.get(name)}</Text>)

@@ -9,19 +9,23 @@ import newProject from './newProject'
 
 const loadProject = memoize(async (projectPath) => {
   const filePath = resolve(projectPath, PROJECT_FILE_NAME)
-  if (!await pathExists(filePath)) {
+  if (!(await pathExists(filePath))) {
     throw new Error(`Cannot find ${PROJECT_FILE_NAME} at ${projectPath}`)
   }
   const data = await loadProjectFile(filePath)
   const modules = await findModules(projectPath)
-  const projects = await props(mapObjIndexed(
-    (childProjectPath) => loadProject(resolve(projectPath, childProjectPath)),
-    data.projects || {}
-  ))
-  const dependsOn = await all(map(
-    (dependsOnProjectPath) => loadProject(resolve(projectPath, dependsOnProjectPath)),
-    data.dependsOn || []
-  ))
+  const projects = await props(
+    mapObjIndexed(
+      (childProjectPath) => loadProject(resolve(projectPath, childProjectPath)),
+      data.projects || {}
+    )
+  )
+  const dependsOn = await all(
+    map(
+      (dependsOnProjectPath) => loadProject(resolve(projectPath, dependsOnProjectPath)),
+      data.dependsOn || []
+    )
+  )
   return newProject({
     ...data,
     dependsOn,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextInput, View } from 'react-native'
 
-const FormTextInput = ({ input, ...inputProps }) =>
+const FormTextInput = ({ input, ...inputProps }) => (
   <View>
     <TextInput
       {...inputProps}
@@ -11,5 +11,6 @@ const FormTextInput = ({ input, ...inputProps }) =>
       value={input.value}
     />
   </View>
+)
 
 export default FormTextInput

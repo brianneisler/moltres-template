@@ -14,7 +14,6 @@ import isObjectLike from './isObjectLike'
  * isArguments([1, 2, 3])
  * // => false
  */
-const isArguments = (value) =>
-  isObjectLike(value) && getTag(value) == '[object Arguments]'
+const isArguments = (value) => isObjectLike(value) && getTag(value) == '[object Arguments]'
 
 export default isArguments

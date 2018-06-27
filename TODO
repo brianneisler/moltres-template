@@ -26,8 +26,8 @@ TODO
   - [ ] modify travis to force upgrade npm to npm 6
 - [ ] get build scripts working in all versions of node
 - [ ] add codecov support
-- [ ] Get lint passing in all projects
-  - [ ] setup prettier
+- [x] Get lint passing in all projects
+  - [x] setup prettier
 - [ ] add .github config
 
 

@@ -1,13 +1,4 @@
-import {
-  assoc,
-  defaultTo,
-  has,
-  mapObjIndexed,
-  path,
-  prop,
-  propOr,
-  reduceObjIndexed
-} from 'moltres-utils'
+import { assoc, defaultTo, has, prop, propOr, reduceObjIndexed } from 'moltres-utils'
 
 const defaultOptionsTo = (args, config) =>
   assoc(
@@ -16,11 +7,7 @@ const defaultOptionsTo = (args, config) =>
       (optionValues, optionConfig, name) => {
         const optionValue = prop(name, optionValues)
         if (has('default', optionConfig)) {
-          return assoc(
-            name,
-            defaultTo(prop('default', optionConfig))(optionValue),
-            optionValues
-          )
+          return assoc(name, defaultTo(prop('default', optionConfig))(optionValue), optionValues)
         }
         return optionValues
       },
@@ -29,6 +16,5 @@ const defaultOptionsTo = (args, config) =>
     ),
     args
   )
-
 
 export default defaultOptionsTo

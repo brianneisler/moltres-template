@@ -1,4 +1,4 @@
-import { forEach, get, isMap, keys } from 'moltres-utils'
+import { forEach, get, keys } from 'moltres-utils'
 import { DEFAULT_NAMESPACE, ACTION_TYPE_DELIMITER } from '../constants'
 
 const flattenWhenNode = (predicate) => {
@@ -9,11 +9,13 @@ const flattenWhenNode = (predicate) => {
     partialFlatActionType = ''
   ) => {
     function connectNamespace(type) {
-      if (!partialFlatActionType) return type
+      if (!partialFlatActionType) {
+        return type
+      }
       const types = type.toString().split(ACTION_TYPE_DELIMITER)
       const partials = partialFlatActionType.split(ACTION_TYPE_DELIMITER)
       return []
-        .concat(...partials.map(p => types.map(t => `${p}${namespace}${t}`)))
+        .concat(...partials.map((partial) => types.map((t) => `${partial}${namespace}${t}`)))
         .join(ACTION_TYPE_DELIMITER)
     }
 

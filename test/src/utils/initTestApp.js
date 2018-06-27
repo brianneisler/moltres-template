@@ -24,15 +24,18 @@ const initTestApp = async () => {
   const namespace = uuid()
   const serviceAccount = getServiceAccount()
 
-  const app = admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseAuthVariableOverride: {
-      uid: testUser.uid
+  const app = admin.initializeApp(
+    {
+      credential: admin.credential.cert(serviceAccount),
+      databaseAuthVariableOverride: {
+        uid: testUser.uid
+      },
+      databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`,
+      messagingSenderId: `${process.env.FIREBASE_MESSAGING_SENDER_ID}`,
+      storageBucket: `${process.env.FIREBASE_PROJECT_ID}.appspot.com`
     },
-    databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`,
-    messagingSenderId: `${process.env.FIREBASE_MESSAGING_SENDER_ID}`,
-    storageBucket: `${process.env.FIREBASE_PROJECT_ID}.appspot.com`
-  }, namespace)
+    namespace
+  )
 
   const { database } = app
   app.database = (...args) => {

@@ -3,7 +3,7 @@ import handleAction from './handleAction'
 describe('handleAction', () => {
   test('correctly prefixes with an empty object if only an event is received', () => {
     const testEvent = { type: 'bar' }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const internalHandler = (context, event) => {
       expect(context).toEqual({})
       expect(event).toBe(testEvent)
@@ -16,7 +16,7 @@ describe('handleAction', () => {
 
   test('leaves context in place if sent as argument', () => {
     const testEvent = { type: 'bar' }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const testContext = { bim: 'bop' }
     const internalHandler = (context, event) => {
       expect(context).toBe(testContext)
@@ -30,7 +30,7 @@ describe('handleAction', () => {
 
   test('filters event by string type', () => {
     const testEvent = { type: 'bar' }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const testContext = { bim: 'bop' }
     const internalHandler = (context, event) => {
       expect(context).toBe(testContext)
@@ -65,7 +65,7 @@ describe('handleAction', () => {
 
   test('handler accepts object with throw and next', () => {
     const testEvent = { type: 'bar' }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const testContext = { bim: 'bop' }
     const throwHandler = () => {}
     const nextHandler = (context, event) => {
@@ -83,7 +83,7 @@ describe('handleAction', () => {
 
   test('handler accepts handler object with throw and next', () => {
     const testEvent = { type: 'bar' }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const testContext = { bim: 'bop' }
     const throwHandler = () => {}
     const nextHandler = (context, event) => {
@@ -112,7 +112,7 @@ describe('handleAction', () => {
 
   test('throw handler is executed when error is set', () => {
     const testErrorEvent = { type: 'bar', payload: new Error('test'), error: true }
-    const testResult = { foo: 'bar'}
+    const testResult = { foo: 'bar' }
     const testContext = { bim: 'bop' }
     const throwHandler = (context, event) => {
       expect(context).toBe(testContext)

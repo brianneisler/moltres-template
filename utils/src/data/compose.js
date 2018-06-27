@@ -20,11 +20,7 @@ const compose = (...funcs) => {
   const lastFunc = last(funcs)
   const rest = init(funcs)
 
-  return (...args) => reduceRight(
-    (composed, func) => func(composed),
-    lastFunc(...args),
-    rest
-  )
+  return (...args) => reduceRight((composed, func) => func(composed), lastFunc(...args), rest)
 }
 
 export default compose

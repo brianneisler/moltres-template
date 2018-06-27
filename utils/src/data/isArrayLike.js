@@ -23,7 +23,6 @@ import isLength from './isLength'
  * isArrayLike(Function)
  * // => false
  */
-const isArrayLike = (value) =>
-  value != null && typeof value != 'function' && isLength(value.length)
+const isArrayLike = (value) => value != null && typeof value != 'function' && isLength(value.length)
 
 export default isArrayLike

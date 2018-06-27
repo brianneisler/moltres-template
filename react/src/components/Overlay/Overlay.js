@@ -2,14 +2,7 @@ import { is, noop } from 'moltres-utils'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Button, Modal, StyleSheet, View } from 'react-native'
-import {
-  compose,
-  defaultProps,
-  setPropTypes,
-  withHandlers,
-  withStateHandlers
-} from 'recompose'
-
+import { compose, defaultProps, setPropTypes, withHandlers, withStateHandlers } from 'recompose'
 
 const enhance = compose(
   setPropTypes({
@@ -61,7 +54,7 @@ const enhance = compose(
   })
 )
 
-export default enhance(({ children, handleDismiss, handleRequestClose, modalVisible, styles }) =>
+export default enhance(({ children, handleDismiss, handleRequestClose, modalVisible, styles }) => (
   <View style={styles.container}>
     <Modal
       visible={modalVisible}
@@ -71,10 +64,7 @@ export default enhance(({ children, handleDismiss, handleRequestClose, modalVisi
     >
       <View style={styles.modalContainer}>
         <View style={styles.innerContainer}>
-          <Button
-            onPress={handleRequestClose}
-            title="X"
-          >
+          <Button onPress={handleRequestClose} title="X">
             {'X'}
           </Button>
           {children}
@@ -82,4 +72,4 @@ export default enhance(({ children, handleDismiss, handleRequestClose, modalVisi
       </View>
     </Modal>
   </View>
-)
+))

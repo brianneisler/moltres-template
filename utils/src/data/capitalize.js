@@ -11,7 +11,6 @@ import upperFirst from './upperFirst'
  * capitalize('FRED')
  * // => 'Fred'
  */
-const capitalize = (string) =>
-  upperFirst(string.toLowerCase())
+const capitalize = (string) => upperFirst(string.toLowerCase())
 
 export default capitalize

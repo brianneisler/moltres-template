@@ -19,7 +19,7 @@ const createAction = (action, config) =>
           logger
         })
       )
-    } catch(error) {
+    } catch (error) {
       if (error.type === 'exception') {
         logger.warn(error.message)
       } else {

@@ -11,9 +11,7 @@ describe('compose', () => {
 
   test('composes async functions and returns value', async () => {
     const method = compose(
-      async (val) => new Promise(
-        (resolve, reject) => setTimeout(() => resolve(val + 1), 0)
-      ),
+      async (val) => new Promise((resolve) => setTimeout(() => resolve(val + 1), 0)),
       (val) => val + 2
     )
     expect(await method(1)).toBe(4)

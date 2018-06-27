@@ -5,7 +5,6 @@ const baseWalk = (walkee, iteratee, ...args) => {
   return walkee(...args, iteratee, walker)
 }
 
-const walk = curryN(3, (walkee, iteratee, ...args) =>
-  baseWalk(walkee, iteratee, ...args))
+const walk = curryN(3, (walkee, iteratee, ...args) => baseWalk(walkee, iteratee, ...args))
 
 export default walk

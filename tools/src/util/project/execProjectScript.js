@@ -1,6 +1,5 @@
 import { has, prop } from 'moltres-utils'
 import { resolve } from 'path'
-import mapModules from '../module/mapModules'
 import execScript from '../script/execScript'
 
 const execProjectScript = async (name, project, context) => {

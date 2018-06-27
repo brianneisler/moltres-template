@@ -8,10 +8,7 @@ const rate = (fn, max, duration) => {
 
   const clearInvocations = (now) => {
     // drop all invocations that are over duration
-    invocations = dropWhile(
-      ({ invokedAt }) => (now - invokedAt) > duration,
-      invocations
-    )
+    invocations = dropWhile(({ invokedAt }) => now - invokedAt > duration, invocations)
   }
 
   const doInvoke = async (invocation) => {
@@ -26,7 +23,7 @@ const rate = (fn, max, duration) => {
   }
 
   const delayQueueProcessing = (now) => {
-    const firstInvocation = invocations[0]
+    const [firstInvocation] = invocations
     const waitFor = duration - (now - firstInvocation.invokedAt)
     delay(processQueue, waitFor) // eslint-disable-line no-use-before-define
   }

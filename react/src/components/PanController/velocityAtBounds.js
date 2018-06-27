@@ -6,8 +6,7 @@ const velocityAtBounds = (x0, vx, bounds, deceleration) => {
   let cont = true
   while (cont) {
     t += 16
-    x = x0 + (vx / (1 - deceleration)) *
-      (1 - Math.exp(-(1 - deceleration) * t))
+    x = x0 + (vx / (1 - deceleration)) * (1 - Math.exp(-(1 - deceleration) * t))
     vf = (x - x1) / 16
     if (x > bounds[0] && x < bounds[1]) {
       cont = false

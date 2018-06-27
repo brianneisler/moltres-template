@@ -17,27 +17,24 @@ import {
 } from './util'
 import createAction from './createAction'
 
-
-const actionMapToActionCreators = (
-  actionMap,
-  { prefix, namespace = DEFAULT_NAMESPACE } = {}
-) => reduce(
-  (partialActionCreators, type) => {
-    const actionMapValue = actionMap[type]
-    invariant(
-      isValidActionMapValue(actionMapValue),
-      'Expected function, undefined, null, or array with payload and meta ' +
-        `functions for ${type}`
-    )
-    const prefixedType = prefix ? `${prefix}${namespace}${type}` : type
-    const actionCreator = isArray(actionMapValue)
-      ? createAction(prefixedType, ...actionMapValue)
-      : createAction(prefixedType, actionMapValue)
-    return { ...partialActionCreators, [type]: actionCreator }
-  },
-  {},
-  keys(actionMap)
-)
+const actionMapToActionCreators = (actionMap, { prefix, namespace = DEFAULT_NAMESPACE } = {}) =>
+  reduce(
+    (partialActionCreators, type) => {
+      const actionMapValue = actionMap[type]
+      invariant(
+        isValidActionMapValue(actionMapValue),
+        'Expected function, undefined, null, or array with payload and meta ' +
+          `functions for ${type}`
+      )
+      const prefixedType = prefix ? `${prefix}${namespace}${type}` : type
+      const actionCreator = isArray(actionMapValue)
+        ? createAction(prefixedType, ...actionMapValue)
+        : createAction(prefixedType, actionMapValue)
+      return { ...partialActionCreators, [type]: actionCreator }
+    },
+    {},
+    keys(actionMap)
+  )
 
 const actionCreatorsFromActionMap = (actionMap, options) => {
   const flatActionMap = flattenActionMap(actionMap, options)
@@ -63,19 +60,13 @@ const actionCreatorsFromIdentityActions = (identityActions, options) => {
 }
 
 const createActions = (actionMap, ...identityActions) => {
-  const options = isPlainObject(last(identityActions))
-    ? identityActions.pop()
-    : {}
+  const options = isPlainObject(last(identityActions)) ? identityActions.pop() : {}
   invariant(
-    identityActions.every(isString) &&
-      (isString(actionMap) || isPlainObject(actionMap)),
+    identityActions.every(isString) && (isString(actionMap) || isPlainObject(actionMap)),
     'Expected optional object followed by string action types'
   )
   if (isString(actionMap)) {
-    return actionCreatorsFromIdentityActions(
-      [actionMap, ...identityActions],
-      options
-    )
+    return actionCreatorsFromIdentityActions([actionMap, ...identityActions], options)
   }
   return {
     ...actionCreatorsFromActionMap(actionMap, options),

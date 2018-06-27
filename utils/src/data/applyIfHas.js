@@ -1,4 +1,4 @@
-import { curry, has, is } from 'ramda'
+import { curry, has } from 'ramda'
 
 const applyIfHas = curry((prop, fn, value) => {
   if (has(prop, value)) {

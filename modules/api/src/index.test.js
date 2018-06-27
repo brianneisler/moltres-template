@@ -9,7 +9,7 @@ describe('index', () => {
       get: expect.any(Function),
       post: expect.any(Function),
       put: expect.any(Function),
-      route: expect.any(Function),
+      route: expect.any(Function)
     })
   })
 })

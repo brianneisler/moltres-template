@@ -2,7 +2,7 @@ import isGenerator from './isGenerator'
 
 describe('isGenerator', () => {
   test('identifies a generator returned from a generator function', () => {
-    const testGenerator = (function* () {})()
+    const testGenerator = (function*() {})()
     expect(isGenerator(testGenerator)).toBe(true)
   })
 

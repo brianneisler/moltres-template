@@ -3,7 +3,7 @@ import route from './route'
 
 const POST_METHOD = 'post'
 
-const post = function* (path, handler) {
+const post = function*(path, handler) {
   yield call(route, path, POST_METHOD, handler)
 }
 

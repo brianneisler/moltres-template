@@ -2,7 +2,7 @@ import isGenerator from './isGenerator'
 import isPromise from './isPromise'
 import slice from './slice'
 
-const generatorReduceRight = function* (iteratee, accumulator, array) {
+const generatorReduceRight = function*(iteratee, accumulator, array) {
   if (isGenerator(accumulator) || isPromise(accumulator)) {
     accumulator = yield accumulator
   }

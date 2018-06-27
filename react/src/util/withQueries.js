@@ -11,12 +11,13 @@ import {
 import { createFactory, Component } from 'react'
 import { setDisplayName, shallowEqual, wrapDisplayName } from 'recompose'
 
-
 const defaultMapQueriesToProps = () => ({})
 
 const addListener = (listeners, key, query, listener) => {
   if (has(key, listeners)) {
-    throw new Error(`listener already present for prop ${key}. Something must have gone wrong in withQueries`)
+    throw new Error(
+      `listener already present for prop ${key}. Something must have gone wrong in withQueries`
+    )
   }
   query.on('value', listener)
   return assoc(key, listener, listeners)
@@ -25,7 +26,7 @@ const addListener = (listeners, key, query, listener) => {
 const removeListener = (listeners, key, query) => {
   const listener = prop(key, listeners)
   query.off('value', listener)
-  return omit([ key ], listeners)
+  return omit([key], listeners)
 }
 
 const withQueries = (mapQueriesToProps) => (BaseComponent) => {
@@ -33,7 +34,6 @@ const withQueries = (mapQueriesToProps) => (BaseComponent) => {
   const factory = createFactory(BaseComponent)
 
   class WithQueries extends Component {
-
     constructor(props, context) {
       super(props, context)
       this.state = {
@@ -42,7 +42,7 @@ const withQueries = (mapQueriesToProps) => (BaseComponent) => {
     }
 
     componentDidMount() {
-    //  console.log('componentDidMount - this.props:', this.props)
+      //  console.log('componentDidMount - this.props:', this.props)
 
       this.queries = {}
       this.listeners = {}
@@ -80,11 +80,8 @@ const withQueries = (mapQueriesToProps) => (BaseComponent) => {
             listeners = removeListener(listeners, key, query)
           }
           if (mappedQuery) {
-            listeners = addListener(
-              listeners,
-              key,
-              mappedQuery,
-              (snapshot) => this.handleChange(snapshot, key)
+            listeners = addListener(listeners, key, mappedQuery, (snapshot) =>
+              this.handleChange(snapshot, key)
             )
           }
           // TODO BRN: There is a bug here where the handleChange method
@@ -95,14 +92,14 @@ const withQueries = (mapQueriesToProps) => (BaseComponent) => {
 
           // queryProps = assoc(key, null, queryProps)
         }
-        remainingQueries = omit([ key ], remainingQueries)
+        remainingQueries = omit([key], remainingQueries)
         return mappedQuery
       }, mappedQueries)
 
       // These queires no longer exist in the props. We can drop them.
       forEachObjIndexed((remainingQuery, key) => {
         listeners = removeListener(listeners, key, remainingQuery)
-        queryProps = omit([ key ], queryProps)
+        queryProps = omit([key], queryProps)
       }, remainingQueries)
 
       if (state.queryProps !== queryProps) {
@@ -139,9 +136,7 @@ const withQueries = (mapQueriesToProps) => (BaseComponent) => {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    return setDisplayName(wrapDisplayName(BaseComponent, 'withQueries'))(
-      WithQueries
-    )
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withQueries'))(WithQueries)
   }
   return WithQueries
 }

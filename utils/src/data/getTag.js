@@ -18,11 +18,13 @@ const weakMapCtorString = `${WeakMap}`
 let getTag = baseGetTag
 
 // Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
-if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
-    (getTag(new Map) != mapTag) ||
-    (getTag(Promise.resolve()) != promiseTag) ||
-    (getTag(new Set) != setTag) ||
-    (getTag(new WeakMap) != weakMapTag)) {
+if (
+  (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+  getTag(new Map()) != mapTag ||
+  getTag(Promise.resolve()) != promiseTag ||
+  getTag(new Set()) != setTag ||
+  getTag(new WeakMap()) != weakMapTag
+) {
   getTag = (value) => {
     const result = baseGetTag(value)
     const Ctor = result == objectTag ? value.constructor : undefined
@@ -30,11 +32,16 @@ if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
 
     if (ctorString) {
       switch (ctorString) {
-        case dataViewCtorString: return dataViewTag
-        case mapCtorString: return mapTag
-        case promiseCtorString: return promiseTag
-        case setCtorString: return setTag
-        case weakMapCtorString: return weakMapTag
+        case dataViewCtorString:
+          return dataViewTag
+        case mapCtorString:
+          return mapTag
+        case promiseCtorString:
+          return promiseTag
+        case setCtorString:
+          return setTag
+        case weakMapCtorString:
+          return weakMapTag
       }
     }
     return result

@@ -5,7 +5,7 @@ const exec = async () => {
   const graph = await loadModulesGraph()
   return execModulesGraph((mod) => {
     return [
-      `eslint ${mod.path} --cache`
+      `eslint ${mod.path} --cache --fix`
     ]
   }, graph)
 }

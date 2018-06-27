@@ -1,7 +1,6 @@
 import { equals, forEach, keys, isNil, prop } from 'moltres-utils'
 import { lifecycle, setDisplayName, wrapDisplayName } from 'recompose'
 
-
 const executePropTransitions = (propListenerMap, nextProps, oldProps = {}) =>
   forEach((propName) => {
     const getProp = prop(propName)
@@ -31,7 +30,6 @@ const executePropTransitions = (propListenerMap, nextProps, oldProps = {}) =>
     }
   }, keys(propListenerMap))
 
-
 const withPropTransitions = (propListenerMap) => {
   const hoc = lifecycle({
     componentDidMount() {
@@ -43,9 +41,7 @@ const withPropTransitions = (propListenerMap) => {
   })
   if (process.env.NODE_ENV !== 'production') {
     return (BaseComponent) =>
-      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(
-        hoc(BaseComponent)
-      )
+      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(hoc(BaseComponent))
   }
   return hoc
 }

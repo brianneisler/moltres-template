@@ -7,7 +7,6 @@ const rsVarRange = '\\ufe0e\\ufe0f'
 const rsZWJ = '\\u200d'
 const reHasUnicode = RegExp(`[${rsZWJ + rsAstralRange + rsComboRange + rsVarRange}]`)
 
-const hasUnicode = (string) =>
-  reHasUnicode.test(string)
+const hasUnicode = (string) => reHasUnicode.test(string)
 
 export default hasUnicode

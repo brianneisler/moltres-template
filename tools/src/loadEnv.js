@@ -9,7 +9,7 @@ const loadEnv = (envPath, options = {}) => {
   if (stage) {
     fileName += `-${stage}`
   }
-  let pathParts = [ envPath, fileName ]
+  let pathParts = [envPath, fileName]
   if (!isAbsolute(envPath)) {
     pathParts = prepend(cwd, pathParts)
   }

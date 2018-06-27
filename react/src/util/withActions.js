@@ -27,9 +27,7 @@ const withActions = (mapActionsToProps) => {
   )
   if (process.env.NODE_ENV !== 'production') {
     return (BaseComponent) =>
-      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(
-        hoc(BaseComponent)
-      )
+      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(hoc(BaseComponent))
   }
   return hoc
 }
