@@ -1,5 +1,8 @@
 language: node_js
 sudo: required
+addons:
+  apt:
+    update: true
 node_js:
 - 6
 - 8

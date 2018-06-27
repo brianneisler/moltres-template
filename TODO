@@ -23,7 +23,7 @@ TODO
 - [x] Write test for handleAction
 - [ ] fix travis builds
   - [ ] get travis builds passing in all versions of node
-  - [ ] modify travis to force upgrade npm to npm 6
+  - [x] modify travis to force upgrade npm to npm 6
 - [ ] get build scripts working in all versions of node
 - [ ] add codecov support
 - [x] Get lint passing in all projects
