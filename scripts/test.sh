@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 if [[ "$TRAVIS_PULL_REQUEST" == "false" && -n "$TRAVIS_TAG" ]]; then
   echo "Skipping tests since this is a tagged release"
 else
