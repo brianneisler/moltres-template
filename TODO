@@ -27,12 +27,13 @@ TODO
   - [ ] get travis builds passing in all versions of node
   - [x] modify travis to force upgrade npm to npm 6
 - [ ] get build scripts working in all versions of node
-  - [ ] add babel-node to scripts
-- [ ] add codecov support
+  - [x] add babel-node to scripts
+  - [ ] fix error in node 10 where grpc breaks
+- [x] add codecov support
 - [x] Get lint passing in all projects
   - [x] setup prettier
 - [ ] add .github config
-
+- [ ] fix build issue where modules folder is not installed in the correct order in moltres projects
 
 FEATURES
 - [ ] add first template project

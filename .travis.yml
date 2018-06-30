@@ -17,7 +17,6 @@ script:
 after_success:
 - npm run deploy
 env:
-  5a2d69fb-24a2-45cd-928f-c8aa303b33e9
   global:
   - FIREBASE_API_KEY=AIzaSyDmDqVttwfQwBDTfl3frWl3oMaBez6Wuu8
   - FIREBASE_PROJECT_ID=moltres-test
