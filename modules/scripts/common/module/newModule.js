@@ -1,4 +1,4 @@
-const { pick } = require('ramda')
+import { pick } from 'ramda'
 
 const newModule = (props) => ({
   ...pick([
@@ -10,4 +10,4 @@ const newModule = (props) => ({
   type: 'module'
 })
 
-module.exports = newModule
+export default newModule

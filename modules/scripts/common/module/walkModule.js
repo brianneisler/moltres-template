@@ -1,5 +1,5 @@
-const { assoc, curry, forEach, forEachObjIndexed, has, pick, values } = require('ramda')
-const walk = require('../data/walk')
+import { assoc, curry, forEach, forEachObjIndexed, has, pick, values } from 'ramda'
+import walk from '../data/walk'
 
 const newWalkContext = (data) => pick([
   'visited'

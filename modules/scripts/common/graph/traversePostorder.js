@@ -1,6 +1,6 @@
-const { assoc, curry, forEach, has, pick, reduce } = require('ramda')
-const getOutNodes = require('./getOutNodes')
-const isGraph = require('./isGraph')
+import { assoc, curry, forEach, has, pick, reduce } from 'ramda'
+import getOutNodes from './getOutNodes'
+import isGraph from './isGraph'
 
 const newTraverseContext = (data) => pick([
   'graph',
@@ -43,4 +43,4 @@ const traversePostorder = curry((traverser, graph) => {
   ).results
 })
 
-module.exports = traversePostorder
+export default traversePostorder

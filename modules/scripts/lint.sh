@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node ./scripts/lint/exec.js
+babel-node ./scripts/lint/exec.js

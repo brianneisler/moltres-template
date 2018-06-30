@@ -30,6 +30,10 @@ npm-debug.log
 .eslintignore
 .eslintrc.js
 
+# prettier
+.prettierignore
+prettier.config.js
+
 #development
 .babelrc
 .editorconfig
@@ -42,6 +46,7 @@ DEVELOPMENT.md
 TODO
 __tests__
 config
+coverage
 docs
 etc
 examples

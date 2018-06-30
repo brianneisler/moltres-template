@@ -1,4 +1,4 @@
-const { append, curry, reduce } = require('ramda')
+import { append, curry, reduce } from 'ramda'
 
 const mapSeries = curry(async (fn, data) => reduce(
   async (promise, value) => {
@@ -10,4 +10,4 @@ const mapSeries = curry(async (fn, data) => reduce(
   data
 ))
 
-module.exports = mapSeries
+export default mapSeries

@@ -1,5 +1,5 @@
-const { join } = require('path')
+import { join } from 'path'
 
 const loadPackageJson = (packagePath) => require(join(packagePath, 'package.json'))
 
-module.exports = loadPackageJson
+export default loadPackageJson

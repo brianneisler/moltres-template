@@ -1,5 +1,5 @@
-const { Graph } = require('graphlib')
+import { Graph } from 'graphlib'
 
 const newGraph = () => new Graph()
 
-module.exports = newGraph
+export default newGraph

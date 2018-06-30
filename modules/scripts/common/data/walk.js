@@ -1,4 +1,4 @@
-const { curryN } = require('ramda')
+import { curryN } from 'ramda'
 
 const baseWalk = (walkee, iteratee, ...args) => {
   const walker = (...pass) => walkee(...pass, walker)
@@ -8,4 +8,4 @@ const baseWalk = (walkee, iteratee, ...args) => {
 const walk = curryN(3, (walkee, iteratee, ...args) =>
   baseWalk(walkee, iteratee, ...args))
 
-module.exports = walk
+export default walk

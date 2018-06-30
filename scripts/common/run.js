@@ -1,4 +1,4 @@
-const dotenv = require('dotenv')
+import dotenv from 'dotenv'
 
 const run = (exec) => {
   dotenv.config()
@@ -12,4 +12,4 @@ const run = (exec) => {
     })
 }
 
-module.exports = run
+export default run

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node ./scripts/clean/exec.js
+babel-node ./scripts/clean/exec.js

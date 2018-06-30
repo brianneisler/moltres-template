@@ -1,5 +1,5 @@
-const { merge } = require('ramda')
-const loadPackageJson = require('./loadPackageJson')
+import { merge } from 'ramda'
+import loadPackageJson from './loadPackageJson'
 
 const getProject = (projectPath) => {
   const packageData = loadPackageJson(projectPath)
@@ -8,4 +8,4 @@ const getProject = (projectPath) => {
   })
 }
 
-module.exports = getProject
+export default getProject

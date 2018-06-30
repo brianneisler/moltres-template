@@ -1,4 +1,2 @@
-module.exports = {
-  execModulesGraph: require('./execModulesGraph'),
-  loadModulesGraph: require('./loadModulesGraph')
-}
+export { default as execModulesGraph } from './execModulesGraph'
+export { default as loadModulesGraph } from './loadModulesGraph'

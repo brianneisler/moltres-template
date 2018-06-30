@@ -1,6 +1,6 @@
-const { join, resolve } = require('path')
-const { map } = require('ramda')
-const getProject = require('./getProject')
+import { join, resolve } from 'path'
+import { map } from 'ramda'
+import getProject from './getProject'
 
 const ROOT_PATH = resolve(__dirname, '..', '..')
 
@@ -18,4 +18,4 @@ const PROJECTS = [
 
 const getProjects = () => map(getProject, PROJECTS)
 
-module.exports = getProjects
+export default getProjects

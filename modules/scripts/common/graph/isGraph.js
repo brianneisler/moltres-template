@@ -1,6 +1,6 @@
-const { Graph } = require('graphlib')
-const { is } = require('ramda')
+import { Graph } from 'graphlib'
+import { is } from 'ramda'
 
 const isGraph = is(Graph)
 
-module.exports = isGraph
+export default isGraph

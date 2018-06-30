@@ -1,7 +1,7 @@
-const { all, props } = require('bluebird')
-const { assoc, curry, map, prop } = require('ramda')
-const getOutNodes = require('./getOutNodes')
-const traversePostorder = require('./traversePostorder')
+import { all, props } from 'bluebird'
+import { assoc, curry, map, prop } from 'ramda'
+import getOutNodes from './getOutNodes'
+import traversePostorder from './traversePostorder'
 
 const execGraph = curry(async (fn, graph) => {
   let promises = {}
@@ -22,4 +22,4 @@ const execGraph = curry(async (fn, graph) => {
   return props(promises)
 })
 
-module.exports = execGraph
+export default execGraph

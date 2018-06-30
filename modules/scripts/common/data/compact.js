@@ -1,5 +1,5 @@
-const { isNil, reject } = require('ramda')
+import { isNil, reject } from 'ramda'
 
 const compact = reject(isNil)
 
-module.exports = compact
+export default compact

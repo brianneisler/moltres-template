@@ -1,4 +1,4 @@
-const { map } = require('ramda')
+import { map } from 'ramda'
 
 const getOutNodes = (graph, node) =>
   map(
@@ -6,4 +6,4 @@ const getOutNodes = (graph, node) =>
     graph.outEdges(node)
   )
 
-module.exports = getOutNodes
+export default getOutNodes

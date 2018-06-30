@@ -1,5 +1,5 @@
-const { is, split, trim } = require('ramda')
-const spawnCommand = require('./spawnCommand')
+import { is, split, trim } from 'ramda'
+import spawnCommand from './spawnCommand'
 
 const execScript = async (script, options) => {
   if (is(Function, script)) {
@@ -9,4 +9,4 @@ const execScript = async (script, options) => {
   return spawnCommand(command, args, options)
 }
 
-module.exports = execScript
+export default execScript

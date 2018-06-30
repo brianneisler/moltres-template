@@ -1,4 +1,4 @@
-const run = require('../../../scripts/common/run')
+import run from '../../../scripts/common/run'
 
 const exec = async () => {
   // TODO

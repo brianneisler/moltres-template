@@ -1,5 +1,5 @@
-const { execModulesGraph, loadModulesGraph } = require('../common')
-const run = require('../../../scripts/common/run')
+import { execModulesGraph, loadModulesGraph } from '../common'
+import run from '../../../scripts/common/run'
 
 const exec = async () => {
   const versionType = process.argv[2]

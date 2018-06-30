@@ -1,6 +1,6 @@
-const os = require('os')
-const { execModulesGraph, loadModulesGraph } = require('../common')
-const run = require('../../../scripts/common/run')
+import os from 'os'
+import { execModulesGraph, loadModulesGraph } from '../common'
+import run from '../../../scripts/common/run'
 
 const exec = async () => {
   const graph = await loadModulesGraph()

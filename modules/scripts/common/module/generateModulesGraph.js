@@ -1,6 +1,6 @@
-const { reduce, values } = require('ramda')
-const newGraph = require('../graph/newGraph')
-const generateModuleGraph = require('./generateModuleGraph')
+import { reduce, values } from 'ramda'
+import newGraph from '../graph/newGraph'
+import generateModuleGraph from './generateModuleGraph'
 
 const generateModulesGraph = (modules) => reduce(
   (graph, mod) => generateModuleGraph(mod, graph),
@@ -8,4 +8,4 @@ const generateModulesGraph = (modules) => reduce(
   values(modules)
 )
 
-module.exports = generateModulesGraph
+export default generateModulesGraph

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node ./scripts/watch/exec.js $1
+babel-node ./scripts/watch/exec.js $1

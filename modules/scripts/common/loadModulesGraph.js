@@ -1,5 +1,5 @@
-const { resolve } = require('path')
-const { findModules, generateModulesGraph } = require('./module')
+import { resolve } from 'path'
+import { findModules, generateModulesGraph } from './module'
 
 const MODULES_PATH = resolve(__dirname, '..', '..')
 
@@ -8,4 +8,4 @@ const loadModulesGraph = async (cwd) => {
   return generateModulesGraph(modules)
 }
 
-module.exports = loadModulesGraph
+export default loadModulesGraph

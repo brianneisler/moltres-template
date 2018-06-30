@@ -1,7 +1,7 @@
-const { outputFile } = require('fs-extra')
-const { join } = require('path')
-const { execModulesGraph, loadModulesGraph } = require('../common')
-const run = require('../../../scripts/common/run')
+import { outputFile } from 'fs-extra'
+import { join } from 'path'
+import { execModulesGraph, loadModulesGraph } from '../common'
+import run from '../../../scripts/common/run'
 
 const exec = async () => {
   const graph = await loadModulesGraph()

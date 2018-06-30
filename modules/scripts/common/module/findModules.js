@@ -1,10 +1,10 @@
-const { all } = require('bluebird')
-const { pathExists, readdir } = require('fs-extra')
-const { resolve } = require('path')
-const { assoc, indexBy, map, prop } = require('ramda')
-const compact = require('../data/compact')
-const isModulePath = require('./isModulePath')
-const loadModule = require('./loadModule')
+import { all } from 'bluebird'
+import { pathExists, readdir } from 'fs-extra'
+import { resolve } from 'path'
+import { assoc, indexBy, map, prop } from 'ramda'
+import compact from '../data/compact'
+import isModulePath from './isModulePath'
+import loadModule from './loadModule'
 
 const MODULES_DIR_NAME = 'modules'
 
@@ -23,4 +23,4 @@ const findModules = async (modulesDir) => {
   return {}
 }
 
-module.exports = findModules
+export default findModules

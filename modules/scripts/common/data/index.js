@@ -1,4 +1,2 @@
-module.exports = {
-  compact: require('./compcat'),
-  walk: require('./walk')
-}
+export { default as compact } from './compcat'
+export { default as walk } from './walk'

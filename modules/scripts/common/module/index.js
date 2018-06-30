@@ -1,12 +1,10 @@
-module.exports = {
-  execModule: require('./execModule'),
-  findModules: require('./findModules'),
-  generateModuleGraph: require('./generateModuleGraph'),
-  generateModulesGraph: require('./generateModulesGraph'),
-  isModulePath: require('./isModulePath'),
-  loadModule: require('./loadModule'),
-  loadModuleFile: require('./loadModuleFile'),
-  moduleNodeId: require('./moduleNodeId'),
-  newModule: require('./newModule'),
-  walkModule: require('./walkModule')
-}
+export { default as execModule } from './execModule'
+export { default as findModules } from './findModules'
+export { default as generateModuleGraph } from './generateModuleGraph'
+export { default as generateModulesGraph } from './generateModulesGraph'
+export { defualt as isModulePath } from './isModulePath'
+export { default as loadModule } from './loadModule'
+export { default as loadModuleFile } from './loadModuleFile'
+export { default as moduleNodeId } from './moduleNodeId'
+export { default as newModule } from './newModule'
+export { default as walkModule } from './walkModule'

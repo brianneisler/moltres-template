@@ -1,5 +1,5 @@
-const { curry } = require('ramda')
-const execScripts = require('../../../../scripts/common/execScripts')
+import { curry } from 'ramda'
+import execScripts from '../../../../scripts/common/execScripts'
 
 const execModule = curry(async (scripts, mod) => execScripts(scripts, {
   cwd: mod.path,
@@ -7,4 +7,4 @@ const execModule = curry(async (scripts, mod) => execScripts(scripts, {
   prefix: mod.name
 }))
 
-module.exports = execModule
+export default execModule

@@ -1,9 +1,9 @@
-const execScript = require('./execScript')
-const mapSeries = require('./mapSeries')
+import execScript from './execScript'
+import mapSeries from './mapSeries'
 
 const execScripts = async (scripts, options) => mapSeries(
   (script) => execScript(script, options),
   scripts
 )
 
-module.exports = execScripts
+export default execScripts

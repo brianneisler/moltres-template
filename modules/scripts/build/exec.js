@@ -1,6 +1,6 @@
-const { join, resolve } = require('path')
-const { execModulesGraph, loadModulesGraph } = require('../common')
-const run = require('../../../scripts/common/run')
+import { join, resolve } from 'path'
+import { execModulesGraph, loadModulesGraph } from '../common'
+import run from '../../../scripts/common/run'
 
 const exec = async () => {
   const graph = await loadModulesGraph()
@@ -15,7 +15,7 @@ const exec = async () => {
     return [
       `mkdir -p ${moduleDist}`,
       `${babel} ${moduleSrc} -d ${moduleDist} --source-maps --ignore **/*.test.js`,
-      `rsync -avz --exclude *.js --exclude __tests__ --exclude node_modules ${moduleSrc}/ ${moduleDist}/`
+      `rsync -avz --exclude *.js --exclude __tests__/ --exclude node_modules/ ${moduleSrc}/ ${moduleDist}/`
     ]
   }, graph)
 }

@@ -1,9 +1,7 @@
-const { forEach, prop } = require('ramda')
-const build = require('./build')
-const test = require('./test')
-const execProjectsAll = require('../common/execProjectsAll')
-const getProjects = require('../common/getProjects')
-const run = require('../common/run')
+import { forEach, prop } from 'ramda'
+import execProjectsAll from '../common/execProjectsAll'
+import getProjects from '../common/getProjects'
+import run from '../common/run'
 
 
 const COMMANDS = {

@@ -1,7 +1,7 @@
-const { forEach } = require('ramda')
-const newGraph = require('../graph/newGraph')
-const moduleNodeId = require('./moduleNodeId')
-const walkModule = require('./walkModule')
+import { forEach } from 'ramda'
+import newGraph from '../graph/newGraph'
+import moduleNodeId from './moduleNodeId'
+import walkModule from './walkModule'
 
 const generateModuleGraph = (mod, graph = newGraph()) => {
   walkModule(
@@ -23,4 +23,4 @@ const generateModuleGraph = (mod, graph = newGraph()) => {
   return graph
 }
 
-module.exports = generateModuleGraph
+export default generateModuleGraph

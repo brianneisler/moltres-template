@@ -1,9 +1,9 @@
-const execProject = require('./execProject')
-const mapSeries = require('./mapSeries')
+import execProject from './execProject'
+import mapSeries from './mapSeries'
 
 const execProjectsSeries = async (scripts, projects) => mapSeries(
   execProject(scripts),
   projects
 )
 
-module.exports = execProjectsSeries
+export default execProjectsSeries

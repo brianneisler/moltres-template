@@ -1,5 +1,5 @@
-const { spawn } = require('child_process')
-const { trim } = require('ramda')
+import { spawn } from 'child_process'
+import { trim } from 'ramda'
 
 const spawnCommand = async (command, args, options) => {
   const commandProcess = spawn(command, args, options)
@@ -22,4 +22,4 @@ const spawnCommand = async (command, args, options) => {
   })
 }
 
-module.exports = spawnCommand
+export default spawnCommand

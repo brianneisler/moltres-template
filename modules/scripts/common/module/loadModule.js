@@ -1,9 +1,9 @@
-const { all } = require('bluebird')
-const { pathExists } = require('fs-extra')
-const { resolve } = require('path')
-const { identity, map, memoizeWith } = require('ramda')
-const loadModuleFile = require('./loadModuleFile')
-const newModule = require('./newModule')
+import { all } from 'bluebird'
+import { pathExists } from 'fs-extra'
+import { resolve } from 'path'
+import { identity, map, memoizeWith } from 'ramda'
+import loadModuleFile from './loadModuleFile'
+import newModule from './newModule'
 
 const MODULE_FILE_NAME = 'module.json'
 
@@ -27,4 +27,4 @@ const loadModule = memoizeWith(identity, async (modulePath, options = {}) => {
   })
 })
 
-module.exports = loadModule
+export default loadModule

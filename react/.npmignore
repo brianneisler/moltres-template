@@ -29,6 +29,10 @@ npm-debug.log
 .eslintignore
 .eslintrc.js
 
+# prettier
+.prettierignore
+prettier.config.js
+
 #development
 .babelrc
 .editorconfig

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node ./scripts/test/exec.js
+babel-node ./scripts/test/exec.js
