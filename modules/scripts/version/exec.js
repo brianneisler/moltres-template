@@ -6,7 +6,7 @@ const exec = async () => {
   const graph = await loadModulesGraph()
   return execModulesGraph((mod) => {
     return [
-      `npm version ${versionType}`
+      `npm version ${versionType} --no-git-tag-version`
       //TODO BRN: Also need to bump the version in the module.json files
     ]
   }, graph)
