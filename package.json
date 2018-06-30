@@ -18,6 +18,7 @@
     "setup": "./scripts/setup.sh",
     "setup:ci": "./scripts/setup-ci.sh",
     "test": "./scripts/test.sh",
+    "test:ci": "./scripts/test-ci.sh",
     "version:major": "./scripts/version.sh major",
     "version:minor": "./scripts/version.sh minor",
     "version:patch": "./scripts/version.sh patch",
