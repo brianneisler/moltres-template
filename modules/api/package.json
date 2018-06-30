@@ -1,6 +1,6 @@
 {
   "name": "@moltres/api",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A moltres module that provides http api functionality",
   "main": "./dist/index.js",
   "license": "Apache-2.0",

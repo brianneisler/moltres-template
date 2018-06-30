@@ -1,6 +1,6 @@
 {
   "name": "@moltres/form",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A moltres module for forms",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
