@@ -4,6 +4,7 @@ import testProject from './testProject'
 
 const TEST_EXECS = {
   module: testModule,
+  modulesDir: async () => {},
   project: testProject
 }
 

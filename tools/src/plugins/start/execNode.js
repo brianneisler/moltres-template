@@ -4,6 +4,7 @@ import startProject from './startProject'
 
 const START_EXECS = {
   module: startModule,
+  modulesDir: async () => {},
   project: startProject
 }
 
