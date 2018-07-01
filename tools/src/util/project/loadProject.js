@@ -26,12 +26,14 @@ const loadProject = memoize(async (projectPath) => {
       data.dependsOn || []
     )
   )
+  const { scripts } = data
   return newProject({
     ...data,
     dependsOn,
     modules,
     projects,
-    path: projectPath
+    path: projectPath,
+    scripts: scripts || {}
   })
 })
 

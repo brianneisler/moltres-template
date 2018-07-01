@@ -1,0 +1,6 @@
+{
+  "name": "zim",
+  "dependsOn": [
+    "../zam"
+  ]
+}

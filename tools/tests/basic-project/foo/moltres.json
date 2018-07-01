@@ -1,0 +1,6 @@
+{
+  "name": "basic-project:foo",
+  "dependsOn": [
+    "../bar"
+  ]
+}

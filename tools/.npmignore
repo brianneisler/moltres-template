@@ -52,3 +52,4 @@ examples
 jest.config.js
 scripts
 src
+tests

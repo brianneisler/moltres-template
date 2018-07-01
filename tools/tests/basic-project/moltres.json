@@ -1,0 +1,8 @@
+{
+  "name": "basic-project",
+  "version": "0.0.1",
+  "projects": {
+    "foo": "./foo",
+    "bar": "./bar"
+  }
+}

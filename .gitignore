@@ -28,6 +28,7 @@ npm-debug.log
 # development
 .env*
 .eslintcache
+.moltres
 coverage
 dist
 etc

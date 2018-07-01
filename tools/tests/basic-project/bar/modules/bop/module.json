@@ -1,0 +1,6 @@
+{
+  "name": "bop",
+  "dependsOn": [
+    "../bim"
+  ]
+}
