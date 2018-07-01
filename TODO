@@ -22,18 +22,20 @@ TODO
 - [x] Figure out how handleAction ties into higher order handlers
 - [x] Write test for handleAction
 - [x] remove "file:.." entries from package.json files
-- [ ] add separate "link" step in build for linking files after install
-- [ ] fix travis builds
-  - [ ] get travis builds passing in all versions of node
+- [x] fix travis builds
+  - [x] get travis builds passing in all versions of node
   - [x] modify travis to force upgrade npm to npm 6
-- [ ] get build scripts working in all versions of node
+- [x] get build scripts working in all versions of node
   - [x] add babel-node to scripts
-  - [ ] fix error in node 10 where grpc breaks
+  - [x] fix error in node 10 where grpc breaks
 - [x] add codecov support
 - [x] Get lint passing in all projects
   - [x] setup prettier
+- [x] fix build issue where modules folder is not installed in the correct order in moltres projects
+
 - [ ] add .github config
-- [ ] fix build issue where modules folder is not installed in the correct order in moltres projects
+- [ ] add separate "link" step in build for linking files after install (development of the moltres project)
+
 
 FEATURES
 - [ ] add first template project
