@@ -51,8 +51,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-prettier": "^2.6.1",
-    "firebase": "^4.13.0",
-    "firebase-admin": "^5.12.0",
+    "firebase": "^5.2.0",
+    "firebase-admin": "^5.12.1",
     "prettier": "^1.13.6"
   }
 }

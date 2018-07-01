@@ -23,8 +23,8 @@
     "moltres-utils": "0.1.x"
   },
   "devDependencies": {
-    "firebase": "^4.13.0",
-    "firebase-admin": "^5.12.0",
+    "firebase": "^5.2.0",
+    "firebase-admin": "^5.12.1",
     "moltres": "0.1.x"
   },
   "peerDependencies": {
