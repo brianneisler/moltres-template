@@ -3,6 +3,10 @@
   "command": "lint",
   "description": "lints a moltres project",
   "options": {
+    "only": {
+      "option": "-o, --only",
+      "description": "Only lint the specified target and not all dependencies"
+    },
     "path": {
       "option": "-p, --path [path]",
       "description": "The path to target"

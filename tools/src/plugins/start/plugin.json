@@ -7,6 +7,10 @@
       "option": "-e, --env [path]",
       "description": "Set the path to a .env file"
     },
+    "only": {
+      "option": "-o, --only",
+      "description": "Only start the specified target and not all dependencies"
+    },
     "path": {
       "option": "-p, --path [path]",
       "description": "The path to target"

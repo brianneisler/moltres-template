@@ -8,7 +8,7 @@ const createContext = async (options) => {
   const cwd = resolve(findPath(prop('cwd', options), prop('path', options), process.cwd()))
   const logger = prop('logger', options) || newLogger()
   const plugins = prop('plugins', options) || (await loadPlugins(DEFAULT_PLUGINS))
-  const graph = await loadExecGraph(cwd)
+  const graph = await loadExecGraph(cwd, options)
   const stage = getStage(options)
 
   let env = prop('env', options) || '.'

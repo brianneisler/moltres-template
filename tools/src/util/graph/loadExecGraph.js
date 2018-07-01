@@ -5,13 +5,13 @@ import generateProjectGraph from '../project/generateProjectGraph'
 import isProjectPath from '../project/isProjectPath'
 import loadProject from '../project/loadProject'
 
-const loadExecGraph = async (cwd) => {
+const loadExecGraph = async (cwd, options) => {
   if (await isModulePath(cwd)) {
     const mod = await loadModule(cwd)
-    return generateModuleGraph(mod)
+    return generateModuleGraph(mod, options)
   } else if (await isProjectPath(cwd)) {
     const project = await loadProject(cwd)
-    return generateProjectGraph(project)
+    return generateProjectGraph(project, options)
   }
   return null
 }
