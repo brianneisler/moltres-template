@@ -1,6 +1,6 @@
 {
   "name": "@moltres/build",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Moltres project builder",
   "private": true,
   "license": "Apache-2.0",
