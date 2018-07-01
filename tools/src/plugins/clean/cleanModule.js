@@ -7,7 +7,7 @@ const cleanModule = async (module, context) => {
   const moduleDist = resolve(module.path, 'dist')
   const moduleMoltres = resolve(module.path, '.moltres')
   return execScripts([`rm -rf ${moduleDist}`, `rm -rf ${moduleMoltres}`], {
-    cwd: module.modulesDir,
+    cwd: module.modulesDir.path,
     env: {
       ...process.env,
       ...context.env,

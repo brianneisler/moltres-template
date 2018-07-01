@@ -7,14 +7,14 @@ import isModulePath from './isModulePath'
 import loadModule from './loadModule'
 
 const findModules = async (path) => {
-  const modulesDir = resolve(path, MODULES_DIR_NAME)
-  if (await pathExists(modulesDir)) {
-    const moduleDirNames = await readdir(modulesDir)
+  const modulesDirPath = resolve(path, MODULES_DIR_NAME)
+  if (await pathExists(modulesDirPath)) {
+    const moduleDirNames = await readdir(modulesDirPath)
     const loadedModules = await all(
       map(async (moduleDirName) => {
-        const modulePath = resolve(modulesDir, moduleDirName)
+        const modulePath = resolve(modulesDirPath, moduleDirName)
         if (await isModulePath(modulePath)) {
-          return loadModule(modulePath, { modulesDir })
+          return loadModule(modulePath, { modulesDir: modulesDirPath })
         }
         return null
       }, moduleDirNames)

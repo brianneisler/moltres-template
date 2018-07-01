@@ -4,6 +4,7 @@ import cleanProject from './cleanProject'
 
 const CLEAN_EXECS = {
   module: cleanModule,
+  modulesDir: async () => {},
   project: cleanProject
 }
 

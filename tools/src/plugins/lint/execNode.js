@@ -4,6 +4,7 @@ import lintProject from './lintProject'
 
 const LINT_EXECS = {
   module: lintModule,
+  modulesDir: async () => {},
   project: lintProject
 }
 

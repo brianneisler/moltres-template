@@ -7,7 +7,7 @@ const cleanseModule = async (module, context) => {
   const moduleNodeModules = resolve(module.path, 'node_modules')
   const modulePackageLock = resolve(module.path, 'package-lock.json')
   return execScripts([`rm -rf ${moduleNodeModules}`, `rm -f ${modulePackageLock}`], {
-    cwd: module.modulesDir,
+    cwd: module.modulesDir.path,
     env: {
       ...process.env,
       ...context.env,

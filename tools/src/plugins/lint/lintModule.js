@@ -4,7 +4,7 @@ const lintModule = async (module, context) => {
   const { logger } = context
   logger.log(`linting module ${module.name}`)
   return execScripts([`eslint ${module.path} --cache`], {
-    cwd: module.modulesDir,
+    cwd: module.modulesDir.path,
     env: {
       ...process.env,
       ...context.env,

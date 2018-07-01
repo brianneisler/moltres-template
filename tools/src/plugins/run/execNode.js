@@ -4,6 +4,7 @@ import runProject from './runProject'
 
 const RUN_EXECS = {
   module: runModule,
+  modulesDir: async () => {},
   project: runProject
 }
 

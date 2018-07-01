@@ -1,9 +1,11 @@
 import { prop } from 'moltres-utils'
 import cleanseModule from './cleanseModule'
+import cleanseModulesDir from './cleanseModulesDir'
 import cleanseProject from './cleanseProject'
 
 const CLEANSE_EXECS = {
   module: cleanseModule,
+  modulesDir: cleanseModulesDir,
   project: cleanseProject
 }
 

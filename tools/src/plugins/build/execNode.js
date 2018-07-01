@@ -4,6 +4,7 @@ import buildProject from './buildProject'
 
 const BUILD_EXECS = {
   module: buildModule,
+  modulesDir: async () => {},
   project: buildProject
 }
 

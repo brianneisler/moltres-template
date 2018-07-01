@@ -1,9 +1,11 @@
 import { prop } from 'moltres-utils'
 import setupModule from './setupModule'
+import setupModulesDir from './setupModulesDir'
 import setupProject from './setupProject'
 
 const SETUP_EXECS = {
   module: setupModule,
+  modulesDir: setupModulesDir,
   project: setupProject
 }
 

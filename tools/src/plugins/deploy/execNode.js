@@ -4,6 +4,7 @@ import deployProject from './deployProject'
 
 const DEPLOY_EXECS = {
   module: deployModule,
+  modulesDir: async () => {},
   project: deployProject
 }
 
