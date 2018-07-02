@@ -1,6 +1,6 @@
 {
   "name": "@moltres/appstate",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "A moltres module that provides access to the app state",
   "main": "./dist/index.js",
   "license": "Apache-2.0",

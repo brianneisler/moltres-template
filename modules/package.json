@@ -1,6 +1,6 @@
 {
   "name": "@moltres/modules",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": true,
   "scripts": {
     "build": "./scripts/build.sh",
