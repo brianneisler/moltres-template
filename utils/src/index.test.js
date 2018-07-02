@@ -12,7 +12,9 @@ describe('index', () => {
       nth: expect.any(Function),
       reduce: expect.any(Function),
       reduceRight: expect.any(Function),
-      toString: expect.any(Function)
+      toLower: expect.any(Function),
+      toString: expect.any(Function),
+      toUpper: expect.any(Function)
     })
   })
 })

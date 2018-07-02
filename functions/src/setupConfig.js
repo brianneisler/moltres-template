@@ -1,19 +1,12 @@
 import * as functions from 'firebase-functions'
 import { config } from 'moltres'
-import { assoc, reduceObjIndexed, toUpper } from 'moltres-utils'
+import { assoc, propOr, reduceObjIndexed, toUpper } from 'moltres-utils'
 
 const setupConfig = () => {
   const functionsConfig = reduceObjIndexed(
-    (subConfigAccum, subConfig, subConfigName) => {
-      return reduceObjIndexed(
-        (accum, value, name) =>
-          assoc(`${toUpper(subConfigName)}_${toUpper(name)}`, value, subConfigAccum),
-        subConfigAccum,
-        subConfig
-      )
-    },
+    (accum, value, name) => assoc(toUpper(name), value, accum),
     {},
-    functions.config()
+    propOr({}, 'moltres', functions.config())
   )
 
   return config({
