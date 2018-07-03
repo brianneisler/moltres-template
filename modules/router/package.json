@@ -1,6 +1,6 @@
 {
   "name": "@moltres/router",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "A moltres module for setting up a react router",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
