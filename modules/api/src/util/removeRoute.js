@@ -1,7 +1,7 @@
 import { getContext } from 'moltres'
 
 const removeRoute = function*(route) {
-  const { api } = yield getContext('api')
+  const { api } = yield* getContext('api')
   api.removeRoute(route)
 }
 

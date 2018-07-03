@@ -3,7 +3,7 @@ import { httpRequest } from './actions'
 import { addRoute, removeRoute } from './util'
 
 const route = function*(path, method, handler) {
-  const channel = yield asyncChannel(function*(emitter) {
+  const channel = yield* asyncChannel(function*(emitter) {
     const channelRoute = {
       path,
       method,

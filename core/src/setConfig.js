@@ -1,9 +1,8 @@
 import { setContext } from 'redux-saga/effects'
 
-const setConfig = function*(config) {
-  yield setContext({
+const setConfig = (config) =>
+  setContext({
     config
   })
-}
 
 export default setConfig
