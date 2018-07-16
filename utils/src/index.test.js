@@ -2,19 +2,45 @@ describe('index', () => {
   test('require runs without error', async () => {
     const mod = require('./')
     expect(mod).toMatchObject({
+      addIndex: expect.any(Function),
+      always: expect.any(Function),
+      bind: expect.any(Function),
       compose: expect.any(Function),
+      defprotocol: expect.any(Function),
+      dispatchable: expect.any(Function),
+      each: expect.any(Function),
+      eachSeries: expect.any(Function),
+      forEach: expect.any(Function),
+      forEachSeries: expect.any(Function),
       head: expect.any(Function),
       indexBy: expect.any(Function),
       indexOf: expect.any(Function),
       init: expect.any(Function),
+      is: expect.any(Function),
+      isArguments: expect.any(Function),
+      isIterable: expect.any(Function),
+      isIterator: expect.any(Function),
+      isPlainFunction: expect.any(Function),
+      isResolvable: expect.any(Function),
+      isTransformer: expect.any(Function),
+      iterator: expect.any(Function),
       length: expect.any(Function),
       map: expect.any(Function),
       nth: expect.any(Function),
+      objectKeys: expect.any(Function),
       reduce: expect.any(Function),
       reduceRight: expect.any(Function),
+      resolve: expect.any(Function),
+      resolveAll: expect.any(Function),
+      satisfies: expect.any(Function),
       toLower: expect.any(Function),
       toString: expect.any(Function),
-      toUpper: expect.any(Function)
+      toUpper: expect.any(Function),
+      without: expect.any(Function),
+      words: expect.any(Function),
+      xfBase: expect.any(Object),
+      xmap: expect.any(Function),
+      xwrap: expect.any(Function)
     })
   })
 })

@@ -1,9 +1,9 @@
-import { forEachObjIndexed, is } from 'moltres-utils'
+import { forEachObjIndexed, isFunction } from 'moltres-utils'
 
 const setupStore = (store) => {
   forEachObjIndexed((module) => {
     const { setup } = module
-    if (is(Function, setup)) {
+    if (isFunction(setup)) {
       setup(store)
     }
   }, store.getModules())

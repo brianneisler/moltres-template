@@ -2,6 +2,7 @@ import buildModules from './buildModules'
 import buildStore from './buildStore'
 import setupStore from './setupStore'
 import startStore from './startStore'
+import stopStore from './stopStore'
 
 const createStore = (modules, config) => {
   const builtModules = buildModules(modules, config)
@@ -16,7 +17,8 @@ const createStore = (modules, config) => {
         ...context,
         ...props
       }
-    }
+    },
+    stop: async () => stopStore(store)
   }
   return startStore(setupStore(store))
 }

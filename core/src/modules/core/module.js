@@ -1,3 +1,4 @@
+import { deferredPromise } from 'moltres-utils'
 import createSagaMiddleware from 'redux-saga'
 import call from '../../call'
 import take from '../../take'
@@ -29,16 +30,25 @@ function* run() {
 
 const module = () => {
   const middleware = createSagaMiddleware()
+  let promise
+  let mainTask
 
   const start = (store) => {
-    middleware.run(createRootSaga(store))
+    promise = deferredPromise()
+    mainTask = middleware.run(createRootSaga(store, { promise }))
+  }
+
+  const stop = async () => {
+    mainTask.cancel()
+    await promise
   }
 
   return {
     middleware,
     reducer,
     run,
-    start
+    start,
+    stop
   }
 }
 

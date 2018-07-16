@@ -9,6 +9,10 @@ const module = (config) => ({
       database
     })
     return store
+  },
+  finally: (store) => {
+    const { app } = store.getContext()
+    app.database().goOffline()
   }
 })
 
