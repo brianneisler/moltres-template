@@ -1,6 +1,6 @@
 {
   "name": "moltres-cli",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "CLI for the Moltres CMS for Firebase",
   "main": "./dist/index.js",
   "bin": {
