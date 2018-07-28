@@ -1,7 +1,5 @@
 const generateConfig = (setupConfig, options) => {
   const config = setupConfig(options)
-  console.log('FIREBASE_PRIVATE_KEY:', JSON.parse(config.get('FIREBASE_PRIVATE_KEY'))) // eslint-disable-line no-console
-
   const { namespace } = options
   return {
     firebase: {
