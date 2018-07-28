@@ -1,5 +1,4 @@
 import admin from 'firebase-admin' // eslint-disable-line import/no-extraneous-dependencies
-import uuid from 'uuid/v1' // eslint-disable-line import/no-extraneous-dependencies
 import createTestAnonymousUser from './createTestAnonymousUser'
 // import deleteAllUsers from './deleteAllUsers'
 import getServiceAccount from './getServiceAccount'
@@ -16,12 +15,11 @@ import initAdminApp from './initAdminApp'
 // const initTestApp = (adminApp, namespace) =>
 //   firebase.initializeApp(config, namespace)
 
-const initTestApp = async () => {
+const initTestApp = async ({ namespace }) => {
   const adminApp = initAdminApp()
 
   // await deleteAllUsers(adminApp)
   const testUser = await createTestAnonymousUser(adminApp)
-  const namespace = uuid()
   const serviceAccount = getServiceAccount()
 
   const app = admin.initializeApp(
@@ -45,6 +43,7 @@ const initTestApp = async () => {
   }
   app.namespace = namespace
   app.testUser = testUser
+  app.adminApp = adminApp
 
   return app
 }

@@ -1,4 +1,4 @@
-import { cancelled, createEngine, take } from '../src'
+import { cancelled, createEngine, stop, take } from '../src'
 
 describe('integration: start and stop engine', () => {
   test('starts the engine and calls the setup and start methods', async () => {
@@ -13,6 +13,7 @@ describe('integration: start and stop engine', () => {
           }
         }
       },
+      finally: jest.fn(),
       setup: jest.fn(),
       start: jest.fn(),
       stop: jest.fn()
@@ -24,14 +25,15 @@ describe('integration: start and stop engine', () => {
       {}
     )
 
-    expect(testModule.setup).toHaveBeenCalledWith(engine)
-    expect(testModule.start).toHaveBeenCalledWith(engine)
+    expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
+    expect(testModule.start).toHaveBeenCalledWith(engine, testModule)
     expect(testModule.stop).not.toHaveBeenCalled()
     expect(wasCancelled).toBe(false)
 
-    engine.stop()
+    await stop(engine)
 
-    expect(testModule.stop).toHaveBeenCalledWith(engine)
+    expect(testModule.stop).toHaveBeenCalledWith(engine, testModule)
+    expect(testModule.finally).toHaveBeenCalledWith(engine, testModule)
     expect(wasCancelled).toBe(true)
   })
 })

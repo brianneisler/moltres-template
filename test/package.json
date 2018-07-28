@@ -37,6 +37,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
+    "dotenv": "^5.0.1",
     "firebase-admin": "^5.12.1",
     "moltres-utils": "0.1.x",
     "source-map-support": "^0.5.5"

@@ -3,7 +3,7 @@ describe('index', () => {
     const mod = require('./')
     expect(mod).toEqual({
       default: expect.any(Function),
-      initializeFirebaseApp: expect.any(Function)
+      generateConfig: expect.any(Function)
     })
   })
 })

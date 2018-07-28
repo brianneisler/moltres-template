@@ -1,15 +1,13 @@
-import initializeFirebaseAdminApp from './initializeFirebaseAdminApp'
+import createModule from '../createModule'
+import initializeAdminApp from '../util/initializeAdminApp'
 
 const module = (config) => ({
-  setup: (store) => {
-    const app = initializeFirebaseAdminApp('default', config)
-    const database = app.database()
-    store.setContext({
-      app,
-      database
+  ...createModule(config),
+  initializeApp: (appConfig) =>
+    initializeAdminApp({
+      ...appConfig,
+      prefix: 'api'
     })
-    return store
-  }
 })
 
 export default module

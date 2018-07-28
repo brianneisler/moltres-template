@@ -25,7 +25,8 @@
   "devDependencies": {
     "firebase": "^5.2.0",
     "firebase-admin": "^5.12.1",
-    "moltres": "0.1.x"
+    "moltres": "0.1.x",
+    "moltres-test": "0.1.x"
   },
   "peerDependencies": {
     "firebase": ">=3 <=5",

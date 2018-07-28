@@ -25,6 +25,7 @@ const createFactory = require('./createFactory').default
 const delay = require('./delay').default
 const END = require('./END').default
 const eventChannel = require('./eventChannel').default
+const _finally = require('./finally').default
 const flush = require('./flush').default
 const fork = require('./fork').default
 const getConfig = require('./getConfig').default
@@ -41,7 +42,10 @@ const select = require('./select').default
 const selectWait = require('./selectWait').default
 const setConfig = require('./setConfig').default
 const setContext = require('./setContext').default
+const setup = require('./setup').default
 const spawn = require('./spawn').default
+const start = require('./start').default
+const stop = require('./stop').default
 const take = require('./take').default
 const takeEvery = require('./takeEvery').default
 const takeLatest = require('./takeLatest').default
@@ -77,6 +81,7 @@ module.exports = {
   delay,
   END,
   eventChannel,
+  finally: _finally,
   flush,
   fork,
   getConfig,
@@ -93,7 +98,10 @@ module.exports = {
   selectWait,
   setConfig,
   setContext,
+  setup,
   spawn,
+  start,
+  stop,
   take,
   takeEvery,
   takeLatest,

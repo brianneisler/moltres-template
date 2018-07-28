@@ -1,4 +1,4 @@
-import deleteTestUser from './deleteTestUser'
+import deleteTestUsers from './deleteTestUsers'
 
 const cleanupTestApp = async (app) => {
   const { namespace } = app
@@ -6,8 +6,7 @@ const cleanupTestApp = async (app) => {
     .database()
     .ref(namespace)
     .remove()
-  await deleteTestUser(app)
-  app.database().goOffline()
+  await deleteTestUsers(app)
 }
 
 export default cleanupTestApp

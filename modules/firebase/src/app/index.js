@@ -1,2 +1,2 @@
-export { default as initializeFirebaseApp } from './initializeFirebaseApp'
 export { default } from './module'
+export { default as generateConfig } from './generateConfig'

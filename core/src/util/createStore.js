@@ -1,15 +1,18 @@
-import buildModules from './buildModules'
+import { forEachObjIndexed, mapAll, values } from 'moltres-utils'
+import _finally from '../finally'
+import setup from '../setup'
+import start from '../start'
+import stop from '../stop'
+import createModules from './createModules'
 import buildStore from './buildStore'
-import setupStore from './setupStore'
-import startStore from './startStore'
-import stopStore from './stopStore'
 
 const createStore = (modules, config) => {
-  const builtModules = buildModules(modules, config)
+  const instances = createModules(config, modules)
   let context = {}
-  const store = {
-    ...buildStore(builtModules),
-    getModules: () => builtModules,
+
+  const newStore = {
+    ...buildStore(instances),
+    getModules: () => instances,
     getConfig: () => config,
     getContext: () => context,
     setContext: (props) => {
@@ -18,9 +21,32 @@ const createStore = (modules, config) => {
         ...props
       }
     },
-    stop: async () => stopStore(store)
+    setup: (store) => {
+      forEachObjIndexed((module) => {
+        setup(store, module)
+      }, store.getModules())
+      console.log('modules have been setup') // eslint-disable-line no-console
+      return store
+    },
+    start: (store) => {
+      forEachObjIndexed((module) => {
+        start(store, module)
+      }, store.getModules())
+      return store
+    },
+    stop: async (store) => {
+      await mapAll(async (module) => {
+        await stop(store, module)
+      }, values(store.getModules()))
+
+      await mapAll(async (module) => {
+        await _finally(store, module)
+      }, values(store.getModules()))
+
+      return store
+    }
   }
-  return startStore(setupStore(store))
+  return start(setup(newStore))
 }
 
 export default createStore

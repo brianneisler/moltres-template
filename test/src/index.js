@@ -4,8 +4,8 @@ if (!global._babelPolyfill) {
 }
 require('source-map-support/register') // eslint-disable-line global-require
 
-const utils = require('./utils')
+const util = require('./util')
 
 module.exports = {
-  ...utils
+  ...util
 }

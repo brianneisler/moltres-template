@@ -1,19 +1,9 @@
-import initializeFirebaseApp from './initializeFirebaseApp'
+import createModule from '../createModule'
+import initializeApp from '../initializeApp'
 
 const module = (config) => ({
-  setup: (store) => {
-    const app = initializeFirebaseApp('default', config)
-    const database = app.database()
-    store.setContext({
-      app,
-      database
-    })
-    return store
-  },
-  finally: (store) => {
-    const { app } = store.getContext()
-    app.database().goOffline()
-  }
+  ...createModule(config),
+  initializeApp
 })
 
 export default module

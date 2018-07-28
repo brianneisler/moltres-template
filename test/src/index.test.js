@@ -5,10 +5,13 @@ describe('index', () => {
       authAnonymously: expect.any(Function),
       cleanupTestApp: expect.any(Function),
       deleteAllUsers: expect.any(Function),
-      deleteTestUser: expect.any(Function),
+      deleteTestUsers: expect.any(Function),
+      generateNamespace: expect.any(Function),
       getServiceAccount: expect.any(Function),
       initAdminApp: expect.any(Function),
-      initTestApp: expect.any(Function)
+      initTestApp: expect.any(Function),
+      loadEnv: expect.any(Function),
+      setupConfig: expect.any(Function)
     })
   })
 })
