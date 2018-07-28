@@ -1,5 +1,9 @@
+import { trim } from 'moltres-utils'
+
 const generateConfig = (setupConfig, options) => {
   const config = setupConfig(options)
+  console.log('FIREBASE_PRIVATE_KEY:', config.get('FIREBASE_PRIVATE_KEY')) // eslint-disable-line no-console
+
   const { namespace } = options
   return {
     firebase: {
@@ -9,7 +13,7 @@ const generateConfig = (setupConfig, options) => {
             type: 'service_account',
             project_id: config.get('FIREBASE_PROJECT_ID'),
             private_key_id: config.get('FIREBASE_PRIVATE_KEY_ID'),
-            private_key: config.get('FIREBASE_PRIVATE_KEY'),
+            private_key: trim(config.get('FIREBASE_PRIVATE_KEY')),
             client_email: config.get('FIREBASE_CLIENT_EMAIL'),
             client_id: config.get('FIREBASE_CLIENT_ID'),
             auth_uri: 'https://accounts.google.com/o/oauth2/auth',
