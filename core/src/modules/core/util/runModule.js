@@ -1,9 +1,9 @@
-import { is } from 'moltres-utils'
+import { isFunction } from 'moltres-utils'
 import spawn from '../../../spawn'
 
 function* runModule(module, name, config) {
   const { run } = module
-  if (is(Function, run)) {
+  if (isFunction(run)) {
     console.log(`Setting up module ${name}`) // eslint-disable-line no-console
     const result = yield spawn(run, config)
     console.log(`Setting up module ${name} complete`) // eslint-disable-line no-console

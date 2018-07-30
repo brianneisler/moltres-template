@@ -4,7 +4,7 @@ import call from '../../call'
 import take from '../../take'
 import { runSaga } from '../../actions'
 import reducer from './reducer'
-import { createRootSaga } from './util'
+import { createAsyncMiddleware, createRootSaga } from './util'
 
 function* run() {
   while (true) {
@@ -29,13 +29,14 @@ function* run() {
 }
 
 const module = () => {
-  const middleware = createSagaMiddleware()
+  const sagaMiddleware = createSagaMiddleware()
+  const middleware = [createAsyncMiddleware(), sagaMiddleware]
   let promise
   let mainTask
 
   const start = (store) => {
     promise = deferredPromise()
-    mainTask = middleware.run(createRootSaga(store, { promise }))
+    mainTask = sagaMiddleware.run(createRootSaga(store, { promise }))
   }
 
   const stop = async () => {

@@ -13,6 +13,8 @@ import {
   toString
 } from 'moltres-utils'
 import { ACTION_TYPE_DELIMITER } from './constants'
+import isResolvable from './isResolvable'
+import resolveToPromise from './resolveToPromise'
 
 const handleAction = (handler = identity, type = always(true), defaultProps = {}) => {
   let typeFilter = type
@@ -51,7 +53,14 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
     if (action && action.error === true) {
       return throwHandler(props, action)
     }
-    return nextHandler(props, action)
+
+    const result = nextHandler(props, action)
+    if (isResolvable(result) && action.promise) {
+      const resolver = resolveToPromise(result)
+      action.promise.push(resolver.promise)
+      return resolver
+    }
+    return result
   }
 }
 

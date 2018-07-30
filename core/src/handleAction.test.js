@@ -1,3 +1,4 @@
+import { isGenerator, isPromise, listPromise } from 'moltres-utils'
 import handleAction from './handleAction'
 
 describe('handleAction', () => {
@@ -126,5 +127,43 @@ describe('handleAction', () => {
     })
     const result = handler(testContext, testErrorEvent)
     expect(result).toBe(testResult)
+  })
+
+  test('resolves to action promise if present', async () => {
+    const testEvent = {
+      type: 'bar',
+      promise: listPromise()
+    }
+    const testResult = { foo: 'bar' }
+    const testContext = { bim: 'bop' }
+    const internalHandler = (context, event) =>
+      new Promise((resolve) => {
+        expect(context).toBe(testContext)
+        expect(event).toBe(testEvent)
+        setTimeout(() => {
+          resolve(testResult)
+        }, 0)
+      })
+    const handler = handleAction(internalHandler)
+    const result = handler(testContext, testEvent)
+    expect(isGenerator(result)).toBe(true)
+  })
+
+  test('returns promise for async handler if no action promise is present', async () => {
+    const testEvent = { type: 'bar' }
+    const testResult = { foo: 'bar' }
+    const testContext = { bim: 'bop' }
+    const internalHandler = (context, event) =>
+      new Promise((resolve) => {
+        expect(context).toBe(testContext)
+        expect(event).toBe(testEvent)
+        setTimeout(() => {
+          resolve(testResult)
+        }, 0)
+      })
+    const handler = handleAction(internalHandler)
+    const result = handler(testContext, testEvent)
+    expect(isPromise(result)).toBe(true)
+    expect(await result).toBe(testResult)
   })
 })

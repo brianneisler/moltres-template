@@ -3,8 +3,8 @@ import _finally from '../finally'
 import setup from '../setup'
 import start from '../start'
 import stop from '../stop'
-import createModules from './createModules'
 import buildStore from './buildStore'
+import createModules from './createModules'
 
 const createStore = (modules, config) => {
   const instances = createModules(config, modules)
