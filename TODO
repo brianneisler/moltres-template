@@ -32,6 +32,7 @@ TODO
 - [x] Get lint passing in all projects
   - [x] setup prettier
 - [x] fix build issue where modules folder is not installed in the correct order in moltres projects
+- [ ] add support for module level overrides of jest config
 
 - [ ] add .github config
 - [ ] add separate "link" step in build for linking files after install (development of the moltres project)

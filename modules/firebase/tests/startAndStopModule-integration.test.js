@@ -7,7 +7,7 @@ import * as api from '../src/api'
 import * as app from '../src/app'
 import * as _test from '../src/test'
 
-describe('app integration: start and stop firebase module', () => {
+describe('integration: start and stop firebase module', () => {
   let config
   let engine
 

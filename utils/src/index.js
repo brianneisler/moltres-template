@@ -5,20 +5,28 @@ if (!global._babelPolyfill) {
 
 // NOTE BRN: These tools should ONLY include ones
 // that are compatible with react-native
+const buffer = require('./buffer')
 const config = require('./config')
+const crypto = require('./crypto')
 const data = require('./data')
+const fetch = require('./fetch')
 const firebase = require('./firebase')
 const graph = require('./graph')
 const path = require('./path')
+const stream = require('./stream')
 const throwable = require('./throwable')
 const walk = require('./walk')
 
 module.exports = {
+  ...buffer,
   ...config,
+  ...crypto,
   ...data,
+  ...fetch,
   ...firebase,
   ...graph,
   ...path,
+  ...stream,
   ...throwable,
   ...walk
 }
