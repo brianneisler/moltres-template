@@ -43,6 +43,7 @@
     "graphlib": "^2.1.5",
     "invariant": "^2.2.4",
     "is-url": "^1.2.4",
+    "mime-types": "^2.1.19",
     "ramda": "^0.25.0",
     "readable-stream": "^2.3.6",
     "string-to-stream": "^1.1.1"

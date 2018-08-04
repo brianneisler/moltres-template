@@ -12,6 +12,7 @@ const data = require('./data')
 const fetch = require('./fetch')
 const firebase = require('./firebase')
 const graph = require('./graph')
+const mime = require('./mime')
 const path = require('./path')
 const stream = require('./stream')
 const throwable = require('./throwable')
@@ -25,6 +26,7 @@ module.exports = {
   ...fetch,
   ...firebase,
   ...graph,
+  ...mime,
   ...path,
   ...stream,
   ...throwable,
