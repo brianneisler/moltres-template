@@ -1,1 +1,1 @@
-export { path as default } from 'ramda'
+export { default } from './getPath'

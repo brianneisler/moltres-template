@@ -1,11 +1,16 @@
+import isArray from './isArray'
 import isKey from './isKey'
+import isString from './isString'
 import stringToPath from './stringToPath'
 
 const castPath = (value, object) => {
-  if (Array.isArray(value)) {
+  if (isArray(value)) {
     return value
   }
-  return isKey(value, object) ? [value] : stringToPath(value)
+  if (isKey(value, object) || !isString(value)) {
+    return [value]
+  }
+  return stringToPath(value)
 }
 
 export default castPath

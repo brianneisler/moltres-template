@@ -1,7 +1,15 @@
 import compose from './compose'
 
 describe('compose', () => {
-  test('composes non async functions and returns value', async () => {
+  test('executes functions in right to left order', () => {
+    const method = compose(
+      (val) => val + 'bar',
+      (val) => val + 'foo'
+    )
+    expect(method('')).toBe('foobar')
+  })
+
+  test('composes non async functions and returns value', () => {
     const method = compose(
       (val) => val + 1,
       (val) => val + 2

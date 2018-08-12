@@ -1,1 +1,1 @@
-export { default as pathEq } from 'ramda'
+export { pathEq as default } from 'ramda'

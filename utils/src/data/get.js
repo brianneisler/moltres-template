@@ -1,7 +1,26 @@
+import castPath from './castPath'
 import curry from './curry'
-import isMap from './isMap'
-import prop from './prop'
+import defn from './defn'
+import getPath from './getPath'
+import isArray from './isArray'
+import isFunction from './isFunction'
+import isUndefined from './isUndefined'
 
-const get = curry((key, value) => (isMap(value) ? value.get(key) : prop(key, value)))
+const get = defn(
+  'get',
+  curry((selector, value) => {
+    if (isUndefined(selector)) {
+      return value
+    }
+    if (isFunction(selector)) {
+      return selector(value)
+    }
+    let parts = selector
+    if (!isArray(selector)) {
+      parts = castPath(selector, value)
+    }
+    return getPath(parts, value)
+  })
+)
 
 export default get
