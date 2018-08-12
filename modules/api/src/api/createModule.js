@@ -1,6 +1,6 @@
 import { setupApi } from './util'
 
-const module = () => {
+const createModule = () => {
   let api
   const getApi = () => {
     return api
@@ -8,9 +8,7 @@ const module = () => {
 
   const setup = (store) => {
     api = setupApi(store)
-    store.setContext({
-      api
-    })
+    store.setContext('api', api)
     return store
   }
 
@@ -20,4 +18,4 @@ const module = () => {
   }
 }
 
-export default module
+export default createModule

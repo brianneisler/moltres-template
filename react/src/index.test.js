@@ -16,7 +16,7 @@ describe('index', () => {
       Switch: expect.any(Function),
       Colors: expect.any(Object),
       createHistory: expect.any(Function),
-      setupConfig: expect.any(Function),
+      setupContext: expect.any(Function),
       storeShape: expect.any(Function),
       withActions: expect.any(Function),
       withModalControls: expect.any(Function),

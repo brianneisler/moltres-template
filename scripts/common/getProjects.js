@@ -7,8 +7,8 @@ const ROOT_PATH = resolve(__dirname, '..', '..')
 // NOTE BRN: These are in order of dependency, items later in the list depend on the earlier
 const PROJECTS = [
   join(ROOT_PATH, 'utils'),
-  join(ROOT_PATH, 'test'),
   join(ROOT_PATH, 'core'),
+  join(ROOT_PATH, 'test'),
   join(ROOT_PATH, 'react'),
   join(ROOT_PATH, 'functions'),
   join(ROOT_PATH, 'tools'),

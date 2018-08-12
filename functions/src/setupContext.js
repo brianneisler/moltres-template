@@ -1,18 +1,20 @@
 import * as functions from 'firebase-functions'
-import { config } from 'moltres'
+import { createContext } from 'moltres'
 import { assoc, propOr, reduceObjIndexed, toUpper } from 'moltres-utils'
 
-const setupConfig = () => {
+const setupContext = (options = {}) => {
   const functionsConfig = reduceObjIndexed(
     (accum, value, name) => assoc(toUpper(name), value, accum),
     {},
     propOr({}, 'moltres', functions.config())
   )
 
-  return config({
+  return createContext({
+    ...options.env,
     ...process.env,
-    ...functionsConfig
+    ...functionsConfig,
+    NAMESPACE: options.namespace
   })
 }
 
-export default setupConfig
+export default setupContext

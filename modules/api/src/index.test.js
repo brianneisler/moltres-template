@@ -4,7 +4,6 @@ describe('index', () => {
     expect(mod).toEqual({
       actions: expect.any(Object),
       all: expect.any(Function),
-      default: expect.any(Function),
       delete: expect.any(Function),
       get: expect.any(Function),
       post: expect.any(Function),

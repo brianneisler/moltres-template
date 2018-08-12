@@ -1,9 +1,9 @@
-import createModule from '../createModule'
-import initializeApp from '../initializeApp'
+import createModule from './createModule'
+import generateConfig from './generateConfig'
 
-const module = (config) => ({
-  ...createModule(config),
-  initializeApp
-})
+const module = {
+  createModule,
+  generateConfig
+}
 
 export default module
