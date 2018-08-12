@@ -11,7 +11,7 @@ describe('index', () => {
       initAdminApp: expect.any(Function),
       initTestApp: expect.any(Function),
       loadEnv: expect.any(Function),
-      setupConfig: expect.any(Function)
+      setupContext: expect.any(Function)
     })
   })
 })

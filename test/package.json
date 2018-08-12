@@ -54,6 +54,11 @@
     "eslint-plugin-prettier": "^2.6.1",
     "firebase": "^5.2.0",
     "jest": "^23.2.0",
+    "moltres": "0.1.x",
     "prettier": "^1.13.6"
+  },
+  "peerDependencies": {
+    "firebase": ">=3 <=5",
+    "moltres": ">=0.1.0"
   }
 }
