@@ -18,12 +18,9 @@ describe('integration: start and stop engine', () => {
       start: jest.fn(),
       stop: jest.fn()
     }
-    const engine = createEngine(
-      {
-        test: testModule
-      },
-      {}
-    )
+    const engine = createEngine({
+      test: testModule
+    })
 
     expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
     expect(testModule.start).toHaveBeenCalledWith(engine, testModule)

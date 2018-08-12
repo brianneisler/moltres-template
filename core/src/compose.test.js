@@ -5,7 +5,7 @@ import runSaga from './runSaga'
 
 describe('compose', () => {
   test('composes generators for use with redux saga', async () => {
-    const engine = createEngine({}, {})
+    const engine = createEngine()
     const add1 = async (val) => new Promise((resolve) => setTimeout(() => resolve(val + 1), 0))
     const method = compose(
       function*(val) {

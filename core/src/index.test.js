@@ -13,6 +13,17 @@ describe('index', () => {
       channel: expect.any(Function),
       combineActions: expect.any(Function),
       compose: expect.any(Function),
+      cps: expect.any(Function),
+      createAction: expect.any(Function),
+      createActions: expect.any(Function),
+      createChannel: expect.any(Function),
+      createConfig: expect.any(Function),
+      createContext: expect.any(Function),
+      createEngine: expect.any(Function),
+      createFactory: expect.any(Function),
+      delay: expect.any(Function),
+      END: expect.any(Object),
+      eventChannel: expect.any(Function),
       finally: expect.any(Function),
       flush: expect.any(Function),
       fork: expect.any(Function),
@@ -28,6 +39,8 @@ describe('index', () => {
       resolve: expect.any(Function),
       resolveAll: expect.any(Function),
       resolveToPromise: expect.any(Function),
+      setup: expect.any(Function),
+      setupConfig: expect.any(Function),
       withResolve: expect.any(Function)
     })
   })

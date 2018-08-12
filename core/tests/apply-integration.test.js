@@ -2,7 +2,7 @@ import { apply, createEngine, runSaga } from '../src'
 
 describe('apply integration tests', () => {
   test('resolves a promise to generator and continues execution', async () => {
-    const engine = createEngine({}, {})
+    const engine = createEngine()
 
     const returnValue = (arg1, arg2) => arg1 + arg2
 

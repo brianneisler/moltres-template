@@ -14,12 +14,13 @@ const cancel = require('./cancel').default
 const cancelled = require('./cancelled').default
 const channel = require('./channel').default
 const compose = require('./compose').default
-const config = require('./config').default
 const combineActions = require('./combineActions').default
 const cps = require('./cps').default
 const createAction = require('./createAction').default
 const createActions = require('./createActions').default
 const createChannel = require('./createChannel').default
+const createConfig = require('./createConfig').default
+const createContext = require('./createContext').default
 const createEngine = require('./createEngine').default
 const createFactory = require('./createFactory').default
 const delay = require('./delay').default
@@ -49,6 +50,7 @@ const selectWait = require('./selectWait').default
 const setConfig = require('./setConfig').default
 const setContext = require('./setContext').default
 const setup = require('./setup').default
+const setupConfig = require('./setupConfig').default
 const spawn = require('./spawn').default
 const start = require('./start').default
 const stop = require('./stop').default
@@ -56,7 +58,6 @@ const take = require('./take').default
 const takeEvery = require('./takeEvery').default
 const takeLatest = require('./takeLatest').default
 const throttle = require('./throttle').default
-const updateContext = require('./updateContext').default
 const watchChannel = require('./watchChannel').default
 const withConfig = require('./withConfig').default
 const withContext = require('./withContext').default
@@ -78,11 +79,12 @@ module.exports = {
   channel,
   combineActions,
   compose,
-  config,
   cps,
   createAction,
   createActions,
   createChannel,
+  createConfig,
+  createContext,
   createEngine,
   createFactory,
   delay,
@@ -112,6 +114,7 @@ module.exports = {
   setConfig,
   setContext,
   setup,
+  setupConfig,
   spawn,
   start,
   stop,
@@ -119,7 +122,6 @@ module.exports = {
   takeEvery,
   takeLatest,
   throttle,
-  updateContext,
   watchChannel,
   withConfig,
   withContext,

@@ -9,10 +9,10 @@ import runStore from './runStore'
 
 const createRootSaga = (store, { promise }) => {
   return function* rootSaga() {
-    let spawns
+    let spawns = []
     try {
-      yield setContext(store.getContext())
-      yield setConfig(store.getConfig())
+      yield* setContext([], store.getContext())
+      yield* setConfig([], store.getConfig())
       spawns = yield call(runStore, store)
       yield take('WAIT_TILL_CANCELLED')
     } finally {

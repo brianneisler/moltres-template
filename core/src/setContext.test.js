@@ -1,3 +1,4 @@
+import createContext from './createContext'
 import createEngine from './createEngine'
 import getContext from './getContext'
 import runSaga from './runSaga'
@@ -5,13 +6,14 @@ import setContext from './setContext'
 
 describe('setContext', () => {
   test('sets the context correctly', async () => {
-    const engine = createEngine({}, {})
-    const testContext = { foo: 'bar' }
-    const method = function*(val) {
-      yield setContext(val)
+    const engine = createEngine({}, {}, createContext({}))
+    const method = function*() {
+      yield* setContext('foo', 'bar')
       return yield* getContext()
     }
 
-    expect(await runSaga(engine, method, testContext)).toBe(testContext)
+    expect(await runSaga(engine, method)).toEqual({
+      foo: 'bar'
+    })
   })
 })

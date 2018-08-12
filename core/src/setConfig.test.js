@@ -5,13 +5,15 @@ import setConfig from './setConfig'
 
 describe('setConfig', () => {
   test('sets the config correctly', async () => {
-    const engine = createEngine({}, {})
-    const testConfig = { foo: 'bar' }
-    const method = function*(val) {
-      yield setConfig(val)
+    const engine = createEngine()
+
+    const method = function*() {
+      yield* setConfig('foo', 'bar')
       return yield* getConfig()
     }
 
-    expect(await runSaga(engine, method, testConfig)).toBe(testConfig)
+    expect(await runSaga(engine, method)).toEqual({
+      foo: 'bar'
+    })
   })
 })

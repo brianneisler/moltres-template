@@ -32,16 +32,13 @@ describe('handle action integration tests', () => {
       return yield runAsync()
     })
 
-    const engine = createEngine(
-      {
-        test: {
-          run: function*() {
-            yield takeEvery(testAction, actionHandler)
-          }
+    const engine = createEngine({
+      test: {
+        run: function*() {
+          yield takeEvery(testAction, actionHandler)
         }
-      },
-      {}
-    )
+      }
+    })
 
     const dispatched = engine.dispatch(testAction('abc123'))
     expect(dispatched).toEqual({
@@ -78,16 +75,13 @@ describe('handle action integration tests', () => {
       return yield runAsync()
     })
 
-    const engine = createEngine(
-      {
-        test: {
-          run: function*() {
-            yield takeEvery(testAction, actionHandler)
-          }
+    const engine = createEngine({
+      test: {
+        run: function*() {
+          yield takeEvery(testAction, actionHandler)
         }
-      },
-      {}
-    )
+      }
+    })
 
     const dispatched = engine.dispatch(testAction('abc123'))
     expect(dispatched).toEqual({

@@ -1,4 +1,4 @@
-import { forEachObjIndexed, mapAll, values } from 'moltres-utils'
+import { forEachObjIndexed, get, mapAll, set, values } from 'moltres-utils'
 import _finally from '../finally'
 import setup from '../setup'
 import start from '../start'
@@ -6,20 +6,16 @@ import stop from '../stop'
 import buildStore from './buildStore'
 import createModules from './createModules'
 
-const createStore = (modules, config) => {
+const createStore = (modules, config, context) => {
   const instances = createModules(config, modules)
-  let context = {}
 
   const newStore = {
     ...buildStore(instances),
     getModules: () => instances,
-    getConfig: () => config,
-    getContext: () => context,
-    setContext: (props) => {
-      context = {
-        ...context,
-        ...props
-      }
+    getConfig: (selector) => get(selector, config),
+    getContext: (selector) => get(selector, context),
+    setContext: (selector, value) => {
+      context = set(selector, value, context)
     },
     setup: (store) => {
       forEachObjIndexed((module) => {

@@ -1,17 +1,15 @@
 import createEngine from './createEngine'
 import getConfig from './getConfig'
 import runSaga from './runSaga'
-import setConfig from './setConfig'
 
 describe('getConfig', () => {
   test('gets the whole config when no args are given', async () => {
-    const engine = createEngine({}, {})
     const testConfig = {
       bim: 'bop',
       foo: 'bar'
     }
-    const method = function*(val) {
-      yield setConfig(val)
+    const engine = createEngine({}, testConfig)
+    const method = function*() {
       return yield* getConfig()
     }
 
@@ -19,29 +17,25 @@ describe('getConfig', () => {
   })
 
   test('gets the specified config path correctly', async () => {
-    const engine = createEngine({}, {})
     const testConfig = {
       bim: 'bop',
       foo: 'bar'
     }
-    const method = function*(val) {
-      yield setConfig(val)
+    const engine = createEngine({}, testConfig)
+    const method = function*() {
       return yield* getConfig('bim')
     }
 
-    expect(await runSaga(engine, method, testConfig)).toEqual({
-      bim: 'bop'
-    })
+    expect(await runSaga(engine, method, testConfig)).toEqual('bop')
   })
 
   test('executes the given selector function on the config', async () => {
-    const engine = createEngine({}, {})
     const testConfig = {
       bim: 'bop',
       foo: 'bar'
     }
-    const method = function*(val) {
-      yield setConfig(val)
+    const engine = createEngine({}, testConfig)
+    const method = function*() {
       return yield* getConfig((config) => ({
         it: config.bim
       }))
