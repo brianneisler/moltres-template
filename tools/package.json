@@ -1,6 +1,6 @@
 {
   "name": "moltres-tools",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "Tools for managing a Moltres app",
   "main": "./dist/index.js",
   "license": "Apache-2.0",

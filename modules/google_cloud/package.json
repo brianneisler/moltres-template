@@ -1,6 +1,6 @@
 {
   "name": "@moltres/google_cloud",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "A moltres module for setting up Google Cloud",
   "main": "./dist/index.js",
   "license": "Apache-2.0",
