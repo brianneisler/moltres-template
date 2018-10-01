@@ -1,7 +1,7 @@
+import isBuffer from '../buffer/isBuffer'
 import getTag from './getTag'
 import isArguments from './isArguments'
 import isArrayLike from './isArrayLike'
-import isBuffer from './isBuffer'
 import isPrototype from './isPrototype'
 import isTypedArray from './isTypedArray'
 
@@ -18,27 +18,24 @@ const { hasOwnProperty } = Object.prototype
  * jQuery-like collections are considered empty if they have a `length` of `0`.
  * Similarly, maps and sets are considered empty if they have a `size` of `0`.
  *
+ * @func
+ * @since v0.1.0
+ * @category data
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is empty, else `false`.
  * @example
  *
- * isEmpty(null)
- * // => true
+ * isEmpty(null) // => true
  *
- * isEmpty(true)
- * // => true
+ * isEmpty(true) // => true
  *
- * isEmpty(1)
- * // => true
+ * isEmpty(1) // => true
  *
- * isEmpty([1, 2, 3])
- * // => false
+ * isEmpty([1, 2, 3]) // => false
  *
- * isEmpty('abc')
- * // => false
+ * isEmpty('abc') // => false
  *
- * isEmpty({ 'a': 1 })
- * // => false
+ * isEmpty({ 'a': 1 })  // => false
  */
 const isEmpty = (value) => {
   if (value == null) {

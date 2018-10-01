@@ -13,6 +13,7 @@ const firebase = require('./firebase')
 const graph = require('./graph')
 const mime = require('./mime')
 const path = require('./path')
+const saga = require('./saga')
 const stream = require('./stream')
 const throwable = require('./throwable')
 const walk = require('./walk')
@@ -26,6 +27,7 @@ module.exports = {
   ...graph,
   ...mime,
   ...path,
+  ...saga,
   ...stream,
   ...throwable,
   ...walk

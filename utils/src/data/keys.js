@@ -1,8 +1,8 @@
-import { keys as rKeys } from 'ramda'
 import arrayLikeKeys from './arrayLikeKeys'
 import concat from './concat'
 import isArrayLike from './isArrayLike'
 import isMap from './isMap'
+import objectKeys from './objectKeys'
 
 const keys = (collection) => {
   if (isArrayLike(collection)) {
@@ -17,7 +17,7 @@ const keys = (collection) => {
     return Reflect.ownKeys(collection)
   }
 
-  let ownKeys = rKeys(collection)
+  let ownKeys = objectKeys(collection)
 
   if (typeof Object.getOwnPropertySymbols === 'function') {
     ownKeys = concat(ownKeys, Object.getOwnPropertySymbols(collection))

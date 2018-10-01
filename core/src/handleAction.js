@@ -6,15 +6,15 @@ import {
   isFunction,
   isNil,
   isPlainObject,
+  isResolvable,
   isString,
   isUndefined,
   map,
+  resolveToResolver,
   split,
   toString
 } from 'moltres-utils'
 import { ACTION_TYPE_DELIMITER } from './constants'
-import isResolvable from './isResolvable'
-import resolveToPromise from './resolveToPromise'
 
 const handleAction = (handler = identity, type = always(true), defaultProps = {}) => {
   let typeFilter = type
@@ -56,7 +56,7 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
 
     const result = nextHandler(props, action)
     if (isResolvable(result) && action.promise) {
-      const resolver = resolveToPromise(result)
+      const resolver = resolveToResolver(result)
       action.promise.push(resolver.promise)
       return resolver
     }

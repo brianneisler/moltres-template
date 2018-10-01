@@ -1,0 +1,42 @@
+{
+  "name": "@moltres/storage",
+  "version": "0.1.17",
+  "description": "A moltres module for firebase storage",
+  "main": "./dist/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/modules/storage#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "CMS",
+    "firebase",
+    "moltres",
+    "moltres-module",
+    "stroage"
+  ],
+  "dependencies": {
+    "moltres-utils": "0.1.x"
+  },
+  "devDependencies": {
+    "@moltres/firebase": "0.1.x",
+    "firebase": "^5.2.0",
+    "firebase-admin": "^5.12.1",
+    "moltres": "0.1.x",
+    "moltres-test": "0.1.x",
+  },
+  "peerDependencies": {
+    "@moltres/firebase": "0.1.x",
+    "firebase": ">=3 <=5",
+    "firebase-admin": ">=3 <=5",
+    "moltres": ">=0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

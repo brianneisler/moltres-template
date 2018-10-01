@@ -1,5 +1,6 @@
-import { isGenerator } from 'moltres-utils'
+import isPromise from '../data/isPromise'
 import isResolvable from './isResolvable'
+import resolveToGenerator from './resolveToGenerator'
 
 // NOTE BRN
 // We have to do this because redux-saga doesn't resolve generators that are
@@ -16,15 +17,12 @@ import isResolvable from './isResolvable'
 // completed so that other async lines of exection can pick up on
 // the completed generator and continue execution
 
-const resolve = function*(value) {
+const resolve = (value) => {
   if (isResolvable(value)) {
-    let result
-    if (isGenerator(value)) {
-      result = yield* value
-    } else {
-      result = yield value
+    if (isPromise(value)) {
+      return value.then((resolved) => resolve(resolved))
     }
-    return yield* resolve(result)
+    return resolveToGenerator(value)
   }
   return value
 }

@@ -1,4 +1,4 @@
-import { memoize } from 'ramda'
+import memoize from './memoize'
 
 const charCodeOfDot = '.'.charCodeAt(0)
 const reEscapeChar = /\\(\\)?/g

@@ -35,15 +35,10 @@ const handleAction = require('./handleAction').default
 const handleActions = require('./handleActions').default
 const isAction = require('./isAction').default
 // const isEnd = require('./isEnd').default
-const isOp = require('./isOp').default
-const isResolvable = require('./isResolvable').default
 const join = require('./join').default
 const mapProps = require('./mapProps').default
 const put = require('./put').default
 const race = require('./race').default
-const resolve = require('./resolve').default
-const resolveAll = require('./resolveAll').default
-const resolveToPromise = require('./resolveToPromise').default
 const runSaga = require('./runSaga').default
 const select = require('./select').default
 const selectWait = require('./selectWait').default
@@ -99,15 +94,10 @@ module.exports = {
   handleActions,
   isAction,
   // isEnd,
-  isOp,
-  isResolvable,
   join,
   mapProps,
   put,
   race,
-  resolve,
-  resolveAll,
-  resolveToPromise,
   runSaga,
   select,
   selectWait,
