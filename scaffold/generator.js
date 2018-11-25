@@ -1,4 +1,5 @@
-const { has, is, keys, map, mergeDeepRight, path, prop, reduce, values } = require('ramda')
+const { join } = require('path')
+const { concat, has, is, keys, map, mergeDeepRight, path, prop, reduce, values } = require('ramda')
 const registry = require('./generators')
 const {
   isIgnoreFile,
@@ -9,8 +10,8 @@ const {
   writeJsonConfigFile
 } = require('./utils')
 
-const generateConfig = (configType, generators) => {
-  const generatorKeys = keys(generators)
+const generateConfig = (configType, scaffold) => {
+  const generatorKeys = keys(scaffold.generators)
   return reduce(
     (config, generator) => {
       const configGenerator = path(['configs', configType], generator)
@@ -27,46 +28,46 @@ const generateConfig = (configType, generators) => {
       return mergeDeepRight(config, generatedConfig)
     },
     null,
-    values(generators)
+    concat(values(scaffold.generators), [scaffold])
   )
 }
 
-const generateConfigFile = async (configType, fileName, generators, options) => {
+const generateConfigFile = async (configType, fileName, scaffold, options) => {
   const filePath = join(options.cwd, fileName)
   if (isIgnoreFile(filePath)) {
-    const config = generateConfig(configType, generators)
+    const config = generateConfig(configType, scaffold)
     return writeIgnoreConfigFile(config, filePath)
   } else if (isJsFile(filePath)) {
     return writeJsConfigFile(configType, filePath)
   } else if (isJsonFile(filePath)) {
-    const config = generateConfig(configType, generators)
+    const config = generateConfig(configType, scaffold)
     return writeJsonConfigFile(config, filePath)
   }
 }
 
-const newGenerator = ({ generators }, options) => {
-  generators = map((name) => {
-    if (!has(name, registry)) {
-      throw new Error(`Unknown generator ${name}`)
-    }
-    return prop(name, registry)
-  }, generators)
+const newGenerator = (scaffold, options) => {
+
+  scaffold = {
+    ...scaffold,
+    generators: map((name) => {
+      if (!has(name, registry)) {
+        throw new Error(`Unknown generator ${name}`)
+      }
+      return prop(name, registry)
+    }, scaffold.generators)
+  }
 
   return {
-    config: (configType) => generateConfig(configType, generators)
-    generate: async () => {
-      async () =>
-        Promise.all(map(
-          async (generatorType) => {
-            const generator = prop(generatorType, generators)
-            return Promise.all(map(
-              async ({ configType, fileName }) => generateConfigFile(configType, fileName, generators),
-              generator.files
-            ))
-          },
-          scaf.generators
-        ))
-    }
+    config: (configType) => generateConfig(configType, scaffold),
+    generate: async () =>
+      Promise.all(map(
+        async (generator) =>
+          Promise.all(map(
+            async ({ configType, fileName }) => generateConfigFile(configType, fileName, scaffold, options),
+            generator.files
+          )),
+        scaffold.generators
+      ))
   }
 }
 

@@ -1,3 +1,3 @@
-const { scaffold } = require('../scaffold')
+const { scaffold } = require('scaffold')
 
 module.exports = scaffold().config('prettier_config')

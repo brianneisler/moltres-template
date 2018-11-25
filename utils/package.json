@@ -29,6 +29,7 @@
     "predeploy": "bash ./scripts/predeploy.sh",
     "setup": "bash ./scripts/setup.sh",
     "test": "bash ./scripts/test.sh",
+    "update": "bash ./scripts/update.sh",
     "version:major": "bash ./scripts/version.sh major",
     "version:minor": "./scripts/version.sh minor",
     "version:patch": "./scripts/version.sh patch",
