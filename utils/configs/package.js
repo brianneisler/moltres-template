@@ -29,6 +29,7 @@ module.exports = {
     'predeploy': 'bash ./scripts/predeploy.sh',
     'setup': 'bash ./scripts/setup.sh',
     'test': 'bash ./scripts/test.sh',
+    'update': 'bash ./scripts/update.sh',
     'version:major': 'bash ./scripts/version.sh major',
     'version:minor': 'bash ./scripts/version.sh minor',
     'version:patch': 'bash ./scripts/version.sh patch',
@@ -50,7 +51,9 @@ module.exports = {
   },
   'devDependencies': {
     'caniuse-lite': '^1.0.30000907',
+    'dox': '^0.9.0',
     'firebase': '^5.5.8',
-    'firebase-admin': '^6.1.0'
+    'firebase-admin': '^6.1.0',
+    'glob': '^7.1.3'
   }
 }

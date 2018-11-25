@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { concat, has, is, keys, map, mergeDeepRight, path, prop, reduce, values } = require('ramda')
+const { append, concat, has, is, keys, map, mergeDeepRight, path, prop, propOr, reduce, values } = require('ramda')
 const registry = require('./generators')
 const {
   isIgnoreFile,
@@ -10,14 +10,25 @@ const {
   writeJsonConfigFile
 } = require('./utils')
 
+
+const getConfigTypes = (scaffold) => reduce(
+  (accum, generator) => reduce(
+    (configTypes, fileConfig) => append(fileConfig.configType, configTypes),
+    accum,
+    propOr([], 'files', generator)
+  ),
+  [],
+  scaffold.generators
+)
+
 const generateConfig = (configType, scaffold) => {
-  const generatorKeys = keys(scaffold.generators)
+  const configTypes = getConfigTypes(scaffold)
   return reduce(
     (config, generator) => {
       const configGenerator = path(['configs', configType], generator)
       let generatedConfig = configGenerator
       if (is(Function, configGenerator)) {
-        generatedConfig = configGenerator(generatorKeys)
+        generatedConfig = configGenerator(configTypes)
       }
       if (!config) {
         return generatedConfig
@@ -32,15 +43,21 @@ const generateConfig = (configType, scaffold) => {
   )
 }
 
-const generateConfigFile = async (configType, fileName, scaffold, options) => {
+const generateConfigFile = async ({ configType, fileName, format }, scaffold, options) => {
   const filePath = join(options.cwd, fileName)
   if (isIgnoreFile(filePath)) {
-    const config = generateConfig(configType, scaffold)
+    let config = generateConfig(configType, scaffold)
+    if (format) {
+      config = format(config)
+    }
     return writeIgnoreConfigFile(config, filePath)
   } else if (isJsFile(filePath)) {
     return writeJsConfigFile(configType, filePath)
   } else if (isJsonFile(filePath)) {
-    const config = generateConfig(configType, scaffold)
+    let config = generateConfig(configType, scaffold)
+    if (format) {
+      config = format(config)
+    }
     return writeJsonConfigFile(config, filePath)
   }
 }
@@ -63,7 +80,7 @@ const newGenerator = (scaffold, options) => {
       Promise.all(map(
         async (generator) =>
           Promise.all(map(
-            async ({ configType, fileName }) => generateConfigFile(configType, fileName, scaffold, options),
+            async (fileConfig) => generateConfigFile(fileConfig, scaffold, options),
             generator.files
           )),
         scaffold.generators

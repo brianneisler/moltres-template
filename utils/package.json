@@ -31,10 +31,10 @@
     "test": "bash ./scripts/test.sh",
     "update": "bash ./scripts/update.sh",
     "version:major": "bash ./scripts/version.sh major",
-    "version:minor": "./scripts/version.sh minor",
-    "version:patch": "./scripts/version.sh patch",
-    "watch:build": "./scripts/watch-build.sh",
-    "watch:test": "./scripts/watch-test.sh"
+    "version:minor": "bash ./scripts/version.sh minor",
+    "version:patch": "bash ./scripts/version.sh patch",
+    "watch:build": "bash ./scripts/watch-build.sh",
+    "watch:test": "bash ./scripts/watch-test.sh"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
