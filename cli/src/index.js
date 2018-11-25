@@ -1,8 +1,10 @@
+  // eslint-disable-next-line no-underscore-dangle
 if (!global._babelPolyfill) {
-  // eslint-disable-line no-underscore-dangle
-  require('babel-polyfill') // eslint-disable-line global-require
+  // eslint-disable-next-line global-require
+  require('@babel/polyfill')
 }
-require('source-map-support/register') // eslint-disable-line global-require
+// eslint-disable-next-line global-require
+require('source-map-support/register')
 
 const start = require('./start').default
 

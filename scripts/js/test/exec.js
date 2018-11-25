@@ -5,7 +5,7 @@ import run from '../common/run'
 const exec = async () => {
   const projects = getProjects()
   return execProjectsSeries([
-    'npm test'
+    'npm test -- --colors'
   ], projects)
 }
 

@@ -21,34 +21,67 @@ npm-debug.log
 *.iws
 .idea
 
-# mac
+#mac
 .DS_Store
+
+# appveyor
+.appveyor.yml
+
+# babel
+.babelrc
+babel.config.js
+
+# codecov
+.codecov.yml
+
+# docker
+dbuild
+dexec
+docker-compose.yml
+Dockerfile
+
+# editorconfig
+.editorconfig
 
 # eslint
 .eslintcache
 .eslintignore
 .eslintrc.js
 
+# github
+.github
+.gitignore
+
+# jest
+.jest.init.js
+coverage
+jest.config.js
+__mocks__
+__snapshots__
+__tests__
+tests
+*.test.js
+
+# lintstaged
+.lintstagedrc.json
+
 # prettier
 .prettierignore
 prettier.config.js
 
-#development
-.babelrc
-.editorconfig
-.env
+# travis
 .travis.yml
-*.test.js
+
+
+# development
+.env
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 DEVELOPMENT.md
+RELEASE.md
 TODO
-__tests__
-coverage
 docs
 etc
 examples
-jest.config.js
 scripts
 src
-tests

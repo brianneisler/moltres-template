@@ -30,7 +30,7 @@
     "lint": "./scripts/lint.sh",
     "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
-    "test": "./scripts/test.sh",
+    "test": "bash ./scripts/test.sh",
     "version:major": "./scripts/version.sh major",
     "version:minor": "./scripts/version.sh minor",
     "version:patch": "./scripts/version.sh patch",

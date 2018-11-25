@@ -1,5 +1,6 @@
 import CryptoJS from 'crypto-js'
 
+
 // https://github.com/jakubzapletal/crypto-js/blob/master/README.md#progressive-hashing
 const hashStream = async (stream, algorithm = 'SHA256') =>
   new Promise((resolve, reject) => {

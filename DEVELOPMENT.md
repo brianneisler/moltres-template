@@ -106,3 +106,11 @@ To bump the patch version of all projects and modules
 ```sh
 npm run version:patch
 ```
+
+## Update an existing project
+
+This updates the project's dependencies based on what is contained in the project's scaffold configuration.
+
+```sh
+npm run update
+```

@@ -1,2 +1,2 @@
 set -e
-lint-staged
+lint-staged "$@"

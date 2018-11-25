@@ -4,9 +4,13 @@ addons:
   apt:
     update: true
 node_js:
-- 6
-- 8
 - 10
+- 8
+- 6
+os:
+- linux
+- osx
+- windows
 before_install:
 - npm run setup:ci
 install:

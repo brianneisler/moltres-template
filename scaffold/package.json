@@ -1,0 +1,35 @@
+{
+  "name": "moltres-scaffold",
+  "version": "0.2.0",
+  "description": "Scaffold for Moltres projects and modules",
+  "main": "./index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianneisler/moltres.git"
+  },
+  "author": "Brian Neisler <hello@brianneisler.com>",
+  "homepage": "https://github.com/brianneisler/moltres/tree/master/cli#readme",
+  "bugs": {
+    "url": "https://github.com/brianneisler/moltres/issues"
+  },
+  "keywords": [
+    "moltres",
+    "scaffold"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^22.2.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^5.0.0",
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "firebase": "^5.2.0",
+    "firebase-admin": "^5.12.1",
+    "jest": "^22.0.6",
+    "prettier": "^1.13.6"
+  }
+}

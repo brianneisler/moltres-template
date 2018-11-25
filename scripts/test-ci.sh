@@ -1,3 +1,3 @@
 set -e
-npm test
+npm test "$@"
 codecov

@@ -1,9 +1,9 @@
 import action from './action'
 import execNode from './execNode'
 
-const module = {
+const plugin = {
   action,
   execNode
 }
 
-export default module
+export default plugin

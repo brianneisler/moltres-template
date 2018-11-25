@@ -1,8 +1,3 @@
-module.exports = {
-  coverageDirectory: './coverage/',
-  collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.js'],
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/+(*.)+(spec|test).js?(x)'],
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
-  testURL: 'http://localhost'
-}
+const { scaffold } = require('../scaffold')
+
+module.exports = scaffold().config('jest_config')
