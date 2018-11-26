@@ -1,3 +1,5 @@
 module.exports = [
-  'moltres.module.js'
+  '# moltres module (moltres_module generator)',
+  'moltres.module.js',
+  ''
 ]

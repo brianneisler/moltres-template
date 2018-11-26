@@ -1,7 +1,7 @@
-import isResolvable from '../saga/isResolvable'
-import resolveWith from '../saga/resolveWith'
 import getProp from './getProp'
+import isResolvable from '../saga/isResolvable'
 import iterator from './iterator'
+import resolveWith from '../saga/resolveWith'
 
 const getDone = getProp('done')
 const getValue = getProp('value')

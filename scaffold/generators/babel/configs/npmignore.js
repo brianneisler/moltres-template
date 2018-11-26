@@ -1,5 +1,7 @@
-module.exports = () => ([
+module.exports = [
+  '# babel (babel generator)',
   '.babelrc',
   '.babelrc.js',
-  'babel.config.js'
-])
+  'babel.config.js',
+  ''
+]

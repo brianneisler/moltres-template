@@ -1,7 +1,7 @@
-import isBuffer from '../buffer/isBuffer'
 import getTag from './getTag'
 import isArguments from './isArguments'
 import isArrayLike from './isArrayLike'
+import isBuffer from '../buffer/isBuffer'
 import isPrototype from './isPrototype'
 import isTypedArray from './isTypedArray'
 

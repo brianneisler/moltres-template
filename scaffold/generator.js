@@ -36,6 +36,9 @@ const generateConfig = (configType, scaffold) => {
       if (!generatedConfig) {
         return config
       }
+      if (Array.isArray(config)) {
+        return concat(config, generatedConfig)
+      }
       return mergeDeepRight(config, generatedConfig)
     },
     null,

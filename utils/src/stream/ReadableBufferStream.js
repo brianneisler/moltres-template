@@ -1,6 +1,6 @@
 import Buffer from '../buffer/Buffer'
-import isBuffer from '../buffer/isBuffer'
 import Readable from './Readable'
+import isBuffer from '../buffer/isBuffer'
 
 const DEFAULT_INITIAL_SIZE = 8 * 1024
 const DEFAULT_INCREMENT_AMOUNT = 8 * 1024

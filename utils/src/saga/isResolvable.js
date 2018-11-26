@@ -1,6 +1,6 @@
 import isGenerator from '../data/isGenerator'
-import isPromise from '../data/isPromise'
 import isOp from './isOp'
+import isPromise from '../data/isPromise'
 
 const isResolvable = (value) => isGenerator(value) || isPromise(value) || isOp(value)
 

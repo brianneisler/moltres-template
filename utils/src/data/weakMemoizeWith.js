@@ -1,4 +1,4 @@
-import { nAry, curryN } from 'ramda'
+import { curryN, nAry } from 'ramda'
 
 const weakMemoizeWith = curryN(2, (mFn, fn) => {
   const cache = new WeakMap()

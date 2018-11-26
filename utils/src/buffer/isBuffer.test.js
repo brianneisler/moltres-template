@@ -1,6 +1,6 @@
 import { forEach } from 'ramda'
-import isBuffer from './isBuffer'
 import createBuffer from './createBuffer'
+import isBuffer from './isBuffer'
 
 describe('isBuffer', () => {
   test('correctly identifies Buffer', () => {

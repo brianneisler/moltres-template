@@ -1,5 +1,5 @@
-import createBuffer from '../buffer/createBuffer'
 import bufferToStream from './bufferToStream'
+import createBuffer from '../buffer/createBuffer'
 
 describe('bufferToStream', () => {
   test('converts string to stream', async () => {

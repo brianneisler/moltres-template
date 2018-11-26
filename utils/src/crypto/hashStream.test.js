@@ -1,5 +1,5 @@
-import stringToStream from '../stream/stringToStream'
 import hashStream from './hashStream'
+import stringToStream from '../stream/stringToStream'
 
 describe('hashStream', () => {
   test('defaults to SHA256', async () => {

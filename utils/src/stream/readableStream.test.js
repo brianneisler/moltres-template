@@ -1,5 +1,5 @@
-import stream from 'readable-stream'
 import readableStream from './readableStream'
+import stream from 'readable-stream'
 
 describe('readableStream', () => {
   test('converts string to stream', () => {

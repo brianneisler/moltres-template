@@ -4,9 +4,9 @@ module.exports = {
     'eslint',
     'jest',
     'moltres_project',
-    'node',
     'npm',
     'package',
-    'prettier'
+    'prettier',
+    'scaffold'
   ]
 }

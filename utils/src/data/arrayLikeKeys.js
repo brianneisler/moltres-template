@@ -1,5 +1,5 @@
-import isBuffer from '../buffer/isBuffer'
 import isArguments from './isArguments'
+import isBuffer from '../buffer/isBuffer'
 import isIndex from './isIndex'
 import isTypedArray from './isTypedArray'
 

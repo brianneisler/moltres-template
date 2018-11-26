@@ -1,19 +1,39 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# babel (babel generator)
+.babelrc
+.babelrc.js
+babel.config.js
 
-pids
-logs
-results
+# eslint (eslint generator)
+.eslintcache
+.eslintignore
+.eslintrc.js
 
-# node js
+# jest (jest generator)
+.jest.init.js
+coverage
+jest.config.js
+__mocks__
+__snapshots__
+__tests__
+tests
+*.test.js
+
+# npm (npm generator)
 node_modules
 npm-debug.log
+
+# package (package generator)
+*.csv
+*.dat
+*.gz
+*.log
+*.out
+*.pid
+*.seed
+lib-cov
+logs
+pids
+results
 
 # IntelliJ resources
 *.iml
@@ -21,15 +41,8 @@ npm-debug.log
 *.iws
 .idea
 
-#mac
+# mac
 .DS_Store
-
-# appveyor
-.appveyor.yml
-
-# babel
-.babelrc
-babel.config.js
 
 # codecov
 .codecov.yml
@@ -43,37 +56,24 @@ Dockerfile
 # editorconfig
 .editorconfig
 
-# eslint
-.eslintcache
-.eslintignore
-.eslintrc.js
-
 # github
 .github
 .gitignore
 
-# jest
-.jest.init.js
-coverage
-jest.config.js
-__mocks__
-__snapshots__
-__tests__
-tests
-*.test.js
-
 # lintstaged
 .lintstagedrc.json
-
-# prettier
-.prettierignore
-prettier.config.js
 
 # travis
 .travis.yml
 
+# prettier (pretter generator)
+.prettierignore
+prettier.config.js
 
-# development
+# scaffold (scaffold generator)
+scaffold.js
+
+# utils project (project generator)
 .env
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md

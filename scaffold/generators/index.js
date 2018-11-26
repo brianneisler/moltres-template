@@ -4,8 +4,8 @@ module.exports = {
   jest: require('./jest'),
   moltres_module: require('./moltres_module'),
   moltres_project: require('./moltres_project'),
-  // node: require('./node'),
-  // npm: require('./npm'),
+  npm: require('./npm'),
   package: require('./package'),
-  prettier: require('./prettier')
+  prettier: require('./prettier'),
+  scaffold: require('./scaffold')
 }
