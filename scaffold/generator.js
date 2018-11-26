@@ -46,20 +46,20 @@ const generateConfig = (configType, scaffold) => {
   )
 }
 
-const generateConfigFile = async ({ configType, fileName, format }, scaffold, options) => {
+const generateConfigFile = async ({ configType, fileName, transform }, scaffold, options) => {
   const filePath = join(options.cwd, fileName)
   if (isIgnoreFile(filePath)) {
     let config = generateConfig(configType, scaffold)
-    if (format) {
-      config = format(config)
+    if (transform) {
+      config = transform(config)
     }
     return writeIgnoreConfigFile(config, filePath)
   } else if (isJsFile(filePath)) {
     return writeJsConfigFile(configType, filePath)
   } else if (isJsonFile(filePath)) {
     let config = generateConfig(configType, scaffold)
-    if (format) {
-      config = format(config)
+    if (transform) {
+      config = transform(config)
     }
     return writeJsonConfigFile(config, filePath)
   }

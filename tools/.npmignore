@@ -1,19 +1,39 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# babel (babel generator)
+.babelrc
+.babelrc.js
+babel.config.js
 
-pids
-logs
-results
+# eslint (eslint generator)
+.eslintcache
+.eslintignore
+.eslintrc.js
 
-# node js
+# jest (jest generator)
+.jest.init.js
+coverage
+jest.config.js
+__mocks__
+__snapshots__
+__tests__
+tests
+*.test.js
+
+# npm (npm generator)
 node_modules
 npm-debug.log
+
+# package (package generator)
+*.csv
+*.dat
+*.gz
+*.log
+*.out
+*.pid
+*.seed
+lib-cov
+logs
+pids
+results
 
 # IntelliJ resources
 *.iml
@@ -24,32 +44,46 @@ npm-debug.log
 # mac
 .DS_Store
 
-# eslint
-.eslintcache
-.eslintignore
-.eslintrc.js
+# codecov
+.codecov.yml
 
-# prettier
+# docker
+dbuild
+dexec
+docker-compose.yml
+Dockerfile
+
+# editorconfig
+.editorconfig
+
+# github
+.github
+.gitignore
+
+# lintstaged
+.lintstagedrc.json
+
+# travis
+.travis.yml
+
+# prettier (pretter generator)
 .prettierignore
 prettier.config.js
 
-#development
-.babelrc
-.editorconfig
+# scaffold (scaffold generator)
+configs
+generators
+scaffold.js
+
+# utils project (project generator)
 .env
-.travis.yml
-*.test.js
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 DEVELOPMENT.md
+RELEASE.md
 TODO
-__tests__
-config
-coverage
 docs
 etc
 examples
-jest.config.js
 scripts
 src
-tests

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -e
-babel-node ./scripts/watch/exec.js $1
+babel-node ./scripts/js/watch/exec.js $1

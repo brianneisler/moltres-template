@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -e
-babel-node ./scripts/clean/exec.js
+babel-node ./scripts/js/clean/exec.js

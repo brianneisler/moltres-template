@@ -1,7 +1,3 @@
-module.exports = {
-  arrowParens: 'always',
-  printWidth: 100,
-  semi: false,
-  singleQuote: true,
-  trailingComma: 'none'
-}
+const { scaffold } = require('scaffold')
+
+module.exports = scaffold().config('prettier_config')
