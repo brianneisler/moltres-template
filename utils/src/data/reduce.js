@@ -1,211 +1,86 @@
-import isGenerator from './isGenerator'
-import isPromise from './isPromise'
-import slice from './slice'
+import curry from '../common/curry'
+import defn from '../common/defn'
+import iterate from '../common/iterate'
+import pipe from '../common/pipe'
 
-const generatorReduce = function*(iteratee, accumulator, array) {
-  if (isGenerator(accumulator)) {
-    accumulator = yield* accumulator
-  } else if (isPromise(accumulator)) {
-    accumulator = yield accumulator
-  }
-  const length = array == null ? 0 : array.length
-  let idx = 0
-  while (idx < length) {
-    accumulator = iteratee(accumulator, array[idx], idx)
-    if (isGenerator(accumulator)) {
-      accumulator = yield* accumulator
-    } else if (isPromise(accumulator)) {
-      accumulator = yield accumulator
-    }
-    idx += 1
-  }
-  return accumulator
-}
-
-const asyncReduce = async (iteratee, accumulator, array) => {
-  if (isPromise(accumulator)) {
-    accumulator = await accumulator
-  } else if (isGenerator(accumulator)) {
-    return generatorReduce(iteratee, accumulator, array)
-  }
-  const length = array == null ? 0 : array.length
-  let idx = 0
-  while (idx < length) {
-    accumulator = iteratee(accumulator, array[idx], idx)
-    if (isPromise(accumulator)) {
-      accumulator = await accumulator
-    } else if (isGenerator(accumulator)) {
-      return generatorReduce(iteratee, accumulator, slice(idx + 1, length, array))
-    }
-    idx += 1
-  }
-  return accumulator
-}
-
-const reduce = (iteratee, accumulator, array) => {
-  if (isPromise(accumulator)) {
-    return asyncReduce(iteratee, accumulator, array)
-  } else if (isGenerator(accumulator)) {
-    return generatorReduce(iteratee, accumulator, array)
-  }
-  const length = array == null ? 0 : array.length
-  let idx = 0
-  while (idx < length) {
-    accumulator = iteratee(accumulator, array[idx], idx)
-    if (isPromise(accumulator)) {
-      return asyncReduce(iteratee, accumulator, slice(idx + 1, length, array))
-    } else if (isGenerator(accumulator)) {
-      return generatorReduce(iteratee, accumulator, slice(idx + 1, length, array))
-    }
-    idx += 1
-  }
-  return accumulator
-}
+/**
+ * Returns a single item by iterating through the collection, successively calling the iterator function and passing it an accumulator value and the current value from the collection, and then passing the result to the next call.
+ *
+ * The iterator function receives three values: *(acc, value, kdx)*.
+ *
+ * Note: This method automatically upgrades to async.
+ * - If an async `iteratee` is given to this method it will return a Promise.
+ * - If a Promise is given for `iteratee`, `accumulator`, or `collection`, this method will resolve the Promise(s) and return a Promise
+ *
+ * Note: for arrays, `reduce` does not skip deleted or unassigned indices (sparse arrays), unlike the native `Array.prototype.reduce` method. For more details  on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
+ *
+ * Dispatches to the `reduce` method of the third argument, if present.
+ *
+ * This method will resolve the parameters but it will not resolve the values passed to the iteratee. It will only resolve the values returned by the iteratee.
+ *
+ * @function
+ * @since v0.0.3
+ * @category data
+ * @param {Function} iteratee The iterator function. Receives three values, the accumulator, the current value from the collection and the key or index.
+ * @param {*} accumulator The accumulator value.
+ * @param {Array|string|Object|Promise} collection The collection to iterate over.
+ * @returns {*} The final, accumulated value.
+ * @example
+ *
+ * reduce((accum, value, key) => {
+ *   ...
+ *   return accum
+ * }, myAccum, myObject)
+ *
+ * reduce((accum, value, index) => {
+ *   ...
+ *   return accum
+ * }, myAccum, myArray)
+ *
+ * reduce((accum, value) => {
+ *   accum.push(value)
+ *   return accum
+ * }, [], [ Promise.resolve('foo') ]) // => [ Promise { 'foo' } ]
+ *
+ *
+ * reduce(subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
+ * //          -               -10
+ * //         / \              / \
+ * //        -   4           -6   4
+ * //       / \              / \
+ * //      -   3   ==>     -3   3
+ * //     / \              / \
+ * //    -   2           -1   2
+ * //   / \              / \
+ * //  0   1            0   1
+ */
+const reduce = curry(
+  defn('reduce', (iteratee, accumulator, collection) => {
+    let accum = accumulator
+    return iterate(
+      (next) =>
+        pipe(
+          (pNext) => {
+            if (pNext.done) {
+              return accum
+            }
+            return iteratee(accum, pNext.value, pNext.kdx)
+          },
+          (nextAccum) => {
+            accum = nextAccum
+            if (next.done) {
+              return {
+                ...next,
+                value: accum
+              }
+            }
+            return next
+          }
+        )(next),
+      collection
+    )
+  })
+)
 
 export default reduce
-// import bind from './bind'
-// import isArrayLike from './isArrayLike'
-// import isFunction from './isFunction'
-// import isGenerator from './isGenerator'
-// import isIterable from './isIterable'
-// import isIterator from './isIterator'
-// import isPromise from './isPromise'
-// import iterator from './iterator'
-// import resolve from './resolve'
-// import xwrap from './xwrap'
-//
-//
-// function arrayReduce(xf, acc, list) {
-//   if (isPromise(acc)) {
-//     return asyncArrayReduce(iteratee, acc, list)
-//   } else if (isGenerator(acc)) {
-//     return generatorReduceRight(iteratee, acc, list)
-//   }
-//   var idx = 0
-//   var len = list.length
-//   while (idx < len) {
-//     acc = xf['@@transducer/step'](acc, list[idx])
-//     if (acc && acc['@@transducer/reduced']) {
-//       acc = acc['@@transducer/value']
-//       break
-//     }
-//     idx += 1
-//   }
-//   return xf['@@transducer/result'](acc)
-// }
-//
-// const iterableReduce = (xf, acc, iter) => {
-//   var step = iter.next()
-//   while (!step.done) {
-//     acc = xf['@@transducer/step'](acc, step.value)
-//     if (acc && acc['@@transducer/reduced']) {
-//       acc = acc['@@transducer/value']
-//       break
-//     }
-//     step = iter.next()
-//   }
-//   return xf['@@transducer/result'](acc)
-// }
-//
-// const methodReduce = (xf, acc, obj, methodName) =>
-//   xf['@@transducer/result'](obj[methodName](bind(xf['@@transducer/step'], xf), acc))
-//
-// const reduce = (iteratee, acc, list, options = { resolve: true }) => {
-//   if (isFunction(iteratee)) {
-//     iteratee = xwrap(iteratee)
-//   }
-//
-//   let results
-//   if (isArrayLike(list)) {
-//     results = arrayReduce(iteratee, acc, list)
-//   } else if (list != null && isFunction(list['fantasy-land/reduce'])) {
-//     results = methodReduce(iteratee, acc, list, 'fantasy-land/reduce')
-//   } else if (isIterable(list)) {
-//     results = iterableReduce(iteratee, acc, iterator(list))
-//   } else if (isIterator(list)) {
-//     results = iterableReduce(iteratee, acc, list)
-//   } else if (list != null && isFunction(list.reduce)) {
-//     results = methodReduce(iteratee, acc, list, 'reduce')
-//   } else {
-//     throw new TypeError('reduce: list must be array or iterable')
-//   }
-//
-//   if (options.resolve) {
-//     return resolve(results)
-//   }
-//   return results
-// }
-//
-// export default reduce
-//
-
-//
-//
-//
-// import identity from './identity'
-// import isArrayLike from './isArrayLike'
-// import isGenerator from './isGenerator'
-// import isIterator from './isIterator'
-// import isObjectLike from './isObjectLike'
-// import isPromise from './isPromise'
-// import iterator from './iterator'
-//
-// const resolveGenerator = function* (generator, callback) {
-//   const result = yield* generator
-//   return callback(result)
-// }
-//
-// const resolveToValue = (value, callback = identity) => {
-//   if (isPromise(value)) {
-//     return value.then((result) => resolveToValue(result, callback))
-//   }
-//   if (isGenerator(value)) {
-//     return resolveGenerator(value, (result) => resolveToValue(result, callback))
-//   }
-//   return callback(value)
-// }
-//
-// const resolveEach = (iter, array) => {
-//   const { length } = array
-//   let index = -1
-//   //while ()
-// }
-//
-// const resolveArrayLike = (array, recur) => {
-//   return array
-// }
-//
-// const resolveObjectLike = (object, recur) => {
-//   return object
-// }
-//
-// const resolveIterator = (iter, recur) => {
-//   const values = []
-//   let done = false
-//   let value
-//   while (!done) {
-//     ({ done, value } = iter.next())
-//     if (!done) {
-//       values.push(value)
-//     }
-//   }
-//   return recur(values, (resolvedValues) => iterator(resolvedValues))
-// }
-//
-// const resolve = (value) =>
-//   resolveToValue(value, (resolved) => {
-//     console.log('resolved:', resolved)
-//     if (isIterator(resolved)) {
-//       return resolveIterator(resolved)
-//     }
-//     if (isArrayLike(resolved)) {
-//       return resolveArrayLike(resolved)
-//     }
-//     if (isObjectLike(resolved)) {
-//       return resolveObjectLike(resolved)
-//     }
-//     console.log('HERE resolved:', resolved)
-//     return resolved
-//   })
-//
-// export default resolve

@@ -1,33 +1,70 @@
 import anyAtIndex from './anyAtIndex'
 
 describe('anyAtIndex', () => {
-  test('any matches value in array defaulting index to 0', () => {
+  test('returns true when value in array asserts true', () => {
     const array = ['a', 'b', 'c']
-    const result = anyAtIndex((val, index) => val === 'b' && index === 1, undefined, array)
+    const result = anyAtIndex((val, index) => val === 'b' && index === 1, 0, array)
     expect(result).toBe(true)
   })
 
-  test('iterates starting at given index', () => {
-    const array = ['a', 'b', 'c']
-    const calls = []
-    const result = anyAtIndex(
-      (val, index) => {
-        calls.push({
-          val,
-          index
-        })
-        return false
-      },
-      1,
-      array
+  test('throws when passed a value that is not array like', () => {
+    expect(() => anyAtIndex(() => true, 0, {})).toThrow(
+      expect.objectContaining({
+        message: expect.any(String),
+        type: 'UnexpectedType'
+      })
     )
-    expect(calls).toEqual([{ val: 'b', index: 1 }, { val: 'c', index: 2 }])
+    expect(() => anyAtIndex(() => true, 0, null)).toThrow(
+      expect.objectContaining({
+        message: expect.any(String),
+        type: 'UnexpectedType'
+      })
+    )
+  })
+
+  test('returns false if no value is matched', () => {
+    const array = ['a', 'b', 'c']
+    const result = anyAtIndex((val) => val === 'd', 0, array)
     expect(result).toBe(false)
   })
 
-  test('returns false if no value is found', () => {
+  test('starts at the given index', () => {
     const array = ['a', 'b', 'c']
-    const result = anyAtIndex((val) => val === 'd', 0, array)
+    const predicate = jest.fn((value) => value === 'd')
+    const result = anyAtIndex(predicate, 1, array)
+    expect(predicate).toHaveBeenNthCalledWith(1, 'b', 1)
+    expect(predicate).toHaveBeenNthCalledWith(2, 'c', 2)
+    expect(predicate).toHaveBeenCalledTimes(2)
+    expect(result).toBe(false)
+  })
+
+  test('stops when a true assertion is found', () => {
+    const array = ['a', 'b', 'c']
+    const predicate = jest.fn((value) => value === 'b')
+    const result = anyAtIndex(predicate, 0, array)
+    expect(predicate).toHaveBeenNthCalledWith(1, 'a', 0)
+    expect(predicate).toHaveBeenNthCalledWith(2, 'b', 1)
+    expect(predicate).toHaveBeenCalledTimes(2)
+    expect(result).toBe(true)
+  })
+
+  test('starts at the length minus the given index if index is negative', () => {
+    const array = ['a', 'b', 'c']
+    const predicate = jest.fn((value) => value === 'd')
+    const result = anyAtIndex(predicate, -1, array)
+    expect(predicate).toHaveBeenNthCalledWith(1, 'c', 2)
+    expect(predicate).toHaveBeenCalledTimes(1)
+    expect(result).toBe(false)
+  })
+
+  test('starts at 0 if the length minus the given index is still negative', () => {
+    const array = ['a', 'b', 'c']
+    const predicate = jest.fn((value) => value === 'd')
+    const result = anyAtIndex(predicate, -4, array)
+    expect(predicate).toHaveBeenNthCalledWith(1, 'a', 0)
+    expect(predicate).toHaveBeenNthCalledWith(2, 'b', 1)
+    expect(predicate).toHaveBeenNthCalledWith(3, 'c', 2)
+    expect(predicate).toHaveBeenCalledTimes(3)
     expect(result).toBe(false)
   })
 

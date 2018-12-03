@@ -1,22 +1,23 @@
-import arrayIteratorAtIndex from './arrayIteratorAtIndex'
-import curry from './curry'
-import defn from './defn'
-import find from './find'
-import isArrayLike from './isArrayLike'
+import curry from '../common/curry'
+import defn from '../common/defn'
+import isPromise from '../lang/isPromise'
 
 /**
  * Returns the first element of the list which matches the predicate, or `undefined` if no element matches starting at the given index.
  *
- * Dispatches to the `findAtIndex` method of the last argument if present.
+ * Dispatches to the `findAtIndex` method of the last argument, if present.
  *
  * Supports async predicates. If a predicate returns a Promise than the entire method will upgrade to async and return a Promise.
  *
- * @func
+ * @function
+ * @since v0.0.3
  * @category data
- * @param {Function} fn The predicate function used to determine if the element is the desired one.
- * @param {integer} index The index to start at.
- * @param {array} list The array to consider.
- * @returns {*|Promise|Generator} The element found, or `undefined`.
+ * @sig (a -> Boolean) -> [a] -> a | undefined
+ * @param {Function} fn The predicate function used to determine if the element is the
+ *        desired one.
+ * @param {Integer} index The index to start at.
+ * @param {Array} list The array to consider.
+ * @returns {*|Promise} The element found, or `undefined`.
  * @example
  *
  * const xs = [{a: 1}, {a: 2}, {a: 3}];
@@ -25,10 +26,25 @@ import isArrayLike from './isArrayLike'
  */
 const findAtIndex = curry(
   defn('findAtIndex', (fn, index, list) => {
-    if (!isArrayLike(list)) {
-      throw new Error('list paramter must be array like')
+    const { length } = list
+    let idx = index || 0
+
+    // TODO BRN: abstract this while loop pattern and make it reusable
+    while (idx < length) {
+      const value = list[idx]
+      const result = fn(list[idx], idx)
+      if (isPromise(result)) {
+        return result.then((resolvedResult) => {
+          if (resolvedResult) {
+            return value
+          }
+          return findAtIndex(fn, idx + 1, list)
+        })
+      } else if (result) {
+        return value
+      }
+      idx += 1
     }
-    return find(fn, arrayIteratorAtIndex(list, index))
   })
 )
 

@@ -1,152 +1,68 @@
-import isGenerator from './isGenerator'
-import isPromise from './isPromise'
-import slice from './slice'
+import curry from '../common/curry'
+import defn from '../common/defn'
+import iterateRight from '../common/iterateRight'
+import pipe from '../common/pipe'
 
-const generatorReduceRight = function*(iteratee, accumulator, array) {
-  if (isGenerator(accumulator)) {
-    accumulator = yield* accumulator
-  } else if (isPromise(accumulator)) {
-    accumulator = yield accumulator
-  }
-  let length = array == null ? 0 : array.length
-  while (length--) {
-    accumulator = iteratee(accumulator, array[length], length)
-    if (isGenerator(accumulator)) {
-      accumulator = yield* accumulator
-    } else if (isPromise(accumulator)) {
-      accumulator = yield accumulator
-    }
-  }
-  return accumulator
-}
-
-const asyncReduceRight = async (iteratee, accumulator, array) => {
-  if (isPromise(accumulator)) {
-    accumulator = await accumulator
-  } else if (isGenerator(accumulator)) {
-    return generatorReduceRight(iteratee, accumulator, array)
-  }
-  let length = array == null ? 0 : array.length
-  while (length--) {
-    accumulator = iteratee(accumulator, array[length], length)
-    if (isPromise(accumulator)) {
-      accumulator = await accumulator
-    } else if (isGenerator(accumulator)) {
-      return generatorReduceRight(iteratee, accumulator, slice(0, length, array))
-    }
-  }
-  return accumulator
-}
-
-const reduceRight = (iteratee, accumulator, array) => {
-  if (isPromise(accumulator)) {
-    return asyncReduceRight(iteratee, accumulator, array)
-  } else if (isGenerator(accumulator)) {
-    return generatorReduceRight(iteratee, accumulator, array)
-  }
-  let length = array == null ? 0 : array.length
-  while (length--) {
-    accumulator = iteratee(accumulator, array[length], length)
-    if (isPromise(accumulator)) {
-      return asyncReduceRight(iteratee, accumulator, slice(0, length, array))
-    } else if (isGenerator(accumulator)) {
-      return generatorReduceRight(iteratee, accumulator, slice(0, length, array))
-    }
-  }
-  return accumulator
-}
+/**
+ * Returns a single item by iterating through the collection, successively calling the iterator function and passing it an accumulator value,  the current value and the index or key from the collection, and then passing the result to the next call.
+ *
+ * Similar to [`reduce`](#reduce), except moves through the input list from the right to the left.
+ *
+ * The iterator function receives three values: *(acc, value, kdx)*.
+ *
+ * Supports async reducers. This method will automatically upgrade to async if given an async reducer.
+ *
+ * Dispatches to the `reduce` method of the third argument, if present.
+ *
+ * Note: `reduceRight` does not skip deleted or unassigned indices (sparse arrays), unlike the native `Array.prototype.reduceRight` method. For more details on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description
+ *
+ * @function
+ * @since v0.0.10
+ * @category data
+ * @param {Function} fn The iterator function. Receives three values, the accumulator, the current value from the collection and the key or index.
+ * @param {*} accumulator The accumulator value.
+ * @param {Array|string|Object|Promise} collection The collection to iterate over.
+ * @returns {*} The final, accumulated value.
+ * @example
+ *
+ * reduceRight(subtract, 0, [1, 2, 3, 4]) // => (1 - (2 - (3 - (4 - 0)))) = -2
+ * //    -               -2
+ * //   / \              / \
+ * //  1   -            1   3
+ * //     / \              / \
+ * //    2   -     ==>    2  -1
+ * //       / \              / \
+ * //      3   -            3   4
+ * //         / \              / \
+ * //        4   0            4   0
+ */
+const reduceRight = curry(
+  defn('reduceRight', (iteratee, accumulator, collection) => {
+    let accum = accumulator
+    return iterateRight(
+      (next) =>
+        pipe(
+          (pNext) => {
+            if (pNext.done) {
+              return accum
+            }
+            return iteratee(accum, pNext.value, pNext.kdx)
+          },
+          (nextAccum) => {
+            accum = nextAccum
+            if (next.done) {
+              return {
+                ...next,
+                value: accum
+              }
+            }
+            return next
+          }
+        )(next),
+      collection
+    )
+  })
+)
 
 export default reduceRight
-
-// import bind from './bind'
-// import isArrayLike from './isArrayLike'
-// import isFunction from './isFunction'
-// import isGenerator from './isGenerator'
-// import isPromise from './isPromise'
-// import slice from './slice'
-// import xwrap from './xwrap'
-//
-// const symIterator = (typeof Symbol !== 'undefined') ? Symbol.iterator : '@@iterator'
-//
-// const generatorReduceRight = function*(iteratee, acc, list) {
-//   if (isGenerator(acc)) {
-//     acc = yield* acc
-//   } else if (isPromise(acc)) {
-//     acc = yield acc
-//   }
-//   let length = list == null ? 0 : list.length
-//   while (length--) {
-//     acc = iteratee(acc, list[length], length)
-//     if (isGenerator(acc)) {
-//       acc = yield* acc
-//     } else if (isPromise(acc)) {
-//       acc = yield acc
-//     }
-//   }
-//   return acc
-// }
-//
-// const asyncReduceRight = async (iteratee, acc, list) => {
-//   if (isPromise(acc)) {
-//     acc = await acc
-//   } else if (isGenerator(acc)) {
-//     return generatorReduceRight(iteratee, acc, list)
-//   }
-//   let length = list == null ? 0 : list.length
-//   while (length--) {
-//     acc = iteratee(acc, list[length], length)
-//     if (isPromise(acc)) {
-//       acc = await acc
-//     } else if (isGenerator(acc)) {
-//       return generatorReduceRight(iteratee, acc, slice(0, length, list))
-//     }
-//   }
-//   return acc
-// }
-//
-// const arrayReduceRight = (xf, acc, list) => {
-//   let length = list == null ? 0 : list.length
-//   while (length--) {
-//     acc = iteratee(acc, list[length], length)
-//     if (isPromise(acc)) {
-//       return asyncReduceRight(iteratee, acc, slice(0, length, list))
-//     } else if (isGenerator(acc)) {
-//       return generatorReduceRight(iteratee, acc, slice(0, length, list))
-//     }
-//   }
-//   return acc
-// }
-//
-// const methodReduceRight = (xf, acc, obj, methodName) =>
-//   xf['@@transducer/result'](obj[methodName](bind(xf['@@transducer/step'], xf), acc))
-//
-// const reduceRight = (iteratee, acc, list) => {
-//   if (isFunction(iteratee)) {
-//     iteratee = xwrap(iteratee)
-//   }
-//   if (isPromise(acc)) {
-//     return asyncReduceRight(iteratee, acc, list)
-//   }
-//   if (isGenerator(acc)) {
-//     return generatorReduceRight(iteratee, acc, list)
-//   }
-//   if (isArrayLike(list)) {
-//     return arrayReduce(iteratee, acc, list)
-//   }
-//   if (typeof list['fantasy-land/reduceRight'] === 'function') {
-//     return _methodReduce(iteratee, acc, list, 'fantasy-land/reduceRight')
-//   }
-//   if (list[symIterator] != null) {
-//     return _iterableReduce(iteratee, acc, list[symIterator]())
-//   }
-//   if (typeof list.next === 'function') {
-//     return iterableReduceRight(iteratee, acc, list)
-//   }
-//   if (typeof list.reduceRight === 'function') {
-//     return methodReduceRight(iteratee, acc, list, 'reduceRight')
-//   }
-//
-//   throw new TypeError('reduce: list must be array or iterable')
-// }
-//
-// export default reduceRight

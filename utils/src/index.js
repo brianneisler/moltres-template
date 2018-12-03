@@ -1,34 +1,25 @@
-if (!global._babelPolyfill) {
-  // eslint-disable-line no-underscore-dangle
-  require('@babel/polyfill') // eslint-disable-line global-require
-}
+import '@babel/polyfill/noConflict'
+// eslint-disable-next-line global-require
+// require('source-map-support/register')
 
-// NOTE BRN: These tools should ONLY include ones
-// that are compatible with react-native
-const buffer = require('./buffer')
-const crypto = require('./crypto')
-const data = require('./data')
-const fetch = require('./fetch')
-const firebase = require('./firebase')
-const graph = require('./graph')
-const mime = require('./mime')
-const path = require('./path')
-const saga = require('./saga')
-const stream = require('./stream')
-const throwable = require('./throwable')
-const walk = require('./walk')
-
-module.exports = {
-  ...buffer,
-  ...crypto,
-  ...data,
-  ...fetch,
-  ...firebase,
-  ...graph,
-  ...mime,
-  ...path,
-  ...saga,
-  ...stream,
-  ...throwable,
-  ...walk
-}
+// NOTE BRN: These exports should ONLY include ones
+// that are compatible with react-native, web and node
+export * from './buffer'
+export * from './common'
+export * from './constants'
+export * from './crypto'
+export * from './data'
+export * from './error'
+export * from './fetch'
+export * from './firebase'
+export * from './graph'
+export * from './ip'
+export * from './lang'
+export * from './logging'
+export * from './logic'
+export * from './math'
+export * from './mime'
+export * from './path'
+export * from './stream'
+export * from './string'
+export * from './transducer'

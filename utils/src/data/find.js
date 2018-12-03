@@ -1,7 +1,9 @@
-import curry from './curry'
-import defn from './defn'
-import iterate from './iterate'
-import pipe from './pipe'
+import curry from '../common/curry'
+import defn from '../common/defn'
+import findAtIndex from './findAtIndex'
+import isArrayLike from '../lang/isArrayLike'
+import keys from './keys'
+import pipe from '../common/pipe'
 
 /**
  * Returns the first element of the collection which matches the predicate, or
@@ -12,7 +14,8 @@ import pipe from './pipe'
  * Supports async predicates. If a predicate returns a Promise than the entire
  * method will upgrade to async and return a Promise.
  *
- * @func
+ * @function
+ * @since v0.0.3
  * @category data
  * @sig (a, b -> Boolean) -> [a] -> a | undefined
  * @param {Function} fn The predicate function used to determine if the element is the
@@ -26,25 +29,15 @@ import pipe from './pipe'
  * find(propEq('a', 4))(xs); //=> undefined
  */
 const find = curry(
-  defn('find', (fn, collection) =>
-    iterate((next) => {
-      if (next.done) {
-        return next
-      }
-      return pipe(
-        () => fn(next.value, next.kdx),
-        (result) => {
-          if (!!result) {
-            return {
-              ...next,
-              done: true
-            }
-          }
-          return next
-        }
-      )()
-    }, collection)
-  )
+  defn('find', (fn, collection) => {
+    if (isArrayLike(collection)) {
+      return findAtIndex(fn, 0, collection)
+    }
+    return pipe(
+      findAtIndex((key) => fn(collection[key], key), 0),
+      (key) => collection[key]
+    )(keys(collection))
+  })
 )
 
 export default find

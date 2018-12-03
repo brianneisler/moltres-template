@@ -31,6 +31,13 @@ TODO
   - [x] setup prettier
 - [x] fix build issue where modules folder is not installed in the correct order in moltres projects
 
+ARCHITECTURE
+- [ ] add support for immutable generators
+  - http://sitr.us/2014/08/02/javascript-generators-and-functional-reactive-programming.html
+  - https://github.com/pelotom/immutagen
+- [ ] add babel plugin for making all generator functions immutable
+- [ ] add support for immutable data objects (immutablejs)
+- [ ] rewrite redux-saga to use immutable generators
 
 - [ ] add resolveAll for resolving all values of an array or object
 - [ ] add iterateAll method for iterating all values of an iterator in parallel
