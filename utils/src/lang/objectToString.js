@@ -9,7 +9,7 @@ const { toString } = Object.prototype
  * @since v0.0.18
  * @category lang
  * @param {object} object The object to convert to a string
- * @returns {object} A string representing the object.
+ * @returns {string} A string representing the object.
  *
  * objectToString({})
  * //=> '[object Object]'

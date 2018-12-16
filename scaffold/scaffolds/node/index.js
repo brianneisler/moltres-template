@@ -3,6 +3,7 @@ module.exports = {
     'babel',
     'eslint',
     'jest',
+    'node',
     'npm',
     'package',
     'prettier',

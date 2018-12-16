@@ -28,6 +28,7 @@
     "predeploy": "./scripts/predeploy.sh",
     "setup": "./scripts/setup.sh",
     "test": "./scripts/test.sh",
+    "update": "./scripts/update.sh",
     "version:major": "./scripts/version.sh major",
     "version:minor": "./scripts/version.sh minor",
     "version:patch": "./scripts/version.sh patch",
@@ -52,7 +53,8 @@
     "firebase-functions": "^1.1.0",
     "jest": "^23.2.0",
     "moltres": "0.1.x",
-    "prettier": "^1.13.6"
+    "prettier": "^1.13.6",
+    "scaffold": "file:../scaffold"
   },
   "peerDependencies": {
     "firebase": ">=3 <=5",

@@ -1,7 +1,3 @@
-import '@babel/polyfill/noConflict'
-// eslint-disable-next-line global-require
-// require('source-map-support/register')
-
 // NOTE BRN: These exports should ONLY include ones
 // that are compatible with react-native, web and node
 export * from './buffer'

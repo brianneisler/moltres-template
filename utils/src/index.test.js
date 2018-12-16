@@ -252,6 +252,7 @@ describe('index', () => {
       // NOTE BRN: This is commented out because it causes an extremely long diff to happen in Jest
       // freeGlobal: expect.any(Object),
 
+      functionToString: expect.any(Function),
       indexEndOffset: expect.any(Function),
       isArguments: expect.any(Function),
       isArray: expect.any(Function),

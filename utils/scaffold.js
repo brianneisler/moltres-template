@@ -1,6 +1,6 @@
 const configs = require('./configs')
 
 module.exports = {
-  extends: 'package',
+  extends: 'omni',
   configs
 }

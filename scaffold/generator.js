@@ -84,7 +84,7 @@ const newGenerator = (scaffold, options) => {
         async (generator) =>
           Promise.all(map(
             async (fileConfig) => generateConfigFile(fileConfig, scaffold, options),
-            generator.files
+            generator.files || []
           )),
         scaffold.generators
       ))

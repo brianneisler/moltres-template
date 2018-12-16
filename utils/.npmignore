@@ -71,6 +71,8 @@ Dockerfile
 prettier.config.js
 
 # scaffold (scaffold generator)
+configs
+generators
 scaffold.js
 
 # utils project (project generator)

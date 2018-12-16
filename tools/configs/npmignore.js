@@ -1,5 +1,5 @@
 module.exports = [
-  '# utils project (project generator)',
+  '# tools project (project generator)',
   '.env',
   'CODE_OF_CONDUCT.md',
   'CONTRIBUTING.md',

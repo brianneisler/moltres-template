@@ -8,22 +8,22 @@ const baseGetTag = (value) => {
   if (!(symToStringTag && symToStringTag in Object(value))) {
     return toString.call(value)
   }
-  const isOwn = hasOwnProperty.call(value, symToStringTag)
-  const tag = value[symToStringTag]
-  let unmasked = false
-  try {
-    value[symToStringTag] = undefined
-    unmasked = true
-  } catch (e) {}
+  // const isOwn = hasOwnProperty.call(value, symToStringTag)
+  // const tag = value[symToStringTag]
+  // let unmasked = false
+  // try {
+  //   value[symToStringTag] = undefined
+  //   unmasked = true
+  // } catch (e) {}
 
   const result = toString.call(value)
-  if (unmasked) {
-    if (isOwn) {
-      value[symToStringTag] = tag
-    } else {
-      delete value[symToStringTag]
-    }
-  }
+  // if (unmasked) {
+  //   if (isOwn) {
+  //     value[symToStringTag] = tag
+  //   } else {
+  //     delete value[symToStringTag]
+  //   }
+  // }
   return result
 }
 

@@ -12,6 +12,7 @@ export { default as assignPropertyDescriptors } from './assignPropertyDescriptor
 export { default as baseGetTag } from './baseGetTag'
 export { default as clonePropertyDescriptors } from './clonePropertyDescriptors'
 export { default as freeGlobal } from './freeGlobal'
+export { default as functionToString } from './functionToString'
 export { default as indexEndOffset } from './indexEndOffset'
 export { default as isArguments } from './isArguments'
 export { default as isArray } from './isArray'

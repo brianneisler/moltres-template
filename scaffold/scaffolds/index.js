@@ -1,5 +1,7 @@
 module.exports = {
   module: require('./module'),
-  package: require('./package'),
-  project: require('./project')
+  node: require('./node'),
+  omni: require('./omni'),
+  project: require('./project'),
+  react: require('./react')
 }

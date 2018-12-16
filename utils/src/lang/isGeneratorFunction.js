@@ -1,5 +1,6 @@
-const toStr = Object.prototype.toString
-const fnToStr = Function.prototype.toString
+import functionToString from './functionToString'
+import objectToString from './objectToString'
+
 const isFnRegex = /^\s*(?:function)?\*/
 const hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol'
 const getProto = Object.getPrototypeOf
@@ -8,9 +9,7 @@ const getGeneratorFunc = () => {
   if (!hasToStringTag) {
     return false
   }
-  try {
-    return Function('return function*() {}')()
-  } catch (e) {}
+  return function*() {}
 }
 const generatorFunc = getGeneratorFunc()
 const GeneratorFunction = generatorFunc ? getProto(generatorFunc) : {}
@@ -32,11 +31,11 @@ const isGeneratorFunction = (value) => {
   if (typeof value !== 'function') {
     return false
   }
-  if (isFnRegex.test(fnToStr.call(value))) {
+  if (isFnRegex.test(functionToString(value))) {
     return true
   }
   if (!hasToStringTag) {
-    const str = toStr.call(value)
+    const str = objectToString(value)
     return str === '[object GeneratorFunction]'
   }
   return getProto(value) === GeneratorFunction

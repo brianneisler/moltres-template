@@ -71,7 +71,8 @@
     "react-native-web": "^0.7.3",
     "react-redux": "^5.0.7",
     "react-test-renderer": "^16.4.0",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "scaffold": "file:../scaffold"
   },
   "peerDependencies": {
     "moltres": ">=0.1.0",

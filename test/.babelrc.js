@@ -1,8 +1,3 @@
-{
-  "presets": [
-    "env"
-  ],
-  "plugins": [
-    ["transform-object-rest-spread", { "useBuiltIns": true }]
-  ]
-}
+const { scaffold } = require('scaffold')
+
+module.exports = scaffold().config('babelrc')
