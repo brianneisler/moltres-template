@@ -6,8 +6,10 @@ started and available commands to run.
 
 ## PRE-REQS
 
-* You must have node 10 or higher installed
-
+* You must have nvm installed
+```
+brew install nvm
+```
 
 ## INSTALL
 
