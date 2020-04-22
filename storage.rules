@@ -45,35 +45,5 @@ service firebase.storage {
           // && imageId.size() < 32
       }
     }
-
-    match /wat {
-      // Cascade read to any image type at any path
-      match /{allImages=**} {
-        allow read;
-      }
-
-      match /{watId}/{watImageName} {
-        allow write: if (
-          watImageName == watId + '.jpeg' &&
-          request.resource.contentType.matches('image/jpeg') &&
-          auth.token.serviceAccountId != null
-        )
-      }
-    }
-
-    match /watThis {
-      // Cascade read to any image type at any path
-      match /{allImages=**} {
-        allow read;
-      }
-
-      match /{watThisId}/{watThisImageName} {
-        allow write: if (
-          watThisImageName == watThisId + '.jpeg' &&
-          request.resource.contentType.matches('image/jpeg') &&
-          auth.token.serviceAccountId != null
-        )
-      }
-    }
   }
 }
