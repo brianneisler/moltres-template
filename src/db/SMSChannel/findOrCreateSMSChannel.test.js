@@ -1,6 +1,6 @@
 import { deleteInternalPhoneNumber } from '../InternalPhoneNumber'
 import { deletePendingUser, registerPendingUser } from '../../service/auth'
-import { generateInternalPhoneNumber } from '../../service/phoneNumber'
+import { generateInternalPhoneNumber } from '../../service/phone_number'
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,

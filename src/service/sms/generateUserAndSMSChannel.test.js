@@ -6,7 +6,7 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
-import generateInternalPhoneNumber from '../phoneNumber/generateInternalPhoneNumber'
+import generateInternalPhoneNumber from '../phone_number/generateInternalPhoneNumber'
 import generateUserAndSMSChannel from './generateUserAndSMSChannel'
 
 const spec = describe('generateUserAndSMSChannel', () => {
