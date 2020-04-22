@@ -1,5 +1,5 @@
-import * as modules from '../modules'
-import * as routerActions from '../modules/router/actions'
+import * as modules from '../app/modules'
+import * as routerActions from '../app/modules/router/actions'
 import { App, generateConfig } from '../app'
 import { AppRegistry } from 'react-native-web'
 import {
@@ -14,7 +14,7 @@ import {
 import { createEngine, selectUncaughtException, setup, start } from '../core'
 import { createHistory } from '../utils/react'
 import { parseURL } from '../utils/url'
-import { selectRouterResponse } from '../modules/router'
+import { selectRouterResponse } from '../app/modules/router'
 import MetaTagsServer from 'react-meta-tags/server'
 import ReactDOMServer from 'react-dom/server'
 import setupSSRContext from './setupSSRContext'
