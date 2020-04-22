@@ -1,0 +1,5 @@
+export const COMPONENT = 'component'
+export const EMAIL = 'email'
+export const GROWL = 'growl'
+export const PUSH = 'push'
+export const SMS = 'sms'

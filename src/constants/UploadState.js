@@ -1,0 +1,7 @@
+export const CANCELED = 'CANCELED'
+export const COMPLETED = 'COMPLETED'
+export const ERROR = 'ERROR'
+export const PAUSED = 'PAUSED'
+export const POST_PROCESSING = 'POST_PROCESSING'
+export const RUNNING = 'RUNNING'
+export const SUCCESS = 'SUCCESS'

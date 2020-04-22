@@ -1,0 +1,94 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "ChannelContexts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "channelId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "ChannelContexts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "removedAt", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "ReactionTypeInstances",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "entityId", "mode": "ASCENDING" },
+        { "fieldPath": "entityType", "mode": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "ReactionTypeInstances",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "reactionTypeId", "mode": "ASCENDING" },
+        { "fieldPath": "removedAt", "mode": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "StreamEntities",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "streamId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "StreamEntities",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "removedAt", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "WATs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "watThisId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "WATs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "removedAt", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "WATs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "WATThises",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "WATThises",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "removedAt", "mode": "ASCENDING" },
+        { "fieldPath": "createdAt", "mode": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+  ]
+}

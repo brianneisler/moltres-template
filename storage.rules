@@ -1,0 +1,79 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    match /uploads {
+      match /{allImages=**} {
+        allow read: if auth.token.serviceAccountId != null
+      }
+
+      match /{userId}/{uploadId}/{uploadName} {
+        allow write: if (
+          (
+            uploadName == uploadId + '.jpg' ||
+            uploadName == uploadId + '.jpeg' ||
+            uploadName == uploadId + '.png'
+          ) &&
+          request.resource.contentType.matches('image/.*') &&
+          request.auth.uid == userId
+        )
+      }
+    }
+
+    match /images {
+      // Cascade read to any image type at any path
+      match /{allImages=**} {
+        allow read: if auth.token.serviceAccountId != null;
+      }
+
+      // Allow write files to the path "images/*", subject to the constraints:
+      // 1) Image ID does not already exist
+      // 2) imageId and imageName match
+      // 3) Content type is an image
+      // 4) User is a ServiceAccount
+      match /{imageId}/{imageName} {
+        allow write: if (
+          (
+            imageName == imageId + '.jpg' ||
+            imageName == imageId + '.jpeg' ||
+            imageName == imageId + '.png'
+          ) &&
+          request.resource.contentType.matches('image/.*') &&
+          auth.token.serviceAccountId != null
+        )
+          // request.resource.size < 5 * 1024 * 1024 &&
+          // request.resource.contentType == resource.contentType
+          // && imageId.size() < 32
+      }
+    }
+
+    match /wat {
+      // Cascade read to any image type at any path
+      match /{allImages=**} {
+        allow read;
+      }
+
+      match /{watId}/{watImageName} {
+        allow write: if (
+          watImageName == watId + '.jpeg' &&
+          request.resource.contentType.matches('image/jpeg') &&
+          auth.token.serviceAccountId != null
+        )
+      }
+    }
+
+    match /watThis {
+      // Cascade read to any image type at any path
+      match /{allImages=**} {
+        allow read;
+      }
+
+      match /{watThisId}/{watThisImageName} {
+        allow write: if (
+          watThisImageName == watThisId + '.jpeg' &&
+          request.resource.contentType.matches('image/jpeg') &&
+          auth.token.serviceAccountId != null
+        )
+      }
+    }
+  }
+}

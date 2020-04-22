@@ -1,0 +1,5 @@
+export { default as createCanvas } from './createCanvas'
+export { default as determineFontLineWidth } from './determineFontLineWidth'
+export { default as determineFontSize } from './determineFontSize'
+export { default as downloadCanvas } from './downloadCanvas'
+export { default as measureTextDimensions } from './measureTextDimensions'

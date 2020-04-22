@@ -1,0 +1,8 @@
+export { default as doesWindowExist } from './doesWindowExist'
+export { default as getClientHeight } from './getClientHeight'
+export { default as getNativeEventTarget } from './getNativeEventTarget'
+export { default as getNetworkInformation } from '../../modules/network/util/getNetworkInformation'
+export { default as getScrollHeight } from './getScrollHeight'
+export { default as getScrollTop } from './getScrollTop'
+export { default as getWindow } from './getWindow'
+export { default as isWindow } from './isWindow'

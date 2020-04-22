@@ -1,7 +1,7 @@
 {
-  "linters": {
-    "*.js": [
-      "npm run lint"
-    ]
-  }
+  "*.js": [
+    "npm run lint",
+    "npm run docs:generate",
+    "git add -A"
+  ]
 }

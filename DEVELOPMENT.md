@@ -1,108 +1,147 @@
-# Development
+# Development 
 
-This doc outlines how to develop the moltres projects themselves.
+This doc outlings how to develope this project including installing, getting
+started and available commands to run.
 
-# Requirements
 
-* node.js 8.0+
-* npm 5.0+
+## PRE-REQS
 
-*NOTE:* we recommend using home brew and nvm
-```sh
-brew install nvm
-nvm install 8
-nvm use 8
+* You must have node 10 or higher installed
+
+
+## INSTALL
+
+* install the firebase-tools
+```
+npm i -g firebase-tools
+```
+* add the firebase apps you will be deploying. Alias them to `prod`, `test` and `local`
+```
+firebase use --add 
+``` 
+* install glcoud tools
+brew cask install google-cloud-sdk
+
+
+* login with firebase tools
+```
+firebase login
 ```
 
-## Setup
-
-To install all dependencies and do an initial build of all source files
-
-```sh
-git clone https://github.com/brianneisler/moltres.git
-cd moltres
-npm run setup
+* login to gcloud
+```
+gcloud auth login
 ```
 
+## SETUP LOCAL
+* these steps let you define and setup your local development environment
 
-## Build
-
-To build moltres
-
-```sh
-npm run build
+* create your `.env-local` file in the root of the project
 ```
+API_URL="http://localhost:5000/api/v1"
 
+BLUEBIRD_DEBUG=true
 
-## Clean
+FIRESTORE_EMULATOR_HOST=localhost:8080
+#TEST_INTEGRATION=true
 
-To clean moltres
+TWILIO_ACCOUNT_SID=[twillio account sid from dev environment]
+TWILIO_AUTH_TOKEN=[twilio auth token from dev environment]
 
-```sh
-npm run clean
-```
-
-
-## Cleanse
-
-To clean as well as cleanse moltres of all package-lock.json file and node_modules folders
-
-```sh
-npm run cleanse
-```
-
-
-## Watch
-
-To watch moltres and build on every file change
-
-```sh
-npm run watch:build
-```
-
-To watch moltres and test on every file change
-
-```sh
-npm run watch:test
+SITE_NAME="APP LOCAL"
+SITE_URL="http://localhost:5000"
 ```
 
 
-## Lint
 
-To lint the moltres project
+## Development Scripts
 
-```sh
-npm run lint
+In the project directory, you can run:
+
+### `npm start [stage]`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+
+
+### `STAGE=[stage] npm run test`
+
+Starts tests against a specific stage
+
+### Running local tests against firestore emulator
+```
+npm run test
 ```
 
-
-## Test
-
-To run tests against moltres
-
-```sh
-npm test
+.env-local
+```
+#TEST_INTEGRATION=true
+FIRESTORE_EMULATOR_HOST=localhost:8080
 ```
 
+### `npm run build`
 
-## Version
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-(WARNING: this does not bump dependencies. That currently has to be done manually)
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-To bump the major version of all projects and modules
 
-```sh
-npm run version:major
-```
+### `npm run clean`
 
-To bump the minor version of all projects and modules
+Cleans up the artifacts created by `npm run build`. This is useful if you want
+to ensure that your code is built from scratch and no residual artifacts remain.
 
-```sh
-npm run version:minor
-```
 
-To bump the patch version of all projects and modules
+### `npm run deploy`
 
-```sh
-npm run version:patch
+Deploys your application 
+
+
+## Database Scripts
+
+### `npm run database:backup [stage]`
+
+Back up a database with the given `stage` name
+
+### `npm run database:delete [stage]`
+
+Delete the database for the given `stage`. **WARNING** This deletes the entire database!
+
+### `npm run database:deploy [stage]`
+
+Deploy the database rules and run migrations for the given `stage` name
+
+### `npm run migrate:up [stage]`
+
+Migrate the database up to the latest version for the given `stage` name
+
+### `npm run database:migration:create [name-of-script]`
+
+Creates a new database migration script from a starter template and places it
+into the `./migrations` folder.
+
+### `npm run database:predeploy [stage]`
+
+This runs the predeploy steps such as minifying the database rules for the given `stage`
+
+### `npm run database:restore [stage] [backup-id]`
+
+Restores the database on the given `stage` to the backup id stored in the backup
+bucket defined in the .env file for the stage ``
+
+## DEBUG
+
+Debugging query factories
+
+Add this code before or after in the query composition.
+```js
+(next) => {
+  return (props, ...rest) => {
+    console.log('props:', props)
+    debugger
+    return next(props, ...rest)
+  }
+}
 ```

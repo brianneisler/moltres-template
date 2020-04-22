@@ -1,0 +1,39 @@
+import { assocProp, curry, forEach, hasProp, pick, reduce } from '../data'
+import getOutNodes from './getOutNodes'
+import isGraph from './isGraph'
+
+const newTraverseContext = (data) => pick(['graph', 'results', 'visited'], data)
+
+const traverseNode = (context, node, traverser) => {
+  const { graph } = context
+  let updatedContext = newTraverseContext({
+    ...context,
+    visited: assocProp(node, true, context.visited)
+  })
+  const outNodes = getOutNodes(graph, node)
+  forEach((outNode) => {
+    if (!hasProp(outNode, updatedContext.visited)) {
+      updatedContext = traverseNode(updatedContext, outNode, traverser)
+    }
+  }, outNodes)
+  const result = traverser(graph.node(node), node)
+  return newTraverseContext({
+    ...updatedContext,
+    results: assocProp(node, result, updatedContext.results)
+  })
+}
+
+const traversePostorder = curry((traverser, graph) => {
+  if (!isGraph(graph)) {
+    throw new Error(`traversePostorder expects a Graph, instead received ${graph}`)
+  }
+  const context = newTraverseContext({
+    graph,
+    results: {},
+    visited: {}
+  })
+  return reduce((ctx, source) => traverseNode(ctx, source, traverser), context, graph.sources())
+    .results
+})
+
+export default traversePostorder

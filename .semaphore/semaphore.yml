@@ -1,0 +1,105 @@
+# .semaphore/semaphore.yml
+# This was setup from the example in this article https://docs.semaphoreci.com/article/121-nodejs-typescript-continuous-integration
+
+# Use the latest stable version of Semaphore 2.0 YML syntax:
+version: v1.0
+
+# Name your pipeline. In case you connect multiple pipelines with promotions,
+# the name will help you differentiate between, for example, a CI build phase
+# and delivery phases.
+name: moltres-app
+
+# An agent defines the environment in which your code runs.
+# It is a combination of one of available machine types and operating
+# system images.
+# See https://docs.semaphoreci.com/article/20-machine-types
+# and https://docs.semaphoreci.com/article/32-ubuntu-1804-image
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+# Blocks are the heart of a pipeline and are executed sequentially.
+# Each block has a task that defines one or more jobs. Jobs define the
+# commands to execute.
+# See https://docs.semaphoreci.com/article/62-concepts
+blocks:
+  - name: Install dependencies
+    task:
+      env_vars:
+        - name: NODE_ENV
+          value: development
+
+      prologue:
+        commands:
+          # Get the latest version of our source code from GitHub:
+          - checkout
+
+          # Use the version of Node.js specified in .nvmrc.
+          # Semaphore provides nvm preinstalled.
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: npm install and cache
+          commands:
+            # Restore dependencies from cache. This command will not fail in
+            # case of a cache miss. In case of a cache hit, npm install will
+            # run very fast.
+            # For more info on caching, see https://docs.semaphoreci.com/article/68-caching-dependencies
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - cache restore cache-$SEMAPHORE_GIT_BRANCH
+
+            # This installs all dependencies including more than node_modules
+            - npm run setup
+
+            # Store the latest version of node modules in cache to reuse in
+            # further blocks:
+            - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json) node_modules
+            - cache store cache-$SEMAPHORE_GIT_BRANCH ~/.cache
+
+  - name: Lint
+    task:
+      env_vars:
+        - name: NODE_ENV
+          value: development
+
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: Lint
+          commands:
+             # At this point we can assume 100% cache hit rate of node modules:
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+
+            # Run task as defined in package.json:
+            - npm run lint
+
+  - name: Test
+    task:
+      env_vars:
+        - name: NODE_ENV
+          value: development
+
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: Test
+          commands:
+             # At this point we can assume 100% cache hit rate of node modules:
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - cache restore cache-$SEMAPHORE_GIT_BRANCH
+
+            # Run task as defined in package.json:
+            - npm run test:ci
