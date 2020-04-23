@@ -1,3 +1,4 @@
+import { ACCESS_DENIED } from '../../constants/Code'
 import { createUser, deleteUser } from '../User'
 import { prop } from 'ramda'
 import {
@@ -13,20 +14,13 @@ import deleteAccessToken from './deleteAccessToken'
 import uuidv4 from 'uuid/v4'
 
 const spec = describe('createAccessToken', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let result
     let user
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(adminContext, {
         name: 'test-user',
@@ -52,6 +46,7 @@ const spec = describe('createAccessToken', () => {
       }
 
       context = await tearDownTestServiceAccountContext(context)
+      adminContext = await tearDownTestAdminContext(adminContext)
     })
 
     it('can create an AccessToken', async () => {
@@ -85,11 +80,13 @@ const spec = describe('createAccessToken', () => {
   })
 
   describe('Anonymous user', () => {
+    let adminContext
     let anonymousContext
     let testContext
     let result
     let user
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       testContext = await setupTestServiceAccountContext(adminContext)
       anonymousContext = await setupTestAnonymousContext(adminContext, testContext)
       user = await createUser(adminContext, {
@@ -116,6 +113,7 @@ const spec = describe('createAccessToken', () => {
       }
       testContext = await tearDownTestServiceAccountContext(testContext)
       anonymousContext = await tearDownTestAnonymousContext(anonymousContext)
+      adminContext = await tearDownTestAdminContext(adminContext)
     })
 
     it('throws an error when creating an AccessToken', async () => {
@@ -125,7 +123,9 @@ const spec = describe('createAccessToken', () => {
         valid: true
       }
       result = await expect(createAccessToken(anonymousContext, data)).rejects.toThrow(
-        /Missing or insufficient permissions/
+        expect.objectContaining({
+          code: ACCESS_DENIED
+        })
       )
     })
 

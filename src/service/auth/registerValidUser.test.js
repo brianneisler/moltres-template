@@ -11,21 +11,15 @@ import registerPendingUser from './registerPendingUser'
 import registerValidUser from './registerValidUser'
 
 const spec = describe('registerValidUser', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let action
     let context
     let user
     let phoneNumber
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
     })
 
@@ -46,6 +40,7 @@ const spec = describe('registerValidUser', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
+      adminContext = await tearDownTestAdminContext(adminContext)
     })
 
     it('can register a User that does not previously exist', async () => {

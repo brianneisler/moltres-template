@@ -49,10 +49,12 @@ FIRESTORE_EMULATOR_HOST=localhost:8080
 
 TWILIO_ACCOUNT_SID=[twillio account sid from dev environment]
 TWILIO_AUTH_TOKEN=[twilio auth token from dev environment]
+TWILIO_PHONE_NUMBERS=[twilio phone numbers separated by commas]
 
 SITE_NAME="APP LOCAL"
 SITE_URL="http://localhost:5000"
 ```
+
 * Run setup script
 ```
 npm run setup

@@ -1,4 +1,5 @@
 export { default as generateAdminConfig } from './generateAdminConfig'
 export { default as generateConfig } from './generateConfig'
+export { default as generateProjectId } from './generateProjectId'
 export { default as loadDotEnv } from './loadDotEnv'
 export { default as loadEnv } from './loadEnv'

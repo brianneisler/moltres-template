@@ -8,7 +8,7 @@ const initializeTestAdminApp = ({ config, namespace }) => {
     throw new TypeError(`No firebase config was provided`)
   }
   const appConfig = {
-    ...config.firebase
+    projectId: config.firebase.projectId
   }
 
   return testing.initializeAdminApp(appConfig, namespace)

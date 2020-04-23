@@ -12,11 +12,12 @@ const createTestAdminContext = async ({ config, namespace, source, ...rest }) =>
   const auth = null
   const storage = null
 
-  const adminApp = initializeTestAdminApp({ config, namespace })
-  const database = firebase.firestore(adminApp)
+  const app = initializeTestAdminApp({ config, namespace })
+  const database = firebase.firestore(app)
   const logger = createLogger()
   const system = createSystem()
   const context = {
+    app,
     auth,
     config,
     database,

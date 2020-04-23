@@ -4,8 +4,8 @@ import createTestAdminContext from './createTestAdminContext'
 import setupTestConfig from './setupTestConfig'
 
 const setupTestAdminContext = async (spec) => {
-  const config = setupTestConfig()
   const namespace = `admin.test:${uuidv4()}`
+  const config = setupTestConfig(namespace)
   const source = `${config.api.url}/admin?test_file=${spec.description}`
   if (config.test.integration) {
     return createAdminContext({

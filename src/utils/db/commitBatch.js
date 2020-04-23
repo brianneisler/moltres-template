@@ -5,7 +5,10 @@ const commitBatch = async (batch) => {
   try {
     return await batch.commit()
   } catch (error) {
-    if (error.message.includes('Missing or insufficient permissions')) {
+    if (
+      error.message.includes('Missing or insufficient permissions') ||
+      error.message.includes('PERMISSION_DENIED')
+    ) {
       throw expected({
         causes: [error],
         code: ACCESS_DENIED,

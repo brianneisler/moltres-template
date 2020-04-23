@@ -10,8 +10,8 @@ const initializeTestApp = ({ auth, config, namespace }) => {
 
   return testing.initializeTestApp(
     {
-      ...config.firebase,
-      auth
+      auth,
+      projectId: config.firebase.projectId
     },
     namespace
   )

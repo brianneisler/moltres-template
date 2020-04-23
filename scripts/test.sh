@@ -16,7 +16,7 @@ killEmulatorPid()
 }
 echo $(pwd)
 # NOTE: We always export the stage in case there is something that goes wrong
-export STAGE=${STAGE:=test}
+export STAGE=${STAGE:=local}
 if [ "$TEST_INTEGRATION" = "true" ]; then
   echo "testing ${STAGE}..."
   firebase use ${STAGE}

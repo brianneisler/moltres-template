@@ -10,14 +10,15 @@ const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   if (!config) {
     throw new Error('createAdminContext expected config to be set')
   }
-  const adminApp = initializeAdminApp({ config, firebase, namespace })
-  const database = firebase.firestore(adminApp)
-  const auth = firebase.auth(adminApp)
-  const storage = firebase.storage(adminApp)
+  const app = initializeAdminApp({ config, firebase, namespace })
+  const database = firebase.firestore(app)
+  const auth = firebase.auth(app)
+  const storage = firebase.storage(app)
   const logger = createLogger()
   const system = createSystem()
 
   const context = {
+    app,
     auth,
     config,
     database,

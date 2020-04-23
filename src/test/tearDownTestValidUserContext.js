@@ -9,7 +9,7 @@ const tearDownTestValidUserContext = async (testContext, userContext) => {
   } catch (error) {
     testContext.logger.error(error)
   }
-  await userContext.database.disableNetwork()
+  await userContext.app.delete()
 }
 
 export default tearDownTestValidUserContext

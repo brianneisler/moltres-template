@@ -1,5 +1,5 @@
 const tearDownTestAnnymousContext = async (anonymousContext) => {
-  await anonymousContext.database.disableNetwork()
+  await anonymousContext.app.delete()
 }
 
 export default tearDownTestAnnymousContext

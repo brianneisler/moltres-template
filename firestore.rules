@@ -446,12 +446,12 @@ service cloud.firestore {
 
     function checkCreateAccessToken(id) {
       let accessToken = getAccessTokenAfter(id);
-      return accessToken && currentUserIsServiceAccount() && validateAccessToken(accessToken);
+      return accessToken != null && currentUserIsServiceAccount() && validateAccessToken(accessToken);
     }
 
     function checkUpdateAccessToken(id) {
       let accessToken = getAccessTokenAfter(id);
-      return accessToken && currentUserIsServiceAccount() && validateAccessToken(accessToken);
+      return accessToken != null && currentUserIsServiceAccount() && validateAccessToken(accessToken);
     }
 
     function checkDeleteAccessToken() {
@@ -1411,14 +1411,16 @@ service cloud.firestore {
       return currentUserCanReadPrivateEntity(resource, resource.userId)
     }
 
-    function checkCreateUpload(resourceAfter) {
-      return validateUpload(resourceAfter) &&
-        currentUserCanCreateEntity(resourceAfter)
+    function checkCreateUpload(id) {
+      let upload = getUploadAfter(id);
+      return upload != null && validateUpload(upload) &&
+        currentUserCanCreateEntity(upload)
     }
 
-    function checkUpdateUpload(resourceAfter) {
-      return currentUserIsServiceAccount() &&
-        validateUpload(resourceAfter)
+    function checkUpdateUpload(id) {
+      let upload = getUploadAfter(id);
+      return upload != null && currentUserIsServiceAccount() &&
+        validateUpload(upload)
     }
 
     function checkDeleteUpload() {
@@ -1427,8 +1429,8 @@ service cloud.firestore {
 
     match /Uploads/{id} {
       allow read: if checkReadUpload(resource);
-      allow create: if checkCreateUpload(getUploadAfter(id));
-      allow update: if checkUpdateUpload(getUploadAfter(id));
+      allow create: if checkCreateUpload(id);
+      allow update: if checkUpdateUpload(id);
       allow delete: if checkDeleteUpload();
     }
 

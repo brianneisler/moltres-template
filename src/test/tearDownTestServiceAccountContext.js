@@ -1,5 +1,5 @@
 const tearDownTestServiceAccountContext = async (testContext) => {
-  await testContext.database.disableNetwork()
+  await testContext.app.delete()
 }
 
 export default tearDownTestServiceAccountContext
