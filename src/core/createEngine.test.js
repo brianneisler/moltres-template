@@ -1,5 +1,7 @@
 import { cancelled, take } from 'redux-saga/effects'
 import createEngine from './createEngine'
+import setup from './setup'
+import start from './start'
 import stop from './stop'
 
 describe('createEngine', () => {
@@ -20,7 +22,9 @@ describe('createEngine', () => {
       context,
       core: {
         version: 1
-      }
+      },
+      error: {},
+      query: {}
     })
   })
 
@@ -58,9 +62,12 @@ describe('createEngine', () => {
       config: expect.any(Object),
       context: expect.any(Object),
       core: expect.any(Object),
+      error: expect.any(Object),
       foo: {
         reducer: testReducer
-      }
+      },
+      query: expect.any(Object),
+      ssr: expect.any(Object)
     })
     expect(store.getConfig()).toEqual({
       foo: 'abc'
@@ -81,13 +88,19 @@ describe('createEngine', () => {
       core: {
         version: 1
       },
+      error: {},
       foo: {
         foo: 'bar'
-      }
+      },
+      query: {}
     })
   })
 
   test('starts the engine and calls the setup and start methods', async () => {
+    const testContext = {
+      logger: console
+    }
+
     let wasCancelled = false
     const testModule = {
       finally: jest.fn(),
@@ -104,9 +117,28 @@ describe('createEngine', () => {
       start: jest.fn(),
       stop: jest.fn()
     }
-    const engine = createEngine({
-      test: testModule
-    })
+
+    const engine = createEngine(
+      {
+        test: testModule
+      },
+      {},
+      testContext
+    )
+
+    expect(testModule.setup).not.toHaveBeenCalled()
+    expect(testModule.start).not.toHaveBeenCalled()
+    expect(testModule.stop).not.toHaveBeenCalled()
+    expect(wasCancelled).toBe(false)
+
+    setup(engine)
+
+    expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
+    expect(testModule.start).not.toHaveBeenCalled()
+    expect(testModule.stop).not.toHaveBeenCalled()
+    expect(wasCancelled).toBe(false)
+
+    start(engine)
 
     expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
     expect(testModule.start).toHaveBeenCalledWith(engine, testModule)

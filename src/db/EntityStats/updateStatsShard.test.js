@@ -12,20 +12,14 @@ import refEntityStatsById from './refEntityStatsById'
 import updateStatsShard from './updateStatsShard'
 
 const spec = describe('updateStatsShard', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  }, 20000)
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let entityStats
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(adminContext, {
         name: 'test-user',
@@ -35,7 +29,7 @@ const spec = describe('updateStatsShard', () => {
         entityId: user.id,
         entityType: User.name
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -54,7 +48,8 @@ const spec = describe('updateStatsShard', () => {
       }
 
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('update StatsShard at speed', async () => {
       const ref = refEntityStatsById(context, entityStats.id)

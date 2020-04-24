@@ -22,17 +22,16 @@ describe('react index', () => {
       withActions: expect.any(Function),
       withAsyncProps: expect.any(Function),
       withContext: expect.any(Function),
-      withDisplayName: expect.any(Function),
       withForwardRef: expect.any(Function),
       withHandlers: expect.any(Function),
       withModalControls: expect.any(Function),
       withPropTransitions: expect.any(Function),
       withProps: expect.any(Function),
       withPropsOnChange: expect.any(Function),
-      withQueries: expect.any(Function),
       withReduxForm: expect.any(Function),
       withState: expect.any(Function),
-      wrapActionCreators: expect.any(Function)
+      wrapActionCreators: expect.any(Function),
+      wrapDisplayName: expect.any(Function)
     })
   })
 })

@@ -10,26 +10,20 @@ import deleteUserImage from './deleteUserImage'
 import findOrCreateUserImage from './findOrCreateUserImage'
 
 const spec = describe('findOrCreateUserImage', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let user
     let image
     let result
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
         name: 'test-user'
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -54,7 +48,8 @@ const spec = describe('findOrCreateUserImage', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can create a UserImage', async () => {
       image = await createImage(context, {

@@ -13,22 +13,16 @@ import findOrCreateSMSChannel from './findOrCreateSMSChannel'
 const TIMEOUT = 20000
 
 const spec = describe('findOrCreateSMSChannel', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let internalPhoneNumber
     let phoneNumber
     let result
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       internalPhoneNumber = await generateInternalPhoneNumber(context, {
         phoneNumber: '19282183571‬'
@@ -36,7 +30,7 @@ const spec = describe('findOrCreateSMSChannel', () => {
       ;({ phoneNumber, user } = await registerPendingUser(context, {
         phoneNumber: '19282356681'
       }))
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -62,7 +56,8 @@ const spec = describe('findOrCreateSMSChannel', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it(
       'can create SMSChannel',

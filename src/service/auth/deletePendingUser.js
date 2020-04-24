@@ -7,12 +7,9 @@ import { map, values } from '../../utils/data'
 
 const deletePendingUser = async (context, userId) => {
   const phoneNumberClaims = await findPhoneNumberClaimsByUserId(context, userId)
-  await Promise.all(
-    map(
-      async (phoneNumberClaim) =>
-        deleteUnclaimedPhoneNumber(context, phoneNumberClaim.phoneNumberId),
-      values(phoneNumberClaims)
-    )
+  await map(
+    async (phoneNumberClaim) => deleteUnclaimedPhoneNumber(context, phoneNumberClaim.phoneNumberId),
+    values(phoneNumberClaims)
   )
   return deleteUser(context, userId)
 }

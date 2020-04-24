@@ -6,7 +6,7 @@ import runSaga from './runSaga'
 describe('createQueryFactory', () => {
   test('correctly creates an engine with no modules', async () => {
     // eslint-disable-next-line no-unused-vars
-    const createQuery = jest.fn((context, props, queryOptions) => {})
+    const createQuery = jest.fn((context, props, queryOptions) => null)
     // eslint-disable-next-line no-unused-vars
     const enhancer = jest.fn((statePath) => (baseFactory) => (state, channel, context) =>
       baseFactory(state, channel, context)
@@ -39,7 +39,7 @@ describe('createQueryFactory', () => {
     expect(result).toEqual({
       barId: 'id1',
       bazId: 'id2',
-      foo: undefined
+      foo: {}
     })
     expect(createQuery).toHaveBeenCalledWith(context, { barId: 'id1', bazId: 'id2' }, queryOptions)
   })

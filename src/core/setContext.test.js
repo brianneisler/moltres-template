@@ -5,18 +5,21 @@ import setContext from './setContext'
 
 describe('setContext', () => {
   it('sets the context correctly', async () => {
-    const engine = generateEngine({}, {}, {})
+    const testContext = { logger: console }
+    const engine = generateEngine({}, {}, testContext)
     const method = function* () {
       yield* setContext('foo', 'bar')
       return yield* getContext()
     }
     expect(await runSaga(engine, method)).toEqual({
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     })
   })
 
   it('sets the context correctly using an array', async () => {
-    const engine = generateEngine({}, {}, {})
+    const testContext = { logger: console }
+    const engine = generateEngine({}, {}, testContext)
     const method = function* () {
       yield* setContext(['foo', 'bar'], 'baz')
       return yield* getContext()
@@ -24,12 +27,14 @@ describe('setContext', () => {
     expect(await runSaga(engine, method)).toEqual({
       foo: {
         bar: 'baz'
-      }
+      },
+      logger: console
     })
   })
 
   it('sets the context correctly using an empty array', async () => {
-    const engine = generateEngine({}, {}, {})
+    const testContext = { logger: console }
+    const engine = generateEngine({}, {}, testContext)
     const method = function* () {
       yield* setContext([], { foo: 'bar' })
       return yield* getContext()

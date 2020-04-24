@@ -13,7 +13,7 @@ const paginateQuery = async (builder, iteratee, { limit = 10 } = {}) => {
   let cursor
   while (!done) {
     const query = await nextPage(builder, { cursor, limit })
-    await Promise.all(map(iteratee, query.docs))
+    await map(iteratee, query.docs)
     cursor = query
     if (query.docs.length >= limit) {
       cursor = last(query.docs)

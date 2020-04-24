@@ -1,4 +1,4 @@
-import { curry, isArray, isObject, isString, prepend, reduce, zip } from '../data'
+import { curry, isArray, isNumber, isObject, isString, prepend, reduce, zip } from '../data'
 import collection from './collection'
 
 const getSchemas = (Schema, schemas = []) => {
@@ -20,12 +20,17 @@ const refDocumentById = curry((Schema, context, ids) => {
   if (isObject(ids) && !isArray(ids)) {
     ;({ ids } = ids)
   }
+  if (isNumber(ids)) {
+    ids = ids.toString()
+  }
   if (isString(ids)) {
     ids = [ids]
   }
   // accepts a s [id1, id2]
   if (!isArray(ids)) {
-    throw new TypeError('refDocumentById expects ids to be an Object, a String, or an Array')
+    throw new TypeError(
+      'refDocumentById expects ids to be an Object, a String, a Number or an Array'
+    )
   }
   const schemas = getSchemas(Schema)
   if (schemas.length < ids.length) {

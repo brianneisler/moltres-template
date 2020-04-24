@@ -6,7 +6,8 @@ describe('getContext', () => {
   test('gets the whole context when no args are given', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -19,7 +20,8 @@ describe('getContext', () => {
   test('gets the specified context path correctly', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -32,7 +34,8 @@ describe('getContext', () => {
   test('executes the given selector function on the context', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -49,7 +52,8 @@ describe('getContext', () => {
   test('returns the whole context when undefined', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -58,7 +62,8 @@ describe('getContext', () => {
 
     expect(await runSaga(engine, method, testContext)).toEqual({
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     })
   })
 })

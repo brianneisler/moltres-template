@@ -9,7 +9,10 @@ describe('withConfig', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const handler = withConfig('foo')(function* (data) {
       return data
     })
@@ -31,7 +34,10 @@ describe('withConfig', () => {
         bim: 'bop'
       }
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const handler = withConfig(['foo', 'bim'])(function* (data) {
       return data
     })
@@ -52,7 +58,10 @@ describe('withConfig', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const selector = jest.fn((config) => ({
       bim: config.bim
     }))

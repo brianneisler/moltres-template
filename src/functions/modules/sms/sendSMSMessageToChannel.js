@@ -1,7 +1,7 @@
+import { all, isString } from '../../../utils/data'
 import { expected } from '../../../utils/error'
 import { getPhoneNumberById } from '../../../db/PhoneNumber'
 import { getSMSChannelById } from '../../../db/SMSChannel'
-import { isString } from '../../../utils/data'
 import { sendSMSMessage } from './util'
 
 const sendSMSMessageToChannel = async (context, { body, media, smsChannel }) => {
@@ -12,7 +12,7 @@ const sendSMSMessageToChannel = async (context, { body, media, smsChannel }) => 
     throw new Error('SMSChannel is required')
   }
 
-  const [userPhoneNumber, internalPhoneNumber] = await Promise.all([
+  const [userPhoneNumber, internalPhoneNumber] = await all([
     getPhoneNumberById(context, smsChannel.userPhoneNumberId, {
       includeRemoved: true
     }),

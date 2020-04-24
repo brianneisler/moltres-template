@@ -1,5 +1,4 @@
-import { all, call, cancel, take } from '../../../../utils/lang'
-import { map } from '../../../../utils/data'
+import { call, cancel, take } from '../../../../utils/lang'
 import runStore from './runStore'
 
 const createRootSaga = (store, { promise }) => {
@@ -13,7 +12,9 @@ const createRootSaga = (store, { promise }) => {
     } finally {
       // TODO BRN: Need to make sure that yielding on a cancel actually waits
       // until that cancellation is complete.
-      yield all(map(cancel, spawns))
+      if (spawns.length > 0) {
+        yield cancel(spawns)
+      }
       promise.resolve()
     }
   }

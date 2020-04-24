@@ -8,21 +8,15 @@ import createUser from './createUser'
 import deleteUser from './deleteUser'
 
 const spec = describe('createUser', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let result
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -33,7 +27,8 @@ const spec = describe('createUser', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can create an User', async () => {
       const data = {
@@ -44,6 +39,7 @@ const spec = describe('createUser', () => {
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
+        removedAt: null,
         state: 'pending',
         updatedAt: expect.any(context.firebase.firestore.Timestamp)
       })

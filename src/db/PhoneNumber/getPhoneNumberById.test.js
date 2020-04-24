@@ -9,22 +9,16 @@ import getPhoneNumberById from './getPhoneNumberById'
 
 // TODO BRN: Rework this test to use setupTestConfig
 const spec = describe('getPhoneNumberById', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let internalPhoneNumber
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       internalPhoneNumber = await createInternalPhoneNumber(context, { phoneNumber: '19282183571' })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -35,7 +29,8 @@ const spec = describe('getPhoneNumberById', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('finds an PhoneNumber by id', async () => {
       const data = {

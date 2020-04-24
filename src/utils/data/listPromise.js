@@ -1,3 +1,4 @@
+import all from './all'
 import deferredPromise from './deferredPromise'
 
 const listPromise = (values = []) => {
@@ -11,7 +12,7 @@ const listPromise = (values = []) => {
   }
 
   promise.resolve = function () {
-    Promise.all(this.promises)
+    all(this.promises)
       .then((results) => {
         resolve(results)
       })

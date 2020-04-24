@@ -7,28 +7,25 @@ import {
 import findAllInternalPhoneNumbers from './findAllInternalPhoneNumbers'
 
 const spec = describe('findAllInternalPhoneNumbers', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
-    })
+    }, 20000)
 
     afterEach(async () => {
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('throws an error that cache is missing', async () => {
       delete context.cache
-      await expect(findAllInternalPhoneNumbers(context)).rejects.toThrow(/Cache is missing/)
+      await expect((async () => findAllInternalPhoneNumbers(context))()).rejects.toThrow(
+        /Cache is missing/
+      )
     })
   })
 })

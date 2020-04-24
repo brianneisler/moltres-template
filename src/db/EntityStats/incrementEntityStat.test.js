@@ -10,20 +10,14 @@ import deleteEntityStats from './deleteEntityStats'
 import incrementEntityStat from './incrementEntityStat'
 
 const spec = describe('incrementEntityStat', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  }, 20000)
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let result
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(adminContext, {
         name: 'test-user',
@@ -47,9 +41,9 @@ const spec = describe('incrementEntityStat', () => {
       } catch (error) {
         context.logger.error(error)
       }
-
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can increment a new entity stat', async () => {
       result = await incrementEntityStat(context, {

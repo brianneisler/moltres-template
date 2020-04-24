@@ -8,7 +8,8 @@ describe('generateEngine', () => {
       foo: 'abc'
     }
     const context = {
-      bar: 'def'
+      bar: 'def',
+      logger: console
     }
     const testAction = {
       payload: 'bar',
@@ -41,13 +42,15 @@ describe('generateEngine', () => {
       foo: {
         reducer: testReducer
       },
-      query: expect.any(Object)
+      query: expect.any(Object),
+      ssr: expect.any(Object)
     })
     expect(store.getConfig()).toEqual({
       foo: 'abc'
     })
     expect(store.getContext()).toEqual({
-      bar: 'def'
+      bar: 'def',
+      logger: console
     })
 
     store.dispatch(testAction)
@@ -57,18 +60,24 @@ describe('generateEngine', () => {
         foo: 'abc'
       },
       context: {
-        bar: 'def'
+        bar: 'def',
+        logger: console
       },
       core: {
         version: 1
       },
+      error: {},
       foo: {
         foo: 'bar'
-      }
+      },
+      query: {}
     })
   })
 
   test('starts the engine and calls the setup and start methods', async () => {
+    const testContext = {
+      logger: console
+    }
     let wasCancelled = false
     const testModule = {
       finally: jest.fn(),
@@ -85,9 +94,13 @@ describe('generateEngine', () => {
       start: jest.fn(),
       stop: jest.fn()
     }
-    const engine = generateEngine({
-      test: testModule
-    })
+    const engine = generateEngine(
+      {
+        test: testModule
+      },
+      {},
+      testContext
+    )
 
     expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
     expect(testModule.start).toHaveBeenCalledWith(engine, testModule)

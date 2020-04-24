@@ -8,7 +8,10 @@ describe('getConfig', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const method = function* () {
       return yield* getConfig()
     }
@@ -21,7 +24,10 @@ describe('getConfig', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const method = function* () {
       return yield* getConfig('bim')
     }
@@ -34,7 +40,10 @@ describe('getConfig', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const engine = generateEngine({}, testConfig)
+    const testContext = {
+      logger: console
+    }
+    const engine = generateEngine({}, testConfig, testContext)
     const method = function* () {
       return yield* getConfig((config) => ({
         it: config.bim

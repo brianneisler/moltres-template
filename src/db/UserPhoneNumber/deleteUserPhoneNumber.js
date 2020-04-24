@@ -1,3 +1,4 @@
+import { all } from '../../utils/data'
 import { buildBatch, commitBatch } from '../../utils/db'
 import batchDeletePhoneNumber from '../PhoneNumber/batchDeletePhoneNumber'
 import batchDeleteUserPhoneNumber from './batchDeleteUserPhoneNumber'
@@ -7,7 +8,7 @@ const deleteUserPhoneNumber = async (context, id) =>
     buildBatch(
       context,
       async (batch) =>
-        await Promise.all([
+        await all([
           batchDeletePhoneNumber(context, batch, id),
           batchDeleteUserPhoneNumber(context, batch, id)
         ])

@@ -1,3 +1,4 @@
+import { all } from '../../utils/data'
 import { buildBatch, commitBatch } from '../../utils/db'
 import batchDeletePhoneNumber from '../PhoneNumber/batchDeletePhoneNumber'
 import batchDeletePhoneNumberClaim from './batchDeletePhoneNumberClaim'
@@ -9,7 +10,7 @@ const deleteUnclaimedPhoneNumber = async (context, phoneNumberId) =>
       const phoneNumberClaim = await findPhoneNumberClaimByPhoneNumberId(context, phoneNumberId, {
         includeRemoved: true
       })
-      await Promise.all([
+      await all([
         batchDeletePhoneNumber(context, batch, phoneNumberId),
         batchDeletePhoneNumberClaim(context, batch, phoneNumberClaim.id)
       ])

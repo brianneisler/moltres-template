@@ -53,17 +53,13 @@ const createEngine = (modules = {}, config = {}, context = {}, initialState = {}
       return store
     },
     stop: async (store) => {
-      await Promise.all(
-        map(async (module) => {
-          await stop(store, module)
-        }, values(store.getModules()))
-      )
+      await map(async (module) => {
+        await stop(store, module)
+      }, values(store.getModules()))
 
-      await Promise.all(
-        map(async (module) => {
-          await _finally(store, module)
-        }, values(store.getModules()))
-      )
+      await map(async (module) => {
+        await _finally(store, module)
+      }, values(store.getModules()))
 
       return store
     }

@@ -17,20 +17,14 @@ import findUserProfileById from './findUserProfileById'
 import removeUserProfile from './removeUserProfile'
 
 const spec = describe('removeUserProfile', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let userProfile
     let context
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
         name: 'test-user',
@@ -40,7 +34,7 @@ const spec = describe('removeUserProfile', () => {
         name: 'Mega WAT',
         userId: user.id
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -58,7 +52,8 @@ const spec = describe('removeUserProfile', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can remove an UserProfile', async () => {
       const ref = await removeUserProfile(context, userProfile.id)
@@ -76,17 +71,20 @@ const spec = describe('removeUserProfile', () => {
   })
 
   describe('Owner user', () => {
+    let adminContext
     let userProfile
     let context
     let userContext
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       userContext = await setupTestValidUserContext(adminContext, context)
       userProfile = await createUserProfile(context, {
         name: 'Mega WAT',
         userId: userContext.currentUser.id
       })
-    }, 10000)
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -98,7 +96,8 @@ const spec = describe('removeUserProfile', () => {
       }
       userContext = await tearDownTestValidUserContext(context, userContext)
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('allows owner user to delete their own UserProfile', async () => {
       await removeUserProfile(userContext, userProfile.id)
@@ -127,11 +126,14 @@ const spec = describe('removeUserProfile', () => {
   })
 
   describe('Anonymous user', () => {
+    let adminContext
     let anonymousContext
     let userProfile
     let context
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       anonymousContext = await setupTestAnonymousContext(adminContext, context)
       user = await createUser(context, {
@@ -142,7 +144,7 @@ const spec = describe('removeUserProfile', () => {
         name: 'Mega WAT',
         userId: user.id
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -161,7 +163,8 @@ const spec = describe('removeUserProfile', () => {
       }
       anonymousContext = await tearDownTestAnonymousContext(anonymousContext)
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('throws an error when trying to remove an UserProfile', async () => {
       await expect(removeUserProfile(anonymousContext, userProfile.id, {})).rejects.toThrow(

@@ -9,7 +9,8 @@ describe('withContext', () => {
   test('has the context injected as a paremeter selected using a string', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext('foo')(function* (data) {
@@ -31,7 +32,8 @@ describe('withContext', () => {
       foo: {
         bay: 'bee',
         bim: 'bop'
-      }
+      },
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext(['foo', 'bim'])(function* (data) {
@@ -52,7 +54,8 @@ describe('withContext', () => {
   test('executes selector when selector is a function', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const selector = jest.fn((context) => ({
@@ -75,7 +78,8 @@ describe('withContext', () => {
   test('returns entire context when no parameters', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext()(function* (data) {
@@ -88,14 +92,16 @@ describe('withContext', () => {
     expect(await runSaga(engine, method)).toEqual({
       bam: 'bow',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     })
   })
 
   test('returns entire context when no parameters', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext()(function* (data) {
@@ -108,14 +114,16 @@ describe('withContext', () => {
     expect(await runSaga(engine, method)).toEqual({
       bam: 'bow',
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     })
   })
 
   test('Integration: works in compose', async () => {
     const testContext = {
       bim: 'bop',
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     }
     const testConfig = {
       fig: 'ure'
@@ -140,7 +148,8 @@ describe('withContext', () => {
       config: {
         fig: 'ure'
       },
-      foo: 'bar'
+      foo: 'bar',
+      logger: console
     })
   })
 })
