@@ -158,19 +158,32 @@ service cloud.firestore {
     // -----------------------------
 
     function currentUserIsAuthenticated() {
-      return request.auth.uid != null
+      return request.auth != null && request.auth.uid != null;
     }
 
     function currentUserIsValid() {
-      return getUserBefore(request.auth.uid).data.state == 'valid'
+      let user = getUserBefore(request.auth.uid);
+      return user != null && user.data.state == 'valid';
     }
 
     function currentUserHasAdminRole() {
-      return getUserRoleBefore(request.auth.uid).data.role == 'admin'
+      let role = getUserRoleBefore(request.auth.uid);
+      return role != null && role.data.role == 'admin';
+    }
+
+    function userIdEqualsAuthServiceAccountId(userId) {
+      let serviceAccount = getServiceAccountBefore(userId);
+      return serviceAccount != null && serviceAccount.id == request.auth.token.serviceAccountId;
+    }
+
+    function authHasServiceAccountIdToken() {
+      return request.auth.token != null && has('serviceAccountId', request.auth.token);
     }
 
     function currentUserIsServiceAccount() {
-      return getServiceAccountBefore(request.auth.uid).id == request.auth.token.serviceAccountId
+      return currentUserIsAuthenticated() &&
+        authHasServiceAccountIdToken() &&
+        userIdEqualsAuthServiceAccountId(request.auth.uid)
     }
 
     function currentUserOwnsResource(resource) {

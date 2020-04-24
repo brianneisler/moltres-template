@@ -1,4 +1,5 @@
 import { StatusCode } from '../../constants'
+import { all } from '../../utils/data'
 import { batchCreatePhoneNumber, findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
 import { batchCreateUser, updateUser } from '../../db/User'
 import {
@@ -6,42 +7,35 @@ import {
   claimUserPhoneNumber,
   findExistingUserByPhoneNumber
 } from '../../db/UserPhoneNumber'
-import { commitBatch } from '../../utils/db'
+import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { expected } from '../../utils/error'
 import { findPhoneNumberClaimByPhoneNumber } from '../../db/PhoneNumberClaim'
 import { userRegistered } from './actions'
 import queueUserRegisteredAction from './queueUserRegisteredAction'
 
 const createValidUser = async (context, { phoneNumber }) => {
-  const { database } = context
-  const batch = database.batch()
+  let phoneNumberRef
+  let userRef
+  await commitBatch(
+    buildBatch(context, (batch) => {
+      phoneNumberRef = batchCreatePhoneNumber(context, batch, {
+        phoneNumber,
+        type: 'user'
+      })
+      userRef = batchCreateUser(context, batch, {
+        state: 'valid'
+      })
 
-  const phoneNumberRef = batchCreatePhoneNumber(context, batch, {
-    phoneNumber,
-    type: 'user'
+      batchCreateUserPhoneNumber(context, batch, {
+        phoneNumberId: phoneNumberRef.id,
+        userId: userRef.id
+      })
+    })
+  )
+  return all({
+    phoneNumber: getFromRef(context, phoneNumberRef),
+    user: getFromRef(context, userRef)
   })
-  const userRef = batchCreateUser(context, batch, {
-    state: 'valid'
-  })
-
-  batchCreateUserPhoneNumber(context, batch, {
-    phoneNumberId: phoneNumberRef.id,
-    userId: userRef.id
-  })
-
-  await commitBatch(batch)
-
-  const [phoneNumberDoc, userDoc] = await Promise.all([phoneNumberRef.get(), userRef.get()])
-  return {
-    phoneNumber: {
-      id: phoneNumberDoc.id,
-      ...phoneNumberDoc.data()
-    },
-    user: {
-      id: userDoc.id,
-      ...userDoc.data()
-    }
-  }
 }
 
 const registerValidUser = async (context, { phoneNumber }) => {

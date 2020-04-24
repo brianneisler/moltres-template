@@ -2,6 +2,7 @@ export * from './constants'
 export * from './js'
 
 export { default as addIndex } from './addIndex'
+export { default as all } from './all'
 export { default as always } from './always'
 export { default as any } from './any'
 export { default as anyContainsWildcard } from './anyContainsWildcard'

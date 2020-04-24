@@ -1,13 +1,6 @@
-import { commitBatch, getFromRef } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchCreateError from './batchCreateError'
+import { Error } from './schemas'
+import { createEntity } from '../Entity'
 
-const createError = curry(async (context, value) => {
-  const { database } = context
-  const batch = database.batch()
-  const ref = batchCreateError(context, batch, value)
-  await commitBatch(batch)
-  return getFromRef(context, ref)
-})
+const createError = createEntity(Error)
 
 export default createError

@@ -1,3 +1,4 @@
+import { ACCESS_DENIED } from '../../constants/Code'
 import { createUser, deleteUser } from '../User'
 import { prop } from 'ramda'
 import {
@@ -118,7 +119,9 @@ const spec = describe('removeUserProfile', () => {
       })
 
       await expect(findUserProfileById(userContext, userContext.currentUser.id)).rejects.toThrow(
-        /(Missing or insufficient permissions)|(PERMISSION_DENIED)/
+        expect.objectContaining({
+          code: ACCESS_DENIED
+        })
       )
     }, 10000)
   })
@@ -162,7 +165,9 @@ const spec = describe('removeUserProfile', () => {
 
     it('throws an error when trying to remove an UserProfile', async () => {
       await expect(removeUserProfile(anonymousContext, userProfile.id, {})).rejects.toThrow(
-        /(Missing or insufficient permissions)|(PERMISSION_DENIED)/
+        expect.objectContaining({
+          code: ACCESS_DENIED
+        })
       )
     }, 10000)
   })

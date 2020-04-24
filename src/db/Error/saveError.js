@@ -1,13 +1,6 @@
-import createError from './createError'
-import refErrorById from './refErrorById'
-import updateError from './updateError'
+import { Error } from './schemas'
+import { saveEntity } from '../Entity'
 
-const saveError = async (context, data) => {
-  const reaction = await refErrorById(context, data.id)
-  if (reaction) {
-    return updateError(context, reaction.id, data)
-  }
-  return createError(context, data)
-}
+const saveError = saveEntity(Error)
 
 export default saveError

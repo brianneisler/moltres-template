@@ -1,12 +1,10 @@
-import { commitBatch } from '../../utils/db'
+import { buildBatch, commitBatch } from '../../utils/db'
 import { curry } from '../../utils/data'
 import batchDeleteEntityStats from './batchDeleteEntityStats'
 
-const deleteEntityStats = curry(async (context, value) => {
-  const { database } = context
-  const batch = database.batch()
-  await batchDeleteEntityStats(context, batch, value)
-  return commitBatch(batch)
-})
+const deleteEntityStats = curry(
+  async (context, value) =>
+    await commitBatch(buildBatch(context, (batch) => batchDeleteEntityStats(context, batch, value)))
+)
 
 export default deleteEntityStats

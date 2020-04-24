@@ -1,6 +1,7 @@
 import { Code, StatusCode } from '../../constants'
 import expected from '../error/expected'
 import formatDocument from './formatDocument'
+import isPermissionsError from './isPermissionsError'
 
 const getFromRef = async ({ logger }, ref, options = {}) => {
   try {
@@ -14,11 +15,12 @@ const getFromRef = async ({ logger }, ref, options = {}) => {
     }
     return formatDocument(document, options)
   } catch (error) {
-    if (error.message.includes('Missing or insufficient permissions')) {
+    if (isPermissionsError(error)) {
       if (process.env.NODE_ENV !== 'production') {
         logger.warn('Permissions error - returning null from query:', error)
       }
       throw expected({
+        causes: [error],
         code: Code.ACCESS_DENIED,
         message: error.message,
         statusCode: Code.STATUS_CODE

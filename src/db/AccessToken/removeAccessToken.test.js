@@ -1,3 +1,4 @@
+import { ACCESS_DENIED } from '../../constants/Code'
 import { createUser, deleteUser } from '../User'
 import { prop } from 'ramda'
 import {
@@ -10,26 +11,19 @@ import {
   tearDownTestServiceAccountContext,
   tearDownTestValidUserContext
 } from '../../test'
+import { v4 as uuidv4 } from 'uuid'
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
 import removeAccessToken from './removeAccessToken'
-import uuidv4 from 'uuid/v4'
 
 const spec = describe('removeAccessToken', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let accessToken
     let context
     let user
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
         name: 'test-user',
@@ -40,7 +34,7 @@ const spec = describe('removeAccessToken', () => {
         userId: user.id,
         valid: true
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -58,7 +52,8 @@ const spec = describe('removeAccessToken', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can remove an AccessToken', async () => {
       const ref = await removeAccessToken(context, accessToken.id)
@@ -78,11 +73,13 @@ const spec = describe('removeAccessToken', () => {
   })
 
   describe('Valid user', () => {
+    let adminContext
     let accessToken
     let context
     let user
     let userContext
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       userContext = await setupTestValidUserContext(adminContext, context)
       user = await createUser(context, {
@@ -94,7 +91,7 @@ const spec = describe('removeAccessToken', () => {
         userId: user.id,
         valid: true
       })
-    }, 10000)
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -111,23 +108,29 @@ const spec = describe('removeAccessToken', () => {
       } catch (error) {
         context.logger.error(error)
       }
-      context = await tearDownTestServiceAccountContext(context)
       userContext = await tearDownTestValidUserContext(context, userContext)
-    })
+      context = await tearDownTestServiceAccountContext(context)
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('throws an error when removing an AccessToken', async () => {
       await expect(removeAccessToken(userContext, accessToken.id)).rejects.toThrow(
-        /Missing or insufficient permissions/
+        expect.objectContaining({
+          code: ACCESS_DENIED
+        })
       )
-    }, 10000)
+    })
   })
 
   describe('Anonymous user', () => {
+    let adminContext
     let anonymousContext
     let accessToken
     let testContext
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       testContext = await setupTestServiceAccountContext(adminContext)
       anonymousContext = await setupTestAnonymousContext(adminContext, testContext)
       user = await createUser(testContext, {
@@ -139,7 +142,7 @@ const spec = describe('removeAccessToken', () => {
         userId: user.id,
         valid: true
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -156,14 +159,17 @@ const spec = describe('removeAccessToken', () => {
       } catch (error) {
         testContext.logger.error(error)
       }
-      testContext = await tearDownTestServiceAccountContext(testContext)
       anonymousContext = await tearDownTestAnonymousContext(anonymousContext)
-    })
+      testContext = await tearDownTestServiceAccountContext(testContext)
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('throws an error when trying to remove an AccessToken', async () => {
       await expect(removeAccessToken(anonymousContext, accessToken.id, {})).rejects.toThrow(
-        /Missing or insufficient permissions/
+        expect.objectContaining({
+          code: ACCESS_DENIED
+        })
       )
-    }, 10000)
+    })
   })
 })

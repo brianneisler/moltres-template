@@ -1,12 +1,6 @@
-import { commitBatch } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchDeleteNotificationSend from './batchDeleteNotificationSend'
+import { NotificationSend } from './schemas'
+import { deleteEntity } from '../Entity'
 
-const deleteNotificationSend = curry(async (context, id, options = {}) => {
-  const { database } = context
-  const batch = database.batch()
-  await batchDeleteNotificationSend(context, batch, id, options)
-  return commitBatch(batch)
-})
+const deleteNotificationSend = deleteEntity(NotificationSend)
 
 export default deleteNotificationSend

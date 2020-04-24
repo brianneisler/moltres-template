@@ -1,12 +1,6 @@
-import { commitBatch } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchDeleteUpload from './batchDeleteUpload'
+import { Upload } from './schemas'
+import { deleteEntity } from '../Entity'
 
-const deleteUpload = curry(async (context, id) => {
-  const { database } = context
-  const batch = database.batch()
-  await batchDeleteUpload(context, batch, id)
-  return commitBatch(batch)
-})
+const deleteUpload = deleteEntity(Upload)
 
 export default deleteUpload

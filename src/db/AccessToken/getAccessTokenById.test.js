@@ -5,32 +5,25 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { v4 as uuidv4 } from 'uuid'
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
 import getAccessTokenById from './getAccessTokenById'
-import uuidv4 from 'uuid/v4'
 
 const spec = describe('getAccessTokenById', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let result
     let user
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
         name: 'test-user',
         state: 'pending'
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -48,7 +41,8 @@ const spec = describe('getAccessTokenById', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('finds an AccessToken by id', async () => {
       const data = {
@@ -61,6 +55,7 @@ const spec = describe('getAccessTokenById', () => {
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
+        removedAt: null,
         token: data.token,
         updatedAt: expect.any(context.firebase.firestore.Timestamp),
         userId: user.id,

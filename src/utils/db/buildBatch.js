@@ -1,14 +1,13 @@
 import { ACCESS_DENIED } from '../../constants/Code'
-import { isPromise } from '../data'
 import expected from '../error/expected'
 import isPermissionsError from './isPermissionsError'
 
-const commitBatch = async (batch) => {
-  if (isPromise(batch)) {
-    batch = await batch
-  }
+const buildBatch = async (context, builder) => {
+  const { database } = context
   try {
-    return await batch.commit()
+    const batch = database.batch()
+    await builder(batch)
+    return batch
   } catch (error) {
     if (isPermissionsError(error)) {
       throw expected({
@@ -21,4 +20,4 @@ const commitBatch = async (batch) => {
   }
 }
 
-export default commitBatch
+export default buildBatch

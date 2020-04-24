@@ -1,6 +1,7 @@
 import { ACCESS_DENIED } from '../../constants/Code'
 import expected from '../error/expected'
 import formatSnapshot from './formatSnapshot'
+import isPermissionsError from './isPermissionsError'
 
 const findAllFromQuery = async ({ logger }, query, queryOptions = {}) => {
   if (!query) {
@@ -10,11 +11,12 @@ const findAllFromQuery = async ({ logger }, query, queryOptions = {}) => {
     const snapshot = await query.get()
     return formatSnapshot(snapshot, queryOptions)
   } catch (error) {
-    if (error.message.includes('Missing or insufficient permissions')) {
+    if (isPermissionsError(error)) {
       if (process.env.NODE_ENV !== 'production') {
         logger.warn('Permissions error - returning null from query:', error)
       }
       throw expected({
+        causes: [error],
         code: ACCESS_DENIED,
         message: error.message
       })

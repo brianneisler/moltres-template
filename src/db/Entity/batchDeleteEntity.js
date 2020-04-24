@@ -17,7 +17,7 @@ const batchDeleteEntity = curry(async (Schema, context, batch, id, options = {})
       entityId: ref.id,
       entityPath: ref.path,
       entityType: Schema.name,
-      prevData
+      prevData: prevData || null
     })
     batchQueueEntityChangedAction(context, batch, action)
   }

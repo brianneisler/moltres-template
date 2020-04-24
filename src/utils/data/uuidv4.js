@@ -1,1 +1,1 @@
-export { default } from 'uuid/v4'
+export { v4 as default } from 'uuid'

@@ -1,13 +1,6 @@
-import { commitBatch } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchRemoveError from './batchRemoveError'
+import { Error } from './schemas'
+import { removeEntity } from '../Entity'
 
-const removeError = curry(async (context, id) => {
-  const { database } = context
-  const batch = database.batch()
-  const ref = await batchRemoveError(context, batch, id)
-  await commitBatch(batch)
-  return ref
-})
+const removeError = removeEntity(Error)
 
 export default removeError

@@ -1,5 +1,6 @@
 import { StatusCode } from '../../constants'
-import { commitBatch, formatDocument } from '../../utils/db'
+import { all } from '../../utils/data'
+import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { expected } from '../../utils/error'
 import batchCreatePhoneNumber from '../../db/PhoneNumber/batchCreatePhoneNumber'
 import batchCreatePhoneNumberClaim from '../../db/PhoneNumberClaim/batchCreatePhoneNumberClaim'
@@ -8,29 +9,28 @@ import findPhoneNumberByPhoneNumber from '../../db/PhoneNumber/findPhoneNumberBy
 import getPendingUserByPhoneNumberClaim from '../../db/PhoneNumberClaim/getPendingUserByPhoneNumberClaim'
 
 const createPendingUser = async (context, { phoneNumber }) => {
-  const { database } = context
-  const batch = database.batch()
+  let phoneNumberRef
+  let userRef
+  await commitBatch(
+    buildBatch(context, (batch) => {
+      phoneNumberRef = batchCreatePhoneNumber(context, batch, {
+        phoneNumber,
+        type: 'unclaimed'
+      })
+      userRef = batchCreateUser(context, batch, {
+        state: 'pending'
+      })
 
-  const phoneNumberRef = batchCreatePhoneNumber(context, batch, {
-    phoneNumber,
-    type: 'unclaimed'
+      batchCreatePhoneNumberClaim(context, batch, {
+        phoneNumberId: phoneNumberRef.id,
+        userId: userRef.id
+      })
+    })
+  )
+  return all({
+    phoneNumber: getFromRef(context, phoneNumberRef),
+    user: getFromRef(context, userRef)
   })
-  const userRef = batchCreateUser(context, batch, {
-    state: 'pending'
-  })
-
-  batchCreatePhoneNumberClaim(context, batch, {
-    phoneNumberId: phoneNumberRef.id,
-    userId: userRef.id
-  })
-
-  await commitBatch(batch)
-
-  const [phoneNumberDoc, userDoc] = await Promise.all([phoneNumberRef.get(), userRef.get()])
-  return {
-    phoneNumber: formatDocument(phoneNumberDoc),
-    user: formatDocument(userDoc)
-  }
 }
 
 const registerPendingUser = async (context, { phoneNumber }) => {

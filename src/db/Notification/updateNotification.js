@@ -1,13 +1,6 @@
-import { commitBatch, getFromRef } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchUpdateNotification from './batchUpdateNotification'
+import { Notification } from './schemas'
+import { updateEntity } from '../Entity'
 
-const updateNotification = curry(async (context, id, updates) => {
-  const { database } = context
-  const batch = database.batch()
-  const ref = await batchUpdateNotification(context, batch, id, updates)
-  await commitBatch(batch)
-  return getFromRef(context, ref)
-})
+const updateNotification = updateEntity(Notification)
 
 export default updateNotification

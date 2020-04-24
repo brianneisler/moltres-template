@@ -9,9 +9,9 @@ import {
   tearDownTestAnonymousContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { v4 as uuidv4 } from 'uuid'
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
-import uuidv4 from 'uuid/v4'
 
 const spec = describe('createAccessToken', () => {
   describe('ServiceAccount', () => {
@@ -27,7 +27,7 @@ const spec = describe('createAccessToken', () => {
         state: 'pending'
       })
       result = null
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -47,7 +47,7 @@ const spec = describe('createAccessToken', () => {
 
       context = await tearDownTestServiceAccountContext(context)
       adminContext = await tearDownTestAdminContext(adminContext)
-    })
+    }, 20000)
 
     it('can create an AccessToken', async () => {
       const data = {
@@ -94,7 +94,7 @@ const spec = describe('createAccessToken', () => {
         state: 'pending'
       })
       result = null
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -114,7 +114,7 @@ const spec = describe('createAccessToken', () => {
       testContext = await tearDownTestServiceAccountContext(testContext)
       anonymousContext = await tearDownTestAnonymousContext(anonymousContext)
       adminContext = await tearDownTestAdminContext(adminContext)
-    })
+    }, 20000)
 
     it('throws an error when creating an AccessToken', async () => {
       const data = {

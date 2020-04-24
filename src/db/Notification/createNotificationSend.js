@@ -1,13 +1,6 @@
-import { commitBatch, getFromRef } from '../../utils/db'
-import { curry } from '../../utils/data'
-import batchCreateNotificationSend from './batchCreateNotificationSend'
+import { NotificationSend } from './schemas'
+import { createEntity } from '../Entity'
 
-const createNotificationSend = curry(async (context, value, options = {}) => {
-  const { database } = context
-  const batch = database.batch()
-  const ref = batchCreateNotificationSend(context, batch, value, options)
-  await commitBatch(batch)
-  return getFromRef(context, ref)
-})
+const createNotificationSend = createEntity(NotificationSend)
 
 export default createNotificationSend

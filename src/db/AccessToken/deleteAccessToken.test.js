@@ -6,30 +6,23 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { v4 as uuidv4 } from 'uuid'
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
-import uuidv4 from 'uuid/v4'
 
 const spec = describe('deleteAccessToken', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let user
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
         name: 'test-user',
         state: 'pending'
       })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -40,7 +33,8 @@ const spec = describe('deleteAccessToken', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('deletes an existing AccessToken', async () => {
       const data = {

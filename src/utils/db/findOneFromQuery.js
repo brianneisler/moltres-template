@@ -1,6 +1,7 @@
 import { ACCESS_DENIED, PENDING_WRITES } from '../../constants/Code'
 import expected from '../error/expected'
 import formatSnapshot from './formatSnapshot'
+import isPermissionsError from './isPermissionsError'
 
 const findOneFromQuery = async ({ logger }, query, options = {}) => {
   if (!query) {
@@ -18,7 +19,7 @@ const findOneFromQuery = async ({ logger }, query, options = {}) => {
     }
     return formatSnapshot(snapshot, { ...options, findOne: true })
   } catch (error) {
-    if (error.message.includes('Missing or insufficient permissions')) {
+    if (isPermissionsError(error)) {
       if (process.env.NODE_ENV !== 'production') {
         // TODO BRN: Pull logger from context to log this
         logger.warn('Permissions error:', error)

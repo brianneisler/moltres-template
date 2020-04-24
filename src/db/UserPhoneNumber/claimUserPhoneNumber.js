@@ -1,28 +1,22 @@
-import { commitBatch } from '../../utils/db'
+import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import batchCreateUserPhoneNumber from './batchCreateUserPhoneNumber'
 import batchUpdatePhoneNumber from '../PhoneNumber/batchUpdatePhoneNumber'
 
 const claimUserPhoneNumber = async (context, { phoneNumberId, userId }) => {
-  const { database } = context
-  const batch = database.batch()
+  let ref
+  await commitBatch(
+    buildBatch(context, async (batch) => {
+      batchCreateUserPhoneNumber(context, batch, {
+        phoneNumberId,
+        userId
+      })
 
-  batchCreateUserPhoneNumber(context, batch, {
-    phoneNumberId,
-    userId
-  })
-
-  const phoneNumberRef = await batchUpdatePhoneNumber(context, batch, phoneNumberId, {
-    type: 'user'
-  })
-
-  await commitBatch(batch)
-
-  const phoneNumberDoc = await phoneNumberRef.get()
-
-  return {
-    id: phoneNumberDoc.id,
-    ...phoneNumberDoc.data()
-  }
+      ref = await batchUpdatePhoneNumber(context, batch, phoneNumberId, {
+        type: 'user'
+      })
+    })
+  )
+  return getFromRef(context, ref)
 }
 
 export default claimUserPhoneNumber
