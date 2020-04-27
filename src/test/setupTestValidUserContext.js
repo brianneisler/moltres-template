@@ -1,7 +1,7 @@
 import { createContext } from '../context'
 import { createCustomToken, signInWithCustomToken } from '../utils/auth'
+import { isTestAppConfigured } from '../utils/config'
 import { registerValidUser } from '../service/auth'
-import createTestContext from './createTestContext'
 
 const setupTestValidUserContext = async (adminContext, serviceAccountContext) => {
   const { config } = adminContext
@@ -9,28 +9,32 @@ const setupTestValidUserContext = async (adminContext, serviceAccountContext) =>
   const { user } = await registerValidUser(serviceAccountContext, { phoneNumber: '9282356681' })
   const namespace = `test:${runId}.user:${user.id}`
   const source = `${config.api.url}/user/${user.id}?test=${runId}`
+  const isTestApp = isTestAppConfigured(config)
 
-  if (config.test.integration) {
-    const context = await createContext({
-      config,
-      currentUser: user,
-      namespace,
-      source
-    })
-    const token = await createCustomToken(adminContext, user.id)
-    await signInWithCustomToken(context, token)
-    return context
+  // TODO BRN: Instead of doing this testAuth config up front. When we are
+  // testing or emulating, we should mock the auth implementation and have that
+  // dynamically update the context by applying the auth settings
+  let testAuth
+  if (isTestApp) {
+    testAuth = {
+      uid: user.id
+    }
   }
-  return createTestContext({
+
+  const context = await createContext({
     config,
     currentUser: user,
     namespace,
     source,
     storage: adminContext.storage,
-    testAuth: {
-      uid: user.id
-    }
+    testAuth
   })
+
+  if (!isTestApp) {
+    const token = await createCustomToken(adminContext, user.id)
+    await signInWithCustomToken(context, token)
+  }
+  return context
 }
 
 export default setupTestValidUserContext

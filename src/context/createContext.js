@@ -6,8 +6,16 @@ import 'firebase/database'
 import 'firebase/firestore'
 import 'firebase/storage'
 import { createLogger } from '../utils/logger'
+import {
+  initializeApp,
+  initializeAuthEmulator,
+  initializeStorageEmulator,
+  initializeTestApp
+} from '../utils/firebase'
+import { invariant } from '../utils/lang'
+import { isObject } from '../utils/data'
+import { isTestAppConfigured } from '../utils/config'
 import createSystem from './createSystem'
-import initializeApp from '../utils/firebase/initializeApp'
 
 // NOTE BRN: This method must remain synchronous because it is needed to boot up
 // the web App without disruption
@@ -18,20 +26,29 @@ const createContext = ({
   namespace,
   storage,
   system = createSystem(),
+  testAuth,
   ...rest
 }) => {
-  if (!config) {
-    throw new Error('createContext expected config to be set')
-  }
+  invariant(isObject(config), 'config must be a defined Object')
+
   let analytics
-  const app = initializeApp({ cache, config, firebase, namespace })
-  if (!config.ssr && config.firebase.appId && config.firebase.measurementId) {
-    analytics = firebase.analytics(app)
+  let app
+  let auth
+
+  if (isTestAppConfigured(config)) {
+    app = initializeTestApp({ auth: testAuth, config, namespace })
+    auth = initializeAuthEmulator({ app })
+    storage = initializeStorageEmulator({ app })
+  } else {
+    app = initializeApp({ cache, config, firebase, namespace })
+    auth = firebase.auth(app)
+    storage = storage ? storage : firebase.storage ? firebase.storage(app) : null
+    if (!config.ssr && config.firebase.appId && config.firebase.measurementId) {
+      analytics = firebase.analytics(app)
+    }
   }
   const database = firebase.firestore(app)
   const realtime = firebase.database(app)
-  const auth = firebase.auth(app)
-  storage = storage ? storage : firebase.storage ? firebase.storage(app) : null
 
   return {
     analytics,

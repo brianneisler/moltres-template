@@ -1,5 +1,6 @@
 module.exports = {
   collectCoverageFrom: ['**/*.{js}'],
+  maxConcurrency: 4,
   moduleFileExtensions: ['ssr.js', 'web.js', 'js', 'json'],
   moduleNameMapper: {
     '\\.(css|less)$': 'identity-obj-proxy',

@@ -15,8 +15,11 @@ const getStage = () => {
 }
 
 const setupFunctionConfig = () => {
-  loadEnv(resolve(__dirname, '..', '..'), { stage: getStage() })
-  return generateAdminConfig({})
+  const stage = getStage()
+  loadEnv(resolve(__dirname, '..', '..'), { stage })
+  return generateAdminConfig({
+    stage
+  })
 }
 
 export default setupFunctionConfig

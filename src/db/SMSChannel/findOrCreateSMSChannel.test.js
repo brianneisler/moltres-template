@@ -71,6 +71,7 @@ const spec = describe('findOrCreateSMSChannel', () => {
           createdAt: expect.any(context.firebase.firestore.Timestamp),
           id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
           internalPhoneNumberId: internalPhoneNumber.id,
+          removedAt: null,
           updatedAt: expect.any(context.firebase.firestore.Timestamp),
           userPhoneNumberId: phoneNumber.id
         })

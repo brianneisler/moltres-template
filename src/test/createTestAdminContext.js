@@ -2,8 +2,8 @@ import * as firebase from 'firebase'
 import { createLogger } from '../utils/logger'
 import { createServiceAccount } from '../db/ServiceAccount'
 import { createSystem } from '../context'
+import { initializeTestAdminApp } from '../utils/firebase'
 import { uuidv4 } from '../utils/data'
-import initializeTestAdminApp from './initializeTestAdminApp'
 
 const createTestAdminContext = async ({ config, namespace, source, ...rest }) => {
   if (!config) {

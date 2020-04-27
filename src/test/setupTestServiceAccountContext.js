@@ -1,6 +1,6 @@
 import { createContext } from '../context'
+import { isTestAppConfigured } from '../utils/config'
 import { signInWithCustomToken } from '../utils/auth'
-import createTestContext from './createTestContext'
 
 const setupTestServiceAccountContext = async (adminContext) => {
   const { config, serviceAccount } = adminContext
@@ -10,28 +10,29 @@ const setupTestServiceAccountContext = async (adminContext) => {
   // states when it comes to the db and authentication.
   const { runId } = config.test
   const namespace = `ServiceAccount:${serviceAccount.id}.test:${runId}`
-  if (config.test.integration) {
-    const context = await createContext({
-      config,
-      namespace,
-      serviceAccount: adminContext.serviceAccount,
-      source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?test=${runId}`,
-      storage: adminContext.storage
-    })
-    await signInWithCustomToken(context, adminContext.token)
-    return context
+  const isTestApp = isTestAppConfigured(config)
+
+  let testAuth
+  if (isTestApp) {
+    testAuth = {
+      serviceAccountId: adminContext.serviceAccount.id,
+      uid: adminContext.serviceAccount.id
+    }
   }
-  return createTestContext({
+
+  const context = await createContext({
     config,
     namespace,
     serviceAccount: adminContext.serviceAccount,
     source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?test=${runId}`,
     storage: adminContext.storage,
-    testAuth: {
-      serviceAccountId: adminContext.serviceAccount.id,
-      uid: adminContext.serviceAccount.id
-    }
+    testAuth
   })
+
+  if (!isTestApp) {
+    await signInWithCustomToken(context, adminContext.token)
+  }
+  return context
 }
 
 export default setupTestServiceAccountContext

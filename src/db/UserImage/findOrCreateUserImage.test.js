@@ -21,7 +21,7 @@ const spec = describe('findOrCreateUserImage', () => {
       adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
-        name: 'test-user'
+        state: 'pending'
       })
     }, 20000)
 
@@ -55,8 +55,11 @@ const spec = describe('findOrCreateUserImage', () => {
       image = await createImage(context, {
         contentType: 'image/jpeg',
         hash: '6c6d079d5711b57ce0af901b000be888',
+        height: 480,
+        length: 32000,
         path: '/path/to/image.jpeg',
-        storageBucket: 'wat-test.appspot.com'
+        storageBucket: 'wat-test.appspot.com',
+        width: 640
       })
       const data = {
         imageId: image.id,
@@ -67,6 +70,7 @@ const spec = describe('findOrCreateUserImage', () => {
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
         imageId: image.id,
+        removedAt: null,
         updatedAt: expect.any(context.firebase.firestore.Timestamp),
         userId: user.id
       })

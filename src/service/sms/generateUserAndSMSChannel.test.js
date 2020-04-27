@@ -10,23 +10,17 @@ import generateInternalPhoneNumber from '../phone_number/generateInternalPhoneNu
 import generateUserAndSMSChannel from './generateUserAndSMSChannel'
 
 const spec = describe('generateUserAndSMSChannel', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
     let smsChannel
     let user
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       await generateInternalPhoneNumber(context, { phoneNumber: '19282183571' })
-    })
+    }, 20000)
 
     afterEach(async () => {
       try {
@@ -44,7 +38,8 @@ const spec = describe('generateUserAndSMSChannel', () => {
         context.logger.error(error)
       }
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('can generate a new User and SMSChannel', async () => {
       const data = {

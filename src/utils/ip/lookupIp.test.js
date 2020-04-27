@@ -1,5 +1,5 @@
 import lookupIp from './lookupIp'
-jest.mock('../fetch/fetch', () =>
+jest.mock('../request/fetch', () =>
   jest.fn(() => ({
     json: () => ({
       city: 'Seattle',

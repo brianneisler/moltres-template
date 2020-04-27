@@ -10,24 +10,19 @@ import {
 } from '../test'
 import setupSSRApp from './setupSSRApp'
 
-const spec = describe('createAccessToken', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
+const spec = describe('setupSSRApp', () => {
   describe('ServiceAccount', () => {
+    let adminContext
     let context
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
-    })
+    }, 20000)
 
     afterEach(async () => {
       context = await tearDownTestServiceAccountContext(context)
+      adminContext = await tearDownTestAdminContext(adminContext)
     })
 
     it('renders SSR app without error', async () => {

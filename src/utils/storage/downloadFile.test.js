@@ -7,24 +7,19 @@ import {
 import downloadFile from './downloadFile'
 
 const spec = describe('downloadFile', () => {
-  let adminContext
-  beforeAll(async () => {
-    adminContext = await setupTestAdminContext(spec)
-  })
-
-  afterAll(async () => {
-    adminContext = await tearDownTestAdminContext(adminContext)
-  })
-
   describe('ServiceAccount', () => {
+    let adminContext
     let context
+
     beforeEach(async () => {
+      adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
-    })
+    }, 20000)
 
     afterEach(async () => {
       context = await tearDownTestServiceAccountContext(context)
-    })
+      adminContext = await tearDownTestAdminContext(adminContext)
+    }, 20000)
 
     it('Can download a file', async () => {
       const buffer = await downloadFile(

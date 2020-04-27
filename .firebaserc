@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "fitpath-brian",
-    "local": "fitpath-brian",
+    "default": "local",
+    "local": "local"
   }
 }

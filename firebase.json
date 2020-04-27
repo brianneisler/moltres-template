@@ -70,17 +70,21 @@
       },
       {
         "source": "**/*.css",
-        "headers": [ {
-          "key": "Cache-Control",
-          "value": "public,max-age=31536000"
-        } ]
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=31536000"
+          }
+        ]
       },
       {
         "source": "**/*.@(jpg|jpeg|gif|png|ico)",
-        "headers": [ {
-          "key": "Cache-Control",
-          "value": "public,max-age=31536000"
-        } ]
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public,max-age=31536000"
+          }
+        ]
       }
     ],
     "rewrites": [
@@ -92,5 +96,25 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "pubsub": {
+      "port": 8085
+    }
   }
 }

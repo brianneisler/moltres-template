@@ -27,7 +27,6 @@ const spec = describe('removeUserProfile', () => {
       adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
       user = await createUser(context, {
-        name: 'test-user',
         state: 'pending'
       })
       userProfile = await createUserProfile(context, {
@@ -137,7 +136,6 @@ const spec = describe('removeUserProfile', () => {
       context = await setupTestServiceAccountContext(adminContext)
       anonymousContext = await setupTestAnonymousContext(adminContext, context)
       user = await createUser(context, {
-        name: 'test-user',
         state: 'pending'
       })
       userProfile = await createUserProfile(context, {

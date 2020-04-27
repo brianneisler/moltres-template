@@ -69,15 +69,16 @@ const monitorForError = async (store) => {
 }
 
 const setupSSRApp = () => {
-  const config = generateConfig({
-    ssr: true
-  })
-
   let renderer
   const setupRenderer = () => {
     AppRegistry.registerComponent('App', () => App)
     return {
       render: async (context, url) => {
+        const config = generateConfig({
+          ssr: true,
+          stage: context.config.stage,
+          test: context.config.test
+        })
         const { cache } = context
         const metaTagsInstance = MetaTagsServer()
         const history = createHistory(url)

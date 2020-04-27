@@ -1,13 +1,13 @@
+import { invariant } from '../lang'
+import { isObject, isString } from '../data'
+
 const initializeAdminApp = ({ config, firebase, namespace, testUser }) => {
-  if (!namespace) {
-    throw new TypeError(`No namespace was provided`)
-  }
-  if (!firebase) {
-    throw new TypeError(`No firebase library was provided`)
-  }
-  if (!config.firebase) {
-    throw new TypeError(`No firebase config was provided`)
-  }
+  invariant(isString(namespace), 'namespace must be a defined String')
+  invariant(isObject(firebase), 'firebase library must be defined on context')
+  invariant(isObject(config), 'config must be a defined Object')
+  invariant(isObject(config.firebase), 'firebase config must be a defined Object')
+  invariant(isString(config.firebase.projectId), 'firebase projectId must be a defined String')
+
   const { serviceAccount } = config
   let appConfig = {
     credential: firebase.credential.cert(serviceAccount),

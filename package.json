@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=10.0"
   },
-  "main": "./src",
+  "main": "./bootstrap",
   "scripts": {
     "build": "bash ./scripts/build.sh",
     "clean": "bash ./scripts/clean.sh",
@@ -41,7 +41,8 @@
     "start:ios": "bash ./scripts/start-ios.sh",
     "start:web": "bash ./scripts/start-web.sh",
     "test": "bash ./scripts/test.sh",
-    "test:ci": "bash ./scripts/test-ci.sh"
+    "test:ci": "bash ./scripts/test-ci.sh",
+    "test:run": "bash ./scripts/test-run.sh"
   },
   "dependencies": {
     "@firebase/component": "^0.1.10",
@@ -116,6 +117,7 @@
     "@babel/core": "^7.8.6",
     "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "@firebase/testing": "^0.19.1",
     "babel-core": "^7.0.0-bridge.0",
