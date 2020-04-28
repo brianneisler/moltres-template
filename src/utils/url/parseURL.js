@@ -1,7 +1,10 @@
 import { URL, parse } from 'url'
+import { invariant } from '../lang'
+import { isString } from '../data'
 import parseSearch from './parseSearch'
 
 const parseURL = (url) => {
+  invariant(isString(url), 'URL must be a String')
   let location
   try {
     location = new URL(url)

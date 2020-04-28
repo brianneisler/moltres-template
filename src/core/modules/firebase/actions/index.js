@@ -1,3 +1,4 @@
+export { default as firebaseAuthStateChanged } from './firebaseAuthStateChanged'
 export { default as setFirebaseApp } from './setFirebaseApp'
 export { default as setFirebaseAuth } from './setFirebaseAuth'
 export { default as setFirebaseDatabase } from './setFirebaseDatabase'

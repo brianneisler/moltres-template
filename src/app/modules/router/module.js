@@ -1,4 +1,3 @@
-import * as actions from './actions'
 import { Code, StatusCode } from '../../../constants'
 import { LocationChangeAction, PreloadAction, ResponseAction } from './schemas'
 import {
@@ -28,13 +27,14 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { expected } from '../../../utils/error'
 import { filterRoutes } from './util'
 import { matchPath, parseLocation } from '../../../utils/url'
+import { preloadAction, preloadCompleteAction, replaceAction, responseAction } from './actions'
 import { withContext } from '../../../core'
 import selectRouterPreload from './selectors/selectRouterPreload'
 
 // NOTE BRN: We match multiple paths in case certain paths want to be able to
 // match existing routes. Like overlays which can appear on any route
-const preloadMatchedRotues = function* (matchedRoutes, preload) {
-  yield all(
+const preloadMatchedRoutes = function* (matchedRoutes, preload) {
+  return yield all(
     map(({ match, route }) => {
       if (route.preload) {
         return call(
@@ -62,18 +62,22 @@ const matchRoutes = (routes, location) =>
 const handleRouting = function* (context, routing, routes) {
   try {
     const matchedRoutes = matchRoutes(routes, routing.location)
-    const result = yield* reduceRight(matchedRoutes, {}, function* (response, { match, route }) {
-      if (route.handle) {
-        response = yield call(route.handle, context, response, {
-          ...routing,
-          match
-        })
-        if (!response) {
-          throw new Error('route handler must return a response')
+    const result = yield* reduceRight(
+      function* (response, { match, route }) {
+        if (route.handle) {
+          response = yield call(route.handle, context, response, {
+            ...routing,
+            match
+          })
+          if (!response) {
+            throw new Error('route handler must return a response')
+          }
         }
-      }
-      return response
-    })
+        return response
+      },
+      {},
+      matchedRoutes
+    )
     if (!result || !result.statusCode) {
       throw expected({
         code: Code.NOT_FOUND,
@@ -125,14 +129,14 @@ const mod = ({ ssr }, { history }) => {
         PreloadAction.type,
         handleAction(function* (context, { payload }) {
           const matchedRoutes = matchRoutes(routes, payload.location)
-          yield call(preloadMatchedRotues, matchedRoutes, payload)
-          yield put(actions.preloadComplete(payload))
+          yield call(preloadMatchedRoutes, matchedRoutes, payload)
+          yield put(preloadCompleteAction(payload))
         })
       )
 
       yield takeEvery(ResponseAction.type, function* ({ payload }) {
         if (payload.redirect && !ssr) {
-          yield put(actions.replace(payload.redirect))
+          yield put(replaceAction(payload.redirect))
         }
       })
 
@@ -146,20 +150,15 @@ const mod = ({ ssr }, { history }) => {
             // (like origin)
             location = parseLocation(location)
 
-            // NOTE BRN: We don't preload on SSR because this is done before the
-            // UI is rendered. This way when we render as a string we render all
-            // of the preloaded data.
-            if (!ssr) {
-              // NOTE BRN: determine if this is the first load.
-              const preload = yield select(selectRouterPreload(location.pathname))
-              yield put(
-                actions.preload(context, {
-                  first: !preload,
-                  location,
-                  previousLocation
-                })
-              )
-            }
+            // NOTE BRN: determine if this is the first load.
+            const preload = yield select(selectRouterPreload(location.pathname))
+            yield put(
+              preloadAction(context, {
+                first: !preload,
+                location,
+                previousLocation
+              })
+            )
 
             const response = yield call(
               handleRouting,
@@ -170,7 +169,8 @@ const mod = ({ ssr }, { history }) => {
               },
               routes
             )
-            yield put(actions.response(context, response))
+
+            yield put(responseAction(context, response))
             previousLocation = location
           })
         )

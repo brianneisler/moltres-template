@@ -1,12 +1,12 @@
 import { Action } from '../../../../db/Action'
-import Joi from '@hapi/joi'
+import { Boolean, Object } from '../../../../core/schemas'
 
 const PreloadAction = {
   schema: Action.schema.keys({
-    payload: Joi.object().keys({
-      first: Joi.boolean().required(),
-      location: Joi.object().required(),
-      previousLocation: Joi.object().allow(null).required()
+    payload: Object.schema.keys({
+      first: Boolean.schema.required(),
+      location: Object.schema.required(),
+      previousLocation: Object.schema.allow(null).required()
     })
   }),
   type: 'ROUTER:PRELOAD'

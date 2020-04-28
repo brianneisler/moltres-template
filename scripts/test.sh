@@ -10,13 +10,12 @@ export STAGE=${STAGE:=local}
 
 echo "setting stage '${STAGE}'..."
 firebase use ${STAGE}
-echo "args $@"
 
 if [ "$TEST_INTEGRATION" = "true" ]; then
   echo "running integration tests on '${STAGE}'"
-  npm run test:run $@
+  npm run test:run -- $@
 else
-  firebase emulators:exec "npm run test:run $@"
+  firebase emulators:exec "npm run test:run -- $@"
 fi
 
 if [ $? -eq 0 ]

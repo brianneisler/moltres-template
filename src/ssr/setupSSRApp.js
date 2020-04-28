@@ -1,5 +1,4 @@
 import * as modules from '../app/modules'
-import * as routerActions from '../app/modules/router/actions'
 import { App, generateConfig } from '../app'
 import { AppRegistry } from 'react-native-web'
 import {
@@ -13,6 +12,7 @@ import {
 } from '../utils/data'
 import { createEngine, selectUncaughtException, setup, start } from '../core'
 import { createHistory } from '../utils/react'
+import { locationChangeAction } from '../app/modules/router/actions'
 import { parseURL } from '../utils/url'
 import { selectRouterResponse } from '../app/modules/router'
 import MetaTagsServer from 'react-meta-tags/server'
@@ -94,10 +94,8 @@ const setupSSRApp = () => {
         const location = parseURL(url)
 
         await store.dispatch(
-          routerActions.preload(context, {
-            first: true,
-            location,
-            previousLocation: null
+          locationChangeAction(context, {
+            location
           })
         )
         const html = ReactDOMServer.renderToString(element)

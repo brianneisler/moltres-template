@@ -1,6 +1,7 @@
 export * from '../modules/config/selectors'
 export * from '../modules/context/selectors'
 export * from '../modules/error/selectors'
+export * from '../modules/firebase/selectors'
 export * from '../modules/logger/selectors'
 export * from '../modules/query/selectors'
 export * from '../modules/ssr/selectors'

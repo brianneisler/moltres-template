@@ -1637,7 +1637,8 @@ service cloud.firestore {
     }
 
     function getUserRoleBefore(id) {
-      return get(/$(databasePath())/UserRoles/$(id))
+      return userRoleExistsBefore(id) ?
+        get(/$(databasePath())/UserRoles/$(id)) : null
     }
 
     function userRoleExistsAfter(id) {

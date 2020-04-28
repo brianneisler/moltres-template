@@ -1,64 +1,65 @@
-import indexEndOffset from './util/indexEndOffset'
-import isGenerator from './isGenerator'
-import isInteger from './isInteger'
-import isPromise from './isPromise'
-
-const generatorReduceRight = function* (arrayLike, accum, iteratee, index) {
-  if (isGenerator(accum)) {
-    accum = yield* accum
-  }
-  while (index >= 0) {
-    accum = iteratee(accum, arrayLike[index], index)
-    if (isGenerator(accum)) {
-      accum = yield* accum
-    } else if (isPromise(accum)) {
-      accum = yield accum
-    }
-    index -= 1
-  }
-  return accum
-}
-
-const doArrayLikeReduceRight = (arrayLike, accum, iteratee, index) => {
-  if (isPromise(accum)) {
-    return accum.then((resolvedAccum) =>
-      doArrayLikeReduceRight(arrayLike, resolvedAccum, iteratee, index)
-    )
-  } else if (isGenerator(accum)) {
-    return generatorReduceRight(arrayLike, accum, iteratee, index)
-  }
-  while (index >= 0) {
-    accum = iteratee(accum, arrayLike[index], index)
-    if (isPromise(accum)) {
-      return accum.then((resolvedAccum) =>
-        doArrayLikeReduceRight(arrayLike, resolvedAccum, iteratee, index - 1)
-      )
-    } else if (isGenerator(accum)) {
-      return generatorReduceRight(arrayLike, accum, iteratee, index - 1)
-    }
-    index -= 1
-  }
-  return accum
-}
+import curry from './curry'
+import iterateRight from './iterateRight'
+import pipe from './pipe'
 
 /**
- * Reduces over an array like value from right to left
+ * Returns a single item by iterating through the collection, successively calling the iterator function and passing it an accumulator value,  the current value and the index or key from the collection, and then passing the result to the next call.
  *
- * @private
+ * Similar to [`reduce`](#reduce), except moves through the input list from the right to the left.
+ *
+ * The iterator function receives three values: *(acc, value, kdx)*.
+ *
+ * Supports async reducers. This method will automatically upgrade to async if given an async reducer.
+ *
+ * Dispatches to the `reduce` method of the third argument, if present.
+ *
+ * Note: `reduceRight` does not skip deleted or unassigned indices (sparse arrays), unlike the native `Array.prototype.reduceRight` method. For more details on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description
+ *
  * @function
  * @since v0.1.0
- * @category lang.util
- * @param {ArrayLike} arrayLike The array like value to iterate over.
- * @param {Function} iteratee The iterator function. Receives three values, the accumulator, the current value from the collection and the key or index.
- * @param {*} accum The accumulator value.
- * @param {number} index The index to start from
+ * @category data
+ * @param {Function} fn The iterator function. Receives three values, the accumulator, the current value from the collection and the key or index.
+ * @param {*} accumulator The accumulator value.
+ * @param {Array|string|Object|Promise} collection The collection to iterate over.
  * @returns {*} The final, accumulated value.
+ * @example
+ *
+ * reduceRight(subtract, 0, [1, 2, 3, 4]) // => (1 - (2 - (3 - (4 - 0)))) = -2
+ * //    -               -2
+ * //   / \              / \
+ * //  1   -            1   3
+ * //     / \              / \
+ * //    2   -     ==>    2  -1
+ * //       / \              / \
+ * //      3   -            3   4
+ * //         / \              / \
+ * //        4   0            4   0
  */
-const arrayLikeReduceRight = (arrayLike, accum, iteratee, index) => {
-  const { length } = arrayLike
-  index = isInteger(index) ? index : length - 1
-  index = indexEndOffset(index, length)
-  return doArrayLikeReduceRight(arrayLike, accum, iteratee, index)
-}
+const reduceRight = curry((iteratee, accumulator, collection) => {
+  let accum = accumulator
+  return iterateRight(
+    (next) =>
+      pipe(
+        (pNext) => {
+          if (pNext.done) {
+            return accum
+          }
+          return iteratee(accum, pNext.value, pNext.kdx)
+        },
+        (nextAccum) => {
+          accum = nextAccum
+          if (next.done) {
+            return {
+              ...next,
+              value: accum
+            }
+          }
+          return next
+        }
+      )(next),
+    collection
+  )
+})
 
-export default arrayLikeReduceRight
+export default reduceRight

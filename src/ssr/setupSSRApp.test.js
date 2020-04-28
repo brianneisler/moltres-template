@@ -23,7 +23,7 @@ const spec = describe('setupSSRApp', () => {
     afterEach(async () => {
       context = await tearDownTestServiceAccountContext(context)
       adminContext = await tearDownTestAdminContext(adminContext)
-    })
+    }, 20000)
 
     it('renders SSR app without error', async () => {
       const render = setupSSRApp()
@@ -32,11 +32,11 @@ const spec = describe('setupSSRApp', () => {
 
       const request = {
         context,
-        originalUrl: '/'
+        url: '/'
       }
       const result = await render(request)
 
       expect(result).toMatchSnapshot()
-    })
+    }, 20000)
   })
 })

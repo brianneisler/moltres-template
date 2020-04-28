@@ -1,12 +1,16 @@
 import * as actions from './actions'
-import { assocProp } from '../../../utils/data'
-import { handleActions, put } from '../../../utils/lang'
-import getContext from '../../../core/getContext'
+import { assocProp, compose } from '../../../utils/data'
+import { fork, handleActions, put } from '../../../utils/lang'
+import { monitorFirebaseAuthState } from './util'
+import getContext from '../../getContext'
+import withContext from '../../withContext'
+
+const enhance = compose(withContext())
 
 const mod = () => ({
   finally: async (store) => {
-    const database = store.getContext('database')
-    database.disableNetwork()
+    const app = store.getContext('app')
+    await app.delete()
   },
 
   reducer: handleActions(
@@ -43,6 +47,8 @@ const mod = () => ({
       actions.setFirebaseFirebase(_firebase),
       actions.setFirebaseStorage(storage)
     ])
+
+    yield fork(enhance(monitorFirebaseAuthState))
   }
 })
 
