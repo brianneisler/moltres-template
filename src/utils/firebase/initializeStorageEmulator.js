@@ -1,6 +1,72 @@
+import { assocProp, getProp } from '../data'
+import { bufferToStream, createBuffer } from '../buffer'
+
+const createFile = () => {
+  let data
+
+  const createReadStream = () => {
+    return bufferToStream(createBuffer(data))
+  }
+  const createWriteStream = () => {}
+
+  const _delete = async () => {
+    data = undefined
+  }
+  const save = async (byteArray) => {
+    data = byteArray
+  }
+  return {
+    createReadStream,
+    createWriteStream,
+    delete: _delete,
+    save
+  }
+}
+
+const createBucket = () => {
+  let files = {}
+  const generateFile = (filePath) => {
+    let file = getProp(filePath, files)
+    if (file) {
+      return file
+    }
+
+    file = createFile()
+    files = assocProp(filePath, file, files)
+    return file
+  }
+
+  const file = (filePath) => generateFile(filePath)
+
+  return {
+    file
+  }
+}
+
 const initializeStorageEmulator = () => {
-  // TODO BRN: Implement a simple emulator for the storage API
-  return {}
+  let buckets = {}
+
+  const generateBucket = (bucketName) => {
+    let bucket = getProp(bucketName, buckets)
+    if (bucket) {
+      return bucket
+    }
+
+    bucket = createBucket()
+    buckets = assocProp(bucketName, bucket, buckets)
+    return bucket
+  }
+
+  const bucket = (bucketName) => {
+    if (!bucketName) {
+      return generateBucket('default')
+    }
+    return generateBucket(bucketName)
+  }
+
+  return {
+    bucket
+  }
 }
 
 export default initializeStorageEmulator

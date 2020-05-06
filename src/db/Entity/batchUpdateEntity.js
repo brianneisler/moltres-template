@@ -1,13 +1,17 @@
 import { UPDATE } from '../../constants/EntityChangeType'
-import { batchUpdateDocument, batchUpdateIndexes, cleanseData, collection } from '../../utils/db'
+import {
+  batchUpdateDocument,
+  batchUpdateIndexes,
+  cleanseData,
+  refDocumentById
+} from '../../utils/db'
 import { curry } from '../../utils/data'
 import { entityChanged } from './actions'
 import { validateSchema } from '../../utils/schema'
 import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 
 const batchUpdateEntity = curry(async (Schema, context, batch, id, data, options = {}) => {
-  const Collection = collection(Schema, context)
-  const ref = Collection.doc(id.toString())
+  const ref = refDocumentById(Schema, context, id)
 
   // Validate updates using new data mixed with previous data
   const document = await ref.get()

@@ -1,0 +1,44 @@
+# .semaphore/deploy-dev.yml
+
+# Use the latest stable version of Semaphore 2.0 YML syntax:
+version: v1.0
+
+# Name your pipeline. In case you connect multiple pipelines with promotions,
+# the name will help you differentiate between, for example, a CI build phase
+# and delivery phases.
+name: CI Deploy - PROD
+
+# An agent defines the environment in which your code runs.
+# It is a combination of one of available machine types and operating
+# system images.
+# See https://docs.semaphoreci.com/article/20-machine-types
+# and https://docs.semaphoreci.com/article/32-ubuntu-1804-image
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+ - name: Deploy
+    task:
+      env_vars:
+        - name: NODE_ENV
+          value: development
+        - name: STAGE
+          value: prod
+
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: Deploy
+          commands:
+             # At this point we can assume 100% cache hit rate of node modules:
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - cache restore cache-$SEMAPHORE_GIT_BRANCH
+
+            # Run task as defined in package.json:
+            - npm run deploy

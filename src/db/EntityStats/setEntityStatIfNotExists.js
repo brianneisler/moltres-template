@@ -1,4 +1,4 @@
-import { assocProp, createPath, getPath, mergeDeepRight, random, reduce } from '../../utils/data'
+import { createPath, getPath, mergeDeepRight, random, reduce } from '../../utils/data'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import queryStatsShards from './queryStatsShards'
 import refEntityStatsById from './refEntityStatsById'
@@ -8,6 +8,8 @@ import updateStatsShard from './updateStatsShard'
 const setEntityStatIfNotExists = async (context, { entityId, entityType, stat, value }) => {
   const entityStats = await findOrCreateEntityStats(context, { entityId, entityType })
   const ref = refEntityStatsById(context, entityStats.id)
+
+  // TODO BRN: try to remove this use of parentRef
   const queryStatsShardsSnapshot = await queryStatsShards(
     {
       ...context,
@@ -27,7 +29,7 @@ const setEntityStatIfNotExists = async (context, { entityId, entityType, stat, v
     // TODO BRN: Wrap this in a try catch, if this fails because of the write
     // speed limit, then create a new shard and try again
     try {
-      await updateStatsShard(assocProp('parentRef', ref, context), shardIndex, {
+      await updateStatsShard(context, [entityStats.id, shardIndex], {
         [`data.${stat}`]: value
       })
     } catch (error) {

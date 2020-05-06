@@ -10,7 +10,9 @@ const enhance = compose(withContext())
 const mod = () => ({
   finally: async (store) => {
     const app = store.getContext('app')
-    await app.delete()
+    if (app) {
+      await app.delete()
+    }
   },
 
   reducer: handleActions(
@@ -48,7 +50,9 @@ const mod = () => ({
       actions.setFirebaseStorage(storage)
     ])
 
-    yield fork(enhance(monitorFirebaseAuthState))
+    if (auth) {
+      yield fork(enhance(monitorFirebaseAuthState))
+    }
   }
 })
 

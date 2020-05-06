@@ -611,19 +611,20 @@ service cloud.firestore {
         && validateActionDataAction(data.action, type, id)
     }
 
-    function validateAction(resource, type, id) {
-      return validateTimestamped(resource) &&
-        matchesUuidV4(resource.id) &&
-        validateActionData(resource.data, type, id)
+    function validateAction(action, type, id) {
+      return validateTimestamped(action) &&
+        matchesUuidV4(action.id) &&
+        validateActionData(action.data, type, id)
     }
 
-    function checkCreateQueueAction(type, id, resourceAfter) {
+    function checkCreateQueueAction(type, id) {
+      let action = getActionAfter(type, 'queue', id);
       return (
         currentUserIsServiceAccount() ||
         currentUserHasAdminRole() ||
-        currentUserCausedAction(resourceAfter)
+        currentUserCausedAction(action)
       ) && (
-        validateAction(resourceAfter, type, id) &&
+        validateAction(action, type, id) &&
         !actionExistsAfter(type, 'processing', id) &&
         !actionExistsAfter(type, 'resolved', id) &&
         !actionExistsAfter(type, 'rejected', id)
@@ -658,7 +659,7 @@ service cloud.firestore {
       match /{type}/queue/{id} {
         // NOTE: only allow ServiceAccounts to read and write
         allow read: if currentUserIsServiceAccount();
-        allow create: if checkCreateQueueAction(type, id, getActionAfter(type, 'queue', id))
+        allow create: if checkCreateQueueAction(type, id)
         allow update: if false;
         allow delete: if currentUserIsServiceAccount();
       }

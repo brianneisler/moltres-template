@@ -39,9 +39,11 @@ describe('generateEngine', () => {
       context: expect.any(Object),
       core: expect.any(Object),
       error: expect.any(Object),
+      firebase: expect.any(Object),
       foo: {
         reducer: testReducer
       },
+      logger: expect.any(Object),
       query: expect.any(Object),
       ssr: expect.any(Object)
     })
@@ -63,20 +65,20 @@ describe('generateEngine', () => {
         bar: 'def',
         logger: console
       },
-      core: {
-        version: 1
-      },
-      error: {},
+      core: expect.any(Object),
+      error: expect.any(Object),
+      firebase: expect.any(Object),
       foo: {
         foo: 'bar'
       },
-      query: {}
+      query: expect.any(Object)
     })
   })
 
   test('starts the engine and calls the setup and start methods', async () => {
     const testContext = {
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     let wasCancelled = false
     const testModule = {

@@ -1,11 +1,9 @@
-import { assocProp, random, toString } from '../../utils/data'
+import { random, toString } from '../../utils/data'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
-import refEntityStatsById from './refEntityStatsById'
 import updateStatsShard from './updateStatsShard'
 
 const incrementEntityStat = async (context, { entityId, entityType, stat }) => {
   const entityStats = await findOrCreateEntityStats(context, { entityId, entityType })
-  const ref = refEntityStatsById(context, entityStats.id)
   const shardIndex = toString(random(0, entityStats.numberShards - 1))
   const increment = context.firebase.firestore.FieldValue.increment(1)
 
@@ -14,7 +12,7 @@ const incrementEntityStat = async (context, { entityId, entityType, stat }) => {
   // then create a new shard and try again
 
   try {
-    await updateStatsShard(assocProp('parentRef', ref, context), shardIndex, {
+    await updateStatsShard(context, [entityStats.id, shardIndex], {
       [`data.${stat}`]: increment
     })
   } catch (error) {

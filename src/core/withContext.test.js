@@ -10,7 +10,8 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext('foo')(function* (data) {
@@ -33,7 +34,8 @@ describe('withContext', () => {
         bay: 'bee',
         bim: 'bop'
       },
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext(['foo', 'bim'])(function* (data) {
@@ -55,7 +57,8 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const selector = jest.fn((context) => ({
@@ -79,7 +82,8 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext()(function* (data) {
@@ -93,7 +97,8 @@ describe('withContext', () => {
       bam: 'bow',
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     })
   })
 
@@ -101,7 +106,8 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const handler = withContext()(function* (data) {
@@ -115,7 +121,8 @@ describe('withContext', () => {
       bam: 'bow',
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     })
   })
 
@@ -123,7 +130,8 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const testConfig = {
       fig: 'ure'
@@ -149,7 +157,8 @@ describe('withContext', () => {
         fig: 'ure'
       },
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     })
   })
 })

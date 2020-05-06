@@ -10,7 +10,10 @@ describe('withQuery', () => {
       foo: 'foo'
     }
     const testChannel = lockChannel()
-    const testContext = { logger: console, source: 'http://source' }
+    const testContext = {
+      logger: console,
+      source: 'https://moltres.io/test'
+    }
 
     const query = {
       onSnapshot: jest.fn((observer) => {
@@ -59,7 +62,10 @@ describe('withQuery', () => {
 
   test("if props don't change, should not call query builder", async () => {
     const testChannel = lockChannel()
-    const testContext = { logger: console, source: 'http://source' }
+    const testContext = {
+      logger: console,
+      source: 'https://moltres.io/test'
+    }
 
     const query = {
       onSnapshot: jest.fn((observer) => {
@@ -126,7 +132,10 @@ describe('withQuery', () => {
       }
     }
     const testChannel = lockChannel()
-    const testContext = { logger: console, source: 'http://source' }
+    const testContext = {
+      logger: console,
+      source: 'https://moltres.io/test'
+    }
 
     const query = {
       onSnapshot: jest.fn((observer) => {
@@ -195,7 +204,10 @@ describe('withQuery', () => {
       }
     }
     const testChannel = lockChannel()
-    const testContext = { logger: console, source: 'http://source' }
+    const testContext = {
+      logger: console,
+      source: 'https://moltres.io/test'
+    }
 
     const docs = {
       bar1: {

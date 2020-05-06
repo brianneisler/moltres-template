@@ -11,7 +11,7 @@ module.exports = {
   preset: 'react-native-web',
   resolver: 'jest-pnp-resolver',
   setupFiles: ['react-app-polyfill/jsdom'],
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
   testMatch: ['<rootDir>/**/__tests__/**/*.js', '<rootDir>/**/?(*.)(spec|test).js'],
   testURL: 'http://localhost',
   transform: {

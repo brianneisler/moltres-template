@@ -10,7 +10,8 @@ describe('withConfig', () => {
       foo: 'bar'
     }
     const testContext = {
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testConfig, testContext)
     const handler = withConfig('foo')(function* (data) {
@@ -35,7 +36,8 @@ describe('withConfig', () => {
       }
     }
     const testContext = {
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testConfig, testContext)
     const handler = withConfig(['foo', 'bim'])(function* (data) {
@@ -59,7 +61,8 @@ describe('withConfig', () => {
       foo: 'bar'
     }
     const testContext = {
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testConfig, testContext)
     const selector = jest.fn((config) => ({

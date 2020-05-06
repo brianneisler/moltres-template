@@ -8,15 +8,7 @@ const batchDeleteEntityStats = async (context, batch, id) => {
   const refDoc = await ref.get()
   const prevData = refDoc.data()
   return map(
-    async (index) =>
-      batchDeleteStatsShard(
-        {
-          ...context,
-          parentRef: ref
-        },
-        batch,
-        index
-      ),
+    async (index) => batchDeleteStatsShard(context, batch, [id, index]),
     range(0, prevData.numberShards)
   )
 }

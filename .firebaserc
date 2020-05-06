@@ -1,6 +1,9 @@
 {
   "projects": {
     "default": "local",
-    "local": "local"
+    "local": "local",
+    "dev": "dev",
+    "qa": "qa",
+    "prod": "prod"
   }
 }

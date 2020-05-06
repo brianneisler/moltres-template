@@ -7,7 +7,7 @@ version: v1.0
 # Name your pipeline. In case you connect multiple pipelines with promotions,
 # the name will help you differentiate between, for example, a CI build phase
 # and delivery phases.
-name: moltres-app
+name: CI Build, Lint and Test
 
 # An agent defines the environment in which your code runs.
 # It is a combination of one of available machine types and operating
@@ -24,7 +24,7 @@ agent:
 # commands to execute.
 # See https://docs.semaphoreci.com/article/62-concepts
 blocks:
-  - name: Install dependencies
+  - name: Install Dependencies
     task:
       env_vars:
         - name: NODE_ENV
@@ -81,7 +81,7 @@ blocks:
             # Run task as defined in package.json:
             - npm run lint
 
-  - name: Test
+  - name: Test emulators
     task:
       env_vars:
         - name: NODE_ENV
@@ -103,3 +103,24 @@ blocks:
 
             # Run task as defined in package.json:
             - npm run test:ci
+
+# Each Semaphore project starts with the default pipeline specified in
+# .semaphore/semaphore.yml. Real world pipelines tend to branch out when certain
+# conditions are met. Examples may be deploying to production on master builds
+# or deploying to a pre-production environment on topic branches.
+# https://docs.semaphoreci.com/guided-tour/deploying-with-promotions/
+promotions:
+- name: DEV deployment
+  pipeline_file: deploy-dev.yml
+  auto_promote:
+    when: "result = 'passed' and branch='dev'"
+
+- name: QA deployment
+  pipeline_file: deploy-qa.yml
+  auto_promote:
+    when: "result = 'passed' and branch='master'"
+
+- name: PROD deployment
+  pipeline_file: deploy-prod.yml
+  auto_promote:
+    when: "result = 'passed' and tag =~ '^v[0-9]\.[0-9]\.[0-9]'"

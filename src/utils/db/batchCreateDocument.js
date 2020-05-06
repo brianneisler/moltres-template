@@ -12,6 +12,7 @@ const batchCreateDocument = curry((Schema, context, batch, data) => {
   } else {
     ref = Collection.doc(getProp(idField, data).toString())
   }
+
   batch.set(ref, addTimestamps(context, data))
 
   return ref

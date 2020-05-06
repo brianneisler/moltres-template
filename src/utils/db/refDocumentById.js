@@ -46,7 +46,7 @@ const refDocumentById = curry((Schema, context, ids) => {
       })
       return ParentCollection.doc(id.toString())
     },
-    null,
+    context.parentRef,
     zip(schemas, ids)
   )
 })

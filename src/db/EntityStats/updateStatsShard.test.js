@@ -8,7 +8,6 @@ import {
 } from '../../test'
 import deleteEntityStats from './deleteEntityStats'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
-import refEntityStatsById from './refEntityStatsById'
 import updateStatsShard from './updateStatsShard'
 
 const spec = describe('updateStatsShard', () => {
@@ -46,28 +45,19 @@ const spec = describe('updateStatsShard', () => {
       } catch (error) {
         context.logger.error(error)
       }
-
       context = await tearDownTestServiceAccountContext(context)
       adminContext = await tearDownTestAdminContext(adminContext)
     }, 20000)
 
     it('update StatsShard at speed', async () => {
-      const ref = refEntityStatsById(context, entityStats.id)
       const shardIndex = 0
       const increment = context.firebase.firestore.FieldValue.increment(1)
 
       const results = await Promise.all(
         map(async () => {
-          return await updateStatsShard(
-            {
-              ...context,
-              parentRef: ref
-            },
-            shardIndex,
-            {
-              'data.foo': increment
-            }
-          )
+          return await updateStatsShard(context, [entityStats.id, shardIndex], {
+            'data.foo': increment
+          })
         }, range(0, 100))
       )
 

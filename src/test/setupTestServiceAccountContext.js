@@ -1,6 +1,6 @@
 import { createContext } from '../context'
 import { isTestAppConfigured } from '../utils/config'
-import { signInWithCustomToken } from '../utils/auth'
+import { signInWithIdToken } from '../utils/auth'
 
 const setupTestServiceAccountContext = async (adminContext) => {
   const { config, serviceAccount } = adminContext
@@ -30,7 +30,7 @@ const setupTestServiceAccountContext = async (adminContext) => {
   })
 
   if (!isTestApp) {
-    await signInWithCustomToken(context, adminContext.token)
+    await signInWithIdToken(context, adminContext.token)
   }
   return context
 }

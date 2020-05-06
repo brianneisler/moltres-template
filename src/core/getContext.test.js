@@ -7,7 +7,8 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -21,7 +22,8 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -35,7 +37,8 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -53,7 +56,8 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, {}, testContext)
     const method = function* () {
@@ -63,7 +67,8 @@ describe('getContext', () => {
     expect(await runSaga(engine, method, testContext)).toEqual({
       bim: 'bop',
       foo: 'bar',
-      logger: console
+      logger: console,
+      source: 'https://moltres.io/test'
     })
   })
 })
