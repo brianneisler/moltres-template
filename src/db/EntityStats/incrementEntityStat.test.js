@@ -65,7 +65,7 @@ const spec = describe('incrementEntityStat', () => {
     it('can increment an entity stat at speed', async () => {
       const results = await Promise.all(
         map(async () => {
-          return incrementEntityStat(context, {
+          return await incrementEntityStat(context, {
             entityId: user.id,
             entityType: User.name,
             stat: 'foo'
