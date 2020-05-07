@@ -18,7 +18,10 @@ const mod = {
           const userProfileImage = await findUserProfileImageById(context, id)
           const image = await getImageById(context, userProfileImage.imageId)
           const fileBuffer = await downloadFile(context, image.path)
-          const imageStream = resizeImageToStream(fileBuffer, { maxWidth: 200, minWidth: 200 })
+          const imageStream = await resizeImageToStream(fileBuffer, {
+            maxWidth: 200,
+            minWidth: 200
+          })
 
           response.setHeader('Cache-Control', 'public, max-age=31536000')
           response.setHeader('Content-Type', 'image/jpeg')

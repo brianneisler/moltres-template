@@ -1,5 +1,5 @@
+import { bufferToStream, createBuffer } from '../../utils/buffer'
 import { createImage, updateImage } from '../../db/Image'
-import bufferToStream from '../../utils/buffer/bufferToStream'
 import contentTypeToExtension from '../../utils/mime/contentTypeToExtension'
 import getImageMeta from '../../utils/image/getImageMeta'
 import hashStream from '../../utils/stream/hashStream'
@@ -11,8 +11,11 @@ const saveImageByteArray = async (context, byteArray, metadata = {}) => {
     throw new Error('contentType metadata must be provided')
   }
   const ext = contentTypeToExtension(contentType)
-  const hash = await hashStream(bufferToStream(byteArray))
-  const { height, length, width } = getImageMeta(byteArray)
+  const buffer = createBuffer(byteArray)
+  const [hash, { height, length, width }] = await Promise.all([
+    hashStream(bufferToStream(buffer)),
+    getImageMeta(buffer)
+  ])
 
   // check for a previously existing image with the same hash.
   // If an image exists with the same hash, return that image instead. (this might be done outside of this method)

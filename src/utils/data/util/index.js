@@ -1,4 +1,5 @@
 export { default as anyIsArray } from './anyIsArray'
+export { default as anyIsArrayBuffer } from './anyIsArrayBuffer'
 export { default as anyIsArrayLike } from './anyIsArrayLike'
 export { default as anyIsFunction } from './anyIsFunction'
 export { default as anyIsGenerator } from './anyIsGenerator'

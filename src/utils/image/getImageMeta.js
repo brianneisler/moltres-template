@@ -1,8 +1,8 @@
-import createImage from './createImage'
+import loadImage from './loadImage'
 
 // TODO BRN: This should support just plain Image
-const getImageMeta = (imageBuffer) => {
-  const image = createImage(imageBuffer)
+const getImageMeta = async (imageBuffer) => {
+  const image = await loadImage(imageBuffer)
   return {
     height: image.height,
     length: imageBuffer.length,

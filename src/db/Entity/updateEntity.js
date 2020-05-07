@@ -9,7 +9,7 @@ const updateEntity = curry(async (Schema, context, id, updates, options = {}) =>
       ref = await batchUpdateEntity(Schema, context, batch, id, updates, options)
     })
   )
-  return getFromRef(context, ref)
+  return await getFromRef(context, ref)
 })
 
 export default updateEntity
