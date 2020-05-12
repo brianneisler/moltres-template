@@ -18,8 +18,16 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
- - name: Deploy
+# Blocks are the heart of a pipeline and are executed sequentially.
+# Each block has a task that defines one or more jobs. Jobs define the
+# commands to execute.
+# See https://docs.semaphoreci.com/article/62-concepts
+blocks:
+  - name: Deploy
     task:
+      secrets:
+        - name: config-qa
+
       env_vars:
         - name: NODE_ENV
           value: development
@@ -47,6 +55,9 @@ agent:
   # required for tests to pass
   - name: Test integration
     task:
+      secrets:
+        - name: config-qa
+
       env_vars:
         - name: NODE_ENV
           value: development
@@ -61,7 +72,7 @@ agent:
           - npm --version
 
       jobs:
-        - name: Test
+        - name: Run Integration Tests
           commands:
              # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master

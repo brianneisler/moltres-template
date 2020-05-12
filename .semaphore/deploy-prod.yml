@@ -18,8 +18,16 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
- - name: Deploy
+# Blocks are the heart of a pipeline and are executed sequentially.
+# Each block has a task that defines one or more jobs. Jobs define the
+# commands to execute.
+# See https://docs.semaphoreci.com/article/62-concepts
+blocks:
+  - name: Deploy
     task:
+      secrets:
+        - name: config-prod
+
       env_vars:
         - name: NODE_ENV
           value: development

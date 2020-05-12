@@ -18,8 +18,12 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
- - name: Deploy
+blocks:
+  - name: Deploy
     task:
+      secrets:
+        - name: config-dev
+
       env_vars:
         - name: NODE_ENV
           value: development
@@ -47,6 +51,9 @@ agent:
   # required for tests to pass
   - name: Test integration
     task:
+      secrets:
+        - name: config-dev
+
       env_vars:
         - name: NODE_ENV
           value: development
@@ -61,7 +68,7 @@ agent:
           - npm --version
 
       jobs:
-        - name: Test
+        - name: Run Integration Tests
           commands:
              # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
