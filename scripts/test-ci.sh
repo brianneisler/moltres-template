@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -e
-npm run test -- --collectCoverage --colors
+npm run test -- --collectCoverage
 codecov
