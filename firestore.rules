@@ -207,6 +207,7 @@ service cloud.firestore {
         'ChannelContext': 'ChannelContexts',
         'EntityStats': 'EntityStats',
         'Error': 'Errors',
+        'Host': 'Hosts',
         'Image': 'Images',
         'Index': 'Indexes',
         'InternalPhoneNumber': 'InternalPhoneNumbers',
@@ -220,6 +221,7 @@ service cloud.firestore {
         'SMSMessage': 'SMSMessages',
         'StatsShard': 'StatsShards',
         'Upload': 'Uploads',
+        'Url': 'Urls',
         'User': 'Users',
         'UserImage': 'UserImages',
         'UserPhoneNumber': 'UserPhoneNumbers',
@@ -895,6 +897,63 @@ service cloud.firestore {
     }
 
 
+    // Host implementation
+    // -----------------------------
+
+    function getHostAfter(id) {
+      return getAfter(/$(databasePath())/Hosts/$(id))
+    }
+
+    function getHostBefore(id) {
+      return get(/$(databasePath())/Hosts/$(id))
+    }
+
+    function hostExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Hosts/$(id))
+    }
+
+    function hostExistsBefore(id) {
+      return exists(/$(databasePath())/Hosts/$(id))
+    }
+
+    function validateHostData(data) {
+      // TODO BRN: replace this with more accurate checks
+      return isString(data.domain) &&
+        (isString(data.subDomain) || isNull(data.subDomain)) &&
+        isString(data.topLevelDomain)
+    }
+
+    function validateHost(entity) {
+      return validateEntity(entity) &&
+        validateHostData(entity.data)
+    }
+
+    function checkReadHost() {
+      return currentUserIsServiceAccount()
+    }
+
+    function checkCreateHost(resourceAfter) {
+      return currentUserIsServiceAccount() &&
+        validateHost(resourceAfter)
+    }
+
+    function checkUpdateHost(resourceAfter) {
+      return currentUserIsServiceAccount() &&
+        validateHost(resourceAfter)
+    }
+
+    function checkDeleteHost() {
+      return currentUserIsServiceAccount();
+    }
+
+    match /Hosts/{id} {
+      allow read: if checkReadHost();
+      allow create: if checkCreateHost(getHostAfter(id));
+      allow update: if checkUpdateHost(getHostAfter(id));
+      allow delete: if checkDeleteHost();
+    }
+
+
     // Image implementation
     // -----------------------------
 
@@ -1446,6 +1505,66 @@ service cloud.firestore {
       allow create: if checkCreateUpload(id);
       allow update: if checkUpdateUpload(id);
       allow delete: if checkDeleteUpload();
+    }
+
+
+    // Url implementation
+    // -----------------------------
+
+    function getUrlAfter(id) {
+      return getAfter(/$(databasePath())/Urls/$(id))
+    }
+
+    function getUrlBefore(id) {
+      return get(/$(databasePath())/Urls/$(id))
+    }
+
+    function urlExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Urls/$(id))
+    }
+
+    function urlExistsBefore(id) {
+      return exists(/$(databasePath())/Urls/$(id))
+    }
+
+    function validateUrlData(data) {
+      // TODO BRN: replace this with more accurate checks
+      return (isString(data.hash) || isNull(data.hash)) &&
+        hostExistsAfter(data.hostId) &&
+        isString(data.pathname) &&
+        (isNumber(data.port) || isNull(data.port)) &&
+        isString(data.protocol) &&
+        (isString(data.search) || isNull(data.search))
+    }
+
+    function validateUrl(entity) {
+      return validateEntity(entity) &&
+        validateUrlData(entity.data)
+    }
+
+    function checkReadUrl() {
+      return currentUserIsServiceAccount()
+    }
+
+    function checkCreateUrl(resourceAfter) {
+      return currentUserIsServiceAccount() &&
+        validateUrl(resourceAfter)
+    }
+
+    function checkUpdateUrl(resourceAfter) {
+      return currentUserIsServiceAccount() &&
+        validateUrl(resourceAfter)
+    }
+
+    function checkDeleteUrl() {
+      return currentUserIsServiceAccount();
+    }
+
+    match /Urls/{id} {
+      allow read: if checkReadUrl();
+      allow create: if checkCreateUrl(getUrlAfter(id));
+      allow update: if checkUpdateUrl(getUrlAfter(id));
+      allow delete: if checkDeleteUrl();
     }
 
 
