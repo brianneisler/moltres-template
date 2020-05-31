@@ -59,6 +59,25 @@ blocks:
             - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json) node_modules
             - cache store cache-$SEMAPHORE_GIT_BRANCH ~/.cache
 
+  - name: Security scans
+    task:
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: Npm Audit
+          commands:
+              # At this point we can assume 100% cache hit rate of node modules:
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - cache restore cache-$SEMAPHORE_GIT_BRANCH
+
+            # Run task as defined in package.json:
+            - npm run security:audit
+
   - name: Lint
     task:
       env_vars:
@@ -81,7 +100,7 @@ blocks:
             # Run task as defined in package.json:
             - npm run lint
 
-  - name: Test emulators
+  - name: Test on emulators
     task:
       env_vars:
         - name: NODE_ENV
@@ -103,6 +122,7 @@ blocks:
 
             # Run task as defined in package.json:
             - npm run test:ci
+
 
 # Each Semaphore project starts with the default pipeline specified in
 # .semaphore/semaphore.yml. Real world pipelines tend to branch out when certain

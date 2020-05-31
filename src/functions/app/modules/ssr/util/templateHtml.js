@@ -1,6 +1,10 @@
-import { join, map } from '../../../../../utils/data'
+import renderScripts from './renderScripts'
+import renderStyles from './renderStyles'
 
-const templateHtml = (context, { html = '', meta = '', scripts = [], state = {}, styles = [] }) => `
+const templateHtml = (
+  context,
+  { earlyScripts = [], html = '', meta = '', scripts = [], state = {}, styles = [] }
+) => `
 <!DOCTYPE html>
 <html lang="en" style="height:100%">
   <head>
@@ -20,34 +24,12 @@ const templateHtml = (context, { html = '', meta = '', scripts = [], state = {},
     <link rel="apple-touch-icon" sizes="167x167" href="/assets/icons/rubber-duck-icon-167x167.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/rubber-duck-icon-180x180.png">
     <link rel="stylesheet" type="text/css" href="/css/index.css" media="screen" />
-    ${join('\n', styles)}
-    ${
-      context.config.google.analyticsId
-        ? `
-        <script async src="https://www.googletagmanager.com/gtag/js?id=${context.config.google.analyticsId}"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${context.config.google.analyticsId}');
-        </script>`
-        : ''
-    }
+    ${renderStyles(context, styles)}
+    ${renderScripts(context, earlyScripts, { state })}
   </head>
   <body>
     <div id="root">${html}</div>
-    <script>
-      window.__INITIAL_STATE__ = ${
-        // WARNING: See the following for security issues around embedding JSON in HTML:
-        // https://redux.js.org/recipes/server-rendering/#security-considerations
-        JSON.stringify(state).replace(/</g, '\\u003c')
-      }
-    </script>
-    ${join(
-      '\n',
-      map((path) => `<script src="${path}"></script>`, scripts)
-    )}
+    ${renderScripts(context, scripts, { state })}
   </body>
 </html>
 `

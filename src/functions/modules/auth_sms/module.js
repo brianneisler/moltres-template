@@ -42,7 +42,7 @@ const mod = {
               userPhoneNumberId: payload.data.phoneNumberId
             })
             yield sendSMSMessageToChannel(context, {
-              body: `Hi, I'm the WAT Duck! Thanks for joining WAT! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.site.url}`,
+              body: `Hi, I'm the WAT Duck! Thanks for joining WAT! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.app.url}`,
               media: `${config.api.url}/vcard`,
               smsChannel
             })

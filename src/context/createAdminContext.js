@@ -1,19 +1,38 @@
-import * as firebase from 'firebase-admin'
+import * as firebaseAdmin from 'firebase-admin'
+import * as firebaseMain from 'firebase'
 import { createCustomToken } from '../utils/auth'
 import { createLogger } from '../utils/logger'
 import { createServiceAccount } from '../db/ServiceAccount'
-import { initializeAdminApp } from '../utils/firebase'
-import { uuidv4 } from '../utils/data'
+import {
+  initializeAdminApp,
+  initializeAuthEmulator,
+  initializeStorageEmulator,
+  initializeTestAdminApp
+} from '../utils/firebase'
+import { invariant } from '../utils/lang'
+import { isObject, uuidv4 } from '../utils/data'
+import { isTestAppConfigured } from '../utils/config'
 import createSystem from './createSystem'
 
 const createAdminContext = async ({ config, namespace, source, ...rest }) => {
-  if (!config) {
-    throw new Error('createAdminContext expected config to be set')
+  invariant(isObject(config), 'config must be a defined Object')
+
+  let app
+  let auth
+  let firebase
+  let storage
+  if (isTestAppConfigured(config)) {
+    firebase = firebaseMain
+    app = initializeTestAdminApp({ config, namespace })
+    auth = initializeAuthEmulator({ app, config })
+    storage = initializeStorageEmulator({ app })
+  } else {
+    firebase = firebaseAdmin
+    app = initializeAdminApp({ config, firebase, namespace })
+    auth = firebase.auth(app)
+    storage = firebase.storage(app)
   }
-  const app = initializeAdminApp({ config, firebase, namespace })
   const database = firebase.firestore(app)
-  const auth = firebase.auth(app)
-  const storage = firebase.storage(app)
   const logger = createLogger()
   const system = createSystem()
 

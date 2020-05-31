@@ -16,6 +16,8 @@ const Image = {
     length: Joi.number().integer().positive().allow(0).required(),
     path: Joi.string(),
     storageBucket: Joi.string().required(),
+    // TODO BRN: Replace uploadId with a sourceEntity concept which can be of type
+    // 'Upload' or 'Url'
     uploadId: id(),
     width: Joi.number().integer().positive().allow(0).required()
   })

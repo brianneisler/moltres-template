@@ -1,6 +1,6 @@
 import { Entity } from '../../Entity'
+import { Integer, Object } from '../../../core/schemas'
 import EntityStats from './EntityStats'
-import Joi from '@hapi/joi'
 
 const StatsShard = {
   collectionName: 'StatsShards',
@@ -8,8 +8,8 @@ const StatsShard = {
   name: 'StatsShard',
   parentSchema: EntityStats,
   schema: Entity.keys({
-    data: Joi.object().required(),
-    index: Joi.number().integer().required()
+    data: Object.schema.required(),
+    index: Integer.schema.required()
   })
 }
 

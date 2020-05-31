@@ -110,7 +110,8 @@
     "database": {
       "port": 9000
     },
-    "hosting": {
+    "ui": {
+      "host": "0.0.0.0",
       "port": 5000
     },
     "pubsub": {

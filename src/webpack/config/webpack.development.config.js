@@ -72,6 +72,10 @@ const config = (env) => {
       new webpack.EnvironmentPlugin(
         pick(
           [
+            'API_URL',
+            'APP_DESCRIPTION',
+            'APP_NAME',
+            'APP_URL',
             'FACEBOOK_APP_ID',
             'FIREBASE_API_KEY',
             'FIREBASE_APP_ID',
@@ -80,10 +84,7 @@ const config = (env) => {
             'FIREBASE_PROJECT_ID',
             'NODE_ENV',
             'SENTRY_DSN',
-            'SITE_NAME',
-            'SITE_URL',
-            'TWITTER_USERNAME',
-            'WAT_API_URL'
+            'TWITTER_USERNAME'
           ],
           env
         )

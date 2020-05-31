@@ -15,7 +15,7 @@ const COMMANDS = {
     exec: async ({ config }) => {
       return {
         media: `${config.api.url}/vcard`,
-        message: `Hi! I'm the WAT Duck! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.site.url}`
+        message: `Hi! I'm the WAT Duck! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.app.url}`
       }
     },
     match: ({ isNewUser, smsMessage }) => isNewUser || containsHiCommand(smsMessage.body)

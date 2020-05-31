@@ -1,9 +1,8 @@
-import firebase from 'firebase/app'
-
 import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/firestore'
+import 'firebase/performance'
 import 'firebase/storage'
 import { createLogger } from '../utils/logger'
 import {
@@ -16,6 +15,7 @@ import { invariant } from '../utils/lang'
 import { isObject } from '../utils/data'
 import { isTestAppConfigured } from '../utils/config'
 import createSystem from './createSystem'
+import firebase from 'firebase/app'
 
 // NOTE BRN: This method must remain synchronous because it is needed to boot up
 // the web App without disruption
@@ -34,6 +34,7 @@ const createContext = ({
   let analytics
   let app
   let auth
+  let performance
 
   if (isTestAppConfigured(config)) {
     app = initializeTestApp({ auth: testAuth, config, namespace })
@@ -41,6 +42,7 @@ const createContext = ({
     storage = initializeStorageEmulator({ app })
   } else {
     app = initializeApp({ cache, config, firebase, namespace })
+    performance = firebase.performance()
     auth = firebase.auth(app)
     storage = storage ? storage : firebase.storage ? firebase.storage(app) : null
     if (!config.ssr && config.firebase.appId && config.firebase.measurementId) {
@@ -60,6 +62,7 @@ const createContext = ({
     firebase,
     logger,
     namespace,
+    performance,
     realtime,
     storage,
     system,
