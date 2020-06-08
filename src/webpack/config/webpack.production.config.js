@@ -32,7 +32,8 @@ const config = (env) => {
               cacheDirectory: true,
               plugins: [
                 ['react-native-web', { commonjs: true }],
-                '@babel/plugin-proposal-class-properties'
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-transform-runtime'
               ],
               presets: [
                 [
