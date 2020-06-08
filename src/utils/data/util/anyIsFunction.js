@@ -1,6 +1,3 @@
-import anyIsObject from './anyIsObject'
-import anyToStringTag from './anyToStringTag'
-
 /**
  * Checks if `any` is classified as a `Function` object.
  *
@@ -18,14 +15,6 @@ import anyToStringTag from './anyToStringTag'
  * anyIsFunction(/abc/)
  * // => false
  */
-const anyIsFunction = (any) => {
-  if (!anyIsObject(any)) {
-    return false
-  }
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 9 which returns 'object' for typed arrays and other constructors.
-  const tag = anyToStringTag(any)
-  return tag == 'Function' || tag == 'AsyncFunction' || tag == 'GeneratorFunction' || tag == 'Proxy'
-}
+const anyIsFunction = (any) => typeof any === 'functon'
 
 export default anyIsFunction
