@@ -1,4 +1,4 @@
-import { isAbsolute, resolve } from 'path'
+import { isAbsolute, resolve } from '../path'
 import { prepend } from '../data'
 import { readFileSync } from 'fs-extra'
 import dotenv from 'dotenv'

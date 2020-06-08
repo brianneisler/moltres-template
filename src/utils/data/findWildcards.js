@@ -1,5 +1,5 @@
 import { ImmutableMap } from './js'
-import assocProp from './assocProp'
+import assoc from './assoc'
 import createPath from './createPath'
 import equals from './equals'
 import getProp from './getProp'
@@ -27,7 +27,7 @@ const findWildcards = (selector, wildcards = ImmutableMap([])) => {
             throw new Error(`wild cards with the same name must have the same basePath`)
           }
         } else {
-          return assocProp(
+          return assoc(
             name,
             ImmutableMap({
               basePath,

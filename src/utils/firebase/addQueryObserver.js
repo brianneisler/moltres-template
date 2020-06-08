@@ -1,4 +1,4 @@
-import { assocProp, hasProp } from '../data'
+import { assoc, hasProp } from '../data'
 
 const addQueryObserver = (observers, key, query, observer) => {
   if (hasProp(key, observers)) {
@@ -7,7 +7,7 @@ const addQueryObserver = (observers, key, query, observer) => {
     )
   }
   observer.unsubscribe = query.onSnapshot(observer)
-  return assocProp(key, observer, observers)
+  return assoc(key, observer, observers)
 }
 
 export default addQueryObserver

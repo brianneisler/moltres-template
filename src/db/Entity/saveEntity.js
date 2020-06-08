@@ -8,7 +8,7 @@ const saveEntity = curry(async (Schema, context, data) => {
   if (entity) {
     return updateEntity(Schema, context, data.id, data)
   }
-  return createEntity(context, data)
+  return createEntity(Schema, context, data)
 })
 
 export default saveEntity

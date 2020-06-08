@@ -1,5 +1,5 @@
 import * as actions from './actions'
-import { assocProp, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/data'
 import { call, fork, handleAction, handleActions } from '../../../utils/lang'
 import { watchCurrentUser } from '../auth'
 import { withConfig, withContext } from '../../../core'
@@ -11,7 +11,7 @@ const mod = {
   reducer: handleActions(
     {
       [actions.setCurrentUserRole]: (state, action) =>
-        assocProp('currentUserRole', action.payload.currentUserRole, state)
+        assoc('currentUserRole', action.payload.currentUserRole, state)
     },
     {
       // undefined indicates that these values have not been loaded.

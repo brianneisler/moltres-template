@@ -1,1 +1,26 @@
-export { forEach as default } from 'ramda'
+import curry from './curry'
+import isArray from './isArray'
+import isImmutable from './isImmutable'
+import keys from './keys'
+import pipe from './pipe'
+import reduce from './reduce'
+
+const forEach = curry((iteratee, collection) => {
+  if (isImmutable(collection)) {
+    return collection.map(iteratee)
+  }
+  return reduce(
+    (accum, key) =>
+      pipe(
+        () => iteratee(collection[key], key, collection),
+        (result) => {
+          accum[key] = result
+          return accum
+        }
+      )(),
+    isArray(collection) ? [] : {},
+    keys(collection)
+  )
+})
+
+export default map

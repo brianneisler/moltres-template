@@ -1,4 +1,4 @@
-import { assocProp } from '../../../utils/data'
+import { assoc } from '../../../utils/data'
 import { handleActions, select, take } from '../../../utils/lang'
 import { uiDeinitialized, uiInitialized } from './actions'
 import selectUIInitialized from './selectUIInitialized'
@@ -6,8 +6,8 @@ import selectUIInitialized from './selectUIInitialized'
 const mod = {
   reducer: handleActions(
     {
-      [uiDeinitialized]: (state) => assocProp('initialized', false, state),
-      [uiInitialized]: (state) => assocProp('initialized', true, state)
+      [uiDeinitialized]: (state) => assoc('initialized', false, state),
+      [uiInitialized]: (state) => assoc('initialized', true, state)
     },
     {
       initialized: false

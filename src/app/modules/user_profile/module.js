@@ -9,7 +9,7 @@ import {
   spawn,
   takeEvery
 } from '../../../utils/lang'
-import { assocProp, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/data'
 import { getUserById } from '../../../db/User'
 import { queryAndWatchCurrentUserFollow } from '../user_follow'
 import { queryAndWatchUserReactionEntityPages } from '../reaction'
@@ -28,7 +28,7 @@ const mod = {
   reducer: handleActions(
     {
       [actions.setCurrentUserProfile]: (state, action) =>
-        assocProp('currentUserProfile', action.payload.currentUserProfile, state)
+        assoc('currentUserProfile', action.payload.currentUserProfile, state)
     },
     {
       // undefined indicates that these values have not been loaded.

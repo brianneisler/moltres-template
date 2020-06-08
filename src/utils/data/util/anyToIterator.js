@@ -1,5 +1,5 @@
+import { ITERATOR } from '../constants/Symbol'
 import ITERATOR_START from '../constants/ITERATOR_START'
-import SYMBOL_ITERATOR from '../constants/SYMBOL_ITERATOR'
 import anyIsArrayLike from './anyIsArrayLike'
 import anyIsIndexedIterator from './anyIsIndexedIterator'
 import anyIsIterable from './anyIsIterable'
@@ -42,7 +42,7 @@ const anyToIterator = (any, start = ITERATOR_START) => {
     return arrayLikeToIterator(any, start)
   }
   if (anyIsIterable(any)) {
-    return iteratorResolver(any[SYMBOL_ITERATOR](), start)
+    return iteratorResolver(any[ITERATOR](), start)
   }
   if (anyIsObjectLike(any)) {
     return objectToIterator(any, start)

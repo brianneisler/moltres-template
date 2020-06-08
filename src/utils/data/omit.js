@@ -1,5 +1,5 @@
 import { ImmutableMap } from './js'
-import assocProp from './assocProp'
+import assoc from './assoc'
 import curry from './curry'
 import getProp from './getProp'
 import isImmutableMap from './isImmutableMap'
@@ -19,7 +19,7 @@ const omit = curry((names, collection) => {
   return reduce(
     (result, key) => {
       if (!index.hasOwnProperty(key)) {
-        return assocProp(key, getProp(key, collection), result)
+        return assoc(key, getProp(key, collection), result)
       }
       return result
     },

@@ -1,4 +1,4 @@
-import { assocProp, find, reduce } from '../data'
+import { assoc, find, reduce } from '../data'
 import formatDocument from './formatDocument'
 
 const formatSnapshotDocuments = (snapshot, options) =>
@@ -8,7 +8,7 @@ const formatSnapshotDocuments = (snapshot, options) =>
       if (!formatted) {
         return docs
       }
-      return assocProp(document.id, formatted, docs)
+      return assoc(document.id, formatted, docs)
     },
     {},
     snapshot.docs

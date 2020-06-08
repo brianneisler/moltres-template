@@ -2,7 +2,7 @@ import * as actions from './actions'
 import { INFO } from '../../../constants/StatusLevel'
 import {
   assocPath,
-  assocProp,
+  assoc,
   dissocPath,
   first,
   getPath,
@@ -31,7 +31,7 @@ const mod = {
   reducer: handleActions(
     {
       [actions.setCurrentStatus]: (state, action) =>
-        assocProp('current', action.payload.status, state),
+        assoc('current', action.payload.status, state),
       [actions.setStatus]: (state, action) => {
         const { name, status } = action.payload
         if (status) {

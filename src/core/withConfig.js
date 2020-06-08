@@ -1,4 +1,4 @@
-import { assocPath, assocProp, isArray, isString, resolveToGenerator } from '../utils/data'
+import { assoc, assocPath, isArray, isString, resolveToGenerator } from '../utils/data'
 import createFactory from './createFactory'
 import getConfig from './getConfig'
 
@@ -28,7 +28,7 @@ const withConfig = (selector) => (factory) =>
     // NOTE BRN: the above method selects the value
     // in order to merge we need to rebuild the object first
     if (isString(selector)) {
-      config = assocProp(selector, config, {})
+      config = assoc(selector, config, {})
     }
     if (isArray(selector)) {
       config = assocPath(selector, config, {})

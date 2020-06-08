@@ -1,4 +1,4 @@
-import { ImmutableMap, assocProp, createSelector, getProp, isFunction } from '../utils/data'
+import { ImmutableMap, assoc, createSelector, getProp, isFunction } from '../utils/data'
 import { invariant } from '../utils/lang'
 import createQueryFactory from './createQueryFactory'
 
@@ -27,7 +27,7 @@ const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {
         selector: createSelector('$'),
         statePath
       })
-      queryFactories = assocProp(factoryKey, queryFactory, queryFactories)
+      queryFactories = assoc(factoryKey, queryFactory, queryFactories)
     }
 
     return queryFactory

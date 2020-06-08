@@ -1,5 +1,5 @@
-import { SYMBOL_ITERATOR } from './constants'
+import { ITERATOR } from './constants/Symbol'
 
-const iterator = (value) => value[SYMBOL_ITERATOR]()
+const iterator = (value) => value[ITERATOR]()
 
 export default iterator

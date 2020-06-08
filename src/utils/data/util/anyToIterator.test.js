@@ -1,4 +1,4 @@
-import { SYMBOL_ITERATOR } from '../constants'
+import { ITERATOR } from '../constants/Symbol'
 import anyToIterator from './anyToIterator'
 import arrayLikeToIterator from './arrayLikeToIterator'
 import objectToIterator from './objectToIterator'
@@ -148,7 +148,7 @@ describe('anyToIterator', () => {
       next: () => {}
     }
     const iterable = {
-      [SYMBOL_ITERATOR]: () => iter
+      [ITERATOR]: () => iter
     }
     const result = anyToIterator(iterable)
     expect(result).toEqual({

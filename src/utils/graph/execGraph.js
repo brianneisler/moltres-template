@@ -1,5 +1,5 @@
 import { all, props } from 'bluebird'
-import { assocProp, curry, getProp, map } from '../data'
+import { assoc, curry, getProp, map } from '../data'
 import getOutNodes from './getOutNodes'
 import traversePostorder from './traversePostorder'
 
@@ -13,7 +13,7 @@ const execGraph = curry(async (fn, graph) => {
 
   traversePostorder((value, node) => {
     const promise = execNode(graph, node, fn)
-    promises = assocProp(node, promise, promises)
+    promises = assoc(node, promise, promises)
   }, graph)
 
   return props(promises)

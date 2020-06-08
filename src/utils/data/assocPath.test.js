@@ -26,6 +26,11 @@ describe('assocPath', () => {
     })
   })
 
+  test('assocPath to an Array', () => {
+    const value = ['foo', 'bar', 'baz']
+    expect(assocPath([1], 'bop', value)).toEqual(['foo', 'bop', 'baz'])
+  })
+
   test('$ replaces entire value', async () => {
     const selector = '$'
     const value = { foo: 'bar' }

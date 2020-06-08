@@ -1,6 +1,6 @@
 import * as modules from '../modules'
 import { User, findUserById } from '../../db/User'
-import { assocProp, hasProp } from '../../utils/data'
+import { assoc, hasProp } from '../../utils/data'
 import { generateEngine } from '../../core'
 import { processAction, rejectAction, resolveAction } from '../../db/Action'
 import setupFunctionContexts from '../setupFunctionContexts'
@@ -13,7 +13,7 @@ import setupFunctionContexts from '../setupFunctionContexts'
 const setCurrentUser = async (context, action, engine) => {
   if (hasProp('meta', action) && action.meta.causedByEntityType === User.name) {
     const currentUser = await findUserById(context, action.meta.causedByEntityId)
-    context = assocProp('currentUser', currentUser, context)
+    context = assoc('currentUser', currentUser, context)
     await engine.setContext({ value: context })
     return context
   }

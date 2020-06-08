@@ -1,6 +1,6 @@
 import {
+  assoc,
   assocMerge,
-  assocProp,
   containsWildcard,
   createPropStore,
   getProp,
@@ -31,7 +31,7 @@ const assocWildProp = (selector, value, collection, props) =>
   reduce(
     (accum, wildcardValues) => {
       const resolvedSelector = replaceWildcards(wildcardValues, selector)
-      return assocProp(resolvedSelector, value, accum)
+      return assoc(resolvedSelector, value, accum)
     },
     collection,
     selectWildcards(selector, props)
@@ -44,7 +44,7 @@ const mergeProps = (stateProps, props) => {
       if (containsWildcard(selector)) {
         return assocWildProp(selector, getProp(selector, stateProps), accum, props)
       }
-      return assocProp(selector, getProp(selector, stateProps), accum)
+      return assoc(selector, getProp(selector, stateProps), accum)
     },
     {},
     selectors

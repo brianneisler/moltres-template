@@ -1,6 +1,6 @@
 import * as actions from './actions'
 import { AuthStateChangedAction, selectAfterLogin, signInWithIdTokenAction } from '../auth'
-import { assocProp, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/data'
 import { buildLocation } from '../../../utils/url'
 import {
   call,
@@ -21,7 +21,7 @@ const module = {
   reducer: handleActions(
     {
       [actions.setSMSChallengeId]: (state, action) =>
-        assocProp('smsChallengeId', action.payload.smsChallengeId, state)
+        assoc('smsChallengeId', action.payload.smsChallengeId, state)
     },
     {
       smsChallengeId: null

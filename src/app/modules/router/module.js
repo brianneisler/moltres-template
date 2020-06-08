@@ -12,7 +12,7 @@ import {
 } from '../../../utils/lang'
 import {
   assocPath,
-  assocProp,
+  assoc,
   compose,
   evolve,
   filter,
@@ -121,7 +121,7 @@ const mod = ({ ssr }, { history }) => {
             state
           )
         },
-        [ResponseAction.type]: (state, { payload }) => assocProp('response', payload, state)
+        [ResponseAction.type]: (state, { payload }) => assoc('response', payload, state)
       })
     ),
     run: function* run() {

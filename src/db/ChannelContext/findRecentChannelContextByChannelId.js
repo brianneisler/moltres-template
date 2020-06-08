@@ -1,5 +1,5 @@
 import { ChannelContext } from './schemas'
-import { assocProp } from '../../utils/data'
+import { assoc } from '../../utils/data'
 import { buildQuery, findOneFromQuery } from '../../utils/db'
 
 const queryRecentChannelContext = (context, channelId, queryOptions) =>
@@ -11,7 +11,7 @@ const queryRecentChannelContext = (context, channelId, queryOptions) =>
   )
 
 const findRecentChannelContextByChannelId = async (context, channelId, queryOptions = {}) => {
-  queryOptions = assocProp('limit', 1, queryOptions)
+  queryOptions = assoc('limit', 1, queryOptions)
   return findOneFromQuery(
     context,
     queryRecentChannelContext(context, channelId, queryOptions),

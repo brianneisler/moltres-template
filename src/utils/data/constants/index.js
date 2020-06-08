@@ -1,5 +1,8 @@
+import * as Regex from './Regex'
+import * as Symbol from './Symbol'
+
 export { default as ITERATOR_END } from './ITERATOR_END'
 export { default as ITERATOR_START } from './ITERATOR_START'
 export { default as MAX_SAFE_INTEGER } from './MAX_SAFE_INTEGER'
-export { default as SYMBOL_ITERATOR } from './SYMBOL_ITERATOR'
-export { default as SYMBOL_TO_STRING_TAG } from './SYMBOL_TO_STRING_TAG'
+
+export { Regex, Symbol }

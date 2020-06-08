@@ -1,8 +1,8 @@
 import {
   ImmutableMap,
   anyContainsWildcard,
+  assoc,
   assocPath,
-  assocProp,
   createPath,
   createSelector,
   dissocProp,
@@ -65,7 +65,7 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
           targetPropBuilders,
           identity
         )
-        factories = assocProp(factoryKey, factory, factories)
+        factories = assoc(factoryKey, factory, factories)
       }
       remainingFactories = dissocProp(factoryKey, remainingFactories)
       return yield call(factory, props, ...rest)

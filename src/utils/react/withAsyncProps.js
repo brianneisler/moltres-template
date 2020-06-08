@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import {
+  assoc,
   assocPath,
-  assocProp,
   forEach,
   getProp,
   hasProp,
@@ -108,7 +108,7 @@ const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseCompone
             }
           }
           remainingAsyncProps = omit([key], remainingAsyncProps)
-          return assocProp(key, promisedAsyncProp, accum)
+          return assoc(key, promisedAsyncProp, accum)
         },
         {},
         keys(promisedAsyncProps)

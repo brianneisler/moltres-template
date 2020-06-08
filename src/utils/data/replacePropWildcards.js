@@ -1,5 +1,5 @@
 import { ImmutableMap } from './js'
-import assocProp from './assocProp'
+import assoc from './assoc'
 import getProp from './getProp'
 import isImmutableMap from './isImmutableMap'
 import keys from './keys'
@@ -8,7 +8,7 @@ import replaceWildcards from './replaceWildcards'
 
 const replacePropWildcards = (wildValues, object) =>
   reduce(
-    (accum, prop) => assocProp(replaceWildcards(wildValues, prop), getProp(prop, object), accum),
+    (accum, prop) => assoc(replaceWildcards(wildValues, prop), getProp(prop, object), accum),
     isImmutableMap(object) ? ImmutableMap({}) : {},
     keys(object)
   )

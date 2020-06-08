@@ -14,6 +14,7 @@ const templateHtml = (
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-config" content="/path/to/config-file.xml" />
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/assets/icons/rubber-duck-icon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/assets/icons/rubber-duck-icon-32x32.png" sizes="32x32">

@@ -1,5 +1,5 @@
 import * as actions from './actions'
-import { assocProp, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/data'
 import { fork, handleActions, put } from '../../../utils/lang'
 import { monitorFirebaseAuthState } from './util'
 import getContext from '../../getContext'
@@ -17,14 +17,14 @@ const mod = () => ({
 
   reducer: handleActions(
     {
-      [actions.setFirebaseApp]: (state, action) => assocProp('app', action.payload.app, state),
-      [actions.setFirebaseAuth]: (state, action) => assocProp('auth', action.payload.auth, state),
+      [actions.setFirebaseApp]: (state, action) => assoc('app', action.payload.app, state),
+      [actions.setFirebaseAuth]: (state, action) => assoc('auth', action.payload.auth, state),
       [actions.setFirebaseDatabase]: (state, action) =>
-        assocProp('database', action.payload.database, state),
+        assoc('database', action.payload.database, state),
       [actions.setFirebaseFirebase]: (state, action) =>
-        assocProp('firebase', action.payload.firebase, state),
+        assoc('firebase', action.payload.firebase, state),
       [actions.setFirebaseStorage]: (state, action) =>
-        assocProp('storage', action.payload.storage, state)
+        assoc('storage', action.payload.storage, state)
     },
     {
       app: undefined,

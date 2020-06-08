@@ -1,5 +1,5 @@
+import assoc from './assoc'
 import assocPath from './assocPath'
-import assocProp from './assocProp'
 import getPath from './getPath'
 import getProp from './getProp'
 import isFunction from './isFunction'
@@ -13,7 +13,7 @@ const update = (selector, updater, data) => {
     return data.updateIn(selector, updater)
   }
   if (isString(selector)) {
-    return assocProp(selector, updater(getProp(selector, data)), data)
+    return assoc(selector, updater(getProp(selector, data)), data)
   }
   return assocPath(selector, updater(getPath(selector, data)), data)
 }

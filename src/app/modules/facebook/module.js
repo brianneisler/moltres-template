@@ -1,12 +1,12 @@
 import * as actions from './actions'
-import { assocProp } from '../../../utils/data'
+import { assoc } from '../../../utils/data'
 import { handleActions } from '../../../utils/lang'
 
 const mod = (config) => ({
   reducer: handleActions(
     {
       [actions.setFacebookConfig]: (state, action) =>
-        assocProp('config', action.payload.config, state)
+        assoc('config', action.payload.config, state)
     },
     {
       config: config.facebook

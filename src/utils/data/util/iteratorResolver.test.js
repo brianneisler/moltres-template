@@ -1,6 +1,6 @@
+import { ITERATOR } from '../constants/Symbol'
 import ITERATOR_END from '../constants/ITERATOR_END'
 import ITERATOR_START from '../constants/ITERATOR_START'
-import SYMBOL_ITERATOR from '../constants/SYMBOL_ITERATOR'
 import iteratorResolver from './iteratorResolver'
 
 const testAsyncArrayIterator = (values) => {
@@ -27,7 +27,7 @@ const testAsyncArrayIterator = (values) => {
 
 describe('iteratorResolver', () => {
   test('creates an iterator for an array iterator', () => {
-    const iter = [][SYMBOL_ITERATOR]()
+    const iter = [][ITERATOR]()
     expect(iteratorResolver(iter)).toEqual({
       next: expect.any(Function),
       previous: expect.any(Function)
@@ -42,7 +42,7 @@ describe('iteratorResolver', () => {
   })
 
   test('next() returns done for empty array iterator', () => {
-    const iter = [][SYMBOL_ITERATOR]()
+    const iter = [][ITERATOR]()
     const iterator = iteratorResolver(iter)
     expect(iterator.next()).toEqual({
       done: true,
@@ -51,7 +51,7 @@ describe('iteratorResolver', () => {
   })
 
   test('previous() returns done for empty array', () => {
-    const iter = [][SYMBOL_ITERATOR]()
+    const iter = [][ITERATOR]()
     const iterator = iteratorResolver(iter)
     expect(iterator.previous()).toEqual({
       done: true,
@@ -84,7 +84,7 @@ describe('iteratorResolver', () => {
 
   test('creates an iterator at the starting point of the array iterator by default', () => {
     const array = ['foo', 'bar']
-    const iterator = iteratorResolver(array[SYMBOL_ITERATOR]())
+    const iterator = iteratorResolver(array[ITERATOR]())
 
     let next = { done: false }
     const accum = []
@@ -126,7 +126,7 @@ describe('iteratorResolver', () => {
 
   test('END starts the iterator at the last index', () => {
     const array = ['foo', 'bar']
-    const iterator = iteratorResolver(array[SYMBOL_ITERATOR](), ITERATOR_END)
+    const iterator = iteratorResolver(array[ITERATOR](), ITERATOR_END)
 
     let next = { done: false }
     const accum = []
@@ -168,7 +168,7 @@ describe('iteratorResolver', () => {
 
   test('START starts the iterator at the 0 index', () => {
     const array = ['foo', 'bar']
-    const iterator = iteratorResolver(array[SYMBOL_ITERATOR](), ITERATOR_START)
+    const iterator = iteratorResolver(array[ITERATOR](), ITERATOR_START)
 
     let next = { done: false }
     const accum = []

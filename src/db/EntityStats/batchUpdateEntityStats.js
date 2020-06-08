@@ -1,5 +1,5 @@
 import { EntityStats } from './schemas'
-import { assocProp, getProp, hasProp, omit } from '../../utils/data'
+import { assoc, getProp, hasProp, omit } from '../../utils/data'
 import { batchUpdateEntity } from '../Entity'
 import batchUpdateStatsShard from './batchUpdateStatsShard'
 
@@ -10,7 +10,7 @@ const batchUpdateEntityStats = async (context, batch, id, updates) => {
     if (doc.data().numberShards !== 1) {
       throw new Error('Update of more than 1 Shard has not been implemented')
     }
-    await batchUpdateStatsShard(assocProp('parentRef', ref, context), batch, 0, {
+    await batchUpdateStatsShard(assoc('parentRef', ref, context), batch, 0, {
       data: getProp('data', updates)
     })
   }

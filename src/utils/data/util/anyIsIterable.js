@@ -1,4 +1,4 @@
-import { SYMBOL_ITERATOR } from '../constants'
+import { ITERATOR } from '../constants/Symbol'
 
 /**
  * Checks if `any` implements the iterator symbol or is iterable
@@ -23,6 +23,6 @@ import { SYMBOL_ITERATOR } from '../constants'
  * anyIsIterable([])
  * //=> true
  */
-const anyIsIterable = (any) => any != null && any[SYMBOL_ITERATOR] != null
+const anyIsIterable = (any) => any != null && any[ITERATOR] != null
 
 export default anyIsIterable

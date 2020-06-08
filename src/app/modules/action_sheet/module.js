@@ -1,6 +1,6 @@
 import * as actions from './actions'
 import { ACTION_SHEET } from '../../../constants/Modal'
-import { assocProp, findIndex, getProp, map, noop } from '../../../utils/data'
+import { assoc, findIndex, getProp, map, noop } from '../../../utils/data'
 import { call, handleAction, handleActions, put, takeEvery, trigger } from '../../../utils/lang'
 import { actions as modalActions } from '../modal'
 
@@ -8,7 +8,7 @@ const mod = {
   reducer: handleActions(
     {
       [actions.setCurrentActionSheet]: (state, action) =>
-        assocProp('currentActionSheet', action.payload, state)
+        assoc('currentActionSheet', action.payload, state)
     },
     {
       currentActionSheet: {

@@ -1,6 +1,6 @@
 import { Code, StatusCode } from '../../../constants'
 import { UserRegisteredAction } from '../../../service/auth/schemas'
-import { assocProp, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/data'
 import { asyncHandler } from '../../../utils/express'
 import { createCustomToken } from '../../../utils/auth'
 import {
@@ -183,7 +183,7 @@ const mod = {
         let claims = {}
         const role = await findUserRoleByUserId(context, uid)
         if (role) {
-          claims = assocProp('role', role.role, claims)
+          claims = assoc('role', role.role, claims)
         }
         const token = await createCustomToken(adminContext, uid, claims)
         return response.json({

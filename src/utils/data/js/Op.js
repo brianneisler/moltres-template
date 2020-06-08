@@ -1,4 +1,4 @@
-import SYMBOL_TO_STRING_TAG from '../constants/SYMBOL_TO_STRING_TAG'
+import { TO_STRING_TAG } from '../constants/Symbol'
 
 /**
  * Note: This class is **immutable**
@@ -14,7 +14,7 @@ class Op {
     this.fn = fn
   }
 
-  get [SYMBOL_TO_STRING_TAG]() {
+  get [TO_STRING_TAG]() {
     return 'Op'
   }
 }

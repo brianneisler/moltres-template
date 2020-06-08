@@ -1,6 +1,6 @@
 import ImmutableList from './js/ImmutableList'
 import ImmutableMap from './js/ImmutableMap'
-import assocProp from './assocProp'
+import assoc from './assoc'
 import createPath from './createPath'
 import first from './first'
 import getProp from './getProp'
@@ -50,7 +50,7 @@ const assocPath = (path, value, collection) => {
   if (part === '$') {
     return value
   }
-  return assocProp(part, value, collection)
+  return assoc(part, value, collection)
 }
 
 export default assocPath

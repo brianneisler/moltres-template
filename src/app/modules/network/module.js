@@ -1,5 +1,5 @@
 import { WARN } from '../../../constants/StatusLevel'
-import { assocProp } from '../../../utils/data'
+import { assoc } from '../../../utils/data'
 import { fork, handleAction, handleActions, put, takeEvery } from '../../../utils/lang'
 import { getContext } from '../../../core'
 import { getNetworkInformation } from '../../../utils/web'
@@ -13,7 +13,7 @@ const module = {
   reducer: handleActions(
     {
       [setNetworkInformation]: (state, action) =>
-        assocProp('information', action.payload.information, state)
+        assoc('information', action.payload.information, state)
     },
     {
       information: {

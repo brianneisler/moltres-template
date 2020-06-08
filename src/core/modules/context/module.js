@@ -1,6 +1,6 @@
 import {
   assocPath,
-  assocProp,
+  assoc,
   isArray,
   isEmpty,
   isObject,
@@ -25,7 +25,7 @@ const mod = {
             context = assocPath(selector, value, context)
           }
         } else if (isString(selector)) {
-          context = assocProp(selector, value, context)
+          context = assoc(selector, value, context)
         } else {
           throw new Error(`Unsupported selector type ${selector}`)
         }

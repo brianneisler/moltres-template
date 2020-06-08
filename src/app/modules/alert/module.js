@@ -1,13 +1,13 @@
 import * as actions from './actions'
 import { ALERT } from '../../../constants/Modal'
-import { assocProp, mapAll } from '../../../utils/data'
+import { assoc, mapAll } from '../../../utils/data'
 import { call, handleAction, handleActions, put, takeEvery, trigger } from '../../../utils/lang'
 import { actions as modalActions } from '../modal'
 
 const mod = {
   reducer: handleActions(
     {
-      [actions.setCurrentAlert]: (state, action) => assocProp('currentAlert', action.payload, state)
+      [actions.setCurrentAlert]: (state, action) => assoc('currentAlert', action.payload, state)
     },
     {
       currentAlert: {

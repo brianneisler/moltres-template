@@ -1,4 +1,4 @@
-import { SYMBOL_ITERATOR } from '../constants'
+import { ITERATOR } from '../constants/Symbol'
 import anyIsKeyedIterator from './anyIsKeyedIterator'
 import objectToIterator from './objectToIterator'
 
@@ -20,12 +20,12 @@ describe('isKeyedIterator', () => {
 
   test('returns false for native array iterator', () => {
     const array = []
-    expect(anyIsKeyedIterator(array[SYMBOL_ITERATOR]())).toBe(false)
+    expect(anyIsKeyedIterator(array[ITERATOR]())).toBe(false)
   })
 
   test('returns false for native string iterator', () => {
     const string = 'abc'
-    expect(anyIsKeyedIterator(string[SYMBOL_ITERATOR]())).toBe(false)
+    expect(anyIsKeyedIterator(string[ITERATOR]())).toBe(false)
   })
 
   test('returns false for generators', () => {
@@ -34,7 +34,7 @@ describe('isKeyedIterator', () => {
 
   test('returns false for native Set iterator', () => {
     const set = new Set()
-    expect(anyIsKeyedIterator(set[SYMBOL_ITERATOR]())).toBe(false)
+    expect(anyIsKeyedIterator(set[ITERATOR]())).toBe(false)
   })
 
   test('returns false for all other values', () => {

@@ -1,4 +1,4 @@
-import assocProp from './assocProp'
+import assoc from './assoc'
 import createPath from './createPath'
 import dissocProp from './dissocProp'
 import first from './first'
@@ -26,7 +26,7 @@ const dissocPath = (path, collection) => {
   if (isNil(nextValue)) {
     return collection
   }
-  return assocProp(part, dissocPath(rest, nextValue), collection)
+  return assoc(part, dissocPath(rest, nextValue), collection)
 }
 
 export default dissocPath

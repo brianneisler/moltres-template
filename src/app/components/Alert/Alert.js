@@ -1,7 +1,7 @@
 import { ALERT } from '../../../constants/Modal'
 import { Colors, Constants, Styles } from '../../styles'
 import { InteractionManager, StyleSheet } from 'react-native'
-import { assocProp, compose, getProp, mapIndexed } from '../../../utils/data'
+import { assoc, compose, getProp, mapIndexed } from '../../../utils/data'
 import {
   connect,
   defaultProps,
@@ -79,7 +79,7 @@ const renderButtons = ({ buttons, options, styles }) => {
   if (buttons.length > 2) {
     flexDirection = 'column'
   } else if (buttons.length === 2) {
-    firstButtonStyle = assocProp('marginRight', Constants.hairlineWidth, firstButtonStyle)
+    firstButtonStyle = assoc('marginRight', Constants.hairlineWidth, firstButtonStyle)
   }
 
   return (

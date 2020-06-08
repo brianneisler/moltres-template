@@ -9,7 +9,7 @@ import {
   SignOutAction
 } from './schemas'
 import { all, call, handleAction, handleActions, put, select, takeEvery } from '../../../utils/lang'
-import { append, assocProp, compose, getProp } from '../../../utils/data'
+import { append, assoc, compose, getProp } from '../../../utils/data'
 import {
   authStateChangedAction,
   setAuthIdTokenAction,
@@ -29,10 +29,10 @@ const enhance = compose(withConfig(), withContext())
 const mod = {
   reducer: handleActions(
     {
-      [SetAuthIdTokenAction.name]: (state, action) => assocProp('idToken', action.payload, state),
-      [SetAuthStateAction.name]: (state, action) => assocProp('authState', action.payload, state),
+      [SetAuthIdTokenAction.name]: (state, action) => assoc('idToken', action.payload, state),
+      [SetAuthStateAction.name]: (state, action) => assoc('authState', action.payload, state),
       [SetCurrentUserAction.name]: (state, action) =>
-        assocProp('currentUser', action.payload, state)
+        assoc('currentUser', action.payload, state)
     },
     {
       authState: AuthState.UNKNOWN,

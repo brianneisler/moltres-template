@@ -1,4 +1,4 @@
-import { assocProp } from '../../../utils/data'
+import { assoc } from '../../../utils/data'
 import { fork, handleActions, put } from '../../../utils/lang'
 import { monitorClockChannel } from './util'
 import { setCurrentClock } from './actions'
@@ -6,7 +6,7 @@ import { setCurrentClock } from './actions'
 const module = {
   reducer: handleActions(
     {
-      [setCurrentClock]: (state, { payload }) => assocProp('current', payload.timestamp, state)
+      [setCurrentClock]: (state, { payload }) => assoc('current', payload.timestamp, state)
     },
     {
       current: 0

@@ -1,5 +1,5 @@
 import { ImmutableList, ImmutableMap } from './js'
-import assocProp from './assocProp'
+import assoc from './assoc'
 import concat from './concat'
 import containsWildcard from './containsWildcard'
 import curry from './curry'
@@ -59,13 +59,13 @@ const reduceWildcard = (wildcards, wildValues, results, state) => {
     }
     return concat(
       results,
-      map((wildValue) => assocProp(name, wildValue, wildValues), keys(value))
+      map((wildValue) => assoc(name, wildValue, wildValues), keys(value))
     )
   }
 
   return reduce(
     (accum, wildValue) =>
-      reduceWildcard(tail(wildcards), assocProp(name, wildValue, wildValues), accum, state),
+      reduceWildcard(tail(wildcards), assoc(name, wildValue, wildValues), accum, state),
     results,
     keys(value)
   )

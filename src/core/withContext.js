@@ -1,6 +1,6 @@
 import {
+  assoc,
   assocPath,
-  assocProp,
   isArray,
   isString,
   resolveToGenerator,
@@ -39,7 +39,7 @@ const withContext = (selector = null) => {
       // in order to merge we need to rebuild the object first
 
       if (isString(selector)) {
-        nextContext = assocProp(selector, nextContext, {})
+        nextContext = assoc(selector, nextContext, {})
       }
       if (isArray(selector)) {
         nextContext = assocPath(selector, nextContext, {})

@@ -1,4 +1,4 @@
-import { assocProp, identity, isFunction, isNumber, isObject, isString } from '../utils/data'
+import { assoc, identity, isFunction, isNumber, isObject, isString } from '../utils/data'
 import { call, invariant, put, select } from '../utils/lang'
 import { selectCursorResults, selectQueryCursorNext } from './selectors'
 import { setQueryAction, setQueryCursorAction, setQueryCursorNextAction } from './actions'
@@ -55,7 +55,7 @@ const factoryAndWatchPaginatedQuery = function* ({
     return yield select(selectCursorResults(queryKey, nextCursor))
   }
 
-  query = assocProp('nextPage', nextPage, query)
+  query = assoc('nextPage', nextPage, query)
   yield put(setQueryAction({ query, queryKey }))
 
   return yield call(watchPaginatedQuery, {

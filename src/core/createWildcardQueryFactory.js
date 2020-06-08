@@ -1,6 +1,6 @@
 import {
   ImmutableMap,
-  assocProp,
+  assoc,
   dissocProp,
   getProp,
   identity,
@@ -45,7 +45,7 @@ const createWildcardQueryFactory = ({
           // replacing the wild cards in it with the wildcard values from the resultGroup
           statePath: targetStatePath
         })
-        factories = assocProp(factoryKey, factory, factories)
+        factories = assoc(factoryKey, factory, factories)
       }
       remainingFactories = dissocProp(factoryKey, remainingFactories)
       return yield call(factory, props, channel, context, ...rest)
