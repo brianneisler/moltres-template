@@ -107,7 +107,6 @@ module.exports = {
     ],
     'import/no-useless-path-segments': 'error',
     'prettier/prettier': 'error',
-    'react/destructuring-assignment': ['error', 'always'],
     'react/jsx-no-undef': 'error',
     'react/jsx-sort-props': 'error',
     'react/jsx-uses-vars': 'error',

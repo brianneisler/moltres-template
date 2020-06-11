@@ -1,35 +1,46 @@
-import { compose, is } from '../data'
-import { getContext, setDisplayName, withProps, wrapDisplayName } from 'recompose'
-import storeShape from './storeShape'
-import wrapActionCreators from './wrapActionCreators'
+import { Component } from 'react'
+import { isFunction, map } from '../data'
+import bindActionCreator from './bindActionCreator'
+import createFactory from './createFactory'
+import setDisplayName from './setDisplayName'
+import withDispatch from './withDispatch'
+import wrapDisplayName from './wrapDisplayName'
 
-const defaultMapActionsToProps = (dispatch) => ({ dispatch })
+const withActions = (mapActionsToProps, wrapActionCreator = null) => (
+  BaseComponent
+) => {
+  const factory = createFactory(BaseComponent)
+  class WithActions extends Component {
+    actions = map(
+      (actionCreator) => {
+        const boundActionCreator = bindActionCreator(
+          actionCreator,
+          this.props.dispatch
+        )
+        if (isFunction(wrapActionCreator)) {
+          return wrapActionCreator(boundActionCreator)
+        }
+        return boundActionCreator
+      },
+      isFunction(mapActionsToProps)
+        ? mapActionsToProps(this.props)
+        : mapActionsToProps
+    )
 
-const withActions = (mapActionsToProps) => {
-  let mapActions = mapActionsToProps || defaultMapActionsToProps
-  if (is(Function, mapActionsToProps)) {
-    mapActions = mapActionsToProps
-  } else {
-    mapActions = wrapActionCreators(mapActionsToProps)
+    render() {
+      return factory({
+        ...this.props,
+        ...this.actions
+      })
+    }
   }
 
-  const hoc = compose(
-    getContext({
-      store: storeShape
-    }),
-    withProps((props) => {
-      const { store } = props
-      return {
-        ...props,
-        ...(is(Function, mapActions) ? mapActions(store.dispatch, props) : mapActions)
-      }
-    })
-  )
   if (process.env.NODE_ENV !== 'production') {
-    return (BaseComponent) =>
-      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(hoc(BaseComponent))
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(
+      withDispatch()(WithActions)
+    )
   }
-  return hoc
+  return withDispatch()(WithActions)
 }
 
 export default withActions

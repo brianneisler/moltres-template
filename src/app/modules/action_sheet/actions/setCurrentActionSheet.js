@@ -14,7 +14,14 @@ import { createAction } from 'redux-actions'
  */
 const setCurrentActionSheet = createAction(
   'ACTION_SHEET:SET_CURRENT_ACTION_SHEET',
-  ({ cancelButtonIndex, destructiveButtonIndex, message, onPress, options, title }) => ({
+  ({
+    cancelButtonIndex,
+    destructiveButtonIndex,
+    message,
+    onPress,
+    options,
+    title
+  }) => ({
     cancelButtonIndex,
     destructiveButtonIndex,
     message,
