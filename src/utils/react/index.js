@@ -1,3 +1,4 @@
+export { default as bindActionCreator } from './bindActionCreator'
 export { default as branch } from './branch'
 export { default as clearHistory } from './clearHistory'
 export { default as cloneReferencedElement } from './cloneReferencedElement'

@@ -2,6 +2,7 @@ describe('react index', () => {
   test('has expected methods', () => {
     const mod = require('./')
     expect(mod).toEqual({
+      bindActionCreator: expect.any(Function),
       branch: expect.any(Function),
       clearHistory: expect.any(Function),
       cloneReferencedElement: expect.any(Function),
