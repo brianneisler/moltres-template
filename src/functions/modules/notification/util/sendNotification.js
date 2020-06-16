@@ -1,10 +1,16 @@
 import { ChannelType, NotificationSendState } from '../../../../constants'
 import { call } from '../../../../utils/lang'
 import { createError } from '../../../../db/Error'
-import { createNotificationSend, updateNotificationSend } from '../../../../db/Notification'
+import {
+  createNotificationSend,
+  updateNotificationSend
+} from '../../../../db/Notification'
 import { generateSMSChannel } from '../../../../service/sms'
 import { nowTimestamp } from '../../../../utils/db'
-import { renderNotification, validateNotification } from '../../../../service/notification'
+import {
+  renderNotification,
+  validateNotification
+} from '../../../../service/notification'
 import { sendSMSMessageToChannel } from '../../sms'
 
 const sendNotification = function* (context, enhancedNotification) {
@@ -36,9 +42,13 @@ const sendNotification = function* (context, enhancedNotification) {
     // const enhancer = enhanceNotification(context, channelType, '$')(identity)
     // notification = yield call(enhancer, notification)
     if (!validateNotification(context, channelType, enhancedNotification)) {
-      return yield call(updateNotificationSend, [enhancedNotification.id, notificationSend.id], {
-        state: NotificationSendState.ABORTED
-      })
+      return yield call(
+        updateNotificationSend,
+        [enhancedNotification.id, notificationSend.id],
+        {
+          state: NotificationSendState.ABORTED
+        }
+      )
     }
 
     const body = renderNotification(context, channelType, enhancedNotification)
@@ -46,10 +56,14 @@ const sendNotification = function* (context, enhancedNotification) {
       body,
       smsChannel
     })
-    return yield call(updateNotificationSend, [enhancedNotification.id, notificationSend.id], {
-      sentAt: nowTimestamp(context),
-      state: NotificationSendState.COMPLETED
-    })
+    return yield call(
+      updateNotificationSend,
+      [enhancedNotification.id, notificationSend.id],
+      {
+        sentAt: nowTimestamp(context),
+        state: NotificationSendState.COMPLETED
+      }
+    )
   } catch (error) {
     context.logger.error(error)
     const dbError = yield call(createError, {
@@ -58,10 +72,14 @@ const sendNotification = function* (context, enhancedNotification) {
       source: context.source,
       stack: error.stack
     })
-    yield call(updateNotificationSend, [enhancedNotification.id, notificationSend.id], {
-      errorId: dbError.id,
-      state: NotificationSendState.ERROR
-    })
+    yield call(
+      updateNotificationSend,
+      [enhancedNotification.id, notificationSend.id],
+      {
+        errorId: dbError.id,
+        state: NotificationSendState.ERROR
+      }
+    )
   }
 }
 

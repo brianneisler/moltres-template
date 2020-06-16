@@ -17,8 +17,10 @@ const mod = () => ({
 
   reducer: handleActions(
     {
-      [actions.setFirebaseApp]: (state, action) => assoc('app', action.payload.app, state),
-      [actions.setFirebaseAuth]: (state, action) => assoc('auth', action.payload.auth, state),
+      [actions.setFirebaseApp]: (state, action) =>
+        assoc('app', action.payload.app, state),
+      [actions.setFirebaseAuth]: (state, action) =>
+        assoc('auth', action.payload.auth, state),
       [actions.setFirebaseDatabase]: (state, action) =>
         assoc('database', action.payload.database, state),
       [actions.setFirebaseFirebase]: (state, action) =>

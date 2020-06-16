@@ -34,9 +34,13 @@ const createPendingUser = async (context, { phoneNumber }) => {
 }
 
 const registerPendingUser = async (context, { phoneNumber }) => {
-  const existingPhoneNumber = await findPhoneNumberByPhoneNumber(context, phoneNumber, {
-    includeRemoved: true
-  })
+  const existingPhoneNumber = await findPhoneNumberByPhoneNumber(
+    context,
+    phoneNumber,
+    {
+      includeRemoved: true
+    }
+  )
 
   if (existingPhoneNumber) {
     if (existingPhoneNumber.removedAt) {

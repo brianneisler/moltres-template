@@ -12,7 +12,10 @@ import setupFunctionContexts from '../setupFunctionContexts'
 
 const setCurrentUser = async (context, action, engine) => {
   if (hasProp('meta', action) && action.meta.causedByEntityType === User.name) {
-    const currentUser = await findUserById(context, action.meta.causedByEntityId)
+    const currentUser = await findUserById(
+      context,
+      action.meta.causedByEntityId
+    )
     context = assoc('currentUser', currentUser, context)
     await engine.setContext({ value: context })
     return context
@@ -22,7 +25,12 @@ const setCurrentUser = async (context, action, engine) => {
 
 const setupActionsFunction = (config) => async (snapshot, { params }) => {
   let { context } = await setupFunctionContexts(config, 'actions')
-  context.logger.info('action received - snapshot.data():', snapshot.data(), ' params:', params)
+  context.logger.info(
+    'action received - snapshot.data():',
+    snapshot.data(),
+    ' params:',
+    params
+  )
 
   // const { id, type } = params
   const document = await processAction(context, snapshot)

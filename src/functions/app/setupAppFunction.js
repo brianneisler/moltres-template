@@ -16,7 +16,13 @@ const setupAppFunction = (config) => {
       .then(({ context }) => {
         // NOTE BRN: The generateEngine function is memoized, so it should return the same
         // contexts on each invocation
-        const engine = generateEngine(modules, config, context, undefined, EngineState.SETUP)
+        const engine = generateEngine(
+          modules,
+          config,
+          context,
+          undefined,
+          EngineState.SETUP
+        )
         const app = engine.getModule('middleware').getApp()
         app(request, response)
       })

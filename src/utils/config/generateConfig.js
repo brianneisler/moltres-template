@@ -11,7 +11,10 @@ const generateConfig = (config = {}) => {
   invariant(process.env.API_URL, 'API_URL must be defined')
   invariant(process.env.APP_NAME, 'APP_NAME must be defined')
   invariant(process.env.APP_URL, 'APP_URL must be defined')
-  invariant(process.env.TWILIO_ACCOUNT_SID, 'TWILIO_ACCOUNT_SID must be defined')
+  invariant(
+    process.env.TWILIO_ACCOUNT_SID,
+    'TWILIO_ACCOUNT_SID must be defined'
+  )
   invariant(process.env.TWILIO_AUTH_TOKEN, 'TWILIO_AUTH_TOKEN must be defined')
 
   const projectId = generateProjectId(config)
@@ -76,7 +79,8 @@ const generateConfig = (config = {}) => {
     },
     ssr: {
       outputPath:
-        process.env.SSR_OUTPUT_PATH || resolve(__dirname, '..', '..', '..', 'private', 'dist')
+        process.env.SSR_OUTPUT_PATH ||
+        resolve(__dirname, '..', '..', '..', 'private', 'dist')
     },
     twitter: {
       username: process.env.TWITTER_USERNAME

@@ -213,7 +213,9 @@ class InfiniteInvertibleScrollView extends React.Component {
     distanceToLoadMore: 4000,
     onLoadError: noop,
     onLoadMore: noop,
-    renderLoadingErrorIndicator: ({ error }) => <LoadingError message={error.message} />,
+    renderLoadingErrorIndicator: ({ error }) => (
+      <LoadingError message={error.message} />
+    ),
     renderLoadingIndicator: () => <ActivityIndicator />,
     renderScrollComponent: (props) => <ScrollView {...props} />,
     scrollEventThrottle: 1,
@@ -268,16 +270,31 @@ class InfiniteInvertibleScrollView extends React.Component {
     assign(props, {
       children: [children, statusIndicator],
       onScroll: this._handleScroll,
-      stickyFooterIndices: filter((val) => val < children[1].length, stickyFooterIndices)
+      stickyFooterIndices: filter(
+        (val) => val < children[1].length,
+        stickyFooterIndices
+      )
     })
 
     if (inverted) {
       if (horizontal) {
-        props.contentContainerStyle = [styles.horizontallyInverted, props.contentContainerStyle]
-        props.children = this._renderInvertedChildren(props.children, styles.horizontallyInverted)
+        props.contentContainerStyle = [
+          styles.horizontallyInverted,
+          props.contentContainerStyle
+        ]
+        props.children = this._renderInvertedChildren(
+          props.children,
+          styles.horizontallyInverted
+        )
       } else {
-        props.contentContainerStyle = [styles.verticallyInverted, props.contentContainerStyle]
-        props.children = this._renderInvertedChildren(props.children, styles.verticallyInverted)
+        props.contentContainerStyle = [
+          styles.verticallyInverted,
+          props.contentContainerStyle
+        ]
+        props.children = this._renderInvertedChildren(
+          props.children,
+          styles.verticallyInverted
+        )
       }
     }
 
@@ -325,7 +342,12 @@ class InfiniteInvertibleScrollView extends React.Component {
 
   _distanceFromEnd(event) {
     const { horizontal } = this.props
-    const { contentInset, contentOffset, contentSize, layoutMeasurement } = event.nativeEvent
+    const {
+      contentInset,
+      contentOffset,
+      contentSize,
+      layoutMeasurement
+    } = event.nativeEvent
     let contentLength = contentSize.height
     let trailingInset = contentInset.bottom
     let scrollOffset = contentOffset.y

@@ -47,7 +47,10 @@ const spec = describe('generateUserAndSMSChannel', () => {
       }
 
       let phoneNumber
-      ;({ phoneNumber, smsChannel, user } = await generateUserAndSMSChannel(context, data))
+      ;({ phoneNumber, smsChannel, user } = await generateUserAndSMSChannel(
+        context,
+        data
+      ))
 
       expect(smsChannel).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),

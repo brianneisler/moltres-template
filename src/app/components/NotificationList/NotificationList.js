@@ -12,10 +12,15 @@ const enhance = compose(
   })
 )
 
-const renderNotificationRow = (rowData) => <NotificationView notification={rowData} />
+const renderNotificationRow = (rowData) => (
+  <NotificationView notification={rowData} />
+)
 
 const NotificationList = enhance(({ userId }) => (
-  <PaginatedQueryView queryKey={`Notifications.${userId}`} renderRow={renderNotificationRow} />
+  <PaginatedQueryView
+    queryKey={`Notifications.${userId}`}
+    renderRow={renderNotificationRow}
+  />
 ))
 
 export default NotificationList

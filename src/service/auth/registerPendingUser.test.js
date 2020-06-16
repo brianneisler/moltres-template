@@ -48,7 +48,8 @@ const spec = describe('registerPendingUser', () => {
 
       expect(phoneNumber).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        hash: '531cac1ef11ff444d19958b44c90a9b3ac766221324517b044c744d5e8a01b2d',
+        hash:
+          '531cac1ef11ff444d19958b44c90a9b3ac766221324517b044c744d5e8a01b2d',
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
         phoneNumber: expect.stringContaining('+19282356681'),
         removedAt: null,
@@ -74,7 +75,8 @@ const spec = describe('registerPendingUser', () => {
 
       expect(result.phoneNumber).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        hash: '531cac1ef11ff444d19958b44c90a9b3ac766221324517b044c744d5e8a01b2d',
+        hash:
+          '531cac1ef11ff444d19958b44c90a9b3ac766221324517b044c744d5e8a01b2d',
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
         phoneNumber: expect.stringContaining('+19282356681'),
         removedAt: null,

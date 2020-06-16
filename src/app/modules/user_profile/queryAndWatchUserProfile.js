@@ -4,7 +4,11 @@ import { isString } from '../../../utils/data'
 import { refUserProfileById } from '../../../db/UserProfile'
 import enhanceUserProfile from './enhanceUserProfile'
 
-const queryAndWatchUserProfile = function*(context, { userId }, { handler } = {}) {
+const queryAndWatchUserProfile = function* (
+  context,
+  { userId },
+  { handler } = {}
+) {
   invariant(isString(userId), 'userId must be a String')
 
   return yield call(factoryAndWatchQuery, {

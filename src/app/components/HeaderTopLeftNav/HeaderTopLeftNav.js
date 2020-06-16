@@ -46,18 +46,23 @@ const enhance = compose(
   })
 )
 
-const HeaderTopLeftNav = enhance(({ handleBackButton, routerLocation, style, styles }) => {
-  if (!!getPath(['state', 'back'], routerLocation)) {
-    return (
-      <TouchableOpacity onPress={handleBackButton} style={[styles.inline, style]}>
-        <Text style={styles.backIcon}>
-          <Icon icon="chevron-left" />
-        </Text>
-        <Text style={[styles.text, styles.whiteButtonText]}>{'Back'}</Text>
-      </TouchableOpacity>
-    )
+const HeaderTopLeftNav = enhance(
+  ({ handleBackButton, routerLocation, style, styles }) => {
+    if (!!getPath(['state', 'back'], routerLocation)) {
+      return (
+        <TouchableOpacity
+          onPress={handleBackButton}
+          style={[styles.inline, style]}
+        >
+          <Text style={styles.backIcon}>
+            <Icon icon="chevron-left" />
+          </Text>
+          <Text style={[styles.text, styles.whiteButtonText]}>{'Back'}</Text>
+        </TouchableOpacity>
+      )
+    }
+    return null
   }
-  return null
-})
+)
 
 export default HeaderTopLeftNav

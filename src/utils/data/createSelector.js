@@ -21,7 +21,11 @@ const createSelector = (selectors, reducer) => {
   const containsWildcard = weakMemoize(() => any(_containsWildcard, selectors))
 
   const findWildcards = (wildcards = ImmutableMap({})) =>
-    reduce((accum, selector) => _findWildcards(selector, accum), wildcards, selectors)
+    reduce(
+      (accum, selector) => _findWildcards(selector, accum),
+      wildcards,
+      selectors
+    )
 
   const replaceWildcards = (wildValues) =>
     createSelector(map(_replaceWildcards(wildValues), selectors), reducer)

@@ -5,13 +5,27 @@ describe('resolveToGeneratorWith', () => {
   test('resolves basic values to a generator that resolves to the value', () => {
     expect(anyResolveToGeneratorWith(0, (value) => value).next().value).toBe(0)
     expect(anyResolveToGeneratorWith(1, (value) => value).next().value).toBe(1)
-    expect(anyResolveToGeneratorWith(-1, (value) => value).next().value).toBe(-1)
-    expect(anyResolveToGeneratorWith('', (value) => value).next().value).toBe('')
-    expect(anyResolveToGeneratorWith('abc', (value) => value).next().value).toBe('abc')
-    expect(anyResolveToGeneratorWith(null, (value) => value).next().value).toBe(null)
-    expect(anyResolveToGeneratorWith(undefined, (value) => value).next().value).toBe(undefined)
-    expect(anyResolveToGeneratorWith(true, (value) => value).next().value).toBe(true)
-    expect(anyResolveToGeneratorWith(false, (value) => value).next().value).toBe(false)
+    expect(anyResolveToGeneratorWith(-1, (value) => value).next().value).toBe(
+      -1
+    )
+    expect(anyResolveToGeneratorWith('', (value) => value).next().value).toBe(
+      ''
+    )
+    expect(
+      anyResolveToGeneratorWith('abc', (value) => value).next().value
+    ).toBe('abc')
+    expect(anyResolveToGeneratorWith(null, (value) => value).next().value).toBe(
+      null
+    )
+    expect(
+      anyResolveToGeneratorWith(undefined, (value) => value).next().value
+    ).toBe(undefined)
+    expect(anyResolveToGeneratorWith(true, (value) => value).next().value).toBe(
+      true
+    )
+    expect(
+      anyResolveToGeneratorWith(false, (value) => value).next().value
+    ).toBe(false)
   })
 
   test('returned resolvable values are resolved to a generator', () => {

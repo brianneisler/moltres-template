@@ -78,7 +78,9 @@ class ReadableBufferStream extends Readable {
   _increaseBufferIfNecessary(incomingDataSize) {
     const { buffer, incrementAmount, size } = this.rbs
     if (buffer.length - size < incomingDataSize) {
-      const factor = Math.ceil((incomingDataSize - (buffer.length - size)) / incrementAmount)
+      const factor = Math.ceil(
+        (incomingDataSize - (buffer.length - size)) / incrementAmount
+      )
       const newBuffer = new Buffer(buffer.length + incrementAmount * factor)
 
       buffer.copy(newBuffer, 0, 0, size)

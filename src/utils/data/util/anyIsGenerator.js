@@ -20,6 +20,7 @@ import anyIsFunction from './anyIsFunction'
  *   throw: () => {}
  * })  //=> true
  */
-const anyIsGenerator = (any) => any && anyIsFunction(any.next) && anyIsFunction(any.throw)
+const anyIsGenerator = (any) =>
+  any && anyIsFunction(any.next) && anyIsFunction(any.throw)
 
 export default anyIsGenerator

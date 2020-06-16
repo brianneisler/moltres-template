@@ -90,7 +90,9 @@ const setupSSRApp = () => {
           metaTagsInstance,
           store
         }
-        const { element, getStyleElement } = AppRegistry.getApplication('App', { initialProps })
+        const { element, getStyleElement } = AppRegistry.getApplication('App', {
+          initialProps
+        })
         const location = parseURL(url)
 
         await store.dispatch(
@@ -99,7 +101,10 @@ const setupSSRApp = () => {
           })
         )
         const html = ReactDOMServer.renderToString(element)
-        const response = await Promise.race([waitForResponse(store), monitorForError(store)])
+        const response = await Promise.race([
+          waitForResponse(store),
+          monitorForError(store)
+        ])
         const state = filterState(store.getState())
 
         await store.stop(store)
@@ -120,7 +125,8 @@ const setupSSRApp = () => {
       // use the context.currentUser as part of the key. Need to figure out a
       // way to allow for some pages to be cached
       key: (context, request) => ['page', request.url],
-      onHit: ({ logger }, request) => logger.info(`Cache hit for request for ${request.url}`),
+      onHit: ({ logger }, request) =>
+        logger.info(`Cache hit for request for ${request.url}`),
       ttl: 60 * 60 * 1000
     },
     async (context, request) => {

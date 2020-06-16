@@ -1,6 +1,12 @@
 import { WARN } from '../../../constants/StatusLevel'
 import { assoc } from '../../../utils/data'
-import { fork, handleAction, handleActions, put, takeEvery } from '../../../utils/lang'
+import {
+  fork,
+  handleAction,
+  handleActions,
+  put,
+  takeEvery
+} from '../../../utils/lang'
 import { getContext } from '../../../core'
 import { getNetworkInformation } from '../../../utils/web'
 import { monitorNetworkInformationChannel } from './util'
@@ -26,7 +32,7 @@ const module = {
   run: function* run() {
     yield takeEvery(
       setNetworkInformation,
-      handleAction(function*(context, action) {
+      handleAction(function* (context, action) {
         const { information } = action.payload
         if (!information.isConnected) {
           yield put(

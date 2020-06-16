@@ -35,7 +35,8 @@ const compose = (...functions) => {
   const lastFunc = functions[length - 1]
   const rest = functions.slice(0, length - 1)
 
-  return (...args) => reduceRight((composed, func) => func(composed), lastFunc(...args), rest)
+  return (...args) =>
+    reduceRight((composed, func) => func(composed), lastFunc(...args), rest)
 }
 
 export default compose

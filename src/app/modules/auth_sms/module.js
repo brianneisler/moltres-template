@@ -1,5 +1,9 @@
 import * as actions from './actions'
-import { AuthStateChangedAction, selectAfterLogin, signInWithIdTokenAction } from '../auth'
+import {
+  AuthStateChangedAction,
+  selectAfterLogin,
+  signInWithIdTokenAction
+} from '../auth'
 import { assoc, compose } from '../../../utils/data'
 import { buildLocation } from '../../../utils/url'
 import {
@@ -30,12 +34,15 @@ const module = {
   routes: [
     {
       exact: true,
-      handle: function*() {
+      *handle() {
         const smsChallengeId = yield select(selectAuthSMSChallengeId)
         if (!smsChallengeId) {
           const afterLogin = yield select(selectAfterLogin)
           return {
-            redirect: buildLocation({ pathname: '/login', query: { afterLogin } }),
+            redirect: buildLocation({
+              pathname: '/login',
+              query: { afterLogin }
+            }),
             statusCode: 302
           }
         }
@@ -48,8 +55,12 @@ const module = {
     yield takeEvery(
       actions.requestSMSChallenge,
       handleAction(
-        enhance(function*(context, event) {
-          const result = yield call(requestAuthSMSChallenge, context, event.payload)
+        enhance(function* (context, event) {
+          const result = yield call(
+            requestAuthSMSChallenge,
+            context,
+            event.payload
+          )
           yield put(actions.setSMSChallengeId(result.smsChallengeId))
         })
       )
@@ -58,8 +69,12 @@ const module = {
     yield takeEvery(
       actions.authWithSMSCode,
       handleAction(
-        enhance(function*(context, event) {
-          const result = yield call(requestAuthWithSMSCode, context, event.payload)
+        enhance(function* (context, event) {
+          const result = yield call(
+            requestAuthWithSMSCode,
+            context,
+            event.payload
+          )
           // Take access token and authenticate with it then store the idToken
           // into state (this is done by an auth state monitor)
           yield put(signInWithIdTokenAction(context, { idToken: result.token }))

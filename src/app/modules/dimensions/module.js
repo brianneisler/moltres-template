@@ -7,7 +7,8 @@ import { monitorDimensions } from './util'
 const module = {
   reducer: handleActions(
     {
-      [DimensionsChangedAction.type]: (state, { payload }) => merge(state, payload)
+      [DimensionsChangedAction.type]: (state, { payload }) =>
+        merge(state, payload)
     },
     {
       screen: Dimensions.get('screen'),

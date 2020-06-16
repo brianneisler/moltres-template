@@ -129,7 +129,11 @@ const UserProfilePage = enhance(
           <title>{title}</title>
           {ssr ? (
             <Fragment>
-              <meta content={description} name="description" property="description" />
+              <meta
+                content={description}
+                name="description"
+                property="description"
+              />
               <meta content={description} property="og:description" />
               <meta
                 content={`${app.url}/content/userprofileimage/${getProp(
@@ -210,7 +214,9 @@ const UserProfilePage = enhance(
           <Text style={[styles.text, styles.profileText, styles.nameText]}>
             {getPropOr('Unknown', 'name', userProfile)}
           </Text>
-          <Text style={[styles.text, styles.profileText]}>{getPropOr('', 'bio', userProfile)}</Text>
+          <Text style={[styles.text, styles.profileText]}>
+            {getPropOr('', 'bio', userProfile)}
+          </Text>
           <Text style={[styles.text, styles.profileText]}>
             {getPropOr('', 'location', userProfile)}
           </Text>
@@ -229,7 +235,12 @@ const UserProfilePage = enhance(
               ])}
               to={`/user/${userId}`}
             >
-              <Text style={[styles.tabText, tab === 'wat' ? styles.tabSelectedText : null]}>
+              <Text
+                style={[
+                  styles.tabText,
+                  tab === 'wat' ? styles.tabSelectedText : null
+                ]}
+              >
                 {'WATs'}
               </Text>
             </Link>
@@ -242,7 +253,12 @@ const UserProfilePage = enhance(
               ])}
               to={`/user/${userId}/images`}
             >
-              <Text style={[styles.tabText, tab === 'images' ? styles.tabSelectedText : null]}>
+              <Text
+                style={[
+                  styles.tabText,
+                  tab === 'images' ? styles.tabSelectedText : null
+                ]}
+              >
                 {'Images'}
               </Text>
             </Link>
@@ -255,13 +271,22 @@ const UserProfilePage = enhance(
               ])}
               to={`/user/${userId}/reactions`}
             >
-              <Text style={[styles.tabText, tab === 'reactions' ? styles.tabSelectedText : null]}>
+              <Text
+                style={[
+                  styles.tabText,
+                  tab === 'reactions' ? styles.tabSelectedText : null
+                ]}
+              >
                 {'Reactions'}
               </Text>
             </Link>
           </View>
           <Switch>
-            <Route exact path={`/user/${userId}`} render={() => <UserWATList userId={userId} />} />
+            <Route
+              exact
+              path={`/user/${userId}`}
+              render={() => <UserWATList userId={userId} />}
+            />
             <Route
               path={`/user/${userId}/images`}
               render={() => <UserWATThisList userId={userId} />}

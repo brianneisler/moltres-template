@@ -53,7 +53,13 @@ const createWildcardQueryFactory = ({
 
     // NOTE BRN: Remove the factories that were no longer found by the selector
     factories = omit(keys(remainingFactories), factories)
-    return yield call(baseFactory, mergeAll(...results), channel, context, ...rest)
+    return yield call(
+      baseFactory,
+      mergeAll(...results),
+      channel,
+      context,
+      ...rest
+    )
   })
 }
 

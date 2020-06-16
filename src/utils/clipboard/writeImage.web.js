@@ -33,7 +33,9 @@ const copyElementAsText = (element) => {
 }
 
 const hasClipboardAPI = () =>
-  typeof ClipboardItem !== undefined && !!navigator.clipboard && !!navigator.clipboard.write
+  typeof ClipboardItem !== undefined &&
+  !!navigator.clipboard &&
+  !!navigator.clipboard.write
 
 const writeImageUsingClipboardAPI = async (image) => {
   const blob = await imageToBlob(image)

@@ -1,5 +1,8 @@
 import { EntityChangeType } from '../../../constants'
-import { Notification, findEnhancedNotificationById } from '../../../db/Notification'
+import {
+  Notification,
+  findEnhancedNotificationById
+} from '../../../db/Notification'
 import { call, handleAction } from '../../../utils/lang'
 import { compose } from '../../../utils/data'
 import { sendNotification } from './util'
@@ -23,7 +26,10 @@ const mod = {
       handleAction(
         enhance(function* (context, action) {
           const { entityId } = action.payload
-          const enhancedNotification = yield findEnhancedNotificationById(context, entityId)
+          const enhancedNotification = yield findEnhancedNotificationById(
+            context,
+            entityId
+          )
           if (!enhancedNotification) {
             return
           }

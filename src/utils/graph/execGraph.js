@@ -6,7 +6,10 @@ import traversePostorder from './traversePostorder'
 const execGraph = curry(async (fn, graph) => {
   let promises = {}
   const execNode = async (nodeGraph, node, nodeFn) => {
-    const foundPromises = map((outNode) => getProp(outNode, promises), getOutNodes(nodeGraph, node))
+    const foundPromises = map(
+      (outNode) => getProp(outNode, promises),
+      getOutNodes(nodeGraph, node)
+    )
     await all(foundPromises)
     return nodeFn(nodeGraph.node(node), node)
   }

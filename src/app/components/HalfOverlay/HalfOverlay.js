@@ -130,7 +130,13 @@ const HalfOverlay = enhance(
         onShow={handleModalShow}
         style={[styles.modal, styles.halfModal]}
       >
-        <Animated.View style={[styles.body, styleBody, { height, transform: [{ translateY }] }]}>
+        <Animated.View
+          style={[
+            styles.body,
+            styleBody,
+            { height, transform: [{ translateY }] }
+          ]}
+        >
           <ScrollView
             contentContainerStyle={styleOverlayContentContainer}
             scrollEnabled={scrollEnabled}

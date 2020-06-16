@@ -10,10 +10,16 @@ const factoryAndWatchHeadQuery = function* ({
   initialState,
   queryKey
 }) {
-  invariant(isFunction(buildQueryFactory), 'buildQueryFactory must be a defined Function')
+  invariant(
+    isFunction(buildQueryFactory),
+    'buildQueryFactory must be a defined Function'
+  )
   invariant(isObject(context), 'context must be a defined Object')
   invariant(isObject(cursor), 'cursor must be a defined Object')
-  invariant(isFunction(buildQueryFactory), 'buildQueryFactory must be a defined Function')
+  invariant(
+    isFunction(buildQueryFactory),
+    'buildQueryFactory must be a defined Function'
+  )
   invariant(isString(queryKey), 'queryKey must be a String')
 
   // NOTE BRN: This ensures that the query exists in state

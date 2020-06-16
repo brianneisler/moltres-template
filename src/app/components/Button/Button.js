@@ -1,7 +1,11 @@
 import { Colors, Fonts, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
 import { compose } from '../../../utils/data'
-import { defaultProps, setDisplayName, setPropTypes } from '../../../utils/react'
+import {
+  defaultProps,
+  setDisplayName,
+  setPropTypes
+} from '../../../utils/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Text from '../Text'

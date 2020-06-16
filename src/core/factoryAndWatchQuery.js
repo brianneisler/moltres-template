@@ -18,7 +18,10 @@ const factoryAndWatchQuery = function* ({
   invariant(isFunction(createQuery), 'createQuery must be a defined Function')
   invariant(isObject(initialState), 'initialState must be a defined Object')
   invariant(isString(queryKey), 'queryKey must be a String')
-  invariant(isObject(queryExtensions), 'queryExtensions must be a defined Object')
+  invariant(
+    isObject(queryExtensions),
+    'queryExtensions must be a defined Object'
+  )
   invariant(isObject(queryOptions), 'queryOptions must be a defined Object')
   invariant(isObject(watcherOptions), 'watcherOptions must be a defined Object')
 
@@ -28,14 +31,24 @@ const factoryAndWatchQuery = function* ({
   // TODO BRN: Not sure that the buildQueryFactory and queryFactory makes the
   // most sense here. Perhaps this makes more sense to move up a layer and to be
   // passed in to the factoryAndWatchQuery method
-  const buildQueryFactory = createQueryFactoryBuilder({ createQuery, enhancer, factory: identity })
+  const buildQueryFactory = createQueryFactoryBuilder({
+    createQuery,
+    enhancer,
+    factory: identity
+  })
 
   const factory = buildQueryFactory({
     queryExtensions,
     queryOptions,
     statePath: '$'
   })
-  return yield call(watchQuery, { context, factory, initialState, queryKey, watcherOptions })
+  return yield call(watchQuery, {
+    context,
+    factory,
+    initialState,
+    queryKey,
+    watcherOptions
+  })
 }
 
 export default factoryAndWatchQuery

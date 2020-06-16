@@ -3,7 +3,10 @@ import findOrCreateEntityStats from './findOrCreateEntityStats'
 import updateStatsShard from './updateStatsShard'
 
 const decrementEntityStat = async (context, { entityId, entityType, stat }) => {
-  const entityStats = await findOrCreateEntityStats(context, { entityId, entityType })
+  const entityStats = await findOrCreateEntityStats(context, {
+    entityId,
+    entityType
+  })
   const shardIndex = random(0, entityStats.numberShards - 1)
   const decrement = context.firebase.firestore.FieldValue.increment(-1)
 

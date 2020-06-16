@@ -7,9 +7,13 @@ import findPhoneNumberClaimByPhoneNumberId from './findPhoneNumberClaimByPhoneNu
 const deleteUnclaimedPhoneNumber = async (context, phoneNumberId) =>
   commitBatch(
     buildBatch(context, async (batch) => {
-      const phoneNumberClaim = await findPhoneNumberClaimByPhoneNumberId(context, phoneNumberId, {
-        includeRemoved: true
-      })
+      const phoneNumberClaim = await findPhoneNumberClaimByPhoneNumberId(
+        context,
+        phoneNumberId,
+        {
+          includeRemoved: true
+        }
+      )
       await all([
         batchDeletePhoneNumber(context, batch, phoneNumberId),
         batchDeletePhoneNumberClaim(context, batch, phoneNumberClaim.id)

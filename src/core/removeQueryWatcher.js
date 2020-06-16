@@ -7,7 +7,11 @@ const removeQueryWatcher = function* (queryKey, watcher) {
   let query = yield select(selectQuery(queryKey))
   yield all(map((queryTask) => cancel(queryTask), watcher.queryTasks))
   yield cancel(watcher.task)
-  query = update('watchers', (watchers) => dissocProp(watcher.id, watcher, watchers), query)
+  query = update(
+    'watchers',
+    (watchers) => dissocProp(watcher.id, watcher, watchers),
+    query
+  )
   yield put(setQueryAction({ query, queryKey }))
   return query
 }

@@ -32,7 +32,11 @@ describe('reduceRight', () => {
       bim: 'bop',
       foo: 'bar'
     }
-    const result = reduceRight((acc, value, key) => acc + value + key, '', object)
+    const result = reduceRight(
+      (acc, value, key) => acc + value + key,
+      '',
+      object
+    )
     expect(result).toEqual('barfoobopbimbambaz')
   })
 

@@ -15,7 +15,10 @@ const enhance = compose(
     shouldComponentUpdate(nextProps, nextState) {
       return (
         !shallowEquals(this.props.entity, nextProps.entity) &&
-        !shallowEquals(this.props.entityComponents, nextProps.entityComponents) &&
+        !shallowEquals(
+          this.props.entityComponents,
+          nextProps.entityComponents
+        ) &&
         !shallowEquals(this.state, nextState)
       )
     }

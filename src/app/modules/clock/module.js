@@ -6,7 +6,8 @@ import { setCurrentClock } from './actions'
 const module = {
   reducer: handleActions(
     {
-      [setCurrentClock]: (state, { payload }) => assoc('current', payload.timestamp, state)
+      [setCurrentClock]: (state, { payload }) =>
+        assoc('current', payload.timestamp, state)
     },
     {
       current: 0

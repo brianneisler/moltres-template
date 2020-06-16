@@ -5,7 +5,7 @@ import createDimensionsChannel from './createDimensionsChannel'
 
 function* monitorDimensions() {
   const channel = createDimensionsChannel()
-  yield call(handleChannel, channel, function*(event) {
+  yield call(handleChannel, channel, function* (event) {
     const context = yield select(selectContext)
     yield put(dimensionsChanged(context, event))
   })

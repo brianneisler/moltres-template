@@ -8,7 +8,8 @@ import replaceWildcards from './replaceWildcards'
 
 const replacePropWildcards = (wildValues, object) =>
   reduce(
-    (accum, prop) => assoc(replaceWildcards(wildValues, prop), getProp(prop, object), accum),
+    (accum, prop) =>
+      assoc(replaceWildcards(wildValues, prop), getProp(prop, object), accum),
     isImmutableMap(object) ? ImmutableMap({}) : {},
     keys(object)
   )

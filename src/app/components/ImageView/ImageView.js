@@ -164,7 +164,9 @@ const ImageView = enhance(
           />
         )}
         {isLoading ? (
-          <ActivityIndicator style={[styles.activityIndicator, activityIndicatorStyle]} />
+          <ActivityIndicator
+            style={[styles.activityIndicator, activityIndicatorStyle]}
+          />
         ) : null}
       </View>
     )

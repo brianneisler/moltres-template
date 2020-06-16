@@ -1,7 +1,10 @@
 import { expected } from '../../../../utils/error'
 import fetch from '../../../../utils/request/fetch'
 
-const uploadUserProfileImage = async ({ api }, { idToken, userProfileImage }) => {
+const uploadUserProfileImage = async (
+  { api },
+  { idToken, userProfileImage }
+) => {
   const formData = new FormData()
   formData.append('image', userProfileImage.image)
   const response = await fetch(`${api.url}/userprofileimage`, {

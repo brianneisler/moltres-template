@@ -42,7 +42,11 @@ import objectToString from './objectToString'
  * //=> 'Undefined'
  */
 const anyToStringTag = (any) => {
-  return any === null ? 'Null' : any === undefined ? 'Undefined' : objectToString(any).slice(8, -1)
+  return any === null
+    ? 'Null'
+    : any === undefined
+    ? 'Undefined'
+    : objectToString(any).slice(8, -1)
 }
 
 export default anyToStringTag

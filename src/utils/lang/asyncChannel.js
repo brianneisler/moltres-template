@@ -19,7 +19,9 @@ const asyncChannel = function* (subscribe, buffer = noneBuffer()) {
   })
 
   if (!isFunction(unsubscribe)) {
-    throw new Error('in eventChannel: subscribe should return a function to unsubscribe')
+    throw new Error(
+      'in eventChannel: subscribe should return a function to unsubscribe'
+    )
   }
 
   unsubscribe = once(unsubscribe)

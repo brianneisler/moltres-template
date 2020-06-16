@@ -1,5 +1,9 @@
 import { call, handleActions, take } from '../../../utils/lang'
-import { createAsyncMiddleware, createRootSaga, createSagaMiddleware } from './util'
+import {
+  createAsyncMiddleware,
+  createRootSaga,
+  createSagaMiddleware
+} from './util'
 import { deferredPromise } from '../../../utils/data'
 import { runSagaAction } from './actions'
 import { uncaughtExceptionAction } from '../error/actions'
@@ -31,7 +35,9 @@ const module = () => {
   const sagaMiddleware = createSagaMiddleware({
     onError: (reason, saga) => {
       try {
-        _store.dispatch(uncaughtExceptionAction(_store.getContext(), { reason, saga }))
+        _store.dispatch(
+          uncaughtExceptionAction(_store.getContext(), { reason, saga })
+        )
       } catch (error) {
         // NOTE BRN: This is the ultimate fallback in case the above errors out
         // for some reason

@@ -33,7 +33,7 @@ const rotate = async (type, img) => {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas')
 
-    exif.getData(img, function() {
+    exif.getData(img, function () {
       const orientation = exif.getAllTags(this).Orientation
 
       if ([5, 6, 7, 8].indexOf(orientation) > -1) {
@@ -115,17 +115,19 @@ const enhance = compose(
   })
 )
 // TODO BRN: Figure out how to pass a default into a file input
-const FileInput = enhance(({ accept, children, handleChange, inputStyle, style, value }) => (
-  <View style={style}>
-    {children}
-    <input
-      accept={accept}
-      onChange={handleChange}
-      style={StyleSheet.flatten([inputStyle])}
-      type="file"
-      value={value}
-    />
-  </View>
-))
+const FileInput = enhance(
+  ({ accept, children, handleChange, inputStyle, style, value }) => (
+    <View style={style}>
+      {children}
+      <input
+        accept={accept}
+        onChange={handleChange}
+        style={StyleSheet.flatten([inputStyle])}
+        type="file"
+        value={value}
+      />
+    </View>
+  )
+)
 
 export default FileInput

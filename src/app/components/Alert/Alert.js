@@ -79,7 +79,11 @@ const renderButtons = ({ buttons, options, styles }) => {
   if (buttons.length > 2) {
     flexDirection = 'column'
   } else if (buttons.length === 2) {
-    firstButtonStyle = assoc('marginRight', Constants.hairlineWidth, firstButtonStyle)
+    firstButtonStyle = assoc(
+      'marginRight',
+      Constants.hairlineWidth,
+      firstButtonStyle
+    )
   }
 
   return (
@@ -178,7 +182,10 @@ const enhance = compose(
     maxHeight: Math.round(windowHeight * 0.7)
   })),
   withHandlers({
-    calculateHeight: ({ buttons, maxHeight, setScrollEnabled, styles }) => ({ message, title }) => {
+    calculateHeight: ({ buttons, maxHeight, setScrollEnabled, styles }) => ({
+      message,
+      title
+    }) => {
       let height = 0
       if (title) {
         height += getStyleHeight(styles, 'titleBox')
@@ -206,7 +213,9 @@ const enhance = compose(
     height: calculateHeight(rest)
   })),
   withHandlers({
-    handleModalRequestCancel: ({ options, requestCancelModal }) => ({ name }) => {
+    handleModalRequestCancel: ({ options, requestCancelModal }) => ({
+      name
+    }) => {
       if (getProp('cancelable', options)) {
         requestCancelModal(name)
       }
@@ -224,7 +233,10 @@ const Alert = enhance((props) => {
       style={styles.modal}
     >
       <View style={styles.alertContainer}>
-        <ScrollView contentContainerStyle={styles.alertBlock} scrollEnabled={scrollEnabled}>
+        <ScrollView
+          contentContainerStyle={styles.alertBlock}
+          scrollEnabled={scrollEnabled}
+        >
           {renderTitle(props)}
           {renderMessage(props)}
           {renderButtons(props)}

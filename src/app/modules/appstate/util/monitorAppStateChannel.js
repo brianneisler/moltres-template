@@ -5,7 +5,7 @@ import createAppStateChannel from './createAppStateChannel'
 
 function* monitorAppStateChannel() {
   const channel = createAppStateChannel()
-  yield call(handleChannel, channel, function*(appState) {
+  yield call(handleChannel, channel, function* (appState) {
     yield put(setAppState(appState))
   })
 }

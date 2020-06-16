@@ -9,7 +9,10 @@ const createScrollClientChannel = (target) => {
     const intervalId = setInterval(() => {
       const clientHeight = getClientHeight(target)
       const scrollHeight = getScrollHeight(target)
-      if (clientHeight !== previousClientHeight || scrollHeight !== previousScrollHeight) {
+      if (
+        clientHeight !== previousClientHeight ||
+        scrollHeight !== previousScrollHeight
+      ) {
         previousClientHeight = clientHeight
         previousScrollHeight = scrollHeight
         emitter({

@@ -3,9 +3,13 @@ import { findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
 import expected from '../../utils/error/expected'
 
 const generateInternalPhoneNumber = async (context, data) => {
-  const phoneNumber = await findPhoneNumberByPhoneNumber(context, data.phoneNumber, {
-    includeRemoved: true
-  })
+  const phoneNumber = await findPhoneNumberByPhoneNumber(
+    context,
+    data.phoneNumber,
+    {
+      includeRemoved: true
+    }
+  )
   if (phoneNumber) {
     // TODO BRN: Allow for removed phone numbers to be converted
     if (phoneNumber.removedAt) {

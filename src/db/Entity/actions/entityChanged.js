@@ -28,7 +28,10 @@ const entityChanged = actionBuilder({
   // TODO BRN: Update this to pick based upon the schema
   meta: (context) => addCausedByEntity(context, {}),
   // TODO BRN: Update this to pick based upon the schema
-  payload: (context, { changeType, data, entityId, entityPath, entityType, prevData }) => ({
+  payload: (
+    context,
+    { changeType, data, entityId, entityPath, entityType, prevData }
+  ) => ({
     changeType,
     data,
     entityId,

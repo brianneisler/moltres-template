@@ -42,7 +42,11 @@ const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {
     }
     props = reduce(
       (accum, builtPropKey) =>
-        assocPath(createPath(builtPropKey), getProp(builtPropKey, builtProps), accum),
+        assocPath(
+          createPath(builtPropKey),
+          getProp(builtPropKey, builtProps),
+          accum
+        ),
       props,
       keys(builtProps)
     )
@@ -56,7 +60,10 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
     let remainingFactories = factories
     const wildcardValuesGroups = selectWildcards(selector, props)
     const results = yield mapAll(function* (wildcardValues) {
-      const targetPropBuilders = replacePropWildcards(wildcardValues, propBuilders)
+      const targetPropBuilders = replacePropWildcards(
+        wildcardValues,
+        propBuilders
+      )
       const factoryKey = join(':', keys(targetPropBuilders))
       let factory = getProp(factoryKey, factories)
       if (!factory) {

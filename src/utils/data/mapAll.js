@@ -8,7 +8,9 @@ import toPlain from './toPlain'
 const mapAll = (fn, value) =>
   call(function* () {
     if (isImmutable(value)) {
-      const results = yield all(toPlain(map((...args) => call(fn, ...args), value)))
+      const results = yield all(
+        toPlain(map((...args) => call(fn, ...args), value))
+      )
       return toImmutable(results)
     }
     return yield all(map((...args) => call(fn, ...args), value))

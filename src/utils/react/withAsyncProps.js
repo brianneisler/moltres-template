@@ -47,7 +47,9 @@ const removeObserver = (observers, key) => {
   return omit([key], observers)
 }
 
-const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseComponent) => {
+const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (
+  BaseComponent
+) => {
   const factory = createFactory(BaseComponent)
   const memoizedAsyncPropPromisers = map(weakMemoize, asyncPropPromisers)
 
@@ -162,7 +164,9 @@ const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseCompone
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    return setDisplayName(wrapDisplayName(BaseComponent, 'withAsyncProps'))(WithAsyncProps)
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withAsyncProps'))(
+      WithAsyncProps
+    )
   }
   return WithAsyncProps
 }

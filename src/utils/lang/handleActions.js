@@ -12,10 +12,14 @@ import reduceReducers from './reduceReducers'
 // NOTE THIS DOES NOT WORK WITH SAGAS!!!
 
 const handleActions = (handlers, defaultProps, options = {}) => {
-  invariant(isPlainObject(handlers) || isMap(handlers), 'Expected handlers to be a plain object.')
+  invariant(
+    isPlainObject(handlers) || isMap(handlers),
+    'Expected handlers to be a plain object.'
+  )
   const flattenedReducerMap = flattenReducerMap(handlers, options)
   const reducers = map(
-    (type) => handleAction(getProp(type, flattenedReducerMap), type, defaultProps),
+    (type) =>
+      handleAction(getProp(type, flattenedReducerMap), type, defaultProps),
     keys(flattenedReducerMap)
   )
   const reducer = reduceReducers(...reducers)

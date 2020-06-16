@@ -8,31 +8,50 @@ import {
   values
 } from '../../../utils/data'
 import { invariant } from '../../../utils/lang'
-import { queryEntityStats, queryStatsShards, refEntityStatsById } from '../../../db/EntityStats'
+import {
+  queryEntityStats,
+  queryStatsShards,
+  refEntityStatsById
+} from '../../../db/EntityStats'
 import { withQuery, withSelectedProps } from '../../../core'
 
-const withEntityStats = ({ entityIdPath, entityTypePath, statsEntityType, statsStatePath }) => {
+const withEntityStats = ({
+  entityIdPath,
+  entityTypePath,
+  statsEntityType,
+  statsStatePath
+}) => {
   invariant(isString(entityIdPath), 'entityIdPath must be a String')
   invariant(
     isString(entityTypePath) || isString(statsEntityType),
     'entityTypePath OR statsEntityType must be a String'
   )
-  invariant(isString(statsStatePath), 'statsStatePath OR statsEntityType must be a String')
+  invariant(
+    isString(statsStatePath),
+    'statsStatePath OR statsEntityType must be a String'
+  )
 
   return compose(
     withQuery({
       createQuery: (context, { entityId, entityType }, queryOptions) => {
         if (entityType && entityId) {
-          return queryEntityStats(context, { entityId, entityType }, queryOptions)
+          return queryEntityStats(
+            context,
+            { entityId, entityType },
+            queryOptions
+          )
         }
         return null
       },
       queryExtensions: { findOne: true },
       selector: entityTypePath
-        ? createSelector([entityIdPath, entityTypePath], (entityId, entityType) => ({
-            entityId,
-            entityType
-          }))
+        ? createSelector(
+            [entityIdPath, entityTypePath],
+            (entityId, entityType) => ({
+              entityId,
+              entityType
+            })
+          )
         : createSelector([entityIdPath], (entityId) => ({
             entityId,
             entityType: statsEntityType
@@ -53,7 +72,9 @@ const withEntityStats = ({ entityIdPath, entityTypePath, statsEntityType, statsS
         }
         return null
       },
-      selector: createSelector(`${statsStatePath}.id`, (statsId) => ({ statsId })),
+      selector: createSelector(`${statsStatePath}.id`, (statsId) => ({
+        statsId
+      })),
       statePath: `${statsStatePath}.shards`
     }),
     withSelectedProps([`${statsStatePath}.shards`], {

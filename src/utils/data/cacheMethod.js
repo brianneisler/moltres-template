@@ -24,7 +24,10 @@ const cacheMethod = (options, method) => {
     }
     const cacheKey = keyFn(context, ...rest)
     const cached = get(cache, cacheKey)
-    if (cached && (isNil(ttl) || ttl === Infinity || system.now() < cached.cachedAt + ttl)) {
+    if (
+      cached &&
+      (isNil(ttl) || ttl === Infinity || system.now() < cached.cachedAt + ttl)
+    ) {
       if (isFunction(onHit)) {
         onHit(context, ...rest)
       }

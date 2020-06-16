@@ -82,7 +82,12 @@ const enhance = compose(
         modalCancelled(name)
       }
     },
-    handleModalPress: ({ disabled, name, onRequestCancel, requestCancelModal }) => () => {
+    handleModalPress: ({
+      disabled,
+      name,
+      onRequestCancel,
+      requestCancelModal
+    }) => () => {
       if (disabled) {
         return
       }
@@ -92,7 +97,11 @@ const enhance = compose(
         requestCancelModal(name)
       }
     },
-    handleModalRequestClose: ({ name, onRequestCancel, requestCancelModal }) => () => {
+    handleModalRequestClose: ({
+      name,
+      onRequestCancel,
+      requestCancelModal
+    }) => () => {
       if (onRequestCancel) {
         onRequestCancel({ name })
       } else {
@@ -128,7 +137,10 @@ const CancelableModal = enhance(
       visible={modalVisible}
     >
       <View style={[styles.modalContainer, style]}>
-        <Text onPress={handleModalPress} style={[styles.overlay, overlayStyle]} />
+        <Text
+          onPress={handleModalPress}
+          style={[styles.overlay, overlayStyle]}
+        />
         {children}
       </View>
     </Modal>

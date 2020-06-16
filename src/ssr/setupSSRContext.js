@@ -17,7 +17,9 @@ const setupSSRContext = (config, serviceAccountContext, history) => {
     // NOTE BRN: We want to separate this into a different namespace so that
     // when firebase is started up there's no overlap with the request context
     // which is logged in as a ServiceAccount
-    namespace: currentUser ? `ssr.user:${currentUser.id}` : `ssr.anonymous:${uuidv4()}`,
+    namespace: currentUser
+      ? `ssr.user:${currentUser.id}`
+      : `ssr.anonymous:${uuidv4()}`,
     notifications: {
       component
     },

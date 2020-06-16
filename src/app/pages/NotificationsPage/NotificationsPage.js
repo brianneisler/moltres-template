@@ -1,7 +1,12 @@
 import { Fragment, MetaTags, NotificationList, View } from '../../components'
 import { Styles } from '../../styles'
 import { compose } from '../../../utils/data'
-import { connect, defaultProps, setDisplayName, withProps } from '../../../utils/react'
+import {
+  connect,
+  defaultProps,
+  setDisplayName,
+  withProps
+} from '../../../utils/react'
 import { selectAppConfig } from '../../modules/app'
 import { selectCurrentUser } from '../../modules/auth'
 import { selectFacebookConfig } from '../../modules/facebook'
@@ -31,14 +36,27 @@ const enhance = compose(
 )
 
 const NotificationPage = enhance(
-  ({ app, currentUser, description, facebook, ssr, styles, title, twitter }) => {
+  ({
+    app,
+    currentUser,
+    description,
+    facebook,
+    ssr,
+    styles,
+    title,
+    twitter
+  }) => {
     return (
       <View style={styles.page}>
         <MetaTags>
           <title>{title}</title>
           {ssr ? (
             <Fragment>
-              <meta content={description} name="description" property="description" />
+              <meta
+                content={description}
+                name="description"
+                property="description"
+              />
               <meta content={description} property="og:description" />
               <meta content={app.name} property="og:site_name" />
               <meta content={title} property="og:title" />

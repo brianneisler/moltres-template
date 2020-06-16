@@ -24,7 +24,9 @@ const findWildcards = (selector, wildcards = ImmutableMap([])) => {
         const existing = getProp(name, accum)
         if (existing) {
           if (!equals(getProp('basePath', existing), basePath)) {
-            throw new Error(`wild cards with the same name must have the same basePath`)
+            throw new Error(
+              `wild cards with the same name must have the same basePath`
+            )
           }
         } else {
           return assoc(

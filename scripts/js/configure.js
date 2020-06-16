@@ -11,7 +11,8 @@ const configure = async () => {
   logger.info('Saving internal phone numbers')
   await Promise.all(
     map(
-      async (phoneNumber) => generateInternalPhoneNumber(context, { phoneNumber }),
+      async (phoneNumber) =>
+        generateInternalPhoneNumber(context, { phoneNumber }),
       internalPhoneNumbers
     )
   )

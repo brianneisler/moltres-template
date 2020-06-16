@@ -95,7 +95,8 @@ const enhance = compose(
     requestCancelModal: modalActions.requestCancelModal
   }),
   withHandlers({
-    handleCancelPress: ({ name, requestCancelModal }) => () => requestCancelModal(name),
+    handleCancelPress: ({ name, requestCancelModal }) => () =>
+      requestCancelModal(name),
     handleSubmitPress: ({ hideModal, name, onSubmit }) => () => {
       if (onSubmit) {
         onSubmit({ name })
@@ -132,12 +133,19 @@ const Overlay = enhance((props) => {
         style={styles.overlayContainer}
       >
         <View
-          style={[styles.innerContainer, overlayStyle, disabled ? styles.disabled : styles.enabled]}
+          style={[
+            styles.innerContainer,
+            overlayStyle,
+            disabled ? styles.disabled : styles.enabled
+          ]}
         >
           <View style={styles.header}>
             <View style={styles.headerLeft}>
               {cancelText ? (
-                <TouchableOpacity disabled={disabled} onPress={handleCancelPress}>
+                <TouchableOpacity
+                  disabled={disabled}
+                  onPress={handleCancelPress}
+                >
                   <Text style={styles.cancelText}>{cancelText}</Text>
                 </TouchableOpacity>
               ) : null}
@@ -147,7 +155,10 @@ const Overlay = enhance((props) => {
             </View>
             <View style={styles.headerRight}>
               {submitText ? (
-                <TouchableOpacity disabled={disabled} onPress={handleSubmitPress}>
+                <TouchableOpacity
+                  disabled={disabled}
+                  onPress={handleSubmitPress}
+                >
                   <Text style={styles.submitText}>{submitText}</Text>
                 </TouchableOpacity>
               ) : null}

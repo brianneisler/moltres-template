@@ -43,13 +43,17 @@ const enhance = compose(
     currentUser: selectCurrentUser(state),
     pathname: selectRouterLocationPathname(state)
   })),
-  withPropsOnChange(['currentUser', 'pathname'], ({ currentUser, pathname }) => {
-    const match = pathname.match(USER_PATH)
-    const isPathCurrentUserProfile = currentUser && match ? currentUser.id === match[1] : false
-    return {
-      isPathCurrentUserProfile
+  withPropsOnChange(
+    ['currentUser', 'pathname'],
+    ({ currentUser, pathname }) => {
+      const match = pathname.match(USER_PATH)
+      const isPathCurrentUserProfile =
+        currentUser && match ? currentUser.id === match[1] : false
+      return {
+        isPathCurrentUserProfile
+      }
     }
-  })
+  )
 )
 
 const HeaderTopRightNav = enhance(
@@ -57,7 +61,10 @@ const HeaderTopRightNav = enhance(
     if (authState !== AuthState.LOGGED_IN) {
       if (pathname !== '/login' && pathname !== '/login/code') {
         return (
-          <Link style={StyleSheet.flatten([styles.link, styles.whiteButton, style])} to="/login">
+          <Link
+            style={StyleSheet.flatten([styles.link, styles.whiteButton, style])}
+            to="/login"
+          >
             <Text style={styles.whiteButtonText}>Login</Text>
           </Link>
         )

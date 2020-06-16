@@ -13,7 +13,9 @@ const withReduxForm = (initialState, mapProps = defaultMapProps) => {
   )
   if (process.env.NODE_ENV !== 'production') {
     return (BaseComponent) =>
-      setDisplayName(wrapDisplayName(BaseComponent, 'withReduxForm'))(hoc(BaseComponent))
+      setDisplayName(wrapDisplayName(BaseComponent, 'withReduxForm'))(
+        hoc(BaseComponent)
+      )
   }
   return hoc
 }

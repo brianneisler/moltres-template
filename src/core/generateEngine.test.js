@@ -83,7 +83,7 @@ describe('generateEngine', () => {
     let wasCancelled = false
     const testModule = {
       finally: jest.fn(),
-      run: function* () {
+      *run() {
         try {
           yield take('NEVER_GONNA_HAPPEN')
         } finally {

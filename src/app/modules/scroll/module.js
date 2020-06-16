@@ -11,9 +11,18 @@ import {
   takeLatest
 } from '../../../utils/lang'
 import { assocPath, map, values } from '../../../utils/data'
-import { getClientHeight, getScrollHeight, getScrollTop, getWindow } from '../../../utils/web'
+import {
+  getClientHeight,
+  getScrollHeight,
+  getScrollTop,
+  getWindow
+} from '../../../utils/web'
 import { monitorScroll } from './util'
-import { preloadAction, preloadCompleteAction, selectRouterLocationPathname } from '../router'
+import {
+  preloadAction,
+  preloadCompleteAction,
+  selectRouterLocationPathname
+} from '../router'
 import selectScrollPathname from './selectScrollPathname'
 import selectScrollTarget from './selectScrollTarget'
 
@@ -30,7 +39,7 @@ const module = {
           {
             distanceFromBottom: getDistanceFromBottom(target),
             scrollTop: getScrollTop(target),
-            target: target
+            target
           },
           state
         )
@@ -38,7 +47,11 @@ const module = {
       },
       [actions.setScrollPathnameTarget]: (state, { payload }) => {
         const { pathname, target } = payload
-        state = assocPath(['pathnames', pathname, 'targets', target.name], target, state)
+        state = assocPath(
+          ['pathnames', pathname, 'targets', target.name],
+          target,
+          state
+        )
         return state
       }
     },
@@ -53,7 +66,7 @@ const module = {
   run: function* run() {
     yield fork(monitorScroll, getWindow(), 'window')
 
-    yield takeLatest(actions.scrollEvent, function*(action) {
+    yield takeLatest(actions.scrollEvent, function* (action) {
       const { name, target } = action.payload
       const pathname = yield select(selectRouterLocationPathname)
       const scrollTop = getScrollTop(target)
@@ -68,9 +81,11 @@ const module = {
       )
     })
 
-    yield takeEvery(preloadAction, function*({ payload }) {
+    yield takeEvery(preloadAction, function* ({ payload }) {
       const { location } = payload
-      const pathnameScroll = yield select(selectScrollPathname(location.pathname))
+      const pathnameScroll = yield select(
+        selectScrollPathname(location.pathname)
+      )
       if (pathnameScroll) {
         yield take(preloadCompleteAction)
         yield all(
@@ -103,7 +118,7 @@ const module = {
       }
     })
 
-    yield takeEvery(actions.scrollTo, function*(action) {
+    yield takeEvery(actions.scrollTo, function* (action) {
       const { behavior, left, name, top } = action.payload
       const scroll = yield select(selectScrollTarget(name))
       if (scroll) {

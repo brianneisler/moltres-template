@@ -17,7 +17,11 @@ const getNextCollection = (collection, part, parts) => {
   if (part === '$') {
     return collection
   }
-  if (!isNil(collection) && hasProp(part, collection) && isObject(getProp(part, collection))) {
+  if (
+    !isNil(collection) &&
+    hasProp(part, collection) &&
+    isObject(getProp(part, collection))
+  ) {
     return getProp(part, collection)
   }
   if (isNil(collection)) {

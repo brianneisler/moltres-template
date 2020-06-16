@@ -40,9 +40,14 @@ class NetworkInformation extends EventEmitter {
     this.realtime = realtime
 
     if (this.connection) {
-      this.connection.addEventListener('change', this.handleConnectionChangeEvent)
+      this.connection.addEventListener(
+        'change',
+        this.handleConnectionChangeEvent
+      )
     } else {
-      realtime.ref('.info/connected').on('value', this.handleRealtimeConnectedInfo)
+      realtime
+        .ref('.info/connected')
+        .on('value', this.handleRealtimeConnectedInfo)
     }
   }
 

@@ -21,10 +21,15 @@ const migrateUp = async () => {
   const { adminContext, context } = await setupScriptContexts()
   const { logger } = context
 
-  let currentDatabaseMigrationId = await findVariableById(context, VARIABLE_DATABASE_MIGRATION_ID)
+  let currentDatabaseMigrationId = await findVariableById(
+    context,
+    VARIABLE_DATABASE_MIGRATION_ID
+  )
 
   if (currentDatabaseMigrationId) {
-    logger.info(`Database is currently at migration id "${currentDatabaseMigrationId.value}"`)
+    logger.info(
+      `Database is currently at migration id "${currentDatabaseMigrationId.value}"`
+    )
   }
   const dir = resolve(__dirname, '..', '..', 'migrations')
   let migrations = await loadMigrations(dir)
@@ -44,10 +49,14 @@ const migrateUp = async () => {
       try {
         await migration.up(context, adminContext)
         logger.info(`migration completed ${migration.file}`)
-        currentDatabaseMigrationId = await setVariable(context, VARIABLE_DATABASE_MIGRATION_ID, {
-          ...(currentDatabaseMigrationId ? currentDatabaseMigrationId : {}),
-          value: migration.id
-        })
+        currentDatabaseMigrationId = await setVariable(
+          context,
+          VARIABLE_DATABASE_MIGRATION_ID,
+          {
+            ...(currentDatabaseMigrationId ? currentDatabaseMigrationId : {}),
+            value: migration.id
+          }
+        )
       } catch (error) {
         logger.warn(
           `An error occurred while running the migration script ${migration.file}. Stopping migration....`

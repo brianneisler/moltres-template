@@ -1,6 +1,12 @@
 import * as actions from './actions'
 import { assocPath } from '../../../utils/data'
-import { handleAction, handleActions, put, select, takeEvery } from '../../../utils/lang'
+import {
+  handleAction,
+  handleActions,
+  put,
+  select,
+  takeEvery
+} from '../../../utils/lang'
 import selectModal from './selectModal'
 
 const mod = {
@@ -9,9 +15,17 @@ const mod = {
       [actions.hideModal]: (state, action) =>
         assocPath(['instances', action.payload.name, 'visible'], false, state),
       [actions.setModalCancelEnabled]: (state, action) =>
-        assocPath(['instances', action.payload.name, 'cancelEnabled'], action.payload.value, state),
+        assocPath(
+          ['instances', action.payload.name, 'cancelEnabled'],
+          action.payload.value,
+          state
+        ),
       [actions.setModal]: (state, action) =>
-        assocPath(['instances', action.payload.name], action.payload.instance, state)
+        assocPath(
+          ['instances', action.payload.name],
+          action.payload.instance,
+          state
+        )
     },
     {
       instances: {}
@@ -20,7 +34,7 @@ const mod = {
   run: function* run() {
     yield takeEvery(
       actions.showModal,
-      handleAction(function*(context, action) {
+      handleAction(function* (context, action) {
         const modal = yield select(selectModal(action.payload.name))
         yield put(
           actions.setModal(action.payload.name, {
@@ -33,7 +47,7 @@ const mod = {
 
     yield takeEvery(
       actions.requestCancelModal,
-      handleAction(function*(context, action) {
+      handleAction(function* (context, action) {
         const modal = yield select(selectModal(action.payload.name))
         if (!modal) {
           throw new Error(

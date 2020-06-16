@@ -5,7 +5,11 @@ import { setQueryAction } from './actions'
 
 const addQueryWatcher = function* (queryKey, watcher) {
   let query = yield select(selectQuery(queryKey))
-  query = update('watchers', (watchers) => assoc(watcher.id, watcher, watchers), query)
+  query = update(
+    'watchers',
+    (watchers) => assoc(watcher.id, watcher, watchers),
+    query
+  )
   yield put(setQueryAction({ query, queryKey }))
   return watcher
 }

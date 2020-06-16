@@ -7,7 +7,8 @@ import { setAppState } from './actions'
 const module = {
   reducer: handleActions(
     {
-      [setAppState]: (state, action) => assoc('currentState', action.payload, state)
+      [setAppState]: (state, action) =>
+        assoc('currentState', action.payload, state)
     },
     {
       currentState: 0

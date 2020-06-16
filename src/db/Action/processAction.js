@@ -1,6 +1,9 @@
 import moveActionFromBucketToBucket from './moveActionFromBucketToBucket'
 
-const moveActionToProcessing = moveActionFromBucketToBucket('queue', 'processing')
+const moveActionToProcessing = moveActionFromBucketToBucket(
+  'queue',
+  'processing'
+)
 
 const processAction = async (context, document) =>
   moveActionToProcessing(context, document, (data) => ({

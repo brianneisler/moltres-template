@@ -25,7 +25,12 @@ const shallowEquals = curry((objA, objB) => {
     return true
   }
 
-  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+  if (
+    typeof objA !== 'object' ||
+    objA === null ||
+    typeof objB !== 'object' ||
+    objB === null
+  ) {
     return false
   }
 
@@ -40,7 +45,10 @@ const shallowEquals = curry((objA, objB) => {
   for (let i = 0; i < keysA.length; i++) {
     if (
       !hasProp(getProp(i, keysA), objB) ||
-      !identical(getProp(getProp(i, keysA), objA), getProp(getProp(i, keysA), objB))
+      !identical(
+        getProp(getProp(i, keysA), objA),
+        getProp(getProp(i, keysA), objB)
+      )
     ) {
       return false
     }

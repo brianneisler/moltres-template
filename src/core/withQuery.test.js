@@ -47,7 +47,9 @@ describe('withQuery', () => {
     expect(factory).toBeInstanceOf(Function)
 
     const engine = generateEngine({}, {}, testContext)
-    expect(await runSaga(engine, factory, testProps, testChannel, testContext)).toEqual({
+    expect(
+      await runSaga(engine, factory, testProps, testChannel, testContext)
+    ).toEqual({
       bar: {
         bar: 'bar',
         id: 'bar1'
@@ -172,7 +174,9 @@ describe('withQuery', () => {
     expect(factory).toBeInstanceOf(Function)
 
     const engine = generateEngine({}, {}, testContext)
-    expect(await runSaga(engine, factory, testProps, testChannel, testContext)).toEqual({
+    expect(
+      await runSaga(engine, factory, testProps, testChannel, testContext)
+    ).toEqual({
       foo1: {
         bar: {
           bar: 'bar-data1',
@@ -260,7 +264,9 @@ describe('withQuery', () => {
     expect(factory).toBeInstanceOf(Function)
 
     const engine = generateEngine({}, {}, testContext)
-    expect(await runSaga(engine, factory, testProps, testChannel, testContext)).toEqual({
+    expect(
+      await runSaga(engine, factory, testProps, testChannel, testContext)
+    ).toEqual({
       foo1: {
         bar: {
           bar: 'bar-data1',

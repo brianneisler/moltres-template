@@ -10,7 +10,8 @@ import Symbol from '../js/Symbol'
  * @since v0.1.0
  * @category lang.constants.Symbol
  */
-export const ITERATOR = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator'
+export const ITERATOR =
+  typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator'
 
 /**
  * The `Symbol.toStringTag` well-known symbol is a string valued property that

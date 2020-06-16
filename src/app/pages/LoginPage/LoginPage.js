@@ -1,4 +1,11 @@
-import { FieldTextInput, Fragment, MetaTags, Text, TouchableOpacity, View } from '../../components'
+import {
+  FieldTextInput,
+  Fragment,
+  MetaTags,
+  Text,
+  TouchableOpacity,
+  View
+} from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { SubmissionError, validatePhoneNumber } from '../../../utils/form'
@@ -93,7 +100,17 @@ const enhance = compose(
 )
 
 const LoginPage = enhance(
-  ({ app, description, facebook, handleButtonPress, ssr, styles, submitting, title, twitter }) => {
+  ({
+    app,
+    description,
+    facebook,
+    handleButtonPress,
+    ssr,
+    styles,
+    submitting,
+    title,
+    twitter
+  }) => {
     const disabled = submitting
     return (
       <View style={styles.page}>
@@ -101,7 +118,11 @@ const LoginPage = enhance(
           <title>{title}</title>
           {ssr ? (
             <Fragment>
-              <meta content={description} name="description" property="description" />
+              <meta
+                content={description}
+                name="description"
+                property="description"
+              />
               <meta content={description} property="og:description" />
               <meta content={app.name} property="og:site_name" />
               <meta content={title} property="og:title" />

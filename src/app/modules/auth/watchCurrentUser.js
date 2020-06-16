@@ -4,10 +4,10 @@ import { call, cancel, cancelled, select, takeEvery } from 'redux-saga/effects'
 import selectAuthState from './selectors/selectAuthState'
 import selectCurrentUser from './selectors/selectCurrentUser'
 
-const watchCurrentUser = function*(handler) {
+const watchCurrentUser = function* (handler) {
   let task
   try {
-    yield call(function*() {
+    yield call(function* () {
       // trigger once immediately
       let currentAuthState = yield select(selectAuthState)
       let currentUser
@@ -17,7 +17,7 @@ const watchCurrentUser = function*(handler) {
       }
 
       // watch for every change in auth state
-      yield takeEvery(AuthStateChangedAction.name, function*(action) {
+      yield takeEvery(AuthStateChangedAction.name, function* (action) {
         const { authState } = action.payload
         if (authState !== currentAuthState) {
           currentAuthState = authState

@@ -1,6 +1,10 @@
 import measureTextDimensions from './measureTextDimensions'
 
-const determineFontSize = (context, text, { fontFamily, fontWeight, maxWidth, padding }) => {
+const determineFontSize = (
+  context,
+  text,
+  { fontFamily, fontWeight, maxWidth, padding }
+) => {
   let fontSize = 60
   let done = false
   while (!done) {

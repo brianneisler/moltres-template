@@ -56,9 +56,12 @@ const enhance = compose(
   withState('previousRouterLocation', 'setPreviousRouterLocation'),
   // NOTE BRN: This overrides the routerLocation from state if it's been passed
   // in as a prop
-  withPropsOnChange(['location', 'routerLocation'], ({ location, routerLocation }) => ({
-    routerLocation: location ? location : routerLocation
-  })),
+  withPropsOnChange(
+    ['location', 'routerLocation'],
+    ({ location, routerLocation }) => ({
+      routerLocation: location ? location : routerLocation
+    })
+  ),
   withPropsOnChange(
     ['previousRouterLocation', 'routerLocation'],
     ({ previousRouterLocation, routerLocation, setPreviousRouterLocation }) => {
@@ -70,27 +73,34 @@ const enhance = compose(
       return { animating: false }
     }
   ),
-  withPropsOnChange(['animating'], ({ animating, layoutWidth, routerAction }) => {
-    if (animating) {
-      if (routerAction === 'PUSH') {
-        return {
-          fromTranslateX: new Animated.Value(0),
-          toTranslateX: new Animated.Value(layoutWidth)
-        }
-      } else if (routerAction === 'POP') {
-        return {
-          fromTranslateX: new Animated.Value(0),
-          toTranslateX: new Animated.Value(-layoutWidth)
+  withPropsOnChange(
+    ['animating'],
+    ({ animating, layoutWidth, routerAction }) => {
+      if (animating) {
+        if (routerAction === 'PUSH') {
+          return {
+            fromTranslateX: new Animated.Value(0),
+            toTranslateX: new Animated.Value(layoutWidth)
+          }
+        } else if (routerAction === 'POP') {
+          return {
+            fromTranslateX: new Animated.Value(0),
+            toTranslateX: new Animated.Value(-layoutWidth)
+          }
         }
       }
+      return {
+        fromTranslateX: 0,
+        toTranslateX: 0
+      }
     }
-    return {
-      fromTranslateX: 0,
-      toTranslateX: 0
-    }
-  }),
+  ),
   withHandlers({
-    animateRoutePop: ({ fromTranslateX, layoutWidth, toTranslateX }) => async () =>
+    animateRoutePop: ({
+      fromTranslateX,
+      layoutWidth,
+      toTranslateX
+    }) => async () =>
       Promise.all([
         new Promise((resolve) =>
           Animated.timing(fromTranslateX, {
@@ -107,7 +117,11 @@ const enhance = compose(
           }).start(resolve)
         )
       ]),
-    animateRoutePush: ({ fromTranslateX, layoutWidth, toTranslateX }) => async () =>
+    animateRoutePush: ({
+      fromTranslateX,
+      layoutWidth,
+      toTranslateX
+    }) => async () =>
       Promise.all([
         new Promise((resolve) =>
           Animated.timing(fromTranslateX, {
@@ -171,11 +185,18 @@ const AnimatedSwitch = enhance(
     return (
       <View onLayout={handleLayout} style={styles.wrapper}>
         {animating ? (
-          <Animated.View style={[styles.from, { transform: [{ translateX: fromTranslateX }] }]}>
+          <Animated.View
+            style={[
+              styles.from,
+              { transform: [{ translateX: fromTranslateX }] }
+            ]}
+          >
             <Switch location={previousRouterLocation}>{children}</Switch>
           </Animated.View>
         ) : null}
-        <Animated.View style={[styles.to, { transform: [{ translateX: toTranslateX }] }]}>
+        <Animated.View
+          style={[styles.to, { transform: [{ translateX: toTranslateX }] }]}
+        >
           <Switch location={routerLocation}>{children}</Switch>
         </Animated.View>
       </View>

@@ -11,7 +11,10 @@ module.exports = {
   resolver: 'jest-pnp-resolver',
   setupFiles: ['react-app-polyfill/jsdom'],
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/**/__tests__/**/*.js', '<rootDir>/**/?(*.)(spec|test).js'],
+  testMatch: [
+    '<rootDir>/**/__tests__/**/*.js',
+    '<rootDir>/**/?(*.)(spec|test).js'
+  ],
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js)$': '<rootDir>/node_modules/babel-jest'

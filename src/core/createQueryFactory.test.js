@@ -8,13 +8,17 @@ describe('createQueryFactory', () => {
     // eslint-disable-next-line no-unused-vars
     const createQuery = jest.fn((context, props, queryOptions) => null)
     // eslint-disable-next-line no-unused-vars
-    const enhancer = jest.fn((statePath) => (baseFactory) => (state, channel, context) =>
-      baseFactory(state, channel, context)
+    const enhancer = jest.fn(
+      (statePath) => (baseFactory) => (state, channel, context) =>
+        baseFactory(state, channel, context)
     )
     const factory = jest.fn((state) => state)
     const queryExtensions = {}
     const queryOptions = {}
-    const selector = createSelector(['barId', 'bazId'], (barId, bazId) => ({ barId, bazId }))
+    const selector = createSelector(['barId', 'bazId'], (barId, bazId) => ({
+      barId,
+      bazId
+    }))
     const statePath = '$.foo'
 
     const queryFactory = createQueryFactory({
@@ -34,13 +38,23 @@ describe('createQueryFactory', () => {
     const context = { logger: console }
     const engine = generateEngine({}, {}, context)
 
-    const result = await runSaga(engine, queryFactory, initialState, channel, context)
+    const result = await runSaga(
+      engine,
+      queryFactory,
+      initialState,
+      channel,
+      context
+    )
 
     expect(result).toEqual({
       barId: 'id1',
       bazId: 'id2',
       foo: {}
     })
-    expect(createQuery).toHaveBeenCalledWith(context, { barId: 'id1', bazId: 'id2' }, queryOptions)
+    expect(createQuery).toHaveBeenCalledWith(
+      context,
+      { barId: 'id1', bazId: 'id2' },
+      queryOptions
+    )
   })
 })

@@ -23,9 +23,13 @@ const mod = {
     yield fork(
       watchCurrentUser,
       handleAction(
-        enhance(function*(context, currentUser) {
+        enhance(function* (context, currentUser) {
           if (currentUser) {
-            return yield call(queryAndWatchCurrentUserRole, context, currentUser)
+            return yield call(
+              queryAndWatchCurrentUserRole,
+              context,
+              currentUser
+            )
           }
         })
       )

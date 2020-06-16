@@ -28,6 +28,7 @@ import anyToStringTag from './anyToStringTag'
  * // => false
  */
 const anyIsNumber = (value) =>
-  typeof value == 'number' || (anyIsObjectLike(value) && anyToStringTag(value) == 'Number')
+  typeof value == 'number' ||
+  (anyIsObjectLike(value) && anyToStringTag(value) == 'Number')
 
 export default anyIsNumber

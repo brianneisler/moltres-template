@@ -61,13 +61,18 @@ const enhance = compose(
     transparent: false,
     visible: false
   }),
-  withState('styleDisplay', 'setStyleDisplay', ({ visible }) => (visible ? 'flex' : 'none')),
+  withState('styleDisplay', 'setStyleDisplay', ({ visible }) =>
+    visible ? 'flex' : 'none'
+  ),
   withState('animationSlide', 'setAnimationSlide', null),
   withState('animationFade', 'setAnimationFade', null),
   withHandlers({
-    animateFadeIn: ({ animationFade, opacityFade, setAnimationFade, setStyleDisplay }) => (
-      callback
-    ) => {
+    animateFadeIn: ({
+      animationFade,
+      opacityFade,
+      setAnimationFade,
+      setStyleDisplay
+    }) => (callback) => {
       if (animationFade) {
         animationFade.stop()
       }
@@ -83,9 +88,12 @@ const enhance = compose(
         })
       })
     },
-    animateFadeOut: ({ animationFade, opacityFade, setAnimationFade, setStyleDisplay }) => (
-      callback
-    ) => {
+    animateFadeOut: ({
+      animationFade,
+      opacityFade,
+      setAnimationFade,
+      setStyleDisplay
+    }) => (callback) => {
       if (animationFade) {
         animationFade.stop()
       }
@@ -103,9 +111,12 @@ const enhance = compose(
         })
       })
     },
-    animateSlideIn: ({ animationSlide, setAnimationSlide, setStyleDisplay, slideTranslation }) => (
-      callback
-    ) => {
+    animateSlideIn: ({
+      animationSlide,
+      setAnimationSlide,
+      setStyleDisplay,
+      slideTranslation
+    }) => (callback) => {
       if (animationSlide) {
         animationSlide.stop()
       }
@@ -121,9 +132,12 @@ const enhance = compose(
       })
     },
 
-    animateSlideOut: ({ animationSlide, setAnimationSlide, setStyleDisplay, slideTranslation }) => (
-      callback
-    ) => {
+    animateSlideOut: ({
+      animationSlide,
+      setAnimationSlide,
+      setStyleDisplay,
+      slideTranslation
+    }) => (callback) => {
       if (animationSlide) {
         animationSlide.stop()
       }
@@ -140,7 +154,12 @@ const enhance = compose(
     }
   }),
   withHandlers({
-    handleClose: ({ animateFadeOut, animateSlideOut, animationType, onDismiss }) => () => {
+    handleClose: ({
+      animateFadeOut,
+      animateSlideOut,
+      animationType,
+      onDismiss
+    }) => () => {
       if (animationType === 'slide') {
         animateSlideOut(onDismiss)
       } else if (animationType === 'fade') {
@@ -157,7 +176,12 @@ const enhance = compose(
     handleRequestClose: ({ onRequestClose }) => () => {
       onRequestClose()
     },
-    handleShow: ({ animateFadeIn, animateSlideIn, animationType, onShow }) => () => {
+    handleShow: ({
+      animateFadeIn,
+      animateSlideIn,
+      animationType,
+      onShow
+    }) => () => {
       if (animationType === 'slide') {
         animateSlideIn(onShow)
       } else if (animationType === 'fade') {
@@ -215,11 +239,15 @@ const getAnimationStyles = ({
 
 const Modal = enhance((props) => {
   const { children, styles, transparent } = props
-  const transparentStyle = transparent ? styles.bgTransparent : styles.bgNotTransparent
+  const transparentStyle = transparent
+    ? styles.bgTransparent
+    : styles.bgNotTransparent
   const animationStyles = getAnimationStyles(props)
   return (
     <Portal>
-      <Animated.View style={[styles.baseStyle, transparentStyle, animationStyles]}>
+      <Animated.View
+        style={[styles.baseStyle, transparentStyle, animationStyles]}
+      >
         {children}
       </Animated.View>
     </Portal>

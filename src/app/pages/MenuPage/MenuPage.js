@@ -1,5 +1,13 @@
 import { Colors, Styles } from '../../styles'
-import { Fragment, Icon, Link, MetaTags, SectionList, Text, View } from '../../components'
+import {
+  Fragment,
+  Icon,
+  Link,
+  MetaTags,
+  SectionList,
+  Text,
+  View
+} from '../../components'
 import { StyleSheet } from 'react-native'
 import { buildLocation } from '../../../utils/url'
 import { compose } from '../../../utils/data'
@@ -103,7 +111,10 @@ const enhance = compose(
   withHandlers({
     renderItem: ({ styles }) => ({ item }) => (
       <View style={styles.sectionItem}>
-        <Link style={StyleSheet.flatten([styles.link, styles.sectionLink])} to={item.to}>
+        <Link
+          style={StyleSheet.flatten([styles.link, styles.sectionLink])}
+          to={item.to}
+        >
           <Text style={styles.mediumText}>{item.text}</Text>
           <Text style={[styles.icon, styles.viaIcon]}>
             <Icon icon="chevron-right" />
@@ -139,7 +150,11 @@ const MenuPage = enhance(
           <title>{title}</title>
           {ssr ? (
             <Fragment>
-              <meta content={description} name="description" property="description" />
+              <meta
+                content={description}
+                name="description"
+                property="description"
+              />
               <meta content={description} property="og:description" />
               <meta content={app.name} property="og:site_name" />
               <meta content={title} property="og:title" />

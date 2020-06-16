@@ -1,8 +1,8 @@
 import * as actions from './actions'
 import { INFO } from '../../../constants/StatusLevel'
 import {
-  assocPath,
   assoc,
+  assocPath,
   dissocPath,
   first,
   getPath,
@@ -11,10 +11,17 @@ import {
   values,
   wait
 } from '../../../utils/data'
-import { call, handleAction, handleActions, put, select, takeEvery } from '../../../utils/lang'
+import {
+  call,
+  handleAction,
+  handleActions,
+  put,
+  select,
+  takeEvery
+} from '../../../utils/lang'
 import selectStatusInstances from './selectStatusInstances'
 
-const refreshCurrentStatus = function*() {
+const refreshCurrentStatus = function* () {
   const instances = yield select(selectStatusInstances)
   const current = first(
     sort((statusA, statusB) => {
@@ -52,7 +59,7 @@ const mod = {
   run: function* run() {
     yield takeEvery(
       actions.showStatusWithOptions,
-      handleAction(function*(context, action) {
+      handleAction(function* (context, action) {
         const { name, options } = action.payload
         yield put(
           actions.setStatus(name, {
@@ -73,7 +80,7 @@ const mod = {
 
     yield takeEvery(
       actions.clearStatus,
-      handleAction(function*(context, action) {
+      handleAction(function* (context, action) {
         const { name } = action.payload
         yield put(actions.setStatus(name, null))
         yield call(refreshCurrentStatus)

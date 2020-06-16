@@ -19,6 +19,7 @@ const keys = (value) => {
   if (satisfiesPropertied(value)) {
     return properties(value)
   }
+  throw new Error(`Cannot `)
 }
 
 export default keys

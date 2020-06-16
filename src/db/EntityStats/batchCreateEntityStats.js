@@ -5,7 +5,12 @@ import batchCreateStatsShard from './batchCreateStatsShard'
 
 const batchCreateEntityStats = (context, batch, data) => {
   data = assoc('numberShards', 1, data)
-  const ref = batchCreateEntity(EntityStats, context, batch, omit(['data'], data))
+  const ref = batchCreateEntity(
+    EntityStats,
+    context,
+    batch,
+    omit(['data'], data)
+  )
   batchCreateStatsShard(assoc('parentRef', ref, context), batch, {
     data: getPropOr({}, 'data', data),
     index: 0

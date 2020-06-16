@@ -19,7 +19,8 @@ describe('pipe', () => {
 
   test('pipes async functions and returns value', async () => {
     const method = pipe(
-      async (val) => new Promise((resolve) => setTimeout(() => resolve(val + 1), 0)),
+      async (val) =>
+        new Promise((resolve) => setTimeout(() => resolve(val + 1), 0)),
       (val) => val + 2
     )
     expect(await method(1)).toBe(4)

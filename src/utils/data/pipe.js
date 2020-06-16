@@ -37,7 +37,8 @@ const pipe = (...functions) => {
   const firstFunc = functions[0]
   const rest = arrayLikeSlice(functions, 1)
 
-  return (...args) => arrayLikeReduce(rest, firstFunc(...args), (piped, func) => func(piped))
+  return (...args) =>
+    arrayLikeReduce(rest, firstFunc(...args), (piped, func) => func(piped))
 }
 
 export default pipe

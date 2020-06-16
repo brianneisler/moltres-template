@@ -7,6 +7,8 @@ describe('selectWildcards', () => {
   })
 
   test('returns true for two objects that are shallow equal', () => {
-    expect(shallowEquals(ImmutableMap({ foo: 'bar' }), ImmutableMap({ foo: 'bar' }))).toBe(true)
+    expect(
+      shallowEquals(ImmutableMap({ foo: 'bar' }), ImmutableMap({ foo: 'bar' }))
+    ).toBe(true)
   })
 })

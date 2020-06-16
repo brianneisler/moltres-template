@@ -1,4 +1,9 @@
-import { actionChannel, call, handleChannel, slidingBuffer } from '../../../utils/lang'
+import {
+  actionChannel,
+  call,
+  handleChannel,
+  slidingBuffer
+} from '../../../utils/lang'
 import { clockTicked } from './actions'
 
 function* watchClockTickedEvents(handler) {

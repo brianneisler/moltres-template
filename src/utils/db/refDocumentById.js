@@ -1,4 +1,13 @@
-import { curry, isArray, isNumber, isObject, isString, prepend, reduce, zip } from '../data'
+import {
+  curry,
+  isArray,
+  isNumber,
+  isObject,
+  isString,
+  prepend,
+  reduce,
+  zip
+} from '../data'
 import collection from './collection'
 
 const getSchemas = (Schema, schemas = []) => {
@@ -34,9 +43,13 @@ const refDocumentById = curry((Schema, context, ids) => {
   }
   const schemas = getSchemas(Schema)
   if (schemas.length < ids.length) {
-    throw new Error(`ids contains too many ids for the given Schema ${Schema.name} - ids: ${ids}`)
+    throw new Error(
+      `ids contains too many ids for the given Schema ${Schema.name} - ids: ${ids}`
+    )
   } else if (schemas.length > ids.length) {
-    throw new Error(`ids contains too few ids for the given Schema ${Schema.name} - ids: ${ids}`)
+    throw new Error(
+      `ids contains too few ids for the given Schema ${Schema.name} - ids: ${ids}`
+    )
   }
   return reduce(
     (parentRef, [schema, id]) => {

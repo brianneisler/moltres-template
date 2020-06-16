@@ -4,7 +4,10 @@ import { getPhoneNumberById } from '../../../db/PhoneNumber'
 import { getSMSChannelById } from '../../../db/SMSChannel'
 import { sendSMSMessage } from './util'
 
-const sendSMSMessageToChannel = async (context, { body, media, smsChannel }) => {
+const sendSMSMessageToChannel = async (
+  context,
+  { body, media, smsChannel }
+) => {
   if (isString(smsChannel)) {
     smsChannel = await getSMSChannelById(context, smsChannel)
   }
@@ -22,7 +25,9 @@ const sendSMSMessageToChannel = async (context, { body, media, smsChannel }) => 
   ])
 
   if (!userPhoneNumber) {
-    throw new Error(`Could not find UserPhoneNumber with id ${smsChannel.userPhoneNumberId}`)
+    throw new Error(
+      `Could not find UserPhoneNumber with id ${smsChannel.userPhoneNumberId}`
+    )
   }
   if (userPhoneNumber.removedAt) {
     throw expected({

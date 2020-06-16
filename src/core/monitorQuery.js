@@ -9,10 +9,13 @@ import monitorQueryChannel from './monitorQueryChannel'
 const monitorQuery = function* ({ propStore, query, queryExtensions }) {
   invariant(isPropStore(propStore), 'propStore must be a defined PropStore')
   invariant(isQuery(query), 'query must be a defined Query')
-  invariant(isObject(queryExtensions), 'queryExtensions must be a defined Object')
+  invariant(
+    isObject(queryExtensions),
+    'queryExtensions must be a defined Object'
+  )
 
   return yield spawn(monitorQueryChannel, {
-    onError: function* (error) {
+    *onError(error) {
       if (error.code === 'permission-denied') {
         error = expected({
           code: ACCESS_DENIED,
@@ -25,7 +28,7 @@ const monitorQuery = function* ({ propStore, query, queryExtensions }) {
         type: 'error'
       })
     },
-    onSnapshot: function* (snapshot) {
+    *onSnapshot(snapshot) {
       // NOTE BRN: This allows for extension of query handling such as
       // saving the next cursor
       if (queryExtensions && queryExtensions.onSnapshot) {
@@ -36,7 +39,9 @@ const monitorQuery = function* ({ propStore, query, queryExtensions }) {
         propStore.put({
           error: expected({
             code: NOT_FOUND,
-            message: `Could not find document${snapshot.ref ? ' at ' + snapshot.ref.path : ''}`
+            message: `Could not find document${
+              snapshot.ref ? ' at ' + snapshot.ref.path : ''
+            }`
           }),
           key: '$',
           type: 'error'

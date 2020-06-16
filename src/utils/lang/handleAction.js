@@ -13,7 +13,11 @@ import map from '../data/map'
 import resolveToResolver from '../data/resolveToResolver'
 import split from '../data/split'
 
-const handleAction = (handler = identity, type = always(true), defaultProps = {}) => {
+const handleAction = (
+  handler = identity,
+  type = always(true),
+  defaultProps = {}
+) => {
   let typeFilter = type
   if (isString(type)) {
     const types = split(Delimiter.ACTION_TYPE, type.toString())
@@ -25,7 +29,10 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
       return true
     }
   }
-  invariant(isFunction(typeFilter), 'Expected type to be a string or a filter function')
+  invariant(
+    isFunction(typeFilter),
+    'Expected type to be a string or a filter function'
+  )
   invariant(
     isFunction(handler) || isPlainObject(handler),
     'Expected handler to be a function or object with next and throw methods'
@@ -33,7 +40,10 @@ const handleAction = (handler = identity, type = always(true), defaultProps = {}
 
   const [nextHandler, throwHandler] = isFunction(handler)
     ? [handler, handler]
-    : map((aHandler) => (isNil(aHandler) ? identity : aHandler), [handler.next, handler.throw])
+    : map((aHandler) => (isNil(aHandler) ? identity : aHandler), [
+        handler.next,
+        handler.throw
+      ])
 
   return (props, action) => {
     if (!action && props && props.type) {

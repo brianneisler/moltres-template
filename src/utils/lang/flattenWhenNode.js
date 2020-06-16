@@ -17,7 +17,11 @@ const flattenWhenNode = (predicate) => {
       const types = type.toString().split(Delimiter.ACTION_TYPE)
       const partials = partialFlatActionType.split(Delimiter.ACTION_TYPE)
       return []
-        .concat(...partials.map((partial) => types.map((t) => `${partial}${namespace}${t}`)))
+        .concat(
+          ...partials.map((partial) =>
+            types.map((t) => `${partial}${namespace}${t}`)
+          )
+        )
         .join(Delimiter.ACTION_TYPE)
     }
 

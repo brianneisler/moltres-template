@@ -1,4 +1,12 @@
-import { compact, getProp, isEmpty, join, map, sortBy, values } from '../../../../../utils/data'
+import {
+  compact,
+  getProp,
+  isEmpty,
+  join,
+  map,
+  sortBy,
+  values
+} from '../../../../../utils/data'
 
 const renderProp = (value, prop) => {
   if (!value) {
@@ -28,7 +36,9 @@ const renderScripts = (context, scripts, data) =>
         script = script.create(context, data)
       }
       if (script.props || script.content) {
-        return `<script${renderProps(script.props)}>${renderContent(script.content)}</script>`
+        return `<script${renderProps(script.props)}>${renderContent(
+          script.content
+        )}</script>`
       }
       throw new Error(
         'renderScripts expects scripts to be an array of objects with at least a "props.src" or "content" property'

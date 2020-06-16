@@ -9,7 +9,11 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
-import { nextPageAction, selectQueryCursorNext, selectQueryResults } from '../../../core'
+import {
+  nextPageAction,
+  selectQueryCursorNext,
+  selectQueryResults
+} from '../../../core'
 import { selectScrollTargetDistanceNearBottom } from '../../modules/scroll'
 import ActivityIndicator from '../ActivityIndicator'
 import PagesList from '../PagesList'
@@ -33,7 +37,11 @@ const enhance = compose(
     return {
       nextCursor: selectQueryCursorNext(queryKey, state),
       pages: selectQueryResults(queryKey, state),
-      windowScrollDistanceNearBottom: selectScrollTargetDistanceNearBottom('window', 4000, state)
+      windowScrollDistanceNearBottom: selectScrollTargetDistanceNearBottom(
+        'window',
+        4000,
+        state
+      )
     }
   }),
   withActions({
@@ -53,7 +61,12 @@ const enhance = compose(
       setIsLoadingMore,
       windowScrollDistanceNearBottom
     }) => {
-      if (windowScrollDistanceNearBottom && nextCursor && !isLoadingMore && !error) {
+      if (
+        windowScrollDistanceNearBottom &&
+        nextCursor &&
+        !isLoadingMore &&
+        !error
+      ) {
         setIsLoadingMore(true, () => {
           nextPage(queryKey)
             .then(() => {
@@ -82,7 +95,10 @@ const PaginatedQueryView = enhance(
         />
         {error ? <Text style={styles.errorText}>{error.message}</Text> : null}
         {isLoadingMore || !pages ? (
-          <ActivityIndicator key={`${queryKey}-activity`} style={styles.activityIndicator} />
+          <ActivityIndicator
+            key={`${queryKey}-activity`}
+            style={styles.activityIndicator}
+          />
         ) : null}
       </View>
     )

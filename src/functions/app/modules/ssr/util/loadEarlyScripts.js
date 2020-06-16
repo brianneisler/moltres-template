@@ -1,4 +1,10 @@
-import { concat, isFunction, map, reduce, values } from '../../../../../utils/data'
+import {
+  concat,
+  isFunction,
+  map,
+  reduce,
+  values
+} from '../../../../../utils/data'
 import createScript from './createScript'
 
 const loadEarlyScripts = async (context, store) =>

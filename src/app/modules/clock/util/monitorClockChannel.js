@@ -4,7 +4,7 @@ import createClockChannel from './createClockChannel'
 
 function* monitorClockChannel(frequency) {
   const channel = createClockChannel(frequency)
-  yield call(handleChannel, channel, function*(timestamp) {
+  yield call(handleChannel, channel, function* (timestamp) {
     yield put(setCurrentClock(timestamp))
     yield put(clockTicked())
   })

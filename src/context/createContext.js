@@ -44,7 +44,11 @@ const createContext = ({
     app = initializeApp({ cache, config, firebase, namespace })
     performance = firebase.performance()
     auth = firebase.auth(app)
-    storage = storage ? storage : firebase.storage ? firebase.storage(app) : null
+    storage = storage
+      ? storage
+      : firebase.storage
+      ? firebase.storage(app)
+      : null
     if (!config.ssr && config.firebase.appId && config.firebase.measurementId) {
       analytics = firebase.analytics(app)
     }

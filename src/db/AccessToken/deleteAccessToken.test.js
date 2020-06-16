@@ -49,7 +49,9 @@ const spec = describe('deleteAccessToken', () => {
     })
 
     it('Does not error when AccessToken does not exist', async () => {
-      await expect(deleteAccessToken(context, 'doesnotexist12345678')).resolves.toBe(undefined)
+      await expect(
+        deleteAccessToken(context, 'doesnotexist12345678')
+      ).resolves.toBe(undefined)
     })
   })
 })

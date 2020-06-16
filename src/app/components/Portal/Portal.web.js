@@ -1,5 +1,10 @@
 import { compose } from '../../../utils/data'
-import { defaultProps, lifecycle, setDisplayName, setPropTypes } from '../../../utils/react'
+import {
+  defaultProps,
+  lifecycle,
+  setDisplayName,
+  setPropTypes
+} from '../../../utils/react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 

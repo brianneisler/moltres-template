@@ -13,7 +13,10 @@ const factoryAndWatchPageQuery = function* ({
   pageSize,
   queryKey
 }) {
-  invariant(isFunction(buildQueryFactory), 'buildQueryFactory must be a defined Function')
+  invariant(
+    isFunction(buildQueryFactory),
+    'buildQueryFactory must be a defined Function'
+  )
   invariant(isObject(context), 'context must be a defined Object')
   invariant(isObject(cursor), 'cursor must be a defined Object')
   invariant(isObject(initialState), 'initialState must be a defined Object')
@@ -25,7 +28,7 @@ const factoryAndWatchPageQuery = function* ({
 
   const factory = buildQueryFactory({
     queryExtensions: {
-      onSnapshot: function* (snapshot) {
+      *onSnapshot(snapshot) {
         const currentCursor = yield select(selectQueryCursor(queryKey))
         // If this query is still the most recent query then we can store
         // the latest cursor. We also check if we've reached the expected

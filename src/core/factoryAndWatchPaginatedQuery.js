@@ -1,7 +1,18 @@
-import { assoc, identity, isFunction, isNumber, isObject, isString } from '../utils/data'
+import {
+  assoc,
+  identity,
+  isFunction,
+  isNumber,
+  isObject,
+  isString
+} from '../utils/data'
 import { call, invariant, put, select } from '../utils/lang'
 import { selectCursorResults, selectQueryCursorNext } from './selectors'
-import { setQueryAction, setQueryCursorAction, setQueryCursorNextAction } from './actions'
+import {
+  setQueryAction,
+  setQueryCursorAction,
+  setQueryCursorNextAction
+} from './actions'
 import createQueryFactoryBuilder from './createQueryFactoryBuilder'
 import factoryAndWatchPageQuery from './factoryAndWatchPageQuery'
 import generateQuery from './generateQuery'
@@ -24,7 +35,11 @@ const factoryAndWatchPaginatedQuery = function* ({
   // NOTE BRN: This ensures that the query exists in state
   let query = yield call(generateQuery, queryKey)
 
-  const buildQueryFactory = createQueryFactoryBuilder({ createQuery, enhancer, factory: identity })
+  const buildQueryFactory = createQueryFactoryBuilder({
+    createQuery,
+    enhancer,
+    factory: identity
+  })
 
   // NOTE BRN: This is called by an action handler in the `query` module
   const nextPage = function* () {

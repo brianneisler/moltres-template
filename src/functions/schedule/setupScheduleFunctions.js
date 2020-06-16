@@ -22,7 +22,10 @@ const setupScheduleFunctions = (config, runtimeOptions) =>
                 // TODO BRN: Wrap this in a middleware that boots up the context
                 // and passes it to the function
                 .onRun(async () => {
-                  const { adminContext, context } = await setupFunctionContexts(config, funcName)
+                  const { adminContext, context } = await setupFunctionContexts(
+                    config,
+                    funcName
+                  )
                   return func(context, adminContext)
                 }),
               funcs

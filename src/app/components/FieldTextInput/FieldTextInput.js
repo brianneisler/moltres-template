@@ -54,7 +54,9 @@ const renderTextInput = ({
       {label ? (
         <Text style={styles.label}>
           {label}
-          {required ? <Text style={[styles.label, { color: Colors.redPrimary }]}>*</Text> : null}
+          {required ? (
+            <Text style={[styles.label, { color: Colors.redPrimary }]}>*</Text>
+          ) : null}
         </Text>
       ) : null}
       <TextInput
@@ -85,13 +87,23 @@ const renderTextInput = ({
         placeholder={placeholder}
         returnKeyLabel={returnKeyLabel}
         returnKeyType={returnKeyType}
-        style={[styles.textInput, textInputStyle, disabled ? styles.disabled : styles.enabled]}
+        style={[
+          styles.textInput,
+          textInputStyle,
+          disabled ? styles.disabled : styles.enabled
+        ]}
         textContentType={textContentType}
         value={input.value}
       />
       {touched &&
-        ((error && <Text style={[styles.errorText, styles.alignSelfStart]}>{error}</Text>) ||
-          (warning && <Text style={[styles.warningText, styles.alignSelfStart]}>{warning}</Text>))}
+        ((error && (
+          <Text style={[styles.errorText, styles.alignSelfStart]}>{error}</Text>
+        )) ||
+          (warning && (
+            <Text style={[styles.warningText, styles.alignSelfStart]}>
+              {warning}
+            </Text>
+          )))}
     </View>
   )
 }

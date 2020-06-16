@@ -3,7 +3,14 @@ import renderStyles from './renderStyles'
 
 const templateHtml = (
   context,
-  { earlyScripts = [], html = '', meta = '', scripts = [], state = {}, styles = [] }
+  {
+    earlyScripts = [],
+    html = '',
+    meta = '',
+    scripts = [],
+    state = {},
+    styles = []
+  }
 ) => `
 <!DOCTYPE html>
 <html lang="en" style="height:100%">

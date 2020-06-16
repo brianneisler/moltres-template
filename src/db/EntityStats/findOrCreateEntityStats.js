@@ -16,10 +16,16 @@ const findOrCreateEntityStats = async (context, data, retry = 0) => {
     }
     return await createEntityStats(context, data)
   } catch (error) {
-    if (error.code === Code.ACCESS_DENIED || error.code === Code.PENDING_WRITES) {
+    if (
+      error.code === Code.ACCESS_DENIED ||
+      error.code === Code.PENDING_WRITES
+    ) {
       if (retry <= 3) {
         retry = retry + 1
-        return delay(async () => findOrCreateEntityStats(context, data, retry), 500 * retry)
+        return delay(
+          async () => findOrCreateEntityStats(context, data, retry),
+          500 * retry
+        )
       }
     }
     throw error

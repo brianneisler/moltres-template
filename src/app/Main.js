@@ -57,10 +57,16 @@ import {
   faRecycle,
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
-import { faLaughSquint, faPaperPlane } from '@fortawesome/free-regular-svg-icons'
+import {
+  faLaughSquint,
+  faPaperPlane
+} from '@fortawesome/free-regular-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { pushRouteAction } from './modules/router/actions'
-import { actions as scrollActions, selectScrollTargetIsAtTop } from './modules/scroll'
+import {
+  actions as scrollActions,
+  selectScrollTargetIsAtTop
+} from './modules/scroll'
 import { selectCurrentActionSheet } from './modules/action_sheet'
 import { selectCurrentAlert } from './modules/alert'
 import { selectDimensionsWindowHeight } from './modules/dimensions'
@@ -228,7 +234,12 @@ const enhance = compose(
       if (scrollIsAtTop) {
         pushRoute('/')
       } else {
-        scrollTo({ behavior: 'smooth', left: 0, name: 'window', top: Scroll.PAGE_TOP })
+        scrollTo({
+          behavior: 'smooth',
+          left: 0,
+          name: 'window',
+          top: Scroll.PAGE_TOP
+        })
       }
     }
   }),
@@ -295,7 +306,11 @@ const Main = enhance(
               <Route component={LoginPage} exact path="/login" />
               <Route component={LogoutPage} exact path="/logout" />
               <Route component={MenuPage} exact path="/menu" />
-              <Route component={NotificationsPage} exact path="/notifications" />
+              <Route
+                component={NotificationsPage}
+                exact
+                path="/notifications"
+              />
               {/* <Route component={GameStartPage} exact path="/game/start" />
               <Route
                 path="/game/:gameId"
@@ -304,29 +319,42 @@ const Main = enhance(
               <Route
                 path="/user/:userId/follows/:tab?"
                 render={({ match }) => (
-                  <UserFollowsPage tab={match.params.tab} userId={match.params.userId} />
+                  <UserFollowsPage
+                    tab={match.params.tab}
+                    userId={match.params.userId}
+                  />
                 )}
               />
               <Route
                 path="/user/:userId/:tab?"
                 render={({ match }) => (
-                  <UserProfilePage tab={match.params.tab} userId={match.params.userId} />
+                  <UserProfilePage
+                    tab={match.params.tab}
+                    userId={match.params.userId}
+                  />
                 )}
               />
               <Route
                 path="/wat/:watId"
-                render={({ match }) => <WATViewPage watId={match.params.watId} />}
+                render={({ match }) => (
+                  <WATViewPage watId={match.params.watId} />
+                )}
               />
               <Route
                 path="/watthis/:watThisId/wats"
-                render={({ match }) => <WATListPage watThisId={match.params.watThisId} />}
+                render={({ match }) => (
+                  <WATListPage watThisId={match.params.watThisId} />
+                )}
               />
               <Route
                 path="/watthis/:watThisId"
                 render={({ location, match }) => {
                   const values = queryString.parse(location.search)
                   return (
-                    <WATThisViewPage reWATId={values.reWATId} watThisId={match.params.watThisId} />
+                    <WATThisViewPage
+                      reWATId={values.reWATId}
+                      watThisId={match.params.watThisId}
+                    />
                   )
                 }}
               />
@@ -339,10 +367,16 @@ const Main = enhance(
                 <MainNav />
               </View>
               <View style={[styles.inlineBlock, styles.footerBottom]}>
-                <Link style={StyleSheet.flatten([styles.link])} to="/legal/terms">
+                <Link
+                  style={StyleSheet.flatten([styles.link])}
+                  to="/legal/terms"
+                >
                   <Text style={styles.footerText}>Terms</Text>
                 </Link>
-                <Link style={StyleSheet.flatten([styles.link])} to="/legal/privacy">
+                <Link
+                  style={StyleSheet.flatten([styles.link])}
+                  to="/legal/privacy"
+                >
                   <Text style={styles.footerText}>Privacy</Text>
                 </Link>
               </View>

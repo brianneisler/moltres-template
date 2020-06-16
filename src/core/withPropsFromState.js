@@ -42,7 +42,12 @@ const mergeProps = (stateProps, props) => {
   const resolvedStateProps = reduce(
     (accum, selector) => {
       if (containsWildcard(selector)) {
-        return assocWildProp(selector, getProp(selector, stateProps), accum, props)
+        return assocWildProp(
+          selector,
+          getProp(selector, stateProps),
+          accum,
+          props
+        )
       }
       return assoc(selector, getProp(selector, stateProps), accum)
     },
@@ -76,7 +81,12 @@ const withPropsFromState = (propsBuilder) => (baseFactory) => {
       yield propStore.take()
     }
 
-    return yield call(baseFactory, mergeProps(propStore.getProps(), props), channel, ...rest)
+    return yield call(
+      baseFactory,
+      mergeProps(propStore.getProps(), props),
+      channel,
+      ...rest
+    )
   })
 }
 

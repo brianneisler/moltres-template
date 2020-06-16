@@ -1,16 +1,14 @@
 import { buildQuery } from '../../utils/db'
 import { curry, forEach, isUndefined } from '../../utils/data'
 
-const queryUserImages = curry((Schema, context, data, queryOptions) =>
+const queryEntities = curry((Schema, context, data, queryOptions) =>
   buildQuery(
     (query) => {
-      forEach(())
-      if (!isUndefined(imageId)) {
-        query = query.where('imageId', '==', imageId)
-      }
-      if (!isUndefined(userId)) {
-        query = query.where('userId', '==', userId)
-      }
+      forEach((value, field) => {
+        if (!isUndefined(value)) {
+          query = query.where(field, '==', value)
+        }
+      }, data)
       return query
     },
     Schema,
@@ -19,4 +17,4 @@ const queryUserImages = curry((Schema, context, data, queryOptions) =>
   )
 )
 
-export default queryUserImages
+export default queryEntities

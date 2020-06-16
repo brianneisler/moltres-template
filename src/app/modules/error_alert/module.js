@@ -9,14 +9,15 @@ const mod = {
         showAlertWithOptions({
           buttons: [
             {
-              onPress: function* () {
+              *onPress() {
                 // TODO BRN: make this an action
                 location.reload()
               },
               text: 'Relaod'
             }
           ],
-          message: 'An unexpected error occurred. Please reload the application.',
+          message:
+            'An unexpected error occurred. Please reload the application.',
           options: {
             cancelable: false
           },

@@ -1,5 +1,13 @@
 import { AuthState, Overlay } from '../../../constants'
-import { FileInput, Icon, Link, Text, TouchableOpacity, UserProfileImage, View } from '..'
+import {
+  FileInput,
+  Icon,
+  Link,
+  Text,
+  TouchableOpacity,
+  UserProfileImage,
+  View
+} from '..'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { buildLocation, buildURL, parseSearch } from '../../../utils/url'
@@ -64,7 +72,13 @@ const enhance = compose(
 )
 
 const MainNav = enhance(
-  ({ authState, currentUser, currentUserProfile, handleFileInputChange, styles }) => {
+  ({
+    authState,
+    currentUser,
+    currentUserProfile,
+    handleFileInputChange,
+    styles
+  }) => {
     return (
       <View style={styles.navLinks}>
         <View style={styles.navLink}>
@@ -148,7 +162,9 @@ const MainNav = enhance(
                   size={34}
                   style={styles.smallProfileImage}
                   userProfileImageId={
-                    currentUserProfile ? currentUserProfile.userProfileImageId : null
+                    currentUserProfile
+                      ? currentUserProfile.userProfileImageId
+                      : null
                   }
                 />
               </TouchableOpacity>

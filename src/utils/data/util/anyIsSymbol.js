@@ -25,7 +25,10 @@ import anyToStringTag from './anyToStringTag'
  */
 const anyIsSymbol = (any) => {
   const type = typeof any
-  return type == 'symbol' || (type == 'object' && any != null && anyToStringTag(any) == 'Symbol')
+  return (
+    type == 'symbol' ||
+    (type == 'object' && any != null && anyToStringTag(any) == 'Symbol')
+  )
 }
 
 export default anyIsSymbol

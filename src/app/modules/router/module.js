@@ -11,8 +11,8 @@ import {
   takeEvery
 } from '../../../utils/lang'
 import {
-  assocPath,
   assoc,
+  assocPath,
   compose,
   evolve,
   filter,
@@ -27,7 +27,12 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { expected } from '../../../utils/error'
 import { filterRoutes } from './util'
 import { matchPath, parseLocation } from '../../../utils/url'
-import { preloadAction, preloadCompleteAction, replaceAction, responseAction } from './actions'
+import {
+  preloadAction,
+  preloadCompleteAction,
+  replaceAction,
+  responseAction
+} from './actions'
 import { withContext } from '../../../core'
 import selectRouterPreload from './selectors/selectRouterPreload'
 
@@ -121,7 +126,8 @@ const mod = ({ ssr }, { history }) => {
             state
           )
         },
-        [ResponseAction.type]: (state, { payload }) => assoc('response', payload, state)
+        [ResponseAction.type]: (state, { payload }) =>
+          assoc('response', payload, state)
       })
     ),
     run: function* run() {

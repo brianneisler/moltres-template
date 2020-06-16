@@ -40,7 +40,7 @@ const mod = {
   routes: [
     {
       exact: true,
-      handle: function*(context, response, { match }) {
+      *handle(context, response, { match }) {
         const { userId } = match.params
         // NOTE BRN: This will throw an Expected error with a statusCode of 404
         // if it cannot find the User
@@ -48,14 +48,19 @@ const mod = {
         return { statusCode: 200 }
       },
       path: '/user/:userId',
-      preload: enhance(function*(context, { first, match }) {
+      preload: enhance(function* (context, { first, match }) {
         if (first) {
           const { userId } = match.params
           yield all([
             call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function*(ctx, currentUser) {
+            spawn(watchCurrentUser, function* (ctx, currentUser) {
               if (currentUser) {
-                return yield call(queryAndWatchCurrentUserFollow, context, currentUser, userId)
+                return yield call(
+                  queryAndWatchCurrentUserFollow,
+                  context,
+                  currentUser,
+                  userId
+                )
               }
             }),
             call(queryAndWatchUserWATPages, context, userId)
@@ -65,7 +70,7 @@ const mod = {
     },
     {
       exact: true,
-      handle: function*(context, response, { match }) {
+      *handle(context, response, { match }) {
         const { userId } = match.params
         // NOTE BRN: This will throw an Expected error with a statusCode of 404
         // if it cannot find the User
@@ -73,14 +78,19 @@ const mod = {
         return { statusCode: 200 }
       },
       path: '/user/:userId/images',
-      preload: enhance(function*(context, { first, match }) {
+      preload: enhance(function* (context, { first, match }) {
         if (first) {
           const { userId } = match.params
           yield all([
             call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function*(ctx, currentUser) {
+            spawn(watchCurrentUser, function* (ctx, currentUser) {
               if (currentUser) {
-                return yield call(queryAndWatchCurrentUserFollow, context, currentUser, userId)
+                return yield call(
+                  queryAndWatchCurrentUserFollow,
+                  context,
+                  currentUser,
+                  userId
+                )
               }
             }),
             call(queryAndWatchUserWATThisPages, context, userId)
@@ -90,7 +100,7 @@ const mod = {
     },
     {
       exact: true,
-      handle: function*(context, response, { match }) {
+      *handle(context, response, { match }) {
         const { userId } = match.params
         // NOTE BRN: This will throw an Expected error with a statusCode of 404
         // if it cannot find the User
@@ -98,14 +108,19 @@ const mod = {
         return { statusCode: 200 }
       },
       path: '/user/:userId/reactions',
-      preload: enhance(function*(context, { first, match }) {
+      preload: enhance(function* (context, { first, match }) {
         if (first) {
           const { userId } = match.params
           yield all([
             call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function*(ctx, currentUser) {
+            spawn(watchCurrentUser, function* (ctx, currentUser) {
               if (currentUser) {
-                return yield call(queryAndWatchCurrentUserFollow, context, currentUser, userId)
+                return yield call(
+                  queryAndWatchCurrentUserFollow,
+                  context,
+                  currentUser,
+                  userId
+                )
               }
             }),
             call(queryAndWatchUserReactionEntityPages, context, userId)
@@ -118,9 +133,13 @@ const mod = {
     yield fork(
       watchCurrentUser,
       handleAction(
-        enhance(function*(context, currentUser) {
+        enhance(function* (context, currentUser) {
           if (currentUser) {
-            return yield call(queryAndWatchCurrentUserProfile, context, currentUser)
+            return yield call(
+              queryAndWatchCurrentUserProfile,
+              context,
+              currentUser
+            )
           }
         })
       )
@@ -129,7 +148,7 @@ const mod = {
     yield takeEvery(
       actions.saveUserProfile,
       handleAction(
-        enhance(function*(context, action) {
+        enhance(function* (context, action) {
           yield call(saveUserProfile, context, action.payload.userProfile)
         })
       )
@@ -138,7 +157,7 @@ const mod = {
     yield takeEvery(
       actions.uploadUserProfileImage,
       handleAction(
-        enhance(function*(context, action) {
+        enhance(function* (context, action) {
           const idToken = yield select(selectIdToken)
           yield call(uploadUserProfileImage, context, {
             idToken,

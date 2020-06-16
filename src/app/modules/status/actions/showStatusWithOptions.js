@@ -7,9 +7,12 @@ import { createAction } from 'redux-actions'
  *   message: string | Component - a message to show in the status
  * }} options
  */
-const showStatusWithOptions = createAction('STATUS:SHOW_STATUS_WITH_OPTIONS', (name, options) => ({
-  name,
-  options
-}))
+const showStatusWithOptions = createAction(
+  'STATUS:SHOW_STATUS_WITH_OPTIONS',
+  (name, options) => ({
+    name,
+    options
+  })
+)
 
 export default showStatusWithOptions

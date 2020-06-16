@@ -5,7 +5,9 @@ import { signInWithIdToken } from '../../../src/utils/auth'
 import { uuidv4 } from '../../../src/utils/data'
 
 const setupScriptContexts = async () => {
-  const env = loadEnv(resolve(__dirname, '..', '..', '..'), { stage: process.env.STAGE })
+  const env = loadEnv(resolve(__dirname, '..', '..', '..'), {
+    stage: process.env.STAGE
+  })
   const config = generateAdminConfig()
   const namespace = uuidv4()
 

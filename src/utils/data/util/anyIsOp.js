@@ -19,6 +19,7 @@ import Op from '../js/Op'
  * })
  * //=> true
  */
-const anyIsOp = (any) => !!(any && (any instanceof Op || any['@@redux-saga/IO']))
+const anyIsOp = (any) =>
+  !!(any && (any instanceof Op || any['@@redux-saga/IO']))
 
 export default anyIsOp

@@ -23,7 +23,8 @@ import values from './values'
 const sortWildcards = (wildcards) =>
   sort(
     (itemA, itemB) =>
-      toStringPath(getProp('basePath', itemA)) > toStringPath(getProp('basePath', itemB)),
+      toStringPath(getProp('basePath', itemA)) >
+      toStringPath(getProp('basePath', itemB)),
     values(wildcards)
   )
 
@@ -65,7 +66,12 @@ const reduceWildcard = (wildcards, wildValues, results, state) => {
 
   return reduce(
     (accum, wildValue) =>
-      reduceWildcard(tail(wildcards), assoc(name, wildValue, wildValues), accum, state),
+      reduceWildcard(
+        tail(wildcards),
+        assoc(name, wildValue, wildValues),
+        accum,
+        state
+      ),
     results,
     keys(value)
   )

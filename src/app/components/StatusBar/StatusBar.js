@@ -34,7 +34,9 @@ const renderCurrentStatus = ({ currentStatus, styles }) => {
         {React.isValidElement(currentStatus.message) ? (
           currentStatus.message
         ) : (
-          <Text style={[styles.text, styles.statusText]}>{currentStatus.message}</Text>
+          <Text style={[styles.text, styles.statusText]}>
+            {currentStatus.message}
+          </Text>
         )}
       </View>
     </View>
@@ -166,7 +168,9 @@ const enhance = compose(
 const StatusBar = enhance((props) => {
   const { height, style, styles, translateY } = props
   return (
-    <Animated.View style={[styles.body, style, { height, transform: [{ translateY }] }]}>
+    <Animated.View
+      style={[styles.body, style, { height, transform: [{ translateY }] }]}
+    >
       {renderCurrentStatus(props)}
     </Animated.View>
   )

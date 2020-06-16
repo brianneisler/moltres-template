@@ -5,7 +5,9 @@ import satisfiesKeyed from './satisfiesKeyed'
 
 const assocKey = curry((selector, value, collection) => {
   if (!satisfiesKeyed(collection)) {
-    throw new Error(`collection must be a Keyed value. Instead was given ${collection}`)
+    throw new Error(
+      `collection must be a Keyed value. Instead was given ${collection}`
+    )
   }
   if (isMap(collection)) {
     return mapSetKey(collection, selector, value)

@@ -1,6 +1,6 @@
 import {
-  assocPath,
   assoc,
+  assocPath,
   isArray,
   isEmpty,
   isObject,

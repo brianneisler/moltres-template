@@ -1,14 +1,4 @@
 TODO
-- [ ] IMPROVEMENT: setup webpack dev server for SSR that runs independently of the functions
-- [ ] IMPROVEMENT: Switch CI to Google Cloud Build instead of Semaphore
-  https://cloud.google.com/cloud-build/docs/automating-builds/create-github-app-triggers
-- [ ] FEATURE: create an install system that authenticates through Google and
-  github during setup 
-  - it should enable all necessary google APIs
-  - it should setup initial configuration and environments
-  - it should setup the firebase project
-  - it should setup all github triggers and hooks for establishing CI deployment
-  
 
 - [ ] add new DB concepts to firestore.rules
   - App
@@ -18,6 +8,7 @@ TODO
   - PageContent
   - Url
 
+- [ ] IMPROVEMENT: setup webpack dev server that runs independently of the functions
 
 - [ ] add app concept  
   - move expo config to app folder and specify which one to use
@@ -25,6 +16,7 @@ TODO
   - each app should have a folder in the `apps` folder based on slug name
   - each app should have a `theme` folder in it
   - need a way to add the App entry to the db. How is this done?
+    - add app command line utility
   - how do we map URLs to the specific App instance?
 
 - [ ] add Theme concept
@@ -62,3 +54,14 @@ TODO
 ```
   - TileColor should come from `Theme.color`
   - Icons should come from `Theme.icons`
+
+
+- [ ] IMPROVEMENT: Switch CI to Google Cloud Build instead of Semaphore
+  https://cloud.google.com/cloud-build/docs/automating-builds/create-github-app-triggers
+- [ ] FEATURE: create an install system that authenticates through Google and
+  github during setup 
+  - it should enable all necessary google APIs
+  - it should setup initial configuration and environments
+  - it should setup the firebase project
+  - it should setup all github triggers and hooks for establishing CI deployment
+  

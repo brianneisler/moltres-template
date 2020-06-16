@@ -1,4 +1,3 @@
-import * as firebaseActions from '../firebase/actions'
 import { AuthState } from '../../../constants'
 import {
   AuthStateChangedAction,
@@ -8,7 +7,15 @@ import {
   SignInWithIdTokenAction,
   SignOutAction
 } from './schemas'
-import { all, call, handleAction, handleActions, put, select, takeEvery } from '../../../utils/lang'
+import {
+  all,
+  call,
+  handleAction,
+  handleActions,
+  put,
+  select,
+  takeEvery
+} from '../../../utils/lang'
 import { append, assoc, compose, getProp } from '../../../utils/data'
 import {
   authStateChangedAction,
@@ -18,6 +25,7 @@ import {
   signOutAction
 } from './actions'
 import { findUserById } from '../../../db/User'
+import { firebaseAuthStateChanged } from '../../../core/actions'
 import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
 import { actions as overlayActions } from '../overlay'
 import { pushRouteAction } from '../router/actions'
@@ -29,8 +37,10 @@ const enhance = compose(withConfig(), withContext())
 const mod = {
   reducer: handleActions(
     {
-      [SetAuthIdTokenAction.name]: (state, action) => assoc('idToken', action.payload, state),
-      [SetAuthStateAction.name]: (state, action) => assoc('authState', action.payload, state),
+      [SetAuthIdTokenAction.name]: (state, action) =>
+        assoc('idToken', action.payload, state),
+      [SetAuthStateAction.name]: (state, action) =>
+        assoc('authState', action.payload, state),
       [SetCurrentUserAction.name]: (state, action) =>
         assoc('currentUser', action.payload, state)
     },
@@ -45,7 +55,7 @@ const mod = {
   routes: [
     {
       exact: true,
-      handle: enhance(function*({ config }) {
+      handle: enhance(function* ({ config }) {
         if (config.ssr) {
           return { statusCode: 200 }
         }
@@ -61,7 +71,7 @@ const mod = {
     // signOut and redirect directly from here instead of client side.
     {
       exact: true,
-      handle: enhance(function*(context) {
+      handle: enhance(function* (context) {
         if (context.config.ssr) {
           return { statusCode: 200 }
         }
@@ -99,7 +109,7 @@ const mod = {
     yield takeEvery(
       SignInWithIdTokenAction.name,
       handleAction(
-        enhance(function*(context, { payload }) {
+        enhance(function* (context, { payload }) {
           yield call(signInWithIdToken, context, payload.idToken)
         })
       )
@@ -108,18 +118,21 @@ const mod = {
     yield takeEvery(
       SignOutAction.name,
       handleAction(
-        enhance(function*(context) {
+        enhance(function* (context) {
           return yield call(signOut, context)
         })
       )
     )
 
-    yield takeEvery(AuthStateChangedAction.name, function*({ payload }) {
+    yield takeEvery(AuthStateChangedAction.name, function* ({ payload }) {
       if (payload.AuthStateChangedAction === AuthState.LOGGED_IN) {
         const afterLogin = yield select(selectAfterLogin)
         let actionSet = []
         if (getProp('redirect', afterLogin)) {
-          actionSet = append(put(pushRouteAction(getProp('redirect', afterLogin))), actionSet)
+          actionSet = append(
+            put(pushRouteAction(getProp('redirect', afterLogin))),
+            actionSet
+          )
         } else {
           actionSet = append(put(pushRouteAction('/')), actionSet)
         }
@@ -140,9 +153,9 @@ const mod = {
     // })
 
     yield takeEvery(
-      firebaseActions.firebaseAuthStateChanged,
+      firebaseAuthStateChanged,
       handleAction(
-        enhance(function*(context, action) {
+        enhance(function* (context, action) {
           const firebaseUser = action.payload
           if (firebaseUser) {
             const [idToken, currentUser] = yield all([
@@ -179,7 +192,9 @@ const mod = {
                 setAuthStateAction(context, AuthState.LOGGED_OUT)
               ])
             ])
-            yield put(authStateChangedAction({ authState: AuthState.LOGGED_OUT }))
+            yield put(
+              authStateChangedAction({ authState: AuthState.LOGGED_OUT })
+            )
           }
         })
       )

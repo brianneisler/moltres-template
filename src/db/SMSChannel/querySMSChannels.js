@@ -7,7 +7,11 @@ const querySMSChannels = curry(
     buildQuery(
       (query) => {
         if (!isUndefined(internalPhoneNumberId)) {
-          query = query.where('internalPhoneNumberId', '==', internalPhoneNumberId)
+          query = query.where(
+            'internalPhoneNumberId',
+            '==',
+            internalPhoneNumberId
+          )
         }
         if (!isUndefined(userPhoneNumberId)) {
           query = query.where('userPhoneNumberId', '==', userPhoneNumberId)

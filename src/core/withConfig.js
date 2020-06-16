@@ -1,4 +1,10 @@
-import { assoc, assocPath, isArray, isString, resolveToGenerator } from '../utils/data'
+import {
+  assoc,
+  assocPath,
+  isArray,
+  isString,
+  resolveToGenerator
+} from '../utils/data'
 import createFactory from './createFactory'
 import getConfig from './getConfig'
 

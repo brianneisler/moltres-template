@@ -1,6 +1,9 @@
 import { StatusCode } from '../../constants'
 import { all } from '../../utils/data'
-import { batchCreatePhoneNumber, findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
+import {
+  batchCreatePhoneNumber,
+  findPhoneNumberByPhoneNumber
+} from '../../db/PhoneNumber'
 import { batchCreateUser, updateUser } from '../../db/User'
 import {
   batchCreateUserPhoneNumber,
@@ -39,9 +42,13 @@ const createValidUser = async (context, { phoneNumber }) => {
 }
 
 const registerValidUser = async (context, { phoneNumber }) => {
-  const existingPhoneNumber = await findPhoneNumberByPhoneNumber(context, phoneNumber, {
-    includeRemoved: true
-  })
+  const existingPhoneNumber = await findPhoneNumberByPhoneNumber(
+    context,
+    phoneNumber,
+    {
+      includeRemoved: true
+    }
+  )
 
   let dbPhoneNumber
   let user
@@ -62,7 +69,10 @@ const registerValidUser = async (context, { phoneNumber }) => {
       })
     }
     if (existingPhoneNumber.type === 'user') {
-      const existingUser = await findExistingUserByPhoneNumber(context, phoneNumber)
+      const existingUser = await findExistingUserByPhoneNumber(
+        context,
+        phoneNumber
+      )
 
       if (!existingUser) {
         throw new Error('Could not find existing user that owns PhoneNumber')
@@ -74,12 +84,17 @@ const registerValidUser = async (context, { phoneNumber }) => {
       }
     }
 
-    const phoneNumberClaim = await findPhoneNumberClaimByPhoneNumber(context, phoneNumber)
+    const phoneNumberClaim = await findPhoneNumberClaimByPhoneNumber(
+      context,
+      phoneNumber
+    )
     // TODO BRN: Handle the case where a phoneNumberClaim has been removed
     // This requires handling this at the rules level to allow for claims to be removed
 
     dbPhoneNumber = await claimUserPhoneNumber(context, phoneNumberClaim)
-    user = await updateUser(context, phoneNumberClaim.userId, { state: 'valid' })
+    user = await updateUser(context, phoneNumberClaim.userId, {
+      state: 'valid'
+    })
   } else {
     const result = await createValidUser(context, { phoneNumber })
     ;({ user } = result)

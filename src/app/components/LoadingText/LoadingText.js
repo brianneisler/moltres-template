@@ -1,7 +1,11 @@
 import { Colors, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
 import { compose } from '../../../utils/data'
-import { defaultProps, setDisplayName, setPropTypes } from '../../../utils/react'
+import {
+  defaultProps,
+  setDisplayName,
+  setPropTypes
+} from '../../../utils/react'
 import React from 'react'
 import View from '../View'
 

@@ -20,9 +20,18 @@ const createQueryFactory = ({
   statePath
 }) => {
   invariant(isFunction(createQuery), 'createQuery must be a defined Function')
-  invariant(isFunction(enhancer) || !enhancer, 'enhancer must be a Function or undefined')
-  invariant(isFunction(factory) || !factory, 'factory must be a Function or undefined')
-  invariant(isObject(queryExtensions), 'queryExtensions must be a defined Object')
+  invariant(
+    isFunction(enhancer) || !enhancer,
+    'enhancer must be a Function or undefined'
+  )
+  invariant(
+    isFunction(factory) || !factory,
+    'factory must be a Function or undefined'
+  )
+  invariant(
+    isObject(queryExtensions),
+    'queryExtensions must be a defined Object'
+  )
   invariant(isObject(queryOptions), 'queryOptions must be a defined Object')
   invariant(isSelector(selector), 'selector must be a defined Selector')
   invariant(isString(statePath), 'queryKey must be a String')

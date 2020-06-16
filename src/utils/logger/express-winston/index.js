@@ -30,7 +30,14 @@ const _ = require('lodash')
  * TODO: Include 'body' and get the defaultRequestFilter to filter the inner properties like 'password' or 'password_confirmation', etc. Pull requests anyone?
  * @type {Array}
  */
-exports.requestWhitelist = ['url', 'headers', 'method', 'httpVersion', 'originalUrl', 'query']
+exports.requestWhitelist = [
+  'url',
+  'headers',
+  'method',
+  'httpVersion',
+  'originalUrl',
+  'query'
+]
 
 /**
  * A default list of properties in the request body that are allowed to be logged.
@@ -91,8 +98,15 @@ function ensureValidOptions(options) {
   if (!options) {
     throw new Error('options are required by express-winston middleware')
   }
-  if (!((options.transports && options.transports.length > 0) || options.winstonInstance)) {
-    throw new Error('transports or a winstonInstance are required by express-winston middleware')
+  if (
+    !(
+      (options.transports && options.transports.length > 0) ||
+      options.winstonInstance
+    )
+  ) {
+    throw new Error(
+      'transports or a winstonInstance are required by express-winston middleware'
+    )
   }
 
   if (options.dynamicMeta && !_.isFunction(options.dynamicMeta)) {
@@ -183,7 +197,9 @@ function getResponseTemplate(loggerOptions, templateOptions) {
 function getErrorTemplate(loggerOptions, templateOptions) {
   if (loggerOptions.expressFormat) {
     let expressMsgFormat =
-      'ERROR {{req.method}} {{req.url}}\n' + '{{err.stack}}\n' + 'Caused By:{{err.causes}}\n'
+      'ERROR {{req.method}} {{req.url}}\n' +
+      '{{err.stack}}\n' +
+      'Caused By:{{err.causes}}\n'
     if (loggerOptions.colorize) {
       expressMsgFormat =
         chalk.red('ERROR {{req.method}} {{req.url}}\n') +
@@ -221,7 +237,8 @@ function getErrorTemplate(loggerOptions, templateOptions) {
 exports.errorLogger = function errorLogger(options) {
   ensureValidOptions(options)
 
-  options.requestWhitelist = options.requestWhitelist || exports.requestWhitelist
+  options.requestWhitelist =
+    options.requestWhitelist || exports.requestWhitelist
   options.requestFilter = options.requestFilter || exports.defaultRequestFilter
   options.winstonInstance =
     options.winstonInstance ||
@@ -239,17 +256,27 @@ exports.errorLogger = function errorLogger(options) {
     }
   const exceptionHandler = new winston.ExceptionHandler(options.winstonInstance)
   options.exceptionToMeta =
-    options.exceptionToMeta || exceptionHandler.getAllInfo.bind(exceptionHandler)
+    options.exceptionToMeta ||
+    exceptionHandler.getAllInfo.bind(exceptionHandler)
   options.blacklistedMetaFields = options.blacklistedMetaFields || []
   options.skip = options.skip || exports.defaultSkip
 
   // Using mustache style templating
-  const errorTemplate = getErrorTemplate(options, { interpolate: /\{\{([\s\S]+?)\}\}/g })
+  const errorTemplate = getErrorTemplate(options, {
+    interpolate: /\{\{([\s\S]+?)\}\}/g
+  })
 
   return function (err, req, res, next) {
     // Let winston gather all the error data
-    let exceptionMeta = _.omit(options.exceptionToMeta(err), options.blacklistedMetaFields)
-    exceptionMeta.req = filterObject(req, options.requestWhitelist, options.requestFilter)
+    let exceptionMeta = _.omit(
+      options.exceptionToMeta(err),
+      options.blacklistedMetaFields
+    )
+    exceptionMeta.req = filterObject(
+      req,
+      options.requestWhitelist,
+      options.requestFilter
+    )
 
     if (options.dynamicMeta) {
       const dynamicMeta = options.dynamicMeta(req, res, err)
@@ -264,13 +291,15 @@ exports.errorLogger = function errorLogger(options) {
 
     exceptionMeta = _.assign(exceptionMeta, options.baseMeta)
 
-    const level = _.isFunction(options.level) ? options.level(req, res, err) : options.level
+    const level = _.isFunction(options.level)
+      ? options.level(req, res, err)
+      : options.level
 
     if (!options.skip(req, res, err)) {
       // This is fire and forget, we don't want logging to hold up the request so don't wait for the callback
       options.winstonInstance.log({
         level,
-        message: errorTemplate({ err: err, req: req, res: res }),
+        message: errorTemplate({ err, req, res }),
         meta: exceptionMeta
       })
     }
@@ -325,12 +354,15 @@ exports.logger = function logger(options) {
   ensureValidOptions(options)
   ensureValidLoggerOptions(options)
 
-  options.requestWhitelist = options.requestWhitelist || exports.requestWhitelist
+  options.requestWhitelist =
+    options.requestWhitelist || exports.requestWhitelist
   options.bodyWhitelist = options.bodyWhitelist || exports.bodyWhitelist
   options.bodyBlacklist = options.bodyBlacklist || exports.bodyBlacklist
-  options.responseWhitelist = options.responseWhitelist || exports.responseWhitelist
+  options.responseWhitelist =
+    options.responseWhitelist || exports.responseWhitelist
   options.requestFilter = options.requestFilter || exports.defaultRequestFilter
-  options.responseFilter = options.responseFilter || exports.defaultResponseFilter
+  options.responseFilter =
+    options.responseFilter || exports.defaultResponseFilter
   options.ignoredRoutes = options.ignoredRoutes || exports.ignoredRoutes
   options.winstonInstance =
     options.winstonInstance ||
@@ -339,8 +371,11 @@ exports.logger = function logger(options) {
       transports: options.transports
     })
   options.statusLevels = options.statusLevels || false
-  options.level = options.statusLevels ? levelFromStatus(options) : options.level || 'info'
-  options.requestMessage = options.requestMessage || 'HTTP {{req.method}} {{req.url}}'
+  options.level = options.statusLevels
+    ? levelFromStatus(options)
+    : options.level || 'info'
+  options.requestMessage =
+    options.requestMessage || 'HTTP {{req.method}} {{req.url}}'
   options.responseMessage = options.baseMeta = options.baseMeta || {}
   options.metaField = options.metaField || null
   options.colorize = options.colorize || false
@@ -382,7 +417,9 @@ exports.logger = function logger(options) {
 
     // This is fire and forget, we don't want logging to hold up the request so don't wait for the callback
     if (!options.skip(req)) {
-      const level = _.isFunction(options.level) ? options.level(req) : options.level
+      const level = _.isFunction(options.level)
+        ? options.level(req)
+        : options.level
       options.winstonInstance.log({ level, message: requestMessage })
     }
 
@@ -411,40 +448,67 @@ exports.logger = function logger(options) {
       if (options.meta !== false) {
         let logData = {}
 
-        const requestWhitelist = options.requestWhitelist.concat(req._routeWhitelists.req || [])
-        const responseWhitelist = options.responseWhitelist.concat(req._routeWhitelists.res || [])
+        const requestWhitelist = options.requestWhitelist.concat(
+          req._routeWhitelists.req || []
+        )
+        const responseWhitelist = options.responseWhitelist.concat(
+          req._routeWhitelists.res || []
+        )
 
         logData.res = res
 
         if (_.includes(responseWhitelist, 'body')) {
           if (chunk) {
             const isJson =
-              res.getHeader('content-type') && res.getHeader('content-type').indexOf('json') >= 0
+              res.getHeader('content-type') &&
+              res.getHeader('content-type').indexOf('json') >= 0
 
             logData.res.body = bodyToString(chunk, isJson)
           }
         }
 
         logData.req = filterObject(req, requestWhitelist, options.requestFilter)
-        logData.res = filterObject(res, responseWhitelist, options.responseFilter)
+        logData.res = filterObject(
+          res,
+          responseWhitelist,
+          options.responseFilter
+        )
 
-        const bodyWhitelist = _.union(options.bodyWhitelist, req._routeWhitelists.body || [])
-        const blacklist = _.union(options.bodyBlacklist, req._routeBlacklists.body || [])
+        const bodyWhitelist = _.union(
+          options.bodyWhitelist,
+          req._routeWhitelists.body || []
+        )
+        const blacklist = _.union(
+          options.bodyBlacklist,
+          req._routeBlacklists.body || []
+        )
 
         let filteredBody = null
 
         if (req.body !== undefined) {
           if (blacklist.length > 0 && bodyWhitelist.length === 0) {
             const whitelist = _.difference(Object.keys(req.body), blacklist)
-            filteredBody = filterObject(req.body, whitelist, options.requestFilter)
+            filteredBody = filterObject(
+              req.body,
+              whitelist,
+              options.requestFilter
+            )
           } else if (
             requestWhitelist.indexOf('body') !== -1 &&
             bodyWhitelist.length === 0 &&
             blacklist.length === 0
           ) {
-            filteredBody = filterObject(req.body, Object.keys(req.body), options.requestFilter)
+            filteredBody = filterObject(
+              req.body,
+              Object.keys(req.body),
+              options.requestFilter
+            )
           } else {
-            filteredBody = filterObject(req.body, bodyWhitelist, options.requestFilter)
+            filteredBody = filterObject(
+              req.body,
+              bodyWhitelist,
+              options.requestFilter
+            )
           }
         }
 
@@ -487,11 +551,16 @@ exports.logger = function logger(options) {
         coloredRes.statusCode = chalk[statusColor](res.statusCode)
       }
 
-      const responseMessage = responseTemplate({ req: req, res: _.assign({}, res, coloredRes) })
+      const responseMessage = responseTemplate({
+        req,
+        res: _.assign({}, res, coloredRes)
+      })
 
       // This is fire and forget, we don't want logging to hold up the request so don't wait for the callback
       if (!options.skip(req, res)) {
-        const level = _.isFunction(options.level) ? options.level(req, res) : options.level
+        const level = _.isFunction(options.level)
+          ? options.level(req, res)
+          : options.level
         options.winstonInstance.log({ level, message: responseMessage, meta })
       }
     }

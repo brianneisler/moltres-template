@@ -1,4 +1,12 @@
-import { curry, isArray, isDate, isFunction, isObject, isPlainObject, map } from '../data'
+import {
+  curry,
+  isArray,
+  isDate,
+  isFunction,
+  isObject,
+  isPlainObject,
+  map
+} from '../data'
 import fromDate from './fromDate'
 
 const convertDataToFirebase = curry((context, data) =>

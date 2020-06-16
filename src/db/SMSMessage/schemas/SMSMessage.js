@@ -17,7 +17,10 @@ const SMSMessage = {
     fromState: Joi.string().allow(''),
     fromZip: Joi.string().allow(''),
     media: Joi.array().items(
-      Joi.object().keys({ contentType: Joi.string().allow(''), url: Joi.string().allow('') })
+      Joi.object().keys({
+        contentType: Joi.string().allow(''),
+        url: Joi.string().allow('')
+      })
     ),
     messageSid: Joi.string(),
     numSegments: Joi.number().integer(),

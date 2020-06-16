@@ -136,16 +136,25 @@ const historicIterator = (iterator, start = ITERATOR_START) => {
 const iteratorResolver = (iterator, start = ITERATOR_START) => {
   // NOTE BRN: Optimization here of reassigning histIterator so that we don't have to resolve it on every iteration.
   let histIterator
-  histIterator = anyResolveWith(historicIterator(iterator, start), (resolvedIterator) => {
-    histIterator = resolvedIterator
-    return histIterator
-  })
+  histIterator = anyResolveWith(
+    historicIterator(iterator, start),
+    (resolvedIterator) => {
+      histIterator = resolvedIterator
+      return histIterator
+    }
+  )
 
   // TODO BRN: Figure out a more efficient way of doing this rather than
   // resolving the iterator every time
   return {
-    next: () => anyResolveWith(histIterator, (resolvedIterator) => resolvedIterator.next()),
-    previous: () => anyResolveWith(histIterator, (resolvedIterator) => resolvedIterator.previous())
+    next: () =>
+      anyResolveWith(histIterator, (resolvedIterator) =>
+        resolvedIterator.next()
+      ),
+    previous: () =>
+      anyResolveWith(histIterator, (resolvedIterator) =>
+        resolvedIterator.previous()
+      )
   }
 }
 

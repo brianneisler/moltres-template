@@ -37,7 +37,10 @@ const spec = describe('downloadFile', () => {
     }, 20000)
 
     it('Can download a file', async () => {
-      const buffer = await downloadFile(context, `test/${context.config.test.runId}/foo.png`)
+      const buffer = await downloadFile(
+        context,
+        `test/${context.config.test.runId}/foo.png`
+      )
       expect(buffer).toEqual(TEST_IMAGE_BUFFER)
     }, 20000)
   })

@@ -14,9 +14,13 @@ const generateUserAndSMSChannel = async (
   let user
   let isNewUser = false
 
-  let phoneNumber = await findPhoneNumberByPhoneNumber(context, unformattedPhoneNumber, {
-    includeRemoved: true
-  })
+  let phoneNumber = await findPhoneNumberByPhoneNumber(
+    context,
+    unformattedPhoneNumber,
+    {
+      includeRemoved: true
+    }
+  )
 
   if (!phoneNumber) {
     isNewUser = true
@@ -43,7 +47,10 @@ const generateUserAndSMSChannel = async (
     internalPhoneNumber = foundInternalPhoneNumber
   }
 
-  const smsChannel = await generateSMSChannel(context, { internalPhoneNumber, phoneNumber })
+  const smsChannel = await generateSMSChannel(context, {
+    internalPhoneNumber,
+    phoneNumber
+  })
 
   return {
     isNewUser,

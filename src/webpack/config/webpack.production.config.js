@@ -7,7 +7,9 @@ const loadEnv = require('../../utils/config/loadEnv').default
 
 const config = (env) => {
   if (!env) {
-    env = loadEnv(path.resolve(__dirname, '..', '..', '..'), { stage: process.env.STAGE })
+    env = loadEnv(path.resolve(__dirname, '..', '..', '..'), {
+      stage: process.env.STAGE
+    })
   }
   return {
     entry: [path.join(__dirname, '..', '..', 'index')],
@@ -18,10 +20,39 @@ const config = (env) => {
           exclude: {
             exclude: [
               path.resolve(__dirname, '..', '..'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'emoji-mart'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-typography'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-web', 'src'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'expo-linear-gradient')
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'emoji-mart'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'react-native-typography'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'react-native-web',
+                'src'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'expo-linear-gradient'
+              )
             ],
             test: path.resolve(__dirname, '..', '..', '..', 'node_modules')
           },

@@ -114,7 +114,9 @@ const spec = describe('removeAccessToken', () => {
     }, 20000)
 
     it('throws an error when removing an AccessToken', async () => {
-      await expect(removeAccessToken(userContext, accessToken.id)).rejects.toThrow(
+      await expect(
+        removeAccessToken(userContext, accessToken.id)
+      ).rejects.toThrow(
         expect.objectContaining({
           code: ACCESS_DENIED
         })
@@ -132,7 +134,10 @@ const spec = describe('removeAccessToken', () => {
     beforeEach(async () => {
       adminContext = await setupTestAdminContext(spec)
       testContext = await setupTestServiceAccountContext(adminContext)
-      anonymousContext = await setupTestAnonymousContext(adminContext, testContext)
+      anonymousContext = await setupTestAnonymousContext(
+        adminContext,
+        testContext
+      )
       user = await createUser(testContext, {
         name: 'test-user',
         state: 'pending'
@@ -165,7 +170,9 @@ const spec = describe('removeAccessToken', () => {
     }, 20000)
 
     it('throws an error when trying to remove an AccessToken', async () => {
-      await expect(removeAccessToken(anonymousContext, accessToken.id, {})).rejects.toThrow(
+      await expect(
+        removeAccessToken(anonymousContext, accessToken.id, {})
+      ).rejects.toThrow(
         expect.objectContaining({
           code: ACCESS_DENIED
         })

@@ -1,7 +1,12 @@
 import { Colors, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
 import { compose, getProp } from '../../../utils/data'
-import { defaultProps, setDisplayName, withPropsOnChange, withState } from '../../../utils/react'
+import {
+  defaultProps,
+  setDisplayName,
+  withPropsOnChange,
+  withState
+} from '../../../utils/react'
 import Field from '../Field'
 import FileInput from '../FileInput'
 import Fragment from '../Fragment'
@@ -83,7 +88,11 @@ const renderFileInput = enhance(
         {label ? (
           <Text style={styles.label}>
             {label}
-            {required ? <Text style={[styles.label, { color: Colors.redPrimary }]}>*</Text> : null}
+            {required ? (
+              <Text style={[styles.label, { color: Colors.redPrimary }]}>
+                *
+              </Text>
+            ) : null}
           </Text>
         ) : null}
         <TouchableOpacity
@@ -108,15 +117,23 @@ const renderFileInput = enhance(
                 <Text style={[styles.imageUploadIcon]}>
                   <Icon icon="image" />
                 </Text>
-                <Text style={[styles.mediumText, styles.imageUploadText]}>Click to upload</Text>
+                <Text style={[styles.mediumText, styles.imageUploadText]}>
+                  Click to upload
+                </Text>
               </Fragment>
             )}
           </FileInput>
         </TouchableOpacity>
         {touched &&
-          ((error && <Text style={[styles.errorText, styles.alignSelfStart]}>{error}</Text>) ||
+          ((error && (
+            <Text style={[styles.errorText, styles.alignSelfStart]}>
+              {error}
+            </Text>
+          )) ||
             (warning && (
-              <Text style={[styles.warningText, styles.alignSelfStart]}>{warning}</Text>
+              <Text style={[styles.warningText, styles.alignSelfStart]}>
+                {warning}
+              </Text>
             )))}
       </View>
     )

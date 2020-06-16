@@ -11,7 +11,7 @@ const mod = {
   routes: [
     {
       exact: true,
-      handle: enhance(function*({ config }) {
+      handle: enhance(function* ({ config }) {
         if (config.ssr) {
           return { statusCode: 200 }
         }
@@ -22,11 +22,15 @@ const mod = {
         return { statusCode: 200 }
       }),
       path: '/notifications',
-      preload: enhance(function*(context, { first }) {
+      preload: enhance(function* (context, { first }) {
         if (first) {
-          yield fork(watchCurrentUser, function*(currentUser) {
+          yield fork(watchCurrentUser, function* (currentUser) {
             if (currentUser) {
-              return yield call(queryAndWatchUserEnhancedNotifications, context, currentUser)
+              return yield call(
+                queryAndWatchUserEnhancedNotifications,
+                context,
+                currentUser
+              )
             }
           })
         }

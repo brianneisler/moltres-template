@@ -1,6 +1,11 @@
 import { Linking, StyleSheet } from 'react-native'
 import { compose } from '../../../utils/data'
-import { setDisplayName, setPropTypes, withHandlers, withProps } from '../../../utils/react'
+import {
+  setDisplayName,
+  setPropTypes,
+  withHandlers,
+  withProps
+} from '../../../utils/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Text from '../Text'
@@ -31,7 +36,9 @@ const enhance = compose(
       if (onPress) {
         return onPress(href)
       }
-      Linking.canOpenURL(href).then((supported) => supported && Linking.openURL(href))
+      Linking.canOpenURL(href).then(
+        (supported) => supported && Linking.openURL(href)
+      )
     }
   })
 )

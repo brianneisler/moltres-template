@@ -2,7 +2,13 @@ import arrayFlatten from './arrayFlatten'
 
 describe('arrayFlatten', () => {
   test('flattens deep arrays', () => {
-    const result = arrayFlatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]])
+    const result = arrayFlatten([
+      1,
+      2,
+      [3, 4],
+      5,
+      [6, [7, 8, [9, [10, 11], 12]]]
+    ])
     expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
   })
 

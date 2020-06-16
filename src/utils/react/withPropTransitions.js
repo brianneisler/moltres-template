@@ -19,7 +19,10 @@ const executePropTransitions = (propListenerMap, nextProps, oldProps = {}) =>
     if (listeners.becomesFalse && oldPropVal && !nextPropVal) {
       listeners.becomesFalse()
     }
-    if (listeners.onIdChange && getProp('id', oldPropVal) !== getProp('id', nextPropVal)) {
+    if (
+      listeners.onIdChange &&
+      getProp('id', oldPropVal) !== getProp('id', nextPropVal)
+    ) {
       listeners.onIdChange(nextPropVal)
     }
     if (listeners.onChange && !equals(oldPropVal, nextPropVal)) {
@@ -41,7 +44,9 @@ const withPropTransitions = (propListenerMap) => {
   })
   if (process.env.NODE_ENV !== 'production') {
     return (BaseComponent) =>
-      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(hoc(BaseComponent))
+      setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(
+        hoc(BaseComponent)
+      )
   }
   return hoc
 }

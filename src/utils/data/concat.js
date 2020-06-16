@@ -14,6 +14,8 @@ const concat2 = (value0, value1) => {
   return rConcat(value0, value1)
 }
 
-const concat = curry((arg0, arg1, ...args) => reduce(concat2, concat2(arg0, arg1), args))
+const concat = curry((arg0, arg1, ...args) =>
+  reduce(concat2, concat2(arg0, arg1), args)
+)
 
 export default concat

@@ -3,7 +3,7 @@ import { factoryAndWatchQuery } from '../../../core'
 import { isString } from '../../../utils/data'
 import { refUserRoleById } from '../../../db/UserRole'
 
-const queryAndWatchUserRole = function*(context, userId, { handler } = {}) {
+const queryAndWatchUserRole = function* (context, userId, { handler } = {}) {
   invariant(isString(userId), 'userId must be a String')
 
   return yield call(factoryAndWatchQuery, {

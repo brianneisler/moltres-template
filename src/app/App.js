@@ -1,6 +1,11 @@
 import { ConnectedRouter, Provider } from './components'
 import { compose } from '../utils/data'
-import { setDisplayName, setPropTypes, storeShape, withContext } from '../utils/react'
+import {
+  setDisplayName,
+  setPropTypes,
+  storeShape,
+  withContext
+} from '../utils/react'
 import Main from './Main'
 import PropTypes from 'prop-types'
 import React from 'react'

@@ -64,7 +64,8 @@ const createButton = ({
   title
 }) => {
   const fontColor = destructiveButtonIndex === index ? Colors.warn : Colors.tint
-  const buttonBoxStyle = cancelButtonIndex === index ? styles.cancelButtonBox : styles.buttonBox
+  const buttonBoxStyle =
+    cancelButtonIndex === index ? styles.cancelButtonBox : styles.buttonBox
   return (
     <TouchableHighlight
       activeOpacity={1}
@@ -102,11 +103,24 @@ const renderCancelButton = ({
   })
 }
 
-const renderOptions = ({ cancelButtonIndex, destructiveButtonIndex, onPress, options, styles }) => {
+const renderOptions = ({
+  cancelButtonIndex,
+  destructiveButtonIndex,
+  onPress,
+  options,
+  styles
+}) => {
   return options.map((title, index) => {
     return cancelButtonIndex === index
       ? null
-      : createButton({ cancelButtonIndex, destructiveButtonIndex, index, onPress, styles, title })
+      : createButton({
+          cancelButtonIndex,
+          destructiveButtonIndex,
+          index,
+          onPress,
+          styles,
+          title
+        })
   })
 }
 
@@ -183,10 +197,13 @@ const enhance = compose(
     maxHeight: Math.round(windowHeight * 0.7)
   })),
   withHandlers({
-    calculateHeight: ({ cancelButtonIndex, maxHeight, options, setScrollEnabled, styles }) => ({
-      message,
-      title
-    }) => {
+    calculateHeight: ({
+      cancelButtonIndex,
+      maxHeight,
+      options,
+      setScrollEnabled,
+      styles
+    }) => ({ message, title }) => {
       let height = 0
       if (title) {
         height += getStyleHeight(styles, 'titleBox')
@@ -245,7 +262,8 @@ const enhance = compose(
       }
     },
     handleModalHide: ({ hideSheet }) => async () => hideSheet(),
-    handleModalRequestCancel: ({ requestCancelModal }) => () => requestCancelModal(ACTION_SHEET),
+    handleModalRequestCancel: ({ requestCancelModal }) => () =>
+      requestCancelModal(ACTION_SHEET),
     handleModalShow: ({ showSheet }) => async () => showSheet()
   })
 )
@@ -271,10 +289,14 @@ const ActionSheet = enhance((props) => {
       onShow={handleModalShow}
       style={styles.modal}
     >
-      <Animated.View style={[styles.body, { height, transform: [{ translateY }] }]}>
+      <Animated.View
+        style={[styles.body, { height, transform: [{ translateY }] }]}
+      >
         {renderTitle(props)}
         {renderMessage(props)}
-        <ScrollView scrollEnabled={scrollEnabled}>{renderOptions(props)}</ScrollView>
+        <ScrollView scrollEnabled={scrollEnabled}>
+          {renderOptions(props)}
+        </ScrollView>
         {renderCancelButton(props)}
       </Animated.View>
     </CancelableModal>

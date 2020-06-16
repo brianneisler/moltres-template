@@ -3,7 +3,12 @@ import { isFunction, noop } from '../utils/data'
 import createQueryChannel from './createQueryChannel'
 import isQuery from './isQuery'
 
-const monitorQueryChannel = function* ({ onEnd = noop, onError = noop, onSnapshot = noop, query }) {
+const monitorQueryChannel = function* ({
+  onEnd = noop,
+  onError = noop,
+  onSnapshot = noop,
+  query
+}) {
   invariant(isFunction(onEnd), 'onEnd must be a defined Function')
   invariant(isFunction(onError), 'onError must be a defined Function')
   invariant(isFunction(onSnapshot), 'onSnapshot must be a defined Function')

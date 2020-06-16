@@ -6,7 +6,8 @@ const mod = {
     const winstonInstance = createLogger()
     return expressWinston.errorLogger({
       expressFormat: true,
-      skip: (request, response, error) => error.statusCode && error.statusCode < 400,
+      skip: (request, response, error) =>
+        error.statusCode && error.statusCode < 400,
       winstonInstance
     })
   }

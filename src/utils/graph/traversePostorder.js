@@ -25,15 +25,20 @@ const traverseNode = (context, node, traverser) => {
 
 const traversePostorder = curry((traverser, graph) => {
   if (!isGraph(graph)) {
-    throw new Error(`traversePostorder expects a Graph, instead received ${graph}`)
+    throw new Error(
+      `traversePostorder expects a Graph, instead received ${graph}`
+    )
   }
   const context = newTraverseContext({
     graph,
     results: {},
     visited: {}
   })
-  return reduce((ctx, source) => traverseNode(ctx, source, traverser), context, graph.sources())
-    .results
+  return reduce(
+    (ctx, source) => traverseNode(ctx, source, traverser),
+    context,
+    graph.sources()
+  ).results
 })
 
 export default traversePostorder

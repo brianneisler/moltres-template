@@ -11,15 +11,27 @@ const factoryAndWatchFirstPageQueries = function* ({
   pageSize,
   queryKey
 }) {
-  invariant(isFunction(buildQueryFactory), 'buildQueryFactory must be a defined Function')
+  invariant(
+    isFunction(buildQueryFactory),
+    'buildQueryFactory must be a defined Function'
+  )
   invariant(isObject(context), 'context must be a defined Object')
   invariant(isObject(cursor), 'cursor must be a defined Object')
-  invariant(isObject(initialState) || !initialState, 'initialState must be an Object or undefined')
+  invariant(
+    isObject(initialState) || !initialState,
+    'initialState must be an Object or undefined'
+  )
   invariant(isNumber(pageSize), 'pageSize must be a Number')
   invariant(isString(queryKey), 'queryKey must be a String')
 
   return yield all([
-    call(factoryAndWatchHeadQuery, { buildQueryFactory, context, cursor, initialState, queryKey }),
+    call(factoryAndWatchHeadQuery, {
+      buildQueryFactory,
+      context,
+      cursor,
+      initialState,
+      queryKey
+    }),
     call(factoryAndWatchPageQuery, {
       buildQueryFactory,
       context,

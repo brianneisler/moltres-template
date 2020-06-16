@@ -7,10 +7,10 @@ function* monitorScroll(target, name) {
   const scrollChannel = createScrollChannel(target)
   const scrollClientChannel = createScrollClientChannel(target)
   yield all([
-    call(handleChannel, scrollChannel, function*() {
+    call(handleChannel, scrollChannel, function* () {
       yield put(scrollEvent({ name, target }))
     }),
-    call(handleChannel, scrollClientChannel, function*() {
+    call(handleChannel, scrollClientChannel, function* () {
       yield put(scrollEvent({ name, target }))
     })
   ])

@@ -2,7 +2,10 @@ import { FieldTextInput, Text, TouchableOpacity, View } from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { SubmissionError, validateOneTimeCode } from '../../../utils/form'
-import { actions as authSMSActions, selectAuthSMSChallengeId } from '../../modules/auth_sms'
+import {
+  actions as authSMSActions,
+  selectAuthSMSChallengeId
+} from '../../modules/auth_sms'
 import { compose } from '../../../utils/data'
 import {
   connect,

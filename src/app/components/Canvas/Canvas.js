@@ -1,5 +1,9 @@
 import { compose } from '../../../utils/data'
-import { setDisplayName, setPropTypes, withForwardRef } from '../../../utils/react'
+import {
+  setDisplayName,
+  setPropTypes,
+  withForwardRef
+} from '../../../utils/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import View from '../View'

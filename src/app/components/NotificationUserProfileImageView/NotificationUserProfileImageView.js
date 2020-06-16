@@ -1,7 +1,11 @@
 import { Colors, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
 import { compose } from '../../../utils/data'
-import { defaultProps, setDisplayName, setPropTypes } from '../../../utils/react'
+import {
+  defaultProps,
+  setDisplayName,
+  setPropTypes
+} from '../../../utils/react'
 import Link from '../Link'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -97,7 +101,11 @@ const NotificationUserProfileImageView = enhance(
   ({ linkTo, message, styles, userProfileImageId }) => {
     return (
       <Link
-        style={StyleSheet.flatten([styles.link, styles.inlineCenter, styles.userProfileImage])}
+        style={StyleSheet.flatten([
+          styles.link,
+          styles.inlineCenter,
+          styles.userProfileImage
+        ])}
         to={{
           pathname: linkTo,
           state: { back: true }

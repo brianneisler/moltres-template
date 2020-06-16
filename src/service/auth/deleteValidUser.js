@@ -1,5 +1,8 @@
 import { deleteUser } from '../../db/User'
-import { deleteUserPhoneNumber, findPhoneNumbersByUserId } from '../../db/UserPhoneNumber'
+import {
+  deleteUserPhoneNumber,
+  findPhoneNumbersByUserId
+} from '../../db/UserPhoneNumber'
 import { map, values } from '../../utils/data'
 
 const deleteValidUser = async (context, userId) => {

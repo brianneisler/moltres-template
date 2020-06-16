@@ -2,7 +2,12 @@ import { ImageView, Link, MetaTags, Text, View } from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { compose } from '../../../utils/data'
-import { connect, defaultProps, setDisplayName, withProps } from '../../../utils/react'
+import {
+  connect,
+  defaultProps,
+  setDisplayName,
+  withProps
+} from '../../../utils/react'
 import { selectAppConfig } from '../../modules/app'
 import React from 'react'
 
