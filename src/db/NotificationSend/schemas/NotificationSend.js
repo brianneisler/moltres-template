@@ -1,7 +1,7 @@
 import { Entity } from '../../Entity'
 import { NotificationSendState } from '../../../constants'
 import { id } from '../../../utils/schema'
-import { values } from '../../../utils/data'
+import { values } from '../../../utils/lang'
 import Joi from '@hapi/joi'
 import Notification from '../../Notification/schemas/Notification'
 

@@ -1,5 +1,5 @@
 import { EntityChangedAction } from '../schemas'
-import { actionBuilder } from '../../../utils/lang'
+import { actionBuilder } from '../../../utils/redux'
 
 const addCausedByEntity = ({ currentUser, serviceAccount }, data) => {
   if (currentUser) {

@@ -1,4 +1,4 @@
-import { createSelector, getProp, select } from '../../../utils/data'
+import { createSelector, getProp, select } from '../../../utils/lang'
 import selectCurrentUserRole from './selectCurrentUserRole'
 
 const selectIsCurrentUserAdmin = select(

@@ -1,4 +1,4 @@
-import { assocPath, createPath, curry, getProp, keys, reduce } from '../data'
+import { assocPath, createPath, curry, getProp, keys, reduce } from '../lang'
 import Joi from '@hapi/joi'
 
 const validateSchema = curry(({ schema }, data) => {

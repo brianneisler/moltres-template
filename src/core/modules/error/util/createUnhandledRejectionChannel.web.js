@@ -1,4 +1,4 @@
-import { eventChannel, slidingBuffer } from '../../../../utils/lang'
+import { eventChannel, slidingBuffer } from '../../../../utils/redux'
 import { getWindow } from '../../../../utils/web'
 
 const createUnhandledRejectionChannel = () => {

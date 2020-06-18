@@ -9,7 +9,7 @@ import {
   reduce,
   replaceWildcards,
   selectWildcards
-} from '../utils/data'
+} from '../utils/lang'
 import { call, select, spawn, takeEvery } from 'redux-saga/effects'
 import createFactory from './createFactory'
 

@@ -1,5 +1,5 @@
 import { Colors, Fonts } from '../../styles'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,

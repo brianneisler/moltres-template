@@ -1,6 +1,6 @@
 import * as actions from './actions'
 import { ACTION_SHEET } from '../../../constants/Modal'
-import { assoc, findIndex, getProp, map, noop } from '../../../utils/data'
+import { assoc, findIndex, getProp, map, noop } from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -8,7 +8,7 @@ import {
   put,
   takeEvery,
   trigger
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { actions as modalActions } from '../modal'
 
 const mod = {

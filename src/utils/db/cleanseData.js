@@ -1,4 +1,4 @@
-import { isUndefined, omit, reject } from '../data'
+import { isUndefined, omit, reject } from '../lang'
 
 const cleanseData = (data) => reject(isUndefined, omit(['id'], data))
 

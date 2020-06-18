@@ -1,7 +1,7 @@
 // NOTE BRN: This is the config that is used on the client side. Should only
 // contain safe values here that are ok to expose to end users
 import { generateProjectId } from '../utils/config'
-import { invariant } from '../utils/lang'
+import { invariant } from '../utils/redux'
 
 const generateConfig = (config = {}) => {
   invariant(config.stage, 'STAGE must be defined')

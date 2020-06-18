@@ -1,5 +1,5 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
-import { curry } from '../../utils/data'
+import { curry } from '../../utils/lang'
 import batchUpdateEntity from './batchUpdateEntity'
 
 const updateEntity = curry(

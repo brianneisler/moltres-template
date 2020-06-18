@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setStatus = createAction('STATUS:SET_STATUS', (name, status) => ({
   name,

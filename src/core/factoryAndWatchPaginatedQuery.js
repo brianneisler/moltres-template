@@ -5,8 +5,8 @@ import {
   isNumber,
   isObject,
   isString
-} from '../utils/data'
-import { call, invariant, put, select } from '../utils/lang'
+} from '../utils/lang'
+import { call, invariant, put, select } from '../utils/redux'
 import { selectCursorResults, selectQueryCursorNext } from './selectors'
 import {
   setQueryAction,

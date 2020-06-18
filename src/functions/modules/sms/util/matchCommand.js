@@ -1,4 +1,4 @@
-import { isFunction, isRegExp } from '../../../../utils/data'
+import { isFunction, isRegExp } from '../../../../utils/lang'
 
 const matchCommand = (command, data) => {
   const { smsMessage } = data

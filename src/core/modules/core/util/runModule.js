@@ -1,5 +1,5 @@
-import { isFunction } from '../../../../utils/data'
-import { spawn } from '../../../../utils/lang'
+import { isFunction } from '../../../../utils/lang'
+import { spawn } from '../../../../utils/redux'
 
 function* runModule(module, name, store) {
   const { run } = module

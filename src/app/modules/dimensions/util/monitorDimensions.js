@@ -1,4 +1,4 @@
-import { call, handleChannel, put, select } from '../../../../utils/lang'
+import { call, handleChannel, put, select } from '../../../../utils/redux'
 import { dimensionsChanged } from '../actions'
 import { selectContext } from '../../../../core'
 import createDimensionsChannel from './createDimensionsChannel'

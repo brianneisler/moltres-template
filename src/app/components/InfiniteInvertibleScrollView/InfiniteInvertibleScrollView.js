@@ -1,6 +1,6 @@
 // import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native'
 // import { compose, defaultProps, setPropTypes, withHandlers, withState } from 'recompose'
-// import { filter } from '../../utils/data'
+// import { filter } from '../../utils/lang'
 // import LoadingError from '../LoadingError'
 // import PropTypes from 'prop-types'
 // import React from 'react'
@@ -175,7 +175,7 @@
 // export default enhance(InfiniteInvertibleScrollView)
 
 import { StyleSheet } from 'react-native'
-import { assign, filter, noop } from '../../../utils/data'
+import { assign, filter, noop } from '../../../utils/lang'
 import { cloneReferencedElement } from '../../../utils/react'
 import ActivityIndicator from '../ActivityIndicator'
 import LoadingError from '../LoadingError'

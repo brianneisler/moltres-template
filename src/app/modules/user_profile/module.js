@@ -8,8 +8,8 @@ import {
   select,
   spawn,
   takeEvery
-} from '../../../utils/lang'
-import { assoc, compose } from '../../../utils/data'
+} from '../../../utils/redux'
+import { assoc, compose } from '../../../utils/lang'
 import { getUserById } from '../../../db/User'
 import { queryAndWatchCurrentUserFollow } from '../user_follow'
 import { queryAndWatchUserReactionEntityPages } from '../reaction'

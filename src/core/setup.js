@@ -1,4 +1,4 @@
-import { isFunction, last } from '../utils/data'
+import { isFunction, last } from '../utils/lang'
 
 const setup = (...args) => {
   const lastArg = last(args)

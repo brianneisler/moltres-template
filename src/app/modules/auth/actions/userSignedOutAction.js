@@ -1,5 +1,5 @@
 import { UserSignedOutAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const userSignedOutAction = actionBuilder({
   Schema: UserSignedOutAction

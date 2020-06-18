@@ -1,5 +1,5 @@
 import { Easing, StyleSheet } from 'react-native'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

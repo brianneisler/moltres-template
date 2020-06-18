@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setFacebookConfig = createAction('SET_FACEBOOK_CONFIG', (config) => ({
   config

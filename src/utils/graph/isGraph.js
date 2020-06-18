@@ -1,5 +1,5 @@
 import { Graph } from 'graphlib'
-import { is } from '../data'
+import { is } from '../lang'
 
 const isGraph = is(Graph)
 

@@ -1,12 +1,12 @@
 import * as actions from './actions'
-import { assocPath } from '../../../utils/data'
+import { assocPath } from '../../../utils/lang'
 import {
   handleAction,
   handleActions,
   put,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import selectModal from './selectModal'
 
 const mod = {

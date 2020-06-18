@@ -6,7 +6,7 @@ import {
 import { findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
 import { findPhoneNumberClaimsByUserId } from '../../db/PhoneNumberClaim'
 import { findUserPhoneNumbersByUserId } from '../../db/UserPhoneNumber'
-import { first, isEmpty, isNil, isString, values } from '../../utils/data'
+import { first, isEmpty, isNil, isString, values } from '../../utils/lang'
 import { getRandomInternalPhoneNumber } from '../../db/InternalPhoneNumber'
 import { getUserById } from '../../db/User'
 import { verifyPhoneNumber } from '../phone_number'

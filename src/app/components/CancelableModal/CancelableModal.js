@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
-import { compose, getProp, noop } from '../../../utils/data'
+import { compose, getProp, noop } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

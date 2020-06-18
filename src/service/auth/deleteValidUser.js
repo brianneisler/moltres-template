@@ -3,7 +3,7 @@ import {
   deleteUserPhoneNumber,
   findPhoneNumbersByUserId
 } from '../../db/UserPhoneNumber'
-import { map, values } from '../../utils/data'
+import { map, values } from '../../utils/lang'
 
 const deleteValidUser = async (context, userId) => {
   const phoneNumbers = await findPhoneNumbersByUserId(context, userId)

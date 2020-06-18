@@ -1,5 +1,5 @@
 import { ChannelType } from '../../../constants'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import { renderNotification } from '../../../service/notification'
 import { setDisplayName, setPropTypes } from '../../../utils/react'
 import PropTypes from 'prop-types'

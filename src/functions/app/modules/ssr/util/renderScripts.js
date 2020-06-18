@@ -6,7 +6,7 @@ import {
   map,
   sortBy,
   values
-} from '../../../../../utils/data'
+} from '../../../../../utils/lang'
 
 const renderProp = (value, prop) => {
   if (!value) {

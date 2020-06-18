@@ -1,7 +1,7 @@
 import { Entity } from '../../Entity'
 import { UploadState } from '../../../constants'
 import { id } from '../../../utils/schema'
-import { values } from '../../../utils/data'
+import { values } from '../../../utils/lang'
 import Joi from '@hapi/joi'
 
 const Upload = {

@@ -1,6 +1,6 @@
 import * as actions from './actions'
-import { assoc, compose } from '../../../utils/data'
-import { fork, handleActions, put } from '../../../utils/lang'
+import { assoc, compose } from '../../../utils/lang'
+import { fork, handleActions, put } from '../../../utils/redux'
 import { monitorFirebaseAuthState } from './util'
 import getContext from '../../getContext'
 import withContext from '../../withContext'

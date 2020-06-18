@@ -12,7 +12,7 @@ import {
   reduce,
   shallowEquals,
   weakMemoize
-} from '../data'
+} from '../lang'
 import createFactory from './createFactory'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'

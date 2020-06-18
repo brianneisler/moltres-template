@@ -3,8 +3,8 @@ import {
   Notification,
   findEnhancedNotificationById
 } from '../../../db/Notification'
-import { call, handleAction } from '../../../utils/lang'
-import { compose } from '../../../utils/data'
+import { call, handleAction } from '../../../utils/redux'
+import { compose } from '../../../utils/lang'
 import { sendNotification } from './util'
 import { takeEveryEntityChanged } from '../../../db/Entity'
 import { withConfig, withContext } from '../../../core'

@@ -1,5 +1,5 @@
 import { RegisterUserAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const registerUserAction = actionBuilder({
   Schema: RegisterUserAction

@@ -1,5 +1,5 @@
-import { all, cancel, put, select } from '../utils/lang'
-import { dissocProp, map, update } from '../utils/data'
+import { all, cancel, put, select } from '../utils/redux'
+import { dissocProp, map, update } from '../utils/lang'
 import { selectQuery } from './selectors'
 import { setQueryAction } from './actions'
 

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setCurrentStatus = createAction(
   'STATUS:SET_CURRENT_STATUS',

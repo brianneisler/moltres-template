@@ -6,8 +6,8 @@ import {
   map,
   mergeDeepCount,
   values
-} from '../../../utils/data'
-import { invariant } from '../../../utils/lang'
+} from '../../../utils/lang'
+import { invariant } from '../../../utils/redux'
 import {
   queryEntityStats,
   queryStatsShards,

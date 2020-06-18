@@ -1,6 +1,6 @@
-import { call, invariant } from '../../../utils/lang'
+import { call, invariant } from '../../../utils/redux'
 import { factoryAndWatchQuery } from '../../../core'
-import { isString } from '../../../utils/data'
+import { isString } from '../../../utils/lang'
 import { refUserProfileById } from '../../../db/UserProfile'
 import enhanceUserProfile from './enhanceUserProfile'
 

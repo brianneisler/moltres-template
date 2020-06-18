@@ -1,5 +1,5 @@
 import { DimensionsChangedAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const dimensionsChanged = actionBuilder({
   Schema: DimensionsChangedAction

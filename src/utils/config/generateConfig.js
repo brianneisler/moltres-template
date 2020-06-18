@@ -1,6 +1,6 @@
-import { invariant } from '../lang'
+import { invariant } from '../redux'
 import { resolve } from '../path'
-import { split } from '../data'
+import { split } from '../lang'
 import generateProjectId from './generateProjectId'
 
 // NOTE BRN: This is the config that is used on the server side.

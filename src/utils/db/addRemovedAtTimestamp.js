@@ -1,4 +1,4 @@
-import { curry } from '../data'
+import { curry } from '../lang'
 import nowTimestamp from './nowTimestamp'
 
 const addRemovedAtTimestamp = curry((context, data) => {

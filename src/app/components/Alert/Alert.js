@@ -1,7 +1,7 @@
 import { ALERT } from '../../../constants/Modal'
 import { Colors, Constants, Styles } from '../../styles'
 import { InteractionManager, StyleSheet } from 'react-native'
-import { assoc, compose, getProp, mapIndexed } from '../../../utils/data'
+import { assoc, compose, getProp, mapIndexed } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

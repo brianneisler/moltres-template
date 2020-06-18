@@ -9,7 +9,7 @@ import {
   isObject,
   omit,
   walkMap
-} from '../utils/data'
+} from '../utils/lang'
 import { createEngine, selectUncaughtException, setup, start } from '../core'
 import { createHistory } from '../utils/react'
 import { locationChangeAction } from '../app/modules/router/actions'

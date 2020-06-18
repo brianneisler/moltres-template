@@ -1,6 +1,6 @@
 import { AuthState } from '../../../constants'
-import { call, fork, select } from '../../../utils/lang'
-import { compose } from '../../../utils/data'
+import { call, fork, select } from '../../../utils/redux'
+import { compose } from '../../../utils/lang'
 import { queryAndWatchUserEnhancedNotifications } from '../../../db/Notification'
 import { selectAuthState, watchCurrentUser } from '../auth'
 import { withConfig, withContext } from '../../../core'

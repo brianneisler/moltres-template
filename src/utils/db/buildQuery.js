@@ -1,4 +1,4 @@
-import { curry } from '../data'
+import { curry } from '../lang'
 import collection from './collection'
 
 const buildQuery = curry(

@@ -22,8 +22,8 @@ import {
   select,
   selectWildcards,
   weakMemoize
-} from '../utils/data'
-import { call } from '../utils/lang'
+} from '../utils/lang'
+import { call } from '../utils/redux'
 import createFactory from './createFactory'
 
 const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {

@@ -15,8 +15,8 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/lang'
-import { append, assoc, compose, getProp } from '../../../utils/data'
+} from '../../../utils/redux'
+import { append, assoc, compose, getProp } from '../../../utils/lang'
 import {
   authStateChangedAction,
   setAuthIdTokenAction,

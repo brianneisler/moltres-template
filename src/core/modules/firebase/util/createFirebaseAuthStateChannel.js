@@ -1,4 +1,4 @@
-import { eventChannel, expandingBuffer } from '../../../../utils/lang'
+import { eventChannel, expandingBuffer } from '../../../../utils/redux'
 
 const createFirebaseAuthStateChannel = ({ auth }) => {
   return eventChannel((emitter) => {

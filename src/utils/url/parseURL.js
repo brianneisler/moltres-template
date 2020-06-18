@@ -1,6 +1,6 @@
 import { URL, parse } from 'url'
-import { invariant } from '../lang'
-import { isString } from '../data'
+import { invariant } from '../redux'
+import { isString } from '../lang'
 import parseSearch from './parseSearch'
 
 const parseURL = (url) => {

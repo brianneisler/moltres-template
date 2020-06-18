@@ -1,4 +1,4 @@
-import { all, call, handleChannel, put } from '../../../../utils/lang'
+import { all, call, handleChannel, put } from '../../../../utils/redux'
 import { scrollEvent } from '../actions'
 import createScrollChannel from './createScrollChannel'
 import createScrollClientChannel from './createScrollClientChannel'

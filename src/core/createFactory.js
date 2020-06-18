@@ -1,4 +1,4 @@
-import { isFunction } from '../utils/data'
+import { isFunction } from '../utils/lang'
 
 const createFactory = (func) => (state, ...rest) => {
   if (isFunction(state)) {

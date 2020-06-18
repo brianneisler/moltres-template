@@ -4,7 +4,7 @@ import {
   collection,
   convertDataToFirebase
 } from '../../utils/db'
-import { curry, omit } from '../../utils/data'
+import { curry, omit } from '../../utils/lang'
 
 const moveActionFromBucketToBucket = curry(
   async (fromBucket, toBucket, context, document, transactionMethod) => {

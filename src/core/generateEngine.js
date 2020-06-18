@@ -1,5 +1,5 @@
 import { EngineState } from '../constants'
-import { weakMemoize } from '../utils/data'
+import { weakMemoize } from '../utils/lang'
 import createEngine from './createEngine'
 import setup from './setup'
 import start from './start'

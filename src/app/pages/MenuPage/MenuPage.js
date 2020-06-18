@@ -10,7 +10,7 @@ import {
 } from '../../components'
 import { StyleSheet } from 'react-native'
 import { buildLocation } from '../../../utils/url'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

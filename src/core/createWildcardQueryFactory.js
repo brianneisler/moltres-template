@@ -10,8 +10,8 @@ import {
   omit,
   replaceWildcards,
   selectWildcards
-} from '../utils/data'
-import { call } from '../utils/lang'
+} from '../utils/lang'
+import { call } from '../utils/redux'
 import createFactory from './createFactory'
 import createSingleQueryFactory from './createSingleQueryFactory'
 

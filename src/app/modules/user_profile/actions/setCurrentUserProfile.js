@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setCurrentUserProfile = createAction(
   'SET_CURRENT_USER_PROFILE',

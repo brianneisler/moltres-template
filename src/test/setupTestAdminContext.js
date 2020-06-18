@@ -1,5 +1,5 @@
 import { createAdminContext } from '../context'
-import { uuidv4 } from '../utils/data'
+import { uuidv4 } from '../utils/lang'
 import setupTestConfig from './setupTestConfig'
 
 const setupTestAdminContext = async (spec) => {

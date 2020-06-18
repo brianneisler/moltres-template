@@ -1,4 +1,4 @@
-import { curry } from '../data'
+import { curry } from '../lang'
 
 const collection = curry((Schema, { database, parentRef }) => {
   if (!Schema) {

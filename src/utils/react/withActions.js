@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { isFunction, map } from '../data'
+import { isFunction, map } from '../lang'
 import bindActionCreator from './bindActionCreator'
 import createFactory from './createFactory'
 import setDisplayName from './setDisplayName'

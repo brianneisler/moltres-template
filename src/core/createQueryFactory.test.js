@@ -1,4 +1,4 @@
-import { createSelector } from '../utils/data'
+import { createSelector } from '../utils/lang'
 import createQueryFactory from './createQueryFactory'
 import generateEngine from './generateEngine'
 import runSaga from './runSaga'

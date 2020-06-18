@@ -1,5 +1,5 @@
 import { Code } from '../../constants'
-import { delay } from '../../utils/data'
+import { delay } from '../../utils/lang'
 import createEntityStats from './createEntityStats'
 import findEntityStatsByEntityTypeAndEntityId from './findEntityStatsByEntityTypeAndEntityId'
 

@@ -1,6 +1,6 @@
 import { Styles } from '../../styles'
 import { Text, View } from '../../components'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import { defaultProps, setDisplayName } from '../../../utils/react'
 import React from 'react'
 

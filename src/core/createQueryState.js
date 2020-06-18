@@ -1,5 +1,5 @@
-import { ImmutableList, ImmutableMap } from '../utils/data'
-import { select } from '../utils/lang'
+import { ImmutableList, ImmutableMap } from '../utils/lang'
+import { select } from '../utils/redux'
 import { selectQueryResults } from './selectors'
 
 // NOTE BRN: A "query" in this context is not the conceptual idea of querying

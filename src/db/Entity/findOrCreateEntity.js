@@ -1,4 +1,4 @@
-import { assoc, curry } from '../../utils/data'
+import { assoc, curry } from '../../utils/lang'
 import { findOneFromQuery } from '../../utils/db'
 import createEntity from './createEntity'
 import queryEntities from './queryEntities'

@@ -3,7 +3,7 @@ import {
   call,
   handleChannel,
   slidingBuffer
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { clockTicked } from './actions'
 
 function* watchClockTickedEvents(handler) {

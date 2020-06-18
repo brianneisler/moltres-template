@@ -1,5 +1,5 @@
 import { StatusCode } from '../../constants'
-import { all } from '../../utils/data'
+import { all } from '../../utils/lang'
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { expected } from '../../utils/error'
 import batchCreatePhoneNumber from '../../db/PhoneNumber/batchCreatePhoneNumber'

@@ -1,5 +1,5 @@
 import { InternalPhoneNumber } from './schemas'
-import { cacheMethod, getProp } from '../../utils/data'
+import { cacheMethod, getProp } from '../../utils/lang'
 import { findAllFromQuery } from '../../utils/db'
 import queryInternalPhoneNumbers from './queryInternalPhoneNumbers'
 

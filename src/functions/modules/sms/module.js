@@ -3,7 +3,7 @@ import { asyncHandler } from '../../../utils/express'
 import { findRecentChannelContextByChannelId } from '../../../db/ChannelContext'
 import { generateSMSResponse, parseSMSMessage, setupSMSCommands } from './util'
 import { generateUserAndSMSChannel } from '../../../service/sms'
-import { getProp } from '../../../utils/data'
+import { getProp } from '../../../utils/lang'
 import { saveSMSMessage } from '../../../db/SMSMessage'
 import twilio from 'twilio'
 

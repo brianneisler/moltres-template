@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../utils/data'
+import { curry, getPath } from '../../../utils/lang'
 
 const selectOverlay = curry((name, state) =>
   getPath(['overlay', 'instances', name], state)

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const saveUserProfile = createAction('SAVE_USER_PROFILE', (userProfile) => ({
   userProfile

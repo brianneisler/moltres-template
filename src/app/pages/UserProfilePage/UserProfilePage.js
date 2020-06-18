@@ -16,7 +16,7 @@ import {
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { actions as alertActions } from '../../modules/alert'
-import { compose, getPathOr, getProp, getPropOr } from '../../../utils/data'
+import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

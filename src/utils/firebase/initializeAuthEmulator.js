@@ -1,4 +1,4 @@
-import { append, reject } from '../data'
+import { append, reject } from '../lang'
 import { encodeJwt } from '../jwt'
 
 const createCurrentUser = ({ idToken }) => ({

@@ -2,7 +2,7 @@ import { createAdminContext, createContext } from '../../../src/context'
 import { generateAdminConfig, loadEnv } from '../../../src/utils/config'
 import { resolve } from '../../../src/utils/path'
 import { signInWithIdToken } from '../../../src/utils/auth'
-import { uuidv4 } from '../../../src/utils/data'
+import { uuidv4 } from '../../../src/utils/lang'
 
 const setupScriptContexts = async () => {
   const env = loadEnv(resolve(__dirname, '..', '..', '..'), {

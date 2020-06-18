@@ -1,5 +1,4 @@
-import { Id, String } from '../../../core/schemas'
-import { Timestamped } from '../../Timestamped'
+import { Id, String, Timestamped } from '../../../core/schemas'
 
 const Entity = Timestamped.keys({
   id: Id.schema,

@@ -1,4 +1,4 @@
-import { assoc, getProp, keys, reduce } from '../../utils/data'
+import { assoc, getProp, keys, reduce } from '../../utils/lang'
 
 const filterReducers = (modules) =>
   reduce(

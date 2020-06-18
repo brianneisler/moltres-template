@@ -1,4 +1,4 @@
-import { curry, map } from '../data'
+import { curry, map } from '../lang'
 import indexDoc from './indexDoc'
 
 const batchCreateIndexes = curry(

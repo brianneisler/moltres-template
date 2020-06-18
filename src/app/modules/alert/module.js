@@ -1,6 +1,6 @@
 import * as actions from './actions'
 import { ALERT } from '../../../constants/Modal'
-import { assoc, mapAll } from '../../../utils/data'
+import { assoc, mapAll } from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -8,7 +8,7 @@ import {
   put,
   takeEvery,
   trigger
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { actions as modalActions } from '../modal'
 
 const mod = {

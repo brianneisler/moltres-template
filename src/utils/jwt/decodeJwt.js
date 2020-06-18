@@ -1,5 +1,5 @@
 import { base64UrlDecode } from '../base64'
-import { split } from '../data'
+import { split } from '../lang'
 import { verify } from '../crypto'
 
 /**

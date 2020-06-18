@@ -1,5 +1,5 @@
-import { compose, shallowEquals } from '../../../utils/data'
-import { invariant } from '../../../utils/lang'
+import { compose, shallowEquals } from '../../../utils/lang'
+import { invariant } from '../../../utils/redux'
 import { lifecycle, setDisplayName, setPropTypes } from '../../../utils/react'
 import ActivityIndicator from '../ActivityIndicator'
 import PropTypes from 'prop-types'

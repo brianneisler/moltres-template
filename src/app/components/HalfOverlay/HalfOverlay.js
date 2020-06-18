@@ -1,6 +1,6 @@
 import { Colors, Constants, Styles } from '../../styles'
 import { Easing, StyleSheet } from 'react-native'
-import { compose, noop } from '../../../utils/data'
+import { compose, noop } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

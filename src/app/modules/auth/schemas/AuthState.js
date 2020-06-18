@@ -1,6 +1,6 @@
 import { AuthState } from '../../../../constants'
 import { String } from '../../../../core'
-import { values } from '../../../../utils/data'
+import { values } from '../../../../utils/lang'
 
 const AuthStateSchema = {
   name: 'auth.AuthState',

@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 import { DimensionsChangedAction } from './schemas'
-import { fork, handleActions } from '../../../utils/lang'
-import { merge } from '../../../utils/data'
+import { fork, handleActions } from '../../../utils/redux'
+import { merge } from '../../../utils/lang'
 import { monitorDimensions } from './util'
 
 const module = {

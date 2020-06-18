@@ -1,4 +1,4 @@
-import { curry } from '../../../../utils/data'
+import { curry } from '../../../../utils/lang'
 import selectCurrentUser from './selectCurrentUser'
 
 const selectIsCurrentUser = curry((userId, state) => {

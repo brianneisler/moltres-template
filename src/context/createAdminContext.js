@@ -9,8 +9,8 @@ import {
   initializeStorageEmulator,
   initializeTestAdminApp
 } from '../utils/firebase'
-import { invariant } from '../utils/lang'
-import { isObject, uuidv4 } from '../utils/data'
+import { invariant } from '../utils/redux'
+import { isObject, uuidv4 } from '../utils/lang'
 import { isTestAppConfigured } from '../utils/config'
 import createSystem from './createSystem'
 

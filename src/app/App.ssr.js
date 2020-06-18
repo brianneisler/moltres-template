@@ -1,5 +1,5 @@
 import { ConnectedRouter, MetaTagsContext, Provider } from './components'
-import { compose } from '../utils/data'
+import { compose } from '../utils/lang'
 import { setPropTypes, storeShape, withContext } from '../utils/react'
 import Main from './Main'
 import PropTypes from 'prop-types'

@@ -1,4 +1,4 @@
-import { forEach, getProp, map } from '../../../../../utils/data'
+import { forEach, getProp, map } from '../../../../../utils/lang'
 import { unexpected } from '../../../../../utils/error'
 
 const setupMiddleware = (store, app, order) => {

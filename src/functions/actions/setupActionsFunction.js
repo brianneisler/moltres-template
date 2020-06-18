@@ -1,6 +1,6 @@
 import * as modules from '../modules'
 import { User, findUserById } from '../../db/User'
-import { assoc, hasProp } from '../../utils/data'
+import { assoc, hasProp } from '../../utils/lang'
 import { generateEngine } from '../../core'
 import { processAction, rejectAction, resolveAction } from '../../db/Action'
 import setupFunctionContexts from '../setupFunctionContexts'

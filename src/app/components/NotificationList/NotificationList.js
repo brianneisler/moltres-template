@@ -1,4 +1,4 @@
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import { setDisplayName, setPropTypes } from '../../../utils/react'
 import NotificationView from '../NotificationView'
 import PaginatedQueryView from '../PaginatedQueryView'

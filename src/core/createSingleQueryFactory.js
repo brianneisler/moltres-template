@@ -8,8 +8,8 @@ import {
   isObject,
   isString,
   select
-} from '../utils/data'
-import { call, invariant } from '../utils/lang'
+} from '../utils/lang'
+import { call, invariant } from '../utils/redux'
 import createFactory from './createFactory'
 import isQuery from './isQuery'
 import monitorQuery from './monitorQuery'

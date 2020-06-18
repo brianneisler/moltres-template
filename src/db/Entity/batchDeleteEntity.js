@@ -1,6 +1,6 @@
 import { DELETE } from '../../constants/EntityChangeType'
 import { batchDeleteDocument, batchDeleteIndexes } from '../../utils/db'
-import { curry } from '../../utils/data'
+import { curry } from '../../utils/lang'
 import { entityChanged } from './actions'
 import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 

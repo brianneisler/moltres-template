@@ -1,6 +1,6 @@
 import { AppState } from 'react-native'
-import { assoc } from '../../../utils/data'
-import { fork, handleActions, put } from '../../../utils/lang'
+import { assoc } from '../../../utils/lang'
+import { fork, handleActions, put } from '../../../utils/redux'
 import { monitorAppStateChannel } from './util'
 import { setAppState } from './actions'
 

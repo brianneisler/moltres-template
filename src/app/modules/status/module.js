@@ -10,7 +10,7 @@ import {
   sort,
   values,
   wait
-} from '../../../utils/data'
+} from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -18,7 +18,7 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import selectStatusInstances from './selectStatusInstances'
 
 const refreshCurrentStatus = function* () {

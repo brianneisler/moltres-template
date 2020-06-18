@@ -1,4 +1,4 @@
-import { all, isString } from '../../../utils/data'
+import { all, isString } from '../../../utils/lang'
 import { expected } from '../../../utils/error'
 import { getPhoneNumberById } from '../../../db/PhoneNumber'
 import { getSMSChannelById } from '../../../db/SMSChannel'

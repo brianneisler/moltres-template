@@ -1,6 +1,6 @@
 import * as actions from './actions'
-import { assoc, compose } from '../../../utils/data'
-import { call, fork, handleAction, handleActions } from '../../../utils/lang'
+import { assoc, compose } from '../../../utils/lang'
+import { call, fork, handleAction, handleActions } from '../../../utils/redux'
 import { watchCurrentUser } from '../auth'
 import { withConfig, withContext } from '../../../core'
 import queryAndWatchCurrentUserRole from './queryAndWatchCurrentUserRole'

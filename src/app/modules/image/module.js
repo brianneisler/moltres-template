@@ -1,5 +1,5 @@
-import { assocPath } from '../../../utils/data'
-import { handleActions } from '../../../utils/lang'
+import { assocPath } from '../../../utils/lang'
+import { handleActions } from '../../../utils/redux'
 import { setImageSizes } from './actions'
 
 const mod = {

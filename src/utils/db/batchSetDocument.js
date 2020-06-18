@@ -1,4 +1,4 @@
-import { curry } from '../data'
+import { curry } from '../lang'
 import addTimestamps from './addTimestamps'
 import addUpdatedAtTimestamp from './addUpdatedAtTimestamp'
 import cleanseData from './cleanseData'

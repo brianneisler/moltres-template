@@ -1,6 +1,6 @@
 import { PageContent } from './schemas'
 import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/data'
+import { curry, isUndefined } from '../../utils/lang'
 
 const queryPageContents = curry((context, { code }, queryOptions) =>
   buildQuery(

@@ -1,8 +1,8 @@
 import { ACCESS_DENIED, NOT_FOUND } from '../constants/Code'
-import { call, invariant, spawn } from '../utils/lang'
+import { call, invariant, spawn } from '../utils/redux'
 import { expected } from '../utils/error'
 import { formatSnapshot } from '../utils/db'
-import { isObject, isPropStore } from '../utils/data'
+import { isObject, isPropStore } from '../utils/lang'
 import isQuery from './isQuery'
 import monitorQueryChannel from './monitorQueryChannel'
 

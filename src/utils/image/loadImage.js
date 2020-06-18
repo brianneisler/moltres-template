@@ -1,7 +1,7 @@
 import { loadImage as canvasLoadImage } from 'canvas'
-import { invariant } from '../lang'
+import { invariant } from '../redux'
 import { isBuffer } from '../buffer'
-import { isString } from '../data'
+import { isString } from '../lang'
 
 const loadImage = async (imageSrc) => {
   invariant(

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setModal = createAction('MODAL:SET_MODAL', (name, instance) => ({
   instance,

@@ -1,6 +1,6 @@
 import { Code, StatusCode } from '../../../constants'
 import { UserRegisteredAction } from '../../../service/auth/schemas'
-import { assoc, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/lang'
 import { asyncHandler } from '../../../utils/express'
 import { createCustomToken } from '../../../utils/auth'
 import {
@@ -16,7 +16,7 @@ import {
   generateUserAndSMSChannel
 } from '../../../service/sms'
 import { getPhoneNumberById } from '../../../db/PhoneNumber'
-import { handleAction, takeEvery } from '../../../utils/lang'
+import { handleAction, takeEvery } from '../../../utils/redux'
 import { nowTimestamp } from '../../../utils/db'
 import { parseDuration } from '../../../utils/time'
 import { randomSMSCode, sendSMSChallenge } from './util'

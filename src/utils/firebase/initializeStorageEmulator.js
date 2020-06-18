@@ -1,4 +1,4 @@
-import { assoc, getProp } from '../data'
+import { assoc, getProp } from '../lang'
 import { bufferToStream, createBuffer } from '../buffer'
 
 const createFile = () => {

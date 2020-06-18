@@ -1,5 +1,5 @@
 import { ChannelType, NotificationSendState } from '../../../../constants'
-import { call } from '../../../../utils/lang'
+import { call } from '../../../../utils/redux'
 import { createError } from '../../../../db/Error'
 import {
   createNotificationSend,

@@ -1,4 +1,4 @@
-import { map } from '../../utils/data'
+import { map } from '../../utils/lang'
 import { props } from 'bluebird'
 import findUserPhoneNumbersByUserId from './findUserPhoneNumbersByUserId'
 import getPhoneNumberById from '../PhoneNumber/getPhoneNumberById'

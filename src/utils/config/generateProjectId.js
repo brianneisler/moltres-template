@@ -1,5 +1,5 @@
-import { invariant } from '../lang'
-import { slice } from '../data'
+import { invariant } from '../redux'
+import { slice } from '../lang'
 
 const generateProjectId = (config = {}) => {
   if (config.test) {

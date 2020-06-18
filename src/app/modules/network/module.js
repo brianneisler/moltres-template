@@ -1,12 +1,12 @@
 import { WARN } from '../../../constants/StatusLevel'
-import { assoc } from '../../../utils/data'
+import { assoc } from '../../../utils/lang'
 import {
   fork,
   handleAction,
   handleActions,
   put,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { getContext } from '../../../core'
 import { getNetworkInformation } from '../../../utils/web'
 import { monitorNetworkInformationChannel } from './util'

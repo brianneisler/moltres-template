@@ -1,7 +1,7 @@
 import * as sms from '../notifications/sms'
 import { createAdminContext, createContext } from '../context'
 import { signInWithIdToken } from '../utils/auth'
-import { uuidv4, weakMemoize } from '../utils/data'
+import { uuidv4, weakMemoize } from '../utils/lang'
 
 // NOTE BRN: We memoize this function so that when used to build the contexts on
 // backend invocations, we always get the same context back after the first invocation

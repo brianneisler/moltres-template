@@ -11,7 +11,7 @@ import {
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { buildLocation, buildURL, parseSearch } from '../../../utils/url'
-import { compose, getProp } from '../../../utils/data'
+import { compose, getProp } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

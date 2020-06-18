@@ -7,7 +7,7 @@ import {
   prepend,
   reduce,
   zip
-} from '../data'
+} from '../lang'
 import collection from './collection'
 
 const getSchemas = (Schema, schemas = []) => {

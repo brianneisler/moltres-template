@@ -1,7 +1,7 @@
 import { ImageView, Link, MetaTags, Text, View } from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

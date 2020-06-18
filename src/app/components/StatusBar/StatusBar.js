@@ -1,7 +1,7 @@
 import { Colors, Styles } from '../../styles'
 import { Easing, StyleSheet } from 'react-native'
 import { StatusLevel } from '../../../constants'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

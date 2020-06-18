@@ -1,11 +1,11 @@
-import { assocPath, createPath, dissocPath, getProp } from '../../../utils/data'
+import { assocPath, createPath, dissocPath, getProp } from '../../../utils/lang'
 import {
   call,
   handleAction,
   handleActions,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import {
   clearQueryAction,
   nextPageAction,

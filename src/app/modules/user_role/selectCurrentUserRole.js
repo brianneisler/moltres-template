@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../utils/data'
+import { createSelector, select } from '../../../utils/lang'
 
 const selectCurrentUserRole = select(
   createSelector('user_role.currentUserRole')

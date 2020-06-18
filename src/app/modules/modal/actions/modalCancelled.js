@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const modalCancelled = createAction('MODAL:CANCELLED', (name) => ({
   name

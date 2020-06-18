@@ -1,4 +1,4 @@
-import { map, values } from '../../../../utils/data'
+import { map, values } from '../../../../utils/lang'
 import matchCommand from './matchCommand'
 
 const executeCommands = async (context, data) =>

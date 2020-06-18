@@ -1,4 +1,4 @@
-import { last, map } from '../data'
+import { last, map } from '../lang'
 
 const nextPage = async (builder, { cursor, limit }) => {
   const ref = builder({

@@ -1,4 +1,4 @@
-import { isNil, isString } from '../../utils/data'
+import { isNil, isString } from '../../utils/lang'
 import findPhoneNumberClaimByPhoneNumberId from './findPhoneNumberClaimByPhoneNumberId'
 import findPhoneNumberIdByIndexPhoneNumberHash from '../PhoneNumber/findPhoneNumberIdByIndexPhoneNumberHash'
 import formatPhoneNumber from '../PhoneNumber/formatPhoneNumber'

@@ -1,4 +1,4 @@
-import { assoc, curry, forEach, hasProp, pick, reduce } from '../data'
+import { assoc, curry, forEach, hasProp, pick, reduce } from '../lang'
 import getOutNodes from './getOutNodes'
 import isGraph from './isGraph'
 

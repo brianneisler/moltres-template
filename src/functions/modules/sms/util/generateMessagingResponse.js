@@ -1,4 +1,4 @@
-import { forEach } from '../../../../utils/data'
+import { forEach } from '../../../../utils/lang'
 import twilio from 'twilio'
 
 const { twiml } = twilio

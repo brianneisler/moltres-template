@@ -1,4 +1,4 @@
-import { uuidv4 } from '../utils/data'
+import { uuidv4 } from '../utils/lang'
 import generateAdminConfig from '../utils/config/generateAdminConfig'
 import loadEnv from '../utils/config/loadEnv'
 

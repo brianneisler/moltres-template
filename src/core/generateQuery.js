@@ -1,4 +1,4 @@
-import { call, put, select } from '../utils/lang'
+import { call, put, select } from '../utils/redux'
 import { selectQuery } from './selectors'
 import { setQueryAction } from './actions'
 import createQueryState from './createQueryState'

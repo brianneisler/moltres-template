@@ -1,7 +1,7 @@
 import { ACTION_SHEET } from '../../../constants/Modal'
 import { Colors, Constants, Styles } from '../../styles'
 import { Easing, InteractionManager, StyleSheet } from 'react-native'
-import { compose, isUndefined } from '../../../utils/data'
+import { compose, isUndefined } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

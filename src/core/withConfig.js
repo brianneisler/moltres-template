@@ -4,7 +4,7 @@ import {
   isArray,
   isString,
   resolveToGenerator
-} from '../utils/data'
+} from '../utils/lang'
 import createFactory from './createFactory'
 import getConfig from './getConfig'
 

@@ -1,4 +1,4 @@
-import { assoc, hasProp } from '../data'
+import { assoc, hasProp } from '../lang'
 
 const addQueryObserver = (observers, key, query, observer) => {
   if (hasProp(key, observers)) {

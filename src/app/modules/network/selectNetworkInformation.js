@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../utils/data'
+import { createSelector, select } from '../../../utils/lang'
 
 const selectNetworkInformation = select(createSelector('network.information'))
 

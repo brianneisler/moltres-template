@@ -8,7 +8,7 @@ import {
   slidingBuffer,
   spawn,
   take
-} from '../utils/lang'
+} from '../utils/redux'
 import {
   createPath,
   equals,
@@ -17,7 +17,7 @@ import {
   isObject,
   isString,
   uuidv4
-} from '../utils/data'
+} from '../utils/lang'
 import addQueryWatcher from './addQueryWatcher'
 import addQueryWatcherTask from './addQueryWatcherTask'
 import assocStatePath from './assocStatePath'

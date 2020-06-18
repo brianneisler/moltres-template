@@ -1,4 +1,4 @@
-import { reduce } from '../data'
+import { reduce } from '../lang'
 
 const keyValuesById = (vals) =>
   reduce(

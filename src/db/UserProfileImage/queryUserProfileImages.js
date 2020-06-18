@@ -1,6 +1,6 @@
 import { UserProfileImage } from './schemas'
 import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/data'
+import { curry, isUndefined } from '../../utils/lang'
 
 const queryUserProfileImages = curry(
   (context, { imageId, userId }, queryOptions) =>

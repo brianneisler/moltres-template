@@ -1,5 +1,5 @@
 import { base64UrlEncode } from '../base64'
-import { join } from '../data'
+import { join } from '../lang'
 import { sign } from '../crypto'
 
 /**

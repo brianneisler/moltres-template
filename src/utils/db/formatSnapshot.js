@@ -1,4 +1,4 @@
-import { assoc, find, reduce } from '../data'
+import { assoc, find, reduce } from '../lang'
 import formatDocument from './formatDocument'
 
 const formatSnapshotDocuments = (snapshot, options) =>

@@ -1,6 +1,6 @@
 import { Colors, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
-import { compose, getPath } from '../../../utils/data'
+import { compose, getPath } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

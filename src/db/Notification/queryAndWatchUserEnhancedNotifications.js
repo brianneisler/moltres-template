@@ -1,6 +1,6 @@
-import { call, invariant } from '../../utils/lang'
+import { call, invariant } from '../../utils/redux'
 import { factoryAndWatchQuery } from '../../core'
-import { isObject } from '../../utils/data'
+import { isObject } from '../../utils/lang'
 import enhanceNotification from './enhanceNotification'
 import queryNotifications from './queryNotifications'
 

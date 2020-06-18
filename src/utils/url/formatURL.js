@@ -1,5 +1,5 @@
 import { format } from 'url'
-import { isFunction } from '../data'
+import { isFunction } from '../lang'
 
 const formatURL = (value) => {
   if (isFunction(value)) {

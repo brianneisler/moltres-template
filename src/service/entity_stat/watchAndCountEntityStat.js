@@ -1,7 +1,7 @@
 import { EntityChangeType } from '../../constants'
-import { compose, getProp } from '../../utils/data'
+import { compose, getProp } from '../../utils/lang'
 import { decrementEntityStat, incrementEntityStat } from '../../db/EntityStats'
-import { handleAction } from '../../utils/lang'
+import { handleAction } from '../../utils/redux'
 import { takeEveryEntityChanged } from '../../db/Entity'
 import { withConfig, withContext } from '../../core'
 

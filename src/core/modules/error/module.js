@@ -1,11 +1,11 @@
 import { UncaughtExceptionAction } from '../../schemas'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   fork,
   handleAction,
   handleActions,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { monitorUnhandledRejection } from './util'
 import withConfig from '../../withConfig'
 import withContext from '../../withContext'

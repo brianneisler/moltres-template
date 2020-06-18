@@ -9,7 +9,7 @@ import {
   reduceReducers,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import {
   assoc,
   assocPath,
@@ -22,7 +22,7 @@ import {
   map,
   pipe,
   reduceRight
-} from '../../../utils/data'
+} from '../../../utils/lang'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { expected } from '../../../utils/error'
 import { filterRoutes } from './util'

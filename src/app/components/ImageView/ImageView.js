@@ -1,6 +1,6 @@
 import { Colors, Styles } from '../../styles'
 import { StyleSheet } from 'react-native'
-import { compose, noop } from '../../../utils/data'
+import { compose, noop } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,

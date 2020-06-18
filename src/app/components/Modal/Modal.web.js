@@ -1,6 +1,6 @@
 import { Colors } from '../../styles'
 import { Dimensions, Easing, StyleSheet } from 'react-native'
-import { compose, isFunction, noop } from '../../../utils/data'
+import { compose, isFunction, noop } from '../../../utils/lang'
 import {
   defaultProps,
   lifecycle,

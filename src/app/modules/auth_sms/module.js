@@ -4,7 +4,7 @@ import {
   selectAfterLogin,
   signInWithIdTokenAction
 } from '../auth'
-import { assoc, compose } from '../../../utils/data'
+import { assoc, compose } from '../../../utils/lang'
 import { buildLocation } from '../../../utils/url'
 import {
   call,
@@ -14,7 +14,7 @@ import {
   select,
   take,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { requestAuthSMSChallenge, requestAuthWithSMSCode } from './sdk'
 import { withConfig, withContext } from '../../../core'
 import selectAuthSMSChallengeId from './selectAuthSMSChallengeId'

@@ -1,4 +1,4 @@
-import { curry, getPath, split } from '../../utils/data'
+import { curry, getPath, split } from '../../utils/lang'
 
 const renderNotification = curry((context, channelType, notification) => {
   const render = getPath(

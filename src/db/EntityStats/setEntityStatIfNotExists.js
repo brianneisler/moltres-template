@@ -4,7 +4,7 @@ import {
   mergeDeepRight,
   random,
   reduce
-} from '../../utils/data'
+} from '../../utils/lang'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import queryStatsShards from './queryStatsShards'
 import refEntityStatsById from './refEntityStatsById'

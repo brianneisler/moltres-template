@@ -1,5 +1,5 @@
 import { buildQuery } from '../../utils/db'
-import { curry, forEach, isUndefined } from '../../utils/data'
+import { curry, forEach, isUndefined } from '../../utils/lang'
 
 const queryEntities = curry((Schema, context, data, queryOptions) =>
   buildQuery(

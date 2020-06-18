@@ -1,4 +1,4 @@
-import { isFunction, isObject } from '../utils/data'
+import { isFunction, isObject } from '../utils/lang'
 
 const isQuery = (value) => isObject(value) && isFunction(value.onSnapshot)
 

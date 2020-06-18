@@ -1,5 +1,5 @@
 import { StatusCode } from '../../constants'
-import { all } from '../../utils/data'
+import { all } from '../../utils/lang'
 import {
   batchCreatePhoneNumber,
   findPhoneNumberByPhoneNumber

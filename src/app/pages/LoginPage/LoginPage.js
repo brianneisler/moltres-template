@@ -11,7 +11,7 @@ import { Styles } from '../../styles'
 import { SubmissionError, validatePhoneNumber } from '../../../utils/form'
 import { actions as authSMSActions } from '../../modules/auth_sms'
 import { buildLocation } from '../../../utils/url'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

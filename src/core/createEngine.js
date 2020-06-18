@@ -1,5 +1,5 @@
 import * as coreModules from './modules'
-import { forEachObjIndexed, getProp, map, select, values } from '../utils/data'
+import { forEachObjIndexed, getProp, map, select, values } from '../utils/lang'
 import { selectConfig, selectContext } from './selectors'
 import { setContextAction } from './actions'
 import _finally from './finally'

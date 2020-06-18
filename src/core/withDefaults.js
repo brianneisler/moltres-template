@@ -1,4 +1,4 @@
-import { merge } from '../utils/data'
+import { merge } from '../utils/lang'
 import createFactory from './createFactory'
 
 const withDefaults = (defaultProps) => (factory) =>

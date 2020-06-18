@@ -1,6 +1,6 @@
 import { EntityStats } from './schemas'
 import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/data'
+import { curry, isUndefined } from '../../utils/lang'
 
 const queryEntityStats = curry(
   (context, { entityId, entityType }, queryOptions) =>

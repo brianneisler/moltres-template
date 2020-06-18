@@ -1,4 +1,4 @@
-import { all } from '../../utils/data'
+import { all } from '../../utils/lang'
 import { buildBatch, commitBatch } from '../../utils/db'
 import batchDeletePhoneNumber from '../PhoneNumber/batchDeletePhoneNumber'
 import batchDeleteUserPhoneNumber from './batchDeleteUserPhoneNumber'

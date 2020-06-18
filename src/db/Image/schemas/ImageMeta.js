@@ -1,5 +1,5 @@
 import { AllowedImageType } from '../../../constants'
-import { values } from '../../../utils/data'
+import { values } from '../../../utils/lang'
 import Joi from '@hapi/joi'
 
 const ImageMeta = Joi.object().keys({

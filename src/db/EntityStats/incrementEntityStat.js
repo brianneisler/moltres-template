@@ -1,4 +1,4 @@
-import { random, toString } from '../../utils/data'
+import { random, toString } from '../../utils/lang'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import updateStatsShard from './updateStatsShard'
 

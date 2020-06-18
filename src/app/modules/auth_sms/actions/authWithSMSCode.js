@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const authWithSMSCode = createAction(
   'AUTH_WITH_SMS_CODE',

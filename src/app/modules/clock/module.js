@@ -1,5 +1,5 @@
-import { assoc } from '../../../utils/data'
-import { fork, handleActions, put } from '../../../utils/lang'
+import { assoc } from '../../../utils/lang'
+import { fork, handleActions, put } from '../../../utils/redux'
 import { monitorClockChannel } from './util'
 import { setCurrentClock } from './actions'
 

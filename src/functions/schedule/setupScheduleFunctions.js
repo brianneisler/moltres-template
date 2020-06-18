@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as modules from '../modules'
-import { assoc, isFunction, keys, reduce } from '../../utils/data'
+import { assoc, isFunction, keys, reduce } from '../../utils/lang'
 import { camelCase } from '../../utils/string'
 import setupFunctionContexts from '../setupFunctionContexts'
 

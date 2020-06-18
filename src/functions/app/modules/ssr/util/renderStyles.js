@@ -1,4 +1,4 @@
-import { join } from '../../../../../utils/data'
+import { join } from '../../../../../utils/lang'
 
 const renderStyles = (context, styles) => join('\n', styles)
 

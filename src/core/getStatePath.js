@@ -1,5 +1,5 @@
-import { getPath } from '../utils/data'
-import { select } from '../utils/lang'
+import { getPath } from '../utils/lang'
+import { select } from '../utils/redux'
 
 const getStatePath = function* (path) {
   return yield select((state) => getPath(path, state))

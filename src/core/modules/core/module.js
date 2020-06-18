@@ -1,10 +1,10 @@
-import { call, handleActions, take } from '../../../utils/lang'
+import { call, handleActions, take } from '../../../utils/redux'
 import {
   createAsyncMiddleware,
   createRootSaga,
   createSagaMiddleware
 } from './util'
-import { deferredPromise } from '../../../utils/data'
+import { deferredPromise } from '../../../utils/lang'
 import { runSagaAction } from './actions'
 import { uncaughtExceptionAction } from '../error/actions'
 

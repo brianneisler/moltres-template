@@ -1,5 +1,5 @@
 import { Colors, Styles } from '../../styles'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import { defaultProps, setDisplayName } from '../../../utils/react'
 import Field from '../Field'
 import React from 'react'

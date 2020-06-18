@@ -1,5 +1,5 @@
 import { AuthStateChangedAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const authStateChangedAction = actionBuilder({
   Schema: AuthStateChangedAction

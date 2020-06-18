@@ -5,8 +5,8 @@ import {
   isObject,
   isSelector,
   isString
-} from '../utils/data'
-import { invariant } from '../utils/lang'
+} from '../utils/lang'
+import { invariant } from '../utils/redux'
 import createSingleQueryFactory from './createSingleQueryFactory'
 import createWildcardQueryFactory from './createWildcardQueryFactory'
 

@@ -1,5 +1,5 @@
 import { EntityStats } from './schemas'
-import { assoc, getProp, hasProp, omit } from '../../utils/data'
+import { assoc, getProp, hasProp, omit } from '../../utils/lang'
 import { batchUpdateEntity } from '../Entity'
 import batchUpdateStatsShard from './batchUpdateStatsShard'
 

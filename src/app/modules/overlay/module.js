@@ -1,5 +1,5 @@
 import * as actions from './actions'
-import { assocPath, compose, getPath, getProp, omit } from '../../../utils/data'
+import { assocPath, compose, getPath, getProp, omit } from '../../../utils/lang'
 import { buildLocation, parseLocation } from '../../../utils/url'
 import {
   handleAction,
@@ -7,7 +7,7 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import { actions as modalActions } from '../modal'
 import { pushRouteAction, selectRouterLocation } from '../router'
 import { withConfig, withContext } from '../../../core'

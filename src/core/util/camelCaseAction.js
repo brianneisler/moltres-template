@@ -1,5 +1,5 @@
 import { camelCase } from '../../utils/string'
-import { splitMapJoin } from '../../utils/data'
+import { splitMapJoin } from '../../utils/lang'
 
 const splitMapJoinCamelCase = splitMapJoin(camelCase)
 

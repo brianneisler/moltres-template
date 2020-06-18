@@ -1,5 +1,5 @@
-import { invariant } from '../lang'
-import { isObject, isString } from '../data'
+import { invariant } from '../redux'
+import { isObject, isString } from '../lang'
 
 const initializeAdminApp = ({ config, firebase, namespace, testUser }) => {
   invariant(isString(namespace), 'namespace must be a defined String')

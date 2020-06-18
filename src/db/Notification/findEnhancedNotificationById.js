@@ -1,5 +1,5 @@
-import { call, invariant, select } from '../../utils/lang'
-import { isString } from '../../utils/data'
+import { call, invariant, select } from '../../utils/redux'
+import { isString } from '../../utils/lang'
 import { removeQueryWatcher, selectQueryResults } from '../../core'
 import queryAndWatchNotification from './queryAndWatchNotification'
 

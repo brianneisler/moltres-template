@@ -1,5 +1,5 @@
 import { User } from '../../../db/User'
-import { compose, curry, weakMemoize } from '../../../utils/data'
+import { compose, curry, weakMemoize } from '../../../utils/lang'
 import { withEntityStats } from '../entity_stats'
 
 const enhanceUserProfile = curry(

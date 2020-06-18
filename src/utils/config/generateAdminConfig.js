@@ -1,4 +1,4 @@
-import { invariant } from '../lang'
+import { invariant } from '../redux'
 import generateConfig from './generateConfig'
 import generateProjectId from './generateProjectId'
 

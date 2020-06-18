@@ -9,8 +9,8 @@ import {
   take,
   takeEvery,
   takeLatest
-} from '../../../utils/lang'
-import { assocPath, map, values } from '../../../utils/data'
+} from '../../../utils/redux'
+import { assocPath, map, values } from '../../../utils/lang'
 import {
   getClientHeight,
   getScrollHeight,

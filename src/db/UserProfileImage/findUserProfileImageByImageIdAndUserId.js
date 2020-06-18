@@ -1,4 +1,4 @@
-import { assoc } from '../../utils/data'
+import { assoc } from '../../utils/lang'
 import { findOneFromQuery } from '../../utils/db'
 import queryUserProfileImages from './queryUserProfileImages'
 

@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const requestCancelModal = createAction('MODAL:REQUEST_CANCEL', (name) => ({
   name

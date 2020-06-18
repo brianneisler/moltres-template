@@ -4,7 +4,7 @@ import {
   map,
   reduce,
   values
-} from '../../../../../utils/data'
+} from '../../../../../utils/lang'
 import createScript from './createScript'
 
 const loadEarlyScripts = async (context, store) =>

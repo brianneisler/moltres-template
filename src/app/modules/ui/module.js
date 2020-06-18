@@ -1,5 +1,5 @@
-import { assoc } from '../../../utils/data'
-import { handleActions, select, take } from '../../../utils/lang'
+import { assoc } from '../../../utils/lang'
+import { handleActions, select, take } from '../../../utils/redux'
 import { uiDeinitialized, uiInitialized } from './actions'
 import selectUIInitialized from './selectUIInitialized'
 

@@ -1,4 +1,4 @@
-import { cleanse, isEmpty, isFunction, isObject, isString, omit } from '../data'
+import { cleanse, isEmpty, isFunction, isObject, isString, omit } from '../lang'
 import formatSearch from './formatSearch'
 import parseURL from './parseURL'
 

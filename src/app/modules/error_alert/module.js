@@ -1,5 +1,5 @@
 import { UncaughtExceptionAction } from '../../../core'
-import { put, takeEvery } from '../../../utils/lang'
+import { put, takeEvery } from '../../../utils/redux'
 import { showAlertWithOptions } from '../alert/actions'
 
 const mod = {

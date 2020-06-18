@@ -1,4 +1,4 @@
-import { curry } from '../../utils/data'
+import { curry } from '../../utils/lang'
 import { refDocumentById } from '../../utils/db'
 import createEntity from './createEntity'
 import updateEntity from './updateEntity'

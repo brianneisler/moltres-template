@@ -35,7 +35,7 @@ import {
 } from './pages'
 import { InteractionManager, StyleSheet } from 'react-native'
 import { Scroll } from '../constants'
-import { compose } from '../utils/data'
+import { compose } from '../utils/lang'
 import {
   connect,
   defaultProps,

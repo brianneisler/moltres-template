@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../utils/data'
+import { curry, getPath } from '../../../utils/lang'
 
 const selectScrollTargetDistanceNearBottom = curry((name, distance, state) => {
   return (

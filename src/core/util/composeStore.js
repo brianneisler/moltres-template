@@ -1,4 +1,4 @@
-import { compose } from '../../utils/data'
+import { compose } from '../../utils/lang'
 import { createStore } from 'redux'
 
 const composeStore = (reducer, enhancers, initialState) =>

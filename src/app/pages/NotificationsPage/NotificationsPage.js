@@ -1,6 +1,6 @@
 import { Fragment, MetaTags, NotificationList, View } from '../../components'
 import { Styles } from '../../styles'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

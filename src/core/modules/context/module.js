@@ -6,8 +6,8 @@ import {
   isObject,
   isString,
   isUndefined
-} from '../../../utils/data'
-import { handleActions } from '../../../utils/lang'
+} from '../../../utils/lang'
+import { handleActions } from '../../../utils/redux'
 import { setContextAction } from './actions'
 
 const mod = {

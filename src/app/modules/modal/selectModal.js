@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../utils/data'
+import { curry, getPath } from '../../../utils/lang'
 
 const selectModal = curry((name, state) =>
   getPath(['modal', 'instances', name], state)

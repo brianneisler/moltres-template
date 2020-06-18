@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const setOverlay = createAction('OVERLAY:SET_OVERLAY', (name, instance) => ({
   instance,

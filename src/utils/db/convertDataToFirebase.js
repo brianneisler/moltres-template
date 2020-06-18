@@ -6,7 +6,7 @@ import {
   isObject,
   isPlainObject,
   map
-} from '../data'
+} from '../lang'
 import fromDate from './fromDate'
 
 const convertDataToFirebase = curry((context, data) =>

@@ -6,7 +6,7 @@ import {
   actions as authSMSActions,
   selectAuthSMSChallengeId
 } from '../../modules/auth_sms'
-import { compose } from '../../../utils/data'
+import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,

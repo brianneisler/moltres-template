@@ -1,4 +1,4 @@
-import { isEmpty, keys } from '../data'
+import { isEmpty, keys } from '../lang'
 import { resolve } from 'path'
 import loadDotEnv from './loadDotEnv'
 

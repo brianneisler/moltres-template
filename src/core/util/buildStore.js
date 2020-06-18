@@ -1,4 +1,4 @@
-import { assocPath, createPath, getPath, mergeRight } from '../../utils/data'
+import { assocPath, createPath, getPath, mergeRight } from '../../utils/lang'
 import combineReducers from './combineReducers'
 import composeStore from './composeStore'
 import filterEnhancers from './filterEnhancers'

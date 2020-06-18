@@ -1,6 +1,6 @@
 import { UserRole } from './schemas'
 import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/data'
+import { curry, isUndefined } from '../../utils/lang'
 
 const queryUserRoles = curry((context, { userId }, queryOptions) =>
   buildQuery(

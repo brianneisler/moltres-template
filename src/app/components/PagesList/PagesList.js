@@ -6,7 +6,7 @@ import {
   negate,
   shallowEquals,
   sortBy
-} from '../../../utils/data'
+} from '../../../utils/lang'
 import {
   defaultProps,
   flattenPages,
