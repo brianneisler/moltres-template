@@ -1,4 +1,4 @@
-import { Delimiter } from '../../constants'
+import { Delimiter } from './constants'
 import always from '../lang/always'
 import identity from '../lang/identity'
 import includes from '../lang/includes'
