@@ -4,7 +4,7 @@ import { Entity } from '../../Entity'
 const AccessToken = {
   collectionName: 'AccessTokens',
   name: 'AccessToken',
-  schema: Entity.keys({
+  schema: Entity.schema.keys({
     token: String.schema.guid({
       version: 'uuidv4'
     }),

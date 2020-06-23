@@ -13,6 +13,7 @@ import * as Namespace from './Namespace'
 import * as NotificationSendState from './NotificationSendState'
 import * as OSType from './OSType'
 import * as Overlay from './Overlay'
+import * as PageContentFormat from './PageContentFormat'
 import * as PlatformType from './PlatformType'
 import * as Regex from './Regex'
 import * as Scroll from './Scroll'
@@ -36,6 +37,7 @@ export {
   NotificationSendState,
   OSType,
   Overlay,
+  PageContentFormat,
   PlatformType,
   Regex,
   Scroll,

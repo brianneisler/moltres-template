@@ -4,7 +4,7 @@ import { String } from '../../../core/schemas'
 const Error = {
   collectionName: 'Errors',
   name: 'Error',
-  schema: Entity.keys({
+  schema: Entity.schema.keys({
     code: String.schema.allow(null).required(),
     message: String.schema.required(),
     source: String.schema.required(),

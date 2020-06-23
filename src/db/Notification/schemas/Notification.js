@@ -1,15 +1,14 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
+import { Id, Object, String } from '../../../core/schemas'
 
 const Notification = {
   collectionName: 'Notifications',
   name: 'Notification',
-  schema: Entity.keys({
-    meta: Joi.object().allow(null).required(),
-    readAt: Joi.object().allow(null).required(),
-    type: Joi.string().required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    meta: Object.schema.allow(null).required(),
+    readAt: Object.schema.allow(null).required(),
+    type: String.schema.required(),
+    userId: Id.schema.required()
   })
 }
 

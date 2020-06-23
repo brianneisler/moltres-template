@@ -1,12 +1,12 @@
 import { Action } from '../../../../db/Action'
-import Joi from '@hapi/joi'
+import { Integer, Object, String } from '../../../../core/schemas'
 
 const ResponseAction = {
   schema: Action.schema.keys({
-    payload: Joi.object().keys({
-      error: Joi.object(),
-      redirect: Joi.string(),
-      statusCode: Joi.number().integer().required()
+    payload: Object.schema.keys({
+      error: Object.schema,
+      redirect: String.schema,
+      statusCode: Integer.schema.required()
     })
   }),
   type: 'ROUTER:RESPONSE'

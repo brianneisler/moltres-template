@@ -1,13 +1,13 @@
 import { Action } from '../../../../db/Action'
-import Joi from '@hapi/joi'
+import { Object, String } from '../../../../core/schemas'
 
 const RegisterUserAction = {
   name: 'auth.RegisterUserAction',
   schema: Action.schema.keys({
-    payload: Joi.object()
+    payload: Object.schema
       .keys({
-        name: Joi.string().required(),
-        phoneNumber: Joi.string().required()
+        name: String.schema.required(),
+        phoneNumber: String.schema.required()
       })
       .required()
   })

@@ -13,7 +13,9 @@ const withDispatch = () => (BaseComponent) => {
     })
 
   if (process.env.NODE_ENV !== 'production') {
-    return setDisplayName(wrapDisplayName(BaseComponent, 'withDispatch'))(DispatchComponent)
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withDispatch'))(
+      DispatchComponent
+    )
   }
   return DispatchComponent
 }

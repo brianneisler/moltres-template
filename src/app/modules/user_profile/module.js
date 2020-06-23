@@ -1,20 +1,14 @@
 import * as actions from './actions'
+import { assoc, compose } from '../../../utils/lang'
 import {
-  all,
   call,
   fork,
   handleAction,
   handleActions,
   select,
-  spawn,
   takeEvery
 } from '../../../utils/redux'
-import { assoc, compose } from '../../../utils/lang'
 import { getUserById } from '../../../db/User'
-import { queryAndWatchCurrentUserFollow } from '../user_follow'
-import { queryAndWatchUserReactionEntityPages } from '../reaction'
-import { queryAndWatchUserWATPages } from '../wat'
-import { queryAndWatchUserWATThisPages } from '../wat_this'
 import { saveUserProfile } from '../../../db/UserProfile'
 import { selectIdToken, watchCurrentUser } from '../auth'
 import { uploadUserProfileImage } from './sdk'
@@ -51,80 +45,7 @@ const mod = {
       preload: enhance(function* (context, { first, match }) {
         if (first) {
           const { userId } = match.params
-          yield all([
-            call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function* (ctx, currentUser) {
-              if (currentUser) {
-                return yield call(
-                  queryAndWatchCurrentUserFollow,
-                  context,
-                  currentUser,
-                  userId
-                )
-              }
-            }),
-            call(queryAndWatchUserWATPages, context, userId)
-          ])
-        }
-      })
-    },
-    {
-      exact: true,
-      *handle(context, response, { match }) {
-        const { userId } = match.params
-        // NOTE BRN: This will throw an Expected error with a statusCode of 404
-        // if it cannot find the User
-        yield call(getUserById, context, userId)
-        return { statusCode: 200 }
-      },
-      path: '/user/:userId/images',
-      preload: enhance(function* (context, { first, match }) {
-        if (first) {
-          const { userId } = match.params
-          yield all([
-            call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function* (ctx, currentUser) {
-              if (currentUser) {
-                return yield call(
-                  queryAndWatchCurrentUserFollow,
-                  context,
-                  currentUser,
-                  userId
-                )
-              }
-            }),
-            call(queryAndWatchUserWATThisPages, context, userId)
-          ])
-        }
-      })
-    },
-    {
-      exact: true,
-      *handle(context, response, { match }) {
-        const { userId } = match.params
-        // NOTE BRN: This will throw an Expected error with a statusCode of 404
-        // if it cannot find the User
-        yield call(getUserById, context, userId)
-        return { statusCode: 200 }
-      },
-      path: '/user/:userId/reactions',
-      preload: enhance(function* (context, { first, match }) {
-        if (first) {
-          const { userId } = match.params
-          yield all([
-            call(queryAndWatchUserProfile, context, { userId }),
-            spawn(watchCurrentUser, function* (ctx, currentUser) {
-              if (currentUser) {
-                return yield call(
-                  queryAndWatchCurrentUserFollow,
-                  context,
-                  currentUser,
-                  userId
-                )
-              }
-            }),
-            call(queryAndWatchUserReactionEntityPages, context, userId)
-          ])
+          yield call(queryAndWatchUserProfile, context, { userId })
         }
       })
     }

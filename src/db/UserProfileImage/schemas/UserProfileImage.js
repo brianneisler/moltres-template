@@ -1,5 +1,5 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id } from '../../../core/schemas'
 
 // NOTE: These are used to track all user profile images the user has added. In
 // the event the user changes their profile image, this maintains a record of which
@@ -8,9 +8,9 @@ const UserProfileImage = {
   collectionName: 'UserProfileImages',
   indexes: [['userId', 'imageId']],
   name: 'UserProfileImage',
-  schema: Entity.keys({
-    imageId: id().required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    imageId: Id.schema.required(),
+    userId: Id.schema.required()
   })
 }
 

@@ -1,13 +1,13 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id } from '../../../core/schemas
 
 const PhoneNumberClaim = {
   collectionName: 'PhoneNumberClaims',
   indexes: [['phoneNumberId']],
   name: 'PhoneNumberClaim',
-  schema: Entity.keys({
-    phoneNumberId: id().required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    phoneNumberId: Id.schema.required(),
+    userId: Id.schema.required()
   })
 }
 

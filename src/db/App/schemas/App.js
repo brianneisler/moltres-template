@@ -4,7 +4,7 @@ import { String } from '../../../core/schemas'
 const App = {
   collectionName: 'Apps',
   name: 'App',
-  schema: Entity.keys({
+  schema: Entity.schema.keys({
     description: String.schema.required(),
     hostId: String.schema.required(),
     name: String.schema.required(),

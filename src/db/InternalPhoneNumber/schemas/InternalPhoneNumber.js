@@ -1,12 +1,12 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id } from '../../../core/schemas'
 
 const InternalPhoneNumber = {
   collectionName: 'InternalPhoneNumbers',
   idField: 'phoneNumberId',
   name: 'InternalPhoneNumber',
-  schema: Entity.keys({
-    phoneNumberId: id().required()
+  schema: Entity.schema.keys({
+    phoneNumberId: Id.schema.required()
   })
 }
 

@@ -1,14 +1,13 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
+import { Id, String } from '../../../core/schemas'
 
 const UserRole = {
   collectionName: 'UserRoles',
   idField: 'userId',
   name: 'UserRole',
-  schema: Entity.keys({
-    role: Joi.string().valid('admin').required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    role: String.schema.valid('admin').required(),
+    userId: Id.schema.required()
   })
 }
 

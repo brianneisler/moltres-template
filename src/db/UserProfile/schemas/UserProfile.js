@@ -1,18 +1,17 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
+import { Id, String } from '../../../core/schemas'
 
 const UserProfile = {
   collectionName: 'UserProfiles',
   idField: 'userId',
   name: 'UserProfile',
-  schema: Entity.keys({
-    bio: Joi.string(),
-    location: Joi.string(),
-    name: Joi.string().required(),
-    userId: id().required(),
-    userProfileImageId: id(),
-    website: Joi.string()
+  schema: Entity.schema.keys({
+    bio: String.schema,
+    location: String.schema,
+    name: String.schema.required(),
+    userId: Id.schema.required(),
+    userProfileImageId: Id.schema,
+    website: String.schema
   })
 }
 

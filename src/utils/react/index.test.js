@@ -16,6 +16,7 @@ describe('react index', () => {
       idsOfValues: expect.any(Function),
       keyValuesById: expect.any(Function),
       lifecycle: expect.any(Function),
+      memo: expect.any(Function),
       renderComponent: expect.any(Function),
       setDisplayName: expect.any(Function),
       setPropTypes: expect.any(Function),

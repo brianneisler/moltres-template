@@ -1,10 +1,10 @@
 import { Action } from '../../../../db/Action'
-import Joi from '@hapi/joi'
+import { Object } from '../../../../core/schemas'
 
 const SignOutAction = {
   name: 'auth.SignOutAction',
   schema: Action.schema.keys({
-    payload: Joi.object().allow(null).required()
+    payload: Object.schema.allow(null).required()
   })
 }
 

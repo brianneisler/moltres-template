@@ -1,38 +1,37 @@
+import { Array, Id, Integer, Object, String } from '../../../core/schemas'
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
 
 const SMSMessage = {
   collectionName: 'SMSMessages',
   idField: 'messageSid',
   name: 'SMSMessage',
-  schema: Entity.keys({
-    accountSid: Joi.string().allow(''),
-    apiVersion: Joi.string().allow(''),
-    body: Joi.string().allow(''),
-    channelContextId: id(),
-    from: Joi.string().allow(''),
-    fromCity: Joi.string().allow(''),
-    fromCountry: Joi.string().allow(''),
-    fromState: Joi.string().allow(''),
-    fromZip: Joi.string().allow(''),
-    media: Joi.array().items(
-      Joi.object().keys({
-        contentType: Joi.string().allow(''),
-        url: Joi.string().allow('')
+  schema: Entity.schema.keys({
+    accountSid: String.schema.allow(''),
+    apiVersion: String.schema.allow(''),
+    body: String.schema.allow(''),
+    channelContextId: Id.schema,
+    from: String.schema.allow(''),
+    fromCity: String.schema.allow(''),
+    fromCountry: String.schema.allow(''),
+    fromState: String.schema.allow(''),
+    fromZip: String.schema.allow(''),
+    media: Array.schema.items(
+      Object.schema.keys({
+        contentType: String.schema.allow(''),
+        url: String.schema.allow('')
       })
     ),
-    messageSid: Joi.string(),
-    numSegments: Joi.number().integer(),
-    smsChannelId: id().required(),
-    smsMessageSid: Joi.string().allow(''),
-    smsSid: Joi.string().allow(''),
-    smsStatus: Joi.string().allow(''),
-    to: Joi.string().allow(''),
-    toCity: Joi.string().allow(''),
-    toCountry: Joi.string().allow(''),
-    toState: Joi.string().allow(''),
-    toZip: Joi.string().allow('')
+    messageSid: String.schema,
+    numSegments: Integer.schema,
+    smsChannelId: Id.schema.required(),
+    smsMessageSid: String.schema.allow(''),
+    smsSid: String.schema.allow(''),
+    smsStatus: String.schema.allow(''),
+    to: String.schema.allow(''),
+    toCity: String.schema.allow(''),
+    toCountry: String.schema.allow(''),
+    toState: String.schema.allow(''),
+    toZip: String.schema.allow('')
   })
 }
 

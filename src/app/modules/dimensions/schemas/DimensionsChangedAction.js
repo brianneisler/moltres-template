@@ -1,10 +1,10 @@
 import { Action } from '../../../../db/Action'
+import { Object } from '../../../../core/schemas'
 import Dimensions from './Dimensions'
-import Joi from '@hapi/joi'
 
 const DimensionsChangedAction = {
   schema: Action.schema.keys({
-    payload: Joi.object()
+    payload: Object.schema
       .keys({
         screen: Dimensions.schema.required(),
         window: Dimensions.schema.required()

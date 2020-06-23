@@ -1,23 +1,20 @@
 import { Entity } from '../../Entity'
+import { Id, Object, String } from '../../../core/schemas'
 import { NotificationSendState } from '../../../constants'
-import { id } from '../../../utils/schema'
 import { values } from '../../../utils/lang'
-import Joi from '@hapi/joi'
 import Notification from '../../Notification/schemas/Notification'
 
 const NotificationSend = {
   collectionName: 'NotificationSends',
   name: 'NotificationSend',
   parentSchema: Notification,
-  schema: Entity.keys({
-    channels: Joi.object().required(),
-    errorId: id().allow(null).required(),
-    notificationId: id().required(),
-    sentAt: Joi.object().allow(null).required(),
-    state: Joi.string()
-      .valid(...values(NotificationSendState))
-      .required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    channels: Object.schema.required(),
+    errorId: Id.schema.allow(null).required(),
+    notificationId: Id.schema.required(),
+    sentAt: Object.schema.allow(null).required(),
+    state: String.schema.valid(...values(NotificationSendState)).required(),
+    userId: Id.schema.required()
   })
 }
 

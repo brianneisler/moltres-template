@@ -1,28 +1,28 @@
 import { Action } from '../../../../db/Action'
-import Joi from '@hapi/joi'
+import { Integer, Object, String } from '../../../../core/schemas'
 
 const StorageObjectFinalizeAction = {
   schema: Action.schema.keys({
-    payload: Joi.object().keys({
-      bucket: Joi.string().required(),
-      contentLanguage: Joi.string(),
-      contentType: Joi.string().required(),
-      crc32c: Joi.string().required(),
-      etag: Joi.string().required(),
-      generation: Joi.string().required(),
-      id: Joi.string().required(),
-      kind: Joi.string().required(),
-      md5Hash: Joi.string().required(),
-      mediaLink: Joi.string().required(),
-      metadata: Joi.object(),
-      metageneration: Joi.number().integer().required(),
-      name: Joi.string().required(),
-      selfLink: Joi.string().required(),
-      size: Joi.number().integer().required(),
-      storageClass: Joi.string().required(),
-      timeCreated: Joi.string().required(),
-      timeStorageClassUpdated: Joi.string().required(),
-      updated: Joi.string().required()
+    payload: Object.schema.keys({
+      bucket: String.schema.required(),
+      contentLanguage: String.schema,
+      contentType: String.schema.required(),
+      crc32c: String.schema.required(),
+      etag: String.schema.required(),
+      generation: String.schema.required(),
+      id: String.schema.required(),
+      kind: String.schema.required(),
+      md5Hash: String.schema.required(),
+      mediaLink: String.schema.required(),
+      metadata: Object.schema,
+      metageneration: Integer.schema.required(),
+      name: String.schema.required(),
+      selfLink: String.schema.required(),
+      size: Integer.schema.required(),
+      storageClass: String.schema.required(),
+      timeCreated: String.schema.required(),
+      timeStorageClassUpdated: String.schema.required(),
+      updated: String.schema.required()
     })
   }),
   type: 'STORAGE:OBJECT_FINALIZE'

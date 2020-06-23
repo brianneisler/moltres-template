@@ -4,11 +4,9 @@ import { String } from '../../../core/schemas'
 const Page = {
   collectionName: 'Pages',
   name: 'Page',
-  schema: Entity.keys({
-    content: String.schema.required(),
-    contentFormat: String.schema.allow('markdown').required(),
+  schema: Entity.schema.keys({
     description: String.schema.required(),
-    : String.schema.required()
+    path: String.schema.required()
   })
 }
 

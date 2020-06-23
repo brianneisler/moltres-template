@@ -6,6 +6,7 @@ import {
   connect,
   defaultProps,
   getStyleHeight,
+  memo,
   setDisplayName,
   setPropTypes,
   withActions,
@@ -220,7 +221,8 @@ const enhance = compose(
         requestCancelModal(name)
       }
     }
-  })
+  }),
+  memo
 )
 
 const Alert = enhance((props) => {

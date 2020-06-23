@@ -1,4 +1,5 @@
 export { default as Action } from './Action'
+export { default as Any } from './Any'
 export { default as Array } from './Array'
 export { default as Boolean } from './Boolean'
 export { default as Hex } from './Hex'

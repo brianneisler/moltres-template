@@ -4,7 +4,7 @@ import { Id, Object, String } from '../../../core/schemas'
 const File = {
   collectionName: 'Files',
   name: 'File',
-  schema: Entity.keys({
+  schema: Entity.schema.keys({
     contentType: String.schema
       // .valid(...values(AllowedImageType))
       .required(),

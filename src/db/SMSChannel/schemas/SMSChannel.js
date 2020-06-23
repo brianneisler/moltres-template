@@ -1,13 +1,13 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id } from '../../../core/schemas'
 
 const SMSChannel = {
   collectionName: 'SMSChannels',
   indexes: [['userPhoneNumberId', 'internalPhoneNumberId']],
   name: 'SMSChannel',
-  schema: Entity.keys({
-    internalPhoneNumberId: id().required(),
-    userPhoneNumberId: id().required()
+  schema: Entity.schema.keys({
+    internalPhoneNumberId: Id.schema.required(),
+    userPhoneNumberId: Id.schema.required()
   })
 }
 

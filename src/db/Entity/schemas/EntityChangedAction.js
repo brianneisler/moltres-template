@@ -1,19 +1,19 @@
 import { Action } from '../../Action'
-import Joi from '@hapi/joi'
+import { Object, String } from '../../../core/schemas'
 
 const EntityChangedAction = {
   schema: Action.schema.keys({
-    meta: Joi.object().keys({
-      causedByEntityId: Joi.string().allow(null).required(),
-      causedByEntityType: Joi.string().allow(null).required()
+    meta: Object.schema.keys({
+      causedByEntityId: String.schema.allow(null).required(),
+      causedByEntityType: String.schema.allow(null).required()
     }),
-    payload: Joi.object().keys({
-      changeType: Joi.string().required(),
-      data: Joi.object().allow(null).required(),
-      entityId: Joi.string().required(),
-      entityPath: Joi.string().required(),
-      entityType: Joi.string().required(),
-      prevData: Joi.object().allow(null).required()
+    payload: Object.schema.keys({
+      changeType: String.schema.required(),
+      data: Object.schema.allow(null).required(),
+      entityId: String.schema.required(),
+      entityPath: String.schema.required(),
+      entityType: String.schema.required(),
+      prevData: Object.schema.allow(null).required()
     })
   }),
   type: 'ENTITY_CHANGED'

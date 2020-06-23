@@ -7,7 +7,7 @@ const StatsShard = {
   idField: 'index',
   name: 'StatsShard',
   parentSchema: EntityStats,
-  schema: Entity.keys({
+  schema: Entity.schema.keys({
     data: Object.schema.required(),
     index: Integer.schema.required()
   })

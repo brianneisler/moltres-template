@@ -1,10 +1,10 @@
-import Joi from '@hapi/joi'
+import { Object, String } from '../../../core/schemas'
 
 const Index = {
   collectionName: 'Indexes',
   name: 'Index',
-  schema: Joi.object().keys({
-    value: Joi.string().required()
+  schema: Object.schema.keys({
+    value: String.schema.required()
   })
 }
 

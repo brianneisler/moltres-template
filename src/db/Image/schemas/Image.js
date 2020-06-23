@@ -1,25 +1,22 @@
 import { AllowedImageType } from '../../../constants'
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id, Integer, String } from '../../../core/schemas'
 import { values } from '../../../utils/lang'
-import Joi from '@hapi/joi'
 
 const Image = {
   collectionName: 'Images',
   name: 'Image',
-  schema: Entity.keys({
-    contentType: Joi.string()
-      .valid(...values(AllowedImageType))
-      .required(),
-    hash: Joi.string().hex().required(),
-    height: Joi.number().integer().positive().allow(0).required(),
-    length: Joi.number().integer().positive().allow(0).required(),
-    path: Joi.string(),
-    storageBucket: Joi.string().required(),
+  schema: Entity.schema.keys({
+    contentType: String.schema.valid(...values(AllowedImageType)).required(),
+    hash: String.schema.hex().required(),
+    height: Integer.schema.positive().allow(0).required(),
+    length: Integer.schema.positive().allow(0).required(),
+    path: String.schema,
+    storageBucket: String.schema.required(),
     // TODO BRN: Replace uploadId with a sourceEntity concept which can be of type
     // 'Upload' or 'Url'
-    uploadId: id(),
-    width: Joi.number().integer().positive().allow(0).required()
+    uploadId: Id.schema,
+    width: Integer.schema.positive().allow(0).required()
   })
 }
 

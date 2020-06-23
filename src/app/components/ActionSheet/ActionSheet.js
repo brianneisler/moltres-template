@@ -6,6 +6,7 @@ import {
   connect,
   defaultProps,
   getStyleHeight,
+  memo,
   setDisplayName,
   setPropTypes,
   withActions,
@@ -265,7 +266,8 @@ const enhance = compose(
     handleModalRequestCancel: ({ requestCancelModal }) => () =>
       requestCancelModal(ACTION_SHEET),
     handleModalShow: ({ showSheet }) => async () => showSheet()
-  })
+  }),
+  memo
 )
 
 const ActionSheet = enhance((props) => {

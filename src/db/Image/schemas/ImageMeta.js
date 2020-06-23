@@ -1,17 +1,15 @@
 import { AllowedImageType } from '../../../constants'
+import { Integer, Object, String } from '../../../core/schemas'
 import { values } from '../../../utils/lang'
-import Joi from '@hapi/joi'
 
-const ImageMeta = Joi.object().keys({
-  contentType: Joi.string()
-    .valid(...values(AllowedImageType))
-    .required(),
-  hash: Joi.string().hex().required(),
-  height: Joi.number().integer().required(),
-  length: Joi.number().integer().required(),
-  path: Joi.string().required(),
-  storageBucket: Joi.string().required(),
-  width: Joi.number().integer().required()
+const ImageMeta = Object.schema.keys({
+  contentType: String.schema.valid(...values(AllowedImageType)).required(),
+  hash: String.schema.hex().required(),
+  height: Integer.schema.required(),
+  length: Integer.schema.required(),
+  path: String.schema.required(),
+  storageBucket: String.schema.required(),
+  width: Integer.schema.required()
 })
 
 export default ImageMeta

@@ -1,11 +1,11 @@
-import Joi from '@hapi/joi'
+import { Integer, Object } from '../../../../core/schemas'
 
 const Dimensions = {
-  schema: Joi.object().keys({
-    fontScale: Joi.number().integer().required(),
-    height: Joi.number().integer().required(),
-    scale: Joi.number().integer().required(),
-    width: Joi.number().integer().required()
+  schema: Object.schema.keys({
+    fontScale: Integer.schema.required(),
+    height: Integer.schema.required(),
+    scale: Integer.schema.required(),
+    width: Integer.schema.required()
   }),
   type: 'dimensions.Dimensions'
 }

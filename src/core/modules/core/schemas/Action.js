@@ -7,7 +7,7 @@ const REGEX_RFC3339_TIMESTAMP = /^([0-9]+)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0
 // Based on cloudevents spec https://github.com/cloudevents/spec/blob/master/spec.md
 const Action = {
   name: 'Action',
-  schema: Timestamped.keys({
+  schema: Timestamped.schema.keys({
     datacontentencoding: String.schema.valid('json', 'base64').insensitive(),
     datacontenttype: String.schema.valid(''),
     id: String.schema.required(),
