@@ -1,4 +1,4 @@
-import { ITERATOR_END, ITERATOR_START } from '../constants'
+import { END, START } from '../constants/Iterator'
 import reflectOwnKeys from './reflectOwnKeys'
 
 const iterAt = (index, keys, object) => {
@@ -67,12 +67,12 @@ const prevIterAt = (index, keys, object) => {
  * iter.next()
  * //=> { done: true }
  */
-const objectToIterator = (object, start = ITERATOR_START) => {
+const objectToIterator = (object, start = START) => {
   const keys = reflectOwnKeys(object)
   let index = 0
   let lastIndex
 
-  if (start === ITERATOR_END) {
+  if (start === END) {
     index = keys.length
   }
 

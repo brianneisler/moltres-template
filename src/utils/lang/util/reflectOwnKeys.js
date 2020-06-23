@@ -1,4 +1,4 @@
-import Reflect from '../js/Reflect'
+import Reflect from '../classes/Reflect'
 
 /**
  * Returns an array of the target object's own property keys. Its return value is equivalent to ``Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))``.

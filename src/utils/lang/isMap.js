@@ -1,1 +1,1 @@
-export { default } from 'lodash/isMap'
+export { default } from './util/anyIsMap'

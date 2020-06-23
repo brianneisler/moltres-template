@@ -1,4 +1,4 @@
-import { ImmutableList } from './js'
+import { ImmutableList } from './classes'
 import map from './map'
 
 describe('map', () => {

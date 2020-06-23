@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap, Map } from './js'
+import { ImmutableList, ImmutableMap, Map } from './classes'
 import contagion from './contagion'
 
 describe('contagion', () => {

@@ -1,4 +1,4 @@
-import Symbol from '../js/Symbol'
+import Symbol from '../classes/Symbol'
 
 /**
  * The `Symbol.iterator` well-known symbol specifies the default iterator for an object. Used by for...of.

@@ -1,4 +1,4 @@
-import { ITERATOR_END, ITERATOR_START } from '../constants'
+import { END, START } from '../constants/Iterator'
 import objectToIterator from './objectToIterator'
 
 describe('objectToIterator', () => {
@@ -234,7 +234,7 @@ describe('objectToIterator', () => {
     ])
   })
 
-  test('creates an iterator for the object that starts at the ITERATOR_START', () => {
+  test('creates an iterator for the object that starts at the Iterator.START', () => {
     const symBan = Symbol('ban')
     const iterator = objectToIterator(
       {
@@ -242,7 +242,7 @@ describe('objectToIterator', () => {
         foo: 'bar',
         [symBan]: 'ana'
       },
-      ITERATOR_START
+      START
     )
     let previous = { done: false }
     const accum = []
@@ -294,7 +294,7 @@ describe('objectToIterator', () => {
     ])
   })
 
-  test('creates an iterator for the object that starts at the ITERATOR_END', () => {
+  test('creates an iterator for the object that starts at the Iterator.END', () => {
     const symBan = Symbol('ban')
     const iterator = objectToIterator(
       {
@@ -302,7 +302,7 @@ describe('objectToIterator', () => {
         foo: 'bar',
         [symBan]: 'ana'
       },
-      ITERATOR_END
+      END
     )
     let previous = { done: false }
     const accum = []

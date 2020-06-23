@@ -1,4 +1,4 @@
-import { ImmutableList } from './js'
+import { ImmutableList } from './classes'
 import find from './find'
 
 describe('find', () => {

@@ -1,1 +1,1 @@
-export { default } from 'lodash/isInteger'
+export { default } from './util/anyIsInteger'

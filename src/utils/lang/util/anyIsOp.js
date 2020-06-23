@@ -1,4 +1,4 @@
-import Op from '../js/Op'
+import Op from '../classes/Op'
 
 /**
  * Determines if `any` is an Op.

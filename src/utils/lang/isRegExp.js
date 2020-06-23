@@ -1,1 +1,1 @@
-export { default } from 'lodash/isRegExp'
+export { default } from './util/anyIsRegExp'

@@ -1,4 +1,4 @@
-import Op from '../js/Op'
+import Op from '../classes/Op'
 import anyIsOp from './anyIsOp'
 
 describe('anyIsOp', () => {

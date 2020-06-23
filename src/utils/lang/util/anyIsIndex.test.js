@@ -1,43 +1,56 @@
-import { MAX_SAFE_INTEGER } from '../constants'
+import { Index, Key, Property } from '../classes'
+import { MAX_SAFE } from '../constants/Integer'
 import anyIsIndex from './anyIsIndex'
 
 describe('anyIsIndex', () => {
   test('returns true for positive integer numbers and 0', () => {
     expect(anyIsIndex(0)).toBe(true)
     expect(anyIsIndex(1)).toBe(true)
-    expect(anyIsIndex(MAX_SAFE_INTEGER - 1)).toBe(true)
+    expect(anyIsIndex(MAX_SAFE - 1)).toBe(true)
   })
 
   test('returns true for Number objects that are positive integers', () => {
     expect(anyIsIndex(new Number(0))).toBe(true)
     expect(anyIsIndex(new Number(1))).toBe(true)
-    expect(anyIsIndex(new Number(MAX_SAFE_INTEGER - 1))).toBe(true)
+    expect(anyIsIndex(new Number(MAX_SAFE - 1))).toBe(true)
   })
 
   test('returns true for string values that are string integers', () => {
     expect(anyIsIndex('0')).toBe(true)
     expect(anyIsIndex('3')).toBe(true)
-    expect(anyIsIndex('' + (MAX_SAFE_INTEGER - 1))).toBe(true)
+    expect(anyIsIndex('' + (MAX_SAFE - 1))).toBe(true)
   })
 
-  test('returns false for number greater than or equal to MAX_SAFE_INTEGER', () => {
-    expect(anyIsIndex(MAX_SAFE_INTEGER)).toBe(false)
-    expect(anyIsIndex(MAX_SAFE_INTEGER + 1)).toBe(false)
+  test('returns true for Index instance', () => {
+    expect(anyIsIndex(new Index(0))).toBe(true)
   })
 
-  test('returns false for string number greater than or equal to MAX_SAFE_INTEGER', () => {
-    expect(anyIsIndex('' + MAX_SAFE_INTEGER)).toBe(false)
-    expect(anyIsIndex('' + (MAX_SAFE_INTEGER + 1))).toBe(false)
+  test('returns false for Key instance', () => {
+    expect(anyIsIndex(new Key(0))).toBe(false)
+  })
+
+  test('returns false for Property instance', () => {
+    expect(anyIsIndex(new Property('foo'))).toBe(false)
+  })
+
+  test('returns false for number greater than or equal to MAX_SAFE', () => {
+    expect(anyIsIndex(MAX_SAFE)).toBe(false)
+    expect(anyIsIndex(MAX_SAFE + 1)).toBe(false)
+  })
+
+  test('returns false for string number greater than or equal to MAX_SAFE', () => {
+    expect(anyIsIndex('' + MAX_SAFE)).toBe(false)
+    expect(anyIsIndex('' + (MAX_SAFE + 1))).toBe(false)
   })
 
   test('returns false for primitive integers less than 0', () => {
     expect(anyIsIndex(-1)).toBe(false)
-    expect(anyIsIndex(-MAX_SAFE_INTEGER)).toBe(false)
+    expect(anyIsIndex(-MAX_SAFE)).toBe(false)
   })
 
   test('returns false for string integers less than 0', () => {
     expect(anyIsIndex('-1')).toBe(false)
-    expect(anyIsIndex('' + -MAX_SAFE_INTEGER)).toBe(false)
+    expect(anyIsIndex('' + -MAX_SAFE)).toBe(false)
   })
 
   test('returns false for primitive numbers that are not integers', () => {

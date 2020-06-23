@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap } from './js'
+import { ImmutableList, ImmutableMap } from './classes'
 import isArray from './isArray'
 import isObject from './isObject'
 

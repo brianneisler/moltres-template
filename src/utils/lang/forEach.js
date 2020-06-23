@@ -1,26 +1,25 @@
 import curry from './curry'
-import isArray from './isArray'
-import isImmutable from './isImmutable'
-import keys from './keys'
+import iterate from './iterate'
 import pipe from './pipe'
-import reduce from './reduce'
 
-const forEach = curry((iteratee, collection) => {
-  if (isImmutable(collection)) {
-    return collection.map(iteratee)
-  }
-  return reduce(
-    (accum, key) =>
-      pipe(
-        () => iteratee(collection[key], key, collection),
-        (result) => {
-          accum[key] = result
-          return accum
-        }
-      )(),
-    isArray(collection) ? [] : {},
-    keys(collection)
-  )
-})
+const forEach = curry((func, iterable) =>
+  pipe(
+    () =>
+      iterate(
+        (next) =>
+          pipe(
+            (pNext) => {
+              if (pNext.done) {
+                return pNext
+              }
+              return func(pNext.value, pNext.kdx, iterable)
+            },
+            () => next
+          )(next),
+        iterable
+      ),
+    () => iterable
+  )()
+)
 
-export default map
+export default forEach

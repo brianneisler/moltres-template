@@ -1,3 +1,4 @@
+import { Index, Key, Property } from '../classes'
 import anyIsProperty from './anyIsProperty'
 
 describe('anyIsProperty', () => {
@@ -26,9 +27,21 @@ describe('anyIsProperty', () => {
     expect(anyIsProperty(new String('1bar'))).toBe(true)
   })
 
+  test('returns true for Property instance', () => {
+    expect(anyIsProperty(new Property('foo'))).toBe(true)
+  })
+
   test('returns false for arrays', () => {
     expect(anyIsProperty([])).toBe(false)
     expect(anyIsProperty(new Array())).toBe(false)
+  })
+
+  test('returns false for Index instance', () => {
+    expect(anyIsProperty(new Index(0))).toBe(false)
+  })
+
+  test('returns false for Key instance', () => {
+    expect(anyIsProperty(new Key('foo'))).toBe(false)
   })
 
   test('returns false for all other values', () => {

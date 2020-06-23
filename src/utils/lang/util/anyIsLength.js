@@ -1,4 +1,4 @@
-import MAX_SAFE_INTEGER from '../constants/MAX_SAFE_INTEGER'
+import { MAX_SAFE } from '../constants/Integer'
 
 /**
  * Checks if `any` is an integer that can be a lngth for an array like value
@@ -30,6 +30,6 @@ import MAX_SAFE_INTEGER from '../constants/MAX_SAFE_INTEGER'
  * //=> false
  */
 const anyIsLength = (any) =>
-  typeof any == 'number' && any > -1 && any % 1 == 0 && any <= MAX_SAFE_INTEGER
+  typeof any == 'number' && any > -1 && any % 1 == 0 && any <= MAX_SAFE
 
 export default anyIsLength

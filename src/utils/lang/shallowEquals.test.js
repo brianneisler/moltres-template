@@ -1,4 +1,4 @@
-import { ImmutableMap } from './js'
+import { ImmutableMap } from './classes'
 import shallowEquals from './shallowEquals'
 
 describe('selectWildcards', () => {

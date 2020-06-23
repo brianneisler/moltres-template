@@ -1,4 +1,4 @@
-import { ImmutableList } from './js'
+import { ImmutableList } from './classes'
 import nth from './nth'
 
 describe('nth', () => {

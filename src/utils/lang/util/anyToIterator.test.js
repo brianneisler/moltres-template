@@ -49,7 +49,7 @@ describe('anyToIterator', () => {
     })
   })
 
-  test('returns iterator for array that iterates through the values', () => {
+  test('returns iterator for Array that iterates through the values', () => {
     const iter = anyToIterator(['abc', 'foo', 'bar'])
     expect(iter.next()).toEqual({
       done: false,
@@ -153,7 +153,8 @@ describe('anyToIterator', () => {
     const result = anyToIterator(iterable)
     expect(result).toEqual({
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
+      resolver: true
     })
   })
 
@@ -164,7 +165,8 @@ describe('anyToIterator', () => {
     const result = anyToIterator(iter)
     expect(result).toEqual({
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
+      resolver: true
     })
   })
 

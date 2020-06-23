@@ -1,4 +1,5 @@
-import { MAX_SAFE_INTEGER } from '../constants'
+import { Index } from '../classes'
+import { MAX_SAFE } from '../constants/Integer'
 import { UINT } from '../constants/Regex'
 
 /**
@@ -9,7 +10,6 @@ import { UINT } from '../constants/Regex'
  * @since v0.1.0
  * @category lang.util
  * @param {*} any The value to check.
- * @param {number} length [=MAX_SAFE_INTEGER] The upper bounds of a valid index.
  * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
  * @example
  *
@@ -23,13 +23,16 @@ import { UINT } from '../constants/Regex'
  * //=> false
  */
 const anyIsIndex = (any) => {
-  // NOTE BRN: max safe length is exactly MAX_SAFE_INTEGER since the length of an array cannot safely be greater than the max integer.
+  if (any instanceof Index) {
+    return true
+  }
+  // NOTE BRN: max safe length is exactly MAX_SAFE since the length of an array cannot safely be greater than the max integer.
   const type = typeof any
   return (
-    (type == 'number' || (type != 'symbol' && UINT.test(any))) &&
+    (type === 'number' || (type != 'symbol' && UINT.test(any))) &&
     any > -1 &&
     any % 1 == 0 &&
-    any < MAX_SAFE_INTEGER
+    any < MAX_SAFE
   )
 }
 

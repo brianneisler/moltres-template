@@ -1,1 +1,1 @@
-export { isNil as default } from 'ramda'
+export { default } from './util/anyIsNil'

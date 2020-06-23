@@ -1,3 +1,4 @@
+import { Property } from '../classes'
 import anyIsString from './anyIsString'
 import anyIsSymbol from './anyIsSymbol'
 
@@ -45,6 +46,7 @@ import anyIsSymbol from './anyIsSymbol'
  * anyIsProperty({})
  * //=> false
  */
-const anyIsProperty = (any) => anyIsSymbol(any) || anyIsString(any)
+const anyIsProperty = (any) =>
+  anyIsSymbol(any) || anyIsString(any) || any instanceof Property
 
 export default anyIsProperty

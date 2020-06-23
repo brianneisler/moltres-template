@@ -1,4 +1,4 @@
-import Object from '../js/Object'
+import Object from '../classes/Object'
 
 /**
  * Returns a list containing the names of all the enumerable own properties of the supplied object.

@@ -1,4 +1,4 @@
-import Object from '../js/Object'
+import Object from '../classes/Object'
 
 const { toString } = Object.prototype
 

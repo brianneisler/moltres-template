@@ -1,4 +1,4 @@
-import RegExp from '../js/RegExp'
+import RegExp from '../classes/RegExp'
 
 /**
  * Used to detect unsigned integer values.

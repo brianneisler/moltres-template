@@ -1,1 +1,1 @@
-export { default } from 'lodash/isDate'
+export { default } from './util/anyIsDate'

@@ -1,4 +1,4 @@
-import { ImmutableMap } from './js'
+import { ImmutableMap } from './classes'
 import assoc from './assoc'
 import createPath from './createPath'
 import equals from './equals'

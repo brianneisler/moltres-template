@@ -1,1 +1,1 @@
-export { default } from 'lodash/isUndefined'
+export { default } from './util/anyIsUndefined'

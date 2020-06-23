@@ -1,3 +1,1 @@
-import { ImmutableSet } from './js'
-
-export default ImmutableSet.isSet
+export { default } from './util/anyIsImmutableSet'

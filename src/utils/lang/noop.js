@@ -1,1 +1,3 @@
-export { default } from 'lodash/noop'
+const noop = () => undefined
+
+export default noop

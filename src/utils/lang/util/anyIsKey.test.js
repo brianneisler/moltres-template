@@ -1,3 +1,4 @@
+import { Index, Key, Property } from '../classes'
 import anyIsKey from './anyIsKey'
 
 describe('anyIsKey', () => {
@@ -31,6 +32,10 @@ describe('anyIsKey', () => {
     expect(anyIsKey(new Array())).toBe(true)
   })
 
+  test('returns true for Key instance', () => {
+    expect(anyIsKey(new Key('foo'))).toBe(true)
+  })
+
   test('returns true for all other values', () => {
     expect(anyIsKey(undefined)).toBe(true)
     expect(anyIsKey(null)).toBe(true)
@@ -61,5 +66,13 @@ describe('anyIsKey', () => {
     expect(anyIsKey(new Proxy({}, {}))).toBe(true)
     expect(anyIsKey(new WeakMap())).toBe(true)
     expect(anyIsKey(new WeakSet())).toBe(true)
+  })
+
+  test('returns false for Index instance', () => {
+    expect(anyIsKey(new Index(0))).toBe(false)
+  })
+
+  test('returns false for Property instance', () => {
+    expect(anyIsKey(new Property('foo'))).toBe(false)
   })
 })

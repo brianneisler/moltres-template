@@ -1,3 +1,5 @@
+import { Index, Property } from '../classes'
+
 /**
  * Checks if `any` is a key.
  *
@@ -31,11 +33,11 @@
  * //=> true
  *
  * anyIsKey([])
- * //=> false
+ * //=> true
  *
  * anyIsKey({})
- * //=> false
+ * //=> true
  */
-const anyIsKey = () => true
+const anyIsKey = (any) => !(any instanceof Property) && !(any instanceof Index)
 
 export default anyIsKey

@@ -1,4 +1,4 @@
-import Array from '../js/Array'
+import Array from '../classes/Array'
 
 /**
  * Clones the given `array`

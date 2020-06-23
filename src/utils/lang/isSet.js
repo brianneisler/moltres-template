@@ -1,1 +1,1 @@
-export { default } from 'lodash/isSet'
+export { default } from './util/anyIsSet'

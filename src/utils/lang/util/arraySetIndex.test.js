@@ -1,4 +1,4 @@
-import { values } from '../../../test/util/values'
+import { values } from '../../../test'
 import arraySetIndex from './arraySetIndex'
 
 describe('arraySetIndex', () => {

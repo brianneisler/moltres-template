@@ -1,4 +1,4 @@
-import { ITERATOR_END, ITERATOR_START } from '../constants'
+import { END, START } from '../constants/Iterator'
 import arrayLikeToIterator from './arrayLikeToIterator'
 
 describe('arrayLikeToIterator', () => {
@@ -198,7 +198,7 @@ describe('arrayLikeToIterator', () => {
   })
 
   test('START starts the iterator at the 0 index', () => {
-    const iterator = arrayLikeToIterator(['foo', 'bar'], ITERATOR_START)
+    const iterator = arrayLikeToIterator(['foo', 'bar'], START)
     let next = { done: false }
     const accum = []
     while (!next.done) {
@@ -261,7 +261,7 @@ describe('arrayLikeToIterator', () => {
   })
 
   test('END starts the iterator at the last index', () => {
-    const iterator = arrayLikeToIterator(['foo', 'bar'], ITERATOR_END)
+    const iterator = arrayLikeToIterator(['foo', 'bar'], END)
     let previous = { done: false }
     const accum = []
     while (!previous.done) {
@@ -301,7 +301,7 @@ describe('arrayLikeToIterator', () => {
   })
 
   test('calling next multiple times when the iterator is at the end returns the same done result', () => {
-    const iterator = arrayLikeToIterator(['foo', 'bar'], ITERATOR_END)
+    const iterator = arrayLikeToIterator(['foo', 'bar'], END)
     expect(iterator.next()).toEqual({
       done: true,
       prev: {

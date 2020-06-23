@@ -10,6 +10,7 @@ module.exports = {
   preset: 'react-native-web',
   resolver: 'jest-pnp-resolver',
   setupFiles: ['react-app-polyfill/jsdom'],
+  setupFilesAfterEnv: ['<rootDir>/.jest.init.js'],
   testEnvironment: 'node',
   testMatch: [
     '<rootDir>/**/__tests__/**/*.js',

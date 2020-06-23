@@ -1,5 +1,5 @@
 import { ITERATOR } from '../constants/Symbol'
-import ITERATOR_START from '../constants/ITERATOR_START'
+import { START } from '../constants/Iterator'
 import anyIsArrayLike from './anyIsArrayLike'
 import anyIsIndexedIterator from './anyIsIndexedIterator'
 import anyIsIterable from './anyIsIterable'
@@ -31,9 +31,9 @@ import objectToIterator from './objectToIterator'
  * anyToIterator({ a: 1, b: 2, c: 3 })
  * //=> { next: () => { value: number, key: string, kdx: string, done: boolean }}
  */
-const anyToIterator = (any, start = ITERATOR_START) => {
+const anyToIterator = (any, start = START) => {
   if (anyIsIterator(any)) {
-    if (anyIsIndexedIterator(any) || anyIsKeyedIterator(any)) {
+    if (anyIsIndexedIterator(any) || anyIsKeyedIterator(any) || any.resolver) {
       return any
     }
     return iteratorResolver(any, start)

@@ -1,4 +1,4 @@
-import Op from './js/Op'
+import Op from './classes/Op'
 
 /**
  * Creates an op object that can be yielded by a generator and intercepted/executed by any generator middleware

@@ -1,4 +1,4 @@
-import { ImmutableMap } from './js'
+import { ImmutableMap } from './classes'
 import _containsWildcard from './containsWildcard'
 import _findWildcards from './findWildcards'
 import _replaceWildcards from './replaceWildcards'

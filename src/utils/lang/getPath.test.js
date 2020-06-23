@@ -1,4 +1,4 @@
-import { ImmutableList } from './js'
+import { ImmutableList } from './classes'
 import getPath from './getPath'
 
 describe('getPath', () => {

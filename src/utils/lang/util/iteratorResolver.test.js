@@ -1,6 +1,5 @@
+import { END, START } from '../constants/Iterator'
 import { ITERATOR } from '../constants/Symbol'
-import ITERATOR_END from '../constants/ITERATOR_END'
-import ITERATOR_START from '../constants/ITERATOR_START'
 import iteratorResolver from './iteratorResolver'
 
 const testAsyncArrayIterator = (values) => {
@@ -30,14 +29,16 @@ describe('iteratorResolver', () => {
     const iter = [][ITERATOR]()
     expect(iteratorResolver(iter)).toEqual({
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
+      resolver: true
     })
   })
 
   test('creates an iterator for an object with a next method', () => {
     expect(iteratorResolver({ next: () => {} })).toEqual({
       next: expect.any(Function),
-      previous: expect.any(Function)
+      previous: expect.any(Function),
+      resolver: true
     })
   })
 
@@ -126,7 +127,7 @@ describe('iteratorResolver', () => {
 
   test('END starts the iterator at the last index', () => {
     const array = ['foo', 'bar']
-    const iterator = iteratorResolver(array[ITERATOR](), ITERATOR_END)
+    const iterator = iteratorResolver(array[ITERATOR](), END)
 
     let next = { done: false }
     const accum = []
@@ -168,7 +169,7 @@ describe('iteratorResolver', () => {
 
   test('START starts the iterator at the 0 index', () => {
     const array = ['foo', 'bar']
-    const iterator = iteratorResolver(array[ITERATOR](), ITERATOR_START)
+    const iterator = iteratorResolver(array[ITERATOR](), START)
 
     let next = { done: false }
     const accum = []
@@ -268,7 +269,7 @@ describe('iteratorResolver', () => {
 
   test('iterates an async iterator in reverse until done is true', async () => {
     const asyncIterator = testAsyncArrayIterator(['a', 'b', 'c'])
-    const iterator = iteratorResolver(asyncIterator, ITERATOR_END)
+    const iterator = iteratorResolver(asyncIterator, END)
 
     let result = iterator.previous()
     expect(result).toBeInstanceOf(Promise)

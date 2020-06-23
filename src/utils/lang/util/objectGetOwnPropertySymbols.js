@@ -1,4 +1,4 @@
-import Object from '../js/Object'
+import Object from '../classes/Object'
 
 /**
  * Returns an array of all symbol properties found directly upon a given object.

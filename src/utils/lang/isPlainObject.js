@@ -1,1 +1,1 @@
-export { default } from 'lodash/isPlainObject'
+export { default } from './util/anyIsPlainObject'

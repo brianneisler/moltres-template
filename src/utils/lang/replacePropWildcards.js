@@ -1,4 +1,4 @@
-import { ImmutableMap } from './js'
+import { ImmutableMap } from './classes'
 import assoc from './assoc'
 import getProp from './getProp'
 import isImmutableMap from './isImmutableMap'

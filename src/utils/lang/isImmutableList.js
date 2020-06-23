@@ -1,3 +1,1 @@
-import { ImmutableList } from './js'
-
-export default ImmutableList.isList
+export { default } from './util/anyIsImmutableList'

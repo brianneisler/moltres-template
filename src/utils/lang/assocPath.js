@@ -1,5 +1,5 @@
-import ImmutableList from './js/ImmutableList'
-import ImmutableMap from './js/ImmutableMap'
+import ImmutableList from './classes/ImmutableList'
+import ImmutableMap from './classes/ImmutableMap'
 import assoc from './assoc'
 import createPath from './createPath'
 import first from './first'

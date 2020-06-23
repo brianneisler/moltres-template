@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap } from './js'
+import { ImmutableList, ImmutableMap } from './classes'
 import isEmpty from './isEmpty'
 
 describe('isEmpty', () => {

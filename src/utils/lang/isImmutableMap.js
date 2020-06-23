@@ -1,3 +1,1 @@
-import { ImmutableMap } from './js'
-
-export default ImmutableMap.isMap
+export { default } from './util/anyIsImmutableMap'

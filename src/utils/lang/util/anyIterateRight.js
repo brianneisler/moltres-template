@@ -1,4 +1,4 @@
-import ITERATOR_END from '../constants/ITERATOR_END'
+import { END } from '../constants/Iterator'
 import anyIsResolved from './anyIsResolved'
 import anyToIterator from './anyToIterator'
 import unresolvedResolveWith from './unresolvedResolveWith'
@@ -71,6 +71,6 @@ const doReverseSeriesIteration = (fn, iter) => {
  * //=> 1
  */
 const anyIterateRight = (any, func) =>
-  doReverseSeriesIteration(func, anyToIterator(any, ITERATOR_END))
+  doReverseSeriesIteration(func, anyToIterator(any, END))
 
 export default anyIterateRight

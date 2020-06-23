@@ -1,4 +1,4 @@
-import String from '../js/String'
+import String from '../classes/String'
 
 const { substring } = String.prototype
 

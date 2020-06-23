@@ -1,4 +1,4 @@
-import Array from '../js/Array'
+import Array from '../classes/Array'
 
 /**
  * Checks if `any` is classified as an `Array` object.

@@ -1,5 +1,10 @@
-import { ITERATOR } from './constants/Symbol'
+import { anySatisfiesKeyed, anyToIterator, keyedToKeyedIterator } from './util'
 
-const iterator = (value) => value[ITERATOR]()
+const iterator = (any) => {
+  if (anySatisfiesKeyed(any)) {
+    return keyedToKeyedIterator(any)
+  }
+  return anyToIterator(any)
+}
 
 export default iterator

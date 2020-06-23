@@ -1,4 +1,4 @@
-import { ITERATOR_END, ITERATOR_START } from '../constants'
+import { END, START } from '../constants/Iterator'
 import indexEndOffset from './indexEndOffset'
 
 const iterAt = (index, arrayLike) => {
@@ -70,9 +70,9 @@ const prevIterAt = (index, arrayLike) => {
  * // }
  */
 const arrayLikeToIterator = (arrayLike, index = 0) => {
-  if (index === ITERATOR_END) {
+  if (index === END) {
     index = arrayLike.length
-  } else if (index === ITERATOR_START) {
+  } else if (index === START) {
     index = 0
   }
   index = indexEndOffset(index, arrayLike.length)

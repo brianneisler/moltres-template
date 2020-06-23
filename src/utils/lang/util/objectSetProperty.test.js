@@ -1,4 +1,4 @@
-import { values } from '../../../test/util/values'
+import { values } from '../../../test'
 import objectSetProperty from './objectSetProperty'
 
 describe('objectSetProperty', () => {

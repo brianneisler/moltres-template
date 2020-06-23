@@ -1,4 +1,4 @@
-import { Symbol } from '../js'
+import { Symbol } from '../classes'
 import objectProperties from './objectProperties'
 
 describe('objectProperties', () => {

@@ -1,4 +1,4 @@
-import MAX_SAFE_INTEGER from '../constants/MAX_SAFE_INTEGER'
+import { MAX_SAFE } from '../constants/Integer'
 import anyIsLength from './anyIsLength'
 
 describe('anyIsLength', () => {
@@ -14,8 +14,8 @@ describe('anyIsLength', () => {
     expect(anyIsLength(-0)).toBe(true)
   })
 
-  test('returns true for MAX_SAFE_INTEGER', () => {
-    expect(anyIsLength(MAX_SAFE_INTEGER)).toBe(true)
+  test('returns true for MAX_SAFE', () => {
+    expect(anyIsLength(MAX_SAFE)).toBe(true)
   })
 
   test('returns false for negative integers', () => {
@@ -26,7 +26,7 @@ describe('anyIsLength', () => {
     expect(anyIsLength(1.23)).toBe(false)
   })
 
-  test('returns false for integer greater than MAX_SAFE_INTEGER', () => {
-    expect(anyIsLength(MAX_SAFE_INTEGER + 1)).toBe(false)
+  test('returns false for integer greater than MAX_SAFE', () => {
+    expect(anyIsLength(MAX_SAFE + 1)).toBe(false)
   })
 })

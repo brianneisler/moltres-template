@@ -5,7 +5,7 @@ import queryEntities from './queryEntities'
 
 const findOrCreateEntity = curry(
   async (Schema, context, data, queryOptions = {}) => {
-    const queryOptions = assoc('limit', 1, queryOptions)
+    queryOptions = assoc('limit', 1, queryOptions)
     const existingEntity = await findOneFromQuery(
       context,
       queryEntities(Schema, context, data, queryOptions),

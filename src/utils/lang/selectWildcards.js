@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap } from './js'
+import { ImmutableList, ImmutableMap } from './classes'
 import assoc from './assoc'
 import concat from './concat'
 import containsWildcard from './containsWildcard'

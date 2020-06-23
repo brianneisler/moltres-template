@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap } from './js'
+import { ImmutableList, ImmutableMap } from './classes'
 import createSelector from './createSelector'
 import findWildcards from './findWildcards'
 
