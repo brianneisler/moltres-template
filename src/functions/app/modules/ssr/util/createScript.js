@@ -1,4 +1,4 @@
-import { invariant } from '../../../../../utils/redux'
+import { invariant } from '../../../../../utils/lang'
 
 const PRIORITY_DEFAULT = 100
 

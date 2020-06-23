@@ -1,5 +1,11 @@
-import { all, call, invariant } from '../utils/redux'
-import { isFunction, isNumber, isObject, isString } from '../utils/lang'
+import { all, call } from '../utils/redux'
+import {
+  invariant,
+  isFunction,
+  isNumber,
+  isObject,
+  isString
+} from '../utils/lang'
 import factoryAndWatchHeadQuery from './factoryAndWatchHeadQuery'
 import factoryAndWatchPageQuery from './factoryAndWatchPageQuery'
 

@@ -1,12 +1,12 @@
 import {
   compose,
   containsWildcard,
+  invariant,
   isFunction,
   isObject,
   isSelector,
   isString
 } from '../utils/lang'
-import { invariant } from '../utils/redux'
 import createSingleQueryFactory from './createSingleQueryFactory'
 import createWildcardQueryFactory from './createWildcardQueryFactory'
 

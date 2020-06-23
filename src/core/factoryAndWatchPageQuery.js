@@ -1,5 +1,12 @@
-import { call, invariant, put, select } from '../utils/redux'
-import { isFunction, isNumber, isObject, isString, last } from '../utils/lang'
+import { call, put, select } from '../utils/redux'
+import {
+  invariant,
+  isFunction,
+  isNumber,
+  isObject,
+  isString,
+  last
+} from '../utils/lang'
 import { selectQueryCursor } from './selectors'
 import { setQueryCursorNextAction } from './actions'
 import generateQuery from './generateQuery'

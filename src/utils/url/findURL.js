@@ -1,4 +1,4 @@
-import { URL } from '../../constants/Regex'
+import { URL } from './constants/Regex'
 import parseURL from './parseURL'
 
 const findURL = (string) => {

@@ -1,5 +1,5 @@
-import { call, handleChannel, invariant } from '../utils/redux'
-import { isFunction, noop } from '../utils/lang'
+import { call, handleChannel } from '../utils/redux'
+import { invariant, isFunction, noop } from '../utils/lang'
 import createQueryChannel from './createQueryChannel'
 import isQuery from './isQuery'
 

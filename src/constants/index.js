@@ -12,7 +12,6 @@ import * as OSType from './OSType'
 import * as Overlay from './Overlay'
 import * as PageContentFormat from './PageContentFormat'
 import * as PlatformType from './PlatformType'
-import * as Regex from './Regex'
 import * as Scroll from './Scroll'
 import * as StatusCode from './StatusCode'
 import * as StatusLevel from './StatusLevel'
@@ -33,7 +32,6 @@ export {
   Overlay,
   PageContentFormat,
   PlatformType,
-  Regex,
   Scroll,
   StatusCode,
   StatusLevel,

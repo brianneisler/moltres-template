@@ -2,12 +2,12 @@ import {
   compose,
   createSelector,
   getProp,
+  invariant,
   isString,
   map,
   mergeDeepCount,
   values
 } from '../../../utils/lang'
-import { invariant } from '../../../utils/redux'
 import {
   queryEntityStats,
   queryStatsShards,

@@ -11,8 +11,7 @@ import {
   initializeStorageEmulator,
   initializeTestApp
 } from '../utils/firebase'
-import { invariant } from '../utils/redux'
-import { isObject } from '../utils/lang'
+import { invariant, isObject } from '../utils/lang'
 import { isTestAppConfigured } from '../utils/config'
 import createSystem from './createSystem'
 import firebase from 'firebase/app'

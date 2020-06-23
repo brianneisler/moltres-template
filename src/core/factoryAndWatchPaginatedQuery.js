@@ -1,12 +1,13 @@
 import {
   assoc,
   identity,
+  invariant,
   isFunction,
   isNumber,
   isObject,
   isString
 } from '../utils/lang'
-import { call, invariant, put, select } from '../utils/redux'
+import { call, put, select } from '../utils/redux'
 import { selectCursorResults, selectQueryCursorNext } from './selectors'
 import {
   setQueryAction,

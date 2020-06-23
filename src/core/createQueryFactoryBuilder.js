@@ -3,9 +3,9 @@ import {
   assoc,
   createSelector,
   getProp,
+  invariant,
   isFunction
 } from '../utils/lang'
-import { invariant } from '../utils/redux'
 import createQueryFactory from './createQueryFactory'
 
 const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {

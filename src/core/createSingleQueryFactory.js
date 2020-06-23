@@ -3,13 +3,13 @@ import {
   canBeSelector,
   createPropStore,
   equals,
+  invariant,
   isFunction,
   isNull,
   isObject,
   isString,
   select
 } from '../utils/lang'
-import { call, invariant } from '../utils/redux'
 import createFactory from './createFactory'
 import isQuery from './isQuery'
 import monitorQuery from './monitorQuery'
