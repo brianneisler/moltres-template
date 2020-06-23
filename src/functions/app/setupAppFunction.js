@@ -1,6 +1,6 @@
 import * as appModules from './modules'
 import * as functionModules from '../modules'
-import { EngineState } from '../../constants'
+import { EngineState } from '../../core/constants'
 import { generateEngine } from '../../core'
 import setupFunctionContexts from '../setupFunctionContexts'
 
