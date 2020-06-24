@@ -1,27 +1,14 @@
 import { Colors, Styles } from '../../styles'
-import {
-  Fragment,
-  Icon,
-  Link,
-  MetaTags,
-  SectionList,
-  Text,
-  View
-} from '../../components'
+import { Icon, Link, Page, SectionList, Text, View } from '../../components'
 import { StyleSheet } from 'react-native'
 import { buildLocation } from '../../../utils/url'
 import { compose } from '../../../utils/lang'
 import {
-  connect,
   defaultProps,
+  memo,
   setDisplayName,
-  withHandlers,
-  withProps
+  withHandlers
 } from '../../../utils/react'
-import { selectAppConfig } from '../../modules/app'
-import { selectFacebookConfig } from '../../modules/facebook'
-import { selectSSRConfig } from '../../../core'
-import { selectTwitterConfig } from '../../modules/twitter'
 import React from 'react'
 
 const enhance = compose(
@@ -95,19 +82,6 @@ const enhance = compose(
       })
     }
   }),
-  connect((state) => ({
-    app: selectAppConfig(state),
-    facebook: selectFacebookConfig(state),
-    ssr: selectSSRConfig(state),
-    twitter: selectTwitterConfig(state)
-  })),
-  withProps(({ app }) => {
-    const description = 'Menu'
-    return {
-      description,
-      title: `${description} - ${app.name}`
-    }
-  }),
   withHandlers({
     renderItem: ({ styles }) => ({ item }) => (
       <View style={styles.sectionItem}>
@@ -128,44 +102,14 @@ const enhance = compose(
         <View style={styles.seperator} />
       </View>
     )
-  })
+  }),
+  memo
 )
 
 const MenuPage = enhance(
-  ({
-    app,
-    description,
-    facebook,
-    renderItem,
-    renderSectionHeader,
-    sections,
-    ssr,
-    styles,
-    title,
-    twitter
-  }) => {
+  ({ renderItem, renderSectionHeader, sections, styles }) => {
     return (
-      <View style={styles.page}>
-        <MetaTags>
-          <title>{title}</title>
-          {ssr ? (
-            <Fragment>
-              <meta
-                content={description}
-                name="description"
-                property="description"
-              />
-              <meta content={description} property="og:description" />
-              <meta content={app.name} property="og:site_name" />
-              <meta content={title} property="og:title" />
-              <meta content="website" property="og:type" />
-              <meta content={`${app.url}`} property="og:url" />
-              <meta content={facebook.appId} property="fb:app_id" />
-              <meta content={twitter.username} property="twitter:site" />
-              <meta content={description} property="twitter:image:alt" />
-            </Fragment>
-          ) : null}
-        </MetaTags>
+      <Page description="Menu">
         <View style={styles.block}>
           <SectionList
             keyExtractor={(item, index) => item + index}
@@ -174,7 +118,7 @@ const MenuPage = enhance(
             sections={sections}
           />
         </View>
-      </View>
+      </Page>
     )
   }
 )

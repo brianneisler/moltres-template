@@ -125,6 +125,7 @@ const UserProfilePage = enhance(
     // TODO BRN: Handle userProfile.error
     return (
       <View style={styles.page}>
+        {/* TODO BRN: Move this into the `Page` component   */}
         <MetaTags>
           <title>{title}</title>
           {ssr ? (

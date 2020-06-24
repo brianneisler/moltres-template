@@ -1,4 +1,10 @@
-import { FieldTextInput, Text, TouchableOpacity, View } from '../../components'
+import {
+  FieldTextInput,
+  Page,
+  Text,
+  TouchableOpacity,
+  View
+} from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { SubmissionError, validateOneTimeCode } from '../../../utils/form'
@@ -10,6 +16,7 @@ import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,
+  memo,
   setDisplayName,
   withActions,
   withHandlers,
@@ -61,13 +68,14 @@ const enhance = compose(
   ),
   withHandlers({
     handleButtonPress: ({ submit }) => () => submit(AUTH_SMS_FORM)
-  })
+  }),
+  memo
 )
 
 const LoginCodePage = enhance(({ handleButtonPress, styles, submitting }) => {
   const disabled = submitting
   return (
-    <View style={styles.page}>
+    <Page>
       <View style={styles.form}>
         <FieldTextInput
           autoFocus={true}
@@ -88,7 +96,7 @@ const LoginCodePage = enhance(({ handleButtonPress, styles, submitting }) => {
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Page>
   )
 })
 

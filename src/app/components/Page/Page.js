@@ -1,9 +1,10 @@
-import { Fragment, HomeStreamEntityList, MetaTags, View } from '..'
+import { Fragment, MetaTags, View } from '..'
 import { Styles } from '../../styles'
 import { compose } from '../../../utils/lang'
 import {
   connect,
   defaultProps,
+  memo,
   setDisplayName,
   setPropTypes,
   withProps
@@ -18,10 +19,13 @@ import React from 'react'
 const enhance = compose(
   setDisplayName('Page'),
   setPropTypes({
-    pageId: PropTypes.string.isRequired,
-    tab: PropTypes.string
+    children: PropTypes.node.isRequired,
+    description: PropTypes.string,
+    robotsContent: PropTypes.string,
+    title: PropTypes.string
   }),
   defaultProps({
+    robotsContent: 'all',
     styles: Styles
   }),
   connect((state) => ({
@@ -30,14 +34,25 @@ const enhance = compose(
     ssr: selectSSRConfig(state),
     twitter: selectTwitterConfig(state)
   })),
-  withProps(({ app }) => ({
-    description: app.description,
-    title: `${app.description} - ${app.name}`
-  }))
+  withProps(({ app, description, title }) => ({
+    description: description || app.description,
+    title: title || `${app.description} - ${app.name}`
+  })),
+  memo
 )
 
 const Page = enhance(
-  ({ app, description, facebook, ssr, styles, title, twitter }) => {
+  ({
+    app,
+    children,
+    description,
+    facebook,
+    robotsContent,
+    ssr,
+    styles,
+    title,
+    twitter
+  }) => {
     return (
       <View style={styles.page}>
         <MetaTags>
@@ -59,10 +74,11 @@ const Page = enhance(
               <meta content="summary_large_image" property="twitter:card" />
               <meta content={twitter.username} property="twitter:site" />
               <meta content={description} property="twitter:image:alt" />
+              <meta content={robotsContent} name="robots" />
             </Fragment>
           ) : null}
         </MetaTags>
-        <HomeStreamEntityList />
+        {children}
       </View>
     )
   }
