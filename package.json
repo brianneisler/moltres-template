@@ -61,6 +61,7 @@
     "@google-cloud/storage": "^4.7.0",
     "@hapi/joi": "^17.1.1",
     "@manaflair/redux-batch": "^1.0.0",
+    "@react-native-community/checkbox": "^0.4.2",
     "@sentry/browser": "^5.15.4",
     "awesome-phonenumber": "^2.30.0",
     "babel-runtime": "^6.26.0",

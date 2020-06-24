@@ -121,7 +121,6 @@ const FieldTextInput = enhance(
     onDrop,
     onFocus,
     parse,
-    type,
     validate,
     value,
     warn,
@@ -142,7 +141,7 @@ const FieldTextInput = enhance(
         onFocus={onFocus}
         parse={parse}
         props={props}
-        type={type}
+        type="text"
         validate={validate}
         // Overrides
         value={value}
