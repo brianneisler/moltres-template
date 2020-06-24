@@ -3,6 +3,7 @@ import * as firebaseMain from 'firebase'
 import { createCustomToken } from '../utils/auth'
 import { createLogger } from '../utils/logger'
 import { createServiceAccount } from '../db/ServiceAccount'
+import { createSystem } from '../utils/system'
 import {
   initializeAdminApp,
   initializeAuthEmulator,
@@ -11,7 +12,6 @@ import {
 } from '../utils/firebase'
 import { invariant, isObject, uuidv4 } from '../utils/lang'
 import { isTestAppConfigured } from '../utils/config'
-import createSystem from '../utils/system/createSystem'
 
 const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   invariant(isObject(config), 'config must be a defined Object')
