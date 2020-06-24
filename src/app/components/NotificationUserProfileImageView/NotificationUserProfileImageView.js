@@ -18,7 +18,7 @@ const enhance = compose(
   setPropTypes({
     linkTo: PropTypes.object,
     message: PropTypes.string,
-    // style: View.propTypes.style,
+    // style: styleShape,
     userProfileImageId: PropTypes.string
   }),
   defaultProps({

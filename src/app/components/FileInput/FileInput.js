@@ -5,6 +5,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withHandlers,
   withState
 } from '../../../utils/react'
@@ -93,9 +94,9 @@ const enhance = compose(
   setDisplayName('FileInput'),
   setPropTypes({
     accept: PropTypes.string,
-    inputStyle: View.propTypes.style,
+    inputStyle: styleShape,
     onChange: PropTypes.func,
-    style: View.propTypes.style
+    style: styleShape
   }),
   defaultProps({
     onChange: noop,

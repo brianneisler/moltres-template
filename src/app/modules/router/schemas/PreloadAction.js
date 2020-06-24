@@ -1,5 +1,4 @@
-import { Action } from '../../../../db/Action'
-import { Boolean, Object } from '../../../../core/schemas'
+import { Action, Boolean, Object } from '../../../../core/schemas'
 
 const PreloadAction = {
   schema: Action.schema.keys({

@@ -4,7 +4,8 @@ import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
-  setPropTypes
+  setPropTypes,
+  styleShape
 } from '../../../utils/react'
 import React from 'react'
 import View from '../View'
@@ -12,7 +13,7 @@ import View from '../View'
 const enhance = compose(
   setDisplayName('LoadingText'),
   setPropTypes({
-    style: View.propTypes.style
+    style: styleShape
   }),
   defaultProps({
     styles: {

@@ -13,7 +13,7 @@ import {
 } from '../utils/firebase'
 import { invariant, isObject } from '../utils/lang'
 import { isTestAppConfigured } from '../utils/config'
-import createSystem from './createSystem'
+import createSystem from '../utils/system/createSystem'
 import firebase from 'firebase/app'
 
 // NOTE BRN: This method must remain synchronous because it is needed to boot up

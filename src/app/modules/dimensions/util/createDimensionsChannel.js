@@ -1,5 +1,5 @@
 import { Dimensions } from 'react-native'
-import { buffers, eventChannel } from 'redux-saga'
+import { eventChannel, slidingBuffer } from '../../../../utils/redux'
 
 const createDimensionsChannel = () => {
   return eventChannel((emitter) => {
@@ -10,7 +10,7 @@ const createDimensionsChannel = () => {
     return () => {
       Dimensions.removeEventListener('change', listener)
     }
-  }, buffers.sliding(1))
+  }, slidingBuffer(1))
 }
 
 export default createDimensionsChannel

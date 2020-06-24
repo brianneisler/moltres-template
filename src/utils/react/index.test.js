@@ -21,6 +21,7 @@ describe('react index', () => {
       setDisplayName: expect.any(Function),
       setPropTypes: expect.any(Function),
       storeShape: expect.any(Function),
+      styleShape: expect.any(Function),
       useDispatch: expect.any(Function),
       useStore: expect.any(Function),
       withActions: expect.any(Function),

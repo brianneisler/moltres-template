@@ -7,6 +7,7 @@ import {
   defaultProps,
   getStyleHeight,
   setPropTypes,
+  styleShape,
   withHandlers,
   withProps,
   withPropsOnChange,
@@ -45,7 +46,7 @@ const renderCurrentStatus = ({ currentStatus, styles }) => {
 
 const enhance = compose(
   setPropTypes({
-    style: View.propTypes.style
+    style: styleShape
   }),
   defaultProps({
     styles: {

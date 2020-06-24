@@ -27,11 +27,13 @@ const enhance = compose(
 )
 
 const App = enhance(({ history, store }) => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Main />
-    </ConnectedRouter>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Main />
+      </ConnectedRouter>
+    </Provider>
+  </React.StrictMode>
 ))
 
 export default App

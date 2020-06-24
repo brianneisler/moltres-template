@@ -6,6 +6,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withActions,
   withHandlers
 } from '../../../utils/react'
@@ -15,12 +16,11 @@ import Icon from '../Icon'
 import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
-import View from '../View'
 
 const enhance = compose(
   setDisplayName('HeaderTopLeftNav'),
   setPropTypes({
-    style: View.propTypes.style
+    style: styleShape
   }),
   defaultProps({
     styles: {

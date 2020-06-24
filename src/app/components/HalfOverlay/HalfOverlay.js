@@ -6,6 +6,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withActions,
   withHandlers,
   withPropsOnChange,
@@ -18,7 +19,6 @@ import CancelableModal from '../CancelableModal'
 import PropTypes from 'prop-types'
 import React from 'react'
 import ScrollView from '../ScrollView'
-import View from '../View'
 
 const enhance = compose(
   setDisplayName('HalfOverlay'),
@@ -28,9 +28,9 @@ const enhance = compose(
     onCancel: PropTypes.func,
     onPreShow: PropTypes.func,
     onShow: PropTypes.func,
-    styleBody: View.propTypes.style,
-    styleOverlayContainer: View.propTypes.style,
-    styleOverlayContentContainer: View.propTypes.style
+    styleBody: styleShape,
+    styleOverlayContainer: styleShape,
+    styleOverlayContentContainer: styleShape
   }),
   defaultProps({
     onPreShow: noop,

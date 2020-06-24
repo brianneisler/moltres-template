@@ -4,6 +4,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withProps
 } from '../../../utils/react'
 import Image from '../Image'
@@ -15,7 +16,7 @@ const enhance = compose(
   setDisplayName('UserProfileImage'),
   setPropTypes({
     size: PropTypes.number,
-    style: View.propTypes.style,
+    style: styleShape,
     userProfileImageId: PropTypes.string
   }),
   defaultProps({

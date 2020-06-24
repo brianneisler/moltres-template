@@ -1,5 +1,5 @@
 import { AppState } from 'react-native'
-import { buffers, eventChannel } from 'redux-saga'
+import { eventChannel, expandingBuffer } from '../../../../utils/redux'
 
 const createAppStateChannel = () => {
   return eventChannel((emitter) => {
@@ -10,7 +10,7 @@ const createAppStateChannel = () => {
     return () => {
       AppState.removeEventListener('change', listener)
     }
-  }, buffers.expanding(1))
+  }, expandingBuffer(1))
 }
 
 export default createAppStateChannel

@@ -1,5 +1,4 @@
-import { Action } from '../../../../db/Action'
-import { Integer, Object, String } from '../../../../core/schemas'
+import { Action, Integer, Object, String } from '../../../../core/schemas'
 
 const ResponseAction = {
   schema: Action.schema.keys({

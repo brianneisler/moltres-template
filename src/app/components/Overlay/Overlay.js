@@ -4,6 +4,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withActions,
   withHandlers
 } from '../../../utils/react'
@@ -26,7 +27,7 @@ const enhance = compose(
     name: PropTypes.string.isRequired,
     onCancel: PropTypes.func,
     onSubmit: PropTypes.func,
-    overlayStyle: View.propTypes.style,
+    overlayStyle: styleShape,
     submitText: PropTypes.string,
     title: PropTypes.string
   }),

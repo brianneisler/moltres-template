@@ -11,7 +11,7 @@ import {
 } from '../utils/firebase'
 import { invariant, isObject, uuidv4 } from '../utils/lang'
 import { isTestAppConfigured } from '../utils/config'
-import createSystem from './createSystem'
+import createSystem from '../utils/system/createSystem'
 
 const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   invariant(isObject(config), 'config must be a defined Object')

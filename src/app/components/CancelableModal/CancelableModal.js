@@ -6,6 +6,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withActions,
   withHandlers,
   withPropsOnChange,
@@ -29,8 +30,8 @@ const enhance = compose(
     onHide: PropTypes.func,
     onRequestCancel: PropTypes.func,
     onShow: PropTypes.func,
-    overlayStyle: View.propTypes.style,
-    style: View.propTypes.style
+    overlayStyle: styleShape,
+    style: styleShape
   }),
   defaultProps({
     disabled: false,

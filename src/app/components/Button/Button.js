@@ -4,7 +4,8 @@ import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
-  setPropTypes
+  setPropTypes,
+  styleShape
 } from '../../../utils/react'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -25,7 +26,7 @@ const enhance = compose(
     onMouseOver: PropTypes.func,
     onMouseUp: PropTypes.func,
     onPress: PropTypes.func.isRequired,
-    style: View.propTypes.style,
+    style: styleShape,
     testID: PropTypes.string,
     title: PropTypes.string.isRequired
   }),

@@ -8,6 +8,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withPropsOnChange
 } from '../../../utils/react'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
@@ -17,14 +18,13 @@ import Link from '../Link'
 import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
-import View from '../View'
 
 const USER_PATH = /^\/user\/([a-zA-Z0-9]*)\/?.*/
 
 const enhance = compose(
   setDisplayName('HeaderTopRightNav'),
   setPropTypes({
-    style: View.propTypes.style
+    style: styleShape
   }),
   defaultProps({
     styles: {

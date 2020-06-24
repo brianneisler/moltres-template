@@ -1,5 +1,4 @@
-import { Action } from '../../../../db/Action'
-import { Object } from '../../../../core/schemas'
+import { Action, Object } from '../../../../core/schemas'
 import Dimensions from './Dimensions'
 
 const DimensionsChangedAction = {

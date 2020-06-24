@@ -5,6 +5,7 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
+  styleShape,
   withHandlers,
   withPropsOnChange,
   withState
@@ -26,7 +27,7 @@ const enhance = compose(
     maxWidth: PropTypes.number,
     onLoad: PropTypes.func,
     source: PropTypes.object,
-    style: View.propTypes.style,
+    style: styleShape,
     uri: PropTypes.string
   }),
   defaultProps({

@@ -1,4 +1,4 @@
-import { buffers, eventChannel } from 'redux-saga'
+import { eventChannel, expandingBuffer } from '../../../../utils/redux'
 import { getNetworkInformation } from '../../../../utils/web'
 
 const createNetworkInformationChannel = (context) => {
@@ -10,7 +10,7 @@ const createNetworkInformationChannel = (context) => {
     return () => {
       getNetworkInformation(context).off('change', listener)
     }
-  }, buffers.expanding(1))
+  }, expandingBuffer(1))
 }
 
 export default createNetworkInformationChannel
