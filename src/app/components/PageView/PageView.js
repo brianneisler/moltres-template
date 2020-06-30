@@ -9,23 +9,23 @@ import {
   styleShape,
   withProps
 } from '../../../utils/react'
-import { renderPageContent } from './util'
+import PageContainer from '../PageContainer'
+import PageContentView from '../PageContentView'
 import PropTypes from 'prop-types'
 import React from 'react'
-import View from '../View'
 
 const enhance = compose(
   setDisplayName('PageContentView'),
   setPropTypes({
     entity: PropTypes.object,
-    pageContent: PropTypes.object,
+    page: PropTypes.object,
     style: styleShape
   }),
   defaultProps({
     styles: {
       ...Styles,
       ...StyleSheet.create({
-        content: {
+        pageContent: {
           backgroundColor: Colors.whitePrimary,
           flex: 1,
           flexDirection: 'row',
@@ -35,19 +35,22 @@ const enhance = compose(
       })
     }
   }),
-  withProps(({ entity, pageContent }) => ({
-    pageContent: pageContent || entity
+  withProps(({ entity, page }) => ({
+    page: page || entity
   })),
   memo
 )
 
-const PageContentView = enhance(({ pageContent, style, styles }) => {
+const PageView = enhance(({ page, style, styles }) => {
   // TODO BRN: Handle query errors. They will be located at entity.error
   return (
-    <View style={[styles.content, style]}>
-      {renderPageContent(pageContent)}
-    </View>
+    <PageContainer style={[styles.content, style]}>
+      <PageContentView
+        pageContent={page.page.content}
+        style={styles.pageContent}
+      />
+    </PageContainer>
   )
 })
 
-export default PageContentView
+export default PageView

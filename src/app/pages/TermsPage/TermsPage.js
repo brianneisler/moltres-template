@@ -1,13 +1,8 @@
-import { Page, PageContentView } from '../../components'
 import { StyleSheet } from 'react-native'
 import { Styles } from '../../styles'
 import { compose } from '../../../utils/lang'
-import {
-  connect,
-  defaultProps,
-  memo,
-  setDisplayName
-} from '../../../utils/react'
+import { defaultProps, setDisplayName } from '../../../utils/react'
+import PageViewPage from '../PageViewPage'
 import React from 'react'
 
 const enhance = compose(
@@ -17,17 +12,9 @@ const enhance = compose(
       ...Styles,
       ...StyleSheet.create({})
     }
-  }),
-  connect((state) => ({})),
-  memo
+  })
 )
 
-const TermsPage = enhance(({ styles }) => {
-  return (
-    <Page description="Terms of Service">
-      <PageContentView />
-    </Page>
-  )
-})
+const TermsPage = enhance(({ styles }) => <PageViewPage path="/legal/terms" />)
 
 export default TermsPage

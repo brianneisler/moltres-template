@@ -1,19 +1,6 @@
 import { Page } from './schemas'
-import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/lang'
+import { queryEntities } from '../Entity'
 
-const queryPages = curry((context, { code }, queryOptions) =>
-  buildQuery(
-    (query) => {
-      if (!isUndefined(code)) {
-        query = query.where('code', '==', code)
-      }
-      return query
-    },
-    Page,
-    context,
-    queryOptions
-  )
-)
+const queryPages = queryEntities(Page)
 
 export default queryPages

@@ -1,5 +1,4 @@
-import { Action } from '../../../../db/Action'
-import { Object, String } from '../../../../core/schemas'
+import { Action, Object, String } from '../../../../core/schemas'
 
 const RegisterUserAction = {
   name: 'auth.RegisterUserAction',

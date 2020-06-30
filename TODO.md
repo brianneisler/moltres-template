@@ -7,6 +7,10 @@ TODO
   - Page
   - PageContent
   - Url
+- [ ] rename service folder to `sdk`
+- [ ] move all queryAndWatch and db enhancer functions into `sdk` folder
+
+
 
 - [ ] IMPROVEMENT: setup webpack dev server that runs independently of the functions
 

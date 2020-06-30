@@ -1,27 +1,25 @@
-import * as actions from './actions'
+import { SaveUserProfileAction, SetCurrentUserProfileAction } from './schemas'
 import { assoc, compose } from '../../../utils/lang'
 import {
   call,
   fork,
   handleAction,
   handleActions,
-  select,
   takeEvery
 } from '../../../utils/redux'
 import { getUserById } from '../../../db/User'
+import { queryAndWatchCurrentUserProfile } from './util'
+import { queryAndWatchUserProfile } from '../../../sdk/user_profile'
 import { saveUserProfile } from '../../../db/UserProfile'
-import { selectIdToken, watchCurrentUser } from '../auth'
-import { uploadUserProfileImage } from './sdk'
+import { watchCurrentUser } from '../auth'
 import { withConfig, withContext } from '../../../core'
-import queryAndWatchCurrentUserProfile from './queryAndWatchCurrentUserProfile'
-import queryAndWatchUserProfile from './queryAndWatchUserProfile'
 
 const enhance = compose(withConfig('api'), withContext())
 
 const mod = {
   reducer: handleActions(
     {
-      [actions.setCurrentUserProfile]: (state, action) =>
+      [SetCurrentUserProfileAction.name]: (state, action) =>
         assoc('currentUserProfile', action.payload.currentUserProfile, state)
     },
     {
@@ -67,23 +65,10 @@ const mod = {
     )
 
     yield takeEvery(
-      actions.saveUserProfile,
+      SaveUserProfileAction.name,
       handleAction(
         enhance(function* (context, action) {
           yield call(saveUserProfile, context, action.payload.userProfile)
-        })
-      )
-    )
-
-    yield takeEvery(
-      actions.uploadUserProfileImage,
-      handleAction(
-        enhance(function* (context, action) {
-          const idToken = yield select(selectIdToken)
-          yield call(uploadUserProfileImage, context, {
-            idToken,
-            userProfileImage: action.payload.userProfileImage
-          })
         })
       )
     )
