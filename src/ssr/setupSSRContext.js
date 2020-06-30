@@ -24,7 +24,7 @@ const setupSSRContext = (config, serviceAccountContext, history) => {
       component
     },
     serviceAccount,
-    source: `${config.api.url}/service_account/${serviceAccountContext.serviceAccount.id}?ssr=true`
+    source: `${config.api.url}/sdk_account/${serviceAccountContext.serviceAccount.id}?ssr=true`
   })
 }
 

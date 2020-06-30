@@ -1,4 +1,4 @@
-import { generateInternalPhoneNumber } from '../../src/service/phone_number'
+import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
 import { map, split } from 'ramda'
 import { setupScriptContexts } from './utils'
 

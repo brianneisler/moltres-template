@@ -5,12 +5,12 @@ import {
   createNotificationSend,
   updateNotificationSend
 } from '../../../../db/Notification'
-import { generateSMSChannel } from '../../../../service/sms'
+import { generateSMSChannel } from '../../../../sdk/sms'
 import { nowTimestamp } from '../../../../utils/db'
 import {
   renderNotification,
   validateNotification
-} from '../../../../service/notification'
+} from '../../../../sdk/notification'
 import { sendSMSMessageToChannel } from '../../sms'
 
 const sendNotification = function* (context, enhancedNotification) {

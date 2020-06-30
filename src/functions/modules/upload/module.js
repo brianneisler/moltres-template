@@ -6,7 +6,7 @@ import { expected } from '../../../utils/error'
 import { getUploadById, updateUpload } from '../../../db/Upload'
 import { getUserById } from '../../../db/User'
 import { handleAction } from '../../../utils/redux'
-import { saveImageFromBuffer } from '../../../service/image'
+import { saveImageFromBuffer } from '../../../sdk/image'
 import { takeEveryStorageObjectFinalize } from '../storage'
 import { withConfig, withContext } from '../../../core'
 

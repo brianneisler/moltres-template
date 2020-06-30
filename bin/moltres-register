@@ -3,7 +3,7 @@
 require('@babel/register')
 const { expected } = require('../src/utils/error')
 const { saveUserProfile } = require('../src/db/UserProfile')
-const { registerValidUser } = require('../src/service')
+const { registerValidUser } = require('../src/sdk')
 const { setupCliContexts, tearDownCliContexts } = require('../src/cli')
 const program = require('commander')
 

@@ -24,7 +24,7 @@ const setupTestServiceAccountContext = async (adminContext) => {
     config,
     namespace,
     serviceAccount: adminContext.serviceAccount,
-    source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?test=${runId}`,
+    source: `${config.api.url}/sdk_account/${adminContext.serviceAccount.id}?test=${runId}`,
     storage: adminContext.storage,
     testAuth
   })

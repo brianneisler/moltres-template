@@ -21,7 +21,7 @@ const setupFunctionContexts = weakMemoize(async (config, functionName) => {
       sms
     },
     serviceAccount: adminContext.serviceAccount,
-    source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?function=${functionName}`,
+    source: `${config.api.url}/sdk_account/${adminContext.serviceAccount.id}?function=${functionName}`,
     storage: adminContext.storage
   })
   context.logger.info(`'${functionName}' function context created`)

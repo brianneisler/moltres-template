@@ -20,7 +20,7 @@ const setupScriptContexts = async () => {
     config,
     namespace: `script:${namespace}`,
     serviceAccount: adminContext.serviceAccount,
-    source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?script=true`,
+    source: `${config.api.url}/sdk_account/${adminContext.serviceAccount.id}?script=true`,
     storage: adminContext.storage
   })
   const { logger } = context
