@@ -12,6 +12,11 @@ TODO
 
 
 
+- [ ] Add a styles system that picks up styles from theme
+  - should also allow for a feature similar to "class names" for overriding styles
+- [ ] Add a styles section to theme
+
+
 - [ ] IMPROVEMENT: setup webpack dev server that runs independently of the functions
 
 - [ ] add app concept  

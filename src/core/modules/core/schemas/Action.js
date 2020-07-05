@@ -12,7 +12,7 @@ const Action = {
     datacontenttype: String.schema.valid(''),
     id: String.schema.required(),
     meta: Object.schema,
-    payload: Object.schema.required(),
+    payload: Object.schema.allow(null).required(),
     source: String.schema
       .uri({
         scheme: ['http', 'https']

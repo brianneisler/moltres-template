@@ -1,1 +1,1 @@
-export { default as dimensionsChanged } from './dimensionsChanged'
+export { default as dimensionsChangedAction } from './dimensionsChangedAction'

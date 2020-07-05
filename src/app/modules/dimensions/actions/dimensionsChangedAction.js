@@ -1,8 +1,8 @@
 import { DimensionsChangedAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
 
-const dimensionsChanged = actionBuilder({
+const dimensionsChangedAction = actionBuilder({
   Schema: DimensionsChangedAction
 })
 
-export default dimensionsChanged
+export default dimensionsChangedAction

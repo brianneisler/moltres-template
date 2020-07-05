@@ -1,15 +1,6 @@
-import { buffers, eventChannel } from 'redux-saga'
+import { createSlidingEventListenerChannel } from '../../../../utils/redux'
 
-const createScrollChannel = (target) => {
-  return eventChannel((emitter) => {
-    const listener = (event) => {
-      emitter(event)
-    }
-    target.addEventListener('scroll', listener)
-    return () => {
-      target.removeEventListener('scroll', listener)
-    }
-  }, buffers.sliding(1))
-}
+const createScrollChannel = (target) =>
+  createSlidingEventListenerChannel(target, 'scroll')
 
 export default createScrollChannel
