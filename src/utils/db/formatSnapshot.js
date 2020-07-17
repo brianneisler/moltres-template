@@ -17,7 +17,7 @@ const formatSnapshotDocuments = (snapshot, options) =>
 const formatSnapshot = (snapshot, options = {}) => {
   let document
   if (snapshot.docs) {
-    if (!options.findOne) {
+    if (!options.findOne && !options.getOne) {
       return formatSnapshotDocuments(snapshot, options)
     }
     if (options.includeRemoved) {
