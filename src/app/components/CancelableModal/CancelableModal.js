@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
-import { compose, getProp, noop } from '../../../utils/lang'
+
+import { compose, noop } from '../../../utils/lang'
 import {
   connect,
   defaultProps,
@@ -12,11 +14,13 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
-import { actions as modalActions, selectModal } from '../../modules/modal'
+import {
+  actions as modalActions,
+  selectModalVisible
+} from '../../modules/modal'
+import { StyleSheets } from '../../styles'
 import Modal from '../Modal'
-import PropTypes from 'prop-types'
-import React from 'react'
-import Text from '../Text'
+import TouchableWithoutFeedback from '../TouchableWithoutFeedback'
 import View from '../View'
 
 const enhance = compose(
@@ -38,7 +42,7 @@ const enhance = compose(
     onHide: noop,
     onShow: noop,
     styles: {
-      ...Styles,
+      ...StyleSheets,
       ...StyleSheet.create({
         modalContainer: {
           alignItems: 'center',
@@ -55,9 +59,9 @@ const enhance = compose(
     setModalCancelEnabled: modalActions.setModalCancelEnabled
   }),
   connect((state, { name }) => {
-    const modal = selectModal(name, state)
+    const visible = selectModalVisible(name, state)
     return {
-      visible: getProp('visible', modal)
+      visible
     }
   }),
   withState('modalVisible', 'setModalVisible', false),
@@ -67,6 +71,10 @@ const enhance = compose(
       if (visible) {
         setModalVisible(true)
       } else {
+        // TODO BRN: There is a race condition happening where this is still
+        // completing when the property `visible` changes to true. Instead, we
+        // need to add support for a state so that we can wait for the state to
+        // change to visible and then start the hide
         setModalCancelEnabled(name, false)
           .then(() => onHide({ name }))
           .then(() => {
@@ -138,10 +146,9 @@ const CancelableModal = enhance(
       visible={modalVisible}
     >
       <View style={[styles.modalContainer, style]}>
-        <Text
-          onPress={handleModalPress}
-          style={[styles.overlay, overlayStyle]}
-        />
+        <TouchableWithoutFeedback onPress={handleModalPress}>
+          <View style={[styles.overlay, overlayStyle]} />
+        </TouchableWithoutFeedback>
         {children}
       </View>
     </Modal>

@@ -1,5 +1,7 @@
-import { Colors } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Dimensions, Easing, StyleSheet } from 'react-native'
+
 import { compose, isFunction, noop } from '../../../utils/lang'
 import {
   defaultProps,
@@ -9,10 +11,9 @@ import {
   withHandlers,
   withState
 } from '../../../utils/react'
+import { Colors } from '../../styles'
 import Animated from '../Animated'
 import Portal from '../Portal'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('Modal'),

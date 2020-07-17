@@ -1,107 +1,70 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import { ALERT } from '../../../constants/Modal'
-import { Colors, Constants, Styles } from '../../styles'
-import { InteractionManager, StyleSheet } from 'react-native'
-import { assoc, compose, getProp, mapIndexed } from '../../../utils/lang'
+import { compose, getProp, map } from '../../../utils/lang'
 import {
-  connect,
   defaultProps,
-  getStyleHeight,
   memo,
   setDisplayName,
   setPropTypes,
   withActions,
-  withHandlers,
-  withProps,
-  withPropsOnChange,
-  withState
+  withHandlers
+  // withProps,
+  // withPropsOnChange,
+  // withState
 } from '../../../utils/react'
 import { actions as modalActions } from '../../modules/modal'
-import { selectDimensionsWindowHeight } from '../../modules/dimensions'
+import { Colors, StyleSheets, Styles } from '../../styles'
+// import { selectDimensionsWindowHeight } from '../../modules/dimensions'
+import Button from '../Button'
 import CancelableModal from '../CancelableModal'
-import PropTypes from 'prop-types'
-import React from 'react'
+import CloseButton from '../CloseButton'
 import ScrollView from '../ScrollView'
 import Text from '../Text'
-import TouchableHighlight from '../TouchableHighlight'
 import View from '../View'
 
-const renderTitle = ({ styles, title }) => {
+const AlertTitle = ({ styles, title }) => {
   if (!title) {
     return null
   }
-  return (
-    <View style={styles.titleBox}>
-      {React.isValidElement(title) ? (
-        title
-      ) : (
-        <Text style={[styles.mediumText, styles.titleText]}>{title}</Text>
-      )}
-    </View>
+  return React.isValidElement(title) ? (
+    title
+  ) : (
+    <Text style={styles.title}>{title}</Text>
   )
 }
 
-const renderMessage = ({ message, styles }) => {
+const AlertMessage = ({ message, styles }) => {
   if (!message) {
     return null
   }
-  return (
-    <View style={styles.messageBox}>
-      {React.isValidElement(message) ? (
-        message
-      ) : (
-        <Text style={[styles.text, styles.messageText]}>{message}</Text>
-      )}
-    </View>
+  return React.isValidElement(message) ? (
+    message
+  ) : (
+    <Text style={styles.message}>{message}</Text>
   )
 }
 
-const renderButton = ({ key, onPress, style, styles, text, type }) => {
-  const fontColor = type === 'destructive' ? Colors.warn : Colors.tint
-  return (
-    <TouchableHighlight
-      activeOpacity={1}
-      key={`Alert-${key}`}
-      onPress={onPress}
-      style={[styles.buttonBox, style]}
-      underlayColor={Colors.buttonUnderlay}
-    >
-      {React.isValidElement(text) ? (
-        text
-      ) : (
-        <Text style={[styles.mediumText, { color: fontColor }]}>{text}</Text>
-      )}
-    </TouchableHighlight>
-  )
-}
-
-const renderButtons = ({ buttons, options, styles }) => {
-  let flexDirection = 'row'
-  let firstButtonStyle = {}
+const renderButtons = ({ buttons, styles }) => {
+  let flexDirectionStyle = styles.buttonsInRow
   if (buttons.length > 2) {
-    flexDirection = 'column'
-  } else if (buttons.length === 2) {
-    firstButtonStyle = assoc(
-      'marginRight',
-      Constants.hairlineWidth,
-      firstButtonStyle
-    )
+    flexDirectionStyle = styles.buttonsInColumn
   }
 
   return (
-    <View
-      style={{
-        flexDirection
-      }}
-    >
-      {mapIndexed(
-        (button, index) =>
-          renderButton({
-            ...button,
-            key: index,
-            options,
-            style: index === 0 ? firstButtonStyle : null,
-            styles
-          }),
+    <View style={[styles.buttonsContainer, flexDirectionStyle]}>
+      {map(
+        (button, index) => (
+          <Button
+            key={`AlertButton-${index}`}
+            onPress={button.onPress}
+            style={[styles.button, button.style]}
+            text={button.text}
+            type={button.type}
+          />
+        ),
         buttons
       )}
     </View>
@@ -114,17 +77,20 @@ const enhance = compose(
     buttons: PropTypes.array.isRequired,
     message: PropTypes.string,
     options: PropTypes.object,
-    title: PropTypes.string
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
   }),
   defaultProps({
     options: {
       cancelable: true
     },
     styles: {
-      ...Styles,
+      ...StyleSheets,
       ...StyleSheet.create({
         alertBlock: {
-          borderRadius: 10,
+          backgroundColor: Colors.whitePrimary,
+          borderRadius: 16,
+          maxWidth: 640,
+          minWidth: 480,
           overflow: 'hidden'
         },
         alertContainer: {
@@ -136,38 +102,66 @@ const enhance = compose(
           backgroundColor: '#e5e5e5',
           flex: 1
         },
-        buttonBox: {
+        button: {
+          height: 40,
+          marginLeft: 20,
+          marginRight: 20,
+          width: 80
+        },
+        buttonsContainer: {
+          backgroundColor: Colors.whitePrimary,
+          justifyContent: 'center',
+          marginBottom: 32,
+          marginTop: 32
+        },
+        buttonsInColumn: {
+          flexDirection: 'column'
+        },
+        buttonsInRow: {
+          flexDirection: 'row'
+        },
+        innerContainer: {
           alignItems: 'center',
           backgroundColor: Colors.whitePrimary,
-          flex: 1,
-          height: 50,
-          justifyContent: 'center',
-          marginTop: Constants.hairlineWidth
+          borderRadius: 16,
+          flexDirection: 'column',
+          maxWidth: 640,
+          minWidth: 480,
+          overflow: 'hidden',
+          width: '100%'
         },
-        messageBox: {
-          alignItems: 'center',
-          backgroundColor: Colors.whitePrimary,
-          height: 30,
-          justifyContent: 'center',
-          paddingBottom: 10,
-          paddingLeft: 10,
-          paddingRight: 10
-        },
-        messageText: {
-          color: '#9a9a9a',
-          fontSize: 14
+        message: {
+          ...Styles.textMedium,
+          color: Colors.blue10,
+          fontSize: 18,
+          marginLeft: 16,
+          marginRight: 16,
+          marginTop: 16,
+          textAlign: 'center'
         },
         modal: {
           justifyContent: 'center'
         },
-        titleBox: {
-          alignItems: 'center',
-          backgroundColor: Colors.whitePrimary,
-          height: 40,
-          justifyContent: 'center'
+        overlayContainer: {
+          flexGrow: 0,
+          flexShrink: 0,
+          maxHeight: '100%',
+          maxWidth: 640,
+          width: '100%'
         },
-        titleText: {
-          fontWeight: 'bold'
+        overlayContentContainer: {
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          marginTop: 40,
+          width: '100%'
+        },
+        title: {
+          ...Styles.header2,
+          color: Colors.blue10,
+          fontWeight: 600,
+          marginLeft: 16,
+          marginRight: 16,
+          marginTop: 56
         }
       })
     }
@@ -175,44 +169,6 @@ const enhance = compose(
   withActions({
     requestCancelModal: modalActions.requestCancelModal
   }),
-  withState('scrollEnabled', 'setScrollEnabled', false),
-  connect((state) => ({
-    windowHeight: selectDimensionsWindowHeight(state)
-  })),
-  withPropsOnChange(['windowHeight'], ({ windowHeight }) => ({
-    maxHeight: Math.round(windowHeight * 0.7)
-  })),
-  withHandlers({
-    calculateHeight: ({ buttons, maxHeight, setScrollEnabled, styles }) => ({
-      message,
-      title
-    }) => {
-      let height = 0
-      if (title) {
-        height += getStyleHeight(styles, 'titleBox')
-      }
-      if (message) {
-        height += getStyleHeight(styles, 'messageBox')
-      }
-      height += buttons.length * getStyleHeight(styles, 'buttonBox')
-
-      if (height > maxHeight) {
-        InteractionManager.runAfterInteractions(() => {
-          setScrollEnabled(true)
-        })
-        height = maxHeight
-      } else {
-        InteractionManager.runAfterInteractions(() => {
-          setScrollEnabled(false)
-        })
-      }
-
-      return height
-    }
-  }),
-  withProps(({ calculateHeight, ...rest }) => ({
-    height: calculateHeight(rest)
-  })),
   withHandlers({
     handleModalRequestCancel: ({ options, requestCancelModal }) => ({
       name
@@ -222,11 +178,21 @@ const enhance = compose(
       }
     }
   }),
+  withHandlers({
+    handleCloseButtonPress: ({ handleModalRequestCancel }) => () => {
+      handleModalRequestCancel({ name: ALERT })
+    }
+  }),
   memo
 )
 
 const Alert = enhance((props) => {
-  const { handleModalRequestCancel, scrollEnabled, styles } = props
+  const {
+    handleCloseButtonPress,
+    handleModalRequestCancel,
+    options,
+    styles
+  } = props
   return (
     <CancelableModal
       animationType="fade"
@@ -234,16 +200,19 @@ const Alert = enhance((props) => {
       onRequestCancel={handleModalRequestCancel}
       style={styles.modal}
     >
-      <View style={styles.alertContainer}>
-        <ScrollView
-          contentContainerStyle={styles.alertBlock}
-          scrollEnabled={scrollEnabled}
-        >
-          {renderTitle(props)}
-          {renderMessage(props)}
+      <ScrollView
+        contentContainerStyle={styles.overlayContentContainer}
+        style={styles.overlayContainer}
+      >
+        <View style={[styles.innerContainer, options.innerContainerStyle]}>
+          {options.cancelable ? (
+            <CloseButton onPress={handleCloseButtonPress} />
+          ) : null}
+          <AlertTitle {...props} />
+          <AlertMessage {...props} />
           {renderButtons(props)}
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </CancelableModal>
   )
 })

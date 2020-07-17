@@ -10,7 +10,8 @@ TODO
 - [ ] rename service folder to `sdk`
 - [ ] move all queryAndWatch and db enhancer functions into `sdk` folder
 
-
+- [ ] IMPROVEMENT: Switch to eslint-plugin-import for import order (remove sort-imports-es6-autofix)
+https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
 
 - [ ] Add a styles system that picks up styles from theme
   - should also allow for a feature similar to "class names" for overriding styles

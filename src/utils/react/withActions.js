@@ -1,9 +1,11 @@
 import { Component } from 'react'
+
 import { isFunction, map } from '../lang'
+
 import bindActionCreator from './bindActionCreator'
 import createFactory from './createFactory'
 import setDisplayName from './setDisplayName'
-import withDispatch from './withDispatch'
+import withStore from './withStore'
 import wrapDisplayName from './wrapDisplayName'
 
 const withActions = (mapActionsToProps, wrapActionCreator = null) => (
@@ -15,7 +17,7 @@ const withActions = (mapActionsToProps, wrapActionCreator = null) => (
       (actionCreator) => {
         const boundActionCreator = bindActionCreator(
           actionCreator,
-          this.props.dispatch
+          this.props.store
         )
         if (isFunction(wrapActionCreator)) {
           return wrapActionCreator(boundActionCreator)
@@ -37,10 +39,10 @@ const withActions = (mapActionsToProps, wrapActionCreator = null) => (
 
   if (process.env.NODE_ENV !== 'production') {
     return setDisplayName(wrapDisplayName(BaseComponent, 'withActions'))(
-      withDispatch()(WithActions)
+      withStore()(WithActions)
     )
   }
-  return withDispatch()(WithActions)
+  return withStore()(WithActions)
 }
 
 export default withActions

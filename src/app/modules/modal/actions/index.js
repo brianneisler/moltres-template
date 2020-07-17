@@ -1,5 +1,6 @@
 export { default as hideModal } from './hideModal'
 export { default as modalCancelled } from './modalCancelled'
+export { default as pushModalRouteAction } from './pushModalRouteAction'
 export { default as requestCancelModal } from './requestCancelModal'
 export { default as setModalCancelEnabled } from './setModalCancelEnabled'
 export { default as setModal } from './setModal'

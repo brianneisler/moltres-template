@@ -19,7 +19,7 @@ module.exports = {
     'prettier',
     'react',
     'sort-destructure-keys',
-    'sort-imports-es6-autofix',
+    // 'sort-imports-es6-autofix',
     'sort-keys-fix'
   ],
   root: true,
@@ -50,9 +50,27 @@ module.exports = {
       }
     ],
     'import/default': 'error',
+    'import/export': 'error',
+    'import/exports-last': 'error',
+    'import/extensions': [
+      'error',
+      'never',
+      {
+        '.json': 'always'
+      }
+    ],
     'import/first': 'error',
+    'import/named': 'error',
+    'import/namespace': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-absolute-path': 'error',
     'import/no-cycle': 'error',
+    'import/no-deprecated': 'error',
     'import/no-duplicates': 'error',
+    'import/no-extraneous-dependencies': 'error',
+    'import/no-mutable-exports': 'error',
+    'import/no-named-as-default': 'error',
+    'import/no-named-as-default-member': 'error',
     'import/no-self-import': 'error',
     'import/no-unresolved': [
       'error',
@@ -61,8 +79,16 @@ module.exports = {
       }
     ],
     'import/no-useless-path-segments': 'error',
+    'import/order': [
+      'error',
+      {
+        alphabetize: { caseInsensitive: false, order: 'asc' },
+        'newlines-between': 'always'
+      }
+    ],
     'no-alert': 'error',
     'no-async-promise-executor': 'error',
+    'no-class-assign': 'error',
     'no-compare-neg-zero': 'error',
     'no-cond-assign': 'error',
     'no-console': 'error',
@@ -113,14 +139,6 @@ module.exports = {
     'react/jsx-uses-vars': 'error',
     semi: ['error', 'never'],
     'sort-destructure-keys/sort-destructure-keys': 'error',
-    'sort-imports-es6-autofix/sort-imports-es6': [
-      'error',
-      {
-        ignoreCase: false,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
-      }
-    ],
     'sort-keys-fix/sort-keys-fix': 'error',
     'spaced-comment': 'error',
     strict: ['error', 'never']

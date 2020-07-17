@@ -1,4 +1,6 @@
-import { ConnectedRouter, Provider } from './components'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose } from '../utils/lang'
 import {
   setDisplayName,
@@ -6,9 +8,9 @@ import {
   storeShape,
   withContext
 } from '../utils/react'
+
 import Main from './Main'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { ConnectedRouter, Provider } from './components'
 
 const enhance = compose(
   setDisplayName('App'),
