@@ -1,4 +1,4 @@
-import { map } from '../../utils/data'
+import { map } from '../../utils/lang'
 import createModule from './createModule'
 
 const createModules = (config, context, creators) =>

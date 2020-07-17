@@ -1,5 +1,5 @@
-import { all, call } from '../../../../utils/lang'
-import { compact, flatten, getProp, keys, map } from '../../../../utils/data'
+import { all, call } from '../../../../utils/redux'
+import { compact, flatten, getProp, keys, map } from '../../../../utils/lang'
 import runModule from './runModule'
 
 function* runStore(store) {

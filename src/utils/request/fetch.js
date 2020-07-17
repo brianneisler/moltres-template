@@ -1,4 +1,4 @@
-import { curryN } from '../data'
+import { curryN } from '../lang'
 import crossFetch from 'cross-fetch'
 
 /**

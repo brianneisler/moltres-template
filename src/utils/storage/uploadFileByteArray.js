@@ -9,7 +9,12 @@
  * @param {Object} metadata
  * @returns {Promise}
  */
-const uploadFileByteArray = async ({ storage }, byteArray, filePath, metadata = {}) => {
+const uploadFileByteArray = async (
+  { storage },
+  byteArray,
+  filePath,
+  metadata = {}
+) => {
   // NOTE BRN: Ugly HACK since the admin sdk's methods are different from those
   // on the client side. Admin sdk uses google cloud sdk while client side has
   // its own methods for uploading files to firebase

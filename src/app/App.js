@@ -1,19 +1,39 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ConnectedRouter, Provider } from './components'
+import { compose } from '../utils/lang'
+import {
+  setDisplayName,
+  setPropTypes,
+  storeShape,
+  withContext
+} from '../utils/react'
+import Main from './Main'
+import PropTypes from 'prop-types'
 import React from 'react'
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    flex: 1,
-    justifyContent: 'center'
-  }
-})
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+const enhance = compose(
+  setDisplayName('App'),
+  setPropTypes({
+    history: PropTypes.object.isRequired,
+    store: storeShape
+  }),
+  withContext(
+    {
+      store: storeShape
+    },
+    ({ store }) => ({
+      store
+    })
   )
-}
+)
+
+const App = enhance(({ history, store }) => (
+  <React.StrictMode>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Main />
+      </ConnectedRouter>
+    </Provider>
+  </React.StrictMode>
+))
+
+export default App

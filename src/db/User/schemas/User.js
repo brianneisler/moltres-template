@@ -1,13 +1,13 @@
 import { Entity } from '../../Entity'
-import Joi from '@hapi/joi'
+import { String } from '../../../core/schemas'
 
 const User = {
   collectionName: 'Users',
   name: 'User',
-  schema: Entity.keys({
-    name: Joi.string(),
-    state: Joi.string().valid('disabled', 'pending', 'valid').required(),
-    uid: Joi.string()
+  schema: Entity.schema.keys({
+    name: String.schema,
+    state: String.schema.valid('disabled', 'pending', 'valid').required(),
+    uid: String.schema
   })
 }
 

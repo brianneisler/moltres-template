@@ -23,9 +23,9 @@ const spec = describe('findAllInternalPhoneNumbers', () => {
 
     it('throws an error that cache is missing', async () => {
       delete context.cache
-      await expect((async () => findAllInternalPhoneNumbers(context))()).rejects.toThrow(
-        /Cache is missing/
-      )
+      await expect(
+        (async () => findAllInternalPhoneNumbers(context))()
+      ).rejects.toThrow(/Cache is missing/)
     })
   })
 })

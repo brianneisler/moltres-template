@@ -21,7 +21,9 @@ const setupFunctions = () => {
       .runWith(runtimeOptions)
       .firestore.document('Actions/{type}/queue/{id}')
       .onCreate(setupActionsFunction(config)),
-    app: functions.runWith(runtimeOptions).https.onRequest(setupAppFunction(config)),
+    app: functions
+      .runWith(runtimeOptions)
+      .https.onRequest(setupAppFunction(config)),
     storage_delete: functions
       .runWith(runtimeOptions)
       .storage.object()

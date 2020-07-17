@@ -1,7 +1,10 @@
-import { getPropOr } from '../../utils/data'
+import { getPropOr } from '../../utils/lang'
 import moveActionFromBucketToBucket from './moveActionFromBucketToBucket'
 
-const moveActionToRejected = moveActionFromBucketToBucket('processing', 'rejected')
+const moveActionToRejected = moveActionFromBucketToBucket(
+  'processing',
+  'rejected'
+)
 
 const rejectAction = async (context, document, error) =>
   moveActionToRejected(context, document, (data) => ({

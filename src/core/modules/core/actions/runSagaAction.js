@@ -1,10 +1,13 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
-const runSagaAction = createAction('RUN_SAGA', ({ args, reject, resolve, saga }) => ({
-  args,
-  reject,
-  resolve,
-  saga
-}))
+const runSagaAction = createAction(
+  'RUN_SAGA',
+  ({ args, reject, resolve, saga }) => ({
+    args,
+    reject,
+    resolve,
+    saga
+  })
+)
 
 export default runSagaAction

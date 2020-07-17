@@ -1,5 +1,5 @@
-import { cancel, put, select } from '../utils/lang'
-import { filter, update } from '../utils/data'
+import { cancel, put, select } from '../utils/redux'
+import { filter, update } from '../utils/lang'
 import { selectQuery } from './selectors'
 import { setQueryAction } from './actions'
 

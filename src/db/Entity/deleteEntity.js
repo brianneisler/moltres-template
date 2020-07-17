@@ -1,5 +1,5 @@
 import { buildBatch, commitBatch } from '../../utils/db'
-import { curry } from '../../utils/data'
+import { curry } from '../../utils/lang'
 import batchDeleteEntity from './batchDeleteEntity'
 
 const deleteEntity = curry(async (Schema, context, id, options = {}) => {

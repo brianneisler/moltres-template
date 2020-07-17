@@ -1,6 +1,6 @@
 import {
   ImmutableMap,
-  assocProp,
+  assoc,
   dissocProp,
   getProp,
   identity,
@@ -10,8 +10,8 @@ import {
   omit,
   replaceWildcards,
   selectWildcards
-} from '../utils/data'
-import { call } from '../utils/lang'
+} from '../utils/lang'
+import { call } from '../utils/redux'
 import createFactory from './createFactory'
 import createSingleQueryFactory from './createSingleQueryFactory'
 
@@ -45,7 +45,7 @@ const createWildcardQueryFactory = ({
           // replacing the wild cards in it with the wildcard values from the resultGroup
           statePath: targetStatePath
         })
-        factories = assocProp(factoryKey, factory, factories)
+        factories = assoc(factoryKey, factory, factories)
       }
       remainingFactories = dissocProp(factoryKey, remainingFactories)
       return yield call(factory, props, channel, context, ...rest)
@@ -53,7 +53,13 @@ const createWildcardQueryFactory = ({
 
     // NOTE BRN: Remove the factories that were no longer found by the selector
     factories = omit(keys(remainingFactories), factories)
-    return yield call(baseFactory, mergeAll(...results), channel, context, ...rest)
+    return yield call(
+      baseFactory,
+      mergeAll(...results),
+      channel,
+      context,
+      ...rest
+    )
   })
 }
 

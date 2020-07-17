@@ -1,5 +1,7 @@
-import { createSelector, select } from '../../../../utils/data'
+import { createSelector, select } from '../../../../utils/lang'
 
-const selectRouterLocationState = select(createSelector('router.location.state'))
+const selectRouterLocationState = select(
+  createSelector('router.location.state')
+)
 
 export default selectRouterLocationState

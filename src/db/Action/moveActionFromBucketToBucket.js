@@ -1,14 +1,22 @@
 import { Action } from './schemas'
-import { addUpdatedAtTimestamp, collection, convertDataToFirebase } from '../../utils/db'
-import { curry, omit } from '../../utils/data'
+import {
+  addUpdatedAtTimestamp,
+  collection,
+  convertDataToFirebase
+} from '../../utils/db'
+import { curry, omit } from '../../utils/lang'
 
 const moveActionFromBucketToBucket = curry(
   async (fromBucket, toBucket, context, document, transactionMethod) => {
     const { database } = context
     let data = document.data()
     const Actions = collection(Action, omit(['parentRef'], context))
-    const fromBucketRef = Actions.doc(`${data.action.type}/${fromBucket}/${document.id}`)
-    const toBucketRef = Actions.doc(`${data.action.type}/${toBucket}/${document.id}`)
+    const fromBucketRef = Actions.doc(
+      `${data.action.type}/${fromBucket}/${document.id}`
+    )
+    const toBucketRef = Actions.doc(
+      `${data.action.type}/${toBucket}/${document.id}`
+    )
 
     await database.runTransaction(async (transaction) => {
       if (transactionMethod) {

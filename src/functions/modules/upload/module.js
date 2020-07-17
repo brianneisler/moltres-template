@@ -1,18 +1,19 @@
 import { AllowedImageType, UploadState } from '../../../constants'
-import { compose, includes, pick, values } from '../../../utils/data'
+import { compose, includes, pick, values } from '../../../utils/lang'
 import { createUserImage } from '../../../db/UserImage'
 import { deleteFile, downloadFile } from '../../../utils/storage'
 import { expected } from '../../../utils/error'
 import { getUploadById, updateUpload } from '../../../db/Upload'
 import { getUserById } from '../../../db/User'
-import { handleAction } from '../../../utils/lang'
-import { saveImageFromBuffer } from '../../../service/image'
+import { handleAction } from '../../../utils/redux'
+import { saveImageFromBuffer } from '../../../sdk/image'
 import { takeEveryStorageObjectFinalize } from '../storage'
 import { withConfig, withContext } from '../../../core'
 
 const ALLOWED_TYPES = values(AllowedImageType)
 
-const isAllowedImageContentType = (contentType) => includes(contentType, ALLOWED_TYPES)
+const isAllowedImageContentType = (contentType) =>
+  includes(contentType, ALLOWED_TYPES)
 
 const enhance = compose(
   withContext(),
@@ -48,7 +49,9 @@ const mod = {
               getUploadById(context, uploadId),
               getUserById(context, userId)
             ])
-            yield updateUpload(context, uploadId, { state: UploadState.POST_PROCESSING })
+            yield updateUpload(context, uploadId, {
+              state: UploadState.POST_PROCESSING
+            })
             if (!isAllowedImageContentType(action.payload.contentType)) {
               throw expected({
                 code: 'CONTENT_TYPE_NOT_ALLOWED',
@@ -70,7 +73,9 @@ const mod = {
               state: UploadState.COMPLETE
             })
           } catch (error) {
-            context.logger.error(`Error on Upload:/${userId}/${uploadId}/${uploadName}`)
+            context.logger.error(
+              `Error on Upload:/${userId}/${uploadId}/${uploadName}`
+            )
             context.logger.error(error)
             if (upload) {
               yield updateUpload(context, uploadId, {

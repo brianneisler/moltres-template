@@ -1,6 +1,6 @@
 import { Action } from './schemas'
 import { addTimestamps, collection } from '../../utils/db'
-import { curry, omit } from '../../utils/data'
+import { curry, omit } from '../../utils/lang'
 import { validateSchema } from '../../utils/schema'
 
 const batchQueueAction = curry((Schema, context, batch, value) => {

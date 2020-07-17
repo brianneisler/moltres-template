@@ -1,3 +1,5 @@
+export { default as canUseDOM } from './canUseDOM'
+export { default as doesDocumentExist } from './doesDocumentExist'
 export { default as doesWindowExist } from './doesWindowExist'
 export { default as getClientHeight } from './getClientHeight'
 export { default as getNativeEventTarget } from './getNativeEventTarget'

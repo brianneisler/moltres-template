@@ -1,4 +1,4 @@
-import { map, range } from '../../../../utils/data'
+import { map, range } from '../../../../utils/lang'
 
 const parseSMSMessage = (requestBody) => {
   // Body: message

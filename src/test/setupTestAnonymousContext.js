@@ -1,5 +1,5 @@
 import { createContext } from '../context'
-import { uuidv4 } from '../utils/data'
+import { uuidv4 } from '../utils/lang'
 
 const setupTestAnonymousContext = async (adminContext) => {
   const { config } = adminContext

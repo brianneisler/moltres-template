@@ -88,7 +88,10 @@ const spec = describe('createAccessToken', () => {
     beforeEach(async () => {
       adminContext = await setupTestAdminContext(spec)
       testContext = await setupTestServiceAccountContext(adminContext)
-      anonymousContext = await setupTestAnonymousContext(adminContext, testContext)
+      anonymousContext = await setupTestAnonymousContext(
+        adminContext,
+        testContext
+      )
       user = await createUser(adminContext, {
         name: 'test-user',
         state: 'pending'
@@ -122,7 +125,9 @@ const spec = describe('createAccessToken', () => {
         userId: user.id,
         valid: true
       }
-      result = await expect(createAccessToken(anonymousContext, data)).rejects.toThrow(
+      result = await expect(
+        createAccessToken(anonymousContext, data)
+      ).rejects.toThrow(
         expect.objectContaining({
           code: ACCESS_DENIED
         })
@@ -135,9 +140,9 @@ const spec = describe('createAccessToken', () => {
         userId: user.id,
         valid: true
       }
-      result = await expect(createAccessToken(anonymousContext, data)).rejects.toThrow(
-        /"token" must be a valid GUID/
-      )
+      result = await expect(
+        createAccessToken(anonymousContext, data)
+      ).rejects.toThrow(/"token" must be a valid GUID/)
     })
   })
 })

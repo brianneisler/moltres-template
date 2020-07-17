@@ -1,6 +1,6 @@
 import { Url } from './schemas'
 import { buildQuery } from '../../utils/db'
-import { curry, isUndefined } from '../../utils/data'
+import { curry, isUndefined } from '../../utils/lang'
 
 const queryUrls = curry(
   (context, { hash, hostId, pathname, port, protocol, search }, queryOptions) =>

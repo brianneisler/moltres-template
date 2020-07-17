@@ -104,7 +104,9 @@ const spec = describe('removeUserProfile', () => {
       // NOTE: At this point only the ServiceAccount is allowed to access the
       // removed UserProfile
       expect(
-        await findUserProfileById(context, userContext.currentUser.id, { includeRemoved: true })
+        await findUserProfileById(context, userContext.currentUser.id, {
+          includeRemoved: true
+        })
       ).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
@@ -116,7 +118,9 @@ const spec = describe('removeUserProfile', () => {
         userId: userContext.currentUser.id
       })
 
-      await expect(findUserProfileById(userContext, userContext.currentUser.id)).rejects.toThrow(
+      await expect(
+        findUserProfileById(userContext, userContext.currentUser.id)
+      ).rejects.toThrow(
         expect.objectContaining({
           code: ACCESS_DENIED
         })
@@ -165,7 +169,9 @@ const spec = describe('removeUserProfile', () => {
     }, 20000)
 
     it('throws an error when trying to remove an UserProfile', async () => {
-      await expect(removeUserProfile(anonymousContext, userProfile.id, {})).rejects.toThrow(
+      await expect(
+        removeUserProfile(anonymousContext, userProfile.id, {})
+      ).rejects.toThrow(
         expect.objectContaining({
           code: ACCESS_DENIED
         })

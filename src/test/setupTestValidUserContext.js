@@ -1,12 +1,17 @@
 import { createContext } from '../context'
 import { createCustomToken, signInWithIdToken } from '../utils/auth'
 import { isTestAppConfigured } from '../utils/config'
-import { registerValidUser } from '../service/auth'
+import { registerValidUser } from '../sdk/auth'
 
-const setupTestValidUserContext = async (adminContext, serviceAccountContext) => {
+const setupTestValidUserContext = async (
+  adminContext,
+  serviceAccountContext
+) => {
   const { config } = adminContext
   const { runId } = config.test
-  const { user } = await registerValidUser(serviceAccountContext, { phoneNumber: '9282356681' })
+  const { user } = await registerValidUser(serviceAccountContext, {
+    phoneNumber: '9282356681'
+  })
   const namespace = `test:${runId}.user:${user.id}`
   const source = `${config.api.url}/user/${user.id}?test=${runId}`
   const isTestApp = isTestAppConfigured(config)

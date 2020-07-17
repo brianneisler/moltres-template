@@ -2,20 +2,34 @@ import {
   call,
   channel,
   handleChannel,
-  invariant,
   lockChannel,
   select,
   slidingBuffer,
   spawn,
   take
+} from '../utils/redux'
+import {
+  createPath,
+  equals,
+  getPath,
+  invariant,
+  isFunction,
+  isObject,
+  isString,
+  uuidv4
 } from '../utils/lang'
-import { createPath, equals, getPath, isFunction, isObject, isString, uuidv4 } from '../utils/data'
 import addQueryWatcher from './addQueryWatcher'
 import addQueryWatcherTask from './addQueryWatcherTask'
 import assocStatePath from './assocStatePath'
 import removeQueryWatcherTask from './removeQueryWatcherTask'
 
-const watchQuery = function* ({ context, factory, initialState, queryKey, watcherOptions }) {
+const watchQuery = function* ({
+  context,
+  factory,
+  initialState,
+  queryKey,
+  watcherOptions
+}) {
   invariant(isObject(context), 'context must be a defined Object')
   invariant(isFunction(factory), 'factory must be a defined Function')
   invariant(isObject(initialState), 'initialState must be a Object')
@@ -67,7 +81,9 @@ const watchQuery = function* ({ context, factory, initialState, queryKey, watche
     } else if (action.type === 'remove_task') {
       yield call(removeQueryWatcherTask, queryKey, id, action.payload.task)
     } else {
-      throw new Error(`Unknown action type received by query watcher - ${action}`)
+      throw new Error(
+        `Unknown action type received by query watcher - ${action}`
+      )
     }
   })
 

@@ -9,7 +9,7 @@ const getFromRef = async ({ logger }, ref, options = {}) => {
     if (!document.exists) {
       throw expected({
         code: Code.NOT_FOUND,
-        message: `Could not find document at ${ref.path}`,
+        message: `Could not get document at ${ref.path}`,
         statusCode: StatusCode.NOT_FOUND
       })
     }

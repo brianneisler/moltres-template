@@ -4,7 +4,10 @@ const mod = {
     if (process.env.NODE_ENV === 'development') {
       response.setHeader('Access-Control-Allow-Origin', '*')
       // Here allow all the HTTP methods you want
-      response.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,HEAD,PUT,OPTIONS')
+      response.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET,POST,DELETE,HEAD,PUT,OPTIONS'
+      )
       // Here you allow the headers for the HTTP requests to your server
       response.setHeader(
         'Access-Control-Allow-Headers',

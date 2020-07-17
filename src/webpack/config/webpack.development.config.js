@@ -6,7 +6,9 @@ const loadEnv = require('../../utils/config/loadEnv').default
 
 const config = (env) => {
   if (!env) {
-    env = loadEnv(path.resolve(__dirname, '..', '..', '..'), { stage: process.env.STAGE })
+    env = loadEnv(path.resolve(__dirname, '..', '..', '..'), {
+      stage: process.env.STAGE
+    })
   }
   return {
     devtool: 'eval-source-map',
@@ -18,10 +20,39 @@ const config = (env) => {
           exclude: {
             exclude: [
               path.resolve(__dirname, '..', '..'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'emoji-mart'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-typography'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-web', 'src'),
-              path.resolve(__dirname, '..', '..', '..', 'node_modules', 'expo-linear-gradient')
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'emoji-mart'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'react-native-typography'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'react-native-web',
+                'src'
+              ),
+              path.resolve(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'node_modules',
+                'expo-linear-gradient'
+              )
             ],
             test: path.resolve(__dirname, '..', '..', '..', 'node_modules')
           },
@@ -32,7 +63,8 @@ const config = (env) => {
               cacheDirectory: true,
               plugins: [
                 ['react-native-web', { commonjs: true }],
-                '@babel/plugin-proposal-class-properties'
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-transform-runtime'
               ],
               presets: [
                 [
@@ -72,6 +104,10 @@ const config = (env) => {
       new webpack.EnvironmentPlugin(
         pick(
           [
+            'API_URL',
+            'APP_DESCRIPTION',
+            'APP_NAME',
+            'APP_URL',
             'FACEBOOK_APP_ID',
             'FIREBASE_API_KEY',
             'FIREBASE_APP_ID',
@@ -80,10 +116,7 @@ const config = (env) => {
             'FIREBASE_PROJECT_ID',
             'NODE_ENV',
             'SENTRY_DSN',
-            'SITE_NAME',
-            'SITE_URL',
-            'TWITTER_USERNAME',
-            'WAT_API_URL'
+            'TWITTER_USERNAME'
           ],
           env
         )

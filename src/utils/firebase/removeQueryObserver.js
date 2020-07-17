@@ -1,4 +1,4 @@
-import { getProp, omit } from '../data'
+import { getProp, omit } from '../lang'
 
 const removeQueryObserver = (observers, key) => {
   const observer = getProp(key, observers)

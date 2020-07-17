@@ -1,6 +1,9 @@
 import moveActionFromBucketToBucket from './moveActionFromBucketToBucket'
 
-const moveActionToResolved = moveActionFromBucketToBucket('processing', 'resolved')
+const moveActionToResolved = moveActionFromBucketToBucket(
+  'processing',
+  'resolved'
+)
 
 const resolveAction = async (context, document, result) =>
   moveActionToResolved(context, document, (data) => ({

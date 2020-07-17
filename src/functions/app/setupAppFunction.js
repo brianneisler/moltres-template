@@ -1,6 +1,6 @@
 import * as appModules from './modules'
 import * as functionModules from '../modules'
-import { EngineState } from '../../constants'
+import { EngineState } from '../../core/constants'
 import { generateEngine } from '../../core'
 import setupFunctionContexts from '../setupFunctionContexts'
 
@@ -16,7 +16,13 @@ const setupAppFunction = (config) => {
       .then(({ context }) => {
         // NOTE BRN: The generateEngine function is memoized, so it should return the same
         // contexts on each invocation
-        const engine = generateEngine(modules, config, context, undefined, EngineState.SETUP)
+        const engine = generateEngine(
+          modules,
+          config,
+          context,
+          undefined,
+          EngineState.SETUP
+        )
         const app = engine.getModule('middleware').getApp()
         app(request, response)
       })

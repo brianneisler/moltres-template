@@ -1,3 +1,6 @@
+export * from './extensions'
+export * from './values'
+
 export { default as setupTestAdminContext } from './setupTestAdminContext'
 export { default as setupTestAnonymousContext } from './setupTestAnonymousContext'
 export { default as setupTestConfig } from './setupTestConfig'

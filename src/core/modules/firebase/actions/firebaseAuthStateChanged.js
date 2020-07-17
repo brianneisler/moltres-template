@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const firebaseAuthStateChanged = createAction('FIREBASE_AUTH_STATE_CHANGED')
 

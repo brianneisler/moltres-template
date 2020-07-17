@@ -1,10 +1,19 @@
-import { ImmutableMap, assocProp, createSelector, getProp, isFunction } from '../utils/data'
-import { invariant } from '../utils/lang'
+import {
+  ImmutableMap,
+  assoc,
+  createSelector,
+  getProp,
+  invariant,
+  isFunction
+} from '../utils/lang'
 import createQueryFactory from './createQueryFactory'
 
 const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {
   invariant(isFunction(createQuery), 'createQuery must be a defined Function')
-  invariant(isFunction(enhancer) || !enhancer, 'createQuery must be a Function or undefined')
+  invariant(
+    isFunction(enhancer) || !enhancer,
+    'createQuery must be a Function or undefined'
+  )
   invariant(isFunction(factory), 'factory must be a defined Function')
 
   let queryFactories = ImmutableMap({})
@@ -13,9 +22,9 @@ const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {
     if (!statePath) {
       throw new Error('statePath must be defined')
     }
-    const factoryKey = `key:${statePath}${queryOptions.cursor ? ':' + queryOptions.cursor.id : ''}${
-      queryOptions.head ? ':head' : ''
-    }`
+    const factoryKey = `key:${statePath}${
+      queryOptions.cursor ? ':' + queryOptions.cursor.id : ''
+    }${queryOptions.head ? ':head' : ''}`
     let queryFactory = getProp(factoryKey, queryFactories)
     if (!queryFactory) {
       queryFactory = createQueryFactory({
@@ -27,7 +36,7 @@ const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {
         selector: createSelector('$'),
         statePath
       })
-      queryFactories = assocProp(factoryKey, queryFactory, queryFactories)
+      queryFactories = assoc(factoryKey, queryFactory, queryFactories)
     }
 
     return queryFactory

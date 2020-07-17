@@ -13,7 +13,9 @@ const withForwardRef = () => (BaseComponent) => {
   )
 
   if (process.env.NODE_ENV !== 'production') {
-    return setDisplayName(wrapDisplayName(BaseComponent, 'withForwardRef'))(ForwardRef)
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withForwardRef'))(
+      ForwardRef
+    )
   }
   return ForwardRef
 }

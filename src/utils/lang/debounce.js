@@ -1,1 +1,1 @@
-export { debounce as default } from 'redux-saga/effects'
+export { default } from 'lodash/debounce'

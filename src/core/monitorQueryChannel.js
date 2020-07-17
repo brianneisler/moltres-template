@@ -1,9 +1,14 @@
-import { call, handleChannel, invariant } from '../utils/lang'
-import { isFunction, noop } from '../utils/data'
+import { call, handleChannel } from '../utils/redux'
+import { invariant, isFunction, noop } from '../utils/lang'
 import createQueryChannel from './createQueryChannel'
 import isQuery from './isQuery'
 
-const monitorQueryChannel = function* ({ onEnd = noop, onError = noop, onSnapshot = noop, query }) {
+const monitorQueryChannel = function* ({
+  onEnd = noop,
+  onError = noop,
+  onSnapshot = noop,
+  query
+}) {
   invariant(isFunction(onEnd), 'onEnd must be a defined Function')
   invariant(isFunction(onError), 'onError must be a defined Function')
   invariant(isFunction(onSnapshot), 'onSnapshot must be a defined Function')

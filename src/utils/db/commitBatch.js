@@ -1,5 +1,5 @@
 import { ACCESS_DENIED } from '../../constants/Code'
-import { delay, isPromise } from '../data'
+import { delay, isPromise } from '../lang'
 import expected from '../error/expected'
 import isPermissionsError from './isPermissionsError'
 

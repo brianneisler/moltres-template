@@ -1,12 +1,24 @@
-import { createPath, getPath, mergeDeepRight, random, reduce } from '../../utils/data'
+import {
+  createPath,
+  getPath,
+  mergeDeepRight,
+  random,
+  reduce
+} from '../../utils/lang'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import queryStatsShards from './queryStatsShards'
 import refEntityStatsById from './refEntityStatsById'
 import updateStatsShard from './updateStatsShard'
 
 // TODO BRN: This should probably be improved to use a transaction
-const setEntityStatIfNotExists = async (context, { entityId, entityType, stat, value }) => {
-  const entityStats = await findOrCreateEntityStats(context, { entityId, entityType })
+const setEntityStatIfNotExists = async (
+  context,
+  { entityId, entityType, stat, value }
+) => {
+  const entityStats = await findOrCreateEntityStats(context, {
+    entityId,
+    entityType
+  })
   const ref = refEntityStatsById(context, entityStats.id)
 
   // TODO BRN: try to remove this use of parentRef

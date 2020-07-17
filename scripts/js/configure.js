@@ -1,4 +1,4 @@
-import { generateInternalPhoneNumber } from '../../src/service/phone_number'
+import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
 import { map, split } from 'ramda'
 import { setupScriptContexts } from './utils'
 
@@ -11,7 +11,8 @@ const configure = async () => {
   logger.info('Saving internal phone numbers')
   await Promise.all(
     map(
-      async (phoneNumber) => generateInternalPhoneNumber(context, { phoneNumber }),
+      async (phoneNumber) =>
+        generateInternalPhoneNumber(context, { phoneNumber }),
       internalPhoneNumbers
     )
   )

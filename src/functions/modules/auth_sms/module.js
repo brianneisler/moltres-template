@@ -1,6 +1,6 @@
 import { Code, StatusCode } from '../../../constants'
-import { UserRegisteredAction } from '../../../service/auth/schemas'
-import { assocProp, compose } from '../../../utils/data'
+import { UserRegisteredAction } from '../../../sdk/auth/schemas'
+import { assoc, compose } from '../../../utils/lang'
 import { asyncHandler } from '../../../utils/express'
 import { createCustomToken } from '../../../utils/auth'
 import {
@@ -11,16 +11,19 @@ import {
 import { expected } from '../../../utils/error'
 import { findUserPhoneNumberByPhoneNumberId } from '../../../db/UserPhoneNumber'
 import { findUserRoleByUserId } from '../../../db/UserRole'
-import { generateSMSChannel, generateUserAndSMSChannel } from '../../../service/sms'
+import {
+  generateSMSChannel,
+  generateUserAndSMSChannel
+} from '../../../sdk/sms'
 import { getPhoneNumberById } from '../../../db/PhoneNumber'
-import { handleAction, takeEvery } from '../../../utils/lang'
+import { handleAction, takeEvery } from '../../../utils/redux'
 import { nowTimestamp } from '../../../utils/db'
 import { parseDuration } from '../../../utils/time'
 import { randomSMSCode, sendSMSChallenge } from './util'
 import { sendSMSMessageToChannel } from '../sms'
 import { withConfig, withContext } from '../../../core'
 import bodyParser from 'body-parser'
-import registerValidUser from '../../../service/auth/registerValidUser'
+import registerValidUser from '../../../sdk/auth/registerValidUser'
 
 const enhance = compose(
   withContext(),
@@ -42,7 +45,7 @@ const mod = {
               userPhoneNumberId: payload.data.phoneNumberId
             })
             yield sendSMSMessageToChannel(context, {
-              body: `Hi, I'm the WAT Duck! Thanks for joining WAT! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.site.url}`,
+              body: `Hi, I'm the WAT Duck! Thanks for joining WAT! Add me to your contacts so that it's easier to communicate. You can send me a photo with the text "wat this?" to add it to WAT ${config.app.url}`,
               media: `${config.api.url}/vcard`,
               smsChannel
             })
@@ -61,9 +64,12 @@ const mod = {
       asyncHandler(async (request, response) => {
         const { context } = request
         const payload = request.body
-        const { phoneNumber, smsChannel } = await generateUserAndSMSChannel(context, {
-          unformattedPhoneNumber: payload.phoneNumber
-        })
+        const { phoneNumber, smsChannel } = await generateUserAndSMSChannel(
+          context,
+          {
+            unformattedPhoneNumber: payload.phoneNumber
+          }
+        )
         const smsChallenge = await createSMSChallenge(context, {
           code: randomSMSCode(6),
           expiresIn: '10m',
@@ -104,7 +110,8 @@ const mod = {
         if (
           !smsChallenge.valid ||
           context.system.now() >
-            smsChallenge.createdAt.toMillis() + parseDuration(smsChallenge.expiresIn)
+            smsChallenge.createdAt.toMillis() +
+              parseDuration(smsChallenge.expiresIn)
         ) {
           throw expected({
             code: Code.ACCESS_DENIED,
@@ -135,9 +142,13 @@ const mod = {
         //   - server generates firebase custom access token
         //   - server returns firebase custom access token
 
-        const phoneNumber = await getPhoneNumberById(context, smsChallenge.phoneNumberId, {
-          includeRemoved: true
-        })
+        const phoneNumber = await getPhoneNumberById(
+          context,
+          smsChallenge.phoneNumberId,
+          {
+            includeRemoved: true
+          }
+        )
         if (!phoneNumber) {
           throw expected({
             code: Code.NOT_FOUND,
@@ -157,7 +168,8 @@ const mod = {
           if (userPhoneNumber.removedAt) {
             throw expected({
               code: Code.ACCESS_DENIED,
-              message: 'This phone number has been disabled. Please contact support@wat.app.',
+              message:
+                'This phone number has been disabled. Please contact support@wat.app.',
               statusCode: StatusCode.ACCESS_DENIED
             })
           }
@@ -166,7 +178,8 @@ const mod = {
           if (phoneNumber.removedAt) {
             throw expected({
               code: Code.ACCESS_DENIED,
-              message: 'This phone number has been disabled. Please contact support@wat.app.',
+              message:
+                'This phone number has been disabled. Please contact support@wat.app.',
               statusCode: StatusCode.ACCESS_DENIED
             })
           }
@@ -183,7 +196,7 @@ const mod = {
         let claims = {}
         const role = await findUserRoleByUserId(context, uid)
         if (role) {
-          claims = assocProp('role', role.role, claims)
+          claims = assoc('role', role.role, claims)
         }
         const token = await createCustomToken(adminContext, uid, claims)
         return response.json({

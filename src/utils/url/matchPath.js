@@ -57,12 +57,12 @@ const matchPath = (pathname, options = {}) => {
   }
 
   return {
-    isExact, // the path used to match
+    isExact,
     params: keys.reduce((memo, key, index) => {
       memo[key.name] = values[index]
       return memo
-    }, {}), // the matched portion of the URL
-    path, // whether or not we matched exactly
+    }, {}),
+    path,
     url: path === '/' && url === '' ? '/' : url
   }
 }

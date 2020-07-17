@@ -1,11 +1,11 @@
+import { Any } from '../../../core/schemas'
 import { Entity } from '../../Entity'
-import Joi from '@hapi/joi'
 
 const Variable = {
   collectionName: 'Variables',
   name: 'Variable',
-  schema: Entity.keys({
-    value: Joi.any()
+  schema: Entity.schema.keys({
+    value: Any.schema
   })
 }
 

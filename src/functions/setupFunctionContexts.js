@@ -1,7 +1,7 @@
 import * as sms from '../notifications/sms'
 import { createAdminContext, createContext } from '../context'
 import { signInWithIdToken } from '../utils/auth'
-import { uuidv4, weakMemoize } from '../utils/data'
+import { uuidv4, weakMemoize } from '../utils/lang'
 
 // NOTE BRN: We memoize this function so that when used to build the contexts on
 // backend invocations, we always get the same context back after the first invocation
@@ -21,7 +21,7 @@ const setupFunctionContexts = weakMemoize(async (config, functionName) => {
       sms
     },
     serviceAccount: adminContext.serviceAccount,
-    source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?function=${functionName}`,
+    source: `${config.api.url}/sdk_account/${adminContext.serviceAccount.id}?function=${functionName}`,
     storage: adminContext.storage
   })
   context.logger.info(`'${functionName}' function context created`)

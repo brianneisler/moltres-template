@@ -3,13 +3,14 @@ import {
   canBeSelector,
   createPropStore,
   equals,
+  invariant,
   isFunction,
   isNull,
   isObject,
   isString,
   select
-} from '../utils/data'
-import { call, invariant } from '../utils/lang'
+} from '../utils/lang'
+import { call } from '../utils/redux'
 import createFactory from './createFactory'
 import isQuery from './isQuery'
 import monitorQuery from './monitorQuery'
@@ -24,9 +25,15 @@ const createSingleQueryFactory = ({
 }) => {
   invariant(isFunction(baseFactory), 'baseFactory must be a defined Function')
   invariant(isFunction(createQuery), 'createQuery must be a defined Function')
-  invariant(isObject(queryExtensions), 'queryExtensions must be a defined Object')
+  invariant(
+    isObject(queryExtensions),
+    'queryExtensions must be a defined Object'
+  )
   invariant(isObject(queryOptions), 'queryOptions must be a defined Object')
-  invariant(canBeSelector(selector), 'selector must be a coercable to a Selector')
+  invariant(
+    canBeSelector(selector),
+    'selector must be a coercable to a Selector'
+  )
   invariant(isString(statePath), 'statePath must be a defined String')
 
   let query = null
@@ -43,8 +50,16 @@ const createSingleQueryFactory = ({
     const nextSelectedProps = select(selector, props)
     if (!equals(nextSelectedProps, selectedProps)) {
       selectedProps = nextSelectedProps
-      const nextQuery = yield call(createQuery, context, nextSelectedProps, queryOptions)
-      invariant(isQuery(nextQuery) || isNull(nextQuery), 'nextQuery must be a Query or null')
+      const nextQuery = yield call(
+        createQuery,
+        context,
+        nextSelectedProps,
+        queryOptions
+      )
+      invariant(
+        isQuery(nextQuery) || isNull(nextQuery),
+        'nextQuery must be a Query or null'
+      )
       let nextQueryTask = null
       if (nextQuery !== query || first) {
         if (nextQuery) {

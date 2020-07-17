@@ -1,4 +1,4 @@
-import { curry, getPath, split, weakMemoize } from '../../utils/data'
+import { curry, getPath, split, weakMemoize } from '../../utils/lang'
 
 const enhanceNotification = curry(
   weakMemoize((channelType, statePath) => (next) => {

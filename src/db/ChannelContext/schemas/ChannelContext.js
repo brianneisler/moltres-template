@@ -1,13 +1,12 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
+import { Id, Object } from '../../../core/schemas'
 
 const ChannelContext = {
   collectionName: 'ChannelContexts',
   name: 'ChannelContext',
-  schema: Entity.keys({
-    channelId: id().required(),
-    previous: Joi.object().required()
+  schema: Entity.schema.keys({
+    channelId: Id.schema.required(),
+    previous: Object.schema.required()
   })
 }
 

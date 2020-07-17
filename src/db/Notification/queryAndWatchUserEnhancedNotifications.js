@@ -1,10 +1,13 @@
-import { call, invariant } from '../../utils/lang'
+import { call } from '../../utils/redux'
 import { factoryAndWatchQuery } from '../../core'
-import { isObject } from '../../utils/data'
+import { invariant, isObject } from '../../utils/lang'
 import enhanceNotification from './enhanceNotification'
 import queryNotifications from './queryNotifications'
 
-const queryAndWatchUserEnhancedNotifications = function* (context, currentUser) {
+const queryAndWatchUserEnhancedNotifications = function* (
+  context,
+  currentUser
+) {
   invariant(isObject(currentUser), 'currentUser must be a Object')
 
   return yield call(factoryAndWatchQuery, {

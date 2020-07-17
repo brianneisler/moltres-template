@@ -9,10 +9,10 @@ import {
   reduceReducers,
   select,
   takeEvery
-} from '../../../utils/lang'
+} from '../../../utils/redux'
 import {
+  assoc,
   assocPath,
-  assocProp,
   compose,
   evolve,
   filter,
@@ -22,12 +22,17 @@ import {
   map,
   pipe,
   reduceRight
-} from '../../../utils/data'
+} from '../../../utils/lang'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { expected } from '../../../utils/error'
 import { filterRoutes } from './util'
 import { matchPath, parseLocation } from '../../../utils/url'
-import { preloadAction, preloadCompleteAction, replaceAction, responseAction } from './actions'
+import {
+  preloadAction,
+  preloadCompleteAction,
+  replaceAction,
+  responseAction
+} from './actions'
 import { withContext } from '../../../core'
 import selectRouterPreload from './selectors/selectRouterPreload'
 
@@ -106,8 +111,10 @@ const mod = ({ ssr }, { history }) => {
     middleware: routerMiddleware(history),
     reducer: reduceReducers(
       connectRouter(history),
-      handleActions({
-        [PreloadAction.type]: (state, { payload }) => {
+      // NOTE BRN: We don't use handleActions here because it injects initial
+      // state. This causes the connected router to break. https://github.com/supasate/connected-react-router/issues/312
+      (state, { payload, type }) => {
+        if (type === PreloadAction.type) {
           const { location } = payload
           const { pathname } = location
           return assocPath(
@@ -120,9 +127,11 @@ const mod = ({ ssr }, { history }) => {
             ),
             state
           )
-        },
-        [ResponseAction.type]: (state, { payload }) => assocProp('response', payload, state)
-      })
+        } else if (type === ResponseAction.type) {
+          return assoc('response', payload, state)
+        }
+        return state
+      }
     ),
     run: function* run() {
       yield takeEvery(

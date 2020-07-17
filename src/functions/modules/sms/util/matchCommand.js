@@ -1,4 +1,4 @@
-import { isFunction, isRegExp } from '../../../../utils/data'
+import { isFunction, isRegExp } from '../../../../utils/lang'
 
 const matchCommand = (command, data) => {
   const { smsMessage } = data
@@ -9,7 +9,9 @@ const matchCommand = (command, data) => {
   } else if (isFunction(match)) {
     return match(data)
   }
-  throw new Error(`Unknown match type. Expected a RegExp or a Function. Instead was given ${match}`)
+  throw new Error(
+    `Unknown match type. Expected a RegExp or a Function. Instead was given ${match}`
+  )
 }
 
 export default matchCommand

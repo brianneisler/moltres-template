@@ -1,13 +1,13 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
+import { Id } from '../../../core/schemas'
 
 const UserImage = {
   collectionName: 'UserImages',
   indexes: [['userId', 'imageId']],
   name: 'UserImage',
-  schema: Entity.keys({
-    imageId: id().required(),
-    userId: id().required()
+  schema: Entity.schema.keys({
+    imageId: Id.schema.required(),
+    userId: Id.schema.required()
   })
 }
 

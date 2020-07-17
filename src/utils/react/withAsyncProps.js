@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import {
+  assoc,
   assocPath,
-  assocProp,
   forEach,
   getProp,
   hasProp,
@@ -12,7 +12,7 @@ import {
   reduce,
   shallowEquals,
   weakMemoize
-} from '../data'
+} from '../lang'
 import createFactory from './createFactory'
 import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
@@ -47,7 +47,9 @@ const removeObserver = (observers, key) => {
   return omit([key], observers)
 }
 
-const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseComponent) => {
+const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (
+  BaseComponent
+) => {
   const factory = createFactory(BaseComponent)
   const memoizedAsyncPropPromisers = map(weakMemoize, asyncPropPromisers)
 
@@ -108,7 +110,7 @@ const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseCompone
             }
           }
           remainingAsyncProps = omit([key], remainingAsyncProps)
-          return assocProp(key, promisedAsyncProp, accum)
+          return assoc(key, promisedAsyncProp, accum)
         },
         {},
         keys(promisedAsyncProps)
@@ -162,7 +164,9 @@ const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (BaseCompone
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    return setDisplayName(wrapDisplayName(BaseComponent, 'withAsyncProps'))(WithAsyncProps)
+    return setDisplayName(wrapDisplayName(BaseComponent, 'withAsyncProps'))(
+      WithAsyncProps
+    )
   }
   return WithAsyncProps
 }

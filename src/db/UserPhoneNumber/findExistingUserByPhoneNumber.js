@@ -1,11 +1,15 @@
-import { isNil, isString } from '../../utils/data'
+import { isNil, isString } from '../../utils/lang'
 import findPhoneNumberIdByIndexPhoneNumberHash from '../PhoneNumber/findPhoneNumberIdByIndexPhoneNumberHash'
 import findUserPhoneNumberByPhoneNumberId from './findUserPhoneNumberByPhoneNumberId'
 import formatPhoneNumber from '../PhoneNumber/formatPhoneNumber'
 import getUserById from '../User/getUserById'
 import hashPhoneNumber from '../PhoneNumber/hashPhoneNumber'
 
-const findExistingUserByPhoneNumber = async (context, phoneNumber, options = {}) => {
+const findExistingUserByPhoneNumber = async (
+  context,
+  phoneNumber,
+  options = {}
+) => {
   if (isNil(phoneNumber)) {
     throw new Error('phoneNumber must be defined')
   }
@@ -17,7 +21,10 @@ const findExistingUserByPhoneNumber = async (context, phoneNumber, options = {})
       // NOTE: This is a lookup against the index table so
       // that client side systems can perform this lookup. This is a secure way of
       // performing this lookup without having to expose the phone numbers table
-      phoneNumberId = await findPhoneNumberIdByIndexPhoneNumberHash(context, phoneNumberHash)
+      phoneNumberId = await findPhoneNumberIdByIndexPhoneNumberHash(
+        context,
+        phoneNumberHash
+      )
     } else {
       phoneNumberId = phoneNumber.id
     }

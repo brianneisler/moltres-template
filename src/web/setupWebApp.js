@@ -1,4 +1,4 @@
-// import * as serviceWorker from './serviceWorker'
+// import * as serviceWorker from './sdkWorker'
 import * as Sentry from '@sentry/browser'
 import * as modules from '../app/modules'
 import { App, generateConfig } from '../app'

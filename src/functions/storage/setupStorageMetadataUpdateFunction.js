@@ -3,7 +3,10 @@ import { queueAction } from '../../db/Action'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 const setupStorageMetadataUpdateFunction = (config) => async (object) => {
-  const { context } = await setupFunctionContexts(config, 'storage_metadata_update')
+  const { context } = await setupFunctionContexts(
+    config,
+    'storage_metadata_update'
+  )
   context.logger.info('object metadata update received - object:', object)
   await queueAction(
     schemas.StorageObjectMetadataUpdateAction,

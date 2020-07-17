@@ -1,5 +1,5 @@
-import { invariant } from '../lang'
-import { split } from '../data'
+import { invariant, split } from '../lang'
+import { resolve } from '../path'
 import generateProjectId from './generateProjectId'
 
 // NOTE BRN: This is the config that is used on the server side.
@@ -8,9 +8,12 @@ import generateProjectId from './generateProjectId'
 const generateConfig = (config = {}) => {
   invariant(config.stage, 'STAGE must be defined')
   invariant(process.env.API_URL, 'API_URL must be defined')
-  invariant(process.env.SITE_NAME, 'SITE_NAME must be defined')
-  invariant(process.env.SITE_URL, 'SITE_URL must be defined')
-  invariant(process.env.TWILIO_ACCOUNT_SID, 'TWILIO_ACCOUNT_SID must be defined')
+  invariant(process.env.APP_NAME, 'APP_NAME must be defined')
+  invariant(process.env.APP_URL, 'APP_URL must be defined')
+  invariant(
+    process.env.TWILIO_ACCOUNT_SID,
+    'TWILIO_ACCOUNT_SID must be defined'
+  )
   invariant(process.env.TWILIO_AUTH_TOKEN, 'TWILIO_AUTH_TOKEN must be defined')
 
   const projectId = generateProjectId(config)
@@ -41,6 +44,11 @@ const generateConfig = (config = {}) => {
     api: {
       url: process.env.API_URL || ''
     },
+    app: {
+      description: process.env.APP_DESCRIPTION,
+      name: process.env.APP_NAME,
+      url: process.env.APP_URL
+    },
     core: {
       debug: process.env.NODE_ENV === 'development'
     },
@@ -58,12 +66,8 @@ const generateConfig = (config = {}) => {
     gcloud: {
       databaseBackupBucket: process.env.GCLOUD_DATABASE_BACKUP_BUCKET
     },
-    google: {
-      analyticsId: process.GOOGLE_ANALYTICS_ID
-    },
-    site: {
-      name: process.env.SITE_NAME,
-      url: process.env.SITE_URL
+    google_analytics: {
+      analyticsId: process.env.GOOGLE_ANALYTICS_ID
     },
     sms: {
       accountSid: process.env.TWILIO_ACCOUNT_SID,
@@ -71,6 +75,11 @@ const generateConfig = (config = {}) => {
       phoneNumbers: process.env.TWILIO_PHONE_NUMBERS
         ? split(',', process.env.TWILIO_PHONE_NUMBERS)
         : []
+    },
+    ssr: {
+      outputPath:
+        process.env.SSR_OUTPUT_PATH ||
+        resolve(__dirname, '..', '..', '..', 'private', 'dist')
     },
     twitter: {
       username: process.env.TWITTER_USERNAME

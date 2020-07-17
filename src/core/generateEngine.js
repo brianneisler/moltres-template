@@ -1,5 +1,5 @@
-import { EngineState } from '../constants'
-import { weakMemoize } from '../utils/data'
+import { EngineState } from './constants'
+import { weakMemoize } from '../utils/lang'
 import createEngine from './createEngine'
 import setup from './setup'
 import start from './start'
@@ -7,7 +7,13 @@ import start from './start'
 // NOTE BRN: We memoize this function so that when used to build the engine on
 // backend invocations, we always get the same engine back after the first invocation
 const generateEngine = weakMemoize(
-  (modules, config, context, initialState = {}, targetEngineState = EngineState.STARTED) => {
+  (
+    modules,
+    config,
+    context,
+    initialState = {},
+    targetEngineState = EngineState.STARTED
+  ) => {
     context.logger.info(`No engine detected. Generating engine...`)
     const engine = createEngine(modules, config, context, initialState)
 

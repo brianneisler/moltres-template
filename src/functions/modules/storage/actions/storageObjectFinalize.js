@@ -1,5 +1,5 @@
 import { StorageObjectFinalizeAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const storageObjectFinalize = actionBuilder({
   Schema: StorageObjectFinalizeAction

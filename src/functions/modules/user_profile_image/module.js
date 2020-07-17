@@ -2,7 +2,7 @@ import { Code } from '../../../constants'
 import { expected } from '../../../utils/error'
 import asyncHandler from '../../../utils/express/asyncHandler'
 import downloadFile from '../../../utils/storage/downloadFile'
-// import findOrCreateUserProfileImageFromBuffer from '../../../service/user/findOrCreateUserProfileImageFromBuffer'
+// import findOrCreateUserProfileImageFromBuffer from '../../../sdk/user/findOrCreateUserProfileImageFromBuffer'
 import findUserProfileImageById from '../../../db/UserProfileImage/findUserProfileImageById'
 import getImageById from '../../../db/Image/getImageById'
 import resizeImageToStream from '../../../utils/image/resizeImageToStream'
@@ -36,7 +36,10 @@ const mod = {
               .pipe(response)
           })
         } catch (error) {
-          if (error.code === Code.NOT_FOUND || error.code === Code.ACCESS_DENIED) {
+          if (
+            error.code === Code.NOT_FOUND ||
+            error.code === Code.ACCESS_DENIED
+          ) {
             throw expected({
               causes: [error],
               code: Code.NOT_FOUND,

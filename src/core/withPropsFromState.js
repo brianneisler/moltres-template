@@ -1,6 +1,6 @@
 import {
+  assoc,
   assocMerge,
-  assocProp,
   containsWildcard,
   createPropStore,
   getProp,
@@ -9,7 +9,7 @@ import {
   reduce,
   replaceWildcards,
   selectWildcards
-} from '../utils/data'
+} from '../utils/lang'
 import { call, select, spawn, takeEvery } from 'redux-saga/effects'
 import createFactory from './createFactory'
 
@@ -31,7 +31,7 @@ const assocWildProp = (selector, value, collection, props) =>
   reduce(
     (accum, wildcardValues) => {
       const resolvedSelector = replaceWildcards(wildcardValues, selector)
-      return assocProp(resolvedSelector, value, accum)
+      return assoc(resolvedSelector, value, accum)
     },
     collection,
     selectWildcards(selector, props)
@@ -42,9 +42,14 @@ const mergeProps = (stateProps, props) => {
   const resolvedStateProps = reduce(
     (accum, selector) => {
       if (containsWildcard(selector)) {
-        return assocWildProp(selector, getProp(selector, stateProps), accum, props)
+        return assocWildProp(
+          selector,
+          getProp(selector, stateProps),
+          accum,
+          props
+        )
       }
-      return assocProp(selector, getProp(selector, stateProps), accum)
+      return assoc(selector, getProp(selector, stateProps), accum)
     },
     {},
     selectors
@@ -76,7 +81,12 @@ const withPropsFromState = (propsBuilder) => (baseFactory) => {
       yield propStore.take()
     }
 
-    return yield call(baseFactory, mergeProps(propStore.getProps(), props), channel, ...rest)
+    return yield call(
+      baseFactory,
+      mergeProps(propStore.getProps(), props),
+      channel,
+      ...rest
+    )
   })
 }
 

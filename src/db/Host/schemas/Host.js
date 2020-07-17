@@ -1,13 +1,13 @@
 import { Entity } from '../../Entity'
-import Joi from '@hapi/joi'
+import { String } from '../../../core/schemas'
 
 const Host = {
   collectionName: 'Hosts',
   name: 'Host',
-  schema: Entity.keys({
-    domain: Joi.string().required(),
-    subDomain: Joi.string().allow(null).required(),
-    topLevelDomain: Joi.string().required()
+  schema: Entity.schema.keys({
+    domain: String.schema.required(),
+    subDomain: String.schema.allow(null).required(),
+    topLevelDomain: String.schema.required()
   })
 }
 

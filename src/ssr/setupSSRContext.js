@@ -1,6 +1,6 @@
 import * as component from '../notifications/component'
 import { createContext } from '../context'
-import { uuidv4 } from '../utils/data'
+import { uuidv4 } from '../utils/lang'
 
 const setupSSRContext = (config, serviceAccountContext, history) => {
   const { cache, currentUser, serviceAccount } = serviceAccountContext
@@ -17,12 +17,14 @@ const setupSSRContext = (config, serviceAccountContext, history) => {
     // NOTE BRN: We want to separate this into a different namespace so that
     // when firebase is started up there's no overlap with the request context
     // which is logged in as a ServiceAccount
-    namespace: currentUser ? `ssr.user:${currentUser.id}` : `ssr.anonymous:${uuidv4()}`,
+    namespace: currentUser
+      ? `ssr.user:${currentUser.id}`
+      : `ssr.anonymous:${uuidv4()}`,
     notifications: {
       component
     },
     serviceAccount,
-    source: `${config.api.url}/service_account/${serviceAccountContext.serviceAccount.id}?ssr=true`
+    source: `${config.api.url}/sdk_account/${serviceAccountContext.serviceAccount.id}?ssr=true`
   })
 }
 

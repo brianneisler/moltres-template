@@ -1,4 +1,4 @@
-import { resolve } from '../utils/data'
+import { resolve } from '../utils/lang'
 
 const withResolve = (effect) => (...args) => resolve(effect(...args))
 

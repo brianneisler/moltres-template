@@ -1,6 +1,6 @@
-import { select } from '../utils/data'
+import { select } from '../utils/lang'
 import { selectContext } from './selectors'
-import { select as selectFromState } from '../utils/lang'
+import { select as selectFromState } from '../utils/redux'
 
 const getContext = function* (selector) {
   const context = yield selectFromState(selectContext)

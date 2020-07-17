@@ -1,4 +1,4 @@
-import { assocProp, getProp } from '../data'
+import { assoc, getProp } from '../lang'
 import { bufferToStream, createBuffer } from '../buffer'
 
 const createFile = () => {
@@ -32,7 +32,7 @@ const createBucket = () => {
     }
 
     file = createFile()
-    files = assocProp(filePath, file, files)
+    files = assoc(filePath, file, files)
     return file
   }
 
@@ -53,7 +53,7 @@ const initializeStorageEmulator = () => {
     }
 
     bucket = createBucket()
-    buckets = assocProp(bucketName, bucket, buckets)
+    buckets = assoc(bucketName, bucket, buckets)
     return bucket
   }
 

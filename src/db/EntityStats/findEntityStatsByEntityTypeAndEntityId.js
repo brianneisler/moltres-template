@@ -7,7 +7,11 @@ const findEntityStatsByEntityTypeAndEntityId = async (
   entityId,
   queryOptions = {}
 ) => {
-  const query = queryEntityStats(context, { entityId, entityType }, queryOptions)
+  const query = queryEntityStats(
+    context,
+    { entityId, entityType },
+    queryOptions
+  )
   return findOneFromQuery(context, query, queryOptions)
 }
 

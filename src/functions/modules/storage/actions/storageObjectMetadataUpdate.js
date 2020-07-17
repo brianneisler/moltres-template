@@ -1,5 +1,5 @@
 import { StorageObjectMetadataUpdateAction } from '../schemas'
-import { actionBuilder } from '../../../../utils/lang'
+import { actionBuilder } from '../../../../utils/redux'
 
 const storageObjectMetadataUpdate = actionBuilder({
   Schema: StorageObjectMetadataUpdateAction

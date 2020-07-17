@@ -2,10 +2,12 @@ import { createAdminContext, createContext } from '../../../src/context'
 import { generateAdminConfig, loadEnv } from '../../../src/utils/config'
 import { resolve } from '../../../src/utils/path'
 import { signInWithIdToken } from '../../../src/utils/auth'
-import { uuidv4 } from '../../../src/utils/data'
+import { uuidv4 } from '../../../src/utils/lang'
 
 const setupScriptContexts = async () => {
-  const env = loadEnv(resolve(__dirname, '..', '..', '..'), { stage: process.env.STAGE })
+  const env = loadEnv(resolve(__dirname, '..', '..', '..'), {
+    stage: process.env.STAGE
+  })
   const config = generateAdminConfig()
   const namespace = uuidv4()
 
@@ -18,7 +20,7 @@ const setupScriptContexts = async () => {
     config,
     namespace: `script:${namespace}`,
     serviceAccount: adminContext.serviceAccount,
-    source: `${config.api.url}/service_account/${adminContext.serviceAccount.id}?script=true`,
+    source: `${config.api.url}/sdk_account/${adminContext.serviceAccount.id}?script=true`,
     storage: adminContext.storage
   })
   const { logger } = context

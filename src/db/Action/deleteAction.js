@@ -1,6 +1,6 @@
 import { Action } from './schemas'
 import { collection } from '../../utils/db'
-import { omit } from '../../utils/data'
+import { omit } from '../../utils/lang'
 
 const deleteAction = async (context, type, id) => {
   const Actions = collection(Action, omit(['parentRef'], context))

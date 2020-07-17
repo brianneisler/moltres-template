@@ -1,5 +1,5 @@
-import { call, handleChannel, put } from '../../../../utils/lang'
-import { identity } from '../../../../utils/data'
+import { call, handleChannel, put } from '../../../../utils/redux'
+import { identity } from '../../../../utils/lang'
 import { uncaughtExceptionAction } from '../actions'
 import createUnhandledRejectionChannel from './createUnhandledRejectionChannel.ssr'
 import getContext from '../../../getContext'

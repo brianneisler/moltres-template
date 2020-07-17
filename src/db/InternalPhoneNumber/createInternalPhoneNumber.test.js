@@ -37,7 +37,8 @@ const spec = describe('createInternalPhoneNumber', () => {
       })
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        hash: 'e4870af8d7c53ee588608ae35b86ec4baabcb5e545f1b133717f5ed2d06e1ad4',
+        hash:
+          'e4870af8d7c53ee588608ae35b86ec4baabcb5e545f1b133717f5ed2d06e1ad4',
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
         phoneNumber: '+19282356682',
         removedAt: null,

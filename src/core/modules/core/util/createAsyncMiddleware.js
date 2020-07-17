@@ -1,4 +1,4 @@
-import { listPromise } from '../../../../utils/data'
+import { listPromise } from '../../../../utils/lang'
 
 const createAsyncMiddleware = () => () => (next) => (action) => {
   // const promise = listPromise()

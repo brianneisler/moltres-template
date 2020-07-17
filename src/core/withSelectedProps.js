@@ -1,8 +1,8 @@
 import {
   ImmutableMap,
   anyContainsWildcard,
+  assoc,
   assocPath,
-  assocProp,
   createPath,
   createSelector,
   dissocProp,
@@ -22,8 +22,8 @@ import {
   select,
   selectWildcards,
   weakMemoize
-} from '../utils/data'
-import { call } from '../utils/lang'
+} from '../utils/lang'
+import { call } from '../utils/redux'
 import createFactory from './createFactory'
 
 const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {
@@ -42,7 +42,11 @@ const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {
     }
     props = reduce(
       (accum, builtPropKey) =>
-        assocPath(createPath(builtPropKey), getProp(builtPropKey, builtProps), accum),
+        assocPath(
+          createPath(builtPropKey),
+          getProp(builtPropKey, builtProps),
+          accum
+        ),
       props,
       keys(builtProps)
     )
@@ -56,7 +60,10 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
     let remainingFactories = factories
     const wildcardValuesGroups = selectWildcards(selector, props)
     const results = yield mapAll(function* (wildcardValues) {
-      const targetPropBuilders = replacePropWildcards(wildcardValues, propBuilders)
+      const targetPropBuilders = replacePropWildcards(
+        wildcardValues,
+        propBuilders
+      )
       const factoryKey = join(':', keys(targetPropBuilders))
       let factory = getProp(factoryKey, factories)
       if (!factory) {
@@ -65,7 +72,7 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
           targetPropBuilders,
           identity
         )
-        factories = assocProp(factoryKey, factory, factories)
+        factories = assoc(factoryKey, factory, factories)
       }
       remainingFactories = dissocProp(factoryKey, remainingFactories)
       return yield call(factory, props, ...rest)

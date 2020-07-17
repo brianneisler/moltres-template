@@ -1,6 +1,12 @@
 import createQueryFactory from './createQueryFactory'
 
-const withQuery = ({ createQuery, queryExtensions, queryOptions, selector, statePath }) =>
+const withQuery = ({
+  createQuery,
+  queryExtensions,
+  queryOptions,
+  selector,
+  statePath
+}) =>
   createQueryFactory({
     createQuery,
     queryExtensions,

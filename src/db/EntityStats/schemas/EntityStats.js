@@ -1,15 +1,14 @@
 import { Entity } from '../../Entity'
-import { id } from '../../../utils/schema'
-import Joi from '@hapi/joi'
+import { Id, Integer, String } from '../../../core/schemas'
 
 const EntityStats = {
   collectionName: 'EntityStats',
   indexes: [['entityType', 'entityId']],
   name: 'EntityStats',
-  schema: Entity.keys({
-    entityId: id().required(),
-    entityType: Joi.string().required(),
-    numberShards: Joi.number().integer().required()
+  schema: Entity.schema.keys({
+    entityId: Id.schema.required(),
+    entityType: String.schema.required(),
+    numberShards: Integer.schema.required()
   })
 }
 

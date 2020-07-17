@@ -1,4 +1,4 @@
-import { isFunction, reduce, values } from '../../../../../utils/data'
+import { isFunction, reduce, values } from '../../../../../utils/lang'
 
 const setupRouter = (router, store) => {
   router = reduce(

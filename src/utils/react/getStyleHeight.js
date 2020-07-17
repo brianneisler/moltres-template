@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { isNumber, reduce, weakMemoize } from '../data'
+import { isNumber, reduce, weakMemoize } from '../lang'
 
 const HEIGHT_ATTRIBUTES = ['height', 'marginTop', 'marginBottom']
 

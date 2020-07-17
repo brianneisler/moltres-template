@@ -10,8 +10,12 @@ module.exports = {
   preset: 'react-native-web',
   resolver: 'jest-pnp-resolver',
   setupFiles: ['react-app-polyfill/jsdom'],
+  setupFilesAfterEnv: ['<rootDir>/.jest.init.js'],
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/**/__tests__/**/*.js', '<rootDir>/**/?(*.)(spec|test).js'],
+  testMatch: [
+    '<rootDir>/**/__tests__/**/*.js',
+    '<rootDir>/**/?(*.)(spec|test).js'
+  ],
   testURL: 'http://localhost',
   transform: {
     '^.+\\.(js)$': '<rootDir>/node_modules/babel-jest'

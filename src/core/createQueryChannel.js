@@ -1,4 +1,4 @@
-import { eventChannel, expandingBuffer } from '../utils/lang'
+import { eventChannel, expandingBuffer } from '../utils/redux'
 
 const createQueryChannel = (query) => {
   return eventChannel((emitter) => {

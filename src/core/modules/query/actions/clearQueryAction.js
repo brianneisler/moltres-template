@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const clearQueryAction = createAction('QUERY:CLEAR_QUERY', ({ queryKey }) => ({
   queryKey

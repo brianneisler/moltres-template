@@ -1,11 +1,14 @@
-import { Id } from '../../../core'
-import { Timestamped } from '../../Timestamped'
-import Joi from '@hapi/joi'
+import { Id, String, Timestamped } from '../../../core/schemas'
 
-const Entity = Timestamped.keys({
-  id: Id.schema,
-  removedByEntityId: Joi.string().allow(null),
-  removedByEntityType: Joi.string().valid('ServiceAccount', 'User').allow(null)
-})
+const Entity = {
+  name: 'core.Entity',
+  schema: Timestamped.schema.keys({
+    id: Id.schema,
+    removedByEntityId: String.schema.allow(null),
+    removedByEntityType: String.schema
+      .valid('ServiceAccount', 'User')
+      .allow(null)
+  })
+}
 
 export default Entity

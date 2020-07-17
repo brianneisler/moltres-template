@@ -1,7 +1,19 @@
-import { assocProp, identity, isFunction, isNumber, isObject, isString } from '../utils/data'
-import { call, invariant, put, select } from '../utils/lang'
+import {
+  assoc,
+  identity,
+  invariant,
+  isFunction,
+  isNumber,
+  isObject,
+  isString
+} from '../utils/lang'
+import { call, put, select } from '../utils/redux'
 import { selectCursorResults, selectQueryCursorNext } from './selectors'
-import { setQueryAction, setQueryCursorAction, setQueryCursorNextAction } from './actions'
+import {
+  setQueryAction,
+  setQueryCursorAction,
+  setQueryCursorNextAction
+} from './actions'
 import createQueryFactoryBuilder from './createQueryFactoryBuilder'
 import factoryAndWatchPageQuery from './factoryAndWatchPageQuery'
 import generateQuery from './generateQuery'
@@ -24,7 +36,11 @@ const factoryAndWatchPaginatedQuery = function* ({
   // NOTE BRN: This ensures that the query exists in state
   let query = yield call(generateQuery, queryKey)
 
-  const buildQueryFactory = createQueryFactoryBuilder({ createQuery, enhancer, factory: identity })
+  const buildQueryFactory = createQueryFactoryBuilder({
+    createQuery,
+    enhancer,
+    factory: identity
+  })
 
   // NOTE BRN: This is called by an action handler in the `query` module
   const nextPage = function* () {
@@ -55,7 +71,7 @@ const factoryAndWatchPaginatedQuery = function* ({
     return yield select(selectCursorResults(queryKey, nextCursor))
   }
 
-  query = assocProp('nextPage', nextPage, query)
+  query = assoc('nextPage', nextPage, query)
   yield put(setQueryAction({ query, queryKey }))
 
   return yield call(watchPaginatedQuery, {

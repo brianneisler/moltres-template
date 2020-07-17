@@ -1,4 +1,4 @@
-import { isFunction, isNil } from '../../utils/data'
+import { isFunction, isNil } from '../../utils/lang'
 
 const createModule = (config, context, name, creator) => {
   if (isNil(creator)) {

@@ -1,13 +1,13 @@
 import {
+  assoc,
   assocPath,
-  assocProp,
   isArray,
   isEmpty,
   isObject,
   isString,
   isUndefined
-} from '../../../utils/data'
-import { handleActions } from '../../../utils/lang'
+} from '../../../utils/lang'
+import { handleActions } from '../../../utils/redux'
 import { setContextAction } from './actions'
 
 const mod = {
@@ -25,7 +25,7 @@ const mod = {
             context = assocPath(selector, value, context)
           }
         } else if (isString(selector)) {
-          context = assocProp(selector, value, context)
+          context = assoc(selector, value, context)
         } else {
           throw new Error(`Unsupported selector type ${selector}`)
         }

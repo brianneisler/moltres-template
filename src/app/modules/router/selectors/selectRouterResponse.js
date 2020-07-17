@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../../utils/data'
+import { createSelector, select } from '../../../../utils/lang'
 
 const selectRouterResponse = select(createSelector('router.response'))
 

@@ -1,49 +1,66 @@
 module.exports = {
-  root: true,
-  extends: [
-    'prettier',
-    'prettier/react'
-  ],
-  plugins: [
-    'import',
-    'prettier',
-    'react',
-    'sort-destructure-keys',
-    'sort-imports-es6-autofix',
-    "sort-keys-fix"
-  ],
   env: {
     browser: true,
     es6: true,
     jest: true,
     node: true
   },
+  extends: ['prettier', 'prettier/react'],
   parser: 'babel-eslint',
   parserOptions: {
-    'ecmaVersion': 2018,
-    'sourceType': 'module',
-    'ecmaFeatures': {
-      'jsx': true
-    }
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module'
   },
+  plugins: [
+    'import',
+    'prettier',
+    'react',
+    'sort-destructure-keys',
+    'sort-imports-es6-autofix',
+    'sort-keys-fix'
+  ],
+  root: true,
   rules: {
     'array-bracket-spacing': [
       'error',
       'never',
       {
-        objectsInArrays: false,
-        arraysInArrays: false
+        arraysInArrays: false,
+        objectsInArrays: false
       }
     ],
     'arrow-parens': ['error', 'always'],
-    'arrow-spacing': ['error', { 'before': true, 'after': true }],
+    'arrow-spacing': ['error', { after: true, before: true }],
     'comma-dangle': ['error', 'never'],
-    'curly': 'error',
+    curly: 'error',
     'eol-last': 'error',
     'for-direction': 'error',
     'func-names': 'off',
     'getter-return': 'error',
-    'id-length': ['error', {'min': 2, 'max': 50, 'properties': 'never', 'exceptions': ['e', 'i', 'n', 't', 'x', 'y', 'z', '_', '$']}],
+    'id-length': [
+      'error',
+      {
+        exceptions: ['e', 'i', 'n', 't', 'x', 'y', 'z', '_', '$'],
+        max: 50,
+        min: 2,
+        properties: 'never'
+      }
+    ],
+    'import/default': 'error',
+    'import/first': 'error',
+    'import/no-cycle': 'error',
+    'import/no-duplicates': 'error',
+    'import/no-self-import': 'error',
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['react-native']
+      }
+    ],
+    'import/no-useless-path-segments': 'error',
     'no-alert': 'error',
     'no-async-promise-executor': 'error',
     'no-compare-neg-zero': 'error',
@@ -77,48 +94,36 @@ module.exports = {
     'no-useless-constructor': 'error',
     'no-var': 'error',
     'object-curly-newline': 'off',
-    'object-shorthand': 'off',
+    'object-shorthand': ['error', 'always'],
     'one-var': ['error', 'never'],
     'prefer-const': 'error',
-    'prefer-destructuring': ['error', {'object': true, 'array': false}],
-    'quotes': [
+    'prefer-destructuring': ['error', { array: false, object: true }],
+    'prettier/prettier': 'error',
+    quotes: [
       'error',
       'single',
       {
-        'allowTemplateLiterals': true,
-        'avoidEscape': true
+        allowTemplateLiterals: true,
+        avoidEscape: true
       }
     ],
-    'semi': ['error', 'never'],
-    'spaced-comment': 'error',
-    'strict': ['error', 'never'],
-    'import/default': 'error',
-    'import/first': 'error',
-    'import/no-cycle': 'error',
-    'import/no-duplicates': 'error',
-    'import/no-self-import': 'error',
-    'import/no-unresolved': [
-      'error',
-      {
-        "ignore": [
-          "react-native"
-        ]
-      }
-    ],
-    'import/no-useless-path-segments': 'error',
-    'prettier/prettier': 'error',
-    'react/destructuring-assignment': ['error', 'always'],
     'react/jsx-no-undef': 'error',
     'react/jsx-sort-props': 'error',
-    'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    semi: ['error', 'never'],
     'sort-destructure-keys/sort-destructure-keys': 'error',
-    'sort-imports-es6-autofix/sort-imports-es6': ['error', {
-      'ignoreCase': false,
-      'ignoreMemberSort': false,
-      'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single']
-    }],
-    'sort-keys-fix/sort-keys-fix': 'error'
+    'sort-imports-es6-autofix/sort-imports-es6': [
+      'error',
+      {
+        ignoreCase: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single']
+      }
+    ],
+    'sort-keys-fix/sort-keys-fix': 'error',
+    'spaced-comment': 'error',
+    strict: ['error', 'never']
   },
   settings: {
     react: {

@@ -6,8 +6,8 @@ import { invariant } from '../utils/lang'
 const generateConfig = (config = {}) => {
   invariant(config.stage, 'STAGE must be defined')
   invariant(process.env.API_URL, 'API_URL must be defined')
-  invariant(process.env.SITE_NAME, 'SITE_NAME must be defined')
-  invariant(process.env.SITE_URL, 'SITE_URL must be defined')
+  invariant(process.env.APP_NAME, 'APP_NAME must be defined')
+  invariant(process.env.APP_URL, 'APP_URL must be defined')
 
   const projectId = generateProjectId(config)
   if (!config.test && config.stage !== 'local') {
@@ -41,6 +41,11 @@ const generateConfig = (config = {}) => {
     api: {
       url: process.env.API_URL || ''
     },
+    app: {
+      description: process.env.APP_DESCRIPTION,
+      name: process.env.APP_NAME,
+      url: process.env.APP_URL
+    },
     core: {
       debug: process.env.NODE_ENV === 'development'
     },
@@ -59,10 +64,6 @@ const generateConfig = (config = {}) => {
     },
     sentry: {
       dsn: process.env.SENTRY_DSN
-    },
-    site: {
-      name: process.env.SITE_NAME,
-      url: process.env.SITE_URL
     },
     twitter: {
       username: process.env.TWITTER_USERNAME

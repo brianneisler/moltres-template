@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions'
 import * as modules from '../modules'
-import { assocProp, isFunction, keys, reduce } from '../../utils/data'
+import { assoc, isFunction, keys, reduce } from '../../utils/lang'
 import { camelCase } from '../../utils/string'
 import setupFunctionContexts from '../setupFunctionContexts'
 
@@ -14,7 +14,7 @@ const setupScheduleFunctions = (config, runtimeOptions) =>
           (funcs, schedule) => {
             const func = scheduledFuncs[schedule]
             const funcName = `schedule_${moduleName}_${camelCase(schedule)}`
-            return assocProp(
+            return assoc(
               funcName,
               functions
                 .runWith(runtimeOptions)
@@ -22,7 +22,10 @@ const setupScheduleFunctions = (config, runtimeOptions) =>
                 // TODO BRN: Wrap this in a middleware that boots up the context
                 // and passes it to the function
                 .onRun(async () => {
-                  const { adminContext, context } = await setupFunctionContexts(config, funcName)
+                  const { adminContext, context } = await setupFunctionContexts(
+                    config,
+                    funcName
+                  )
                   return func(context, adminContext)
                 }),
               funcs

@@ -3,17 +3,8 @@ set -e
 nvm-guard
 
 export NODE_ENV=${NODE_ENV:=development}
-export STAGE=${STAGE:=${1:-test}}
+export STAGE=${STAGE:=${1:-local}}
 
 echo "starting ${STAGE}..."
 
-# Select the firebase app to start
-firebase use ${STAGE}
-
-npm run configure $STAGE
-
-# NOTE: the -o option allows us to set the host. Setting to 0.0.0.0 listens to
-# all ips on the network so that you can test on a mobile device.
-# firebase serve
-firebase serve -o 0.0.0.0 --debug
-# firebase emulators:start
+concurrently -k "npm:start:webpack:ssr" "npm:start:webpack:web" "npm:start:functions" "npm:start:web"

@@ -1,4 +1,4 @@
-import { curry } from '../../utils/data'
+import { curry } from '../../utils/lang'
 import queryNotifications from './queryNotifications'
 
 const queryNotificationsByUserId = curry((context, userId, queryOptions) =>

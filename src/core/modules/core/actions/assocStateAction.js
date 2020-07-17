@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions'
+import { createAction } from '../../../../utils/redux'
 
 const assocStateAction = createAction('ASSOC_STATE', ({ path, state }) => ({
   path,

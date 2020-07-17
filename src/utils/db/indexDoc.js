@@ -1,4 +1,4 @@
-import { getProp, join, map } from '../data'
+import { getProp, join, map } from '../lang'
 
 const indexDoc = ({ database }, collectionName, index, value) => {
   const Indexes = database.collection('Indexes')

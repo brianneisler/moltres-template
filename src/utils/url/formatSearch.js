@@ -1,4 +1,4 @@
-import { getProp, isObject, join, keys, map } from '../data'
+import { getProp, isObject, join, keys, map } from '../lang'
 
 const formatSearch = (query) =>
   '?' +

@@ -1,4 +1,4 @@
-import { assocPath, createPath, getPath, mergeRight } from '../../utils/data'
+import { assocPath, createPath, getPath, mergeRight } from '../../utils/lang'
 import combineReducers from './combineReducers'
 import composeStore from './composeStore'
 import filterEnhancers from './filterEnhancers'
@@ -10,11 +10,19 @@ const buildReducer = (reducer) => (state, action) => {
   // so that they can modify the state AFTER all reducers have updated the state.
   if (action) {
     if (action.type === 'ASSOC_STATE') {
-      return assocPath(createPath(action.payload.path), action.payload.state, state)
+      return assocPath(
+        createPath(action.payload.path),
+        action.payload.state,
+        state
+      )
     } else if (action.type === 'MERGE_STATE') {
       const statePath = createPath(action.payload.path)
       const currentState = getPath(statePath, state) || {}
-      return assocPath(statePath, mergeRight(currentState, action.payload.state), state)
+      return assocPath(
+        statePath,
+        mergeRight(currentState, action.payload.state),
+        state
+      )
     }
   }
   return state

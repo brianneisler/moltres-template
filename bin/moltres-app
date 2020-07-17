@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+require('@babel/register')
+const { expected } = require('../src/utils/error')
+const { createApp, queryApps } = require('../src/db/App')
+const { createOrFindHost } = require('../src/db/Host')
+const { setupCliContexts, tearDownCliContexts } = require('../src/cli')
+const program = require('commander')
+
+program
+  .description("set a user's role")
+  .option('-u, --userId [userId]', "The user's id or phone number")
+  .option('-r, --role [role]', "The user's role")
+  .parse(process.argv)
+
+const exec = async ({ role, userId }) => {
+  if (!role) {
+    throw expected({ message: 'Role must be specified' })
+  }
+  if (!userId) {
+    throw expected({ message: 'User id must be specified' })
+  }
+  const contexts = await setupCliContexts()
+  const { context } = contexts
+  const { logger } = context
+
+  try {
+    let user
+    if (isId(userId)) {
+      user = await getUserById(context, userId)
+    } else if (isValidPhoneNumber(userId)) {
+      user = await findExistingUserByPhoneNumber(context, userId)
+    } else {
+      throw expected({ message: `Given userId must be either an id or a phone number` })
+    }
+
+    if (!user) {
+      throw expected({ message: `User with the id ${userId} does not exist` })
+    }
+
+    const userRole = await createUserRole(context, {
+      role,
+      userId: user.id
+    })
+    logger.info('USER ROLE CREATED')
+    logger.info(userRole)
+  } catch (error) {
+    logger.warn("An error occured while trying to set a user's role")
+    throw error
+  } finally {
+    await tearDownCliContexts(contexts)
+  }
+}
+
+exec(program)
+  .then(() => process.exit())
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error)
+    process.exit(1)
+  })

@@ -22,10 +22,39 @@ const config = () => ({
         exclude: {
           exclude: [
             path.resolve(__dirname, '..', '..'),
-            path.resolve(__dirname, '..', '..', '..', 'node_modules', 'emoji-mart'),
-            path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-typography'),
-            path.resolve(__dirname, '..', '..', '..', 'node_modules', 'react-native-web', 'src'),
-            path.resolve(__dirname, '..', '..', '..', 'node_modules', 'expo-linear-gradient')
+            path.resolve(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'node_modules',
+              'emoji-mart'
+            ),
+            path.resolve(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'node_modules',
+              'react-native-typography'
+            ),
+            path.resolve(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'node_modules',
+              'react-native-web',
+              'src'
+            ),
+            path.resolve(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'node_modules',
+              'expo-linear-gradient'
+            )
           ],
           test: path.resolve(__dirname, '..', '..', '..', 'node_modules')
         },
@@ -36,7 +65,8 @@ const config = () => ({
             cacheDirectory: true,
             plugins: [
               ['react-native-web', { commonjs: true }],
-              '@babel/plugin-proposal-class-properties'
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-transform-runtime'
             ],
             presets: [
               [

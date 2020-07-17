@@ -32,6 +32,8 @@ describe('lookupIp', () => {
   })
 
   test('Throws an error on non ip value', async () => {
-    await expect((async () => lookupIp('foo.bar'))()).rejects.toThrow(/^Expected an IP address/)
+    await expect((async () => lookupIp('foo.bar'))()).rejects.toThrow(
+      /^Expected an IP address/
+    )
   })
 })

@@ -1,4 +1,4 @@
-import { handleActions } from '../../../utils/lang'
+import { handleActions } from '../../../utils/redux'
 
 const mod = {
   reducer: handleActions({}, {})

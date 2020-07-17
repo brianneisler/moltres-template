@@ -1,4 +1,4 @@
-import { keys, reduce, replaceAll } from '../data'
+import { keys, reduce, replaceAll } from '../lang'
 
 const KEY_CHAR_ESCAPES = {
   '#': '(H)',

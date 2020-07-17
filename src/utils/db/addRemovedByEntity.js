@@ -1,4 +1,4 @@
-import { curry } from '../data'
+import { curry } from '../lang'
 
 const addRemovedByEntity = curry(({ currentUser, serviceAccount }, data) => {
   if (currentUser) {
