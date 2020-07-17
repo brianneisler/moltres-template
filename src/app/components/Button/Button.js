@@ -1,6 +1,5 @@
-import { Colors, Fonts, Styles } from '../../styles'
-import { StyleSheet } from 'react-native'
-import { compose } from '../../../utils/lang'
+import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
+import { compose, getProp, hasProp } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -11,7 +10,36 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
-import View from '../View'
+
+const TYPE_TO_BUTTON_TEXT_STYLES = StyleSheet.create({
+  default: { color: Colors.grey8 },
+  desctructive: { color: Colors.whitePrimary },
+  positive: { color: Colors.whitePrimary }
+})
+
+const getButtonTextStyles = (type) => {
+  if (hasProp(type, TYPE_TO_BUTTON_TEXT_STYLES)) {
+    return getProp(type, TYPE_TO_BUTTON_TEXT_STYLES)
+  }
+  return getProp('default', TYPE_TO_BUTTON_TEXT_STYLES)
+}
+
+const TYPE_TO_BUTTON_STYLES = StyleSheet.create({
+  default: {
+    backgroundColor: Colors.whitePrimary,
+    borderColor: Colors.grey5,
+    borderStyle: 'solid',
+    borderWidth: 1
+  },
+  desctructive: { color: Colors.whitePrimary },
+  positive: { backgroundColor: Colors.blue6 }
+})
+const getButtonStyles = (type) => {
+  if (hasProp(type, TYPE_TO_BUTTON_STYLES)) {
+    return getProp(type, TYPE_TO_BUTTON_STYLES)
+  }
+  return getProp('default', TYPE_TO_BUTTON_STYLES)
+}
 
 const enhance = compose(
   setDisplayName('Button'),
@@ -28,23 +56,39 @@ const enhance = compose(
     onPress: PropTypes.func.isRequired,
     style: styleShape,
     testID: PropTypes.string,
-    title: PropTypes.string.isRequired
+    text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+    type: PropTypes.string
   }),
   defaultProps({
     styles: {
-      ...Styles,
+      ...StyleSheets,
       ...StyleSheet.create({
         button: {
-          backgroundColor: Colors.bluePrimary,
-          borderRadius: 2
+          borderRadius: 4,
+          height: 24
         },
-        text: {
+        buttonDefault: {
+          backgroundColor: Colors.primaryWhite
+        },
+        buttonDestructive: {
+          backgroundColor: Colors.warn
+        },
+        buttonDisabled: {
+          backgroundColor: Colors.grey3,
+          borderColor: Colors.grey5
+        },
+        buttonPositive: {
+          backgroundColor: Colors.blue6
+        },
+        buttonText: {
+          ...Styles.textMedium,
           color: Colors.whitePrimary,
-          fontFamily: Fonts.primaryFontFamily,
-          fontWeight: '500',
+          fontWeight: '600',
           padding: 8,
-          textAlign: 'center',
-          textTransform: 'uppercase'
+          textAlign: 'center'
+        },
+        buttonTextDisabled: {
+          color: Colors.grey6
         }
       })
     }
@@ -66,28 +110,44 @@ const Button = enhance(
     style,
     styles,
     testID,
-    title
-  }) => {
-    return (
-      <TouchableOpacity
-        accessibilityLabel={accessibilityLabel}
-        accessibilityRole="button"
-        disabled={disabled}
-        onMouseDown={onMouseDown}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onMouseMove={onMouseMove}
-        onMouseOut={onMouseOut}
-        onMouseOver={onMouseOver}
-        onMouseUp={onMouseUp}
-        onPress={onPress}
-        style={[styles.button, style, disabled && styles.disabled]}
-        testID={testID}
-      >
-        <Text style={[styles.text, disabled && styles.disabled]}>{title}</Text>
-      </TouchableOpacity>
-    )
-  }
+    text,
+    type
+  }) => (
+    <TouchableOpacity
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="button"
+      disabled={disabled}
+      onMouseDown={onMouseDown}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onMouseMove={onMouseMove}
+      onMouseOut={onMouseOut}
+      onMouseOver={onMouseOver}
+      onMouseUp={onMouseUp}
+      onPress={onPress}
+      style={[
+        styles.button,
+        getButtonStyles(type),
+        style,
+        disabled && styles.buttonDisabled
+      ]}
+      testID={testID}
+    >
+      {React.isValidElement(text) ? (
+        text
+      ) : (
+        <Text
+          style={[
+            styles.buttonText,
+            getButtonTextStyles(type),
+            disabled && styles.buttonTextDisabled
+          ]}
+        >
+          {text}
+        </Text>
+      )}
+    </TouchableOpacity>
+  )
 )
 
 export default Button

@@ -1,9 +1,14 @@
 require('@babel/register')()
-const { pick } = require('ramda')
-const ManifestPlugin = require('webpack-manifest-plugin')
+
 const path = require('path')
+
+const { pick } = require('ramda')
 const webpack = require('webpack')
+const ManifestPlugin = require('webpack-manifest-plugin')
+
 const loadEnv = require('../../utils/config/loadEnv').default
+
+const { babelLoader } = require('./loaders')
 
 const config = (env) => {
   if (!env) {
@@ -16,72 +21,7 @@ const config = (env) => {
     mode: 'production',
     module: {
       rules: [
-        {
-          exclude: {
-            exclude: [
-              path.resolve(__dirname, '..', '..'),
-              path.resolve(
-                __dirname,
-                '..',
-                '..',
-                '..',
-                'node_modules',
-                'emoji-mart'
-              ),
-              path.resolve(
-                __dirname,
-                '..',
-                '..',
-                '..',
-                'node_modules',
-                'react-native-typography'
-              ),
-              path.resolve(
-                __dirname,
-                '..',
-                '..',
-                '..',
-                'node_modules',
-                'react-native-web',
-                'src'
-              ),
-              path.resolve(
-                __dirname,
-                '..',
-                '..',
-                '..',
-                'node_modules',
-                'expo-linear-gradient'
-              )
-            ],
-            test: path.resolve(__dirname, '..', '..', '..', 'node_modules')
-          },
-          test: /\.m?js$/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true,
-              plugins: [
-                ['react-native-web', { commonjs: true }],
-                '@babel/plugin-proposal-class-properties',
-                '@babel/plugin-transform-runtime'
-              ],
-              presets: [
-                [
-                  '@babel/preset-env',
-                  {
-                    corejs: 3,
-                    // targets should be pulled from .browserlistrc
-                    useBuiltIns: 'usage'
-                  }
-                ],
-                '@babel/preset-react',
-                '@babel/preset-flow',
-                'babel-preset-expo'
-              ]
-            }
-          }
-        },
+        babelLoader,
         {
           loader: 'file-loader?emitFile=false',
           test: /\.(ttf|eot|otf|gif|jpe?g|png|svg)$/

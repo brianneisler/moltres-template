@@ -1,8 +1,7 @@
-import { StyleSheet } from 'react-native'
 import Colors from './Colors'
 import Fonts from './Fonts'
 
-const Styles = StyleSheet.create({
+const Styles = {
   activityIndicator: {
     padding: 20,
     width: 60
@@ -307,6 +306,6 @@ const Styles = StyleSheet.create({
   wrapText: {
     flexWrap: 'wrap'
   }
-})
+}
 
 export default Styles

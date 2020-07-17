@@ -1,6 +1,7 @@
-import { rfc3339TimestampString } from '../time'
-import { uuidv4 } from '../lang'
+import { isContext, uuidv4 } from '../lang'
 import { validateSchema } from '../schema'
+import { rfc3339TimestampString } from '../time'
+
 import createAction from './createAction'
 
 const ACTION_IDENTITY = (context, payload = null) => payload
@@ -14,6 +15,11 @@ const actionBuilder = ({ Schema, meta, payload, type }) => {
 
   const actionCreator = createAction(type, payload, meta)
   const builder = (context, ...args) => {
+    if (!isContext(context)) {
+      throw new TypeError(
+        `parameter 'context' is expected to be a Context instance. Instead was given ${context}`
+      )
+    }
     const { source } = context
     const action = {
       id: uuidv4(),
@@ -29,6 +35,7 @@ const actionBuilder = ({ Schema, meta, payload, type }) => {
   }
 
   builder.toString = () => type
+  builder.requiresContext = true
   return builder
 }
 
