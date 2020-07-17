@@ -79,7 +79,7 @@
     "immutable": "^4.0.0-rc.12",
     "invariant": "^2.2.4",
     "is-url": "^1.2.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mime-types": "^2.1.26",
     "parse-duration": "^0.1.2",
     "path-to-regexp": "^6.1.0",
