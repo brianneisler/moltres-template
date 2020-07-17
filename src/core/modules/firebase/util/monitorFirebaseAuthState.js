@@ -1,5 +1,6 @@
-import { firebaseAuthStateChanged } from '../actions'
 import { handleChannel, put } from '../../../../utils/redux'
+import { firebaseAuthStateChanged } from '../actions'
+
 import createFirebaseAuthStateChannel from './createFirebaseAuthStateChannel'
 
 function* monitorFirebaseAuthState(context) {

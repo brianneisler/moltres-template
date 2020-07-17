@@ -1,7 +1,8 @@
-import { MAX_SAFE } from '../constants/Integer'
 import Infinity from '../classes/Infinity'
 import NaN from '../classes/NaN'
 import Number from '../classes/Number'
+import { MAX_SAFE } from '../constants/Integer'
+
 import anyIsInteger from './anyIsInteger'
 
 describe('anyIsInteger', () => {

@@ -1,5 +1,6 @@
 import { ACCESS_DENIED } from '../../constants/Code'
 import expected from '../error/expected'
+
 import formatSnapshot from './formatSnapshot'
 import isPermissionsError from './isPermissionsError'
 

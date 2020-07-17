@@ -1,5 +1,6 @@
 import { asyncHandler } from '../../../../utils/express'
 import { map, values, weakMemoize } from '../../../../utils/lang'
+
 import { setupWebpackRouter, setupWebpackSSRHandler } from './util'
 
 const createInitialStateScript = (context, { state }) => ({

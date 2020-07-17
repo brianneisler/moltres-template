@@ -1,6 +1,6 @@
-import { arrayProperties, objectProperties } from './util'
 import isArray from './isArray'
 import satisfiesPropertied from './satisfiesPropertied'
+import { arrayProperties, objectProperties } from './util'
 
 const properties = (value) => {
   if (satisfiesPropertied(value)) {

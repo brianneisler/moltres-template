@@ -6,6 +6,7 @@ import {
   invariant,
   isFunction
 } from '../utils/lang'
+
 import createQueryFactory from './createQueryFactory'
 
 const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {

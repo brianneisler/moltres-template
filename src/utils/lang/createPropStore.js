@@ -1,6 +1,7 @@
+import createChannel from '../../core/createChannel'
+
 import assocMerge from './assocMerge'
 import assocPath from './assocPath'
-import createChannel from '../../core/createChannel'
 import equals from './equals'
 
 const createPropStore = (channel) => {

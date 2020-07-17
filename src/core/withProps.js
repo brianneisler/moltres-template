@@ -1,4 +1,5 @@
 import { is, merge } from '../utils/lang'
+
 import mapProps from './mapProps'
 
 const withProps = (input) =>

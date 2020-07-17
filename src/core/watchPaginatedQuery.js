@@ -1,4 +1,3 @@
-import { call, cancel, put, spawn } from '../utils/redux'
 import {
   invariant,
   isFunction,
@@ -6,6 +5,8 @@ import {
   isObject,
   isString
 } from '../utils/lang'
+import { call, cancel, put, spawn } from '../utils/redux'
+
 import { setQueryCursorAction } from './actions'
 import factoryAndWatchFirstPageQueries from './factoryAndWatchFirstPageQueries'
 import isQuery from './isQuery'

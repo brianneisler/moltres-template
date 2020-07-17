@@ -1,7 +1,7 @@
-import { AuthState } from '../../../constants'
-import { Colors, Styles } from '../../styles'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { buildLocation } from '../../../utils/url'
+
+import { AuthState } from '../../../constants'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -11,11 +11,12 @@ import {
   styleShape,
   withPropsOnChange
 } from '../../../utils/react'
+import { buildLocation } from '../../../utils/url'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
 import { selectRouterLocationPathname } from '../../modules/router'
+import { Colors, Styles } from '../../styles'
 import Icon from '../Icon'
 import Link from '../Link'
-import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
 

@@ -1,5 +1,6 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { curry } from '../../utils/lang'
+
 import batchQueueAction from './batchQueueAction'
 
 const queueAction = curry(async (ActionSchema, context, value) => {

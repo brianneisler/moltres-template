@@ -1,5 +1,5 @@
-import { ImmutableList } from './classes'
 import __ from './__'
+import { ImmutableList } from './classes'
 import head from './head'
 
 describe('head', () => {

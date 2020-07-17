@@ -1,5 +1,5 @@
-import { SignInWithIdTokenAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { SignInWithIdTokenAction } from '../schemas'
 
 const signInWithIdTokenAction = actionBuilder({
   Schema: SignInWithIdTokenAction

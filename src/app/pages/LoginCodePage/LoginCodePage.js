@@ -1,17 +1,7 @@
-import {
-  FieldTextInput,
-  Page,
-  Text,
-  TouchableOpacity,
-  View
-} from '../../components'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
+
 import { SubmissionError, validateOneTimeCode } from '../../../utils/form'
-import {
-  actions as authSMSActions,
-  selectAuthSMSChallengeId
-} from '../../modules/auth_sms'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -22,10 +12,20 @@ import {
   withHandlers,
   withReduxForm
 } from '../../../utils/react'
-import { pushRouteAction } from '../../modules/router/actions'
+import {
+  FieldTextInput,
+  Page,
+  Text,
+  TouchableOpacity,
+  View
+} from '../../components'
 import { selectAfterLogin } from '../../modules/auth'
-
-import React from 'react'
+import {
+  actions as authSMSActions,
+  selectAuthSMSChallengeId
+} from '../../modules/auth_sms'
+import { pushRouteAction } from '../../modules/router/actions'
+import { Styles } from '../../styles'
 
 const AUTH_SMS_FORM = 'authSMSForm'
 

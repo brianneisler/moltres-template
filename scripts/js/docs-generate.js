@@ -1,3 +1,9 @@
+import path from 'path'
+
+import dox from 'dox'
+import fs from 'fs-extra'
+import glob from 'glob'
+import markdownMagic from 'markdown-magic'
 import {
   append,
   assoc,
@@ -9,13 +15,10 @@ import {
   prop,
   reduce
 } from 'ramda'
-import { reduceObjIndexed } from './utils'
-import dox from 'dox'
-import fs from 'fs-extra'
-import glob from 'glob'
-import markdownMagic from 'markdown-magic'
+
 import pack from '../../package.json'
-import path from 'path'
+
+import { reduceObjIndexed } from './utils'
 
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')

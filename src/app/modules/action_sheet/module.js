@@ -1,4 +1,3 @@
-import * as actions from './actions'
 import { ACTION_SHEET } from '../../../constants/Modal'
 import { assoc, findIndex, getProp, map, noop } from '../../../utils/lang'
 import {
@@ -10,6 +9,8 @@ import {
   trigger
 } from '../../../utils/redux'
 import { actions as modalActions } from '../modal'
+
+import * as actions from './actions'
 
 const mod = {
   reducer: handleActions(

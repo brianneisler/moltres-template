@@ -1,4 +1,5 @@
 import * as testing from '@firebase/testing'
+
 import { invariant, isObject, isString } from '../lang'
 
 const initializeTestAdminApp = ({ config, namespace }) => {

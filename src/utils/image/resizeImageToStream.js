@@ -1,4 +1,5 @@
 import { createCanvas } from '../canvas'
+
 import getResizedImageDimensions from './getResizedImageDimensions'
 import loadImage from './loadImage'
 

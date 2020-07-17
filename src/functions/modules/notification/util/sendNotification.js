@@ -1,16 +1,16 @@
 import { ChannelType, NotificationSendState } from '../../../../constants'
-import { call } from '../../../../utils/redux'
 import { createError } from '../../../../db/Error'
 import {
   createNotificationSend,
   updateNotificationSend
 } from '../../../../db/Notification'
-import { generateSMSChannel } from '../../../../sdk/sms'
-import { nowTimestamp } from '../../../../utils/db'
 import {
   renderNotification,
   validateNotification
 } from '../../../../sdk/notification'
+import { generateSMSChannel } from '../../../../sdk/sms'
+import { nowTimestamp } from '../../../../utils/db'
+import { call } from '../../../../utils/redux'
 import { sendSMSMessageToChannel } from '../../sms'
 
 const sendNotification = function* (context, enhancedNotification) {

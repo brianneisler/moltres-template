@@ -1,7 +1,10 @@
 import { basename, join, resolve } from 'path'
-import { dropWhile, filter, map, reduce } from 'ramda'
-import { findVariableById, setVariable } from '../../src/db/Variable'
+
 import { readdir } from 'fs-extra'
+import { dropWhile, filter, map, reduce } from 'ramda'
+
+import { findVariableById, setVariable } from '../../src/db/Variable'
+
 import setupScriptContexts from './utils/setupScriptContexts'
 
 const loadMigrations = async (dir) => {

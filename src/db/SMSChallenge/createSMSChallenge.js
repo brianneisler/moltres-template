@@ -1,5 +1,6 @@
-import { SMSChallenge } from './schemas'
 import { createEntity } from '../Entity'
+
+import { SMSChallenge } from './schemas'
 
 const createSMSChallenge = createEntity(SMSChallenge)
 

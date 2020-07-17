@@ -1,5 +1,6 @@
-import { Upload } from './schemas'
 import { removeEntity } from '../Entity'
+
+import { Upload } from './schemas'
 
 const removeUpload = removeEntity(Upload)
 

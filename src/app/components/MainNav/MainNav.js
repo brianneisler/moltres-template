@@ -1,4 +1,6 @@
-import { AuthState, Overlay } from '../../../constants'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import {
   FileInput,
   Icon,
@@ -8,10 +10,9 @@ import {
   UserProfileImage,
   View
 } from '..'
-import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
-import { buildLocation, buildURL, parseSearch } from '../../../utils/url'
+import { AuthState, Overlay } from '../../../constants'
 import { compose, getProp } from '../../../utils/lang'
+import { isDeviceMobile } from '../../../utils/platform'
 import {
   connect,
   defaultProps,
@@ -19,11 +20,11 @@ import {
   withActions,
   withHandlers
 } from '../../../utils/react'
-import { isDeviceMobile } from '../../../utils/platform'
-import { actions as overlayActions } from '../../modules/overlay'
+import { buildLocation, buildURL, parseSearch } from '../../../utils/url'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
+import { actions as overlayActions } from '../../modules/overlay'
 import { selectCurrentUserProfile } from '../../modules/user_profile'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('MainNav'),

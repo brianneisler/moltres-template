@@ -1,5 +1,6 @@
-import { UserImage } from './schemas'
 import { createEntity } from '../Entity'
+
+import { UserImage } from './schemas'
 
 const createUserImage = createEntity(UserImage)
 

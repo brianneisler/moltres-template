@@ -1,5 +1,6 @@
 import { Index, Key, Property } from '../classes'
 import { MAX_SAFE } from '../constants/Integer'
+
 import anyIsIndex from './anyIsIndex'
 
 describe('anyIsIndex', () => {

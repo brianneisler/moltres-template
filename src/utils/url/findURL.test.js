@@ -1,4 +1,5 @@
 import { URL } from 'url'
+
 import findURL from './findURL'
 
 describe('findURL', () => {

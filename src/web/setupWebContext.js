@@ -1,5 +1,5 @@
-import { parseURL } from '../utils/url'
 import createContext from '../context/createContext'
+import { parseURL } from '../utils/url'
 
 const setupWebContext = (config, history) =>
   createContext({

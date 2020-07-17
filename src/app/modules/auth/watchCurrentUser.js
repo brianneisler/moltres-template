@@ -1,6 +1,8 @@
-import { AuthState } from '../../../constants'
-import { AuthStateChangedAction } from './schemas'
 import { call, cancel, cancelled, select, takeEvery } from 'redux-saga/effects'
+
+import { AuthState } from '../../../constants'
+
+import { AuthStateChangedAction } from './schemas'
 import selectAuthState from './selectors/selectAuthState'
 import selectCurrentUser from './selectors/selectCurrentUser'
 

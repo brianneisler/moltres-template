@@ -1,5 +1,6 @@
-import { END, START } from '../constants/Iterator'
 import { IDENTITY } from '../constants/Function'
+import { END, START } from '../constants/Iterator'
+
 import anyIsResolved from './anyIsResolved'
 import anyResolveWith from './anyResolveWith'
 import unresolvedResolveWith from './unresolvedResolveWith'

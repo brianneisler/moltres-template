@@ -1,12 +1,12 @@
 import { StatusCode } from '../../constants'
-import { all } from '../../utils/lang'
+import batchCreatePhoneNumber from '../../db/PhoneNumber/batchCreatePhoneNumber'
+import findPhoneNumberByPhoneNumber from '../../db/PhoneNumber/findPhoneNumberByPhoneNumber'
+import batchCreatePhoneNumberClaim from '../../db/PhoneNumberClaim/batchCreatePhoneNumberClaim'
+import getPendingUserByPhoneNumberClaim from '../../db/PhoneNumberClaim/getPendingUserByPhoneNumberClaim'
+import batchCreateUser from '../../db/User/batchCreateUser'
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { expected } from '../../utils/error'
-import batchCreatePhoneNumber from '../../db/PhoneNumber/batchCreatePhoneNumber'
-import batchCreatePhoneNumberClaim from '../../db/PhoneNumberClaim/batchCreatePhoneNumberClaim'
-import batchCreateUser from '../../db/User/batchCreateUser'
-import findPhoneNumberByPhoneNumber from '../../db/PhoneNumber/findPhoneNumberByPhoneNumber'
-import getPendingUserByPhoneNumberClaim from '../../db/PhoneNumberClaim/getPendingUserByPhoneNumberClaim'
+import { all } from '../../utils/lang'
 
 const createPendingUser = async (context, { phoneNumber }) => {
   let phoneNumberRef

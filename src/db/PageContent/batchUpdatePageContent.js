@@ -1,5 +1,6 @@
-import { PageContent } from './schemas'
 import { batchUpdateEntity } from '../Entity'
+
+import { PageContent } from './schemas'
 
 const batchUpdatePageContent = batchUpdateEntity(PageContent)
 

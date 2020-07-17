@@ -3,15 +3,15 @@ import anyIsArguments from './anyIsArguments'
 describe('anyIsArguments', () => {
   test('identifies arguments from functions', async () => {
     // NOTE BRN: arrow functions do not have an arguments variable
-    expect(function() {
+    expect(function () {
       expect(anyIsArguments(arguments)).toBe(true)
     }).not.toThrow()
 
-    await (async function() {
+    await (async function () {
       expect(anyIsArguments(arguments)).toBe(true)
     })()
 
-    const generator = (function*() {
+    const generator = (function* () {
       expect(anyIsArguments(arguments)).toBe(true)
     })()
     generator.next()
@@ -35,9 +35,9 @@ describe('anyIsArguments', () => {
     expect(anyIsArguments(/abc/)).toBe(false)
     expect(anyIsArguments(async () => {})).toBe(false)
     expect(anyIsArguments(() => {})).toBe(false)
-    expect(anyIsArguments(function() {})).toBe(false)
-    expect(anyIsArguments(function*() {})).toBe(false)
-    expect(anyIsArguments((function*() {})())).toBe(false)
+    expect(anyIsArguments(function () {})).toBe(false)
+    expect(anyIsArguments(function* () {})).toBe(false)
+    expect(anyIsArguments((function* () {})())).toBe(false)
     expect(anyIsArguments(new Array(0))).toBe(false)
     expect(anyIsArguments(new ArrayBuffer(2))).toBe(false)
     expect(anyIsArguments(new Boolean(false))).toBe(false)

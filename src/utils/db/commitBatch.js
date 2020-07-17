@@ -1,6 +1,7 @@
 import { ACCESS_DENIED } from '../../constants/Code'
-import { delay, isPromise } from '../lang'
 import expected from '../error/expected'
+import { delay, isPromise } from '../lang'
+
 import isPermissionsError from './isPermissionsError'
 
 const isDisconnectError = (error) => {

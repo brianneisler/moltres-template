@@ -1,5 +1,6 @@
-import { UserRole } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { UserRole } from './schemas'
 
 const batchCreateUserRole = batchCreateEntity(UserRole)
 

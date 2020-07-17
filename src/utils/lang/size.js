@@ -1,4 +1,5 @@
 import { length } from 'ramda'
+
 import isArrayLike from './isArrayLike'
 import isImmutable from './isImmutable'
 import isMap from './isMap'

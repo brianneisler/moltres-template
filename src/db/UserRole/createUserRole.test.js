@@ -1,10 +1,10 @@
-import { createUser, deleteUser } from '../User'
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { createUser, deleteUser } from '../User'
 
 const spec = describe('createUserRole', () => {
   describe('ServiceAccount', () => {

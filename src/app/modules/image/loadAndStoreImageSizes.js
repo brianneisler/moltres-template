@@ -1,8 +1,10 @@
-import { isURL } from '../../../utils/url'
-import { loadImageSizes } from './util'
 import { put, select } from 'redux-saga/effects'
+
+import { isURL } from '../../../utils/url'
+
 import { setImageSizes } from './actions'
 import selectImageSizes from './selectImageSizes'
+import { loadImageSizes } from './util'
 
 const loadAndStoreImageSizes = function* (context, url) {
   let result = yield select(selectImageSizes(url))

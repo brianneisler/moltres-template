@@ -1,5 +1,6 @@
-import { setupRouter } from './util'
 import express from 'express'
+
+import { setupRouter } from './util'
 
 const mod = {
   setupMiddleware: (store) => {

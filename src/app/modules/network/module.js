@@ -1,4 +1,5 @@
 import { WARN } from '../../../constants/StatusLevel'
+import { getContext } from '../../../core'
 import { assoc } from '../../../utils/lang'
 import {
   fork,
@@ -7,11 +8,11 @@ import {
   put,
   takeEvery
 } from '../../../utils/redux'
-import { getContext } from '../../../core'
 import { getNetworkInformation } from '../../../utils/web'
-import { monitorNetworkInformationChannel } from './util'
-import { setNetworkInformation } from './actions'
 import { actions as statusActions } from '../status'
+
+import { setNetworkInformation } from './actions'
+import { monitorNetworkInformationChannel } from './util'
 
 const STATUS_NETWORK = 'STATUS:NETWORK'
 

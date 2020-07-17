@@ -4,8 +4,9 @@ import 'firebase/database'
 import 'firebase/firestore'
 import 'firebase/performance'
 import 'firebase/storage'
-import { createLogger } from '../utils/logger'
-import { createSystem } from '../utils/system'
+import firebase from 'firebase/app'
+
+import { isTestAppConfigured } from '../utils/config'
 import {
   initializeApp,
   initializeAuthEmulator,
@@ -13,8 +14,8 @@ import {
   initializeTestApp
 } from '../utils/firebase'
 import { invariant, isObject } from '../utils/lang'
-import { isTestAppConfigured } from '../utils/config'
-import firebase from 'firebase/app'
+import { createLogger } from '../utils/logger'
+import { createSystem } from '../utils/system'
 
 // NOTE BRN: This method must remain synchronous because it is needed to boot up
 // the web App without disruption

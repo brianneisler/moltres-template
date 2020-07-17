@@ -1,5 +1,6 @@
-import { setupMiddleware } from './util'
 import express from 'express'
+
+import { setupMiddleware } from './util'
 
 const mod = () => {
   let app

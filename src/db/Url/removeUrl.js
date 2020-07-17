@@ -1,5 +1,6 @@
-import { Url } from './schemas'
 import { removeEntity } from '../Entity'
+
+import { Url } from './schemas'
 
 const removeUrl = removeEntity(Url)
 

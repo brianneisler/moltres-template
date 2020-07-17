@@ -5,8 +5,9 @@ import {
   cleanseData
 } from '../../utils/db'
 import { curry } from '../../utils/lang'
-import { entityChanged } from './actions'
 import { validateSchema } from '../../utils/schema'
+
+import { entityChanged } from './actions'
 import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 
 const batchCreateEntity = curry(

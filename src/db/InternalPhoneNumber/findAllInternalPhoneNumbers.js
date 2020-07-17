@@ -1,7 +1,8 @@
-import { InternalPhoneNumber } from './schemas'
-import { cacheMethod, getProp } from '../../utils/lang'
 import { findAllFromQuery } from '../../utils/db'
+import { cacheMethod, getProp } from '../../utils/lang'
+
 import queryInternalPhoneNumbers from './queryInternalPhoneNumbers'
+import { InternalPhoneNumber } from './schemas'
 
 const CACHE_KEY = `${InternalPhoneNumber.collectionName}:all`
 const findAllInternalPhoneNumbers = cacheMethod(

@@ -1,5 +1,5 @@
-import { anyResolveToGenerator } from './util'
 import curry from './curry'
+import { anyResolveToGenerator } from './util'
 
 /**
  * Resolves a value to a generator using the generator to yield values.

@@ -1,9 +1,9 @@
 import { StatusCode } from '../../constants'
-import { all } from '../../utils/lang'
 import {
   batchCreatePhoneNumber,
   findPhoneNumberByPhoneNumber
 } from '../../db/PhoneNumber'
+import { findPhoneNumberClaimByPhoneNumber } from '../../db/PhoneNumberClaim'
 import { batchCreateUser, updateUser } from '../../db/User'
 import {
   batchCreateUserPhoneNumber,
@@ -12,7 +12,8 @@ import {
 } from '../../db/UserPhoneNumber'
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { expected } from '../../utils/error'
-import { findPhoneNumberClaimByPhoneNumber } from '../../db/PhoneNumberClaim'
+import { all } from '../../utils/lang'
+
 import { userRegistered } from './actions'
 import queueUserRegisteredAction from './queueUserRegisteredAction'
 

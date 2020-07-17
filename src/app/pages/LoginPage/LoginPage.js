@@ -1,15 +1,7 @@
-import {
-  FieldTextInput,
-  Page,
-  Text,
-  TouchableOpacity,
-  View
-} from '../../components'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
+
 import { SubmissionError, validatePhoneNumber } from '../../../utils/form'
-import { actions as authSMSActions } from '../../modules/auth_sms'
-import { buildLocation } from '../../../utils/url'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -20,9 +12,18 @@ import {
   withHandlers,
   withReduxForm
 } from '../../../utils/react'
-import { pushRouteAction } from '../../modules/router/actions'
+import { buildLocation } from '../../../utils/url'
+import {
+  FieldTextInput,
+  Page,
+  Text,
+  TouchableOpacity,
+  View
+} from '../../components'
 import { selectAfterLogin, selectAuthState } from '../../modules/auth'
-import React from 'react'
+import { actions as authSMSActions } from '../../modules/auth_sms'
+import { pushRouteAction } from '../../modules/router/actions'
+import { Styles } from '../../styles'
 
 const LOGIN_SMS_FORM = 'loginSMSForm'
 

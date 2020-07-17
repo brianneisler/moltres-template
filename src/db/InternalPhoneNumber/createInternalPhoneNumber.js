@@ -1,6 +1,7 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
-import batchCreateInternalPhoneNumber from './batchCreateInternalPhoneNumber'
 import batchCreatePhoneNumber from '../PhoneNumber/batchCreatePhoneNumber'
+
+import batchCreateInternalPhoneNumber from './batchCreateInternalPhoneNumber'
 
 const createInternalPhoneNumber = async (context, data) => {
   let ref

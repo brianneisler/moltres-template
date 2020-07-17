@@ -1,5 +1,7 @@
 import { all, props } from 'bluebird'
+
 import { assoc, curry, getProp, map } from '../lang'
+
 import getOutNodes from './getOutNodes'
 import traversePostorder from './traversePostorder'
 

@@ -1,8 +1,9 @@
-import * as appModules from './modules'
-import * as functionModules from '../modules'
-import { EngineState } from '../../core/constants'
 import { generateEngine } from '../../core'
+import { EngineState } from '../../core/constants'
+import * as functionModules from '../modules'
 import setupFunctionContexts from '../setupFunctionContexts'
+
+import * as appModules from './modules'
 
 const setupAppFunction = (config) => {
   const modules = {

@@ -1,4 +1,5 @@
 import { curry } from '../lang'
+
 import getFromRef from './getFromRef'
 import refDocumentById from './refDocumentById'
 

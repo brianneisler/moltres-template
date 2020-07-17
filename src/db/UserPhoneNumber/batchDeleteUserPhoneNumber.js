@@ -1,5 +1,6 @@
-import { UserPhoneNumber } from './schemas'
 import { batchDeleteEntity } from '../Entity'
+
+import { UserPhoneNumber } from './schemas'
 
 const batchDeleteUserPhoneNumber = batchDeleteEntity(UserPhoneNumber)
 

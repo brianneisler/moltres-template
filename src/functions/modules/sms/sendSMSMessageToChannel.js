@@ -1,7 +1,8 @@
-import { all, isString } from '../../../utils/lang'
-import { expected } from '../../../utils/error'
 import { getPhoneNumberById } from '../../../db/PhoneNumber'
 import { getSMSChannelById } from '../../../db/SMSChannel'
+import { expected } from '../../../utils/error'
+import { all, isString } from '../../../utils/lang'
+
 import { sendSMSMessage } from './util'
 
 const sendSMSMessageToChannel = async (

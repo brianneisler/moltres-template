@@ -1,12 +1,9 @@
 import { AuthState } from '../../../constants'
-import {
-  AuthStateChangedAction,
-  SetAuthIdTokenAction,
-  SetAuthStateAction,
-  SetCurrentUserAction,
-  SignInWithIdTokenAction,
-  SignOutAction
-} from './schemas'
+import { setContext, withConfig, withContext } from '../../../core'
+import { firebaseAuthStateChanged } from '../../../core/actions'
+import { findUserById } from '../../../db/User'
+import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
+import { append, assoc, compose, getProp } from '../../../utils/lang'
 import {
   all,
   call,
@@ -16,7 +13,9 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
-import { append, assoc, compose, getProp } from '../../../utils/lang'
+import { actions as overlayActions } from '../overlay'
+import { pushRouteAction } from '../router/actions'
+
 import {
   authStateChangedAction,
   setAuthIdTokenAction,
@@ -24,13 +23,15 @@ import {
   setCurrentUserAction,
   signOutAction
 } from './actions'
-import { findUserById } from '../../../db/User'
-import { firebaseAuthStateChanged } from '../../../core/actions'
-import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
-import { actions as overlayActions } from '../overlay'
-import { pushRouteAction } from '../router/actions'
+import {
+  AuthStateChangedAction,
+  SetAuthIdTokenAction,
+  SetAuthStateAction,
+  SetCurrentUserAction,
+  SignInWithIdTokenAction,
+  SignOutAction
+} from './schemas'
 import { selectAfterLogin, selectAuthState } from './selectors'
-import { setContext, withConfig, withContext } from '../../../core'
 
 const enhance = compose(withConfig(), withContext())
 

@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Platform } from 'react-native'
-import { Styles } from '../../styles'
+
 import {
   compose,
   getPath,
@@ -17,10 +19,9 @@ import {
   withHandlers,
   withPropsOnChange
 } from '../../../utils/react'
+import { Styles } from '../../styles'
 import InfiniteInvertibleScrollView from '../InfiniteInvertibleScrollView'
 import ListView from '../ListView'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('PagesList'),

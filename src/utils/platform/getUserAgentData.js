@@ -1,5 +1,6 @@
-import { weakMemoize } from '../lang'
 import UAParser from 'ua-parser-js'
+
+import { weakMemoize } from '../lang'
 
 const getUserAgentData = weakMemoize(() => {
   const UA = new UAParser()

@@ -1,11 +1,12 @@
-import { createImage, deleteImage } from '../Image'
-import { createUser, deleteUser } from '../User'
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { createImage, deleteImage } from '../Image'
+import { createUser, deleteUser } from '../User'
+
 import deleteUserImage from './deleteUserImage'
 import findOrCreateUserImage from './findOrCreateUserImage'
 

@@ -1,14 +1,4 @@
 import {
-  call,
-  channel,
-  handleChannel,
-  lockChannel,
-  select,
-  slidingBuffer,
-  spawn,
-  take
-} from '../utils/redux'
-import {
   createPath,
   equals,
   getPath,
@@ -18,6 +8,17 @@ import {
   isString,
   uuidv4
 } from '../utils/lang'
+import {
+  call,
+  channel,
+  handleChannel,
+  lockChannel,
+  select,
+  slidingBuffer,
+  spawn,
+  take
+} from '../utils/redux'
+
 import addQueryWatcher from './addQueryWatcher'
 import addQueryWatcherTask from './addQueryWatcherTask'
 import assocStatePath from './assocStatePath'

@@ -1,5 +1,6 @@
-import { PageContent } from './schemas'
 import { saveEntity } from '../Entity'
+
+import { PageContent } from './schemas'
 
 const savePageContent = saveEntity(PageContent)
 

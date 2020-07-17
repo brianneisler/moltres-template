@@ -1,4 +1,11 @@
-import { Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+
+import {
+  nextPageAction,
+  selectQueryCursorNext,
+  selectQueryResults
+} from '../../../core'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -9,16 +16,10 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
-import {
-  nextPageAction,
-  selectQueryCursorNext,
-  selectQueryResults
-} from '../../../core'
 import { selectScrollTargetDistanceNearBottom } from '../../modules/scroll'
+import { Styles } from '../../styles'
 import ActivityIndicator from '../ActivityIndicator'
 import PagesList from '../PagesList'
-import PropTypes from 'prop-types'
-import React from 'react'
 import Text from '../Text'
 import View from '../View'
 

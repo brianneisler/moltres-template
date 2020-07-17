@@ -1,7 +1,8 @@
-import { Delimiter, Namespace } from './constants'
 import forEach from '../lang/forEach'
 import getProp from '../lang/getProp'
 import keys from '../lang/keys'
+
+import { Delimiter, Namespace } from './constants'
 
 const flattenWhenNode = (predicate) => {
   const flatten = (

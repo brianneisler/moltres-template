@@ -1,5 +1,6 @@
-import { SMSChannel } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { SMSChannel } from './schemas'
 
 const getSMSChannelById = getDocumentById(SMSChannel)
 

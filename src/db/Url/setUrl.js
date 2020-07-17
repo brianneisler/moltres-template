@@ -1,5 +1,6 @@
-import { Url } from './schemas'
 import { setEntity } from '../Entity'
+
+import { Url } from './schemas'
 
 const setUrl = setEntity(Url)
 

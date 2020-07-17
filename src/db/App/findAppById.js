@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { findDocumentById } from '../../utils/db'
+
+import { App } from './schemas'
 
 const findAppById = findDocumentById(App)
 

@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { removeEntity } from '../Entity'
+
+import { App } from './schemas'
 
 const removeApp = removeEntity(App)
 

@@ -1,6 +1,6 @@
-import { keys, map, prop } from 'ramda'
-import logger from 'firebase-tools/lib/logger'
 import tools from 'firebase-tools'
+import logger from 'firebase-tools/lib/logger'
+import { keys, map, prop } from 'ramda'
 import winston from 'winston'
 
 class DeployLogger extends winston.Transport {

@@ -1,8 +1,8 @@
-import { call } from '../../../utils/redux'
-import { compose } from '../../../utils/lang'
+import { withConfig, withContext } from '../../../core'
 import { getPageByPath } from '../../../db/Page'
 import { queryAndWatchPage } from '../../../sdk/page'
-import { withConfig, withContext } from '../../../core'
+import { compose } from '../../../utils/lang'
+import { call } from '../../../utils/redux'
 
 const enhance = compose(withConfig(), withContext())
 const mod = {

@@ -1,5 +1,6 @@
-import { Colors, Styles } from '../../styles'
+import React from 'react'
 import { Easing, StyleSheet } from 'react-native'
+
 import { StatusLevel } from '../../../constants'
 import { compose } from '../../../utils/lang'
 import {
@@ -14,8 +15,8 @@ import {
   withState
 } from '../../../utils/react'
 import { selectCurrentStatus } from '../../modules/status'
+import { Colors, Styles } from '../../styles'
 import Animated from '../Animated'
-import React from 'react'
 import Text from '../Text'
 import View from '../View'
 

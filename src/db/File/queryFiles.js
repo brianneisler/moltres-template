@@ -1,6 +1,7 @@
-import { File } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { File } from './schemas'
 
 const queryFiles = curry(
   (context, { contentType, hash, path, storageBucket }, queryOptions) =>

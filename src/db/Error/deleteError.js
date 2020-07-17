@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { Error } from './schemas'
 
 const deleteError = deleteEntity(Error)
 

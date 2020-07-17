@@ -1,4 +1,5 @@
 import { put } from '../utils/redux'
+
 import { setContextAction } from './actions'
 
 const setContext = function* (selector, value) {

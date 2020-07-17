@@ -1,8 +1,8 @@
-import { arraySetIndex, stringSetIndex } from './util'
 import curry from './curry'
 import isArray from './isArray'
 import isString from './isString'
 import satisfiesIndexed from './satisfiesIndexed'
+import { arraySetIndex, stringSetIndex } from './util'
 
 const assocIndex = curry((index, value, collection) => {
   if (!satisfiesIndexed(collection)) {

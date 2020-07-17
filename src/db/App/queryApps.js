@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { queryEntities } from '../Entity'
+
+import { App } from './schemas'
 
 const queryApps = queryEntities(App)
 

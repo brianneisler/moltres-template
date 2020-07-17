@@ -1,4 +1,5 @@
 import { curry, getProp, isNil } from '../lang'
+
 import addTimestamps from './addTimestamps'
 import collection from './collection'
 

@@ -1,9 +1,10 @@
 import { isNil, isString } from '../../utils/lang'
 import findPhoneNumberIdByIndexPhoneNumberHash from '../PhoneNumber/findPhoneNumberIdByIndexPhoneNumberHash'
-import findUserPhoneNumberByPhoneNumberId from './findUserPhoneNumberByPhoneNumberId'
 import formatPhoneNumber from '../PhoneNumber/formatPhoneNumber'
-import getUserById from '../User/getUserById'
 import hashPhoneNumber from '../PhoneNumber/hashPhoneNumber'
+import getUserById from '../User/getUserById'
+
+import findUserPhoneNumberByPhoneNumberId from './findUserPhoneNumberByPhoneNumberId'
 
 const findExistingUserByPhoneNumber = async (
   context,

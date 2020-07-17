@@ -1,5 +1,6 @@
-import { Notification } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { Notification } from './schemas'
 
 const getNotificationById = getDocumentById(Notification)
 

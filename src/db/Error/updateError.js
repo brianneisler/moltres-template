@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { updateEntity } from '../Entity'
+
+import { Error } from './schemas'
 
 const updateError = updateEntity(Error)
 

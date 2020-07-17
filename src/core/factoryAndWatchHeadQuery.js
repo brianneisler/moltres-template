@@ -1,5 +1,6 @@
-import { call } from '../utils/redux'
 import { invariant, isFunction, isObject, isString } from '../utils/lang'
+import { call } from '../utils/redux'
+
 import generateQuery from './generateQuery'
 import watchQuery from './watchQuery'
 

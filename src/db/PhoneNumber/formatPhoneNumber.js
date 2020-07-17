@@ -1,5 +1,6 @@
-import { newInvalidPhoneNumberException } from './util'
 import AwesomePhoneNumber from 'awesome-phonenumber'
+
+import { newInvalidPhoneNumberException } from './util'
 
 const formatPhoneNumber = (phoneNumber) => {
   // NOTE BRN: Assume US numbers for now

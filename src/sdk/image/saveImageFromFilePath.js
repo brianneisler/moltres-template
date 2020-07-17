@@ -1,8 +1,10 @@
 import { createReadStream } from 'fs-extra'
+
 import copyBufferToUint8Array from '../../utils/buffer/copyBufferToUint8Array'
-import filePathToContentType from '../../utils/mime/filePathToContentType'
-import saveImageByteArray from './saveImageByteArray'
 import streamToBuffer from '../../utils/buffer/streamToBuffer'
+import filePathToContentType from '../../utils/mime/filePathToContentType'
+
+import saveImageByteArray from './saveImageByteArray'
 
 const saveImageFromFilePath = async (context, filePath) => {
   const fileStream = createReadStream(filePath)

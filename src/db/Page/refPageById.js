@@ -1,5 +1,6 @@
-import { Page } from './schemas'
 import { refDocumentById } from '../../utils/db'
+
+import { Page } from './schemas'
 
 const refPageById = refDocumentById(Page)
 

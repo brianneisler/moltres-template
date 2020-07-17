@@ -1,5 +1,6 @@
-import { Action } from '../../../../db/Action'
 import { Object } from '../../../../core'
+import { Action } from '../../../../db/Action'
+
 import AuthState from './AuthState'
 import CurrentUser from './CurrentUser'
 

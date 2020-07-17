@@ -1,5 +1,6 @@
-import { UserRole } from './schemas'
 import { batchRemoveEntity } from '../Entity'
+
+import { UserRole } from './schemas'
 
 const batchRemoveUserRole = batchRemoveEntity(UserRole)
 

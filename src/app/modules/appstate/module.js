@@ -1,8 +1,10 @@
 import { AppState } from 'react-native'
+
 import { assoc } from '../../../utils/lang'
 import { fork, handleActions, put } from '../../../utils/redux'
-import { monitorAppStateChannel } from './util'
+
 import { setAppState } from './actions'
+import { monitorAppStateChannel } from './util'
 
 const module = {
   reducer: handleActions(

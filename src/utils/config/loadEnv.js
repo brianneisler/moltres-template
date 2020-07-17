@@ -1,5 +1,7 @@
-import { isEmpty, keys } from '../lang'
 import { resolve } from 'path'
+
+import { isEmpty, keys } from '../lang'
+
 import loadDotEnv from './loadDotEnv'
 
 // TODO: Split this function into different versions based on ios, android and web

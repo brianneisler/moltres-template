@@ -1,7 +1,9 @@
-import { map } from '../../utils/lang'
 import { props } from 'bluebird'
-import findUserPhoneNumbersByUserId from './findUserPhoneNumbersByUserId'
+
+import { map } from '../../utils/lang'
 import getPhoneNumberById from '../PhoneNumber/getPhoneNumberById'
+
+import findUserPhoneNumbersByUserId from './findUserPhoneNumbersByUserId'
 
 const findPhoneNumbersByUserId = async (context, userId, options = {}) => {
   const userPhoneNumbers = await findUserPhoneNumbersByUserId(

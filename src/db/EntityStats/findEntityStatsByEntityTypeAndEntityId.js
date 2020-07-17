@@ -1,4 +1,5 @@
 import { findOneFromQuery } from '../../utils/db'
+
 import queryEntityStats from './queryEntityStats'
 
 const findEntityStatsByEntityTypeAndEntityId = async (

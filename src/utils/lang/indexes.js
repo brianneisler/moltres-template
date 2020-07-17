@@ -1,11 +1,11 @@
+import isArray from './isArray'
+import isString from './isString'
+import satisfiesIndexed from './satisfiesIndexed'
 import {
   arrayIndexIterator,
   iteratorToArray,
   stringIndexIterator
 } from './util'
-import isArray from './isArray'
-import isString from './isString'
-import satisfiesIndexed from './satisfiesIndexed'
 
 const indexes = (value) => {
   if (satisfiesIndexed(value)) {

@@ -1,5 +1,5 @@
-import * as actions from './actions'
 import { Scroll } from '../../../constants'
+import { assocPath, map, values } from '../../../utils/lang'
 import {
   all,
   fork,
@@ -10,21 +10,22 @@ import {
   takeEvery,
   takeLatest
 } from '../../../utils/redux'
-import { assocPath, map, values } from '../../../utils/lang'
 import {
   getClientHeight,
   getScrollHeight,
   getScrollTop,
   getWindow
 } from '../../../utils/web'
-import { monitorScroll } from './util'
 import {
   preloadAction,
   preloadCompleteAction,
   selectRouterLocationPathname
 } from '../router'
+
+import * as actions from './actions'
 import selectScrollPathname from './selectScrollPathname'
 import selectScrollTarget from './selectScrollTarget'
+import { monitorScroll } from './util'
 
 const getDistanceFromBottom = (element) =>
   getScrollHeight(element) - (getClientHeight(element) + getScrollTop(element))

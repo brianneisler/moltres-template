@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { Error } from './schemas'
 
 const getErrorById = getDocumentById(Error)
 

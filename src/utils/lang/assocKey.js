@@ -1,7 +1,7 @@
-import { mapSetKey } from './util'
 import curry from './curry'
 import isMap from './isMap'
 import satisfiesKeyed from './satisfiesKeyed'
+import { mapSetKey } from './util'
 
 const assocKey = curry((selector, value, collection) => {
   if (!satisfiesKeyed(collection)) {

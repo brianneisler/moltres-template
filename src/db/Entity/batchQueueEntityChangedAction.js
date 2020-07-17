@@ -1,5 +1,6 @@
-import { EntityChangedAction } from './schemas'
 import batchQueueAction from '../Action/batchQueueAction'
+
+import { EntityChangedAction } from './schemas'
 
 const batchQueueEntityChangedAction = batchQueueAction(EntityChangedAction)
 

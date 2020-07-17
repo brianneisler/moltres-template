@@ -1,5 +1,6 @@
-import { UserRole } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { UserRole } from './schemas'
 
 const deleteUserRole = deleteEntity(UserRole)
 

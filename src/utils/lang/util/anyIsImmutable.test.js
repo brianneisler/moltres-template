@@ -1,4 +1,5 @@
 import { ImmutableList, ImmutableMap, ImmutableSet } from '../classes'
+
 import anyIsImmutable from './anyIsImmutable'
 
 describe('anyIsImmutable', () => {

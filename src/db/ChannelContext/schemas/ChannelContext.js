@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id, Object } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 const ChannelContext = {
   collectionName: 'ChannelContexts',

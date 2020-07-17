@@ -1,4 +1,5 @@
 import { has as rHas } from 'ramda'
+
 import curry from './curry'
 import isFunction from './isFunction'
 

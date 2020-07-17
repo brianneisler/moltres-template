@@ -1,6 +1,7 @@
-import { PhoneNumber } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { PhoneNumber } from './schemas'
 
 const queryPhoneNumbers = curry((context, { hash }, queryOptions) =>
   buildQuery(

@@ -1,9 +1,10 @@
-import { Link, Page, Text } from '../../components'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
+
 import { compose } from '../../../utils/lang'
 import { defaultProps, memo, setDisplayName } from '../../../utils/react'
-import React from 'react'
+import { Link, Page, Text } from '../../components'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('NotFound404Page'),

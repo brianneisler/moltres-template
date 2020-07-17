@@ -1,5 +1,5 @@
-import { PreloadAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { PreloadAction } from '../schemas'
 
 const preloadAction = actionBuilder({
   Schema: PreloadAction

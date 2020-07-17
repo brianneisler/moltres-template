@@ -1,7 +1,8 @@
-import { call } from '../../utils/redux'
 import { factoryAndWatchQuery } from '../../core'
-import { invariant, isString } from '../../utils/lang'
 import { refUserProfileById } from '../../db/UserProfile'
+import { invariant, isString } from '../../utils/lang'
+import { call } from '../../utils/redux'
+
 import enhanceUserProfile from './enhanceUserProfile'
 
 const queryAndWatchUserProfile = function* (

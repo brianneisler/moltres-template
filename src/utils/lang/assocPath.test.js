@@ -1,4 +1,5 @@
 import { Map } from 'immutable'
+
 import assocPath from './assocPath'
 
 describe('assocPath', () => {

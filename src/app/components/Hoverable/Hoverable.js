@@ -1,5 +1,7 @@
-import { compose, noop } from '../../../utils/lang'
 import { element, func, oneOfType } from 'prop-types'
+import React from 'react'
+
+import { compose, noop } from '../../../utils/lang'
 import {
   memo,
   setDisplayName,
@@ -10,7 +12,6 @@ import {
   withProps
 } from '../../../utils/react'
 import { selectHoverIsEnabled } from '../../modules/hover'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('Hoverable'),

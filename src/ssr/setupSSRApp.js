@@ -1,6 +1,12 @@
-import * as modules from '../app/modules'
-import { App, generateConfig } from '../app'
+import ReactDOMServer from 'react-dom/server'
+import MetaTagsServer from 'react-meta-tags/server'
 import { AppRegistry } from 'react-native-web'
+
+import { App, generateConfig } from '../app'
+import * as modules from '../app/modules'
+import { selectRouterResponse } from '../app/modules/router'
+import { locationChangeAction } from '../app/modules/router/actions'
+import { createEngine, selectUncaughtException, setup, start } from '../core'
 import {
   cacheMethod,
   isArray,
@@ -10,13 +16,9 @@ import {
   omit,
   walkMap
 } from '../utils/lang'
-import { createEngine, selectUncaughtException, setup, start } from '../core'
 import { createHistory } from '../utils/react'
-import { locationChangeAction } from '../app/modules/router/actions'
 import { parseURL } from '../utils/url'
-import { selectRouterResponse } from '../app/modules/router'
-import MetaTagsServer from 'react-meta-tags/server'
-import ReactDOMServer from 'react-dom/server'
+
 import setupSSRContext from './setupSSRContext'
 
 // This code is based on SSR for react-native-web

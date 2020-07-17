@@ -1,5 +1,6 @@
-import { SMSChallenge } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { SMSChallenge } from './schemas'
 
 const getSMSChallengeById = getDocumentById(SMSChallenge)
 

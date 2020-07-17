@@ -1,5 +1,7 @@
-import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
 import { map, split } from 'ramda'
+
+import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
+
 import { setupScriptContexts } from './utils'
 
 const configure = async () => {

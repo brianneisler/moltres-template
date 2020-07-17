@@ -1,4 +1,3 @@
-import { Delimiter } from './constants'
 import always from '../lang/always'
 import identity from '../lang/identity'
 import includes from '../lang/includes'
@@ -12,6 +11,8 @@ import isUndefined from '../lang/isUndefined'
 import map from '../lang/map'
 import resolveToResolver from '../lang/resolveToResolver'
 import split from '../lang/split'
+
+import { Delimiter } from './constants'
 
 const handleAction = (
   handler = identity,

@@ -1,5 +1,5 @@
-import { Action } from '../../../db/Action/schemas'
 import { Id, Object, String } from '../../../core/schemas'
+import { Action } from '../../../db/Action/schemas'
 
 const UserRegisteredAction = {
   schema: Action.schema.keys({

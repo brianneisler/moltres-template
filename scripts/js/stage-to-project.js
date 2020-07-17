@@ -1,5 +1,6 @@
-const { readJSON } = require('fs-extra')
 const { resolve } = require('path')
+
+const { readJSON } = require('fs-extra')
 
 const exec = async (stage) => {
   const data = await readJSON(resolve(__dirname, '..', '..', '.firebaserc'))

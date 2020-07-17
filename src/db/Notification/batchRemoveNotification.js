@@ -1,5 +1,6 @@
-import { Notification } from './schemas'
 import { batchRemoveEntity } from '../Entity'
+
+import { Notification } from './schemas'
 
 const batchRemoveNotification = batchRemoveEntity(Notification)
 

@@ -1,5 +1,6 @@
-import { applyMiddleware } from 'redux'
 import { reduxBatch } from '@manaflair/redux-batch'
+import { applyMiddleware } from 'redux'
+
 import filterMiddleware from './filterMiddleware'
 
 // HACK BRN: The enhancer order should really be provided by the modules and

@@ -1,9 +1,10 @@
-import { Colors, StyleSheets } from '../../styles'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import { defaultProps, setDisplayName } from '../../../utils/react'
+import { Colors, StyleSheets } from '../../styles'
 import Field from '../Field'
 import RadioButton from '../RadioButton'
-import React from 'react'
 import Text from '../Text'
 import View from '../View'
 

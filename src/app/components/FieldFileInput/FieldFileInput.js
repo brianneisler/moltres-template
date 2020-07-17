@@ -1,5 +1,6 @@
-import { Colors, Styles } from '../../styles'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { compose, getProp } from '../../../utils/lang'
 import {
   defaultProps,
@@ -7,12 +8,12 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
+import { Colors, Styles } from '../../styles'
 import Field from '../Field'
 import FileInput from '../FileInput'
 import Fragment from '../Fragment'
 import Icon from '../Icon'
 import ImageView from '../ImageView'
-import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
 import View from '../View'

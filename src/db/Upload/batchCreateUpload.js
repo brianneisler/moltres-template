@@ -1,5 +1,6 @@
-import { Upload } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { Upload } from './schemas'
 
 const batchCreateUpload = batchCreateEntity(Upload)
 

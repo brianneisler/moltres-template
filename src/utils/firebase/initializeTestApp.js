@@ -1,4 +1,5 @@
 import * as testing from '@firebase/testing'
+
 import { invariant, isNil, isObject, isString } from '../lang'
 
 const initializeTestApp = ({ auth, config, namespace }) => {

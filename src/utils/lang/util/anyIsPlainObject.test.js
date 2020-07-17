@@ -24,11 +24,11 @@ describe('anyIsPlainObject', () => {
     expect(anyIsPlainObject([])).toBe(false)
     expect(anyIsPlainObject(new Array())).toBe(false)
     expect(anyIsPlainObject(() => {})).toBe(false)
-    expect(anyIsPlainObject(function() {})).toBe(false)
+    expect(anyIsPlainObject(function () {})).toBe(false)
     expect(anyIsPlainObject(async () => {})).toBe(false)
-    expect(anyIsPlainObject(async function() {})).toBe(false)
-    expect(anyIsPlainObject(function*() {})).toBe(false)
-    const ComplexObject = function() {}
+    expect(anyIsPlainObject(async function () {})).toBe(false)
+    expect(anyIsPlainObject(function* () {})).toBe(false)
+    const ComplexObject = function () {}
     expect(anyIsPlainObject(new ComplexObject())).toBe(false)
   })
 })

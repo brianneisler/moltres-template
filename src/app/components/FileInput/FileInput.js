@@ -1,5 +1,8 @@
+import exif from 'exif-js'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
+
 import { compose, noop } from '../../../utils/lang'
 import {
   defaultProps,
@@ -9,10 +12,8 @@ import {
   withHandlers,
   withState
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Styles } from '../../styles'
 import View from '../View'
-import exif from 'exif-js'
 
 const readFileAsDataURL = async (file) => {
   return new Promise((resolve) => {

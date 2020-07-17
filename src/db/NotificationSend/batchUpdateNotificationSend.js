@@ -1,5 +1,5 @@
-import { NotificationSend } from '../Notification/schemas'
 import { batchUpdateEntity } from '../Entity'
+import { NotificationSend } from '../Notification/schemas'
 
 const batchUpdateNotificationSend = batchUpdateEntity(NotificationSend)
 

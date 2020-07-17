@@ -1,4 +1,5 @@
 import { ITERATOR } from '../constants/Symbol'
+
 import anyIsIterator from './anyIsIterator'
 
 describe('anyIsIterator', () => {

@@ -1,5 +1,6 @@
-import { Url } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { Url } from './schemas'
 
 const batchCreateUrl = batchCreateEntity(Url)
 

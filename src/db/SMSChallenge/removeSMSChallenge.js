@@ -1,5 +1,6 @@
-import { SMSChallenge } from './schemas'
 import { removeEntity } from '../Entity'
+
+import { SMSChallenge } from './schemas'
 
 const removeSMSChallenge = removeEntity(SMSChallenge)
 

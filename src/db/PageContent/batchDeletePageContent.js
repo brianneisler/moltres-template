@@ -1,5 +1,6 @@
-import { PageContent } from './schemas'
 import { batchDeleteEntity } from '../Entity'
+
+import { PageContent } from './schemas'
 
 const batchDeletePageContent = batchDeleteEntity(PageContent)
 

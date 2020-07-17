@@ -1,13 +1,14 @@
 import {
-  createInternalPhoneNumber,
-  deleteInternalPhoneNumber
-} from '../InternalPhoneNumber'
-import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import {
+  createInternalPhoneNumber,
+  deleteInternalPhoneNumber
+} from '../InternalPhoneNumber'
+
 import findPhoneNumberByHash from './findPhoneNumberByHash'
 
 const spec = describe('findPhoneNumberByHash', () => {

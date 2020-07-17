@@ -1,5 +1,6 @@
-import { PhoneNumberClaim } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { PhoneNumberClaim } from './schemas'
 
 const getPhoneNumberClaimById = getDocumentById(PhoneNumberClaim)
 

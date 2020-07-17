@@ -1,5 +1,5 @@
-import { SaveUserProfileAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { SaveUserProfileAction } from '../schemas'
 
 const saveUserProfileAction = actionBuilder({
   Schema: SaveUserProfileAction

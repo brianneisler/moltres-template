@@ -1,4 +1,5 @@
 import { MAX_SAFE } from '../constants/Integer'
+
 import anyIsLength from './anyIsLength'
 
 describe('anyIsLength', () => {

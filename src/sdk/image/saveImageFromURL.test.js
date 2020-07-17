@@ -5,6 +5,7 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+
 import saveImageFromURL from './saveImageFromURL'
 
 const spec = describe('saveImageFromUrl', () => {

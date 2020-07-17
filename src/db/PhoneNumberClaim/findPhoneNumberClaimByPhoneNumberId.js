@@ -1,4 +1,5 @@
 import { findOneFromQuery } from '../../utils/db'
+
 import queryPhoneNumberClaims from './queryPhoneNumberClaims'
 
 const findPhoneNumberClaimByPhoneNumberId = async (

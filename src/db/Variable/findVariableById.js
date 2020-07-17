@@ -1,5 +1,6 @@
-import { Variable } from './schemas'
 import { findDocumentById } from '../../utils/db'
+
+import { Variable } from './schemas'
 
 const findVariableById = findDocumentById(Variable)
 

@@ -1,10 +1,11 @@
 import { StatusCode } from '../../constants'
-import { findExistingUserByPhoneNumber } from '../../db/UserPhoneNumber'
 import { findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
 import { getPendingUserByPhoneNumberClaim } from '../../db/PhoneNumberClaim'
+import { findExistingUserByPhoneNumber } from '../../db/UserPhoneNumber'
 import { isString } from '../../utils/lang'
 import { registerPendingUser } from '../auth'
 import { verifyPhoneNumber } from '../phone_number'
+
 import generateSMSChannel from './generateSMSChannel'
 
 const generateUserAndSMSChannel = async (

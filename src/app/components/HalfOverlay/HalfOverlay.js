@@ -1,5 +1,7 @@
-import { Colors, Constants, Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Easing, StyleSheet } from 'react-native'
+
 import { compose, noop } from '../../../utils/lang'
 import {
   connect,
@@ -12,12 +14,11 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
-import { actions as modalActions } from '../../modules/modal'
 import { selectDimensionsWindowHeight } from '../../modules/dimensions'
+import { actions as modalActions } from '../../modules/modal'
+import { Colors, Constants, Styles } from '../../styles'
 import Animated from '../Animated'
 import CancelableModal from '../CancelableModal'
-import PropTypes from 'prop-types'
-import React from 'react'
 import ScrollView from '../ScrollView'
 
 const enhance = compose(

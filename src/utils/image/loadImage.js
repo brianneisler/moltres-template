@@ -1,6 +1,7 @@
 import { loadImage as canvasLoadImage } from 'canvas'
-import { invariant, isString } from '../lang'
+
 import { isBuffer } from '../buffer'
+import { invariant, isString } from '../lang'
 
 const loadImage = async (imageSrc) => {
   invariant(

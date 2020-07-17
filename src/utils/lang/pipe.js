@@ -1,7 +1,7 @@
+import identity from './identity'
 import arrayFlatten from './util/arrayFlatten'
 import arrayLikeReduce from './util/arrayLikeReduce'
 import arrayLikeSlice from './util/arrayLikeSlice'
-import identity from './identity'
 
 // TODO BRN: This method is important at a fundamental level. Need to rewrite this to not depend upon data methods.
 /**

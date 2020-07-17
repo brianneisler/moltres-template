@@ -1,5 +1,6 @@
-import { fetch } from '../request'
 import createBuffer from '../buffer/createBuffer'
+import { fetch } from '../request'
+
 import loadImage from './loadImage'
 
 describe('loadImage', () => {

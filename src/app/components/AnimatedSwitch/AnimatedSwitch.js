@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Easing, StyleSheet } from 'react-native'
+
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -12,8 +15,7 @@ import {
 } from '../../../utils/react'
 import { selectRouterAction, selectRouterLocation } from '../../modules/router'
 import Animated from '../Animated'
-import PropTypes from 'prop-types'
-import React from 'react'
+
 // TODO BRN: Not sure why this import is causing an issue but it does exist
 // eslint-disable-next-line import/default
 import Switch from '../Switch'

@@ -1,6 +1,7 @@
-import { SMSChannel } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { SMSChannel } from './schemas'
 
 const querySMSChannels = curry(
   (context, { internalPhoneNumberId, userPhoneNumberId }, queryOptions) =>

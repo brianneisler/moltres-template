@@ -1,5 +1,6 @@
-import { assocStateAction } from './actions'
 import { put } from '../utils/redux'
+
+import { assocStateAction } from './actions'
 
 const assocStatePath = function* (path, state) {
   yield put(

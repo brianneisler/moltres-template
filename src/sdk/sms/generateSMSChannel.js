@@ -1,16 +1,17 @@
 import { StatusCode } from '../../constants'
+import { getRandomInternalPhoneNumber } from '../../db/InternalPhoneNumber'
+import { findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
+import { findPhoneNumberClaimsByUserId } from '../../db/PhoneNumberClaim'
 import {
   findOrCreateSMSChannel,
   findSMSChannelsByUserPhoneNumberId
 } from '../../db/SMSChannel'
-import { findPhoneNumberByPhoneNumber } from '../../db/PhoneNumber'
-import { findPhoneNumberClaimsByUserId } from '../../db/PhoneNumberClaim'
+import { getUserById } from '../../db/User'
 import { findUserPhoneNumbersByUserId } from '../../db/UserPhoneNumber'
 import { first, isEmpty, isNil, isString, values } from '../../utils/lang'
-import { getRandomInternalPhoneNumber } from '../../db/InternalPhoneNumber'
-import { getUserById } from '../../db/User'
 import { verifyPhoneNumber } from '../phone_number'
 import { verifyUser } from '../user'
+
 import verifySMSChannel from './verifySMSChannel'
 
 const generateSMSChannel = async (

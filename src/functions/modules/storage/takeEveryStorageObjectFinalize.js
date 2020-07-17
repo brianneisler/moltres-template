@@ -1,6 +1,8 @@
-import { StorageObjectFinalizeAction } from './schemas'
 import { takeEvery } from 'redux-saga/effects'
+
 import matchPath from '../../../utils/url/matchPath'
+
+import { StorageObjectFinalizeAction } from './schemas'
 
 const takeEveryStorageObjectFinalize = ({ route }, handler, args) =>
   takeEvery(

@@ -1,4 +1,5 @@
 import { concat as rConcat } from 'ramda'
+
 import curry from './curry'
 import isArray from './isArray'
 import isImmutable from './isImmutable'

@@ -1,6 +1,7 @@
-import * as actions from './actions'
 import { assoc } from '../../../utils/lang'
 import { handleActions } from '../../../utils/redux'
+
+import * as actions from './actions'
 
 const mod = (config) => ({
   reducer: handleActions(

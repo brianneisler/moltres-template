@@ -1,4 +1,6 @@
-import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose, getProp, hasProp } from '../../../utils/lang'
 import {
   defaultProps,
@@ -6,8 +8,7 @@ import {
   setPropTypes,
   styleShape
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
 

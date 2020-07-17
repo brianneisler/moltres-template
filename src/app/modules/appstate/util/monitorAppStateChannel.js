@@ -1,5 +1,6 @@
 import { call, handleChannel, put } from '../../../../utils/redux'
 import { setAppState } from '../actions'
+
 import createAppStateChannel from './createAppStateChannel'
 
 function* monitorAppStateChannel() {

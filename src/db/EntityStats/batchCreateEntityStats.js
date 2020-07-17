@@ -1,7 +1,8 @@
-import { EntityStats } from './schemas'
 import { assoc, getPropOr, omit } from '../../utils/lang'
 import { batchCreateEntity } from '../Entity'
+
 import batchCreateStatsShard from './batchCreateStatsShard'
+import { EntityStats } from './schemas'
 
 const batchCreateEntityStats = (context, batch, data) => {
   data = assoc('numberShards', 1, data)

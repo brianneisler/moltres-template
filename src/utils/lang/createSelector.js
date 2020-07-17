@@ -1,12 +1,12 @@
+import any from './any'
 import { ImmutableMap } from './classes'
 import _containsWildcard from './containsWildcard'
 import _findWildcards from './findWildcards'
-import _replaceWildcards from './replaceWildcards'
-import _select from './select'
-import any from './any'
 import isArray from './isArray'
 import map from './map'
 import reduce from './reduce'
+import _replaceWildcards from './replaceWildcards'
+import _select from './select'
 import weakMemoize from './weakMemoize'
 
 const SELECT_DEFAULT = () => {

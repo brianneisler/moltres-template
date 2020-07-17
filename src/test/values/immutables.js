@@ -1,3 +1,5 @@
+import { keys, map } from 'ramda'
+
 import {
   ImmutableList,
   ImmutableMap,
@@ -7,7 +9,6 @@ import {
   ImmutableStack,
   Seq
 } from '../../utils/lang/classes'
-import { keys, map } from 'ramda'
 
 const valueMap = {
   ImmutableList: ImmutableList(),

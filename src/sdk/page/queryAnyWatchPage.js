@@ -1,7 +1,8 @@
-import { call } from '../../utils/redux'
 import { factoryAndWatchQuery } from '../../core'
-import { invariant, isString } from '../../utils/lang'
 import { queryPages, refPageById } from '../../db/Page'
+import { invariant, isString } from '../../utils/lang'
+import { call } from '../../utils/redux'
+
 import enhancePage from './enhancePage'
 
 const queryAndWatchPage = function* (

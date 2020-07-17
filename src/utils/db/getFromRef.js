@@ -1,5 +1,6 @@
 import { Code, StatusCode } from '../../constants'
 import expected from '../error/expected'
+
 import formatDocument from './formatDocument'
 import isPermissionsError from './isPermissionsError'
 

@@ -1,8 +1,9 @@
-import { call, handleChannel, put } from '../../../../utils/redux'
 import { identity } from '../../../../utils/lang'
-import { uncaughtExceptionAction } from '../actions'
-import createUnhandledRejectionChannel from './createUnhandledRejectionChannel.ssr'
+import { call, handleChannel, put } from '../../../../utils/redux'
 import getContext from '../../../getContext'
+import { uncaughtExceptionAction } from '../actions'
+
+import createUnhandledRejectionChannel from './createUnhandledRejectionChannel.ssr'
 
 function* monitorUnhandledRejection() {
   const channel = createUnhandledRejectionChannel()

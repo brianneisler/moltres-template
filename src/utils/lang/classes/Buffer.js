@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer'
+
 import root from '../util/root'
 
 /** Detect free variable `exports`. */

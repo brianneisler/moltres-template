@@ -1,5 +1,5 @@
-import { Action } from '../../../../db/Action'
 import { Object, String } from '../../../../core'
+import { Action } from '../../../../db/Action'
 
 const SignInWithIdTokenAction = {
   name: 'auth.SignInWithIdTokenAction',

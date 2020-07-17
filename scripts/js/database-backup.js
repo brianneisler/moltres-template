@@ -1,4 +1,5 @@
 import { v1 } from '@google-cloud/firestore'
+
 import setupScriptContexts from './utils/setupScriptContexts'
 
 const exec = async () => {

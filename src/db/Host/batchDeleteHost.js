@@ -1,5 +1,6 @@
-import { Host } from './schemas'
 import { batchDeleteEntity } from '../Entity'
+
+import { Host } from './schemas'
 
 const batchDeleteHost = batchDeleteEntity(Host)
 

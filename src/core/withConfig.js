@@ -5,6 +5,7 @@ import {
   isString,
   resolveToGenerator
 } from '../utils/lang'
+
 import createFactory from './createFactory'
 import getConfig from './getConfig'
 

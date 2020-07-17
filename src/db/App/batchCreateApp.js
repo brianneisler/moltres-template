@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { App } from './schemas'
 
 const batchCreateApp = batchCreateEntity(App)
 

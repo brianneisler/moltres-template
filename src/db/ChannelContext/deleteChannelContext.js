@@ -1,5 +1,6 @@
-import { ChannelContext } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { ChannelContext } from './schemas'
 
 const deleteChannelContext = deleteEntity(ChannelContext)
 

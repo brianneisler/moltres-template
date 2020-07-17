@@ -1,6 +1,6 @@
 import { base64UrlEncode } from '../base64'
-import { join } from '../lang'
 import { sign } from '../crypto'
+import { join } from '../lang'
 
 /**
  * support algorithm mapping

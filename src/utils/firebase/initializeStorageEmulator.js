@@ -1,5 +1,5 @@
-import { assoc, getProp } from '../lang'
 import { bufferToStream, createBuffer } from '../buffer'
+import { assoc, getProp } from '../lang'
 
 const createFile = () => {
   let data

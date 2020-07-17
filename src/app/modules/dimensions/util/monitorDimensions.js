@@ -1,6 +1,7 @@
+import { selectContext } from '../../../../core'
 import { call, handleChannel, put, select } from '../../../../utils/redux'
 import { dimensionsChangedAction } from '../actions'
-import { selectContext } from '../../../../core'
+
 import createDimensionsChannel from './createDimensionsChannel'
 
 function* monitorDimensions() {

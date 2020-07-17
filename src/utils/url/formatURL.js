@@ -1,4 +1,5 @@
 import { format } from 'url'
+
 import { isFunction } from '../lang'
 
 const formatURL = (value) => {

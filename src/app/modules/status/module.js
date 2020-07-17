@@ -1,4 +1,3 @@
-import * as actions from './actions'
 import { INFO } from '../../../constants/StatusLevel'
 import {
   assoc,
@@ -19,6 +18,8 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
+
+import * as actions from './actions'
 import selectStatusInstances from './selectStatusInstances'
 
 const refreshCurrentStatus = function* () {

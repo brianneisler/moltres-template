@@ -1,4 +1,5 @@
 import { head } from 'ramda'
+
 import isFunction from './isFunction'
 
 const first = (value) => {

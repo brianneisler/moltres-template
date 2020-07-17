@@ -7,6 +7,7 @@ import {
   isSelector,
   isString
 } from '../utils/lang'
+
 import createSingleQueryFactory from './createSingleQueryFactory'
 import createWildcardQueryFactory from './createWildcardQueryFactory'
 

@@ -1,5 +1,6 @@
-import { base64UrlEscape } from '../base64'
 import crypto from 'crypto'
+
+import { base64UrlEscape } from '../base64'
 
 const sign = (input, key, method, type) => {
   let base64str

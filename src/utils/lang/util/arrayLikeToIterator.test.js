@@ -1,4 +1,5 @@
 import { END, START } from '../constants/Iterator'
+
 import arrayLikeToIterator from './arrayLikeToIterator'
 
 describe('arrayLikeToIterator', () => {

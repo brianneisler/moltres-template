@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { batchDeleteEntity } from '../Entity'
+
+import { Error } from './schemas'
 
 const batchDeleteError = batchDeleteEntity(Error)
 

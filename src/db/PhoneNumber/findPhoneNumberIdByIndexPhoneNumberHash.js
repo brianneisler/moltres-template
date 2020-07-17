@@ -1,6 +1,7 @@
-import { PhoneNumber } from './schemas'
 import { collection } from '../../utils/db'
 import Index from '../Index/schemas/Index'
+
+import { PhoneNumber } from './schemas'
 
 // NOTE BRN: This does not have options because it is an index lookup, not a
 // record lookup

@@ -1,7 +1,8 @@
-import { isAbsolute, resolve } from '../path'
-import { prepend } from '../lang'
-import { readFileSync } from 'fs-extra'
 import dotenv from 'dotenv'
+import { readFileSync } from 'fs-extra'
+
+import { prepend } from '../lang'
+import { isAbsolute, resolve } from '../path'
 
 const loadDotEnv = (envPath, options = {}) => {
   const { cwd } = options

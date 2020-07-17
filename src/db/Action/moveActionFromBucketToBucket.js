@@ -1,10 +1,11 @@
-import { Action } from './schemas'
 import {
   addUpdatedAtTimestamp,
   collection,
   convertDataToFirebase
 } from '../../utils/db'
 import { curry, omit } from '../../utils/lang'
+
+import { Action } from './schemas'
 
 const moveActionFromBucketToBucket = curry(
   async (fromBucket, toBucket, context, document, transactionMethod) => {

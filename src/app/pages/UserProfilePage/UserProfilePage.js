@@ -1,3 +1,18 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+import { selectLoggerContext, selectSSRConfig } from '../../../core'
+import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
+import {
+  connect,
+  defaultProps,
+  setDisplayName,
+  setPropTypes,
+  withActions,
+  withHandlers,
+  withProps
+} from '../../../utils/react'
 import {
   Fragment,
   Link,
@@ -13,27 +28,13 @@ import {
   UserWATThisList,
   View
 } from '../../components'
-import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
 import { actions as alertActions } from '../../modules/alert'
-import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
-import {
-  connect,
-  defaultProps,
-  setDisplayName,
-  setPropTypes,
-  withActions,
-  withHandlers,
-  withProps
-} from '../../../utils/react'
-import { pushRouteAction } from '../../modules/router/actions'
 import { selectAppConfig } from '../../modules/app'
 import { selectFacebookConfig } from '../../modules/facebook'
-import { selectLoggerContext, selectSSRConfig } from '../../../core'
+import { pushRouteAction } from '../../modules/router/actions'
 import { selectTwitterConfig } from '../../modules/twitter'
 import { selectUserProfile } from '../../modules/user_profile'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('UserProfilePage'),

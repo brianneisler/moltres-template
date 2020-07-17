@@ -1,5 +1,6 @@
-import { UserProfile } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { UserProfile } from './schemas'
 
 const deleteUserProfile = deleteEntity(UserProfile)
 

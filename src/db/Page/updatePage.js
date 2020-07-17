@@ -1,5 +1,6 @@
-import { Page } from './schemas'
 import { updateEntity } from '../Entity'
+
+import { Page } from './schemas'
 
 const updatePage = updateEntity(Page)
 

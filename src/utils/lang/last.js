@@ -1,4 +1,5 @@
 import { last as rLast } from 'ramda'
+
 import isFunction from './isFunction'
 
 const last = (value) => {

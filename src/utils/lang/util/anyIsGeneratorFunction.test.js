@@ -2,7 +2,7 @@ import anyIsGeneratorFunction from './anyIsGeneratorFunction'
 
 describe('anyIsGeneratorFunction', () => {
   test('returns true for generator function', () => {
-    expect(anyIsGeneratorFunction(function*() {})).toBe(true)
+    expect(anyIsGeneratorFunction(function* () {})).toBe(true)
   })
 
   test('returns false for all other values', () => {
@@ -21,10 +21,10 @@ describe('anyIsGeneratorFunction', () => {
     expect(anyIsGeneratorFunction({})).toBe(false)
     expect(anyIsGeneratorFunction([])).toBe(false)
     expect(anyIsGeneratorFunction(/abc/)).toBe(false)
-    expect(anyIsGeneratorFunction((function*() {})())).toBe(false)
+    expect(anyIsGeneratorFunction((function* () {})())).toBe(false)
     expect(anyIsGeneratorFunction(async () => {})).toBe(false)
     expect(anyIsGeneratorFunction(() => {})).toBe(false)
-    expect(anyIsGeneratorFunction(function() {})).toBe(false)
+    expect(anyIsGeneratorFunction(function () {})).toBe(false)
     expect(anyIsGeneratorFunction(new Array(0))).toBe(false)
     expect(anyIsGeneratorFunction(new ArrayBuffer(2))).toBe(false)
     expect(anyIsGeneratorFunction(new Boolean(false))).toBe(false)

@@ -1,7 +1,7 @@
-import { iteratorToArray } from './util'
 import isArray from './isArray'
 import isIterable from './isIterable'
 import iterator from './iterator'
+import { iteratorToArray } from './util'
 
 const toArray = (value) => {
   if (isArray(value)) {

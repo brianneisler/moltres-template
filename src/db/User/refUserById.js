@@ -1,5 +1,6 @@
-import { User } from './schemas'
 import { refDocumentById } from '../../utils/db'
+
+import { User } from './schemas'
 
 const refUserById = refDocumentById(User)
 

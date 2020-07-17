@@ -1,5 +1,5 @@
-import { ImmutableMap } from './classes'
 import assoc from './assoc'
+import { ImmutableMap } from './classes'
 import getProp from './getProp'
 import isImmutableMap from './isImmutableMap'
 import keys from './keys'

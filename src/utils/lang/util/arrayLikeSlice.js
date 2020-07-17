@@ -1,4 +1,5 @@
 import Array from '../classes/Array'
+
 import anyIsString from './anyIsString'
 
 /**

@@ -1,5 +1,6 @@
-import { assoc } from '../../utils/lang'
 import { getOneFromQuery } from '../../utils/db'
+import { assoc } from '../../utils/lang'
+
 import queryPages from './queryPages'
 
 const getPageByPath = async (context, path, queryOptions = {}) => {

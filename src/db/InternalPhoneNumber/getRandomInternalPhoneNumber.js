@@ -1,4 +1,5 @@
 import { isEmpty, random, values } from '../../utils/lang'
+
 import findAllInternalPhoneNumbers from './findAllInternalPhoneNumbers'
 
 const getRandomInternalPhoneNumber = async (context, options = {}) => {

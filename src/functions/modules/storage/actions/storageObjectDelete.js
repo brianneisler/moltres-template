@@ -1,5 +1,5 @@
-import { StorageObjectDeleteAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { StorageObjectDeleteAction } from '../schemas'
 
 const storageObjectDelete = actionBuilder({
   Schema: StorageObjectDeleteAction

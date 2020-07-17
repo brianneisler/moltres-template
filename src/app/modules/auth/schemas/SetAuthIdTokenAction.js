@@ -1,5 +1,5 @@
-import { Action } from '../../../../db/Action'
 import { String } from '../../../../core'
+import { Action } from '../../../../db/Action'
 
 const SetAuthIdTokenAction = {
   name: 'auth.SetAuthStateAction',

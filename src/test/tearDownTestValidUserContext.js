@@ -1,5 +1,6 @@
-import { deleteValidUser } from '../sdk/auth'
 import { prop } from 'ramda'
+
+import { deleteValidUser } from '../sdk/auth'
 
 const tearDownTestValidUserContext = async (testContext, userContext) => {
   try {

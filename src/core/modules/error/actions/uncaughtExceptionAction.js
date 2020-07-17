@@ -1,5 +1,5 @@
-import { UncaughtExceptionAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { UncaughtExceptionAction } from '../schemas'
 
 const uncaughtExceptionAction = actionBuilder({
   Schema: UncaughtExceptionAction

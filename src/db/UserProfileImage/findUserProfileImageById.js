@@ -1,5 +1,6 @@
-import { UserProfileImage } from './schemas'
 import { findDocumentById } from '../../utils/db'
+
+import { UserProfileImage } from './schemas'
 
 const findUserProfileImageById = findDocumentById(UserProfileImage)
 

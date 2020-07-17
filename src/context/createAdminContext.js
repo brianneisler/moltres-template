@@ -1,9 +1,9 @@
-import * as firebaseAdmin from 'firebase-admin'
 import * as firebaseMain from 'firebase'
-import { createCustomToken } from '../utils/auth'
-import { createLogger } from '../utils/logger'
+import * as firebaseAdmin from 'firebase-admin'
+
 import { createServiceAccount } from '../db/ServiceAccount'
-import { createSystem } from '../utils/system'
+import { createCustomToken } from '../utils/auth'
+import { isTestAppConfigured } from '../utils/config'
 import {
   initializeAdminApp,
   initializeAuthEmulator,
@@ -11,7 +11,8 @@ import {
   initializeTestAdminApp
 } from '../utils/firebase'
 import { invariant, isObject, uuidv4 } from '../utils/lang'
-import { isTestAppConfigured } from '../utils/config'
+import { createLogger } from '../utils/logger'
+import { createSystem } from '../utils/system'
 
 const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   invariant(isObject(config), 'config must be a defined Object')

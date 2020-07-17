@@ -1,13 +1,14 @@
 import { EntityChangeType } from '../../../constants'
+import { withConfig, withContext } from '../../../core'
+import { takeEveryEntityChanged } from '../../../db/Entity'
 import {
   Notification,
   findEnhancedNotificationById
 } from '../../../db/Notification'
-import { call, handleAction } from '../../../utils/redux'
 import { compose } from '../../../utils/lang'
+import { call, handleAction } from '../../../utils/redux'
+
 import { sendNotification } from './util'
-import { takeEveryEntityChanged } from '../../../db/Entity'
-import { withConfig, withContext } from '../../../core'
 
 const enhance = compose(
   withContext(),

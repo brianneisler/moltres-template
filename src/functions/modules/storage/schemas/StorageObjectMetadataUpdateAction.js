@@ -1,5 +1,5 @@
-import { Action } from '../../../../db/Action'
 import { Integer, Object, String } from '../../../../core/schemas'
+import { Action } from '../../../../db/Action'
 
 const StorageObjectMetadataUpdateAction = {
   schema: Action.schema.keys({

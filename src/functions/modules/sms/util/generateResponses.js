@@ -1,4 +1,5 @@
 import { compact } from '../../../../utils/lang'
+
 import executeCommands from './executeCommands'
 
 const generateResponses = async (context, data) => {

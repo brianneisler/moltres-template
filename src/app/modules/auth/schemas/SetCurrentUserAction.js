@@ -1,4 +1,5 @@
 import { Action } from '../../../../db/Action'
+
 import CurrentUser from './CurrentUser'
 
 const SetCurrentUserAction = {

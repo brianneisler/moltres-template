@@ -1,4 +1,5 @@
 import { isEmpty as rIsEmpty } from 'ramda'
+
 import isFunction from './isFunction'
 import isNaN from './isNaN'
 import isNil from './isNil'

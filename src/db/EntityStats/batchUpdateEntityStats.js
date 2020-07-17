@@ -1,7 +1,8 @@
-import { EntityStats } from './schemas'
 import { assoc, getProp, hasProp, omit } from '../../utils/lang'
 import { batchUpdateEntity } from '../Entity'
+
 import batchUpdateStatsShard from './batchUpdateStatsShard'
+import { EntityStats } from './schemas'
 
 const batchUpdateEntityStats = async (context, batch, id, updates) => {
   const ref = await batchUpdateEntity(

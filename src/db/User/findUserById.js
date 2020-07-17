@@ -1,5 +1,6 @@
-import { User } from './schemas'
 import { findDocumentById } from '../../utils/db'
+
+import { User } from './schemas'
 
 const findUserById = findDocumentById(User)
 

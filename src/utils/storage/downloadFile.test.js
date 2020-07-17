@@ -1,10 +1,11 @@
-import { copyBufferToUint8Array, createBuffer } from '../buffer'
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { copyBufferToUint8Array, createBuffer } from '../buffer'
+
 import downloadFile from './downloadFile'
 
 const TEST_IMAGE_BUFFER = createBuffer(

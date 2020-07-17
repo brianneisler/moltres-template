@@ -1,5 +1,5 @@
-import { anyIsGenerator } from './util'
 import curry from './curry'
+import { anyIsGenerator } from './util'
 
 const isGenerator = curry(anyIsGenerator)
 

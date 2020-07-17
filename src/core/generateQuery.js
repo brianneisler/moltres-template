@@ -1,7 +1,8 @@
 import { call, put, select } from '../utils/redux'
-import { selectQuery } from './selectors'
+
 import { setQueryAction } from './actions'
 import createQueryState from './createQueryState'
+import { selectQuery } from './selectors'
 
 // NOTE BRN: A "query" in this context is not the conceptual idea of querying
 // for data but instead a stored block in the state where the results are held

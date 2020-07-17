@@ -1,5 +1,6 @@
-import { PageContent } from './schemas'
 import { createEntity } from '../Entity'
+
+import { PageContent } from './schemas'
 
 const createPageContent = createEntity(PageContent)
 

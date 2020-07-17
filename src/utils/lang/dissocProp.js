@@ -1,4 +1,5 @@
 import { dissoc as rDissoc } from 'ramda'
+
 import curry from './curry'
 import isFunction from './isFunction'
 

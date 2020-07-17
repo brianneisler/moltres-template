@@ -1,4 +1,3 @@
-import { deleteInternalPhoneNumber } from '../InternalPhoneNumber'
 import { deletePendingUser, registerPendingUser } from '../../sdk/auth'
 import { generateInternalPhoneNumber } from '../../sdk/phone_number'
 import {
@@ -7,6 +6,8 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { deleteInternalPhoneNumber } from '../InternalPhoneNumber'
+
 import deleteSMSChannel from './deleteSMSChannel'
 import findOrCreateSMSChannel from './findOrCreateSMSChannel'
 

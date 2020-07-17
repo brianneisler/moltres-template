@@ -12,6 +12,7 @@ import {
   selectWildcards
 } from '../utils/lang'
 import { call } from '../utils/redux'
+
 import createFactory from './createFactory'
 import createSingleQueryFactory from './createSingleQueryFactory'
 

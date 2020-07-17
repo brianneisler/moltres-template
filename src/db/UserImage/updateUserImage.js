@@ -1,5 +1,6 @@
-import { UserImage } from './schemas'
 import { updateEntity } from '../Entity'
+
+import { UserImage } from './schemas'
 
 const updateUserImage = updateEntity(UserImage)
 

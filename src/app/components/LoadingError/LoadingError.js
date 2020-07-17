@@ -1,12 +1,13 @@
-import { Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Styles } from '../../styles'
 import Text from '../Text'
 
 const enhance = compose(

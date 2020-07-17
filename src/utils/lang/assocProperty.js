@@ -1,6 +1,6 @@
-import { objectSetProperty } from './util'
 import curry from './curry'
 import satisfiesPropertied from './satisfiesPropertied'
+import { objectSetProperty } from './util'
 
 const assocProperty = curry((property, value, collection) => {
   if (!satisfiesPropertied(collection)) {

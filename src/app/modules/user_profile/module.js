@@ -1,4 +1,7 @@
-import { SaveUserProfileAction, SetCurrentUserProfileAction } from './schemas'
+import { withConfig, withContext } from '../../../core'
+import { getUserById } from '../../../db/User'
+import { saveUserProfile } from '../../../db/UserProfile'
+import { queryAndWatchUserProfile } from '../../../sdk/user_profile'
 import { assoc, compose } from '../../../utils/lang'
 import {
   call,
@@ -7,12 +10,10 @@ import {
   handleActions,
   takeEvery
 } from '../../../utils/redux'
-import { getUserById } from '../../../db/User'
-import { queryAndWatchCurrentUserProfile } from './util'
-import { queryAndWatchUserProfile } from '../../../sdk/user_profile'
-import { saveUserProfile } from '../../../db/UserProfile'
 import { watchCurrentUser } from '../auth'
-import { withConfig, withContext } from '../../../core'
+
+import { SaveUserProfileAction, SetCurrentUserProfileAction } from './schemas'
+import { queryAndWatchCurrentUserProfile } from './util'
 
 const enhance = compose(withConfig('api'), withContext())
 

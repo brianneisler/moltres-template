@@ -1,11 +1,5 @@
-import * as actions from './actions'
-import {
-  AuthStateChangedAction,
-  selectAfterLogin,
-  signInWithIdTokenAction
-} from '../auth'
+import { withConfig, withContext } from '../../../core'
 import { assoc, compose } from '../../../utils/lang'
-import { buildLocation } from '../../../utils/url'
 import {
   call,
   handleAction,
@@ -15,8 +9,15 @@ import {
   take,
   takeEvery
 } from '../../../utils/redux'
+import { buildLocation } from '../../../utils/url'
+import {
+  AuthStateChangedAction,
+  selectAfterLogin,
+  signInWithIdTokenAction
+} from '../auth'
+
+import * as actions from './actions'
 import { requestAuthSMSChallenge, requestAuthWithSMSCode } from './sdk'
-import { withConfig, withContext } from '../../../core'
 import selectAuthSMSChallengeId from './selectAuthSMSChallengeId'
 
 const enhance = compose(withConfig('api'), withContext())

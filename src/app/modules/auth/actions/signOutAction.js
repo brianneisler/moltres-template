@@ -1,5 +1,5 @@
-import { SignOutAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { SignOutAction } from '../schemas'
 
 const signOutAction = actionBuilder({
   Schema: SignOutAction

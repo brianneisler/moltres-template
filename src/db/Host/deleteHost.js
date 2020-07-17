@@ -1,5 +1,6 @@
-import { Host } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { Host } from './schemas'
 
 const deleteHost = deleteEntity(Host)
 

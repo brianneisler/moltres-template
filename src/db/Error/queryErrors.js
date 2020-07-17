@@ -1,6 +1,7 @@
-import { Error } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { Error } from './schemas'
 
 const queryErrors = curry((context, { code }, queryOptions) =>
   buildQuery(

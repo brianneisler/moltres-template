@@ -1,6 +1,8 @@
-import { ACTION_SHEET } from '../../../constants/Modal'
-import { Colors, Constants, Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Easing, InteractionManager, StyleSheet } from 'react-native'
+
+import { ACTION_SHEET } from '../../../constants/Modal'
 import { compose, isUndefined } from '../../../utils/lang'
 import {
   connect,
@@ -15,12 +17,11 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
-import { actions as modalActions } from '../../modules/modal'
 import { selectDimensionsWindowHeight } from '../../modules/dimensions'
+import { actions as modalActions } from '../../modules/modal'
+import { Colors, Constants, Styles } from '../../styles'
 import Animated from '../Animated'
 import CancelableModal from '../CancelableModal'
-import PropTypes from 'prop-types'
-import React from 'react'
 import ScrollView from '../ScrollView'
 import Text from '../Text'
 import TouchableHighlight from '../TouchableHighlight'

@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+
 import generateAdminConfig from '../utils/config/generateAdminConfig'
 import loadEnv from '../utils/config/loadEnv'
 

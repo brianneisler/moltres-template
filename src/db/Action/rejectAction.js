@@ -1,4 +1,5 @@
 import { getPropOr } from '../../utils/lang'
+
 import moveActionFromBucketToBucket from './moveActionFromBucketToBucket'
 
 const moveActionToRejected = moveActionFromBucketToBucket(

@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
@@ -5,8 +8,6 @@ import {
   setDisplayName,
   setPropTypes
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
 
 const enhance = compose(
   setDisplayName('Portal'),

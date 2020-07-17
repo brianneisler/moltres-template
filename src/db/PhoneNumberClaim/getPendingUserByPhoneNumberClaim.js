@@ -1,9 +1,10 @@
 import { isNil, isString } from '../../utils/lang'
-import findPhoneNumberClaimByPhoneNumberId from './findPhoneNumberClaimByPhoneNumberId'
 import findPhoneNumberIdByIndexPhoneNumberHash from '../PhoneNumber/findPhoneNumberIdByIndexPhoneNumberHash'
 import formatPhoneNumber from '../PhoneNumber/formatPhoneNumber'
-import getUserById from '../User/getUserById'
 import hashPhoneNumber from '../PhoneNumber/hashPhoneNumber'
+import getUserById from '../User/getUserById'
+
+import findPhoneNumberClaimByPhoneNumberId from './findPhoneNumberClaimByPhoneNumberId'
 
 const getPendingUserByPhoneNumberClaim = async (
   context,

@@ -1,6 +1,6 @@
 import { createContext } from '../context'
-import { isTestAppConfigured } from '../utils/config'
 import { signInWithIdToken } from '../utils/auth'
+import { isTestAppConfigured } from '../utils/config'
 
 const setupTestServiceAccountContext = async (adminContext) => {
   const { config, serviceAccount } = adminContext
