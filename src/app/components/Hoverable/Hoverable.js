@@ -1,6 +1,9 @@
+import { bool, element, func, oneOfType } from 'prop-types'
+import React from 'react'
+
 import { compose, noop } from '../../../utils/lang'
-import { element, func, oneOfType } from 'prop-types'
 import {
+  defaultProps,
   memo,
   setDisplayName,
   setPropTypes,
@@ -10,34 +13,35 @@ import {
   withProps
 } from '../../../utils/react'
 import { selectHoverIsEnabled } from '../../modules/hover'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('Hoverable'),
   setPropTypes({
     children: oneOfType([func, element]),
+    disabled: bool,
     onHoverIn: func,
     onHoverOut: func
   }),
-  withProps(({ onHoverIn, onHoverOut }) => {
+  defaultProps({
+    disabled: false,
+    onHoverIn: noop,
+    onHoverOut: noop
+  }),
+  withProps(({ disabled, onHoverIn, onHoverOut }) => {
     const [isHovered, setHovered] = useState(false)
     const [showHover, setShowHover] = useState(true)
     const isHoverEnabled = useSelector(selectHoverIsEnabled)
 
     const onMouseEnter = useCallback(() => {
-      if (isHoverEnabled && !isHovered) {
-        if (onHoverIn) {
-          onHoverIn()
-        }
+      if (isHoverEnabled && !isHovered && !disabled) {
+        onHoverIn()
         setHovered(true)
       }
-    }, [isHoverEnabled, isHovered, onHoverIn])
+    }, [disabled, isHoverEnabled, isHovered, onHoverIn])
 
     const onMouseLeave = useCallback(() => {
       if (isHovered) {
-        if (onHoverOut) {
-          onHoverOut()
-        }
+        onHoverOut()
         setHovered(false)
       }
     }, [isHovered, onHoverOut])
