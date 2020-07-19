@@ -6,9 +6,12 @@ import {
   defaultProps,
   setDisplayName,
   setPropTypes,
-  styleShape
+  styleShape,
+  withHandlers,
+  withState
 } from '../../../utils/react'
 import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
+import Hoverable from '../Hoverable'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
 
@@ -25,6 +28,19 @@ const getButtonTextStyles = (type) => {
   return getProp('default', TYPE_TO_BUTTON_TEXT_STYLES)
 }
 
+const TYPE_TO_BUTTON_TEXT_HOVER_STYLES = StyleSheet.create({
+  default: { color: Colors.blue6 },
+  desctructive: { color: Colors.whitePrimary },
+  positive: { color: Colors.whitePrimary }
+})
+
+const getButtonTextHoverStyles = (type) => {
+  if (hasProp(type, TYPE_TO_BUTTON_TEXT_HOVER_STYLES)) {
+    return getProp(type, TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
+  }
+  return getProp('default', TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
+}
+
 const TYPE_TO_BUTTON_STYLES = StyleSheet.create({
   default: {
     backgroundColor: Colors.whitePrimary,
@@ -33,13 +49,35 @@ const TYPE_TO_BUTTON_STYLES = StyleSheet.create({
     borderWidth: 1
   },
   desctructive: { color: Colors.whitePrimary },
-  positive: { backgroundColor: Colors.blue6 }
+  positive: {
+    backgroundColor: Colors.blue6
+  }
 })
 const getButtonStyles = (type) => {
   if (hasProp(type, TYPE_TO_BUTTON_STYLES)) {
     return getProp(type, TYPE_TO_BUTTON_STYLES)
   }
   return getProp('default', TYPE_TO_BUTTON_STYLES)
+}
+
+const TYPE_TO_BUTTON_HOVER_STYLES = StyleSheet.create({
+  default: {
+    backgroundColor: Colors.whitePrimary,
+    borderColor: Colors.grey5,
+    borderStyle: 'solid',
+    borderWidth: 1
+  },
+  desctructive: { color: Colors.whitePrimary },
+  positive: {
+    backgroundColor: Colors.blue3
+  }
+})
+
+const getButtonHoverStyles = (type) => {
+  if (hasProp(type, TYPE_TO_BUTTON_HOVER_STYLES)) {
+    return getProp(type, TYPE_TO_BUTTON_HOVER_STYLES)
+  }
+  return getProp('default', TYPE_TO_BUTTON_HOVER_STYLES)
 }
 
 const enhance = compose(
@@ -93,6 +131,11 @@ const enhance = compose(
         }
       })
     }
+  }),
+  withState('hovered', 'setHovered', false),
+  withHandlers({
+    onHoverIn: ({ setHovered }) => () => setHovered(true),
+    onHoverOut: ({ setHovered }) => () => setHovered(false)
   })
 )
 
@@ -100,6 +143,9 @@ const Button = enhance(
   ({
     accessibilityLabel,
     disabled,
+    hovered,
+    onHoverIn,
+    onHoverOut,
     onMouseDown,
     onMouseEnter,
     onMouseLeave,
@@ -114,40 +160,48 @@ const Button = enhance(
     text,
     type
   }) => (
-    <TouchableOpacity
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="button"
+    <Hoverable
       disabled={disabled}
-      onMouseDown={onMouseDown}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onMouseMove={onMouseMove}
-      onMouseOut={onMouseOut}
-      onMouseOver={onMouseOver}
-      onMouseUp={onMouseUp}
-      onPress={onPress}
-      style={[
-        styles.button,
-        getButtonStyles(type),
-        style,
-        disabled && styles.buttonDisabled
-      ]}
-      testID={testID}
+      onHoverIn={onHoverIn}
+      onHoverOut={onHoverOut}
     >
-      {React.isValidElement(text) ? (
-        text
-      ) : (
-        <Text
-          style={[
-            styles.buttonText,
-            getButtonTextStyles(type),
-            disabled && styles.buttonTextDisabled
-          ]}
-        >
-          {text}
-        </Text>
-      )}
-    </TouchableOpacity>
+      <TouchableOpacity
+        accessibilityLabel={accessibilityLabel}
+        accessibilityRole="button"
+        disabled={disabled}
+        onMouseDown={onMouseDown}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseMove={onMouseMove}
+        onMouseOut={onMouseOut}
+        onMouseOver={onMouseOver}
+        onMouseUp={onMouseUp}
+        onPress={onPress}
+        style={[
+          styles.button,
+          getButtonStyles(type),
+          style,
+          hovered && getButtonHoverStyles(type),
+          disabled && styles.buttonDisabled
+        ]}
+        testID={testID}
+      >
+        {React.isValidElement(text) ? (
+          text
+        ) : (
+          <Text
+            style={[
+              styles.buttonText,
+              getButtonTextStyles(type),
+              hovered && getButtonTextHoverStyles(type),
+              disabled && styles.buttonTextDisabled
+            ]}
+          >
+            {text}
+          </Text>
+        )}
+      </TouchableOpacity>
+    </Hoverable>
   )
 )
 

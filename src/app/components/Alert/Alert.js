@@ -11,13 +11,9 @@ import {
   setPropTypes,
   withActions,
   withHandlers
-  // withProps,
-  // withPropsOnChange,
-  // withState
 } from '../../../utils/react'
 import { actions as modalActions } from '../../modules/modal'
 import { Colors, StyleSheets, Styles } from '../../styles'
-// import { selectDimensionsWindowHeight } from '../../modules/dimensions'
 import Button from '../Button'
 import CancelableModal from '../CancelableModal'
 import CloseButton from '../CloseButton'
@@ -120,6 +116,9 @@ const enhance = compose(
         buttonsInRow: {
           flexDirection: 'row'
         },
+        closeButton: {
+          zIndex: 1000
+        },
         innerContainer: {
           alignItems: 'center',
           backgroundColor: Colors.whitePrimary,
@@ -201,12 +200,18 @@ const Alert = enhance((props) => {
       style={styles.modal}
     >
       <ScrollView
-        contentContainerStyle={styles.overlayContentContainer}
+        contentContainerStyle={[
+          styles.overlayContentContainer,
+          options.overlayContentContainerStyle
+        ]}
         style={styles.overlayContainer}
       >
         <View style={[styles.innerContainer, options.innerContainerStyle]}>
           {options.cancelable ? (
-            <CloseButton onPress={handleCloseButtonPress} />
+            <CloseButton
+              buttonStyle={styles.closeButton}
+              onPress={handleCloseButtonPress}
+            />
           ) : null}
           <AlertTitle {...props} />
           <AlertMessage {...props} />
