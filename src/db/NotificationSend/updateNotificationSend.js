@@ -1,5 +1,6 @@
 import { updateEntity } from '../Entity'
-import { NotificationSend } from '../Notification/schemas'
+
+import { NotificationSend } from './schemas'
 
 const updateNotificationSend = updateEntity(NotificationSend)
 

@@ -14,7 +14,7 @@ import {
 } from '../../../utils/react'
 import {
   FieldTextInput,
-  Page,
+  PageContainer,
   Text,
   TouchableOpacity,
   View
@@ -75,7 +75,7 @@ const enhance = compose(
 const LoginCodePage = enhance(({ handleButtonPress, styles, submitting }) => {
   const disabled = submitting
   return (
-    <Page>
+    <PageContainer>
       <View style={styles.form}>
         <FieldTextInput
           autoFocus={true}
@@ -96,7 +96,7 @@ const LoginCodePage = enhance(({ handleButtonPress, styles, submitting }) => {
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </Page>
+    </PageContainer>
   )
 })
 

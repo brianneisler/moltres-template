@@ -1,6 +1,7 @@
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
-import { NotificationSend } from '../Notification/schemas'
+
+import { NotificationSend } from './schemas'
 
 const queryNotificationSends = curry(
   (context, { notificationId, userId }, queryOptions) =>

@@ -15,9 +15,6 @@ import {
 } from '../../../utils/react'
 import { selectRouterAction, selectRouterLocation } from '../../modules/router'
 import Animated from '../Animated'
-
-// TODO BRN: Not sure why this import is causing an issue but it does exist
-// eslint-disable-next-line import/default
 import Switch from '../Switch'
 import View from '../View'
 

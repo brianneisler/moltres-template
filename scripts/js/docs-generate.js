@@ -18,7 +18,7 @@ import {
 
 import pack from '../../package.json'
 
-import { reduceObjIndexed } from './utils'
+import { reduceObjectIndexed } from './utils'
 
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
@@ -371,7 +371,7 @@ const generateAPIDocs = (srcData) =>
       transforms: {
         METHODS() {
           const categories = generateCategoryDocs(srcData)
-          return reduceObjIndexed(
+          return reduceObjectIndexed(
             (markdown, category) => {
               return markdown + renderCategoryMarkdown(category)
             },

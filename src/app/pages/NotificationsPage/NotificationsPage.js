@@ -7,7 +7,7 @@ import {
   memo,
   setDisplayName
 } from '../../../utils/react'
-import { NotificationList, Page } from '../../components'
+import { NotificationList, PageContainer } from '../../components'
 import { selectCurrentUser } from '../../modules/auth'
 import { Styles } from '../../styles'
 
@@ -24,9 +24,9 @@ const enhance = compose(
 
 const NotificationPage = enhance(({ currentUser }) => {
   return (
-    <Page description="Your Notifications" robotsContent="noindex">
+    <PageContainer description="Your Notifications" robotsContent="noindex">
       <NotificationList userId={currentUser.id} />
-    </Page>
+    </PageContainer>
   )
 })
 

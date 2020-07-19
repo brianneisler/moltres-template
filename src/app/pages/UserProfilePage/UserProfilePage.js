@@ -17,15 +17,9 @@ import {
   Fragment,
   Link,
   MetaTags,
-  Route,
-  Switch,
   Text,
   TouchableOpacity,
-  UserProfileButton,
   UserProfileImage,
-  UserReactionEntityList,
-  UserWATList,
-  UserWATThisList,
   View
 } from '../../components'
 import { actions as alertActions } from '../../modules/alert'
@@ -119,7 +113,6 @@ const UserProfilePage = enhance(
     tab,
     title,
     twitter,
-    userFollow,
     userId,
     userProfile
   }) => {
@@ -176,13 +169,6 @@ const UserProfilePage = enhance(
               />
             </TouchableOpacity>
             <View style={styles.fillContainer}>
-              <View style={[styles.inlineContainer, styles.justifyContentEnd]}>
-                <UserProfileButton
-                  userFollow={userFollow}
-                  userId={userId}
-                  userProfile={userProfile}
-                />
-              </View>
               <View style={[styles.inlineContainer, styles.justifyContentEnd]}>
                 <Link
                   style={StyleSheet.flatten([styles.link, styles.profileLink])}
@@ -283,21 +269,6 @@ const UserProfilePage = enhance(
               </Text>
             </Link>
           </View>
-          <Switch>
-            <Route
-              exact
-              path={`/user/${userId}`}
-              render={() => <UserWATList userId={userId} />}
-            />
-            <Route
-              path={`/user/${userId}/images`}
-              render={() => <UserWATThisList userId={userId} />}
-            />
-            <Route
-              path={`/user/${userId}/reactions`}
-              render={() => <UserReactionEntityList userId={userId} />}
-            />
-          </Switch>
         </View>
       </View>
     )

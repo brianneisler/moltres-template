@@ -16,6 +16,6 @@ const enhance = compose(
   })
 )
 
-const TermsPage = enhance(({ styles }) => <PageViewPage path="/legal/terms" />)
+const TermsPage = enhance(({}) => <PageViewPage path="/legal/terms" />)
 
 export default TermsPage

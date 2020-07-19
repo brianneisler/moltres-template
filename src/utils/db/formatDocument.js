@@ -6,7 +6,7 @@ const formatDocument = (document, options = {}) => {
     if (options.getOne) {
       throw expected({
         code: Code.NOT_FOUND,
-        message: `Could not get document at ${ref.path}`,
+        message: `Could not get document`,
         statusCode: StatusCode.NOT_FOUND
       })
     }

@@ -20,7 +20,6 @@ import {
   all,
   call,
   handleAction,
-  handleActions,
   put,
   reduceReducers,
   select,

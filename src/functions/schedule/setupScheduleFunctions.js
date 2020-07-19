@@ -8,6 +8,7 @@ import setupFunctionContexts from '../setupFunctionContexts'
 const setupScheduleFunctions = (config, runtimeOptions) =>
   reduce(
     (accum, moduleName) => {
+      // eslint-disable-next-line import/namespace
       const mod = modules[moduleName]
       if (isFunction(mod.setupSchedule)) {
         const scheduledFuncs = mod.setupSchedule(config)

@@ -1,4 +1,4 @@
-import { ImmutableList, ImmutableMap } from '../utils/lang'
+import { ImmutableList, ImmutableMap } from '../utils/lang/classes'
 import { select } from '../utils/redux'
 
 import { selectQueryResults } from './selectors'

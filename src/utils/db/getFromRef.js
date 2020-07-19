@@ -24,7 +24,7 @@ const getFromRef = async ({ logger }, ref, options = {}) => {
         causes: [error],
         code: Code.ACCESS_DENIED,
         message: error.message,
-        statusCode: Code.STATUS_CODE
+        statusCode: StatusCode.ACCESS_DENIED
       })
     }
     throw error

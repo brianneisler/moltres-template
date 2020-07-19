@@ -9,7 +9,14 @@ import {
   withHandlers
 } from '../../../utils/react'
 import { buildLocation } from '../../../utils/url'
-import { Icon, Link, Page, SectionList, Text, View } from '../../components'
+import {
+  Icon,
+  Link,
+  PageContainer,
+  SectionList,
+  Text,
+  View
+} from '../../components'
 import { Colors, Styles } from '../../styles'
 
 const enhance = compose(
@@ -110,7 +117,7 @@ const enhance = compose(
 const MenuPage = enhance(
   ({ renderItem, renderSectionHeader, sections, styles }) => {
     return (
-      <Page description="Menu">
+      <PageContainer description="Menu">
         <View style={styles.block}>
           <SectionList
             keyExtractor={(item, index) => item + index}
@@ -119,7 +126,7 @@ const MenuPage = enhance(
             sections={sections}
           />
         </View>
-      </Page>
+      </PageContainer>
     )
   }
 )

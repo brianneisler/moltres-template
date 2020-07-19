@@ -1,1 +1,1 @@
-export const NAMESPACE = '/'
+export const DEFAULT = '/'

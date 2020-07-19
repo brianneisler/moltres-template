@@ -1,5 +1,6 @@
 import { refDocumentById } from '../../utils/db'
-import { NotificationSend } from '../Notification/schemas'
+
+import { NotificationSend } from './schemas'
 
 const refNotificationSendById = refDocumentById(NotificationSend)
 

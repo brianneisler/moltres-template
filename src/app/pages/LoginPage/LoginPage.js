@@ -15,7 +15,7 @@ import {
 import { buildLocation } from '../../../utils/url'
 import {
   FieldTextInput,
-  Page,
+  PageContainer,
   Text,
   TouchableOpacity,
   View
@@ -87,7 +87,7 @@ const enhance = compose(
 const LoginPage = enhance(({ handleButtonPress, styles, submitting }) => {
   const disabled = submitting
   return (
-    <Page description="Login">
+    <PageContainer description="Login">
       <View style={styles.form}>
         <FieldTextInput
           autoFocus={true}
@@ -109,7 +109,7 @@ const LoginPage = enhance(({ handleButtonPress, styles, submitting }) => {
           <Text style={styles.buttonText}>Send access code!</Text>
         </TouchableOpacity>
       </View>
-    </Page>
+    </PageContainer>
   )
 })
 

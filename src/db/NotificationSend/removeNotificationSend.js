@@ -1,5 +1,6 @@
 import { removeEntity } from '../Entity'
-import { NotificationSend } from '../Notification/schemas'
+
+import { NotificationSend } from './schemas'
 
 const removeNotificationSend = removeEntity(NotificationSend)
 

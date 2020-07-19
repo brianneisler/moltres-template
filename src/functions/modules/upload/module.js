@@ -70,7 +70,7 @@ const mod = {
                 imageId: image.id,
                 userImageId: userImage.id
               },
-              state: UploadState.COMPLETE
+              state: UploadState.COMPLETED
             })
           } catch (error) {
             context.logger.error(

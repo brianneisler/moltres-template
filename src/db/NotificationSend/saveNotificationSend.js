@@ -1,5 +1,6 @@
 import { saveEntity } from '../Entity'
-import { NotificationSend } from '../Notification/schemas'
+
+import { NotificationSend } from './schemas'
 
 const saveNotificationSend = saveEntity(NotificationSend)
 

@@ -16,8 +16,6 @@ const enhance = compose(
   })
 )
 
-const PrivacyPage = enhance(({ styles }) => (
-  <PageViewPage path="/legal/privacy" />
-))
+const PrivacyPage = enhance(({}) => <PageViewPage path="/legal/privacy" />)
 
 export default PrivacyPage

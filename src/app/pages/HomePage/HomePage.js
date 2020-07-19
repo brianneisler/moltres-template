@@ -2,7 +2,7 @@ import React from 'react'
 
 import { compose } from '../../../utils/lang'
 import { defaultProps, memo, setDisplayName } from '../../../utils/react'
-import { HomeStreamEntityList, Page } from '../../components'
+import { StreamEntityList, PageContainer } from '../../components'
 import { Styles } from '../../styles'
 
 const enhance = compose(
@@ -15,9 +15,9 @@ const enhance = compose(
 
 const HomePage = enhance(() => {
   return (
-    <Page>
-      <HomeStreamEntityList />
-    </Page>
+    <PageContainer>
+      <StreamEntityList streamName="home" />
+    </PageContainer>
   )
 })
 

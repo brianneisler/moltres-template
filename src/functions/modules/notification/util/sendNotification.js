@@ -3,7 +3,7 @@ import { createError } from '../../../../db/Error'
 import {
   createNotificationSend,
   updateNotificationSend
-} from '../../../../db/Notification'
+} from '../../../../db/NotificationSend'
 import {
   renderNotification,
   validateNotification
