@@ -1,5 +1,8 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { Fragment, MetaTags, View } from '..'
-import { Styles } from '../../styles'
+import { selectSSRConfig } from '../../../core'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -11,10 +14,8 @@ import {
 } from '../../../utils/react'
 import { selectAppConfig } from '../../modules/app'
 import { selectFacebookConfig } from '../../modules/facebook'
-import { selectSSRConfig } from '../../../core'
 import { selectTwitterConfig } from '../../modules/twitter'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('Page'),

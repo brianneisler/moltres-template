@@ -1,9 +1,10 @@
-import { UploadUserProfileImageAction } from './schemas'
-import { call, handleAction, select, takeEvery } from '../../../utils/redux'
-import { compose } from '../../../utils/lang'
-import { selectIdToken } from '../auth'
-import { uploadUserProfileImage } from '../../../sdk/user_profile_image'
 import { withConfig, withContext } from '../../../core'
+import { uploadUserProfileImage } from '../../../sdk/user_profile_image'
+import { compose } from '../../../utils/lang'
+import { call, handleAction, select, takeEvery } from '../../../utils/redux'
+import { selectIdToken } from '../auth'
+
+import { UploadUserProfileImageAction } from './schemas'
 
 const enhance = compose(withConfig('api'), withContext())
 

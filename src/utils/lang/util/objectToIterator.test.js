@@ -1,4 +1,5 @@
 import { END, START } from '../constants/Iterator'
+
 import objectToIterator from './objectToIterator'
 
 describe('objectToIterator', () => {

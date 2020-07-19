@@ -1,8 +1,9 @@
-import { SMSMessage } from './schemas'
 import { cleanseData } from '../../utils/db'
 import { validateSchema } from '../../utils/schema'
+
 import createSMSMessage from './createSMSMessage'
 import findSMSMessageById from './findSMSMessageById'
+import { SMSMessage } from './schemas'
 import updateSMSMessage from './updateSMSMessage'
 
 const saveSMSMessage = async (context, data) => {

@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { refDocumentById } from '../../utils/db'
+
+import { Error } from './schemas'
 
 const refErrorById = refDocumentById(Error)
 

@@ -1,5 +1,5 @@
-import { forEach, getProp, map } from '../../../../../utils/lang'
 import { unexpected } from '../../../../../utils/error'
+import { forEach, getProp, map } from '../../../../../utils/lang'
 
 const setupMiddleware = (store, app, order) => {
   const modules = map((name) => {

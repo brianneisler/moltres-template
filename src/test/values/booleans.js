@@ -1,4 +1,5 @@
 import { flatten } from 'ramda'
+
 import booleanLiterals from './booleanLiterals'
 import booleanObjects from './booleanObjects'
 

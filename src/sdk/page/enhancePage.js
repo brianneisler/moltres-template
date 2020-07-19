@@ -1,6 +1,6 @@
-import { compose, createSelector, curry, weakMemoize } from '../../utils/lang'
-import { queryPageContents } from '../../db/PageContent'
 import { withQuery } from '../../core'
+import { queryPageContents } from '../../db/PageContent'
+import { compose, createSelector, curry, weakMemoize } from '../../utils/lang'
 
 const enhancePage = curry(
   weakMemoize((statePath) =>

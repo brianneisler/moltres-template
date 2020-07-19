@@ -1,5 +1,6 @@
-import { File } from './schemas'
 import { batchUpdateEntity } from '../Entity'
+
+import { File } from './schemas'
 
 const batchUpdateFile = batchUpdateEntity(File)
 

@@ -1,7 +1,8 @@
 import { assoc } from '../../../utils/lang'
 import { fork, handleActions, put } from '../../../utils/redux'
-import { monitorClockChannel } from './util'
+
 import { setCurrentClock } from './actions'
+import { monitorClockChannel } from './util'
 
 const module = {
   reducer: handleActions(

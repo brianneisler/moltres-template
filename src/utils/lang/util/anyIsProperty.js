@@ -1,4 +1,5 @@
 import { Property } from '../classes'
+
 import anyIsString from './anyIsString'
 import anyIsSymbol from './anyIsSymbol'
 

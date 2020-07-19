@@ -1,5 +1,6 @@
-import { AccessToken } from './schemas'
 import { createEntity } from '../Entity'
+
+import { AccessToken } from './schemas'
 
 const createAccessToken = createEntity(AccessToken)
 

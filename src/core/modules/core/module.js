@@ -1,12 +1,13 @@
+import { deferredPromise } from '../../../utils/lang'
 import { call, handleActions, take } from '../../../utils/redux'
+import { uncaughtExceptionAction } from '../error/actions'
+
+import { runSagaAction } from './actions'
 import {
   createAsyncMiddleware,
   createRootSaga,
   createSagaMiddleware
 } from './util'
-import { deferredPromise } from '../../../utils/lang'
-import { runSagaAction } from './actions'
-import { uncaughtExceptionAction } from '../error/actions'
 
 function* run() {
   while (true) {

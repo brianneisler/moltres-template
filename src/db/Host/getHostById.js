@@ -1,5 +1,6 @@
-import { Host } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { Host } from './schemas'
 
 const getHostById = getDocumentById(Host)
 

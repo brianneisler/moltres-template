@@ -1,6 +1,7 @@
-import { ACCESS_DENIED } from '../../constants/Code'
-import { createUser, deleteUser } from '../User'
 import { prop } from 'ramda'
+import { v4 as uuidv4 } from 'uuid'
+
+import { ACCESS_DENIED } from '../../constants/Code'
 import {
   setupTestAdminContext,
   setupTestAnonymousContext,
@@ -11,7 +12,8 @@ import {
   tearDownTestServiceAccountContext,
   tearDownTestValidUserContext
 } from '../../test'
-import { v4 as uuidv4 } from 'uuid'
+import { createUser, deleteUser } from '../User'
+
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
 import removeAccessToken from './removeAccessToken'

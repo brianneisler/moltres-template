@@ -1,6 +1,7 @@
-import { Error } from './schemas'
 import { batchDeleteEntity } from '../Entity'
 
-const batchDeleteError = batchDeleteEntity(Error)
+import { App } from './schemas'
 
-export default batchDeleteError
+const batchDeleteApp = batchDeleteEntity(App)
+
+export default batchDeleteApp

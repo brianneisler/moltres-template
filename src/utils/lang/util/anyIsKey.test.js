@@ -1,4 +1,5 @@
 import { Index, Key, Property } from '../classes'
+
 import anyIsKey from './anyIsKey'
 
 describe('anyIsKey', () => {

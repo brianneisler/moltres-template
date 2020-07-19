@@ -1,4 +1,5 @@
 import { curry } from '../lang'
+
 import refDocumentById from './refDocumentById'
 
 const batchDeleteDocument = curry((Schema, context, batch, id) => {

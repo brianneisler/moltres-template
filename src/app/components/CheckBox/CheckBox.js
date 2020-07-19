@@ -1,1 +1,1 @@
-export { default } '@react-native-community/checkbox';
+export { default } from '@react-native-community/checkbox'

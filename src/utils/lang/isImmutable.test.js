@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+
 import isImmutable from './isImmutable'
 
 describe('isImmutable', () => {

@@ -1,7 +1,7 @@
 import { createContext } from '../context'
+import { registerValidUser } from '../sdk/auth'
 import { createCustomToken, signInWithIdToken } from '../utils/auth'
 import { isTestAppConfigured } from '../utils/config'
-import { registerValidUser } from '../sdk/auth'
 
 const setupTestValidUserContext = async (
   adminContext,

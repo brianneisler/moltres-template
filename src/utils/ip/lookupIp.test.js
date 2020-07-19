@@ -1,4 +1,5 @@
 import lookupIp from './lookupIp'
+
 jest.mock('../request/fetch', () =>
   jest.fn(() => ({
     json: () => ({

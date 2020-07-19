@@ -1,5 +1,4 @@
 import {
-  ImmutableMap,
   anyContainsWildcard,
   assoc,
   assocPath,
@@ -23,7 +22,9 @@ import {
   selectWildcards,
   weakMemoize
 } from '../utils/lang'
+import { ImmutableMap } from '../utils/lang/classes'
 import { call } from '../utils/redux'
+
 import createFactory from './createFactory'
 
 const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {

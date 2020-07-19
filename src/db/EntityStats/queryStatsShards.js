@@ -1,6 +1,7 @@
-import { StatsShard } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { StatsShard } from './schemas'
 
 const queryStatsShards = curry((context, { index }, queryOptions) =>
   buildQuery(

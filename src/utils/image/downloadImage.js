@@ -1,4 +1,5 @@
 import downloadCanvas from '../canvas/downloadCanvas'
+
 import imageToCanvas from './imageToCanvas'
 
 const downloadImage = async (image, imageName) => {

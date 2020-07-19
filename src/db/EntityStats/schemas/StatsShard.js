@@ -1,5 +1,6 @@
-import { Entity } from '../../Entity'
 import { Integer, Object } from '../../../core/schemas'
+import { Entity } from '../../Entity'
+
 import EntityStats from './EntityStats'
 
 const StatsShard = {

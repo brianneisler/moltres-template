@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id, String } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 const UserProfile = {
   collectionName: 'UserProfiles',

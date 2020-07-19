@@ -1,5 +1,6 @@
-import { Host } from './schemas'
 import { setEntity } from '../Entity'
+
+import { Host } from './schemas'
 
 const setHost = setEntity(Host)
 

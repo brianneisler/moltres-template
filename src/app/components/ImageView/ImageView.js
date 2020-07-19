@@ -1,5 +1,7 @@
-import { Colors, Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { compose, noop } from '../../../utils/lang'
 import {
   defaultProps,
@@ -10,10 +12,9 @@ import {
   withPropsOnChange,
   withState
 } from '../../../utils/react'
+import { Colors, Styles } from '../../styles'
 import ActivityIndicator from '../ActivityIndicator'
 import Image from '../Image'
-import PropTypes from 'prop-types'
-import React from 'react'
 import Text from '../Text'
 import View from '../View'
 

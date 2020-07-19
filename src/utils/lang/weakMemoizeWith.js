@@ -1,5 +1,5 @@
-import { functionDefineLength } from './util'
 import curryN from './curryN'
+import { functionDefineLength } from './util'
 
 const weakMemoizeWith = curryN(2, (mFn, fn) => {
   const cache = new WeakMap()

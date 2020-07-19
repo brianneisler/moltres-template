@@ -1,6 +1,5 @@
-import * as actions from './actions'
+import { withConfig, withContext } from '../../../core'
 import { assocPath, compose, getPath, getProp, omit } from '../../../utils/lang'
-import { buildLocation, parseLocation } from '../../../utils/url'
 import {
   handleAction,
   handleActions,
@@ -8,9 +7,11 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
+import { buildLocation, parseLocation } from '../../../utils/url'
 import { actions as modalActions } from '../modal'
 import { pushRouteAction, selectRouterLocation } from '../router'
-import { withConfig, withContext } from '../../../core'
+
+import * as actions from './actions'
 
 const enhance = compose(
   withConfig((config) => ({

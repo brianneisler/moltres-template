@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 const UserPhoneNumber = {
   collectionName: 'UserPhoneNumbers',

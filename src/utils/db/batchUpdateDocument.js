@@ -1,4 +1,5 @@
 import { curry } from '../lang'
+
 import addUpdatedAtTimestamp from './addUpdatedAtTimestamp'
 import cleanseData from './cleanseData'
 import convertDataToFirebase from './convertDataToFirebase'

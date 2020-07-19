@@ -1,5 +1,6 @@
-import { SMSMessage } from './schemas'
 import { updateEntity } from '../Entity'
+
+import { SMSMessage } from './schemas'
 
 const updateSMSMessage = updateEntity(SMSMessage)
 

@@ -1,5 +1,6 @@
 import { call, handleChannel, put } from '../../../../utils/redux'
 import { setNetworkInformation } from '../actions'
+
 import createNetworkInformationChannel from './createNetworkInformationChannel'
 
 function* monitorNetworkInformationChannel(context) {

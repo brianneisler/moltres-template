@@ -1,5 +1,6 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { curry } from '../../utils/lang'
+
 import batchSetEntity from './batchSetEntity'
 
 const setEntity = curry(async (Schema, context, id, value, options = {}) => {

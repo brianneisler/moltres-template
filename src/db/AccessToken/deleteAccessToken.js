@@ -1,5 +1,6 @@
-import { AccessToken } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { AccessToken } from './schemas'
 
 const deleteAccessToken = deleteEntity(AccessToken)
 

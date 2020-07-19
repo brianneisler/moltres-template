@@ -1,4 +1,5 @@
 import { flatten } from 'ramda'
+
 import arrays from './arrays'
 import booleans from './booleans'
 import errors from './errors'

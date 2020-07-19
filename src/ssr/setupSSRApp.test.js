@@ -8,6 +8,7 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../test'
+
 import setupSSRApp from './setupSSRApp'
 
 const spec = describe('setupSSRApp', () => {

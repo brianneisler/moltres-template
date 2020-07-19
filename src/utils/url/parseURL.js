@@ -1,5 +1,7 @@
 import { URL, parse } from 'url'
+
 import { invariant, isString } from '../lang'
+
 import parseSearch from './parseSearch'
 
 const parseURL = (url) => {

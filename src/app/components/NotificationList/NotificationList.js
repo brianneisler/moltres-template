@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import { setDisplayName, setPropTypes } from '../../../utils/react'
 import NotificationView from '../NotificationView'
 import PaginatedQueryView from '../PaginatedQueryView'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('NotificationList'),

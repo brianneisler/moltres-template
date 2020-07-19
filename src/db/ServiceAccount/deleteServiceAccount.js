@@ -1,5 +1,6 @@
-import { ServiceAccount } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { ServiceAccount } from './schemas'
 
 const deleteServiceAccount = deleteEntity(ServiceAccount)
 

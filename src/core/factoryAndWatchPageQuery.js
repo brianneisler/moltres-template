@@ -1,4 +1,3 @@
-import { call, put, select } from '../utils/redux'
 import {
   invariant,
   isFunction,
@@ -7,9 +6,11 @@ import {
   isString,
   last
 } from '../utils/lang'
-import { selectQueryCursor } from './selectors'
+import { call, put, select } from '../utils/redux'
+
 import { setQueryCursorNextAction } from './actions'
 import generateQuery from './generateQuery'
+import { selectQueryCursor } from './selectors'
 import watchQuery from './watchQuery'
 
 const factoryAndWatchPageQuery = function* ({

@@ -1,6 +1,7 @@
-import { HoverStateChangedAction } from './schemas'
-import { fork, handleActions } from '../../../utils/redux'
 import { merge } from '../../../utils/lang'
+import { fork, handleActions } from '../../../utils/redux'
+
+import { HoverStateChangedAction } from './schemas'
 import { monitorHoverState } from './util'
 
 const mod = {

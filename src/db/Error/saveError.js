@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { saveEntity } from '../Entity'
+
+import { Error } from './schemas'
 
 const saveError = saveEntity(Error)
 

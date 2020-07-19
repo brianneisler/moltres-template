@@ -1,5 +1,6 @@
-import { Url } from './schemas'
 import { refDocumentById } from '../../utils/db'
+
+import { Url } from './schemas'
 
 const refUrlById = refDocumentById(Url)
 

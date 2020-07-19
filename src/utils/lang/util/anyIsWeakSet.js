@@ -17,6 +17,7 @@ import anyToStringTag from './anyToStringTag'
  * anyIsWeakSet(new Set())
  * // => false
  */
-const anyIsWeakSet = (any) => anyIsObjectLike(any) && anyToStringTag(any) == 'WeakSet'
+const anyIsWeakSet = (any) =>
+  anyIsObjectLike(any) && anyToStringTag(any) == 'WeakSet'
 
 export default anyIsWeakSet

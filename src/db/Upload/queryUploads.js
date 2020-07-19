@@ -1,6 +1,7 @@
-import { Upload } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { Upload } from './schemas'
 
 const queryUploads = curry((context, { userId }, queryOptions) =>
   buildQuery(

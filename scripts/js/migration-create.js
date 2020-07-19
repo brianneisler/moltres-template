@@ -1,5 +1,6 @@
-import { ensureFile, writeFile } from 'fs-extra'
 import { resolve } from 'path'
+
+import { ensureFile, writeFile } from 'fs-extra'
 
 const TEMPLATE = [
   'const up = async (context) => {',

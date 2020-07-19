@@ -1,8 +1,9 @@
-import { Page, Text, View } from '../../components'
-import { Styles } from '../../styles'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import { defaultProps, memo, setDisplayName } from '../../../utils/react'
-import React from 'react'
+import { PageContainer, Text, View } from '../../components'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('LogoutPage'),
@@ -14,11 +15,11 @@ const enhance = compose(
 
 const LogoutPage = enhance(({ styles }) => {
   return (
-    <Page description="Logout">
+    <PageContainer description="Logout">
       <View style={styles.paddedBlock}>
         <Text style={styles.mediumText}>Logging out...</Text>
       </View>
-    </Page>
+    </PageContainer>
   )
 })
 

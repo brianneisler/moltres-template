@@ -1,9 +1,11 @@
-import { ConnectedRouter, MetaTagsContext, Provider } from './components'
-import { compose } from '../utils/lang'
-import { setPropTypes, storeShape, withContext } from '../utils/react'
-import Main from './Main'
 import PropTypes from 'prop-types'
 import React from 'react'
+
+import { compose } from '../utils/lang'
+import { setPropTypes, storeShape, withContext } from '../utils/react'
+
+import Main from './Main'
+import { ConnectedRouter, MetaTagsContext, Provider } from './components'
 
 const enhance = compose(
   setPropTypes({

@@ -1,5 +1,6 @@
-import { assoc } from '../../utils/lang'
 import { findOneFromQuery } from '../../utils/db'
+import { assoc } from '../../utils/lang'
+
 import queryUserRoles from './queryUserRoles'
 
 const findUserRoleByUserId = async (context, userId, queryOptions = {}) => {

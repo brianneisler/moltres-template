@@ -1,3 +1,3 @@
 const _WeakSet = WeakSet
 
-export default WeakSet
+export default _WeakSet

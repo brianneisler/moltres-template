@@ -1,4 +1,5 @@
 import { INFINITY, MAX_VALUE } from '../constants/Number'
+
 import anyToNumber from './anyToNumber'
 
 /**

@@ -1,5 +1,6 @@
-import { setupFunctions } from './functions'
 import Promise from 'bluebird'
+
+import { setupFunctions } from './functions'
 
 global.Promise = Promise
 

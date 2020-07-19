@@ -1,5 +1,5 @@
-import * as component from '../notifications/component'
 import { createContext } from '../context'
+import * as component from '../notifications/component'
 import { uuidv4 } from '../utils/lang'
 
 const setupSSRContext = (config, serviceAccountContext, history) => {

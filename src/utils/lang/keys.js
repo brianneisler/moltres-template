@@ -1,10 +1,10 @@
-import { iteratorToArray } from './util'
 import indexes from './indexes'
 import isFunction from './isFunction'
 import properties from './properties'
 import satisfiesIndexed from './satisfiesIndexed'
 import satisfiesKeyed from './satisfiesKeyed'
 import satisfiesPropertied from './satisfiesPropertied'
+import { iteratorToArray } from './util'
 
 const keys = (value) => {
   if (value && isFunction(value.keySeq)) {

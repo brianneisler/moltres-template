@@ -1,5 +1,6 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
 import { curry } from '../../utils/lang'
+
 import batchCreateEntityStats from './batchCreateEntityStats'
 
 const createEntityStats = curry(async (context, value) => {

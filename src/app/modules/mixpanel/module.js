@@ -1,7 +1,7 @@
-import { TrackAction } from '../tracking'
-import { call, handleAction, takeEvery } from '../../../utils/redux'
-import { compose } from '../../../utils/lang'
 import { withConfig, withContext } from '../../../core'
+import { compose } from '../../../utils/lang'
+import { call, handleAction, takeEvery } from '../../../utils/redux'
+import { TrackAction } from '../tracking'
 
 const mixpanelTrack = async (mixpanel, { eventName, options, properties }) =>
   new Promise((resolve) => {

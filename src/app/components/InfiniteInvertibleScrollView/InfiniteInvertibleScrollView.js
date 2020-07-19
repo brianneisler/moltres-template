@@ -174,13 +174,14 @@
 
 // export default enhance(InfiniteInvertibleScrollView)
 
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { assign, filter, noop } from '../../../utils/lang'
 import { cloneReferencedElement } from '../../../utils/react'
 import ActivityIndicator from '../ActivityIndicator'
 import LoadingError from '../LoadingError'
-import PropTypes from 'prop-types'
-import React from 'react'
 import ScrollView from '../ScrollView'
 import ScrollableMixin from '../ScrollableMixin'
 import View from '../View'

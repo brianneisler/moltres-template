@@ -1,6 +1,8 @@
-import { DeviceType, OSType, PlatformType } from '../../constants'
 import { Platform } from 'react-native'
+
+import { DeviceType, OSType, PlatformType } from '../../constants'
 import { getPropOr, weakMemoize } from '../lang'
+
 import getUserAgentData from './getUserAgentData'
 
 /**

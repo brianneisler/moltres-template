@@ -1,5 +1,6 @@
 import { call, handleChannel, put } from '../../../../utils/redux'
 import { clockTicked, setCurrentClock } from '../actions'
+
 import createClockChannel from './createClockChannel'
 
 function* monitorClockChannel(frequency) {

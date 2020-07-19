@@ -11,6 +11,7 @@ import {
   select
 } from '../utils/lang'
 import { call } from '../utils/redux'
+
 import createFactory from './createFactory'
 import isQuery from './isQuery'
 import monitorQuery from './monitorQuery'

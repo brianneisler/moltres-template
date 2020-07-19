@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
@@ -8,8 +11,6 @@ import {
   withProps
 } from '../../../utils/react'
 import Image from '../Image'
-import PropTypes from 'prop-types'
-import React from 'react'
 import View from '../View'
 
 const enhance = compose(

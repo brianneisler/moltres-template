@@ -1,9 +1,9 @@
-import { bufferToStream, createBuffer } from '../../utils/buffer'
 import { createImage, updateImage } from '../../db/Image'
-import contentTypeToExtension from '../../utils/mime/contentTypeToExtension'
+import { bufferToStream, createBuffer } from '../../utils/buffer'
 import getImageMeta from '../../utils/image/getImageMeta'
-import hashStream from '../../utils/stream/hashStream'
+import contentTypeToExtension from '../../utils/mime/contentTypeToExtension'
 import uploadFileByteArray from '../../utils/storage/uploadFileByteArray'
+import hashStream from '../../utils/stream/hashStream'
 
 const saveImageByteArray = async (context, byteArray, metadata = {}) => {
   const { contentType } = metadata

@@ -1,4 +1,5 @@
 import { isGenerator, isMap, isPlainObject } from '../lang'
+
 import flattenWhenNode from './flattenWhenNode'
 
 const flattenReducerMap = flattenWhenNode(

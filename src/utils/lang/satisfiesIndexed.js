@@ -1,4 +1,5 @@
 import { isIndexed } from 'immutable'
+
 import isArray from './isArray'
 import isString from './isString'
 

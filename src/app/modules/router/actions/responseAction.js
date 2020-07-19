@@ -1,5 +1,5 @@
-import { ResponseAction } from '../schemas'
 import { actionBuilder } from '../../../../utils/redux'
+import { ResponseAction } from '../schemas'
 
 const responseAction = actionBuilder({
   Schema: ResponseAction

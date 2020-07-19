@@ -1,6 +1,7 @@
 import { select } from '../utils/lang'
-import { selectConfig } from './selectors'
 import { select as selectFromState } from '../utils/redux'
+
+import { selectConfig } from './selectors'
 
 const getConfig = function* (selector) {
   const config = yield selectFromState(selectConfig)

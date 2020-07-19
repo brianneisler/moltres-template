@@ -1,4 +1,5 @@
 import { values as rValues } from 'ramda'
+
 import isFunction from './isFunction'
 
 const values = (value) => {

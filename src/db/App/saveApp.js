@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { saveEntity } from '../Entity'
+
+import { App } from './schemas'
 
 const saveApp = saveEntity(App)
 

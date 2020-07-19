@@ -1,7 +1,8 @@
 import { append, update } from '../utils/lang'
 import { put, select } from '../utils/redux'
-import { selectQuery } from './selectors'
+
 import { setQueryAction } from './actions'
+import { selectQuery } from './selectors'
 
 const addQueryWatcherTask = function* (queryKey, watcherId, task) {
   let query = yield select(selectQuery(queryKey))

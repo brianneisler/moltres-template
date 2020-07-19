@@ -1,4 +1,5 @@
 import { sort as rSort } from 'ramda'
+
 import curry from './curry'
 import isFunction from './isFunction'
 

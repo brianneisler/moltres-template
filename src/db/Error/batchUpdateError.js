@@ -1,5 +1,6 @@
-import { Error } from './schemas'
 import { batchUpdateEntity } from '../Entity'
+
+import { Error } from './schemas'
 
 const batchUpdateError = batchUpdateEntity(Error)
 

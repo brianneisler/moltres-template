@@ -1,5 +1,7 @@
-import { Colors, Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
@@ -9,10 +11,9 @@ import {
   styleShape,
   withProps
 } from '../../../utils/react'
+import { Colors, Styles } from '../../styles'
 import PageContainer from '../PageContainer'
 import PageContentView from '../PageContentView'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('PageContentView'),

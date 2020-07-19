@@ -1,7 +1,7 @@
-import { call } from '../../../utils/redux'
 import { factoryAndWatchQuery } from '../../../core'
-import { invariant, isString } from '../../../utils/lang'
 import { refUserRoleById } from '../../../db/UserRole'
+import { invariant, isString } from '../../../utils/lang'
+import { call } from '../../../utils/redux'
 
 const queryAndWatchUserRole = function* (context, userId, { handler } = {}) {
   invariant(isString(userId), 'userId must be a String')

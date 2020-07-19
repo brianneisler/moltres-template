@@ -1,5 +1,6 @@
-import { SMSChannel } from './schemas'
 import { deleteEntity } from '../Entity'
+
+import { SMSChannel } from './schemas'
 
 const deleteSMSChannel = deleteEntity(SMSChannel)
 

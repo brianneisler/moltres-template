@@ -5,6 +5,7 @@ import {
   reduce,
   values
 } from '../../../../../utils/lang'
+
 import createScript from './createScript'
 
 const loadEarlyScripts = async (context, store) =>

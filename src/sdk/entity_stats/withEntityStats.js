@@ -1,3 +1,9 @@
+import { withQuery, withSelectedProps } from '../../core'
+import {
+  queryEntityStats,
+  queryStatsShards,
+  refEntityStatsById
+} from '../../db/EntityStats'
 import {
   compose,
   createSelector,
@@ -8,12 +14,6 @@ import {
   mergeDeepCount,
   values
 } from '../../utils/lang'
-import {
-  queryEntityStats,
-  queryStatsShards,
-  refEntityStatsById
-} from '../../db/EntityStats'
-import { withQuery, withSelectedProps } from '../../core'
 
 const withEntityStats = ({
   entityIdPath,

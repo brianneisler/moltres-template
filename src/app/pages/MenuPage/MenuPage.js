@@ -1,7 +1,6 @@
-import { Colors, Styles } from '../../styles'
-import { Icon, Link, Page, SectionList, Text, View } from '../../components'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { buildLocation } from '../../../utils/url'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
@@ -9,7 +8,16 @@ import {
   setDisplayName,
   withHandlers
 } from '../../../utils/react'
-import React from 'react'
+import { buildLocation } from '../../../utils/url'
+import {
+  Icon,
+  Link,
+  PageContainer,
+  SectionList,
+  Text,
+  View
+} from '../../components'
+import { Colors, Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('MenuPage'),
@@ -109,7 +117,7 @@ const enhance = compose(
 const MenuPage = enhance(
   ({ renderItem, renderSectionHeader, sections, styles }) => {
     return (
-      <Page description="Menu">
+      <PageContainer description="Menu">
         <View style={styles.block}>
           <SectionList
             keyExtractor={(item, index) => item + index}
@@ -118,7 +126,7 @@ const MenuPage = enhance(
             sections={sections}
           />
         </View>
-      </Page>
+      </PageContainer>
     )
   }
 )

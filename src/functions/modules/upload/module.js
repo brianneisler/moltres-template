@@ -1,14 +1,14 @@
 import { AllowedImageType, UploadState } from '../../../constants'
-import { compose, includes, pick, values } from '../../../utils/lang'
-import { createUserImage } from '../../../db/UserImage'
-import { deleteFile, downloadFile } from '../../../utils/storage'
-import { expected } from '../../../utils/error'
+import { withConfig, withContext } from '../../../core'
 import { getUploadById, updateUpload } from '../../../db/Upload'
 import { getUserById } from '../../../db/User'
-import { handleAction } from '../../../utils/redux'
+import { createUserImage } from '../../../db/UserImage'
 import { saveImageFromBuffer } from '../../../sdk/image'
+import { expected } from '../../../utils/error'
+import { compose, includes, pick, values } from '../../../utils/lang'
+import { handleAction } from '../../../utils/redux'
+import { deleteFile, downloadFile } from '../../../utils/storage'
 import { takeEveryStorageObjectFinalize } from '../storage'
-import { withConfig, withContext } from '../../../core'
 
 const ALLOWED_TYPES = values(AllowedImageType)
 
@@ -70,7 +70,7 @@ const mod = {
                 imageId: image.id,
                 userImageId: userImage.id
               },
-              state: UploadState.COMPLETE
+              state: UploadState.COMPLETED
             })
           } catch (error) {
             context.logger.error(

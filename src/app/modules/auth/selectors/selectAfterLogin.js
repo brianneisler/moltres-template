@@ -1,5 +1,6 @@
-import { selectRouterLocationSearch } from '../../router'
 import queryString from 'query-string'
+
+import { selectRouterLocationSearch } from '../../router'
 
 const selectAfterLogin = (state) => {
   const locationSearch = selectRouterLocationSearch(state)

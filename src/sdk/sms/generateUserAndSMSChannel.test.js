@@ -1,4 +1,3 @@
-import { deletePendingUser } from '../auth'
 import { deleteSMSChannel } from '../../db/SMSChannel'
 import {
   setupTestAdminContext,
@@ -6,7 +5,9 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { deletePendingUser } from '../auth'
 import generateInternalPhoneNumber from '../phone_number/generateInternalPhoneNumber'
+
 import generateUserAndSMSChannel from './generateUserAndSMSChannel'
 
 const spec = describe('generateUserAndSMSChannel', () => {

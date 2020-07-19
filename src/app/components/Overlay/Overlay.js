@@ -1,4 +1,6 @@
-import { Colors, Fonts } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import {
   defaultProps,
@@ -9,9 +11,8 @@ import {
   withHandlers
 } from '../../../utils/react'
 import { actions as modalActions } from '../../modules/modal'
+import { Colors, Fonts } from '../../styles'
 import CancelableModal from '../CancelableModal'
-import PropTypes from 'prop-types'
-import React from 'react'
 import ScrollView from '../ScrollView'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'

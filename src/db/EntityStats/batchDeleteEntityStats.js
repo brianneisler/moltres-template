@@ -1,7 +1,8 @@
-import { EntityStats } from './schemas'
-import { batchDeleteEntity } from '../Entity'
 import { map, range } from '../../utils/lang'
+import { batchDeleteEntity } from '../Entity'
+
 import batchDeleteStatsShard from './batchDeleteStatsShard'
+import { EntityStats } from './schemas'
 
 const batchDeleteEntityStats = async (context, batch, id) => {
   const ref = await batchDeleteEntity(EntityStats, context, batch, id)

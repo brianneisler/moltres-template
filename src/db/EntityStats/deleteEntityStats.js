@@ -1,5 +1,6 @@
 import { buildBatch, commitBatch } from '../../utils/db'
 import { curry } from '../../utils/lang'
+
 import batchDeleteEntityStats from './batchDeleteEntityStats'
 
 const deleteEntityStats = curry(

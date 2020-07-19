@@ -1,4 +1,5 @@
 import { findOneFromQuery } from '../../utils/db'
+
 import querySMSChannels from './querySMSChannels'
 
 const findSMSChannelByUserAndInternalPhoneNumberIds = async (

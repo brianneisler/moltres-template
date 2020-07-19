@@ -1,5 +1,6 @@
-import { Colors, Styles } from '../../styles'
+import React from 'react'
 import { StyleSheet } from 'react-native'
+
 import { compose, getPath } from '../../../utils/lang'
 import {
   connect,
@@ -12,8 +13,8 @@ import {
 } from '../../../utils/react'
 import { goBackAction } from '../../modules/router/actions'
 import { selectRouterLocation } from '../../modules/router/selectors'
+import { Colors, Styles } from '../../styles'
 import Icon from '../Icon'
-import React from 'react'
 import Text from '../Text'
 import TouchableOpacity from '../TouchableOpacity'
 

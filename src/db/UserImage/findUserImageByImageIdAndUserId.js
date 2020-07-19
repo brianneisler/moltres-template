@@ -1,5 +1,6 @@
-import { assoc } from '../../utils/lang'
 import { findOneFromQuery } from '../../utils/db'
+import { assoc } from '../../utils/lang'
+
 import queryUserImages from './queryUserImages'
 
 const findUserImageByImageIdAndUserId = async (

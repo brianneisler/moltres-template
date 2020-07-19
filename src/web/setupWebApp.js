@@ -1,10 +1,12 @@
 // import * as serviceWorker from './sdkWorker'
 import * as Sentry from '@sentry/browser'
-import * as modules from '../app/modules'
-import { App, generateConfig } from '../app'
 import { AppRegistry } from 'react-native'
-import { createHistory } from '../utils/react'
+
+import { App, generateConfig } from '../app'
+import * as modules from '../app/modules'
 import { generateEngine } from '../core'
+import { createHistory } from '../utils/react'
+
 import setupWebContext from './setupWebContext'
 
 const setupWebApp = () => {

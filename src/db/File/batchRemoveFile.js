@@ -1,5 +1,6 @@
-import { File } from './schemas'
 import { batchRemoveEntity } from '../Entity'
+
+import { File } from './schemas'
 
 const batchRemoveFile = batchRemoveEntity(File)
 

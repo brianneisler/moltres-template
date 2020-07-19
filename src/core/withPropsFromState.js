@@ -1,3 +1,5 @@
+import { call, select, spawn, takeEvery } from 'redux-saga/effects'
+
 import {
   assoc,
   assocMerge,
@@ -10,7 +12,7 @@ import {
   replaceWildcards,
   selectWildcards
 } from '../utils/lang'
-import { call, select, spawn, takeEvery } from 'redux-saga/effects'
+
 import createFactory from './createFactory'
 
 function* takeEveryState(propStore, propsBuilder) {

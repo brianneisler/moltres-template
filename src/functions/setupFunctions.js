@@ -1,13 +1,14 @@
 import * as functions from 'firebase-functions'
+
 import { setupActionsFunction } from './actions'
 import { setupAppFunction } from './app'
 import { setupScheduleFunctions } from './schedule'
+import setupFunctionConfig from './setupFunctionConfig'
 import {
   setupStorageDeleteFunction,
   setupStorageFinalizeFunction,
   setupStorageMetadataUpdateFunction
 } from './storage'
-import setupFunctionConfig from './setupFunctionConfig'
 
 const setupFunctions = () => {
   const runtimeOptions = {

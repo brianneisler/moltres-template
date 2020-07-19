@@ -1,7 +1,8 @@
-import { all } from '../../utils/lang'
 import { buildBatch, commitBatch } from '../../utils/db'
-import batchDeleteInternalPhoneNumber from './batchDeleteInternalPhoneNumber'
+import { all } from '../../utils/lang'
 import batchDeletePhoneNumber from '../PhoneNumber/batchDeletePhoneNumber'
+
+import batchDeleteInternalPhoneNumber from './batchDeleteInternalPhoneNumber'
 
 const deleteInternalPhoneNumber = async (context, id) =>
   commitBatch(

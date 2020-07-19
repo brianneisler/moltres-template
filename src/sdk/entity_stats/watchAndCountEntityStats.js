@@ -1,9 +1,9 @@
 import { EntityChangeType } from '../../constants'
-import { compose, getProp } from '../../utils/lang'
-import { decrementEntityStat, incrementEntityStat } from '../../db/EntityStats'
-import { handleAction } from '../../utils/redux'
-import { takeEveryEntityChanged } from '../../db/Entity'
 import { withConfig, withContext } from '../../core'
+import { takeEveryEntityChanged } from '../../db/Entity'
+import { decrementEntityStat, incrementEntityStat } from '../../db/EntityStats'
+import { compose, getProp } from '../../utils/lang'
+import { handleAction } from '../../utils/redux'
 
 const enhance = compose(
   withContext(),

@@ -7,6 +7,7 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+
 import registerPendingUser from './registerPendingUser'
 import registerValidUser from './registerValidUser'
 

@@ -1,5 +1,5 @@
-import { resolve } from '../../../../utils/path'
 import { serveStatic } from '../../../../utils/express'
+import { resolve } from '../../../../utils/path'
 
 const mod = {
   setupStaticRouter: (router) => {

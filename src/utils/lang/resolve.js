@@ -1,5 +1,5 @@
-import { anyResolve } from './util'
 import curry from './curry'
+import { anyResolve } from './util'
 
 /**
  * Resolves a value to its valueOf.

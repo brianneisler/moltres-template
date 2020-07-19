@@ -1,4 +1,5 @@
 import { Action } from '../../../../db/Action'
+
 import AuthState from './AuthState'
 
 const SetAuthStateAction = {

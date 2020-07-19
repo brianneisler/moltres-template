@@ -1,4 +1,5 @@
 import { curry, getPropOr } from '../../../../utils/lang'
+
 import selectModal from './selectModal'
 
 const selectModalVisible = curry((name, state) =>

@@ -1,7 +1,8 @@
-import { cancel, put, select } from '../utils/redux'
 import { filter, update } from '../utils/lang'
-import { selectQuery } from './selectors'
+import { cancel, put, select } from '../utils/redux'
+
 import { setQueryAction } from './actions'
+import { selectQuery } from './selectors'
 
 const removeQueryWatcherTask = function* (queryKey, watcherId, task) {
   let query = yield select(selectQuery(queryKey))

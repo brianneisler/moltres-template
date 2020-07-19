@@ -1,7 +1,8 @@
-import { all, cancel, put, select } from '../utils/redux'
 import { dissocProp, map, update } from '../utils/lang'
-import { selectQuery } from './selectors'
+import { all, cancel, put, select } from '../utils/redux'
+
 import { setQueryAction } from './actions'
+import { selectQuery } from './selectors'
 
 const removeQueryWatcher = function* (queryKey, watcher) {
   let query = yield select(selectQuery(queryKey))

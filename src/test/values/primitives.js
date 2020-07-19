@@ -1,4 +1,5 @@
 import { flatten, map, pick, values } from 'ramda'
+
 import booleanObjects from './booleanObjects'
 import booleans from './booleans'
 import nils from './nils'

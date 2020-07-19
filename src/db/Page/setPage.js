@@ -1,5 +1,6 @@
-import { Page } from './schemas'
 import { setEntity } from '../Entity'
+
+import { Page } from './schemas'
 
 const setPage = setEntity(Page)
 

@@ -1,4 +1,5 @@
 import WebFont from 'webfontloader'
+
 import expected from '../error/expected'
 
 const loadFont = async ({ family, urls }) => {

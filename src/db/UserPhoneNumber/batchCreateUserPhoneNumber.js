@@ -1,5 +1,6 @@
-import { UserPhoneNumber } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { UserPhoneNumber } from './schemas'
 
 const batchCreateUserPhoneNumber = batchCreateEntity(UserPhoneNumber)
 

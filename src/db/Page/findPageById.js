@@ -1,5 +1,6 @@
-import { Page } from './schemas'
 import { findDocumentById } from '../../utils/db'
+
+import { Page } from './schemas'
 
 const findPageById = findDocumentById(Page)
 

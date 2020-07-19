@@ -1,5 +1,5 @@
-import { actions, schemas } from '../modules/storage'
 import { queueAction } from '../../db/Action'
+import { actions, schemas } from '../modules/storage'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 const setupStorageMetadataUpdateFunction = (config) => async (object) => {

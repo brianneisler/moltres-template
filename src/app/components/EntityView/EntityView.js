@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose, invariant, shallowEquals } from '../../../utils/lang'
 import { lifecycle, setDisplayName, setPropTypes } from '../../../utils/react'
 import ActivityIndicator from '../ActivityIndicator'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('EntityView'),

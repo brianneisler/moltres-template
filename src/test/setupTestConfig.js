@@ -1,6 +1,6 @@
-import { uuidv4 } from '../utils/lang'
 import generateAdminConfig from '../utils/config/generateAdminConfig'
 import loadEnv from '../utils/config/loadEnv'
+import { uuidv4 } from '../utils/lang'
 
 const setupTestConfig = () => {
   const stage = process.env.STAGE

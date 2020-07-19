@@ -1,4 +1,5 @@
 import { curry, getProp } from '../../../../utils/lang'
+
 import selectQueryResults from './selectQueryResults'
 
 const selectCursorResults = curry((queryKey, cursor, state) => {

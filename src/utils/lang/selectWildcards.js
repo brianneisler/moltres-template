@@ -1,5 +1,5 @@
-import { ImmutableList, ImmutableMap } from './classes'
 import assoc from './assoc'
+import { ImmutableList, ImmutableMap } from './classes'
 import concat from './concat'
 import containsWildcard from './containsWildcard'
 import curry from './curry'

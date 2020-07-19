@@ -1,13 +1,14 @@
 import {
-  createInternalPhoneNumber,
-  deleteInternalPhoneNumber
-} from '../InternalPhoneNumber'
-import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import {
+  createInternalPhoneNumber,
+  deleteInternalPhoneNumber
+} from '../InternalPhoneNumber'
+
 import getPhoneNumberById from './getPhoneNumberById'
 
 // TODO BRN: Rework this test to use setupTestConfig

@@ -1,7 +1,7 @@
-import { Entity } from '../../Entity'
-import { Id, Object, String } from '../../../core/schemas'
 import { UploadState } from '../../../constants'
+import { Id, Object, String } from '../../../core/schemas'
 import { values } from '../../../utils/lang'
+import { Entity } from '../../Entity'
 
 const Upload = {
   collectionName: 'Uploads',

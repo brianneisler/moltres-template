@@ -1,29 +1,13 @@
-import { AuthState, Overlay } from '../../../constants'
-import {
-  FileInput,
-  Icon,
-  Link,
-  Text,
-  TouchableOpacity,
-  UserProfileImage,
-  View
-} from '..'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
-import { buildLocation, buildURL, parseSearch } from '../../../utils/url'
+
+import { Icon, Link, Text, TouchableOpacity, UserProfileImage, View } from '..'
+import { AuthState } from '../../../constants'
 import { compose, getProp } from '../../../utils/lang'
-import {
-  connect,
-  defaultProps,
-  setDisplayName,
-  withActions,
-  withHandlers
-} from '../../../utils/react'
-import { isDeviceMobile } from '../../../utils/platform'
-import { actions as overlayActions } from '../../modules/overlay'
+import { connect, defaultProps, setDisplayName } from '../../../utils/react'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
 import { selectCurrentUserProfile } from '../../modules/user_profile'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('MainNav'),
@@ -56,29 +40,15 @@ const enhance = compose(
       })
     }
   }),
-  withActions({
-    showOverlay: overlayActions.showOverlay
-  }),
   connect((state) => ({
     authState: selectAuthState(state),
     currentUser: selectCurrentUser(state),
     currentUserProfile: selectCurrentUserProfile(state)
-  })),
-  withHandlers({
-    handleFileInputChange: ({ showOverlay }) => (imageFile) => {
-      showOverlay(Overlay.WAT_THIS_UPLOAD, { imageFile })
-    }
-  })
+  }))
 )
 
 const MainNav = enhance(
-  ({
-    authState,
-    currentUser,
-    currentUserProfile,
-    handleFileInputChange,
-    styles
-  }) => {
+  ({ authState, currentUser, currentUserProfile, styles }) => {
     return (
       <View style={styles.navLinks}>
         <View style={styles.navLink}>
@@ -91,58 +61,7 @@ const MainNav = enhance(
           </Link>
         </View>
         <View style={styles.navLink} />
-        <View style={styles.navLink}>
-          <TouchableOpacity>
-            {authState === AuthState.LOGGED_IN ? (
-              isDeviceMobile() ? (
-                <FileInput
-                  accept="image/*"
-                  inputStyle={[styles.imageUploadInput]}
-                  onChange={handleFileInputChange}
-                >
-                  <Text style={[styles.navIcon]}>
-                    <Icon icon="plus-square" />
-                  </Text>
-                </FileInput>
-              ) : (
-                <Link
-                  to={buildLocation((location) => ({
-                    ...location,
-                    query: {
-                      ...parseSearch(location.search),
-                      showOverlay: {
-                        name: Overlay.WAT_THIS_UPLOAD
-                      }
-                    }
-                  }))}
-                >
-                  <Text style={[styles.navIcon]}>
-                    <Icon icon="plus-square" />
-                  </Text>
-                </Link>
-              )
-            ) : (
-              <Link
-                to={buildLocation((location) => ({
-                  pathname: '/login',
-                  query: {
-                    afterLogin: {
-                      redirect: buildURL(location),
-                      showOverlay: Overlay.WAT_THIS_UPLOAD
-                    }
-                  },
-                  state: {
-                    back: true
-                  }
-                }))}
-              >
-                <Text style={[styles.navIcon]}>
-                  <Icon icon="plus-square" />
-                </Text>
-              </Link>
-            )}
-          </TouchableOpacity>
-        </View>
+        <View style={styles.navLink} />
         <View style={styles.navLink}>
           {authState === AuthState.LOGGED_IN ? (
             <Link to={`/notifications`}>

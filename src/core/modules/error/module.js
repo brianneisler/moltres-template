@@ -1,4 +1,3 @@
-import { UncaughtExceptionAction } from '../../schemas'
 import { compose } from '../../../utils/lang'
 import {
   fork,
@@ -6,9 +5,11 @@ import {
   handleActions,
   takeEvery
 } from '../../../utils/redux'
-import { monitorUnhandledRejection } from './util'
+import { UncaughtExceptionAction } from '../../schemas'
 import withConfig from '../../withConfig'
 import withContext from '../../withContext'
+
+import { monitorUnhandledRejection } from './util'
 
 const enhance = compose(
   withConfig((config) => ({

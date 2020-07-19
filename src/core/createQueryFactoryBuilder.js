@@ -1,11 +1,12 @@
 import {
-  ImmutableMap,
   assoc,
   createSelector,
   getProp,
   invariant,
   isFunction
 } from '../utils/lang'
+import { ImmutableMap } from '../utils/lang/classes'
+
 import createQueryFactory from './createQueryFactory'
 
 const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {

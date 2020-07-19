@@ -1,5 +1,5 @@
-import { Action } from '../../../../db/Action'
 import { Id, Object, Timestamp } from '../../../../core'
+import { Action } from '../../../../db/Action'
 
 const UserSignedInAction = {
   name: 'auth.UserSignedInAction',

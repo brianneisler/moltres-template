@@ -1,5 +1,6 @@
 import { Code, StatusCode } from '../../constants'
 import expected from '../error/expected'
+
 import formatDocument from './formatDocument'
 import isPermissionsError from './isPermissionsError'
 
@@ -23,7 +24,7 @@ const getFromRef = async ({ logger }, ref, options = {}) => {
         causes: [error],
         code: Code.ACCESS_DENIED,
         message: error.message,
-        statusCode: Code.STATUS_CODE
+        statusCode: StatusCode.ACCESS_DENIED
       })
     }
     throw error

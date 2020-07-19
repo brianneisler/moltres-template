@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id, Object, String } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 const Notification = {
   collectionName: 'Notifications',

@@ -1,5 +1,5 @@
-import { ImmutableMap } from './classes'
 import assoc from './assoc'
+import { ImmutableMap } from './classes'
 import createPath from './createPath'
 import equals from './equals'
 import getProp from './getProp'

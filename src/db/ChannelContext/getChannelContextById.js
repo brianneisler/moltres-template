@@ -1,5 +1,6 @@
-import { ChannelContext } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { ChannelContext } from './schemas'
 
 const getChannelContextById = getDocumentById(ChannelContext)
 

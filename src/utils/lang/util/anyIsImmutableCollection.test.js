@@ -5,6 +5,7 @@ import ImmutableOrderedSet from '../classes/ImmutableOrderedSet'
 import ImmutableSet from '../classes/ImmutableSet'
 import ImmutableStack from '../classes/ImmutableStack'
 import Seq from '../classes/Seq'
+
 import anyIsImmutableCollection from './anyIsImmutableCollection'
 
 describe('anyIsImmutableCollection', () => {

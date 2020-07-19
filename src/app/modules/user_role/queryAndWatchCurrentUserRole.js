@@ -1,5 +1,6 @@
-import * as actions from './actions'
 import { call, put } from 'redux-saga/effects'
+
+import * as actions from './actions'
 import queryAndWatchUserRole from './queryAndWatchUserRole'
 
 const queryAndWatchCurrentUserRole = function* (context, currentUser) {

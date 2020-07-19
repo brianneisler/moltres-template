@@ -1,21 +1,8 @@
-import {
-  Fragment,
-  Link,
-  MetaTags,
-  Route,
-  Switch,
-  Text,
-  TouchableOpacity,
-  UserProfileButton,
-  UserProfileImage,
-  UserReactionEntityList,
-  UserWATList,
-  UserWATThisList,
-  View
-} from '../../components'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Styles } from '../../styles'
-import { actions as alertActions } from '../../modules/alert'
+
+import { selectLoggerContext, selectSSRConfig } from '../../../core'
 import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
 import {
   connect,
@@ -26,14 +13,22 @@ import {
   withHandlers,
   withProps
 } from '../../../utils/react'
-import { pushRouteAction } from '../../modules/router/actions'
+import {
+  Fragment,
+  Link,
+  MetaTags,
+  Text,
+  TouchableOpacity,
+  UserProfileImage,
+  View
+} from '../../components'
+import { actions as alertActions } from '../../modules/alert'
 import { selectAppConfig } from '../../modules/app'
 import { selectFacebookConfig } from '../../modules/facebook'
-import { selectLoggerContext, selectSSRConfig } from '../../../core'
+import { pushRouteAction } from '../../modules/router/actions'
 import { selectTwitterConfig } from '../../modules/twitter'
 import { selectUserProfile } from '../../modules/user_profile'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('UserProfilePage'),
@@ -118,7 +113,6 @@ const UserProfilePage = enhance(
     tab,
     title,
     twitter,
-    userFollow,
     userId,
     userProfile
   }) => {
@@ -175,13 +169,6 @@ const UserProfilePage = enhance(
               />
             </TouchableOpacity>
             <View style={styles.fillContainer}>
-              <View style={[styles.inlineContainer, styles.justifyContentEnd]}>
-                <UserProfileButton
-                  userFollow={userFollow}
-                  userId={userId}
-                  userProfile={userProfile}
-                />
-              </View>
               <View style={[styles.inlineContainer, styles.justifyContentEnd]}>
                 <Link
                   style={StyleSheet.flatten([styles.link, styles.profileLink])}
@@ -282,21 +269,6 @@ const UserProfilePage = enhance(
               </Text>
             </Link>
           </View>
-          <Switch>
-            <Route
-              exact
-              path={`/user/${userId}`}
-              render={() => <UserWATList userId={userId} />}
-            />
-            <Route
-              path={`/user/${userId}/images`}
-              render={() => <UserWATThisList userId={userId} />}
-            />
-            <Route
-              path={`/user/${userId}/reactions`}
-              render={() => <UserReactionEntityList userId={userId} />}
-            />
-          </Switch>
         </View>
       </View>
     )

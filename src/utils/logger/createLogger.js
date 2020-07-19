@@ -1,4 +1,5 @@
 import { createLogger as createWinstonLogger, format } from 'winston'
+
 import ConsoleLoggerTransport from './ConsoleLoggerTransport'
 
 const createLogger = () => {

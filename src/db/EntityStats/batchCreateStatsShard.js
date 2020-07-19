@@ -1,5 +1,6 @@
-import { StatsShard } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { StatsShard } from './schemas'
 
 const batchCreateStatsShard = batchCreateEntity(StatsShard)
 

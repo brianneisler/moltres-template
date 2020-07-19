@@ -1,6 +1,7 @@
+import op from '../op'
+
 import anyIsGenerator from './anyIsGenerator'
 import anyResolveToGenerator from './anyResolveToGenerator'
-import op from '../op'
 
 describe('resolveToGenerator', () => {
   test('resolves basic values to a generator that resolves to the value', () => {

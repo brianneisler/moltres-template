@@ -1,8 +1,8 @@
-import { append, reject } from '../lang'
 import { encodeJwt } from '../jwt'
+import { append, reject } from '../lang'
 
-const createCurrentUser = ({ idToken }) => ({
-  getIdToken: async (forceRefresh) => {}
+const createCurrentUser = ({}) => ({
+  getIdToken: async () => {}
 })
 
 const initializeAuthEmulator = ({ app, config }) => {

@@ -1,4 +1,5 @@
 import { collection, formatDocument } from '../../utils/db'
+
 import Index from './schemas/Index'
 
 const findIndexByPath = async (context, path) => {

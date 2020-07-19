@@ -1,4 +1,5 @@
 import { ITERATOR } from '../constants/Symbol'
+
 import anyIsIndexedIterator from './anyIsIndexedIterator'
 import arrayLikeToIterator from './arrayLikeToIterator'
 import objectToIterator from './objectToIterator'

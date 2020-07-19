@@ -1,11 +1,13 @@
-import { createUser, deleteUser } from '../User'
+import { v4 as uuidv4 } from 'uuid'
+
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
-import { v4 as uuidv4 } from 'uuid'
+import { createUser, deleteUser } from '../User'
+
 import createAccessToken from './createAccessToken'
 import deleteAccessToken from './deleteAccessToken'
 import getAccessTokenById from './getAccessTokenById'

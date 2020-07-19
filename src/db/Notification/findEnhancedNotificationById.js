@@ -1,6 +1,7 @@
-import { call, select } from '../../utils/redux'
-import { invariant, isString } from '../../utils/lang'
 import { removeQueryWatcher, selectQueryResults } from '../../core'
+import { invariant, isString } from '../../utils/lang'
+import { call, select } from '../../utils/redux'
+
 import queryAndWatchNotification from './queryAndWatchNotification'
 
 const findEnhancedNotificationById = function* (context, id) {

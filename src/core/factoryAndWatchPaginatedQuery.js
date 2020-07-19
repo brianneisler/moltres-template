@@ -8,7 +8,7 @@ import {
   isString
 } from '../utils/lang'
 import { call, put, select } from '../utils/redux'
-import { selectCursorResults, selectQueryCursorNext } from './selectors'
+
 import {
   setQueryAction,
   setQueryCursorAction,
@@ -17,6 +17,7 @@ import {
 import createQueryFactoryBuilder from './createQueryFactoryBuilder'
 import factoryAndWatchPageQuery from './factoryAndWatchPageQuery'
 import generateQuery from './generateQuery'
+import { selectCursorResults, selectQueryCursorNext } from './selectors'
 import watchPaginatedQuery from './watchPaginatedQuery'
 
 const factoryAndWatchPaginatedQuery = function* ({

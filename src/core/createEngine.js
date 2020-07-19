@@ -1,13 +1,14 @@
-import * as coreModules from './modules'
 import { forEachObjIndexed, getProp, map, select, values } from '../utils/lang'
-import { selectConfig, selectContext } from './selectors'
+
 import { setContextAction } from './actions'
 import _finally from './finally'
-import buildStore from './util/buildStore'
-import createModules from './util/createModules'
+import * as coreModules from './modules'
+import { selectConfig, selectContext } from './selectors'
 import setup from './setup'
 import start from './start'
 import stop from './stop'
+import buildStore from './util/buildStore'
+import createModules from './util/createModules'
 
 const createEngine = (
   modules = {},

@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 // NOTE: These are used to track all user profile images the user has added. In
 // the event the user changes their profile image, this maintains a record of which

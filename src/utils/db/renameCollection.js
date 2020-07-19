@@ -1,3 +1,5 @@
+import validateSchema from '../schema/validateSchema'
+
 import batchSetDocument from './batchSetDocument'
 import batchSetIndexes from './batchSetIndexes'
 import buildBatch from './buildBatch'
@@ -5,7 +7,6 @@ import cleanseData from './cleanseData'
 import collection from './collection'
 import commitBatch from './commitBatch'
 import paginateCollection from './paginateCollection'
-import validateSchema from '../schema/validateSchema'
 
 const renameCollection = async (context, OldSchema, NewSchema) => {
   await paginateCollection(OldSchema, context, async (doc) => {

@@ -1,6 +1,6 @@
+import assoc from './assoc'
 import ImmutableList from './classes/ImmutableList'
 import ImmutableMap from './classes/ImmutableMap'
-import assoc from './assoc'
 import createPath from './createPath'
 import first from './first'
 import getProp from './getProp'

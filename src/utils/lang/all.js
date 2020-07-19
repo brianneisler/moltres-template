@@ -1,4 +1,5 @@
 import Promise from 'bluebird'
+
 import isArray from './isArray'
 import isObject from './isObject'
 

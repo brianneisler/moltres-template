@@ -1,5 +1,6 @@
-import { PhoneNumberClaim } from './schemas'
 import { batchCreateEntity } from '../Entity'
+
+import { PhoneNumberClaim } from './schemas'
 
 const batchCreatePhoneNumberClaim = batchCreateEntity(PhoneNumberClaim)
 

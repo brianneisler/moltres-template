@@ -33,6 +33,7 @@ import anyToInteger from './anyToInteger'
  * anyIsInteger('3')
  * // => false
  */
-const anyIsInteger = (value) => anyIsNumber(value) && value == anyToInteger(value)
+const anyIsInteger = (value) =>
+  anyIsNumber(value) && value == anyToInteger(value)
 
 export default anyIsInteger

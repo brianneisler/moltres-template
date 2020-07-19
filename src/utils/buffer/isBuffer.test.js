@@ -1,4 +1,5 @@
 import { forEach } from 'ramda'
+
 import createBuffer from './createBuffer'
 import isBuffer from './isBuffer'
 

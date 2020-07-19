@@ -1,7 +1,7 @@
 import { AllowedImageType } from '../../../constants'
-import { Entity } from '../../Entity'
 import { Id, Integer, String } from '../../../core/schemas'
 import { values } from '../../../utils/lang'
+import { Entity } from '../../Entity'
 
 const Image = {
   collectionName: 'Images',

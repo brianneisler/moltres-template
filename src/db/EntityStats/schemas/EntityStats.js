@@ -1,5 +1,5 @@
-import { Entity } from '../../Entity'
 import { Id, Integer, String } from '../../../core/schemas'
+import { Entity } from '../../Entity'
 
 const EntityStats = {
   collectionName: 'EntityStats',

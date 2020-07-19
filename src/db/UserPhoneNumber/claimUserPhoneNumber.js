@@ -1,6 +1,7 @@
 import { buildBatch, commitBatch, getFromRef } from '../../utils/db'
-import batchCreateUserPhoneNumber from './batchCreateUserPhoneNumber'
 import batchUpdatePhoneNumber from '../PhoneNumber/batchUpdatePhoneNumber'
+
+import batchCreateUserPhoneNumber from './batchCreateUserPhoneNumber'
 
 const claimUserPhoneNumber = async (context, { phoneNumberId, userId }) => {
   let ref

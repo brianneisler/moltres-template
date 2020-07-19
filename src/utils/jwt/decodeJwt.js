@@ -1,6 +1,6 @@
 import { base64UrlDecode } from '../base64'
-import { split } from '../lang'
 import { verify } from '../crypto'
+import { split } from '../lang'
 
 /**
  * support algorithm mapping

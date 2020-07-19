@@ -1,5 +1,6 @@
-import { App } from './schemas'
 import { setEntity } from '../Entity'
+
+import { App } from './schemas'
 
 const setApp = setEntity(App)
 

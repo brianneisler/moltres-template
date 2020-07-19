@@ -1,8 +1,9 @@
-import { HomeStreamEntityList, Page } from '../../components'
-import { Styles } from '../../styles'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import { defaultProps, memo, setDisplayName } from '../../../utils/react'
-import React from 'react'
+import { StreamEntityList, PageContainer } from '../../components'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('HomePage'),
@@ -14,9 +15,9 @@ const enhance = compose(
 
 const HomePage = enhance(() => {
   return (
-    <Page>
-      <HomeStreamEntityList />
-    </Page>
+    <PageContainer>
+      <StreamEntityList streamName="home" />
+    </PageContainer>
   )
 })
 

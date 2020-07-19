@@ -1,7 +1,7 @@
-import downloadFile from '../../utils/storage/downloadFile'
 import getImageById from '../../db/Image/getImageById'
-import getImageMeta from '../../utils/image/getImageMeta'
 import updateImage from '../../db/Image/updateImage'
+import getImageMeta from '../../utils/image/getImageMeta'
+import downloadFile from '../../utils/storage/downloadFile'
 
 const loadImageMeta = async (context, imageId) => {
   let image = await getImageById(context, imageId)

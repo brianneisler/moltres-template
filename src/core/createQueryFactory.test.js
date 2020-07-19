@@ -1,4 +1,5 @@
 import { createSelector } from '../utils/lang'
+
 import createQueryFactory from './createQueryFactory'
 import generateEngine from './generateEngine'
 import runSaga from './runSaga'
@@ -8,9 +9,8 @@ describe('createQueryFactory', () => {
     // eslint-disable-next-line no-unused-vars
     const createQuery = jest.fn((context, props, queryOptions) => null)
     // eslint-disable-next-line no-unused-vars
-    const enhancer = jest.fn(
-      (statePath) => (baseFactory) => (state, channel, context) =>
-        baseFactory(state, channel, context)
+    const enhancer = jest.fn(() => (baseFactory) => (state, channel, context) =>
+      baseFactory(state, channel, context)
     )
     const factory = jest.fn((state) => state)
     const queryExtensions = {}

@@ -1,6 +1,7 @@
-import { ChannelContext } from './schemas'
-import { assoc } from '../../utils/lang'
 import { buildQuery, findOneFromQuery } from '../../utils/db'
+import { assoc } from '../../utils/lang'
+
+import { ChannelContext } from './schemas'
 
 const queryRecentChannelContext = (context, channelId, queryOptions) =>
   buildQuery(

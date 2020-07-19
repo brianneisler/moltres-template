@@ -1,11 +1,13 @@
-import { createHost, deleteHost } from '../Host'
 import { prop } from 'ramda'
+
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { createHost, deleteHost } from '../Host'
+
 import createUrl from './createUrl'
 import deleteUrl from './deleteUrl'
 

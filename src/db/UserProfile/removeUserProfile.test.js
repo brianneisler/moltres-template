@@ -1,6 +1,6 @@
-import { ACCESS_DENIED } from '../../constants/Code'
-import { createUser, deleteUser } from '../User'
 import { prop } from 'ramda'
+
+import { ACCESS_DENIED } from '../../constants/Code'
 import {
   setupTestAdminContext,
   setupTestAnonymousContext,
@@ -11,6 +11,8 @@ import {
   tearDownTestServiceAccountContext,
   tearDownTestValidUserContext
 } from '../../test'
+import { createUser, deleteUser } from '../User'
+
 import createUserProfile from './createUserProfile'
 import deleteUserProfile from './deleteUserProfile'
 import findUserProfileById from './findUserProfileById'

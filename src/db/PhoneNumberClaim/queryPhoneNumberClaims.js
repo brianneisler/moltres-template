@@ -1,6 +1,7 @@
-import { PhoneNumberClaim } from './schemas'
 import { buildQuery } from '../../utils/db'
 import { curry, isUndefined } from '../../utils/lang'
+
+import { PhoneNumberClaim } from './schemas'
 
 const queryPhoneNumberClaims = curry(
   (context, { phoneNumberId, userId }, queryOptions) =>

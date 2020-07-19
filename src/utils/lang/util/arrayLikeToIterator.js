@@ -1,4 +1,5 @@
 import { END, START } from '../constants/Iterator'
+
 import indexEndOffset from './indexEndOffset'
 
 const iterAt = (index, arrayLike) => {

@@ -1,5 +1,6 @@
-import { EntityStats } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { EntityStats } from './schemas'
 
 const getEntityStatsById = getDocumentById(EntityStats)
 

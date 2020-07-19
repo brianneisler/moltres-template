@@ -1,8 +1,9 @@
-import * as actions from './actions'
+import { withConfig, withContext } from '../../../core'
 import { assoc, compose } from '../../../utils/lang'
 import { call, fork, handleAction, handleActions } from '../../../utils/redux'
 import { watchCurrentUser } from '../auth'
-import { withConfig, withContext } from '../../../core'
+
+import * as actions from './actions'
 import queryAndWatchCurrentUserRole from './queryAndWatchCurrentUserRole'
 
 const enhance = compose(withConfig('api'), withContext())

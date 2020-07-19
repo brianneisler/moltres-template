@@ -1,5 +1,5 @@
-import { Action } from '../../Action'
 import { Object, String } from '../../../core/schemas'
+import { Action } from '../../Action'
 
 const EntityChangedAction = {
   schema: Action.schema.keys({

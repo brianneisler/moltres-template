@@ -1,5 +1,6 @@
-import { equals, forEach, getProp, isNil, keys } from '../lang'
 import { lifecycle, setDisplayName, wrapDisplayName } from 'recompose'
+
+import { equals, forEach, getProp, isNil, keys } from '../lang'
 
 const executePropTransitions = (propListenerMap, nextProps, oldProps = {}) =>
   forEach((propName) => {

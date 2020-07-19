@@ -1,12 +1,14 @@
 import * as functions from 'firebase-functions'
-import * as modules from '../modules'
+
 import { assoc, isFunction, keys, reduce } from '../../utils/lang'
 import { camelCase } from '../../utils/string'
+import * as modules from '../modules'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 const setupScheduleFunctions = (config, runtimeOptions) =>
   reduce(
     (accum, moduleName) => {
+      // eslint-disable-next-line import/namespace
       const mod = modules[moduleName]
       if (isFunction(mod.setupSchedule)) {
         const scheduledFuncs = mod.setupSchedule(config)

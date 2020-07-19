@@ -1,4 +1,5 @@
 import { channel as createChannel } from 'redux-saga'
+
 import createPropStore from './createPropStore'
 
 describe('createPropStore', () => {

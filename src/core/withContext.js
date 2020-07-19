@@ -6,6 +6,7 @@ import {
   resolveToGenerator,
   shallowEquals
 } from '../utils/lang'
+
 import createFactory from './createFactory'
 import getContext from './getContext'
 

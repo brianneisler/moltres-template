@@ -1,12 +1,13 @@
-import flattenReducerMap from './flattenReducerMap'
 import getProp from '../lang/getProp'
-import handleAction from './handleAction'
 import invariant from '../lang/invariant'
 import isMap from '../lang/isMap'
 import isPlainObject from '../lang/isPlainObject'
 import isUndefined from '../lang/isUndefined'
 import keys from '../lang/keys'
 import map from '../lang/map'
+
+import flattenReducerMap from './flattenReducerMap'
+import handleAction from './handleAction'
 import reduceReducers from './reduceReducers'
 
 // NOTE THIS DOES NOT WORK WITH SAGAS!!!

@@ -1,4 +1,5 @@
 import EventEmitter from 'events'
+
 import getWindow from './getWindow'
 
 const getConnection = () => getWindow().navigator.connection

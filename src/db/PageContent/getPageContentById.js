@@ -1,5 +1,6 @@
-import { PageContent } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { PageContent } from './schemas'
 
 const getPageContentById = getDocumentById(PageContent)
 

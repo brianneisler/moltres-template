@@ -1,5 +1,6 @@
-import formatPhoneNumber from './formatPhoneNumber'
 import sha256 from 'crypto-js/sha256'
+
+import formatPhoneNumber from './formatPhoneNumber'
 
 const hashPhoneNumber = (phoneNumber) => {
   const formatted = formatPhoneNumber(phoneNumber)

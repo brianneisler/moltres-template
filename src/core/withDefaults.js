@@ -1,4 +1,5 @@
 import { merge } from '../utils/lang'
+
 import createFactory from './createFactory'
 
 const withDefaults = (defaultProps) => (factory) =>

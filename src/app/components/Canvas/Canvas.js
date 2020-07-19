@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import {
   setDisplayName,
   setPropTypes,
   withForwardRef
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import React from 'react'
 import View from '../View'
 
 const enhance = compose(

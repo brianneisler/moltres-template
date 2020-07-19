@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Linking, StyleSheet } from 'react-native'
+
 import { compose } from '../../../utils/lang'
 import {
   setDisplayName,
@@ -6,8 +9,6 @@ import {
   withHandlers,
   withProps
 } from '../../../utils/react'
-import PropTypes from 'prop-types'
-import React from 'react'
 import Text from '../Text'
 // import TouchableHoverableOpacity from '../TouchableHoverableOpacity'
 

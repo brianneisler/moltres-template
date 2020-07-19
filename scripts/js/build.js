@@ -1,5 +1,7 @@
-import { outputJson } from 'fs-extra'
 import { resolve } from 'path'
+
+import { outputJson } from 'fs-extra'
+
 import loadDotEnv from '../../src/utils/config/loadDotEnv'
 
 const build = async () => {

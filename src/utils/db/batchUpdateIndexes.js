@@ -1,4 +1,5 @@
 import { curry, map } from '../lang'
+
 import indexDoc from './indexDoc'
 
 const batchUpdateIndexes = curry(

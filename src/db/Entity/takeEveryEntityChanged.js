@@ -1,5 +1,6 @@
-import { EntityChangedAction } from './schemas'
 import { takeEvery } from 'redux-saga/effects'
+
+import { EntityChangedAction } from './schemas'
 
 const takeEveryEntityChanged = ({ changeType, entityType }, handler, args) =>
   takeEvery(

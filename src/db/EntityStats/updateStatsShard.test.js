@@ -1,11 +1,13 @@
-import { User, createUser, deleteUser } from '../User'
 import { map, prop, range } from 'ramda'
+
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
+import { User, createUser, deleteUser } from '../User'
+
 import deleteEntityStats from './deleteEntityStats'
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import updateStatsShard from './updateStatsShard'

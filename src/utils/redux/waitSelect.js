@@ -1,5 +1,6 @@
-import call from './call'
 import isNil from '../lang/isNil'
+
+import call from './call'
 import select from './select'
 import take from './take'
 

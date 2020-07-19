@@ -1,15 +1,8 @@
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+
 import { Code, StatusCode } from '../../../constants'
-import { LocationChangeAction, PreloadAction, ResponseAction } from './schemas'
-import {
-  all,
-  call,
-  handleAction,
-  handleActions,
-  put,
-  reduceReducers,
-  select,
-  takeEvery
-} from '../../../utils/redux'
+import { withContext } from '../../../core'
+import { expected } from '../../../utils/error'
 import {
   assoc,
   assocPath,
@@ -23,18 +16,26 @@ import {
   pipe,
   reduceRight
 } from '../../../utils/lang'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
-import { expected } from '../../../utils/error'
-import { filterRoutes } from './util'
+import {
+  all,
+  call,
+  handleAction,
+  put,
+  reduceReducers,
+  select,
+  takeEvery
+} from '../../../utils/redux'
 import { matchPath, parseLocation } from '../../../utils/url'
+
 import {
   preloadAction,
   preloadCompleteAction,
   replaceAction,
   responseAction
 } from './actions'
-import { withContext } from '../../../core'
+import { LocationChangeAction, PreloadAction, ResponseAction } from './schemas'
 import selectRouterPreload from './selectors/selectRouterPreload'
+import { filterRoutes } from './util'
 
 // NOTE BRN: We match multiple paths in case certain paths want to be able to
 // match existing routes. Like overlays which can appear on any route

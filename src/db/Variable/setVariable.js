@@ -1,5 +1,6 @@
-import { Variable } from './schemas'
 import { setEntity } from '../Entity'
+
+import { Variable } from './schemas'
 
 const setVariable = setEntity(Variable)
 

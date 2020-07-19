@@ -1,4 +1,5 @@
 import { base64UrlUnescape } from '../base64'
+
 import sign from './sign'
 
 const verify = (input, key, method, type, signature) => {

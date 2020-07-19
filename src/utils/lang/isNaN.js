@@ -1,5 +1,5 @@
-import { anyIsNaN } from './util'
 import curry from './curry'
+import { anyIsNaN } from './util'
 
 const isNaN = curry(anyIsNaN)
 

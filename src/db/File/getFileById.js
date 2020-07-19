@@ -1,5 +1,6 @@
-import { File } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { File } from './schemas'
 
 const getFileById = getDocumentById(File)
 

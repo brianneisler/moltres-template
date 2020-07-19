@@ -1,4 +1,5 @@
 import Infinity from '../classes/Infinity'
+
 import anyIsNumber from './anyIsNumber'
 
 /**

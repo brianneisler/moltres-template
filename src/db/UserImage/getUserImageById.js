@@ -1,5 +1,6 @@
-import { UserImage } from './schemas'
 import { getDocumentById } from '../../utils/db'
+
+import { UserImage } from './schemas'
 
 const getUserImageById = getDocumentById(UserImage)
 

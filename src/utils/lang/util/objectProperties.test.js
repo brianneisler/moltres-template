@@ -1,4 +1,5 @@
 import { Symbol } from '../classes'
+
 import objectProperties from './objectProperties'
 
 describe('objectProperties', () => {

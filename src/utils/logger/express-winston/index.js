@@ -18,10 +18,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-const winston = require('winston')
 const chalk = require('chalk')
-
 const _ = require('lodash')
+const winston = require('winston')
 
 /**
  * A default list of properties in the request object that are allowed to be logged.

@@ -1,5 +1,9 @@
-import { PageView } from '../../components'
-import { Styles } from '../../styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+
+import { selectQueryResults } from '../../../core'
+import { hasNotFoundOrAccessDeniedError } from '../../../utils/db'
+import { compose } from '../../../utils/lang'
 import {
   branch,
   connect,
@@ -9,12 +13,9 @@ import {
   setDisplayName,
   setPropTypes
 } from '../../../utils/react'
-import { compose } from '../../../utils/lang'
-import { hasNotFoundOrAccessDeniedError } from '../../../utils/db'
-import { selectQueryResults } from '../../../core'
+import { PageView } from '../../components'
+import { Styles } from '../../styles'
 import NotFound404Page from '../NotFound404Page'
-import PropTypes from 'prop-types'
-import React from 'react'
 
 const enhance = compose(
   setDisplayName('PageViewPage'),

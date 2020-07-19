@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+
 import loadEnv from '../../src/utils/config/loadEnv'
 
 const { log } = console

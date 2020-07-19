@@ -18,6 +18,7 @@ import anyToStringTag from './anyToStringTag'
  * isWeakMap(new Map())
  * // => false
  */
-const isWeakMap = (any) => anyIsObjectLike(any) && anyToStringTag(any) == 'WeakMap'
+const isWeakMap = (any) =>
+  anyIsObjectLike(any) && anyToStringTag(any) == 'WeakMap'
 
 export default isWeakMap

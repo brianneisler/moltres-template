@@ -1,4 +1,5 @@
 import { isFunction, once } from '../lang'
+
 import call from './call'
 import channel from './channel'
 import noneBuffer from './noneBuffer'

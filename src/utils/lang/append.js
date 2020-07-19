@@ -1,4 +1,5 @@
 import { append as rAppend } from 'ramda'
+
 import curry from './curry'
 import isImmutable from './isImmutable'
 

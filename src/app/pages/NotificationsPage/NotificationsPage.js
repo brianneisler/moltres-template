@@ -1,5 +1,5 @@
-import { NotificationList, Page } from '../../components'
-import { Styles } from '../../styles'
+import React from 'react'
+
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -7,8 +7,9 @@ import {
   memo,
   setDisplayName
 } from '../../../utils/react'
+import { NotificationList, PageContainer } from '../../components'
 import { selectCurrentUser } from '../../modules/auth'
-import React from 'react'
+import { Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('NotificationsPage'),
@@ -23,9 +24,9 @@ const enhance = compose(
 
 const NotificationPage = enhance(({ currentUser }) => {
   return (
-    <Page description="Your Notifications" robotsContent="noindex">
+    <PageContainer description="Your Notifications" robotsContent="noindex">
       <NotificationList userId={currentUser.id} />
-    </Page>
+    </PageContainer>
   )
 })
 
