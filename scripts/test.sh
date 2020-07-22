@@ -8,10 +8,9 @@ export NODE_ENV=development
 # NOTE: We always export the stage in case there is something that goes wrong
 export STAGE=${STAGE:=local}
 
-echo "setting stage '${STAGE}'..."
-firebase use ${STAGE}
-
 if [ "$TEST_INTEGRATION" = "true" ]; then
+  echo "setting stage '${STAGE}'..."
+  firebase use ${STAGE}
   echo "running integration tests on '${STAGE}'"
   npm run test:run -- $@
 else
