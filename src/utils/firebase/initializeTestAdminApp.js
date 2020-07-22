@@ -1,8 +1,11 @@
-import * as testing from '@firebase/testing'
-
 import { invariant, isObject, isString } from '../lang'
 
-const initializeTestAdminApp = ({ config, namespace }) => {
+import initializeEmulatorApp from './initializeEmulatorApp'
+
+/** Passing this in tells the emulator to treat you as an admin. */
+const ADMIN_TOKEN = 'owner'
+
+const initializeTestAdminApp = ({ config, firebase, namespace }) => {
   invariant(isString(namespace), 'namespace must be a defined String')
   invariant(isObject(config), 'config must be a defined Object')
   invariant(
@@ -14,12 +17,15 @@ const initializeTestAdminApp = ({ config, namespace }) => {
     'firebase projectId must be a defined String'
   )
 
-  return testing.initializeAdminApp(
-    {
-      projectId: config.firebase.projectId
-    },
-    namespace
-  )
+  const { projectId } = config.firebase
+
+  return initializeEmulatorApp({
+    accessToken: ADMIN_TOKEN,
+    databaseName: projectId,
+    firebase,
+    namespace,
+    projectId
+  })
 }
 
 export default initializeTestAdminApp

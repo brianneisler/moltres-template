@@ -23,7 +23,7 @@ const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   let storage
   if (isTestAppConfigured(config)) {
     firebase = firebaseMain
-    app = initializeTestAdminApp({ config, namespace })
+    app = initializeTestAdminApp({ config, firebase, namespace })
     auth = initializeAuthEmulator({ app, config })
     storage = initializeStorageEmulator({ app })
   } else {

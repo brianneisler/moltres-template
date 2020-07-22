@@ -54,6 +54,7 @@
     ]
   },
   "hosting": {
+    "appAssociation": "AUTO",
     "public": "public",
     "ignore": [
       "firebase.json",
@@ -89,6 +90,7 @@
       }
     ],
     "rewrites": [
+      { "source": "/link/**", "dynamicLinks": true },
       {
         "source": "**",
         "function": "app"

@@ -100,6 +100,29 @@ blocks:
             # Run task as defined in package.json:
             - npm run lint
 
+  - name: Build
+    task:
+      env_vars:
+        - name: NODE_ENV
+          value: development
+
+      prologue:
+        commands:
+          - checkout
+          - nvm use
+          - node --version
+          - npm --version
+
+      jobs:
+        - name: Build
+          commands:
+             # At this point we can assume 100% cache hit rate of node modules:
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+
+            # Run task as defined in package.json:
+            - npm run build
+
+
   - name: Test on emulators
     task:
       env_vars:

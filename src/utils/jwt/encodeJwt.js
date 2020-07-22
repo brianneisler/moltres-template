@@ -9,7 +9,8 @@ const algorithmMap = {
   HS256: 'sha256',
   HS384: 'sha384',
   HS512: 'sha512',
-  RS256: 'RSA-SHA256'
+  RS256: 'RSA-SHA256',
+  none: 'none'
 }
 
 /**
@@ -19,7 +20,8 @@ const typeMap = {
   HS256: 'hmac',
   HS384: 'hmac',
   HS512: 'hmac',
-  RS256: 'sign'
+  RS256: 'sign',
+  none: 'none'
 }
 
 /**
@@ -33,8 +35,8 @@ const typeMap = {
  */
 const encodeJwt = (payload, key, algorithm = 'RS256', options = {}) => {
   // Check key
-  if (!key) {
-    throw new Error('Require key')
+  if (!key && algorithm !== 'none') {
+    throw new Error('key must be defined')
   }
 
   const signingMethod = algorithmMap[algorithm]

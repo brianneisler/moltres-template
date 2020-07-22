@@ -14,6 +14,7 @@ const babelLoader = {
       path.resolve(nodeModulesDir, 'expo-linear-gradient'),
       // NOTE BRN: We include query-string for ie11 support
       path.resolve(nodeModulesDir, 'query-string'),
+      path.resolve(nodeModulesDir, 'react-native-markdown-display'),
       path.resolve(nodeModulesDir, 'react-native-typography'),
       path.resolve(nodeModulesDir, 'react-native-web', 'src')
     ],

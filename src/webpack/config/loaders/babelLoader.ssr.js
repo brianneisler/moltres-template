@@ -10,6 +10,7 @@ const babelLoader = {
       srcDir,
       path.resolve(nodeModulesDir, 'emoji-mart'),
       path.resolve(nodeModulesDir, 'expo-linear-gradient'),
+      path.resolve(nodeModulesDir, 'react-native-markdown-display'),
       path.resolve(nodeModulesDir, 'react-native-typography'),
       path.resolve(nodeModulesDir, 'react-native-web', 'src')
     ],

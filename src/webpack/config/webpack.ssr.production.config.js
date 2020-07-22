@@ -1,8 +1,9 @@
+require('@babel/register')()
 const path = require('path')
 
 const nodeExternals = require('webpack-node-externals')
 
-const babelLoader = require('./loaders/babelLoader.ssr')
+const babelLoader = require('./loaders/babelLoader.ssr').default
 
 const config = () => ({
   entry: [path.join(__dirname, '..', '..', 'index.ssr')],

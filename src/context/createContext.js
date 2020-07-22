@@ -37,7 +37,7 @@ const createContext = ({
   let performance
 
   if (isTestAppConfigured(config)) {
-    app = initializeTestApp({ auth: testAuth, config, namespace })
+    app = initializeTestApp({ auth: testAuth, config, firebase, namespace })
     auth = initializeAuthEmulator({ app })
     storage = initializeStorageEmulator({ app })
   } else {
