@@ -5,9 +5,6 @@ export STAGE=${STAGE:=${1:-test}}
 
 echo "building ${STAGE}..."
 
-# Select the firebase app to deploy
-firebase use ${STAGE}
-
 # Config workaround
 babel-node ./scripts/js/build.js
 
