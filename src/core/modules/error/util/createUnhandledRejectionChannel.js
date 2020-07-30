@@ -1,4 +1,4 @@
-import { eventChannel, slidingBuffer } from '../../../../utils/redux'
+import { eventChannel, expandingBuffer } from '../../../../utils/redux'
 
 const createUnhandledRejectionChannel = () => {
   return eventChannel((emitter) => {
@@ -9,7 +9,7 @@ const createUnhandledRejectionChannel = () => {
     return () => {
       process.removeListener('unhandledRejection', listener)
     }
-  }, slidingBuffer(1))
+  }, expandingBuffer(1))
 }
 
 export default createUnhandledRejectionChannel

@@ -1,4 +1,4 @@
-import { deferredPromise } from '../../../utils/lang'
+import { externalPromise } from '../../../utils/lang'
 import { call, handleActions, take } from '../../../utils/redux'
 import { uncaughtExceptionAction } from '../error/actions'
 
@@ -55,7 +55,7 @@ const module = () => {
   }
 
   const start = (store) => {
-    promise = deferredPromise()
+    promise = externalPromise()
     // NOTE BRN: This kicks off all modules as Spawned Tasks which separates
     // them from the main line of execution. This way, if a single module has an
     // error, it does not bring down the entire app.

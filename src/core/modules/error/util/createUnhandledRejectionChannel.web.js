@@ -1,4 +1,4 @@
-import { eventChannel, slidingBuffer } from '../../../../utils/redux'
+import { eventChannel, expandingBuffer } from '../../../../utils/redux'
 import { getWindow } from '../../../../utils/web'
 
 const createUnhandledRejectionChannel = () => {
@@ -11,7 +11,7 @@ const createUnhandledRejectionChannel = () => {
     return () => {
       getWindow().removeEventListener('unhandledrejection', listener)
     }
-  }, slidingBuffer(1))
+  }, expandingBuffer(1))
 }
 
 export default createUnhandledRejectionChannel
