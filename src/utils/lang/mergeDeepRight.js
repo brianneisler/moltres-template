@@ -1,1 +1,1 @@
-export { mergeDeepRight as default } from 'ramda'
+export { mergeDeepRight as default } from 'moltres/lang'

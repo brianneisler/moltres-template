@@ -1,5 +1,3 @@
-export { default as generateAdminConfig } from './generateAdminConfig'
-export { default as generateConfig } from './generateConfig'
 export { default as generateProjectId } from './generateProjectId'
 export { default as isTestAppConfigured } from './isTestAppConfigured'
 export { default as loadDotEnv } from './loadDotEnv'

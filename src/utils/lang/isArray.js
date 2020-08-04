@@ -1,1 +1,1 @@
-export { default } from './util/anyIsArray'
+export { isArray as default } from 'moltres/lang'

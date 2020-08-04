@@ -1,1 +1,1 @@
-export { default } from './util/anyIsDate'
+export { isDate as default } from 'moltres/lang'

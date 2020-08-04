@@ -1,1 +1,1 @@
-export { default } from './util/anyIsImmutableSet'
+export { isImmutableSet as default } from 'moltres/lang'

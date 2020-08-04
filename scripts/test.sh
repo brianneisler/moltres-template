@@ -5,16 +5,13 @@ if [ $? -eq 1 ]; then
 fi
 
 export NODE_ENV=development
-# NOTE: We always export the stage in case there is something that goes wrong
-export STAGE=${STAGE:=local}
 
 if [ "$TEST_INTEGRATION" = "true" ]; then
-  echo "setting stage '${STAGE}'..."
-  firebase use ${STAGE}
   echo "running integration tests on '${STAGE}'"
+  firebase use "${STAGE}" --token "${FIREBASE_TOKEN}"
   npm run test:run -- $@
 else
-  firebase emulators:exec "npm run test:run -- $@"
+  firebase emulators:exec --project local --token "${FIREBASE_TOKEN}" "npm run test:run -- $@"
 fi
 
 if [ $? -eq 0 ]

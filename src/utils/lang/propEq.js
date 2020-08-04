@@ -1,1 +1,1 @@
-export { propEq as default } from 'ramda'
+export { propEq as default } from 'moltres/lang'

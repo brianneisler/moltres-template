@@ -1,6 +1,1 @@
-import addIndex from './addIndex'
-import map from './map'
-
-const mapIndexed = addIndex(map)
-
-export default mapIndexed
+export { mapIndexed as default } from 'moltres/lang'

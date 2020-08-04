@@ -1,1 +1,1 @@
-export { anyIsNull as default } from './util'
+export { isNull as default } from 'moltres/lang'

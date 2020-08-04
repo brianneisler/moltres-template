@@ -1,3 +1,1 @@
-const isWildcard = (key) => key[0] === ':'
-
-export default isWildcard
+export { isWildcard as default } from 'moltres/lang'

@@ -1,1 +1,1 @@
-export { ifElse as default } from 'ramda'
+export { ifElse as default } from 'moltres/lang'

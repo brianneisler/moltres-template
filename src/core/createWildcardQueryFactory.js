@@ -4,14 +4,13 @@ import {
   getProp,
   identity,
   keys,
-  mapAll,
   mergeAll,
   omit,
   replaceWildcards,
   selectWildcards
 } from '../utils/lang'
 import { ImmutableMap } from '../utils/lang/classes'
-import { call } from '../utils/redux'
+import { call, mapAll } from '../utils/redux'
 
 import createFactory from './createFactory'
 import createSingleQueryFactory from './createSingleQueryFactory'

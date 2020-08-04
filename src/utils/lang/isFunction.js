@@ -1,1 +1,1 @@
-export { default } from './util/anyIsFunction'
+export { isFunction as default } from 'moltres/lang'

@@ -1,1 +1,1 @@
-export { default } from 'lodash/get'
+export { get as default } from 'moltres/lang'

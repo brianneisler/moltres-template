@@ -64,6 +64,7 @@ const createContext = ({
     config,
     database,
     firebase,
+    isContext: true,
     logger,
     namespace,
     performance,

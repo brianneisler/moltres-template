@@ -2,6 +2,7 @@
 
 require('@babel/register')
 const program = require('commander')
+
 const pack = require('../package.json')
 
 const result = program

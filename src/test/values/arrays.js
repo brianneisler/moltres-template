@@ -1,7 +1,1 @@
-import { Array } from '../../utils/lang/classes'
-
-const values = [[], new Array()]
-
-const arrays = () => values
-
-export default arrays
+export { arrays as default } from 'moltres/test'

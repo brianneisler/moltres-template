@@ -1,1 +1,1 @@
-export { merge as default } from 'ramda'
+export { merge as default } from 'moltres/lang'

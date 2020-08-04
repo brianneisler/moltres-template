@@ -1,9 +1,10 @@
 import { ALERT } from '../../../constants/Modal'
-import { assoc, mapAll } from '../../../utils/lang'
+import { assoc } from '../../../utils/lang'
 import {
   call,
   handleAction,
   handleActions,
+  mapAll,
   put,
   takeEvery,
   trigger

@@ -1,1 +1,1 @@
-export { default } from './util/anyIsPromise'
+export { isPromise as default } from 'moltres/lang'

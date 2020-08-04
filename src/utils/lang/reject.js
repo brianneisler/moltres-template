@@ -1,1 +1,1 @@
-export { reject as default } from 'ramda'
+export { reject as default } from 'moltres/lang'

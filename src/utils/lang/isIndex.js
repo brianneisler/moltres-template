@@ -1,1 +1,1 @@
-export { anyIsIndex as default } from './util'
+export { isIndex as default } from 'moltres/lang'

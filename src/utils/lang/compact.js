@@ -1,1 +1,1 @@
-export { default } from 'lodash/compact'
+export { compact as default } from 'moltres/lang'

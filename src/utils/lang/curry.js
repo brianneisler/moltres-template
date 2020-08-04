@@ -1,1 +1,1 @@
-export { curry as default } from 'ramda'
+export { curry as default } from 'moltres/lang'

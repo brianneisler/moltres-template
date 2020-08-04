@@ -1,9 +1,9 @@
+!.*
 coverage
 dist
 node_modules
 private
 public
 tmp
-!.*
 web-build/
 web-report/

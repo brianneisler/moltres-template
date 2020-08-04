@@ -1,1 +1,1 @@
-export { evolve as default } from 'ramda'
+export { evolve as default } from 'moltres/lang'

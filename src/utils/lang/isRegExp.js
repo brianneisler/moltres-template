@@ -1,1 +1,1 @@
-export { default } from './util/anyIsRegExp'
+export { isRegExp as default } from 'moltres/lang'

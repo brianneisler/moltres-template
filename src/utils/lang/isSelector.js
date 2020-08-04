@@ -1,5 +1,1 @@
-import isFunction from './isFunction'
-
-const isSelector = (value) => value && isFunction(value.select)
-
-export default isSelector
+export { isSelector as default } from 'moltres/lang'

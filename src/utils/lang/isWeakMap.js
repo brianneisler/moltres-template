@@ -1,1 +1,1 @@
-export { default } from './util/anyIsWeakMap'
+export { isWeakMap as default } from 'moltres/lang'

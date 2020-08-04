@@ -1,5 +1,1 @@
-import isObject from './isObject'
-
-const satisfiesPropertied = (value) => isObject(value)
-
-export default satisfiesPropertied
+export { satisfiesPropertied as default } from 'moltres/lang'

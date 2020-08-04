@@ -1,10 +1,9 @@
 # moltres
 
-Firebase application framework.
+Your application!
 
-This application framework provides functionality for building a full stack
-application on firebase. The application structure is built using firebase,
-redux, react, react-native and react-native-web.
+This application is built on the
+[moltres](https://github.com/brianneisler/moltres) application framework.
 
 An app built using moltres is a full fledged mobile app (iOS and Android) as well as web app.
 
@@ -12,6 +11,8 @@ An app built using moltres is a full fledged mobile app (iOS and Android) as wel
 ## Project Status
 
 [![license](https://img.shields.io/npm/l/moltres.svg)](https://www.npmjs.com/package/moltres)
+[![build status](https://brianneisler.semaphoreci.com/badges/moltres-template.svg?style=shields)](https://brianneisler.semaphoreci.com/projects/moltres-template)
+[![codecov](https://codecov.io/gh/brianneisler/moltres-template/branch/master/graph/badge.svg)](https://codecov.io/gh/brianneisler/moltres-template)<br/>
 
 
 ## Getting Started
@@ -27,7 +28,7 @@ Setup your firebase application on https://firebase.google.com/
 ### Updating your application with changes from template
 * Add this repo as a remote to your repo
 ```
-git remote add template https://github.com/brianneisler/moltres.git
+git remote add template https://github.com/brianneisler/moltres-template.git
 ```
 * Then fecth master from template
 ```

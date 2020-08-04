@@ -1,1 +1,1 @@
-export { addIndex as default } from 'ramda'
+export { addIndex as default } from 'moltres/lang'

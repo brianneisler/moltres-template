@@ -1,5 +1,1 @@
-import nth from './nth'
-
-const head = nth(0)
-
-export default head
+export { head as default } from 'moltres/lang'

@@ -42,6 +42,7 @@ const createAdminContext = async ({ config, namespace, source, ...rest }) => {
     config,
     database,
     firebase,
+    isContext: true,
     logger,
     namespace,
     source,

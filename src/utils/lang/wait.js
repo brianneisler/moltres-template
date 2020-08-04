@@ -1,8 +1,1 @@
-const wait = (duration) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, duration)
-  })
-
-export default wait
+export { wait as default } from 'moltres/lang'

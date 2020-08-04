@@ -1,3 +1,1 @@
-const booleans = () => [true, false]
-
-export default booleans
+export { booleanLiterals as default } from 'moltres/test'

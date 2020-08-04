@@ -1,4 +1,4 @@
-import { Component, ComponentType } from '@firebase/component'
+import { Component } from '@firebase/component'
 import { setLogLevel, LogLevel } from '@firebase/logger'
 
 /** If this environment variable is set, use it for the database emulator's address. */
@@ -50,7 +50,7 @@ const initializeEmulatorApp = ({
         getUid: () => null,
         removeAuthTokenListener: () => {}
       }),
-      ComponentType.PRIVATE
+      'PRIVATE'
     )
 
     app._addOrOverwriteComponent(mockAuthComponent)

@@ -1,11 +1,1 @@
-const values = [
-  function () {},
-  () => {},
-  async function () {},
-  async () => {},
-  function* () {}
-]
-
-const functions = () => values
-
-export default functions
+export { functions as default } from 'moltres/test'

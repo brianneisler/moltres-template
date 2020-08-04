@@ -1,1 +1,1 @@
-export { curryN as default } from 'ramda'
+export { curryN as default } from 'moltres/lang'

@@ -1,7 +1,6 @@
-import { resolve } from 'path'
-
-import generateAdminConfig from '../utils/config/generateAdminConfig'
+import generateAdminConfig from '../config/generateAdminConfig'
 import loadEnv from '../utils/config/loadEnv'
+import { pathResolve } from '../utils/path'
 
 const getStage = () => {
   if (process.env.STAGE) {
@@ -17,7 +16,7 @@ const getStage = () => {
 
 const setupFunctionConfig = () => {
   const stage = getStage()
-  loadEnv(resolve(__dirname, '..', '..'), { stage })
+  loadEnv(pathResolve(__dirname, '..', '..'), { stage })
   return generateAdminConfig({
     stage
   })

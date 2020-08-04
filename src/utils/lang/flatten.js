@@ -1,1 +1,1 @@
-export { flatten as default } from 'ramda'
+export { flatten as default } from 'moltres/lang'

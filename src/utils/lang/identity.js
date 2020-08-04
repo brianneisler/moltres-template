@@ -1,1 +1,1 @@
-export { identity as default } from 'ramda'
+export { identity as default } from 'moltres/lang'

@@ -1,2 +1,2 @@
-export { default as isAbsolute } from './isAbsolute'
-export { default as resolve } from './resolve'
+export { default as isPathAbsolute } from './isPathAbsolute'
+export { default as pathResolve } from './pathResolve'

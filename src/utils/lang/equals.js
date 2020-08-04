@@ -1,1 +1,1 @@
-export { equals as default } from 'ramda'
+export { equals as default } from 'moltres/lang'

@@ -1,1 +1,1 @@
-export { default } from './util/anyIsIterable'
+export { isIterable as default } from 'moltres/lang'

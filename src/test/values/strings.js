@@ -1,5 +1,1 @@
-const values = ['', 'a', 'abc']
-
-const strings = () => values
-
-export default strings
+export { strings as default } from 'moltres/test'

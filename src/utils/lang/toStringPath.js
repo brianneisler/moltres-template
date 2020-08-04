@@ -1,5 +1,1 @@
-import join from './join'
-
-const toStringPath = join('.')
-
-export default toStringPath
+export { toStringPath as default } from 'moltres/lang'

@@ -1,1 +1,1 @@
-export { anyIsProperty as default } from './util'
+export { isProperty as default } from 'moltres/lang'

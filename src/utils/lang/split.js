@@ -1,1 +1,1 @@
-export { split as default } from 'ramda'
+export { split as default } from 'moltres/lang'

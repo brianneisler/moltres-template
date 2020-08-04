@@ -1,1 +1,1 @@
-export { default } from './size'
+export { length as default } from 'moltres/lang'

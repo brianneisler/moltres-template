@@ -1,5 +1,1 @@
-const values = [(function* () {})()]
-
-const generators = () => values
-
-export default generators
+export { generators as default } from 'moltres/test'

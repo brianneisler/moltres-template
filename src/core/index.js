@@ -4,7 +4,6 @@ export * from './selectors'
 
 export { default as addQueryWatcher } from './addQueryWatcher'
 export { default as addQueryWatcherTask } from './addQueryWatcherTask'
-export { default as createChannel } from './createChannel'
 export { default as createEngine } from './createEngine'
 export { default as createFactory } from './createFactory'
 export { default as createQueryChannel } from './createQueryChannel'

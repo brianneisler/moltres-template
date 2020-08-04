@@ -1,1 +1,1 @@
-export { default } from 'lodash/escapeRegExp'
+export { escapeRegExp as default } from 'moltres/lang'

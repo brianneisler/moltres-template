@@ -1,1 +1,1 @@
-export { sortBy as default } from 'ramda'
+export { sortBy as default } from 'moltres/lang'

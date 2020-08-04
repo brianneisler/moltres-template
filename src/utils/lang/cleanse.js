@@ -1,6 +1,1 @@
-import isNil from './isNil'
-import reject from './reject'
-
-const cleanse = reject(isNil)
-
-export default cleanse
+export { cleanse as default } from 'moltres/lang'

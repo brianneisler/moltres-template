@@ -1,1 +1,1 @@
-export { gt as default } from 'ramda'
+export { gt as default } from 'moltres/lang'

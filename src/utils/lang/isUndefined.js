@@ -1,1 +1,1 @@
-export { default } from './util/anyIsUndefined'
+export { isUndefined as default } from 'moltres/lang'

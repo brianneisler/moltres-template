@@ -1,1 +1,1 @@
-export { uniq as default } from 'ramda'
+export { uniq as default } from 'moltres/lang'

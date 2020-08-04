@@ -1,1 +1,1 @@
-export { default } from './util/anyIsInteger'
+export { isInteger as default } from 'moltres/lang'

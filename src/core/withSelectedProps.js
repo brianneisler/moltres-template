@@ -12,7 +12,6 @@ import {
   join,
   keys,
   map,
-  mapAll,
   mergeAll,
   omit,
   reduce,
@@ -23,7 +22,7 @@ import {
   weakMemoize
 } from '../utils/lang'
 import { ImmutableMap } from '../utils/lang/classes'
-import { call } from '../utils/redux'
+import { call, mapAll } from '../utils/redux'
 
 import createFactory from './createFactory'
 

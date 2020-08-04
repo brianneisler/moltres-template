@@ -1,3 +1,1 @@
-const noop = () => undefined
-
-export default noop
+export { noop as default } from 'moltres/lang'

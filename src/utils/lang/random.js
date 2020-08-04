@@ -1,1 +1,1 @@
-export { default } from 'lodash/random'
+export { random as default } from 'moltres/lang'

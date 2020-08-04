@@ -1,1 +1,1 @@
-export { forEachObjIndexed as default } from 'ramda'
+export { forEachObjIndexed as default } from 'moltres/lang'

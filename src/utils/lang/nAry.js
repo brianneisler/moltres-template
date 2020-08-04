@@ -1,1 +1,1 @@
-export { nAry as default } from 'ramda'
+export { nAry as default } from 'moltres/lang'

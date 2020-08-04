@@ -1,1 +1,1 @@
-export { default } from './util/anyIsNumber'
+export { isNumber as default } from 'moltres/lang'

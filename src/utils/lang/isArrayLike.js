@@ -1,1 +1,1 @@
-export { default } from './util/anyIsArrayLike'
+export { isArrayLike as default } from 'moltres/lang'

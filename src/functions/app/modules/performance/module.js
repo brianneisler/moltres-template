@@ -1,11 +1,11 @@
 import { readFileSync } from '../../../../utils/fs'
-import { resolve } from '../../../../utils/path'
+import { pathResolve } from '../../../../utils/path'
 
 // TODO BRN: Replace this with raw-loader once we swtich to using webpack for
 // `functions` code.
 // https://stackoverflow.com/questions/44029866/import-javascript-files-as-a-string
 const FIRST_INPUT_DELAY = readFileSync(
-  resolve(
+  pathResolve(
     __dirname,
     '..',
     '..',

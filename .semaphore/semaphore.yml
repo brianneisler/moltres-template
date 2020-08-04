@@ -125,9 +125,14 @@ blocks:
 
   - name: Test on emulators
     task:
+      secrets:
+        - name: config-local
+
       env_vars:
         - name: NODE_ENV
           value: development
+        - name: STAGE
+          value: local
 
       prologue:
         commands:

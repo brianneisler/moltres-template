@@ -1,5 +1,5 @@
 import { serveStatic } from '../../../../utils/express'
-import { resolve } from '../../../../utils/path'
+import { pathResolve } from '../../../../utils/path'
 
 const mod = {
   setupStaticRouter: (router) => {
@@ -8,7 +8,9 @@ const mod = {
     // that is uploaded to the firebase CDN (at the moment ALL files are uploaded
     // to the CDN so this really handles nothing...)
     router.use(
-      serveStatic(resolve(__dirname, '..', '..', '..', '..', '..', 'public'))
+      serveStatic(
+        pathResolve(__dirname, '..', '..', '..', '..', '..', 'public')
+      )
       // serveStatic(path.resolve(__dirname, '..', '..', '..', '..', '..', 'public'), {
       //   cacheControl: true,
       //   immutable: true,

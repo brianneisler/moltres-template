@@ -1,1 +1,1 @@
-export { default } from './util/anyIsSet'
+export { isSet as default } from 'moltres/lang'

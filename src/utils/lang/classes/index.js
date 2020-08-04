@@ -1,7 +1,6 @@
 export { default as Array } from './Array'
 export { default as ArrayBuffer } from './ArrayBuffer'
 export { default as Boolean } from './Boolean'
-export { default as Buffer } from './Buffer'
 export { default as Date } from './Date'
 export { default as Error } from './Error'
 export { default as Function } from './Function'

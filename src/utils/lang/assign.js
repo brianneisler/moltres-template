@@ -1,1 +1,1 @@
-export { default } from 'lodash/assign'
+export { assign as default } from 'moltres/lang'
