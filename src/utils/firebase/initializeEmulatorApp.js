@@ -1,5 +1,5 @@
 import { Component } from '@firebase/component'
-import { setLogLevel, LogLevel } from '@firebase/logger'
+import { LogLevel, setLogLevel } from '@firebase/logger'
 
 /** If this environment variable is set, use it for the database emulator's address. */
 const DATABASE_ADDRESS_ENV = 'FIREBASE_DATABASE_EMULATOR_ADDRESS'

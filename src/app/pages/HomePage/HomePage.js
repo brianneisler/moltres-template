@@ -2,7 +2,7 @@ import React from 'react'
 
 import { compose } from '../../../utils/lang'
 import { defaultProps, memo, setDisplayName } from '../../../utils/react'
-import { StreamEntityList, PageContainer } from '../../components'
+import { PageContainer, StreamEntityList } from '../../components'
 import { Styles } from '../../styles'
 
 const enhance = compose(

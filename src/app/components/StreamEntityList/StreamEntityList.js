@@ -4,9 +4,9 @@ import React from 'react'
 import { Code } from '../../../constants'
 import { compose, getPath, negate, reject, sortBy } from '../../../utils/lang'
 import {
-  withHandlers,
   setDisplayName,
-  setPropTypes
+  setPropTypes,
+  withHandlers
 } from '../../../utils/react'
 import EntityView from '../EntityView'
 import PaginatedQueryView from '../PaginatedQueryView'
