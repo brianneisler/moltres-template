@@ -43,7 +43,7 @@
     "start:web": "moltres run ./scripts/start-web.sh",
     "start:webpack:ssr": "moltres run ./scripts/start-webpack-ssr.sh",
     "start:webpack:web": "moltres run ./scripts/start-webpack-web.sh",
-    "test": "moltres run ./scripts/test.sh",
+    "test": "moltres run ./scripts/test.sh --",
     "test:ci": "moltres run ./scripts/test-ci.sh",
     "test:integration": "moltres run ./scripts/test-integration.sh",
     "test:run": "moltres run ./scripts/test-run.sh"
@@ -92,7 +92,7 @@
     "is-url": "^1.2.4",
     "lodash": "^4.17.19",
     "mime-types": "^2.1.26",
-    "moltres": "^0.2.5",
+    "moltres": "^0.2.6",
     "parse-duration": "^0.1.2",
     "path-to-regexp": "^6.1.0",
     "prop-types": "^15.7.2",
