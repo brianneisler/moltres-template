@@ -211,10 +211,14 @@ service cloud.firestore {
         'Image': 'Images',
         'Index': 'Indexes',
         'InternalPhoneNumber': 'InternalPhoneNumbers',
+        'List':'Lists',
+        'ListEntity':'ListEntities',
         'Notification': 'Notifications',
         'NotificationSend': 'NotificationSends',
         'PhoneNumber': 'PhoneNumbers',
         'PhoneNumberClaim': 'PhoneNumberClaims',
+        'Queue':'Queues',
+        'QueueEntity':'QueueEntities',
         'ServiceAccount': 'ServiceAccounts',
         'SMSChallenge': 'SMSChallenges',
         'SMSChannel': 'SMSChannels',
@@ -1037,6 +1041,130 @@ service cloud.firestore {
     }
 
 
+    // List implementation
+    // -----------------------------
+
+    function getListAfter(id) {
+      return getAfter(/$(databasePath())/Lists/$(id))
+    }
+
+    function getListBefore(id) {
+      return get(/$(databasePath())/Lists/$(id))
+    }
+
+    function listExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Lists/$(id))
+    }
+
+    function listExistsBefore(id) {
+      return exists(/$(databasePath())/Lists/$(id))
+    }
+
+    function validateListData(data) {
+      return (
+        (isNull(data.parentEntityId) && isNull(data.parentEntityType)) ||
+        entityExistsAfter(data.parentEntityType, data.parentEntityId)
+      )
+    }
+
+    function validateList(resource) {
+      return validateEntity(resource) &&
+        validateListData(resource.data)
+    }
+
+    function checkReadList(resource) {
+      return currentUserCanReadPublicEntity(resource, false)
+    }
+
+    function checkCreateList(id) {
+      let list = getListAfter(id);
+      return list != null && validateList(list)
+    }
+
+    function checkUpdateList(id) {
+      let list = getListAfter(id);
+      return list != null && validateList(list) && currentUserIsServiceAccount()
+    }
+
+    function checkDeleteList() {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount()
+    }
+
+    match /Lists/{id} {
+      allow read: if checkReadList(resource);
+      allow create: if checkCreateList(id);
+      allow update: if checkUpdateList(id);
+      allow delete: if checkDeleteList();
+    }
+
+    // ListEntity implementation
+    // -----------------------------
+
+    function getListEntityAfter(id) {
+      return getAfter(/$(databasePath())/ListEntities/$(id))
+    }
+
+    function getListEntityBefore(id) {
+      return get(/$(databasePath())/ListEntities/$(id))
+    }
+
+    function listEntityExistsAfter(id) {
+      return existsAfter(/$(databasePath())/ListEntities/$(id))
+    }
+
+    function EntityExistsBefore(id) {
+      return exists(/$(databasePath())/ListEntities/$(id))
+    }
+
+    function validateListEntityData(data) {
+      return listExistsAfter(data.listId) &&
+        (isIndex(data.index)) &&
+        entityExistsAfter(data.entityType, data.entityId)
+    }
+
+    function validateListEntity(resource) {
+      return validateEntity(resource) &&
+        validateListEntityData(resource.data)
+    }
+
+    function checkReadListEntity(resource) {
+      return currentUserCanReadPublicEntity(resource, false)
+    }
+
+    function checkCreateListEntity(id) {
+      let queueEntity = getListEntityAfter(id);
+      return queueEntity != null && validateListEntity(queueEntity)
+        && indexedIdMatchesAfter('ListEntity', ['listId', 'index'], id)
+        && currentUserIsServiceAccount();
+    }
+
+    function checkUpdateListEntity(id) {
+      let queueEntity = getListEntityAfter(id);
+      return queueEntity != null && validateListEntity(queueEntity)
+        && indexedIdMatchesAfter('ListEntity', ['listId', 'index'], id)
+        && currentUserIsServiceAccount();
+    }
+
+    function checkDeleteListEntity() {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount()
+    }
+
+    match /ListEntities/{id} {
+      allow read: if checkReadListEntity(resource);
+      allow create: if checkCreateListEntity(id);
+      allow update: if checkUpdateListEntity(id);
+      allow delete: if checkDeleteListEntity();
+    }
+
+    match /Indexes/ListEntities/listId_index/{listId_index} {
+      allow read: if true;
+      allow create: if indexedValueMatchesAfter('ListEntity', 'listId_index', listId_index);
+      allow delete: if currentUserIsServiceAccount();
+    }
+
+
     // Notification implementation
     // -----------------------------
 
@@ -1293,6 +1421,137 @@ service cloud.firestore {
         phoneNumberId
       );
 
+      allow delete: if currentUserIsServiceAccount();
+    }
+
+
+    // Queue implementation
+    // -----------------------------
+
+    function getQueueAfter(id) {
+      return getAfter(/$(databasePath())/Queues/$(id))
+    }
+
+    function getQueueBefore(id) {
+      return get(/$(databasePath())/Queues/$(id))
+    }
+
+    function queueExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Queues/$(id))
+    }
+
+    function queueExistsBefore(id) {
+      return exists(/$(databasePath())/Queues/$(id))
+    }
+
+    function validateQueueData(data) {
+      return (
+        (isNull(data.parentEntityId) && isNull(data.parentEntityType)) ||
+        entityExistsAfter(data.parentEtityType, data.parentEntityId)
+      )
+    }
+
+    function validateQueue(resource) {
+      return validateEntity(resource) &&
+        validateQueueData(resource.data)
+    }
+
+    function checkReadQueue(resource) {
+      return currentUserCanReadPublicEntity(resource, false)
+    }
+
+    function checkCreateQueue(id) {
+      let queue = getQueueAfter(id);
+      return queue != null && validateQueue(queue)
+        && currentUserIsServiceAccount();
+    }
+
+    function checkUpdateQueue(id) {
+      let queue = getQueueAfter(id);
+      return queue != null && validateQueue(queue)
+        && currentUserIsServiceAccount();
+    }
+
+    function checkDeleteQueue() {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount()
+    }
+
+    function currentUserOwnsQueue(queueId){
+      return currentUserIsServiceAccount() || currentUserHasAdminRole() ||
+        (getQueueAfter(queueId).userId == request.auth.uid)
+    }
+
+    match /Queues/{id} {
+      allow read: if checkReadQueue(resource);
+      allow create: if checkCreateQueue(id);
+      allow update: if checkUpdateQueue(id);
+      allow delete: if checkDeleteQueue();
+    }
+
+    // QueueEntity implementation
+    // -----------------------------
+
+    function getQueueEntityAfter(id) {
+      return getAfter(/$(databasePath())/QueueEntities/$(id))
+    }
+
+    function getQueueEntityBefore(id) {
+      return get(/$(databasePath())/QueueEntities/$(id))
+    }
+
+    function queueEntityExistsAfter(id) {
+      return existsAfter(/$(databasePath())/QueueEntities/$(id))
+    }
+
+    function queueEntityExistsBefore(id) {
+      return exists(/$(databasePath())/QueueEntities/$(id))
+    }
+
+    function validateQueueEntityData(data) {
+      return queueExistsAfter(data.queueId) &&
+        isInteger(data.order) &&
+        entityExistsAfter(data.entityType, data.entityId)
+    }
+
+    function validateQueueEntity(resource) {
+      return validateEntity(resource) &&
+        validateQueueEntityData(resource.data)
+    }
+
+    function checkReadQueueEntity(resource) {
+      return currentUserCanReadPublicEntity(resource, false)
+    }
+
+    function checkCreateQueueEntity(id) {
+      let queueEntity = getQueueEntityAfter(id);
+      return queueEntity != null && validateQueueEntity(queueEntity) &&
+        currentUserOwnsQueue(queueEntity.queueId) &&
+        indexedIdMatchesAfter('QueueEntity', ['queueId', 'order'], id)
+    }
+
+    function checkUpdateQueueEntity(id) {
+      let queueEntity = getQueueEntityAfter(id);
+      return queueEntity != null && validateQueueEntity(queueEntity) &&
+        currentUserOwnsQueue(queueEntity.queueId) &&
+        indexedIdMatchesAfter('QueueEntity', ['queueId', 'order'], id)
+    }
+
+    function checkDeleteQueueEntity() {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount()
+    }
+
+    match /QueueEntities/{id} {
+      allow read: if checkReadQueueEntity(resource);
+      allow create: if checkCreateQueueEntity(id);
+      allow update: if checkUpdateQueueEntity(id);
+      allow delete: if checkDeleteQueueEntity();
+    }
+
+    match /Indexes/QueueEntities/queueId_order/{queueId_order} {
+      allow read: if true;
+      allow create: if indexedValueMatchesAfter('QueueEntity', 'queueId_order', queueId_order);
       allow delete: if currentUserIsServiceAccount();
     }
 

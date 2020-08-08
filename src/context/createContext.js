@@ -42,7 +42,9 @@ const createContext = ({
     storage = initializeStorageEmulator({ app })
   } else {
     app = initializeApp({ cache, config, firebase, namespace })
-    performance = firebase.performance()
+    if (!config.ssr && config.firebase.appId) {
+      performance = firebase.performance(app)
+    }
     auth = firebase.auth(app)
     storage = storage
       ? storage
