@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 require('@babel/register')
-const { expected } = require('../src/utils/error')
+const program = require('commander')
+
+const { setupCliContexts, tearDownCliContexts } = require('../src/cli')
 const { saveUserProfile } = require('../src/db/UserProfile')
 const { registerValidUser } = require('../src/sdk')
-const { setupCliContexts, tearDownCliContexts } = require('../src/cli')
-const program = require('commander')
+const { expected } = require('../src/utils/error')
 
 program
   .description('register a new user')
