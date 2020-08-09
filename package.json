@@ -92,7 +92,7 @@
     "is-url": "^1.2.4",
     "lodash": "^4.17.19",
     "mime-types": "^2.1.26",
-    "moltres": "^0.2.6",
+    "moltres": "^0.2.7",
     "parse-duration": "^0.1.2",
     "path-to-regexp": "^6.1.0",
     "prop-types": "^15.7.2",
