@@ -1,5 +1,10 @@
 import { REMOVE } from '../../constants/EntityChangeType'
-import { batchRemoveDocument, cleanseData, collection } from '../../utils/db'
+import {
+  batchRemoveDocument,
+  cleanseData,
+  refDocumentById,
+  refGet
+} from '../../utils/db'
 import { curry } from '../../utils/lang'
 import { validateSchema } from '../../utils/schema'
 
@@ -8,12 +13,14 @@ import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 
 const batchRemoveEntity = curry(
   async (Schema, context, batch, id, data = {}, options = {}) => {
-    const Collection = collection(Schema, context)
-    const ref = Collection.doc(id.toString())
-    const refDoc = await ref.get()
+    const ref = refDocumentById(Schema, context, id)
+    let { document } = context
+    if (!document) {
+      document = await refGet(context, ref)
+    }
 
     // validate the data post removal using the existing data
-    const prevData = refDoc.data()
+    const prevData = document.data()
     validateSchema(
       Schema,
       cleanseData({

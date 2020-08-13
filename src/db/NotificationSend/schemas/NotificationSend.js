@@ -7,6 +7,7 @@ import Notification from '../../Notification/schemas/Notification'
 const NotificationSend = {
   collectionName: 'NotificationSends',
   name: 'NotificationSend',
+  parentRefIdField: 'notificationId',
   parentSchema: Notification,
   schema: Entity.schema.keys({
     channels: Object.schema.required(),

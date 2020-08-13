@@ -44,9 +44,14 @@ blocks:
       jobs:
         - name: Deploy
           commands:
-             # At this point we can assume 100% cache hit rate of node modules:
+            # At this point we can assume 100% cache hit rate of node modules:
             - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum package-lock.json),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
             - cache restore cache-$SEMAPHORE_GIT_BRANCH
+
+            # Restore the built artifacts
+            - artifact push workflow dist
+            - artifact push workflow public
+            - artifact push workflow private
 
             # Run task as defined in package.json:
             - npm run deploy

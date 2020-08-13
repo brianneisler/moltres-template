@@ -4,20 +4,12 @@ import {
   isNumber,
   isObject,
   isString,
-  prepend,
   reduce,
   zip
 } from '../lang'
 
 import collection from './collection'
-
-const getSchemas = (Schema, schemas = []) => {
-  schemas = prepend(Schema, schemas)
-  if (Schema.parentSchema) {
-    return getSchemas(Schema.parentSchema, schemas)
-  }
-  return schemas
-}
+import getSchemaLineage from './getSchemaLineage'
 
 /**
  * @param {Schema} schema
@@ -42,7 +34,7 @@ const refDocumentById = curry((Schema, context, ids) => {
       'refDocumentById expects ids to be an Object, a String, a Number or an Array'
     )
   }
-  const schemas = getSchemas(Schema)
+  const schemas = getSchemaLineage(Schema)
   if (schemas.length < ids.length) {
     throw new Error(
       `ids contains too many ids for the given Schema ${Schema.name} - ids: ${ids}`

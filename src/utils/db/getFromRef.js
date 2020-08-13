@@ -1,12 +1,14 @@
 import { Code, StatusCode } from '../../constants'
-import expected from '../error/expected'
+import { expected } from '../error'
 
 import formatDocument from './formatDocument'
 import isPermissionsError from './isPermissionsError'
+import refGet from './refGet'
 
-const getFromRef = async ({ logger }, ref, options = {}) => {
+const getFromRef = async (context, ref, options = {}) => {
+  const { logger } = context
   try {
-    const document = await ref.get()
+    const document = await refGet(context, ref)
     if (!document.exists) {
       throw expected({
         code: Code.NOT_FOUND,

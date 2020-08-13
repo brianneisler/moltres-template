@@ -8,6 +8,7 @@ const PageContent = {
   collectionName: 'PageContents',
   indexes: [['pageId', 'version']],
   name: 'PageContent',
+  parentRefIdField: 'pageId',
   parentSchema: Page,
   schema: Entity.schema.keys({
     content: String.schema.required(),

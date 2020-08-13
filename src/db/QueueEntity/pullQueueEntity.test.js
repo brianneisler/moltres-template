@@ -4,35 +4,28 @@ import {
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
 } from '../../test'
-import { Image, createImage, deleteImage } from '../Image'
-import { createQueue, deleteQueue } from '../Queue'
+import { createQueue, deleteQueue, getQueueById } from '../Queue'
+import { User, createUser, deleteUser } from '../User'
 
-import createQueueEntity from './createQueueEntity'
 import deleteQueueEntity from './deleteQueueEntity'
+import pullQueueEntity from './pullQueueEntity'
+import pushQueueEntity from './pushQueueEntity'
 
-const spec = describe('createQueueEntity', () => {
+const spec = describe('pullQueueEntity', () => {
   describe('ServiceAccount', () => {
     let context
     let result
     let adminContext
+    let user
     let queue
-    let image
 
     beforeEach(async () => {
       adminContext = await setupTestAdminContext(spec)
       context = await setupTestServiceAccountContext(adminContext)
-      queue = await createQueue(adminContext, {
+      user = await createUser(context, { state: 'pending' })
+      queue = await createQueue(context, {
         parentEntityId: null,
         parentEntityType: null
-      })
-      image = await createImage(context, {
-        contentType: 'image/jpeg',
-        hash: '6c6d079d5711b57ce0af901b000be888',
-        height: 0,
-        length: 0,
-        path: '/path/to/image.jpeg',
-        storageBucket: 'fitpath-test.appspot.com',
-        width: 0
       })
     }, 20000)
 
@@ -45,15 +38,15 @@ const spec = describe('createQueueEntity', () => {
         context.logger.error(error)
       }
       try {
-        if (image) {
-          await deleteImage(adminContext, image.id)
+        if (queue) {
+          await deleteQueue(adminContext, queue.id)
         }
       } catch (error) {
         context.logger.error(error)
       }
       try {
-        if (queue) {
-          await deleteQueue(adminContext, queue.id)
+        if (user) {
+          await deleteUser(adminContext, user.id)
         }
       } catch (error) {
         context.logger.error(error)
@@ -62,22 +55,34 @@ const spec = describe('createQueueEntity', () => {
       adminContext = await tearDownTestAdminContext(adminContext)
     }, 20000)
 
-    it('can create a QueueEntity', async () => {
+    it('can pull a QueueEntity', async () => {
       const data = {
-        entityId: image.id,
-        entityType: Image.name,
-        index: 0,
+        entityId: user.id,
+        entityType: User.name,
         queueId: queue.id
       }
-      result = await createQueueEntity(context, data)
-      expect(result).toEqual({
+      result = await pushQueueEntity(context, data)
+      const pulled = await pullQueueEntity(context, queue.id)
+      const queueResult = await getQueueById(context, queue.id)
+      expect(pulled).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        entityId: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
-        entityType: expect.stringMatching(Image.name),
+        entityId: user.id,
+        entityType: User.name,
         id: '0',
         index: 0,
         queueId: queue.id,
         removedAt: null,
+        updatedAt: expect.any(context.firebase.firestore.Timestamp)
+      })
+      expect(queueResult).toEqual({
+        createdAt: expect.any(context.firebase.firestore.Timestamp),
+        headIndex: 1,
+        id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
+        length: 0,
+        parentEntityId: null,
+        parentEntityType: null,
+        removedAt: null,
+        tailIndex: 0,
         updatedAt: expect.any(context.firebase.firestore.Timestamp)
       })
     }, 20000)

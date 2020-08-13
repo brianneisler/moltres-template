@@ -26,6 +26,9 @@ agent:
 blocks:
   - name: Install Dependencies
     task:
+      secrets:
+        - name: config-ci
+
       env_vars:
         - name: NODE_ENV
           value: development
@@ -52,7 +55,7 @@ blocks:
             - cache restore cache-$SEMAPHORE_GIT_BRANCH
 
             # This installs all dependencies including more than node_modules
-            - npm run setup
+            - npm run setup:ci
 
             # Store the latest version of node modules in cache to reuse in
             # further blocks:
@@ -122,11 +125,17 @@ blocks:
             # Run task as defined in package.json:
             - npm run build
 
+            # store the dist file so that it can be used by the deploy
+            # pipeline. For more information https://docs.semaphoreci.com/essentials/artifacts/
+            - artifact push workflow dist
+            - artifact push workflow public
+            - artifact push workflow private
+
 
   - name: Test on emulators
     task:
       secrets:
-        - name: config-local
+        - name: config-ci
 
       env_vars:
         - name: NODE_ENV

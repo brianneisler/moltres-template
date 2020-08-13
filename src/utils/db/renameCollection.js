@@ -7,6 +7,7 @@ import cleanseData from './cleanseData'
 import collection from './collection'
 import commitBatch from './commitBatch'
 import paginateCollection from './paginateCollection'
+import refGet from './refGet'
 
 const renameCollection = async (context, OldSchema, NewSchema) => {
   await paginateCollection(OldSchema, context, async (doc) => {
@@ -17,7 +18,7 @@ const renameCollection = async (context, OldSchema, NewSchema) => {
 
         const Collection = collection(NewSchema, context)
         const ref = Collection.doc(doc.id.toString())
-        const document = await ref.get()
+        const document = await refGet(context, ref)
 
         batchSetDocument(NewSchema, context, batch, doc.id, data, document)
         batchSetIndexes(NewSchema, context, batch, data, document)

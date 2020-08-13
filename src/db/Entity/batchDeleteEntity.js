@@ -1,5 +1,5 @@
 import { DELETE } from '../../constants/EntityChangeType'
-import { batchDeleteDocument, batchDeleteIndexes } from '../../utils/db'
+import { batchDeleteDocument, batchDeleteIndexes, refGet } from '../../utils/db'
 import { curry } from '../../utils/lang'
 
 import { entityChanged } from './actions'
@@ -8,7 +8,7 @@ import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 const batchDeleteEntity = curry(
   async (Schema, context, batch, id, options = {}) => {
     const ref = batchDeleteDocument(Schema, context, batch, id)
-    const refDoc = await ref.get()
+    const refDoc = await refGet(context, ref)
     const prevData = refDoc.data()
 
     batchDeleteIndexes(Schema, context, batch, prevData)

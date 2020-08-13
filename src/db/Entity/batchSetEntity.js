@@ -3,7 +3,8 @@ import {
   batchSetDocument,
   batchSetIndexes,
   cleanseData,
-  collection
+  refDocumentById,
+  refGet
 } from '../../utils/db'
 import { curry } from '../../utils/lang'
 import { validateSchema } from '../../utils/schema'
@@ -14,10 +15,8 @@ import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 const batchSetEntity = curry(
   async (Schema, context, batch, id, value, options = {}) => {
     const data = validateSchema(Schema, cleanseData(value))
-
-    const Collection = collection(Schema, context)
-    const ref = Collection.doc(id.toString())
-    const document = await ref.get()
+    const ref = refDocumentById(Schema, context, id)
+    const document = await refGet(context, ref)
 
     batchSetDocument(Schema, context, batch, id, data, document)
     batchSetIndexes(Schema, context, batch, data, document)

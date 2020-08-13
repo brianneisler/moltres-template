@@ -39,10 +39,13 @@ const spec = describe('createQueue', () => {
       result = await createQueue(context, data)
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
+        headIndex: 0,
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
+        length: 0,
         parentEntityId: null,
         parentEntityType: null,
         removedAt: null,
+        tailIndex: -1,
         updatedAt: expect.any(context.firebase.firestore.Timestamp)
       })
     }, 20000)

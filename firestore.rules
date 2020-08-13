@@ -1447,7 +1447,10 @@ service cloud.firestore {
     function validateQueueData(data) {
       return (
         (isNull(data.parentEntityId) && isNull(data.parentEntityType)) ||
-        entityExistsAfter(data.parentEtityType, data.parentEntityId)
+        entityExistsAfter(data.parentEtityType, data.parentEntityId) &&
+        isIndex(data.headIndex) &&
+        isInteger(data.length) &&
+        isInteger(data.tailIndex)
       )
     }
 
@@ -1492,49 +1495,48 @@ service cloud.firestore {
     // QueueEntity implementation
     // -----------------------------
 
-    function getQueueEntityAfter(id) {
-      return getAfter(/$(databasePath())/QueueEntities/$(id))
+    function getQueueEntityAfter(id, index) {
+      return getAfter(/$(databasePath())/Queues/$(id)/QueueEntities/$(index))
     }
 
-    function getQueueEntityBefore(id) {
-      return get(/$(databasePath())/QueueEntities/$(id))
+    function getQueueEntityBefore(id, index) {
+      return get(/$(databasePath())/Queues/$(id)/QueueEntities/$(index))
     }
 
-    function queueEntityExistsAfter(id) {
-      return existsAfter(/$(databasePath())/QueueEntities/$(id))
+    function queueEntityExistsAfter(id, index) {
+      return existsAfter(/$(databasePath())/Queues/$(id)/QueueEntities/$(index))
     }
 
-    function queueEntityExistsBefore(id) {
-      return exists(/$(databasePath())/QueueEntities/$(id))
+    function queueEntityExistsBefore(id, index) {
+      return exists(/$(databasePath())/Queues/$(id)/QueueEntities/$(id))
     }
 
     function validateQueueEntityData(data) {
       return queueExistsAfter(data.queueId) &&
-        isInteger(data.order) &&
+        isInteger(data.index) &&
         entityExistsAfter(data.entityType, data.entityId)
     }
 
-    function validateQueueEntity(resource) {
-      return validateEntity(resource) &&
-        validateQueueEntityData(resource.data)
+    function validateQueueEntity(entity) {
+      return matchesNumeric(entity.id) &&
+        validateEntityData(entity.data) &&
+        validateQueueEntityData(entity.data)
     }
 
     function checkReadQueueEntity(resource) {
       return currentUserCanReadPublicEntity(resource, false)
     }
 
-    function checkCreateQueueEntity(id) {
-      let queueEntity = getQueueEntityAfter(id);
+    function checkCreateQueueEntity(id, index) {
+      let queueEntity = getQueueEntityAfter(id, index);
       return queueEntity != null && validateQueueEntity(queueEntity) &&
-        currentUserOwnsQueue(queueEntity.queueId) &&
-        indexedIdMatchesAfter('QueueEntity', ['queueId', 'order'], id)
+        currentUserOwnsQueue(queueEntity.queueId)
     }
 
-    function checkUpdateQueueEntity(id) {
-      let queueEntity = getQueueEntityAfter(id);
+    function checkUpdateQueueEntity(id, index) {
+      let queueEntity = getQueueEntityAfter(id, index);
       return queueEntity != null && validateQueueEntity(queueEntity) &&
-        currentUserOwnsQueue(queueEntity.queueId) &&
-        indexedIdMatchesAfter('QueueEntity', ['queueId', 'order'], id)
+        currentUserOwnsQueue(queueEntity.queueId)
     }
 
     function checkDeleteQueueEntity() {
@@ -1542,17 +1544,11 @@ service cloud.firestore {
       return currentUserIsServiceAccount()
     }
 
-    match /QueueEntities/{id} {
+    match /Queues/{id}/QueueEntities/{index} {
       allow read: if checkReadQueueEntity(resource);
-      allow create: if checkCreateQueueEntity(id);
-      allow update: if checkUpdateQueueEntity(id);
+      allow create: if checkCreateQueueEntity(id, index);
+      allow update: if checkUpdateQueueEntity(id, index);
       allow delete: if checkDeleteQueueEntity();
-    }
-
-    match /Indexes/QueueEntities/queueId_order/{queueId_order} {
-      allow read: if true;
-      allow create: if indexedValueMatchesAfter('QueueEntity', 'queueId_order', queueId_order);
-      allow delete: if currentUserIsServiceAccount();
     }
 
 

@@ -1,4 +1,4 @@
-import { collection } from '../../utils/db'
+import { collection, refGet } from '../../utils/db'
 import Index from '../Index/schemas/Index'
 
 import { PhoneNumber } from './schemas'
@@ -9,7 +9,7 @@ import { PhoneNumber } from './schemas'
 const findPhoneNumberIdByIndexPhoneNumberHash = async (context, hash) => {
   const Indexes = collection(Index, context)
   const ref = Indexes.doc(`${PhoneNumber.collectionName}/hash/${hash}`)
-  const document = await ref.get()
+  const document = await refGet(context, ref)
   if (!document.exists) {
     return null
   }

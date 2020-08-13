@@ -16,6 +16,9 @@ const formatDocument = (document, options = {}) => {
   if (!options.includeRemoved && data.removedAt) {
     return null
   }
+  if (options.format === 'document') {
+    return document
+  }
   return {
     id: document.id,
     ...data

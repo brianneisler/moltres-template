@@ -36,6 +36,7 @@
     "lint:staged": "moltres run ./scripts/lint-staged.sh",
     "security:audit": "moltres run ./scripts/security-audit.sh",
     "setup": "bash ./scripts/setup.sh",
+    "setup:ci": "bash ./scripts/setup-ci.sh",
     "start": "moltres run ./scripts/start.sh",
     "start:android": "moltres run ./scripts/start-android.sh",
     "start:functions": "moltres run ./scripts/start-functions.sh",

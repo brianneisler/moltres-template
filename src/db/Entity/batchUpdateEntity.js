@@ -3,7 +3,8 @@ import {
   batchUpdateDocument,
   batchUpdateIndexes,
   cleanseData,
-  refDocumentById
+  refDocumentById,
+  refGet
 } from '../../utils/db'
 import { curry } from '../../utils/lang'
 import { validateSchema } from '../../utils/schema'
@@ -16,7 +17,7 @@ const batchUpdateEntity = curry(
     const ref = refDocumentById(Schema, context, id)
 
     // Validate updates using new data mixed with previous data
-    const document = await ref.get()
+    const document = await refGet(context, ref)
     const prevData = document.data()
     const nextData = validateSchema(
       Schema,
