@@ -217,6 +217,7 @@ service cloud.firestore {
         'NotificationSend': 'NotificationSends',
         'PhoneNumber': 'PhoneNumbers',
         'PhoneNumberClaim': 'PhoneNumberClaims',
+        'Preference': 'Preferences',
         'Queue':'Queues',
         'QueueEntity':'QueueEntities',
         'ServiceAccount': 'ServiceAccounts',
@@ -229,6 +230,7 @@ service cloud.firestore {
         'User': 'Users',
         'UserImage': 'UserImages',
         'UserPhoneNumber': 'UserPhoneNumbers',
+        'UserPreferences': 'UserPreferences',
         'UserProfile': 'UserProfiles',
         'UserProfileImage': 'UserProfileImages',
         'UserRole': 'UserRoles',
@@ -1425,6 +1427,66 @@ service cloud.firestore {
     }
 
 
+    // Preferences implementation
+    // -----------------------------
+
+    function getPreferenceAfter(id, key) {
+      return getAfter(/$(databasePath())/UserPreferences/$(id)/Preferences/$(key))
+    }
+
+    function getPreferenceBefore(id, key) {
+      return get(/$(databasePath())/UserPreferences/$(id)/Preferences/$(key))
+    }
+
+    function preferenceExistsAfter(id, key) {
+      return existsAfter(/$(databasePath())/UserPreferences/$(id)/Preferences/$(key))
+    }
+
+    function preferenceExistsBefore(id, key) {
+      return exists(/$(databasePath())/UserPreferences/$(id)/Preferences/$(key))
+    }
+
+    function validatePreferenceData(data) {
+      return userPreferencesExistsAfter(data.userPreferencesId) &&
+        isString(data.key) &&
+        has('value', data)
+    }
+
+    function validatePreference(entity) {
+      return entity.data.key == entity.id &&
+        validateEntityData(entity.data) &&
+        validatePreferenceData(entity.data)
+    }
+
+    function checkReadPreference(resource) {
+      return currentUserCanReadPublicEntity(resource, false)
+    }
+
+    function checkCreatePreference(id, key) {
+      let preference = getPreferenceAfter(id, key);
+      return preference != null && validatePreference(preference) &&
+        currentUserCanCreateUserPreferences(preference.userPreferencesId)
+    }
+
+    function checkUpdatePreference(id, key) {
+      let preference = getPreferenceAfter(id, key);
+      return preference != null && validatePreference(preference) &&
+        currentUserCanUpdateUserPreferences(preference.userPreferencesId)
+    }
+
+    function checkDeletePreference() {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount()
+    }
+
+    match /UserPreferences/{id}/Preferences/{key} {
+      allow read: if checkReadPreference(resource);
+      allow create: if checkCreatePreference(id, key);
+      allow update: if checkUpdatePreference(id, key);
+      allow delete: if checkDeletePreference();
+    }
+
+
     // Queue implementation
     // -----------------------------
 
@@ -1480,7 +1542,7 @@ service cloud.firestore {
       return currentUserIsServiceAccount()
     }
 
-    function currentUserOwnsQueue(queueId){
+    function currentUserOwnsQueue(queueId) {
       return currentUserIsServiceAccount() || currentUserHasAdminRole() ||
         (getQueueAfter(queueId).userId == request.auth.uid)
     }
@@ -1508,7 +1570,7 @@ service cloud.firestore {
     }
 
     function queueEntityExistsBefore(id, index) {
-      return exists(/$(databasePath())/Queues/$(id)/QueueEntities/$(id))
+      return exists(/$(databasePath())/Queues/$(id)/QueueEntities/$(index))
     }
 
     function validateQueueEntityData(data) {
@@ -1794,21 +1856,23 @@ service cloud.firestore {
 
     function validateUrl(entity) {
       return validateEntity(entity) &&
-        validateUrlData(entity.data)
+        validateUrlData(entity.data);
     }
 
     function checkReadUrl() {
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount();
     }
 
-    function checkCreateUrl(resourceAfter) {
+    function checkCreateUrl(id) {
+      let urlAfter = getUrlAfter(id);
       return currentUserIsServiceAccount() &&
-        validateUrl(resourceAfter)
+        validateUrl(urlAfter);
     }
 
-    function checkUpdateUrl(resourceAfter) {
+    function checkUpdateUrl(id) {
+      let urlAfter = getUrlAfter(id);
       return currentUserIsServiceAccount() &&
-        validateUrl(resourceAfter)
+        validateUrl(urlAfter);
     }
 
     function checkDeleteUrl() {
@@ -1817,8 +1881,8 @@ service cloud.firestore {
 
     match /Urls/{id} {
       allow read: if checkReadUrl();
-      allow create: if checkCreateUrl(getUrlAfter(id));
-      allow update: if checkUpdateUrl(getUrlAfter(id));
+      allow create: if checkCreateUrl(id);
+      allow update: if checkUpdateUrl(id);
       allow delete: if checkDeleteUrl();
     }
 
@@ -1903,52 +1967,146 @@ service cloud.firestore {
     }
 
 
+    // UserPreference implementation
+    // -----------------------------
+
+    function getUserPreferencesAfter(id) {
+      return getAfter(/$(databasePath())/UserPreferences/$(id))
+    }
+
+    function getUserPreferencesBefore(id) {
+      return get(/$(databasePath())/UserPreferences/$(id))
+    }
+
+    function userPreferencesExistsAfter(id) {
+      return existsAfter(/$(databasePath())/UserPreferences/$(id))
+    }
+
+    function userPreferencesExistsBefore(id) {
+      return exists(/$(databasePath())/UserPreferences/$(id))
+    }
+
+    function validateUserPreferencesData(data) {
+      return userExistsAfter(data.userId);
+    }
+
+    function validateUserPreferences(userPreferences) {
+      return validateEntity(userPreferences) &&
+        userPreferences.id == userPreferences.data.userId &&
+        validateUserPreferencesData(userPreferences.data);
+    }
+
+    function checkReadUserPreferences(resource) {
+      // Only the owning user can read UserPreferences
+      return currentUserCanReadPrivateEntity(resource, false);
+    }
+
+    function checkCreateUserPreferences(id) {
+      // Users can create their own UserPreferences
+      let userPreferencesAfter = getUserPreferencesAfter(id);
+      return validateUserPreferences(userPreferencesAfter) &&
+        id == userPreferencesAfter.data.userId &&
+        currentUserCanCreateEntity(userPreferencesAfter);
+    }
+
+    function checkUpdateUserPreferences(id) {
+      // Users can only update their own UserPreferences
+      // TODO BRN: validate that createdAt times don't change
+      let userPreferencesAfter = getUserPreferencesAfter(id);
+      let userPreferencesBefore = getUserPreferencesBefore(id);
+      return validateUserPreferences(userPreferencesAfter) &&
+        id == userPreferencesAfter.data.userId &&
+        currentUserCanUpdateEntity(userPreferencesBefore, false);
+    }
+
+    function checkDeleteUserPreferences() {
+      // Only allow ServiceAccounts to delete UserPreferences
+      return currentUserIsServiceAccount();
+    }
+
+    function currentUserCanCreateUserPreferences(userPreferencesId) {
+      return currentUserCanCreateEntity(getUserPreferencesBefore(userPreferencesId))
+    }
+
+    function currentUserCanUpdateUserPreferences(userPreferencesId, allowRestores) {
+      return currentUserCanUpdateEntity(getUserPreferencesBefore(userPreferencesId), allowRestores)
+    }
+
+    match /UserPreferences/{id} {
+      allow read: if checkReadUserPreferences(resource);
+      allow create: if checkCreateUserPreferences(id);
+      allow update: if checkUpdateUserPreferences(id);
+      allow delete: if checkDeleteUserPreferences();
+    }
+
+
     // UserProfile implementation
     // -----------------------------
 
-    function getUserProfileAfter(userId) {
-      return getAfter(/$(databasePath())/UserProfiles/$(userId))
+    function getUserProfileAfter(id) {
+      return getAfter(/$(databasePath())/UserProfiles/$(id))
     }
 
-    function getUserProfileBefore(userId) {
-      return get(/$(databasePath())/UserProfiles/$(userId))
+    function getUserProfileBefore(id) {
+      return get(/$(databasePath())/UserProfiles/$(id))
     }
 
-    function userProfileExistsAfter(userId) {
-      return existsAfter(/$(databasePath())/UserProfiles/$(userId))
+    function userProfileExistsAfter(id) {
+      return existsAfter(/$(databasePath())/UserProfiles/$(id))
     }
 
-    function userProfileExistsBefore(userId) {
-      return exists(/$(databasePath())/UserProfiles/$(userId))
+    function userProfileExistsBefore(id) {
+      return exists(/$(databasePath())/UserProfiles/$(id))
     }
 
-    function validateUserProfile(resource) {
-      return validateTimestamped(resource) &&
-        isString(resource.data.name) &&
-        userExistsAfter(resource.data.userId) &&
-        (!has('bio', resource.data) || isString(resource.data.bio)) &&
-        (!has('location', resource.data) || isString(resource.data.location)) &&
-        (!has('website', resource.data) || isString(resource.data.website)) &&
-        (!has('userProfileImageId', resource.data) || userProfileImageExistsAfter(resource.data.userProfileImageId));
+    function validateUserProfileData(data) {
+      return isString(data.name) &&
+        userExistsAfter(data.userId) &&
+        (!has('bio', data) || isString(data.bio)) &&
+        (!has('location', data) || isString(data.location)) &&
+        (!has('website', data) || isString(data.website)) &&
+        (!has('userProfileImageId', data) || userProfileImageExistsAfter(data.userProfileImageId));
     }
 
-    match /UserProfiles/{userId} {
+    function validateUserProfile(userProfile) {
+      return validateEntity(userProfile) &&
+        userProfile.id == userProfile.data.userId &&
+        validateUserProfileData(userProfile.data);
+    }
+
+    function checkReadUserProfile(resource) {
       // Anyone can read UserProfiles
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      return currentUserCanReadPublicEntity(resource, false);
+    }
 
+    function checkCreateUserProfile(id) {
       // Users can create their own UserProfiles
-      allow create: if validateUserProfile(getUserProfileAfter(userId)) &&
-        userId == getUserProfileAfter(userId).data.userId &&
-        currentUserCanCreateEntity(getUserProfileAfter(userId));
+      let userProfileAfter = getUserProfileAfter(id);
+      return validateUserProfile(userProfileAfter) &&
+        id == userProfileAfter.data.userId &&
+        currentUserCanCreateEntity(userProfileAfter);
+    }
 
+    function checkUpdateUserProfile(id) {
       // Users can only update their own UserProfiles
       // TODO BRN: validate that createdAt times don't change
-      allow update: if validateUserProfile(getUserProfileAfter(userId)) &&
-        userId == resource.data.userId &&
-        currentUserCanUpdateEntity(getUserProfileBefore(userId), false);
+      let userProfileAfter = getUserProfileAfter(id);
+      let userProfileBefore = getUserProfileBefore(id);
+      return validateUserProfile(userProfileAfter) &&
+        id == userProfileAfter.data.userId &&
+        currentUserCanUpdateEntity(userProfileBefore, false);
+    }
 
+    function checkDeleteUserProfile() {
       // Only allow ServiceAccounts to delete UserProfiles
-      allow delete: if currentUserIsServiceAccount();
+      return currentUserIsServiceAccount();
+    }
+
+    match /UserProfiles/{id} {
+      allow read: if checkReadUserProfile(resource);
+      allow create: if checkCreateUserProfile(id);
+      allow update: if checkUpdateUserProfile(id);
+      allow delete: if checkDeleteUserProfile();
     }
 
 
