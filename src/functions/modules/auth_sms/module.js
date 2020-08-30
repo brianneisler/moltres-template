@@ -12,7 +12,11 @@ import { findUserPhoneNumberByPhoneNumberId } from '../../../db/UserPhoneNumber'
 import { findUserRoleByUserId } from '../../../db/UserRole'
 import registerValidUser from '../../../sdk/auth/registerValidUser'
 import { UserRegisteredAction } from '../../../sdk/auth/schemas'
-import { generateSMSChannel, generateUserAndSMSChannel } from '../../../sdk/sms'
+import {
+  generateSMSChannel,
+  generateUserAndSMSChannel,
+  sendSMSMessageToChannel
+} from '../../../sdk/sms'
 import { createCustomToken } from '../../../utils/auth'
 import { nowTimestamp } from '../../../utils/db'
 import { expected } from '../../../utils/error'
@@ -20,7 +24,6 @@ import { asyncHandler } from '../../../utils/express'
 import { assoc, compose } from '../../../utils/lang'
 import { handleAction, takeEvery } from '../../../utils/redux'
 import { parseDuration } from '../../../utils/time'
-import { sendSMSMessageToChannel } from '../sms'
 
 import { randomSMSCode, sendSMSChallenge } from './util'
 

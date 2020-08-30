@@ -12,6 +12,9 @@ const setupTestServiceAccountContext = async (adminContext) => {
   const namespace = `ServiceAccount:${serviceAccount.id}.test:${runId}`
   const isTestApp = isTestAppConfigured(config)
 
+  // HACK BRN: This testAuth value should really be placed into the auth
+  // emulator so that we can change this dynamically without having to specify
+  // it before hand
   let testAuth
   if (isTestApp) {
     testAuth = {

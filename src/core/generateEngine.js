@@ -15,7 +15,7 @@ const generateEngine = weakMemoize(
     initialState = {},
     targetEngineState = EngineState.STARTED
   ) => {
-    context.logger.info(`No engine detected. Generating engine...`)
+    context.logger.debug(`No engine detected. Generating engine...`)
     const engine = createEngine(modules, config, context, initialState)
 
     if (targetEngineState === EngineState.SETUP) {

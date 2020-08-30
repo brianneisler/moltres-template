@@ -43,19 +43,19 @@ const createEngine = (
       return _store.dispatch(setContextAction({ selector, value }))
     },
     setup: (store) => {
-      context.logger.info('Setting up engine...')
+      context.logger.debug('Setting up engine...')
       forEachObjIndexed((module) => {
         setup(store, module)
       }, store.getModules())
-      context.logger.info('Engine has been setup!') // eslint-disable-line no-console
+      context.logger.debug('Engine has been setup!') // eslint-disable-line no-console
       return store
     },
     start: (store) => {
-      context.logger.info('Starting engine...')
+      context.logger.debug('Starting engine...')
       forEachObjIndexed((module) => {
         start(store, module)
       }, store.getModules())
-      context.logger.info('Engine has started!')
+      context.logger.debug('Engine has started!')
       return store
     },
     stop: async (store) => {

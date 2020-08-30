@@ -6,10 +6,13 @@ import { uuidv4 } from '../../../src/utils/lang'
 import { pathResolve } from '../../../src/utils/path'
 
 const setupScriptContexts = async () => {
+  const stage = process.env.STAGE
   const env = loadEnv(pathResolve(__dirname, '..', '..', '..'), {
-    stage: process.env.STAGE
+    stage
   })
-  const config = generateAdminConfig()
+  const config = generateAdminConfig({
+    stage
+  })
   const namespace = uuidv4()
 
   const adminContext = await createAdminContext({
@@ -25,7 +28,7 @@ const setupScriptContexts = async () => {
     storage: adminContext.storage
   })
   const { logger } = context
-  logger.info('signing in with custom token')
+  logger.debug('signing in with custom token')
   await signInWithIdToken(context, adminContext.token)
 
   return {

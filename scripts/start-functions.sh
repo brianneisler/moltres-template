@@ -12,7 +12,7 @@ if [ "$STAGE" = "local" ]; then
   #firebase use --clear
   # TODO BRN: Figure out how to configure the initial local database
   # npm run configure $STAGE
-  firebase emulators:start
+  firebase emulators:start --project "${FIREBASE_PROJECT_ID}" --token "${FIREBASE_TOKEN}"
 else
   # Select the firebase app to start
   firebase use ${STAGE}

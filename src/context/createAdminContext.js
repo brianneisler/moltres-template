@@ -56,7 +56,7 @@ const createAdminContext = async ({ config, namespace, source, ...rest }) => {
     name: `service-user-${uid}`,
     uid
   })
-  logger.info('serviceAccount created:', serviceAccount)
+  logger.debug('serviceAccount created:', serviceAccount)
   const token = await createCustomToken(context, serviceAccount.id, {
     serviceAccountId: serviceAccount.id
   })

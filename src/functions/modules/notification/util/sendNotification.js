@@ -8,10 +8,12 @@ import {
   renderNotification,
   validateNotification
 } from '../../../../sdk/notification'
-import { generateSMSChannel } from '../../../../sdk/sms'
+import {
+  generateSMSChannel,
+  sendSMSMessageToChannel
+} from '../../../../sdk/sms'
 import { nowTimestamp } from '../../../../utils/db'
 import { call } from '../../../../utils/redux'
-import { sendSMSMessageToChannel } from '../../sms'
 
 const sendNotification = function* (context, enhancedNotification) {
   const smsChannel = yield call(generateSMSChannel, context, {

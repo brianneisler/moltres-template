@@ -1471,7 +1471,7 @@ service cloud.firestore {
     function checkUpdatePreference(id, key) {
       let preference = getPreferenceAfter(id, key);
       return preference != null && validatePreference(preference) &&
-        currentUserCanUpdateUserPreferences(preference.userPreferencesId)
+        currentUserCanUpdateUserPreferences(preference.userPreferencesId, true)
     }
 
     function checkDeletePreference() {

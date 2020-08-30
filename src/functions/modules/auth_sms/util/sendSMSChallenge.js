@@ -1,4 +1,4 @@
-import sendSMSMessageToChannel from '../../sms/sendSMSMessageToChannel'
+import { sendSMSMessageToChannel } from '../../../../sdk/sms'
 
 const sendSMSChallenge = async (context, { smsChallenge, smsChannel }) =>
   sendSMSMessageToChannel(context, {

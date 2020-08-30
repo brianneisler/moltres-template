@@ -1,21 +1,13 @@
 #!/usr/bin/env node
 
 require('@babel/register')
-const program = require('commander')
 
-const pack = require('../package.json')
+const { setupCli } = require('../src/cli')
 
-const result = program
-  .version(pack.version)
-  .command('register', 'register a new user')
-  .command('role', "set a user's role")
-  .parse(process.argv)
-
-if (!program.args.length) {
-  program.help()
-}
-if (result == program) {
-  // eslint-disable-next-line no-console
-  console.log("\n  wat: '" + program.args[0] + "' is not a command")
-  program.help()
-}
+setupCli()
+  .then((cli) => cli.exec(process.argv))
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error)
+    process.exit(1)
+  })

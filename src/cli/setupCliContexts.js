@@ -28,8 +28,11 @@ const setupCliContexts = async () => {
     namespace: `admin.cli:${namespace}`,
     source: `${config.api.url}/admin?cli=true` // TODO BRN: Attach mac/ip identifiers
   })
-
   const isTestApp = isTestAppConfigured(config)
+
+  // HACK BRN: This testAuth value should really be placed into the auth
+  // emulator so that we can change this dynamically without having to specify
+  // it before hand
   let testAuth
   if (isTestApp) {
     testAuth = {
@@ -47,7 +50,7 @@ const setupCliContexts = async () => {
     testAuth
   })
   const { logger } = context
-  logger.info('signing in with custom token')
+  logger.debug('signing in with custom token')
   await signInWithIdToken(context, adminContext.token)
 
   return {
