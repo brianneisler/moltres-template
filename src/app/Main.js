@@ -54,7 +54,7 @@ import {
   actions as scrollActions,
   selectScrollTargetIsAtTop
 } from './modules/scroll'
-import { actions as uiActions } from './modules/ui'
+import { uiDeinitializedAction, uiInitializedAction } from './modules/ui'
 import {
   HomePage,
   LoginCodePage,
@@ -203,8 +203,8 @@ const enhance = compose(
   withActions({
     pushRoute: pushRouteAction,
     scrollTo: scrollActions.scrollTo,
-    uiDeinitialized: uiActions.uiDeinitialized,
-    uiInitialized: uiActions.uiInitialized
+    uiDeinitialized: uiDeinitializedAction,
+    uiInitialized: uiInitializedAction
   }),
   connect((state) => ({
     currentActionSheet: selectCurrentActionSheet(state),

@@ -35,7 +35,7 @@ const module = {
       setNetworkInformation,
       handleAction(function* (context, action) {
         const { information } = action.payload
-        if (!information.isConnected) {
+        if (information && !information.isConnected) {
           yield put(
             statusActions.showStatusWithOptions(STATUS_NETWORK, {
               level: WARN,

@@ -1,2 +1,2 @@
-export { default as uiDeinitialized } from './uiDeinitialized'
-export { default as uiInitialized } from './uiInitialized'
+export { default as uiDeinitializedAction } from './uiDeinitializedAction'
+export { default as uiInitializedAction } from './uiInitializedAction'

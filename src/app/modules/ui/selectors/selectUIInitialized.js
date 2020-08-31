@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../utils/lang'
+import { createSelector, select } from '../../../../utils/lang'
 
 const selectUIInitialized = select(createSelector('ui.initialized'))
 

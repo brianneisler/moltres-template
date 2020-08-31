@@ -1,6 +1,7 @@
 export { default as selectRouterAction } from './selectRouterAction'
 export { default as selectRouterLocation } from './selectRouterLocation'
 export { default as selectRouterLocationPathname } from './selectRouterLocationPathname'
+export { default as selectRouterLocationQuery } from './selectRouterLocationQuery'
 export { default as selectRouterLocationSearch } from './selectRouterLocationSearch'
 export { default as selectRouterLocationState } from './selectRouterLocationState'
 export { default as selectRouterPreload } from './selectRouterPreload'

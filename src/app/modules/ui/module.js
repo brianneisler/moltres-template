@@ -1,14 +1,15 @@
 import { assoc } from '../../../utils/lang'
 import { handleActions, select, take } from '../../../utils/redux'
 
-import { uiDeinitialized, uiInitialized } from './actions'
-import selectUIInitialized from './selectUIInitialized'
+import { UIDeinitializedAction, UIInitializedAction } from './schemas'
+import { selectUIInitialized } from './selectors'
 
 const mod = {
   reducer: handleActions(
     {
-      [uiDeinitialized]: (state) => assoc('initialized', false, state),
-      [uiInitialized]: (state) => assoc('initialized', true, state)
+      [UIDeinitializedAction.name]: (state) =>
+        assoc('initialized', false, state),
+      [UIInitializedAction.name]: (state) => assoc('initialized', true, state)
     },
     {
       initialized: false
@@ -20,7 +21,7 @@ const mod = {
 
     const initialized = yield select(selectUIInitialized)
     if (!initialized) {
-      yield take(uiInitialized)
+      yield take(UIInitializedAction.name)
     }
   }
 }

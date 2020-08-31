@@ -10,6 +10,7 @@ import {
 } from '../../../utils/redux'
 import { buildLocation, parseLocation } from '../../../utils/url'
 import { pushRouteAction, selectRouterLocation } from '../router'
+import { trackAction } from '../tracking'
 
 import * as actions from './actions'
 import { PushModalRouteAction } from './schemas'
@@ -79,15 +80,33 @@ const mod = {
 
     yield takeEvery(
       actions.showModal,
-      handleAction(function* (context, action) {
-        const modal = yield select(selectModal(action.payload.name))
-        yield put(
-          actions.setModal(action.payload.name, {
-            ...modal,
-            visible: true
-          })
-        )
-      })
+      handleAction(
+        enhance(function* (context, action) {
+          const modal = yield select(selectModal(action.payload.name))
+          if (!getProp('visible', modal)) {
+            yield put(
+              actions.setModal(action.payload.name, {
+                ...modal,
+                visible: true
+              })
+            )
+
+            // TODO BRN: For now we're manually firing off this tracking event.
+            // Instead, it would be better if we had a way of registering which
+            // internal actions we wanted to track. Then we could apply a simple
+            // transformation layer for enriching events and adjusting naming
+            // conventions before firing them off to the event sinks.
+            yield put(
+              trackAction(context, {
+                eventName: 'Show Modal',
+                properties: {
+                  modalName: action.payload.name
+                }
+              })
+            )
+          }
+        })
+      )
     )
 
     yield takeEvery(
