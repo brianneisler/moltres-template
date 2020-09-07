@@ -35,7 +35,7 @@ const factoryAndWatchPaginatedQuery = function* ({
   invariant(isString(queryKey), 'queryKey must be a String')
 
   // NOTE BRN: This ensures that the query exists in state
-  let query = yield call(generateQuery, queryKey)
+  let query = yield call(generateQuery, context, queryKey)
 
   const buildQueryFactory = createQueryFactoryBuilder({
     createQuery,
@@ -56,8 +56,8 @@ const factoryAndWatchPaginatedQuery = function* ({
     // set the next query cursor to the current one and then set the next query
     // cursor to null. This will later be set by the watchPaginatedQuery method
     yield put([
-      setQueryCursorAction({ cursor: nextCursor, queryKey }),
-      setQueryCursorNextAction({ cursor: null, queryKey })
+      setQueryCursorAction(context, { cursor: nextCursor, queryKey }),
+      setQueryCursorNextAction(context, { cursor: null, queryKey })
     ])
     // increment cursor to nextPage and trigger new query
     yield call(factoryAndWatchPageQuery, {
@@ -73,7 +73,7 @@ const factoryAndWatchPaginatedQuery = function* ({
   }
 
   query = assoc('nextPage', nextPage, query)
-  yield put(setQueryAction({ query, queryKey }))
+  yield put(setQueryAction(context, { query, queryKey }))
 
   return yield call(watchPaginatedQuery, {
     buildQueryFactory,

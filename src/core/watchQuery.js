@@ -78,9 +78,21 @@ const watchQuery = function* ({
         stateChannel.put({ state: nextState })
       }
     } else if (action.type === 'add_task') {
-      yield call(addQueryWatcherTask, queryKey, id, action.payload.task)
+      yield call(
+        addQueryWatcherTask,
+        context,
+        queryKey,
+        id,
+        action.payload.task
+      )
     } else if (action.type === 'remove_task') {
-      yield call(removeQueryWatcherTask, queryKey, id, action.payload.task)
+      yield call(
+        removeQueryWatcherTask,
+        context,
+        queryKey,
+        id,
+        action.payload.task
+      )
     } else {
       throw new Error(
         `Unknown action type received by query watcher - ${action}`
@@ -96,7 +108,7 @@ const watchQuery = function* ({
     yield take(stateChannel)
   }
 
-  return yield call(addQueryWatcher, queryKey, {
+  return yield call(addQueryWatcher, context, queryKey, {
     id,
     stateChannel,
     statePath,

@@ -7,12 +7,12 @@ import { selectAuthState, watchCurrentUser } from '../auth'
 
 const enhance = compose(withConfig(), withContext())
 
-const mod = {
+const mod = () => ({
   routes: [
     {
       exact: true,
       handle: enhance(function* ({ config }) {
-        if (config.ssr) {
+        if (config.target === 'ssr') {
           return { statusCode: 200 }
         }
         const authState = yield select(selectAuthState)
@@ -37,6 +37,6 @@ const mod = {
       })
     }
   ]
-}
+})
 
 export default mod

@@ -92,5 +92,6 @@ etc
 firestore.min.rules
 out
 state.json
+stages
 tmp
 *.log

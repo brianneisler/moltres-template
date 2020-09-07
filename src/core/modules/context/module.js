@@ -11,7 +11,7 @@ import { handleActions } from '../../../utils/redux'
 
 import { setContextAction } from './actions'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [setContextAction]: (state, action) => {
@@ -35,6 +35,6 @@ const mod = {
     },
     {}
   )
-}
+})
 
 export default mod

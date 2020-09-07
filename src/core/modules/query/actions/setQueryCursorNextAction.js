@@ -1,11 +1,8 @@
-import { createAction } from '../../../../utils/redux'
+import { actionBuilder } from '../../../../utils/redux'
+import { SetQueryCursorNextAction } from '../schemas'
 
-const setQueryCursorNextAction = createAction(
-  'QUERY:SET_QUERY_CURSOR_NEXT',
-  ({ cursor, queryKey }) => ({
-    cursor,
-    queryKey
-  })
-)
+const setQueryCursorNextAction = actionBuilder({
+  Schema: SetQueryCursorNextAction
+})
 
 export default setQueryCursorNextAction

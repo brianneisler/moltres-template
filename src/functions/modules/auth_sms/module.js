@@ -34,8 +34,8 @@ const enhance = compose(
   }))
 )
 
-const mod = {
-  run: function* run() {
+const mod = () => ({
+  *run() {
     yield takeEvery(
       UserRegisteredAction.type,
       handleAction(
@@ -57,7 +57,7 @@ const mod = {
     )
   },
 
-  setupRouter: (router) => {
+  setupRouter(router) {
     const jsonParser = bodyParser.json()
 
     router.post(
@@ -209,6 +209,6 @@ const mod = {
 
     return router
   }
-}
+})
 
 export default mod

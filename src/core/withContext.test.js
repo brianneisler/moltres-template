@@ -15,7 +15,7 @@ describe('withContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const handler = withContext('foo')(function* (data) {
       return data
     })
@@ -39,7 +39,7 @@ describe('withContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const handler = withContext(['foo', 'bim'])(function* (data) {
       return data
     })
@@ -62,7 +62,7 @@ describe('withContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const selector = jest.fn((context) => ({
       bim: context.bim
     }))
@@ -87,7 +87,7 @@ describe('withContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const handler = withContext()(function* (data) {
       return data
     })
@@ -111,7 +111,7 @@ describe('withContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const handler = withContext()(function* (data) {
       return data
     })
@@ -129,16 +129,17 @@ describe('withContext', () => {
   })
 
   test('Integration: works in compose', async () => {
+    const testConfig = {
+      fig: 'ure'
+    }
     const testContext = {
       bim: 'bop',
+      config: testConfig,
       foo: 'bar',
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const testConfig = {
-      fig: 'ure'
-    }
-    const engine = generateEngine({}, testConfig, testContext)
+    const engine = generateEngine({}, testContext)
     const enhance = compose(
       withContext(),
       withConfig((config) => ({

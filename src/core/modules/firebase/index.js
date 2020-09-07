@@ -1,4 +1,4 @@
 export * from './actions'
-export * from './selectors'
+export * from './schemas'
 
 export { default } from './module'

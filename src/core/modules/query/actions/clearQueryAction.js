@@ -1,7 +1,8 @@
-import { createAction } from '../../../../utils/redux'
+import { actionBuilder } from '../../../../utils/redux'
+import { ClearQueryAction } from '../schemas'
 
-const clearQueryAction = createAction('QUERY:CLEAR_QUERY', ({ queryKey }) => ({
-  queryKey
-}))
+const clearQueryAction = actionBuilder({
+  Schema: ClearQueryAction
+})
 
 export default clearQueryAction

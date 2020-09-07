@@ -2,7 +2,9 @@ import { queueAction } from '../../db/Action'
 import { actions, schemas } from '../modules/storage'
 import setupFunctionContexts from '../setupFunctionContexts'
 
-const setupStorageMetadataUpdateFunction = (config) => async (object) => {
+const setupStorageMetadataUpdateFunction = (modules, config) => async (
+  object
+) => {
   const { context } = await setupFunctionContexts(
     config,
     'storage_metadata_update'

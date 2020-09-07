@@ -1,13 +1,10 @@
-import { isFunction, isNil } from '../../utils/lang'
+import { isFunction } from '../../utils/lang'
 
-const createModule = (config, context, name, creator) => {
-  if (isNil(creator)) {
-    throw new Error(`Module ${name} is nil. Expecting a function or an object.`)
+const createModule = (context, name, creator) => {
+  if (!isFunction(creator)) {
+    throw new Error(`Module ${name} must be a Function.`)
   }
-  if (isFunction(creator)) {
-    return creator(config, context)
-  }
-  return creator // creator IS a module
+  return creator(context)
 }
 
 export default createModule

@@ -2,20 +2,17 @@ require('@babel/register')()
 
 const path = require('path')
 
-const { pick } = require('ramda')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
-const loadEnv = require('../../utils/config/loadEnv').default
+const loadConfig = require('../../utils/config/loadConfig').default
 
 const { babelLoader } = require('./loaders')
 
-const config = (env) => {
-  if (!env) {
-    env = loadEnv(path.resolve(__dirname, '..', '..', '..'), {
-      stage: process.env.STAGE
-    })
-  }
+const moltresConfig = async () => {
+  const config = await loadConfig({
+    dropSensitive: true
+  })
   return {
     entry: [path.join(__dirname, '..', '..', 'index')],
     mode: 'production',
@@ -54,26 +51,11 @@ const config = (env) => {
       path: path.resolve(__dirname, '..', '..', '..', 'public', 'dist')
     },
     plugins: [
-      new webpack.EnvironmentPlugin(
-        pick(
-          [
-            'API_URL',
-            'APP_DESCRIPTION',
-            'APP_NAME',
-            'APP_URL',
-            'FACEBOOK_APP_ID',
-            'FIREBASE_API_KEY',
-            'FIREBASE_APP_ID',
-            'FIREBASE_MEASUREMENT_ID',
-            'FIREBASE_MESSAGING_SENDER_ID',
-            'FIREBASE_PROJECT_ID',
-            'NODE_ENV',
-            'SENTRY_DSN',
-            'TWITTER_USERNAME'
-          ],
-          env
-        )
-      ),
+      new webpack.EnvironmentPlugin({
+        MOLTRES_CONFIG: JSON.stringify(config),
+        STAGE: config.stage,
+        TARGET: 'web'
+      }),
       new ManifestPlugin({
         publicPath: '/dist/'
         // sort: (a, b) => {
@@ -96,4 +78,4 @@ const config = (env) => {
   }
 }
 
-module.exports = config
+module.exports = moltresConfig

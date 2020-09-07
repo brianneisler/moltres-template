@@ -18,18 +18,18 @@ const loadManifest = weakMemoize((context) =>
 const convertManifestToScripts = (manifest) =>
   map((path) => ({ props: { src: path } }), values(manifest))
 
-const mod = {
+const mod = () => ({
   loadScripts: weakMemoize((context) => [
     { create: createInitialStateScript },
     ...convertManifestToScripts(loadManifest(context))
   ]),
-  setupSSRRouter: (router, store) => {
+  setupSSRRouter(router, store) {
     const webpackSSRHandler = setupWebpackSSRHandler(store)
     // root (/) should always serve our server rendered page
     router.get('/', asyncHandler(webpackSSRHandler))
     router.get('/*', asyncHandler(webpackSSRHandler))
     return router
   }
-}
+})
 
 export default mod

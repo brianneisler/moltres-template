@@ -9,7 +9,7 @@ describe('setContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       yield* setContext('foo', 'bar')
       return yield* getContext()
@@ -26,7 +26,7 @@ describe('setContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       yield* setContext(['foo', 'bar'], 'baz')
       return yield* getContext()
@@ -45,7 +45,7 @@ describe('setContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       yield* setContext([], { foo: 'bar' })
       return yield* getContext()

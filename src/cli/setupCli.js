@@ -11,17 +11,11 @@ const setupCli = async () => {
     ...functionsModules,
     ...cliModules
   }
-  const contexts = await setupCliContexts()
+  const contexts = await setupCliContexts(modules)
   const { context } = contexts
   const { logger } = context
 
-  const engine = generateEngine(
-    modules,
-    context.config,
-    context,
-    undefined,
-    EngineState.SETUP
-  )
+  const engine = generateEngine(modules, context, undefined, EngineState.SETUP)
 
   const cli = engine.getModule('cli')
   const program = cli.getProgram()

@@ -6,7 +6,7 @@ import { fork, handleActions, put } from '../../../utils/redux'
 import { setAppState } from './actions'
 import { monitorAppStateChannel } from './util'
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [setAppState]: (state, action) =>
@@ -16,10 +16,10 @@ const module = {
       currentState: 0
     }
   ),
-  run: function* run() {
+  *run() {
     yield put(setAppState(AppState.currentState))
     yield fork(monitorAppStateChannel)
   }
-}
+})
 
-export default module
+export default mod

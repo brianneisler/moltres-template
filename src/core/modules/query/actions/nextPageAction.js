@@ -1,7 +1,8 @@
-import { createAction } from '../../../../utils/redux'
+import { actionBuilder } from '../../../../utils/redux'
+import { NextPageAction } from '../schemas'
 
-const nextPageAction = createAction('QUERY:NEXT_PAGE', (queryKey) => ({
-  queryKey
-}))
+const nextPageAction = actionBuilder({
+  Schema: NextPageAction
+})
 
 export default nextPageAction

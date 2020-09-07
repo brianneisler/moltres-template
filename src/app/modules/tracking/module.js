@@ -6,7 +6,7 @@ import { TrackAction } from './schemas'
 
 const enhance = compose(withContext())
 
-const mod = {
+const mod = () => ({
   *run() {
     yield takeEvery(
       TrackAction.name,
@@ -17,6 +17,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

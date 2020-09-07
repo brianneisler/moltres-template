@@ -6,8 +6,8 @@ const createGoogleAnalyticsScript = (context) => ({
     `gtag('config', '${context.config.google_analytics.analyticsId}');`
 })
 
-const mod = {
-  loadEarlyScripts: (context) => {
+const mod = () => ({
+  loadEarlyScripts(context) {
     if (context.config.google_analytics.analyticsId) {
       return [
         {
@@ -23,6 +23,6 @@ const mod = {
     }
     return []
   }
-}
+})
 
 export default mod

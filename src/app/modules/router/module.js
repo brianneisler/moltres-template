@@ -134,7 +134,7 @@ const mod = ({ ssr }, { history }) => {
         return state
       }
     ),
-    run: function* run() {
+    *run() {
       yield takeEvery(
         PreloadAction.type,
         handleAction(function* (context, { payload }) {

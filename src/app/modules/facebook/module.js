@@ -3,7 +3,7 @@ import { handleActions } from '../../../utils/redux'
 
 import * as actions from './actions'
 
-const mod = (config) => ({
+const mod = ({ config }) => ({
   reducer: handleActions(
     {
       [actions.setFacebookConfig]: (state, action) =>

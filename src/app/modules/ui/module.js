@@ -4,7 +4,7 @@ import { handleActions, select, take } from '../../../utils/redux'
 import { UIDeinitializedAction, UIInitializedAction } from './schemas'
 import { selectUIInitialized } from './selectors'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [UIDeinitializedAction.name]: (state) =>
@@ -15,7 +15,7 @@ const mod = {
       initialized: false
     }
   ),
-  run: function* run() {
+  *run() {
     // TODO BRN: This is no longer blocking to the main run execution
     // need to figure out how to make the app wait for this to complete
 
@@ -24,6 +24,6 @@ const mod = {
       yield take(UIInitializedAction.name)
     }
   }
-}
+})
 
 export default mod

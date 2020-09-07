@@ -1,6 +1,5 @@
 export { default as action_sheet } from './action_sheet'
 export { default as alert } from './alert'
-export { default as app } from './app'
 export { default as appstate } from './appstate'
 export { default as auth } from './auth'
 export { default as auth_one_time_token } from './auth_one_time_token'

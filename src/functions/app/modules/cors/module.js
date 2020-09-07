@@ -1,5 +1,5 @@
-const mod = {
-  setupMiddleware: () => (request, response, next) => {
+const mod = () => ({
+  setupMiddleware(request, response, next) {
     // If we're in development. Allow all origins.
     if (process.env.NODE_ENV === 'development') {
       response.setHeader('Access-Control-Allow-Origin', '*')
@@ -16,6 +16,6 @@ const mod = {
     }
     next()
   }
-}
+})
 
 export default mod

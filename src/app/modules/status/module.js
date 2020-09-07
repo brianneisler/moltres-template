@@ -35,7 +35,7 @@ const refreshCurrentStatus = function* () {
   yield put(actions.setCurrentStatus(current))
 }
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.setCurrentStatus]: (state, action) =>
@@ -57,7 +57,7 @@ const mod = {
       instances: {}
     }
   ),
-  run: function* run() {
+  *run() {
     yield takeEvery(
       actions.showStatusWithOptions,
       handleAction(function* (context, action) {
@@ -88,6 +88,6 @@ const mod = {
       })
     )
   }
-}
+})
 
 export default mod

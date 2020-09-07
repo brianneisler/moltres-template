@@ -33,7 +33,7 @@ const factoryAndWatchQuery = function* ({
   invariant(isObject(watcherOptions), 'watcherOptions must be a defined Object')
 
   // NOTE BRN: This ensures that the query exists in state
-  yield call(generateQuery, queryKey)
+  yield call(generateQuery, context, queryKey)
 
   // TODO BRN: Not sure that the buildQueryFactory and queryFactory makes the
   // most sense here. Perhaps this makes more sense to move up a layer and to be

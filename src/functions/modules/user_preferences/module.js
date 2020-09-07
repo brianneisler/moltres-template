@@ -14,7 +14,7 @@ import { isId } from '../../../utils/db'
 import { expected } from '../../../utils/error'
 import { isValidPhoneNumber } from '../../../utils/phonenumber'
 
-const mod = {
+const mod = () => ({
   setupCliCommands: () => [
     {
       command: 'user preferences [command]',
@@ -180,6 +180,6 @@ const mod = {
       ]
     }
   ]
-}
+})
 
 export default mod

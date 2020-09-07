@@ -42,7 +42,7 @@ const createContext = ({
     storage = initializeStorageEmulator({ app })
   } else {
     app = initializeApp({ cache, config, firebase, namespace })
-    if (!config.ssr && config.firebase.appId) {
+    if (config.target !== 'ssr' && config.firebase.appId) {
       performance = firebase.performance(app)
     }
     auth = firebase.auth(app)
@@ -51,7 +51,11 @@ const createContext = ({
       : firebase.storage
       ? firebase.storage(app)
       : null
-    if (!config.ssr && config.firebase.appId && config.firebase.measurementId) {
+    if (
+      config.target !== 'ssr' &&
+      config.firebase.appId &&
+      config.firebase.measurementId
+    ) {
       analytics = firebase.analytics(app)
     }
   }

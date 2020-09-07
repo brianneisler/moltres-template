@@ -1,6 +1,4 @@
-import { resolve } from 'path'
-
-import loadEnv from '../../src/utils/config/loadEnv'
+import loadConfig from '../../src/utils/config/loadConfig'
 
 const { log } = console
 // Silence log since we're using this for stdout
@@ -8,9 +6,9 @@ const { log } = console
 console.log = () => {}
 
 const exec = async (stage, key) => {
-  const env = loadEnv(resolve(__dirname, '..', '..'), { stage })
-  if (env[key]) {
-    log(env[key])
+  const config = await loadConfig({ stage })
+  if (config[key]) {
+    log(config[key])
   }
   process.exit()
 }

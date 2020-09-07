@@ -5,10 +5,9 @@ import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
 import { setupScriptContexts } from './utils'
 
 const configure = async () => {
-  const { context, env } = await setupScriptContexts()
-  const { logger } = context
-  const { TWILIO_PHONE_NUMBERS } = env
-  const internalPhoneNumbers = split(',', TWILIO_PHONE_NUMBERS)
+  const { context } = await setupScriptContexts()
+  const { config, logger } = context
+  const internalPhoneNumbers = split(',', config.sms.phoneNumbers)
 
   logger.info('Saving internal phone numbers')
   await Promise.all(

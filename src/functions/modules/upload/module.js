@@ -22,8 +22,8 @@ const enhance = compose(
   }))
 )
 
-const mod = {
-  run: function* run() {
+const mod = () => ({
+  *run() {
     yield takeEveryStorageObjectFinalize(
       {
         path: 'uploads/:userId/:uploadId/:uploadName'
@@ -90,6 +90,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

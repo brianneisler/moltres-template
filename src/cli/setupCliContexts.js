@@ -1,27 +1,10 @@
-import { generateAdminConfig } from '../config'
 import { createAdminContext, createContext } from '../context'
 import { signInWithIdToken } from '../utils/auth'
-import { isTestAppConfigured, loadEnv } from '../utils/config'
+import { isTestAppConfigured, loadConfig } from '../utils/config'
 import { uuidv4 } from '../utils/lang'
 
-const getStage = () => {
-  if (process.env.STAGE) {
-    // eslint-disable-next-line no-console
-    console.log('found stage from process.env.STAGE:', process.env.STAGE)
-    return process.env.STAGE
-  }
-
-  // eslint-disable-next-line no-console
-  console.log('no stage found')
-  return null
-}
-
-const setupCliContexts = async () => {
-  loadEnv(process.cwd(), { stage: process.env.STAGE })
-  const stage = getStage()
-  const config = generateAdminConfig({
-    stage
-  })
+const setupCliContexts = async (modules) => {
+  const config = await loadConfig({ modules })
   const namespace = uuidv4()
   const adminContext = await createAdminContext({
     config,

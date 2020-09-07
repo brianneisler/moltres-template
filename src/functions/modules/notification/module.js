@@ -17,8 +17,8 @@ const enhance = compose(
   }))
 )
 
-const mod = {
-  run: function* run() {
+const mod = () => ({
+  *run() {
     yield takeEveryEntityChanged(
       {
         changeType: EntityChangeType.CREATE,
@@ -40,6 +40,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

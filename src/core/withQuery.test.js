@@ -47,7 +47,7 @@ describe('withQuery', () => {
     })
     expect(factory).toBeInstanceOf(Function)
 
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     expect(
       await runSaga(engine, factory, testProps, testChannel, testContext)
     ).toEqual({
@@ -96,7 +96,7 @@ describe('withQuery', () => {
       statePath
     })
     const factory = enhancer((props) => props)
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     await runSaga(
       engine,
       factory,
@@ -174,7 +174,7 @@ describe('withQuery', () => {
     })
     expect(factory).toBeInstanceOf(Function)
 
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     expect(
       await runSaga(engine, factory, testProps, testChannel, testContext)
     ).toEqual({
@@ -264,7 +264,7 @@ describe('withQuery', () => {
     })
     expect(factory).toBeInstanceOf(Function)
 
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     expect(
       await runSaga(engine, factory, testProps, testChannel, testContext)
     ).toEqual({

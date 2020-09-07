@@ -10,13 +10,12 @@ import start from './start'
 const generateEngine = weakMemoize(
   (
     modules,
-    config,
     context,
     initialState = {},
     targetEngineState = EngineState.STARTED
   ) => {
     context.logger.debug(`No engine detected. Generating engine...`)
-    const engine = createEngine(modules, config, context, initialState)
+    const engine = createEngine(modules, context, initialState)
 
     if (targetEngineState === EngineState.SETUP) {
       return setup(engine)

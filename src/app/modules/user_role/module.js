@@ -8,7 +8,7 @@ import queryAndWatchCurrentUserRole from './queryAndWatchCurrentUserRole'
 
 const enhance = compose(withConfig('api'), withContext())
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.setCurrentUserRole]: (state, action) =>
@@ -20,7 +20,7 @@ const mod = {
       currentUserRole: undefined
     }
   ),
-  run: function* run() {
+  *run() {
     yield fork(
       watchCurrentUser,
       handleAction(
@@ -36,6 +36,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

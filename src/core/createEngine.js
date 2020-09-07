@@ -12,11 +12,13 @@ import createModules from './util/createModules'
 
 const createEngine = (
   modules = {},
-  config = {},
-  context = {},
+  context = {
+    config: {}
+  },
   initialState = {}
 ) => {
-  const instances = createModules(config, context, {
+  const { config } = context
+  const instances = createModules(context, {
     ...coreModules,
     ...modules
   })

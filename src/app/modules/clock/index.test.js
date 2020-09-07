@@ -3,6 +3,7 @@ describe('index', () => {
     const mod = require('./')
     expect(mod).toMatchObject({
       actions: expect.any(Object),
+      default: expect.any(Function),
       selectCurrentClock: expect.any(Function)
     })
   })

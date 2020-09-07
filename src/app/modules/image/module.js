@@ -3,7 +3,7 @@ import { handleActions } from '../../../utils/redux'
 
 import { setImageSizes } from './actions'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [setImageSizes]: (state, action) => {
@@ -14,6 +14,6 @@ const mod = {
       sizes: {}
     }
   )
-}
+})
 
 export default mod

@@ -2,7 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { selectLoggerContext, selectSSRConfig } from '../../../core'
+import {
+  selectAppConfig,
+  selectLoggerContext,
+  selectSSRConfig
+} from '../../../core'
 import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
 import {
   connect,
@@ -23,7 +27,6 @@ import {
   View
 } from '../../components'
 import { actions as alertActions } from '../../modules/alert'
-import { selectAppConfig } from '../../modules/app'
 import { selectFacebookConfig } from '../../modules/facebook'
 import { pushRouteAction } from '../../modules/router/actions'
 import { selectTwitterConfig } from '../../modules/twitter'

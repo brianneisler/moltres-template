@@ -2,7 +2,7 @@ import { queueAction } from '../../db/Action'
 import { actions, schemas } from '../modules/storage'
 import setupFunctionContexts from '../setupFunctionContexts'
 
-const setupStorageFinalizeFunction = (config) => async (object) => {
+const setupStorageFinalizeFunction = (modules, config) => async (object) => {
   const { context } = await setupFunctionContexts(config, 'storage_finalize')
   context.logger.info('object finalize received - object:', object)
   await queueAction(

@@ -24,7 +24,7 @@ const enhance = compose(
   withContext()
 )
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.hideModal]: (state, action) =>
@@ -70,7 +70,7 @@ const mod = {
       })
     }
   ],
-  run: function* run() {
+  *run() {
     yield takeEvery(
       PushModalRouteAction.name,
       handleAction(function* (context, action) {
@@ -147,6 +147,6 @@ const mod = {
       }
     })
   }
-}
+})
 
 export default mod

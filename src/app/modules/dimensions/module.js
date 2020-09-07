@@ -6,7 +6,7 @@ import { fork, handleActions } from '../../../utils/redux'
 import { DimensionsChangedAction } from './schemas'
 import { monitorDimensions } from './util'
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [DimensionsChangedAction.type]: (state, { payload }) =>
@@ -17,9 +17,9 @@ const module = {
       window: Dimensions.get('window')
     }
   ),
-  run: function* run() {
+  *run() {
     yield fork(monitorDimensions)
   }
-}
+})
 
-export default module
+export default mod

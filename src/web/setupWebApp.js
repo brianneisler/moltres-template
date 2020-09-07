@@ -2,9 +2,10 @@
 import * as Sentry from '@sentry/browser'
 import { AppRegistry } from 'react-native'
 
-import { App, generateConfig } from '../app'
+import { App } from '../app'
 import * as modules from '../app/modules'
 import { generateEngine } from '../core'
+import { loadConfig } from '../utils/config'
 import { createHistory } from '../utils/react'
 
 import setupWebContext from './setupWebContext'
@@ -12,7 +13,7 @@ import setupWebContext from './setupWebContext'
 const setupWebApp = () => {
   const rootTag = document.getElementById('root')
   const history = createHistory()
-  const config = generateConfig()
+  const config = loadConfig()
 
   // TODO BRN: This is here because it needs to start as early as possible. Not
   // as clean as having it in a module though... :/
@@ -24,7 +25,7 @@ const setupWebApp = () => {
   const initialState = window.__INITIAL_STATE__
   // Allow the SSR generated initial state to be garbage-collected
   delete window.__INITIAL_STATE__
-  const store = generateEngine(modules, config, context, initialState)
+  const store = generateEngine(modules, context, initialState)
 
   AppRegistry.registerComponent('App', () => App)
   AppRegistry.runApplication('App', {

@@ -1,4 +1,4 @@
-const mod = {
+const mod = () => ({
   setupMiddleware: () => (error, request, response, next) => {
     // Express default error handler needs to handle errors when the headers have
     // already been sent according to the documentation
@@ -18,6 +18,6 @@ const mod = {
       timestamp: timestamp || Date.now()
     })
   }
-}
+})
 
 export default mod

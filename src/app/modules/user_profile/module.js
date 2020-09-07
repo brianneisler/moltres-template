@@ -17,7 +17,7 @@ import { queryAndWatchCurrentUserProfile } from './util'
 
 const enhance = compose(withConfig('api'), withContext())
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [SetCurrentUserProfileAction.name]: (state, action) =>
@@ -49,7 +49,7 @@ const mod = {
       })
     }
   ],
-  run: function* run() {
+  *run() {
     yield fork(
       watchCurrentUser,
       handleAction(
@@ -74,6 +74,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

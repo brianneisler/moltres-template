@@ -1,8 +1,8 @@
 import { createLogger } from '../../../utils/logger'
 import expressWinston from '../../../utils/logger/express-winston'
 
-const mod = {
-  setupMiddleware: () => {
+const mod = () => ({
+  setupMiddleware() {
     const winstonInstance = createLogger()
     return expressWinston.errorLogger({
       expressFormat: true,
@@ -11,6 +11,6 @@ const mod = {
       winstonInstance
     })
   }
-}
+})
 
 export default mod

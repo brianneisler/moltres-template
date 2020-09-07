@@ -4,7 +4,7 @@ import { cancel, put, select } from '../utils/redux'
 import { setQueryAction } from './actions'
 import { selectQuery } from './selectors'
 
-const removeQueryWatcherTask = function* (queryKey, watcherId, task) {
+const removeQueryWatcherTask = function* (context, queryKey, watcherId, task) {
   let query = yield select(selectQuery(queryKey))
   yield cancel(task)
   query = update(
@@ -12,7 +12,7 @@ const removeQueryWatcherTask = function* (queryKey, watcherId, task) {
     (queryTasks) => filter((queryTask) => queryTask !== task, queryTasks),
     query
   )
-  yield put(setQueryAction({ query, queryKey }))
+  yield put(setQueryAction(context, { query, queryKey }))
   return query
 }
 

@@ -6,8 +6,8 @@ import runModule from './runModule'
 function* runStore(store) {
   const modules = store.getModules()
   const mapResult = map((name) => {
-    const module = getProp(name, modules)
-    return call(runModule, module, name, store)
+    const mod = getProp(name, modules)
+    return call(runModule, mod, name, store)
   }, keys(modules))
 
   const spawns = yield all(compact(mapResult))

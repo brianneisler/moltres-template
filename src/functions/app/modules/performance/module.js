@@ -20,12 +20,12 @@ const FIRST_INPUT_DELAY = readFileSync(
   'utf8'
 )
 
-const mod = {
+const mod = () => ({
   loadEarlyScripts: async () => [
     {
       content: FIRST_INPUT_DELAY
     }
   ]
-}
+})
 
 export default mod

@@ -1,3 +1,3 @@
-const mod = {}
+const mod = () => ({})
 
 export default mod

@@ -32,7 +32,7 @@ const factoryAndWatchPageQuery = function* ({
   invariant(isString(queryKey), 'queryKey must be a String')
 
   // NOTE BRN: This ensures that the query exists in state
-  yield call(generateQuery, queryKey)
+  yield call(generateQuery, context, queryKey)
 
   const factory = buildQueryFactory({
     queryExtensions: {
@@ -45,7 +45,7 @@ const factoryAndWatchPageQuery = function* ({
         if (currentCursor === cursor) {
           if (snapshot.docs.length === pageSize) {
             yield put(
-              setQueryCursorNextAction({
+              setQueryCursorNextAction(context, {
                 cursor: last(snapshot.docs),
                 queryKey
               })

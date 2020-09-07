@@ -13,7 +13,7 @@ import { actions as modalActions } from '../modal'
 
 import * as actions from './actions'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.setCurrentAlert]: (state, action) =>
@@ -25,7 +25,7 @@ const mod = {
       }
     }
   ),
-  run: function* run() {
+  *run() {
     yield takeEvery(
       actions.showAlertWithOptions,
       handleAction(function* (context, action) {
@@ -55,6 +55,6 @@ const mod = {
       })
     )
   }
-}
+})
 
 export default mod

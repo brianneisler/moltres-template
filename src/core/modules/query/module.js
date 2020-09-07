@@ -8,32 +8,32 @@ import {
 } from '../../../utils/redux'
 
 import {
-  clearQueryAction,
-  nextPageAction,
-  setQueryAction,
-  setQueryCursorAction,
-  setQueryCursorNextAction
-} from './actions'
+  ClearQueryAction,
+  NextPageAction,
+  SetQueryAction,
+  SetQueryCursorAction,
+  SetQueryCursorNextAction
+} from './schemas'
 import { selectQuery } from './selectors'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
-      [clearQueryAction]: (state, action) =>
+      [ClearQueryAction.name]: (state, action) =>
         dissocPath(createPath(action.payload.queryKey), state),
-      [setQueryAction]: (state, action) =>
+      [SetQueryAction.name]: (state, action) =>
         assocPath(
           createPath(action.payload.queryKey),
           action.payload.query,
           state
         ),
-      [setQueryCursorAction]: (state, action) =>
+      [SetQueryCursorAction.name]: (state, action) =>
         assocPath(
           createPath(`${action.payload.queryKey}.cursor`),
           action.payload.cursor,
           state
         ),
-      [setQueryCursorNextAction]: (state, action) =>
+      [SetQueryCursorNextAction.name]: (state, action) =>
         assocPath(
           createPath(`${action.payload.queryKey}.cursorNext`),
           action.payload.cursor,
@@ -42,9 +42,9 @@ const mod = {
     },
     {}
   ),
-  run: function* run() {
+  *run() {
     yield takeEvery(
-      nextPageAction,
+      NextPageAction.name,
       handleAction(function* (context, action) {
         const query = yield select(selectQuery(action.payload.queryKey))
         const result = yield call(getProp('nextPage', query))
@@ -52,6 +52,6 @@ const mod = {
       })
     )
   }
-}
+})
 
 export default mod

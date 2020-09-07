@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { Fragment, MetaTags, View } from '..'
-import { selectSSRConfig } from '../../../core'
+import { selectAppConfig, selectSSRConfig } from '../../../core'
 import { compose } from '../../../utils/lang'
 import {
   connect,
@@ -12,7 +12,6 @@ import {
   setPropTypes,
   withProps
 } from '../../../utils/react'
-import { selectAppConfig } from '../../modules/app'
 import { selectFacebookConfig } from '../../modules/facebook'
 import { selectTwitterConfig } from '../../modules/twitter'
 import { Styles } from '../../styles'

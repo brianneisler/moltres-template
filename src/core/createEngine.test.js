@@ -9,8 +9,11 @@ describe('createEngine', () => {
   test('correctly creates an engine with no modules', () => {
     const testModules = {}
     const config = { foo: 'bar' }
-    const context = { bim: ' bop' }
-    const engine = createEngine(testModules, config, context)
+    const context = {
+      bim: ' bop',
+      config
+    }
+    const engine = createEngine(testModules, context)
 
     expect(engine.getModules()).toMatchObject({
       core: expect.any(Object)
@@ -35,7 +38,8 @@ describe('createEngine', () => {
       foo: 'abc'
     }
     const context = {
-      bar: 'def'
+      bar: 'def',
+      config
     }
     const testAction = {
       payload: 'bar',
@@ -51,15 +55,14 @@ describe('createEngine', () => {
       return {}
     }
     const modules = {
-      foo: (modConfig, modContext) => {
-        expect(modConfig).toBe(config)
+      foo: (modContext) => {
         expect(modContext).toBe(context)
         return {
           reducer: testReducer
         }
       }
     }
-    const store = createEngine(modules, config, context)
+    const store = createEngine(modules, context)
     expect(store.getModules()).toEqual({
       config: expect.any(Object),
       context: expect.any(Object),
@@ -87,7 +90,8 @@ describe('createEngine', () => {
         foo: 'abc'
       },
       context: {
-        bar: 'def'
+        bar: 'def',
+        config: { foo: 'abc' }
       },
       core: expect.any(Object),
       error: expect.any(Object),
@@ -126,7 +130,6 @@ describe('createEngine', () => {
       {
         test: testModule
       },
-      {},
       testContext
     )
 

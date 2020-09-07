@@ -18,7 +18,7 @@ const enhance = compose(
   withContext()
 )
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [UncaughtExceptionAction.name]: (state, action) => {
@@ -30,7 +30,7 @@ const mod = {
     },
     {}
   ),
-  run: function* run() {
+  *run() {
     yield fork(monitorUnhandledRejection)
 
     yield takeEvery(
@@ -45,6 +45,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod
