@@ -1,14 +1,16 @@
 import { v1 } from '@google-cloud/firestore'
 
-const mod = {
-  setupSchedule: (config) => ({
+import { FirestoreConfig } from './schemas'
+
+const mod = () => ({
+  setupSchedule: () => ({
     'every 24 hours': async (context) => {
-      const { logger } = context
+      const { config, logger } = context
       const { FirestoreAdminClient } = v1
 
       const credentials = {
-        client_email: config.serviceAccount.client_email,
-        private_key: config.serviceAccount.private_key
+        client_email: config.firebase.serviceAccount.client_email,
+        private_key: config.firebase.serviceAccount.private_key
       }
 
       const client = new FirestoreAdminClient({
@@ -19,16 +21,18 @@ const mod = {
       const name = client.databasePath(config.firebase.projectId, '(default)')
 
       logger.info(
-        `Backing up ${config.firebase.projectId} database to gs://${config.gcloud.databaseBackupBucket}...`
+        `Backing up ${config.firebase.projectId} database to gs://${config.firestpre.backupBucket}...`
       )
 
       await client.exportDocuments({
         collectionIds: [],
         name,
-        outputUriPrefix: `gs://${config.gcloud.databaseBackupBucket}`
+        outputUriPrefix: `gs://${config.firestore.backupBucket}`
       })
     }
   })
-}
+})
+
+mod.configSchema = FirestoreConfig
 
 export default mod

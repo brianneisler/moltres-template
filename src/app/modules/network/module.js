@@ -16,7 +16,7 @@ import { monitorNetworkInformationChannel } from './util'
 
 const STATUS_NETWORK = 'STATUS:NETWORK'
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [setNetworkInformation]: (state, action) =>
@@ -30,7 +30,7 @@ const module = {
       }
     }
   ),
-  run: function* run() {
+  *run() {
     yield takeEvery(
       setNetworkInformation,
       handleAction(function* (context, action) {
@@ -53,6 +53,6 @@ const module = {
     yield put(setNetworkInformation({ information }))
     yield fork(monitorNetworkInformationChannel, context)
   }
-}
+})
 
-export default module
+export default mod

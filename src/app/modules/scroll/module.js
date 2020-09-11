@@ -30,7 +30,7 @@ import { monitorScroll } from './util'
 const getDistanceFromBottom = (element) =>
   getScrollHeight(element) - (getClientHeight(element) + getScrollTop(element))
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.scrollEvent]: (state, { payload }) => {
@@ -64,7 +64,7 @@ const module = {
       }
     }
   ),
-  run: function* run() {
+  *run() {
     yield fork(monitorScroll, getWindow(), 'window')
 
     yield takeLatest(actions.scrollEvent, function* (action) {
@@ -131,6 +131,6 @@ const module = {
       }
     })
   }
-}
+})
 
-export default module
+export default mod

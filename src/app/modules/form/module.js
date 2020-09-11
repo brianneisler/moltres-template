@@ -1,7 +1,7 @@
 import { reducer } from 'redux-form'
 
-const module = {
+const mod = () => ({
   reducer
-}
+})
 
-export default module
+export default mod

@@ -1,20 +1,11 @@
-import { generateAdminConfig } from '../../../src/config'
+import { loadProjectConfig } from '../../../src/config'
 import { createAdminContext, createContext } from '../../../src/context'
 import { signInWithIdToken } from '../../../src/utils/auth'
-import { loadEnv } from '../../../src/utils/config'
 import { uuidv4 } from '../../../src/utils/lang'
-import { pathResolve } from '../../../src/utils/path'
 
 const setupScriptContexts = async () => {
-  const stage = process.env.STAGE
-  const env = loadEnv(pathResolve(__dirname, '..', '..', '..'), {
-    stage
-  })
-  const config = generateAdminConfig({
-    stage
-  })
+  const config = await loadProjectConfig({ target: 'script' })
   const namespace = uuidv4()
-
   const adminContext = await createAdminContext({
     config,
     namespace: `admin.script:${namespace}`,
@@ -33,8 +24,7 @@ const setupScriptContexts = async () => {
 
   return {
     adminContext,
-    context,
-    env
+    context
   }
 }
 

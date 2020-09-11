@@ -1,17 +1,17 @@
-import generateAdminConfig from '../config/generateAdminConfig'
-import loadEnv from '../utils/config/loadEnv'
+import { loadProjectConfig } from '../config'
 import { uuidv4 } from '../utils/lang'
 
-const setupTestConfig = () => {
-  const stage = process.env.STAGE
-  const env = loadEnv(process.cwd(), { stage })
-  return generateAdminConfig({
-    stage,
-    test: {
-      integration: env.TEST_INTEGRATION,
-      runId: uuidv4()
+const setupTestConfig = async () => {
+  return await loadProjectConfig(
+    {
+      target: 'test'
+    },
+    {
+      test: {
+        runId: uuidv4()
+      }
     }
-  })
+  )
 }
 
 export default setupTestConfig

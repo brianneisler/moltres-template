@@ -2,10 +2,11 @@ import ReactDOMServer from 'react-dom/server'
 import MetaTagsServer from 'react-meta-tags/server'
 import { AppRegistry } from 'react-native-web'
 
-import { App, generateConfig } from '../app'
+import { App } from '../app'
 import * as modules from '../app/modules'
 import { selectRouterResponse } from '../app/modules/router'
 import { locationChangeAction } from '../app/modules/router/actions'
+import { loadProjectConfig } from '../config'
 import { createEngine, selectUncaughtException, setup, start } from '../core'
 import {
   cacheMethod,
@@ -76,16 +77,23 @@ const setupSSRApp = () => {
     AppRegistry.registerComponent('App', () => App)
     return {
       render: async (context, url) => {
-        const config = generateConfig({
-          ssr: true,
-          stage: context.config.stage,
-          test: context.config.test
-        })
+        const config = await loadProjectConfig(
+          {
+            stage: context.config.stage,
+            target: 'ssr'
+          },
+          {
+            ssr: {
+              enabled: true
+            },
+            test: context.config.test
+          }
+        )
         const { cache } = context
         const metaTagsInstance = MetaTagsServer()
         const history = createHistory(url)
         const ssrContext = setupSSRContext(config, context, history)
-        const store = start(setup(createEngine(modules, config, ssrContext)))
+        const store = start(setup(createEngine(modules, ssrContext)))
         const initialProps = {
           cache,
           history,

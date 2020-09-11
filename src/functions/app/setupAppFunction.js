@@ -1,14 +1,13 @@
 import { generateEngine } from '../../core'
 import { EngineState } from '../../core/constants'
-import * as functionModules from '../modules'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 import * as appModules from './modules'
 
-const setupAppFunction = (config) => {
-  const modules = {
-    ...appModules,
-    ...functionModules
+const setupAppFunction = (modules, config) => {
+  modules = {
+    ...modules,
+    ...appModules
   }
   return (request, response) => {
     // NOTE BRN: The setupFunctionContexts function is memoized, so it should return the same
@@ -19,7 +18,6 @@ const setupAppFunction = (config) => {
         // contexts on each invocation
         const engine = generateEngine(
           modules,
-          config,
           context,
           undefined,
           EngineState.SETUP

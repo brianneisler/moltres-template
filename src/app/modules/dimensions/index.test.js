@@ -3,6 +3,7 @@ describe('index', () => {
     const mod = require('./')
     expect(mod).toEqual({
       actions: expect.any(Object),
+      default: expect.any(Function),
       selectDimensionsWindowHeight: expect.any(Function),
       selectDimensionsWindowWidth: expect.any(Function)
     })

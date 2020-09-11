@@ -4,7 +4,7 @@ import { fork, handleActions } from '../../../utils/redux'
 import { HoverStateChangedAction } from './schemas'
 import { monitorHoverState } from './util'
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [HoverStateChangedAction.type]: (state, { payload }) => {
@@ -19,9 +19,9 @@ const mod = {
       isEnabled: false
     }
   ),
-  run: function* run() {
+  *run() {
     yield fork(monitorHoverState)
   }
-}
+})
 
 export default mod

@@ -4,7 +4,7 @@ import { fork, handleActions, put } from '../../../utils/redux'
 import { setCurrentClock } from './actions'
 import { monitorClockChannel } from './util'
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [setCurrentClock]: (state, { payload }) =>
@@ -14,11 +14,11 @@ const module = {
       current: 0
     }
   ),
-  run: function* run() {
+  *run() {
     const frequency = 4000
     yield put(setCurrentClock(Date.now()))
     return yield fork(monitorClockChannel, frequency)
   }
-}
+})
 
-export default module
+export default mod

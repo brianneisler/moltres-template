@@ -1,7 +1,7 @@
 // NOTE BRN: Stopped using this because it had dependencies that made it only
 // work in node js
 // import * as testing from '@firebase/testing'
-
+import { generateProjectId } from '../config'
 import { encodeUnsecuredJwt } from '../jwt'
 import { invariant, isNil, isObject, isString } from '../lang'
 
@@ -20,7 +20,10 @@ const initializeTestApp = ({ auth, config, firebase, namespace }) => {
   )
   invariant(isNil(auth) || isObject(auth), 'auth must be nil or an object')
 
-  const { projectId } = config.firebase
+  // NOTE BRN: In local mode, this will return config.firebase.projectId
+  // In test mode, it will return a randomly generated projectId so that we
+  // properly isolate each test run.
+  const projectId = generateProjectId(config)
 
   return initializeEmulatorApp({
     accessToken: auth ? encodeUnsecuredJwt(auth) : undefined,

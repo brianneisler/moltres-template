@@ -1,11 +1,8 @@
-import { createAction } from '../../../../utils/redux'
+import { actionBuilder } from '../../../../utils/redux'
+import { SetQueryAction } from '../schemas'
 
-const setQueryAction = createAction(
-  'QUERY:SET_QUERY',
-  ({ query, queryKey }) => ({
-    query,
-    queryKey
-  })
-)
+const setQueryAction = actionBuilder({
+  Schema: SetQueryAction
+})
 
 export default setQueryAction

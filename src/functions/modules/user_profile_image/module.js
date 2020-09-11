@@ -7,8 +7,8 @@ import resizeImageToStream from '../../../utils/image/resizeImageToStream'
 import downloadFile from '../../../utils/storage/downloadFile'
 // import findOrCreateUserProfileImageFromBuffer from '../../../sdk/user/findOrCreateUserProfileImageFromBuffer'
 
-const mod = {
-  setupRouter: (router) => {
+const mod = () => ({
+  setupRouter(router) {
     router.get(
       '/content/user_profile_image/:id',
       asyncHandler(async (request, response) => {
@@ -81,6 +81,6 @@ const mod = {
 
     return router
   }
-}
+})
 
 export default mod

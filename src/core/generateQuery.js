@@ -8,12 +8,12 @@ import { selectQuery } from './selectors'
 // for data but instead a stored block in the state where the results are held
 // and all active "watchers" which are active queries syncing to that block of
 // state are held
-const generateQuery = function* (queryKey) {
+const generateQuery = function* (context, queryKey) {
   let query = yield select(selectQuery(queryKey))
   if (!query) {
     query = yield call(createQueryState, queryKey)
     // Store query
-    yield put(setQueryAction({ query, queryKey }))
+    yield put(setQueryAction(context, { query, queryKey }))
   }
   return query
 }

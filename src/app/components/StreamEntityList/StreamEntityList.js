@@ -18,10 +18,10 @@ const enhance = compose(
     streamName: PropTypes.string.isRequired
   }),
   withHandlers({
-    renderRow: ({ entityComponents }) => (rowData) => (
+    renderItem: ({ entityComponents }) => (rowData) => (
       <EntityView entity={rowData} entityComponents={entityComponents} />
     ),
-    sortRows: () => (rows) =>
+    sortItems: () => (rows) =>
       sortBy(
         (value) => negate(getPath(['createdAt', 'seconds'], value)),
         reject((value) => {
@@ -35,11 +35,11 @@ const enhance = compose(
   })
 )
 
-const StreamEntityList = enhance(({ renderRow, sortRows, streamName }) => (
+const StreamEntityList = enhance(({ renderItem, sortItems, streamName }) => (
   <PaginatedQueryView
     queryKey={`Stream.${streamName}`}
-    renderRow={renderRow}
-    sortRows={sortRows}
+    renderItem={renderItem}
+    sortItems={sortItems}
   />
 ))
 

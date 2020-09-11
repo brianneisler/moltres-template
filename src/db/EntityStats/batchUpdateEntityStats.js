@@ -1,5 +1,5 @@
 import { refGet } from '../../utils/db'
-import { assoc, getProp, hasProp, omit } from '../../utils/lang'
+import { assoc, getProp, hasProperty, omit } from '../../utils/lang'
 import { batchUpdateEntity } from '../Entity'
 
 import batchUpdateStatsShard from './batchUpdateStatsShard'
@@ -13,7 +13,7 @@ const batchUpdateEntityStats = async (context, batch, id, updates) => {
     id,
     omit(['data'], updates)
   )
-  if (hasProp('data', updates)) {
+  if (hasProperty('data', updates)) {
     const doc = await refGet(context, ref)
     if (doc.data().numberShards !== 1) {
       throw new Error('Update of more than 1 Shard has not been implemented')

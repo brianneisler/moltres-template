@@ -9,15 +9,16 @@ describe('getConfig', () => {
       foo: 'bar'
     }
     const testContext = {
+      config: testConfig,
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, testConfig, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getConfig()
     }
 
-    expect(await runSaga(engine, method, testConfig)).toBe(testConfig)
+    expect(await runSaga(engine, method)).toBe(testConfig)
   })
 
   test('gets the specified config path correctly', async () => {
@@ -26,15 +27,16 @@ describe('getConfig', () => {
       foo: 'bar'
     }
     const testContext = {
+      config: testConfig,
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, testConfig, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getConfig('bim')
     }
 
-    expect(await runSaga(engine, method, testConfig)).toEqual('bop')
+    expect(await runSaga(engine, method)).toEqual('bop')
   })
 
   test('executes the given selector function on the config', async () => {
@@ -43,17 +45,18 @@ describe('getConfig', () => {
       foo: 'bar'
     }
     const testContext = {
+      config: testConfig,
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, testConfig, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getConfig((config) => ({
         it: config.bim
       }))
     }
 
-    expect(await runSaga(engine, method, testConfig)).toEqual({
+    expect(await runSaga(engine, method)).toEqual({
       it: 'bop'
     })
   })

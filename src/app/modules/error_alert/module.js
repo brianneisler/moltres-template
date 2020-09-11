@@ -2,8 +2,8 @@ import { UncaughtExceptionAction } from '../../../core'
 import { put, takeEvery } from '../../../utils/redux'
 import { showAlertWithOptions } from '../alert/actions'
 
-const mod = {
-  run: function* run() {
+const mod = () => ({
+  *run() {
     yield takeEvery(UncaughtExceptionAction.name, function* () {
       yield put(
         showAlertWithOptions({
@@ -26,6 +26,6 @@ const mod = {
       )
     })
   }
-}
+})
 
 export default mod

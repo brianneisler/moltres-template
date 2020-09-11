@@ -1,4 +1,3 @@
-export { default as api } from './api'
 export { default as context } from './context'
 export { default as cors } from './cors'
 export { default as middleware } from './middleware'

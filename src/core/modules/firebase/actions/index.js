@@ -1,6 +1,1 @@
-export { default as firebaseAuthStateChanged } from './firebaseAuthStateChanged'
-export { default as setFirebaseApp } from './setFirebaseApp'
-export { default as setFirebaseAuth } from './setFirebaseAuth'
-export { default as setFirebaseDatabase } from './setFirebaseDatabase'
-export { default as setFirebaseFirebase } from './setFirebaseFirebase'
-export { default as setFirebaseStorage } from './setFirebaseStorage'
+export { default as firebaseAuthStateChangedAction } from './firebaseAuthStateChangedAction'

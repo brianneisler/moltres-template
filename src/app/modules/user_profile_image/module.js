@@ -8,8 +8,8 @@ import { UploadUserProfileImageAction } from './schemas'
 
 const enhance = compose(withConfig('api'), withContext())
 
-const mod = {
-  run: function* run() {
+const mod = () => ({
+  *run() {
     yield takeEvery(
       UploadUserProfileImageAction.name,
       handleAction(
@@ -23,6 +23,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

@@ -3,11 +3,11 @@ TODO
 - [ ] add new DB concepts to firestore.rules
   - App
   - File
-  - Host
+  - [x] Host
   - Page
   - PageContent
-  - Url
-- [ ] rename service folder to `sdk`
+  - [x] Url
+- [x] rename service folder to `sdk`
 - [ ] move all queryAndWatch and db enhancer functions into `sdk` folder
 
 - [ ] IMPROVEMENT: Switch to eslint-plugin-import for import order (remove sort-imports-es6-autofix)
@@ -75,3 +75,11 @@ https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.m
   - it should setup the firebase project
   - it should setup all github triggers and hooks for establishing CI deployment
   
+- [ ] add deployment of infrastructure 
+
+- [ ] setup server side functions to use webpack so we can make use of code
+  branching
+
+
+- [ ] collapse all modules down into a single folder. Use webpack to generate
+  correct module code for each target.

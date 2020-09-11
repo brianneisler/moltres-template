@@ -1,7 +1,7 @@
 import { getUserById } from '../../../db/User'
 import { verifyIdToken } from '../../../utils/auth'
 
-const mod = {
+const mod = () => ({
   setupMiddleware: () => (request, response, next) => {
     const { adminContext, context } = request
     const idToken = request.headers['authorization']
@@ -28,7 +28,7 @@ const mod = {
       next()
     }
   },
-  setupRouter: (router) => {
+  setupRouter(router) {
     router.get('/api/auth', (req, res) => {
       // https://firebase.google.com/docs/auth/admin/create-custom-tokens
 
@@ -45,6 +45,6 @@ const mod = {
     })
     return router
   }
-}
+})
 
 export default mod

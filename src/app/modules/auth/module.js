@@ -1,6 +1,6 @@
 import { AuthState } from '../../../constants'
 import { setContext, withConfig, withContext } from '../../../core'
-import { firebaseAuthStateChanged } from '../../../core/actions'
+import { FirebaseAuthStateChangedAction } from '../../../core/schemas'
 import { findUserById } from '../../../db/User'
 import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
 import { append, assoc, compose, getProp } from '../../../utils/lang'
@@ -35,7 +35,7 @@ import { selectAfterLogin, selectAuthState } from './selectors'
 
 const enhance = compose(withConfig(), withContext())
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [SetAuthIdTokenAction.name]: (state, action) =>
@@ -57,7 +57,7 @@ const mod = {
     {
       exact: true,
       handle: enhance(function* ({ config }) {
-        if (config.ssr) {
+        if (config.target === 'ssr') {
           return { statusCode: 200 }
         }
         const authState = yield select(selectAuthState)
@@ -73,7 +73,7 @@ const mod = {
     {
       exact: true,
       handle: enhance(function* (context) {
-        if (context.config.ssr) {
+        if (context.config.target === 'ssr') {
           return { statusCode: 200 }
         }
         const authState = yield select(selectAuthState)
@@ -86,7 +86,7 @@ const mod = {
       path: '/logout'
     }
   ],
-  run: function* run() {
+  *run() {
     // yield takeEvery(
     //   actions.registerUser,
     //   handleAction(
@@ -154,7 +154,7 @@ const mod = {
     // })
 
     yield takeEvery(
-      firebaseAuthStateChanged,
+      FirebaseAuthStateChangedAction.name,
       handleAction(
         enhance(function* (context, action) {
           const firebaseUser = action.payload
@@ -201,6 +201,6 @@ const mod = {
       )
     )
   }
-}
+})
 
 export default mod

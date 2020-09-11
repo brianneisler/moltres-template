@@ -13,7 +13,7 @@ const initializeAdminApp = ({ config, firebase, namespace, testUser }) => {
     'firebase projectId must be a defined String'
   )
 
-  const { serviceAccount } = config
+  const { serviceAccount } = config.firebase
   let appConfig = {
     credential: firebase.credential.cert(serviceAccount),
     ...config.firebase

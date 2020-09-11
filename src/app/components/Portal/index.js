@@ -1,1 +1,1 @@
-export { default } from './Portal.web'
+export { default } from './Portal'

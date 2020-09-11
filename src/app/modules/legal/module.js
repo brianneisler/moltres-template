@@ -5,7 +5,7 @@ import { compose } from '../../../utils/lang'
 import { call } from '../../../utils/redux'
 
 const enhance = compose(withConfig(), withContext())
-const mod = {
+const mod = () => ({
   routes: [
     {
       exact: true,
@@ -42,6 +42,6 @@ const mod = {
       path: '/legal'
     }
   ]
-}
+})
 
 export default mod

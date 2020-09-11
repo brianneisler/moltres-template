@@ -10,7 +10,7 @@ const findEnhancedNotificationById = function* (context, id) {
   const queryKey = `Notification.${id}`
   const watcher = yield call(queryAndWatchNotification, context, id)
   const result = yield select(selectQueryResults(queryKey))
-  yield call(removeQueryWatcher, queryKey, watcher)
+  yield call(removeQueryWatcher, context, queryKey, watcher)
   return result
 }
 

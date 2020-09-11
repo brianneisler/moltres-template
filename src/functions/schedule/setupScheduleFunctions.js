@@ -2,10 +2,9 @@ import * as functions from 'firebase-functions'
 
 import { assoc, isFunction, keys, reduce } from '../../utils/lang'
 import { camelCase } from '../../utils/string'
-import * as modules from '../modules'
 import setupFunctionContexts from '../setupFunctionContexts'
 
-const setupScheduleFunctions = (config, runtimeOptions) =>
+const setupScheduleFunctions = (modules, config, runtimeOptions) =>
   reduce(
     (accum, moduleName) => {
       // eslint-disable-next-line import/namespace

@@ -46,7 +46,7 @@ const watchPaginatedQuery = function* ({
   const snap = yield cursorQuery.get()
   if (snap.docs.length > 0) {
     const cursor = snap.docs[0]
-    yield put(setQueryCursorAction({ cursor, queryKey }))
+    yield put(setQueryCursorAction(context, { cursor, queryKey }))
     yield call(factoryAndWatchFirstPageQueries, {
       buildQueryFactory,
       context,
@@ -69,7 +69,7 @@ const watchPaginatedQuery = function* ({
       *onSnapshot(snapshot) {
         if (snapshot.docs && snapshot.docs.length > 0) {
           const cursor = snapshot.docs[0]
-          yield put(setQueryCursorAction({ cursor, queryKey }))
+          yield put(setQueryCursorAction(context, { cursor, queryKey }))
           yield call(factoryAndWatchFirstPageQueries, {
             buildQueryFactory,
             context,

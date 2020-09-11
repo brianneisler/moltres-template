@@ -1,8 +1,7 @@
 import { generateEngine } from '../../core'
 import { processAction, rejectAction, resolveAction } from '../../db/Action'
 import { User, findUserById } from '../../db/User'
-import { assoc, hasProp } from '../../utils/lang'
-import * as modules from '../modules'
+import { assoc, hasProperty } from '../../utils/lang'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 // perform desired operations ...
@@ -11,7 +10,10 @@ import setupFunctionContexts from '../setupFunctionContexts'
 // const previousData = change.before.data()
 
 const setCurrentUser = async (context, action, engine) => {
-  if (hasProp('meta', action) && action.meta.causedByEntityType === User.name) {
+  if (
+    hasProperty('meta', action) &&
+    action.meta.causedByEntityType === User.name
+  ) {
     const currentUser = await findUserById(
       context,
       action.meta.causedByEntityId
@@ -23,11 +25,14 @@ const setCurrentUser = async (context, action, engine) => {
   return context
 }
 
-const setupActionsFunction = (config) => async (snapshot, { params }) => {
+const setupActionsFunction = (modules, config) => async (
+  snapshot,
+  { params }
+) => {
   let { context } = await setupFunctionContexts(config, 'actions')
   context.logger.info(
     'action received - snapshot.data():',
-    snapshot.data(),
+    JSON.stringify(snapshot.data(), null, 2),
     ' params:',
     params
   )
@@ -35,7 +40,7 @@ const setupActionsFunction = (config) => async (snapshot, { params }) => {
   // const { id, type } = params
   const document = await processAction(context, snapshot)
   const { action } = document.data()
-  const engine = generateEngine(modules, config, context)
+  const engine = generateEngine(modules, context)
 
   context = await setCurrentUser(context, action, engine)
 

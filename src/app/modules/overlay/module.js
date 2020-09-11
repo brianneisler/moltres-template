@@ -20,7 +20,7 @@ const enhance = compose(
   withContext()
 )
 
-const mod = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.setOverlay]: (state, action) =>
@@ -59,7 +59,7 @@ const mod = {
       })
     }
   ],
-  run: function* run() {
+  *run() {
     yield takeEvery(
       actions.showOverlay,
       handleAction(function* (context, action) {
@@ -97,6 +97,6 @@ const mod = {
       }
     })
   }
-}
+})
 
 export default mod

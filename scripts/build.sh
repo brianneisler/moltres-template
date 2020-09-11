@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 set -e
 export NODE_ENV=${NODE_ENV:=production}
-export STAGE=${STAGE:=${1:-test}}
 
 echo "building ${STAGE}..."
-
-# Config workaround
-babel-node ./scripts/js/build.js
 
 # Build the production dist folder
 mkdir -p dist

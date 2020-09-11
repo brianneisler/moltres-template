@@ -25,8 +25,8 @@ const COMMANDS = {
   }
 }
 
-const mod = {
-  setupRouter: (router, store) => {
+const mod = () => ({
+  setupRouter(router, store) {
     const commands = setupSMSCommands(COMMANDS, store)
     const config = store.getConfig()
     router.post(
@@ -93,6 +93,6 @@ const mod = {
 
     return router
   }
-}
+})
 
 export default mod

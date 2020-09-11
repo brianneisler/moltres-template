@@ -12,7 +12,7 @@ const initializeAuthEmulator = ({ app, config }) => {
     app,
     createCustomToken: async (uid, claims) => {
       const nowSeconds = Date.now() / 1000
-      const clientEmail = config.serviceAccount.client_email
+      const clientEmail = config.firebase.serviceAccount.client_email
       return encodeJwt(
         {
           aud:

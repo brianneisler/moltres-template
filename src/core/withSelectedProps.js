@@ -4,7 +4,7 @@ import {
   assocPath,
   createPath,
   createSelector,
-  dissocProp,
+  dissocProperty,
   equals,
   getProp,
   identity,
@@ -74,7 +74,7 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
         )
         factories = assoc(factoryKey, factory, factories)
       }
-      remainingFactories = dissocProp(factoryKey, remainingFactories)
+      remainingFactories = dissocProperty(factoryKey, remainingFactories)
       return yield call(factory, props, ...rest)
     }, wildcardValuesGroups)
 

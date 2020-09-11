@@ -1,3 +1,4 @@
+import { generateProjectId } from '../config'
 import { invariant, isObject, isString } from '../lang'
 
 import initializeEmulatorApp from './initializeEmulatorApp'
@@ -17,7 +18,10 @@ const initializeTestAdminApp = ({ config, firebase, namespace }) => {
     'firebase projectId must be a defined String'
   )
 
-  const { projectId } = config.firebase
+  // NOTE BRN: In local mode, this will return config.firebase.projectId
+  // In test mode, it will return a randomly generated projectId so that we
+  // properly isolate each test run.
+  const projectId = generateProjectId(config)
 
   return initializeEmulatorApp({
     accessToken: ADMIN_TOKEN,

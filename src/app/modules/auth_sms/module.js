@@ -22,7 +22,7 @@ import selectAuthSMSChallengeId from './selectAuthSMSChallengeId'
 
 const enhance = compose(withConfig('api'), withContext())
 
-const module = {
+const mod = () => ({
   reducer: handleActions(
     {
       [actions.setSMSChallengeId]: (state, action) =>
@@ -52,7 +52,7 @@ const module = {
       path: '/login/code'
     }
   ],
-  run: function* run() {
+  *run() {
     yield takeEvery(
       actions.requestSMSChallenge,
       handleAction(
@@ -84,6 +84,6 @@ const module = {
       )
     )
   }
-}
+})
 
-export default module
+export default mod

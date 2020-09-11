@@ -10,6 +10,7 @@ describe('generateEngine', () => {
     }
     const context = {
       bar: 'def',
+      config,
       logger: console
     }
     const testAction = {
@@ -26,8 +27,7 @@ describe('generateEngine', () => {
       return {}
     }
     const modules = {
-      foo: (modConfig, modContext) => {
-        expect(modConfig).toBe(config)
+      foo: (modContext) => {
         expect(modContext).toBe(context)
         return {
           reducer: testReducer
@@ -64,6 +64,9 @@ describe('generateEngine', () => {
       },
       context: {
         bar: 'def',
+        config: {
+          foo: 'abc'
+        },
         logger: console
       },
       core: expect.any(Object),
@@ -78,6 +81,7 @@ describe('generateEngine', () => {
 
   test('starts the engine and calls the setup and start methods', async () => {
     const testContext = {
+      config: {},
       logger: console,
       source: 'https://moltres.io/test'
     }
@@ -101,7 +105,6 @@ describe('generateEngine', () => {
       {
         test: testModule
       },
-      {},
       testContext
     )
 

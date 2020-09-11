@@ -1,8 +1,8 @@
 import { serveStatic } from '../../../../utils/express'
 import { pathResolve } from '../../../../utils/path'
 
-const mod = {
-  setupStaticRouter: (router) => {
+const mod = () => ({
+  setupStaticRouter(router) {
     // other static resources should just be served as they are
     // NOTE BRN: This only provides files that are not part of the public folder
     // that is uploaded to the firebase CDN (at the moment ALL files are uploaded
@@ -19,6 +19,6 @@ const mod = {
     )
     return router
   }
-}
+})
 
 export default mod

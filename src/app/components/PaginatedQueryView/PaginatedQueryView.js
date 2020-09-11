@@ -27,8 +27,8 @@ const enhance = compose(
   setDisplayName('PaginatedQueryView'),
   setPropTypes({
     queryKey: PropTypes.string.isRequired,
-    renderRow: PropTypes.func.isRequired,
-    sortRows: PropTypes.func
+    renderItem: PropTypes.func.isRequired,
+    sortItems: PropTypes.func
   }),
   defaultProps({
     styles: Styles
@@ -85,14 +85,22 @@ const enhance = compose(
 )
 
 const PaginatedQueryView = enhance(
-  ({ error, isLoadingMore, pages, queryKey, renderRow, sortRows, styles }) => {
+  ({
+    error,
+    isLoadingMore,
+    pages,
+    queryKey,
+    renderItem,
+    sortItems,
+    styles
+  }) => {
     return (
       <View style={[styles.container, styles.list]}>
         <PagesList
           key={`${queryKey}-pages`}
           pages={pages}
-          renderRow={renderRow}
-          sortRows={sortRows}
+          renderItem={renderItem}
+          sortItems={sortItems}
         />
         {error ? <Text style={styles.errorText}>{error.message}</Text> : null}
         {isLoadingMore || !pages ? (

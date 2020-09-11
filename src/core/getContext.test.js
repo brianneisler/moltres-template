@@ -10,12 +10,12 @@ describe('getContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getContext()
     }
 
-    expect(await runSaga(engine, method, testContext)).toBe(testContext)
+    expect(await runSaga(engine, method)).toBe(testContext)
   })
 
   test('gets the specified context path correctly', async () => {
@@ -25,7 +25,7 @@ describe('getContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getContext('bim')
     }
@@ -40,7 +40,7 @@ describe('getContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getContext((context) => ({
         it: context.bim
@@ -59,7 +59,7 @@ describe('getContext', () => {
       logger: console,
       source: 'https://moltres.io/test'
     }
-    const engine = generateEngine({}, {}, testContext)
+    const engine = generateEngine({}, testContext)
     const method = function* () {
       return yield* getContext()
     }

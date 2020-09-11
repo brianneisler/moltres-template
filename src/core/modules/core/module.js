@@ -3,6 +3,7 @@ import { call, handleActions, take } from '../../../utils/redux'
 import { uncaughtExceptionAction } from '../error/actions'
 
 import { runSagaAction } from './actions'
+import { CoreConfig } from './schemas'
 import {
   createAsyncMiddleware,
   createRootSaga,
@@ -31,7 +32,7 @@ function* run() {
   }
 }
 
-const module = () => {
+const mod = () => {
   let _store
   const sagaMiddleware = createSagaMiddleware({
     onError: (reason, saga) => {
@@ -82,4 +83,6 @@ const module = () => {
   }
 }
 
-export default module
+mod.configSchema = CoreConfig
+
+export default mod

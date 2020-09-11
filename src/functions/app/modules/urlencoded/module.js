@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser'
 
-const mod = {
+const mod = () => ({
   setupMiddleware: () => bodyParser.urlencoded({ extended: false })
-}
+})
 
 export default mod

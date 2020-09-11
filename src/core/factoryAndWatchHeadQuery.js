@@ -24,7 +24,7 @@ const factoryAndWatchHeadQuery = function* ({
   invariant(isString(queryKey), 'queryKey must be a String')
 
   // NOTE BRN: This ensures that the query exists in state
-  yield call(generateQuery, queryKey)
+  yield call(generateQuery, context, queryKey)
 
   const factory = buildQueryFactory({
     queryOptions: { cursor, head: true },

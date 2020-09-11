@@ -4,8 +4,8 @@ import { expected } from '../../../utils/error'
 import asyncHandler from '../../../utils/express/asyncHandler'
 import createFileReadStream from '../../../utils/storage/createFileReadStream'
 
-const mod = {
-  setupRouter: (router) => {
+const mod = () => ({
+  setupRouter(router) {
     router.get(
       '/content/image/:id',
       asyncHandler(async (request, response) => {
@@ -46,6 +46,6 @@ const mod = {
 
     return router
   }
-}
+})
 
 export default mod
