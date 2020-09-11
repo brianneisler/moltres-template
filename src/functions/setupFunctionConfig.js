@@ -1,12 +1,13 @@
+import { loadProjectConfigSync } from '../config'
 import * as coreModules from '../core/modules'
-import { loadConfigSync } from '../utils/config'
 
 const setupFunctionConfig = (modules) => {
-  return loadConfigSync({
+  return loadProjectConfigSync({
     modules: {
       ...coreModules,
       ...modules
-    }
+    },
+    target: 'function'
   })
 }
 

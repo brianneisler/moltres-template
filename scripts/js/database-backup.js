@@ -8,8 +8,8 @@ const exec = async () => {
   const { FirestoreAdminClient } = v1
 
   const credentials = {
-    client_email: config.serviceAccount.client_email,
-    private_key: config.serviceAccount.private_key
+    client_email: config.firebase.serviceAccount.client_email,
+    private_key: config.firebase.serviceAccount.private_key
   }
 
   const client = new FirestoreAdminClient({

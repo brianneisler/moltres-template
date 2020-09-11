@@ -105,7 +105,8 @@ const handleRouting = function* (context, routing, routes) {
 
 const enhance = compose(withContext())
 
-const mod = ({ ssr }, { history }) => {
+const mod = ({ config, history }) => {
+  const { ssr } = config
   let routes
   let previousLocation = null
   return {

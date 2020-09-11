@@ -1,10 +1,11 @@
+import { loadProjectConfig } from '../config'
 import { createAdminContext, createContext } from '../context'
 import { signInWithIdToken } from '../utils/auth'
-import { isTestAppConfigured, loadConfig } from '../utils/config'
+import { isTestAppConfigured } from '../utils/config'
 import { uuidv4 } from '../utils/lang'
 
 const setupCliContexts = async (modules) => {
-  const config = await loadConfig({ modules })
+  const config = await loadProjectConfig({ modules, target: 'cli' })
   const namespace = uuidv4()
   const adminContext = await createAdminContext({
     config,

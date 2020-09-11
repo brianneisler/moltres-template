@@ -5,13 +5,14 @@ const path = require('path')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
-const loadConfig = require('../../utils/config/loadConfig').default
+const loadProjectConfig = require('../../config/loadProjectConfig').default
 
 const { babelLoader } = require('./loaders')
 
 const moltresConfig = async () => {
-  const config = await loadConfig({
-    dropSensitive: true
+  const config = await loadProjectConfig({
+    dropSensitive: true,
+    target: 'webpack'
   })
   return {
     entry: [path.join(__dirname, '..', '..', 'index')],

@@ -20,7 +20,7 @@ const renderNotificationRow = (rowData) => (
 const NotificationList = enhance(({ userId }) => (
   <PaginatedQueryView
     queryKey={`Notifications.${userId}`}
-    renderRow={renderNotificationRow}
+    renderItem={renderNotificationRow}
   />
 ))
 

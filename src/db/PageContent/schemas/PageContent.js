@@ -1,5 +1,5 @@
 import { PageContentFormat } from '../../../constants'
-import { Id, Integer, String, Timestamp } from '../../../core/schemas'
+import { Boolean, Id, Integer, String, Timestamp } from '../../../core/schemas'
 import { values } from '../../../utils/lang'
 import { Entity } from '../../Entity'
 import { Page } from '../../Page/schemas'

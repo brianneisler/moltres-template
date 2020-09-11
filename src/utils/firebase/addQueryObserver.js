@@ -1,7 +1,7 @@
-import { assoc, hasProp } from '../lang'
+import { assoc, hasProperty } from '../lang'
 
 const addQueryObserver = (observers, key, query, observer) => {
-  if (hasProp(key, observers)) {
+  if (hasProperty(key, observers)) {
     throw new Error(
       `observer already present for prop ${key}. Something must have gone wrong in withQuery`
     )

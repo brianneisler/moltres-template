@@ -1,4 +1,4 @@
-import { dissocProp, map, update } from '../utils/lang'
+import { dissocProperty, map, update } from '../utils/lang'
 import { all, cancel, put, select } from '../utils/redux'
 
 import { setQueryAction } from './actions'
@@ -10,7 +10,7 @@ const removeQueryWatcher = function* (context, queryKey, watcher) {
   yield cancel(watcher.task)
   query = update(
     'watchers',
-    (watchers) => dissocProp(watcher.id, watcher, watchers),
+    (watchers) => dissocProperty(watcher.id, watcher, watchers),
     query
   )
   yield put(setQueryAction(context, { query, queryKey }))

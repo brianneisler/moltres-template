@@ -5,7 +5,7 @@ import setupFunctionContexts from '../setupFunctionContexts'
 import * as appModules from './modules'
 
 const setupAppFunction = (modules, config) => {
-  const modules = {
+  modules = {
     ...modules,
     ...appModules
   }

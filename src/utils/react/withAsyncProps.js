@@ -5,7 +5,7 @@ import {
   assocPath,
   forEach,
   getProp,
-  hasProp,
+  hasProperty,
   keys,
   map,
   omit,
@@ -20,7 +20,7 @@ import setDisplayName from './setDisplayName'
 import wrapDisplayName from './wrapDisplayName'
 
 const addObserver = (observers, key, promisedAsyncProp, observer) => {
-  if (hasProp(key, observers)) {
+  if (hasProperty(key, observers)) {
     throw new Error(
       `observer already present for prop ${key}. Something must have gone wrong in withAsyncProps`
     )

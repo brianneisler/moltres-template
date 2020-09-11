@@ -1,6 +1,6 @@
 import {
   assoc,
-  dissocProp,
+  dissocProperty,
   getProp,
   identity,
   keys,
@@ -47,7 +47,7 @@ const createWildcardQueryFactory = ({
         })
         factories = assoc(factoryKey, factory, factories)
       }
-      remainingFactories = dissocProp(factoryKey, remainingFactories)
+      remainingFactories = dissocProperty(factoryKey, remainingFactories)
       return yield call(factory, props, channel, context, ...rest)
     }, wildcardValuesGroups)
 

@@ -1,4 +1,4 @@
-import loadConfig from '../../src/utils/config/loadConfig'
+import loadProjectConfig from '../../src/config/loadProjectConfig'
 
 const { log } = console
 // Silence log since we're using this for stdout
@@ -6,7 +6,7 @@ const { log } = console
 console.log = () => {}
 
 const exec = async (stage, key) => {
-  const config = await loadConfig({ stage })
+  const config = await loadProjectConfig({ stage, target: 'script' })
   if (config[key]) {
     log(config[key])
   }

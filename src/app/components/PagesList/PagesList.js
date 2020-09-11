@@ -1,83 +1,50 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Platform } from 'react-native'
 
-import {
-  compose,
-  getPath,
-  negate,
-  shallowEquals,
-  sortBy
-} from '../../../utils/lang'
+import { compose, getPath, negate, sortBy } from '../../../utils/lang'
 import {
   defaultProps,
   flattenPages,
-  idsOfValues,
-  keyValuesById,
   setDisplayName,
   setPropTypes,
-  withHandlers,
   withPropsOnChange
 } from '../../../utils/react'
 import { Styles } from '../../styles'
-import InfiniteInvertibleScrollView from '../InfiniteInvertibleScrollView'
-import ListView from '../ListView'
+import FlatList from '../FlatList'
 
 const enhance = compose(
   setDisplayName('PagesList'),
   setPropTypes({
+    keyExtractor: PropTypes.func,
     pages: PropTypes.object,
-    renderRow: PropTypes.func.isRequired,
-    sortRows: PropTypes.func
+    renderItem: PropTypes.func.isRequired,
+    sortItems: PropTypes.func
   }),
   defaultProps({
-    dataSource: new ListView.DataSource({
-      rowHasChanged: (r1, r2) => !shallowEquals(r1, r2)
-    }),
-    sortRows: (rows) =>
-      sortBy((value) => negate(getPath(['createdAt', 'seconds'], value)), rows),
+    data: [],
+    keyExtractor: (item) => item.id,
+    sortItems: (items) =>
+      sortBy(
+        (value) => negate(getPath(['createdAt', 'seconds'], value)),
+        items
+      ),
     styles: Styles
   }),
-  withPropsOnChange(['pages', 'sortRows'], ({ pages, sortRows }) => ({
-    sortedRows: sortRows(flattenPages(pages))
-  })),
-  withPropsOnChange(['sortedRows'], ({ dataSource, sortedRows }) => ({
-    dataSource: dataSource.cloneWithRows(
-      keyValuesById(sortedRows),
-      idsOfValues(sortedRows)
-    )
-  })),
-  withHandlers({
-    renderScrollComponent: ({ styles }) => (props) => (
-      <InfiniteInvertibleScrollView
-        contentContainerStyle={styles.scroll}
-        {...props}
-      />
-    )
-  })
+  withPropsOnChange(['pages', 'sortItems'], ({ pages, sortItems }) => ({
+    data: sortItems(flattenPages(pages))
+  }))
 )
 
-const PagesList = enhance(
-  ({ dataSource, renderRow, renderScrollComponent, styles }) => {
-    return (
-      // NOTE BRN: The props of the ListView get passed to the
-      // renderScrollComponent method which then get injected into whatever
-      // componenet the renderScrollComponent method generates
-      <ListView
-        dataSource={dataSource}
-        enableEmptySections={true}
-        initialListSize={10}
-        keyboardDismissMode={
-          Platform.OS == 'android' ? 'on-drag' : 'interactive'
-        }
-        onEndReachedThreshold={0}
-        pageSize={1}
-        renderRow={renderRow}
-        renderScrollComponent={renderScrollComponent}
-        style={styles.list}
-      />
-    )
-  }
-)
+const PagesList = enhance(({ data, keyExtractor, renderItem, styles }) => {
+  return (
+    <FlatList
+      data={data}
+      initialNumToRender={10}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
+      style={styles.list}
+    />
+  )
+})
 
 export default PagesList

@@ -1,4 +1,4 @@
-import { assoc, curry, forEach, hasProp, pick, reduce } from '../lang'
+import { assoc, curry, forEach, hasProperty, pick, reduce } from '../lang'
 
 import getOutNodes from './getOutNodes'
 import isGraph from './isGraph'
@@ -13,7 +13,7 @@ const traverseNode = (context, node, traverser) => {
   })
   const outNodes = getOutNodes(graph, node)
   forEach((outNode) => {
-    if (!hasProp(outNode, updatedContext.visited)) {
+    if (!hasProperty(outNode, updatedContext.visited)) {
       updatedContext = traverseNode(updatedContext, outNode, traverser)
     }
   }, outNodes)

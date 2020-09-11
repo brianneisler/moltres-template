@@ -13,6 +13,7 @@ const config = () => ({
         'emoji-mart',
         'emoji-mart/css/emoji-mart.css',
         'expo-linear-gradient',
+        // 'react-native-markdown-display',
         'react-native-scrollable-mixin',
         'react-native-typography',
         /^react-native-web\/src/

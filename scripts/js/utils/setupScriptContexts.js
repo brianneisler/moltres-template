@@ -1,10 +1,10 @@
+import { loadProjectConfig } from '../../../src/config'
 import { createAdminContext, createContext } from '../../../src/context'
 import { signInWithIdToken } from '../../../src/utils/auth'
-import { loadConfig } from '../../../src/utils/config'
 import { uuidv4 } from '../../../src/utils/lang'
 
 const setupScriptContexts = async () => {
-  const config = await loadConfig()
+  const config = await loadProjectConfig({ target: 'script' })
   const namespace = uuidv4()
   const adminContext = await createAdminContext({
     config,

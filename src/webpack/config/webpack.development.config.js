@@ -3,13 +3,14 @@ const path = require('path')
 
 const webpack = require('webpack')
 
-const loadConfig = require('../../utils/config/loadConfig').default
+const loadProjectConfig = require('../../config/loadProjectConfig').default
 
 const { babelLoader } = require('./loaders')
 
 const webpackConfig = async () => {
-  const config = await loadConfig({
-    dropSensitive: true
+  const config = await loadProjectConfig({
+    dropSensitive: true,
+    target: 'webpack'
   })
   return {
     devtool: 'eval-source-map',

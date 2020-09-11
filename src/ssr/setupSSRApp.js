@@ -6,8 +6,8 @@ import { App } from '../app'
 import * as modules from '../app/modules'
 import { selectRouterResponse } from '../app/modules/router'
 import { locationChangeAction } from '../app/modules/router/actions'
+import { loadProjectConfig } from '../config'
 import { createEngine, selectUncaughtException, setup, start } from '../core'
-import { loadConfig } from '../utils/config'
 import {
   cacheMethod,
   isArray,
@@ -77,9 +77,10 @@ const setupSSRApp = () => {
     AppRegistry.registerComponent('App', () => App)
     return {
       render: async (context, url) => {
-        const config = await loadConfig(
+        const config = await loadProjectConfig(
           {
-            stage: context.config.stage
+            stage: context.config.stage,
+            target: 'ssr'
           },
           {
             ssr: {

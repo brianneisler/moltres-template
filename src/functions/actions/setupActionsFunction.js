@@ -1,7 +1,7 @@
 import { generateEngine } from '../../core'
 import { processAction, rejectAction, resolveAction } from '../../db/Action'
 import { User, findUserById } from '../../db/User'
-import { assoc, hasProp } from '../../utils/lang'
+import { assoc, hasProperty } from '../../utils/lang'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 // perform desired operations ...
@@ -10,7 +10,10 @@ import setupFunctionContexts from '../setupFunctionContexts'
 // const previousData = change.before.data()
 
 const setCurrentUser = async (context, action, engine) => {
-  if (hasProp('meta', action) && action.meta.causedByEntityType === User.name) {
+  if (
+    hasProperty('meta', action) &&
+    action.meta.causedByEntityType === User.name
+  ) {
     const currentUser = await findUserById(
       context,
       action.meta.causedByEntityId
@@ -29,7 +32,7 @@ const setupActionsFunction = (modules, config) => async (
   let { context } = await setupFunctionContexts(config, 'actions')
   context.logger.info(
     'action received - snapshot.data():',
-    snapshot.data(),
+    JSON.stringify(snapshot.data(), null, 2),
     ' params:',
     params
   )
