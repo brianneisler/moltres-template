@@ -1,7 +1,7 @@
 {
   "firestore": {
     "predeploy": "npm run database:predeploy",
-    "rules": "firestore.rules",
+    "rules": "firestore.min.rules",
     "indexes": "firestore.indexes.json"
   },
   "functions": {

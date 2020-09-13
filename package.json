@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=10.0"
   },
-  "main": "./bootstrap",
+  "main": "./bootstrap.js",
   "scripts": {
     "build": "moltres run ./scripts/build.sh",
     "clean": "moltres run ./scripts/clean.sh",

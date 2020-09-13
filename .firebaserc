@@ -3,7 +3,6 @@
     "default": "moltres-local",
     "local": "moltres-local",
     "dev": "moltres-dev",
-    "qa": "moltres-qa",
     "prod": "moltres-prod"
   }
 }
