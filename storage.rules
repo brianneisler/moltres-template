@@ -1,9 +1,10 @@
+rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
 
     match /uploads {
       match /{allImages=**} {
-        allow read: if auth.token.serviceAccountId != null
+        allow read: if request.auth.token.serviceAccountId != null
       }
 
       match /{userId}/{uploadId}/{uploadName} {
@@ -22,7 +23,7 @@ service firebase.storage {
     match /images {
       // Cascade read to any image type at any path
       match /{allImages=**} {
-        allow read: if auth.token.serviceAccountId != null;
+        allow read: if request.auth.token.serviceAccountId != null;
       }
 
       // Allow write files to the path "images/*", subject to the constraints:
@@ -38,7 +39,7 @@ service firebase.storage {
             imageName == imageId + '.png'
           ) &&
           request.resource.contentType.matches('image/.*') &&
-          auth.token.serviceAccountId != null
+          request.auth.token.serviceAccountId != null
         )
           // request.resource.size < 5 * 1024 * 1024 &&
           // request.resource.contentType == resource.contentType

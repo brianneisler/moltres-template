@@ -40,7 +40,7 @@ const mod = () => ({
         if (process.env.NODE_ENV === 'production') {
           isValid = twilio.validateExpressRequest(
             request,
-            config.sms.authToken,
+            config.twilio.authToken,
             {
               url: `${config.api.url}/sms`
             }

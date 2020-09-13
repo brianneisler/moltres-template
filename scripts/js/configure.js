@@ -7,7 +7,7 @@ import { setupScriptContexts } from './utils'
 const configure = async () => {
   const { context } = await setupScriptContexts()
   const { config, logger } = context
-  const internalPhoneNumbers = split(',', config.sms.phoneNumbers)
+  const internalPhoneNumbers = split(',', config.twilio.phoneNumbers)
 
   logger.info('Saving internal phone numbers')
   await Promise.all(

@@ -17,7 +17,8 @@ npm run build
 # Backup the database before deploy the changes
 npm run database:backup
 
-firebase deploy --token --project $FIREBASE_PROJECT_ID "$FIREBASE_TOKEN"
+echo "starting deploy for ${STAGE}..."
+firebase deploy --project $FIREBASE_PROJECT_ID --token "$FIREBASE_TOKEN"
 
 npm run database:migrate:up
 

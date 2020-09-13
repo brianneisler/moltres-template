@@ -47,6 +47,10 @@ service cloud.firestore {
         )
     }
 
+    function isIndex(value) {
+      return isInteger(value) && value >= 0
+    }
+
     function isInteger(value) {
       return value is int
     }
@@ -157,41 +161,41 @@ service cloud.firestore {
     // Current authenticated user methods
     // -----------------------------
 
-    function currentUserIsAuthenticated() {
-      return request.auth != null && request.auth.uid != null;
+    function currentUserIsAuthenticated(auth) {
+      return auth != null && auth.uid != null;
     }
 
-    function currentUserIsValid() {
-      let user = getUserBefore(request.auth.uid);
+    function currentUserIsValid(auth) {
+      let user = getUserBefore(auth.uid);
       return user != null && user.data.state == 'valid';
     }
 
-    function currentUserHasAdminRole() {
-      let role = getUserRoleBefore(request.auth.uid);
+    function currentUserHasAdminRole(auth) {
+      let role = getUserRoleBefore(auth.uid);
       return role != null && role.data.role == 'admin';
     }
 
-    function userIdEqualsAuthServiceAccountId(userId) {
+    function userIdEqualsAuthServiceAccountId(auth, userId) {
       let serviceAccount = getServiceAccountBefore(userId);
-      return serviceAccount != null && serviceAccount.id == request.auth.token.serviceAccountId;
+      return serviceAccount != null && serviceAccount.id == auth.token.serviceAccountId;
     }
 
-    function authHasServiceAccountIdToken() {
-      return request.auth.token != null && has('serviceAccountId', request.auth.token);
+    function authHasServiceAccountIdToken(auth) {
+      return auth.token != null && has('serviceAccountId', auth.token);
     }
 
-    function currentUserIsServiceAccount() {
-      return currentUserIsAuthenticated() &&
-        authHasServiceAccountIdToken() &&
-        userIdEqualsAuthServiceAccountId(request.auth.uid)
+    function currentUserIsServiceAccount(auth) {
+      return currentUserIsAuthenticated(auth) &&
+        authHasServiceAccountIdToken(auth) &&
+        userIdEqualsAuthServiceAccountId(auth, auth.uid)
     }
 
-    function currentUserOwnsResource(resource) {
-      return request.auth.uid == resource.data.userId
+    function currentUserOwnsData(auth, data) {
+      return auth.uid == data.userId
     }
 
-    function currentUserOwnsData(data) {
-      return request.auth.uid == data.userId
+    function currentUserOwnsResource(auth, resource) {
+      return currentUserOwnsData(auth, resource.data)
     }
 
 
@@ -305,61 +309,63 @@ service cloud.firestore {
       return isTimestamp(data.removedAt)
     }
 
-    function currentUserCanReadPrivateEntity(entity, userId) {
+    function currentUserCanReadPrivateEntity(auth, entity, userId) {
       return (
         (
-          currentUserOwnsResource(entity) && dataIsNotRemoved(entity.data)
+          currentUserOwnsResource(auth, entity) && dataIsNotRemoved(entity.data)
         ) || (
-          currentUserIsAuthenticated() && request.auth.uid == userId
+          currentUserIsAuthenticated(auth) && auth.uid == userId
         ) ||
-        currentUserHasAdminRole() ||
-        currentUserIsServiceAccount()
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
       )
     }
 
-    function currentUserCanReadProtectedEntity(entity) {
+
+    function currentUserCanReadProtectedEntity(auth, entity) {
       return (
         (dataIsNotRemoved(entity.data) && resourceExists(entity)) ||
-        currentUserHasAdminRole() ||
-        currentUserIsServiceAccount()
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
       )
     }
 
-    function currentUserCanReadPublicEntity(entity, allowReadRemoved) {
+    function currentUserCanReadPublicEntity(auth, entity, allowReadRemoved) {
       return (
         (allowReadRemoved || dataIsNotRemoved(entity.data)) ||
         !resourceExists(entity) ||
-        currentUserHasAdminRole() ||
-        currentUserIsServiceAccount()
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
       )
     }
 
-    function currentUserCanCreateEntity(entity) {
+    function currentUserCanCreateEntity(auth, entity) {
       return (
         (
-          currentUserIsAuthenticated() &&
-          currentUserIsValid() &&
-          currentUserOwnsResource(entity)
+          currentUserIsAuthenticated(auth) &&
+          currentUserIsValid(auth) &&
+          currentUserOwnsResource(auth, entity)
         ) ||
-        currentUserHasAdminRole() ||
-        currentUserIsServiceAccount()
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
       );
     }
 
-    function currentUserCanUpdateEntity(entity, allowRestores) {
+    function currentUserCanUpdateEntity(auth, entity, allowRestores) {
       return (
         (
-          currentUserIsAuthenticated() &&
-          currentUserIsValid() &&
-          currentUserOwnsResource(entity) &&
+          currentUserIsAuthenticated(auth) &&
+          currentUserIsValid(auth) &&
+          currentUserOwnsResource(auth, entity) &&
           // TODO BRN: A restore should be restricted to only being allowed by
           // the  user that removed the entity
           (allowRestores || dataIsNotRemoved(entity.data))
         ) ||
-        currentUserHasAdminRole() ||
-        currentUserIsServiceAccount()
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
       )
     }
+
 
 
     // Index methods
@@ -461,30 +467,30 @@ service cloud.firestore {
         validateAccessTokenData(accessToken.data)
     }
 
-    function checkReadAccessToken() {
-      return currentUserIsServiceAccount()
+    function checkReadAccessToken(auth) {
+      return currentUserIsServiceAccount(auth)
     }
 
-    function checkCreateAccessToken(id) {
+    function checkCreateAccessToken(auth, id) {
       let accessToken = getAccessTokenAfter(id);
-      return accessToken != null && currentUserIsServiceAccount() && validateAccessToken(accessToken);
+      return accessToken != null && currentUserIsServiceAccount(auth) && validateAccessToken(accessToken);
     }
 
-    function checkUpdateAccessToken(id) {
+    function checkUpdateAccessToken(auth, id) {
       let accessToken = getAccessTokenAfter(id);
-      return accessToken != null && currentUserIsServiceAccount() && validateAccessToken(accessToken);
+      return accessToken != null && currentUserIsServiceAccount(auth) && validateAccessToken(accessToken);
     }
 
-    function checkDeleteAccessToken() {
+    function checkDeleteAccessToken(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
     match /AccessTokens/{id} {
-      allow read: if checkReadAccessToken();
-      allow create: if checkCreateAccessToken(id);
-      allow update: if checkUpdateAccessToken(id);
-      allow delete: if checkDeleteAccessToken();
+      allow read: if checkReadAccessToken(request.auth);
+      allow create: if checkCreateAccessToken(request.auth, id);
+      allow update: if checkUpdateAccessToken(request.auth, id);
+      allow delete: if checkDeleteAccessToken(request.auth);
     }
 
 
@@ -512,8 +518,8 @@ service cloud.firestore {
         meta.causedByEntityId == currentUserId
     }
 
-    function currentUserCausedAction(action) {
-      return currentUserCausedActionMeta(action.data.action.meta, request.auth.uid)
+    function currentUserCausedAction(auth, action) {
+      return currentUserCausedActionMeta(auth, action.data.action.meta)
     }
 
     function validateEntityChangedPayload(payload) {
@@ -625,12 +631,12 @@ service cloud.firestore {
         validateActionData(action.data, type, id)
     }
 
-    function checkCreateQueueAction(type, id) {
+    function checkCreateQueueAction(auth, type, id) {
       let action = getActionAfter(type, 'queue', id);
       return (
-        currentUserIsServiceAccount() ||
-        currentUserHasAdminRole() ||
-        currentUserCausedAction(action)
+        currentUserIsServiceAccount(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserCausedAction(auth, action)
       ) && (
         validateAction(action, type, id) &&
         !actionExistsAfter(type, 'processing', id) &&
@@ -639,24 +645,24 @@ service cloud.firestore {
       );
     }
 
-    function checkCreateProcessingAction(type, id, resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateProcessingAction(auth, type, id, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateAction(resourceAfter, type, id) &&
         !actionExistsAfter(type, 'queue', id) &&
         !actionExistsAfter(type, 'resolved', id) &&
         !actionExistsAfter(type, 'rejected', id);
     }
 
-    function checkCreateResolvedAction(type, id, resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateResolvedAction(auth, type, id, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateAction(resourceAfter, type, id) &&
         !actionExistsAfter(type, 'queue', id) &&
         !actionExistsAfter(type, 'processing', id) &&
         !actionExistsAfter(type, 'rejected', id);
     }
 
-    function checkCreateRejectedAction(type, id, resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateRejectedAction(auth, type, id, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateAction(resourceAfter, type, id) &&
         !actionExistsAfter(type, 'queue', id) &&
         !actionExistsAfter(type, 'processing', id) &&
@@ -666,34 +672,34 @@ service cloud.firestore {
     match /Actions {
       match /{type}/queue/{id} {
         // NOTE: only allow ServiceAccounts to read and write
-        allow read: if currentUserIsServiceAccount();
-        allow create: if checkCreateQueueAction(type, id)
+        allow read: if currentUserIsServiceAccount(request.auth);
+        allow create: if checkCreateQueueAction(request.auth, type, id)
         allow update: if false;
-        allow delete: if currentUserIsServiceAccount();
+        allow delete: if currentUserIsServiceAccount(request.auth);
       }
 
       match /{type}/processing/{id} {
         // NOTE: only allow ServiceAccounts to read and write
-        allow read: if currentUserIsServiceAccount();
-        allow create: if checkCreateProcessingAction(type, id, getActionAfter(type, 'processing', id))
+        allow read: if currentUserIsServiceAccount(request.auth);
+        allow create: if checkCreateProcessingAction(request.auth, type, id, getActionAfter(type, 'processing', id))
         allow update: if false;
-        allow delete: if currentUserIsServiceAccount();
+        allow delete: if currentUserIsServiceAccount(request.auth);
       }
 
       match /{type}/resolved/{id} {
         // NOTE: only allow ServiceAccounts to read and write
-        allow read: if currentUserIsServiceAccount();
-        allow create: if checkCreateResolvedAction(type, id, getActionAfter(type, 'resolved', id))
+        allow read: if currentUserIsServiceAccount(request.auth);
+        allow create: if checkCreateResolvedAction(request.auth, type, id, getActionAfter(type, 'resolved', id))
         allow update: if false;
-        allow delete: if currentUserIsServiceAccount();
+        allow delete: if currentUserIsServiceAccount(request.auth);
       }
 
       match /{type}/rejected/{id} {
         // NOTE: only allow ServiceAccounts to read and write
-        allow read: if currentUserIsServiceAccount();
-        allow create: if checkCreateRejectedAction(type, id, getActionAfter(type, 'rejected', id))
+        allow read: if currentUserIsServiceAccount(request.auth);
+        allow create: if checkCreateRejectedAction(request.auth, type, id, getActionAfter(type, 'rejected', id))
         allow update: if false;
-        allow delete: if currentUserIsServiceAccount();
+        allow delete: if currentUserIsServiceAccount(request.auth);
       }
     }
 
@@ -724,12 +730,12 @@ service cloud.firestore {
     }
 
     // NOTE: Only ServiceAccounts can read and write ChannelContexts.
-    function checkReadChannelContext() {
-      return currentUserIsServiceAccount()
+    function checkReadChannelContext(auth) {
+      return currentUserIsServiceAccount(auth)
     }
 
-    function checkCreateChannelContext(id) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateChannelContext(auth, id) {
+      return currentUserIsServiceAccount(auth) &&
         validateChannelContext(getChannelContextAfter(id));
     }
 
@@ -738,15 +744,15 @@ service cloud.firestore {
       return false
     }
 
-    function checkDeleteChannelContext() {
-      return currentUserIsServiceAccount();
+    function checkDeleteChannelContext(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /ChannelContexts/{id} {
-      allow read: if checkReadChannelContext();
-      allow create: if checkCreateChannelContext(id);
+      allow read: if checkReadChannelContext(request.auth);
+      allow create: if checkCreateChannelContext(request.auth, id);
       allow update: if checkUpdateChannelContext();
-      allow delete: if checkDeleteChannelContext();
+      allow delete: if checkDeleteChannelContext(request.auth);
     }
 
 
@@ -782,25 +788,25 @@ service cloud.firestore {
     }
 
     match /EntityStats/{id} {
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      allow read: if currentUserCanReadPublicEntity(request.auth, resource, false);
 
-      allow create: if currentUserIsServiceAccount() &&
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateEntityStats(getEntityStatsAfter(id)) &&
         indexedIdMatchesAfter('EntityStats', ['entityType', 'entityId'], id);
 
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateEntityStats(getEntityStatsAfter(id)) &&
         indexedIdMatchesAfter('EntityStats', ['entityType', 'entityId'], id);
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/EntityStats/entityType_entityId/{entityType_entityId} {
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         indexedValueMatchesAfter('EntityStats', 'entityType_entityId', entityType_entityId);
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -835,15 +841,15 @@ service cloud.firestore {
     }
 
     match /EntityStats/{id}/StatsShards/{index} {
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      allow read: if currentUserCanReadPublicEntity(request.auth, resource, false);
 
-      allow create: if currentUserIsServiceAccount() &&
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateEntityStatsShard(getEntityStatsShardAfter(id, index));
 
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateEntityStatsShard(getEntityStatsShardAfter(id, index));
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     // Error implementation
@@ -877,29 +883,29 @@ service cloud.firestore {
         validateErrorData(entity.data)
     }
 
-    function checkReadError() {
-      return currentUserIsServiceAccount()
+    function checkReadError(auth) {
+      return currentUserIsServiceAccount(auth)
     }
 
-    function checkCreateError(resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateError(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateError(resourceAfter)
     }
 
-    function checkUpdateError(resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkUpdateError(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateError(resourceAfter)
     }
 
-    function checkDeleteError() {
-      return currentUserIsServiceAccount();
+    function checkDeleteError(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /Errors/{id} {
-      allow read: if checkReadError();
-      allow create: if checkCreateError(getErrorAfter(id));
-      allow update: if checkUpdateError(getErrorAfter(id));
-      allow delete: if checkDeleteError();
+      allow read: if checkReadError(request.auth);
+      allow create: if checkCreateError(request.auth, getErrorAfter(id));
+      allow update: if checkUpdateError(request.auth, getErrorAfter(id));
+      allow delete: if checkDeleteError(request.auth);
     }
 
 
@@ -934,29 +940,29 @@ service cloud.firestore {
         validateHostData(entity.data)
     }
 
-    function checkReadHost() {
-      return currentUserIsServiceAccount()
+    function checkReadHost(auth) {
+      return currentUserIsServiceAccount(auth)
     }
 
-    function checkCreateHost(resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateHost(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateHost(resourceAfter)
     }
 
-    function checkUpdateHost(resourceAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkUpdateHost(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateHost(resourceAfter)
     }
 
-    function checkDeleteHost() {
-      return currentUserIsServiceAccount();
+    function checkDeleteHost(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /Hosts/{id} {
-      allow read: if checkReadHost();
-      allow create: if checkCreateHost(getHostAfter(id));
-      allow update: if checkUpdateHost(getHostAfter(id));
-      allow delete: if checkDeleteHost();
+      allow read: if checkReadHost(request.auth);
+      allow create: if checkCreateHost(request.auth ,getHostAfter(id));
+      allow update: if checkUpdateHost(request.auth, getHostAfter(id));
+      allow delete: if checkDeleteHost(request.auth);
     }
 
 
@@ -998,14 +1004,14 @@ service cloud.firestore {
       // NOTE: Only ServiceAccounts can read and write Images.
       // This is because images are returned by a pass through in firebase
       // hosting. So only ServiceAccounts actually need to read or write them
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateImage(getImageAfter(id));
 
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateImage(getImageAfter(id));
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1035,11 +1041,12 @@ service cloud.firestore {
     }
 
     match /InternalPhoneNumbers/{phoneNumberId} {
-      allow read: if currentUserCanReadProtectedEntity(resource);
+      allow read: if currentUserCanReadProtectedEntity(request.auth ,resource);
 
-      allow create: if validateInternalPhoneNumber(getInternalPhoneNumberAfter(phoneNumberId)) && currentUserIsServiceAccount();
+      allow create: if validateInternalPhoneNumber(getInternalPhoneNumberAfter(phoneNumberId)) &&
+        currentUserIsServiceAccount(request.auth);
       allow update: if false;
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1074,30 +1081,30 @@ service cloud.firestore {
         validateListData(resource.data)
     }
 
-    function checkReadList(resource) {
-      return currentUserCanReadPublicEntity(resource, false)
+    function checkReadList(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
     }
 
-    function checkCreateList(id) {
+    function checkCreateList(auth, id) {
       let list = getListAfter(id);
-      return list != null && validateList(list)
+      return list != null && validateList(list) && currentUserIsServiceAccount(auth)
     }
 
-    function checkUpdateList(id) {
+    function checkUpdateList(auth, id) {
       let list = getListAfter(id);
-      return list != null && validateList(list) && currentUserIsServiceAccount()
+      return list != null && validateList(list) && currentUserIsServiceAccount(auth)
     }
 
-    function checkDeleteList() {
+    function checkDeleteList(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
     match /Lists/{id} {
-      allow read: if checkReadList(resource);
-      allow create: if checkCreateList(id);
-      allow update: if checkUpdateList(id);
-      allow delete: if checkDeleteList();
+      allow read: if checkReadList(request.auth, resource);
+      allow create: if checkCreateList(request.auth, id);
+      allow update: if checkUpdateList(request.auth, id);
+      allow delete: if checkDeleteList(request.auth);
     }
 
     // ListEntity implementation
@@ -1130,40 +1137,40 @@ service cloud.firestore {
         validateListEntityData(resource.data)
     }
 
-    function checkReadListEntity(resource) {
-      return currentUserCanReadPublicEntity(resource, false)
+    function checkReadListEntity(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
     }
 
-    function checkCreateListEntity(id) {
+    function checkCreateListEntity(auth, id) {
       let queueEntity = getListEntityAfter(id);
       return queueEntity != null && validateListEntity(queueEntity)
         && indexedIdMatchesAfter('ListEntity', ['listId', 'index'], id)
-        && currentUserIsServiceAccount();
+        && currentUserIsServiceAccount(auth);
     }
 
-    function checkUpdateListEntity(id) {
+    function checkUpdateListEntity(auth, id) {
       let queueEntity = getListEntityAfter(id);
       return queueEntity != null && validateListEntity(queueEntity)
         && indexedIdMatchesAfter('ListEntity', ['listId', 'index'], id)
-        && currentUserIsServiceAccount();
+        && currentUserIsServiceAccount(auth);
     }
 
-    function checkDeleteListEntity() {
+    function checkDeleteListEntity(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
     match /ListEntities/{id} {
-      allow read: if checkReadListEntity(resource);
-      allow create: if checkCreateListEntity(id);
-      allow update: if checkUpdateListEntity(id);
-      allow delete: if checkDeleteListEntity();
+      allow read: if checkReadListEntity(request.auth, resource);
+      allow create: if checkCreateListEntity(request.auth, id);
+      allow update: if checkUpdateListEntity(request.auth, id);
+      allow delete: if checkDeleteListEntity(request.auth);
     }
 
     match /Indexes/ListEntities/listId_index/{listId_index} {
       allow read: if true;
       allow create: if indexedValueMatchesAfter('ListEntity', 'listId_index', listId_index);
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1198,29 +1205,29 @@ service cloud.firestore {
         validateNotificationData(resource.data)
     }
 
-    function checkReadNotification(resource) {
-      return currentUserCanReadPrivateEntity(resource, resource.userId)
+    function checkReadNotification(auth, resource) {
+      return currentUserCanReadPrivateEntity(auth, resource, resource.userId)
     }
 
-    function checkCreateNotification(resourceAfter) {
+    function checkCreateNotification(auth, resourceAfter) {
       return validateNotification(resourceAfter) &&
-        currentUserIsServiceAccount()
+        currentUserIsServiceAccount(auth)
     }
 
-    function checkUpdateNotification(resourceAfter) {
+    function checkUpdateNotification(auth, resourceAfter) {
       return validateNotification(resourceAfter) &&
-        currentUserCanUpdateEntity(resourceAfter, false)
+        currentUserCanUpdateEntity(auth, resourceAfter, false)
     }
 
-    function checkDeleteNotification() {
-      return currentUserIsServiceAccount();
+    function checkDeleteNotification(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /Notifications/{id} {
-      allow read: if checkReadNotification(resource);
-      allow create: if checkCreateNotification(getNotificationAfter(id));
-      allow update: if checkUpdateNotification(getNotificationAfter(id));
-      allow delete: if checkDeleteNotification();
+      allow read: if checkReadNotification(request.auth, resource);
+      allow create: if checkCreateNotification(request.auth, getNotificationAfter(id));
+      allow update: if checkUpdateNotification(request.auth, getNotificationAfter(id));
+      allow delete: if checkDeleteNotification(request.auth);
     }
 
     // Notifications/{id}/NotificationSends implementation
@@ -1260,39 +1267,41 @@ service cloud.firestore {
         validateNotificationSendData(resource.data, sendAfter)
     }
 
-    function checkReadNotificationSend(resource) {
-      return currentUserCanReadPrivateEntity(resource, resource.userId)
+    function checkReadNotificationSend(auth, resource) {
+      return currentUserCanReadPrivateEntity(auth, resource, resource.userId)
     }
 
-    function checkCreateNotificationSend(sendAfter, sendSendAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkCreateNotificationSend(auth, sendAfter, sendSendAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateNotificationSend(sendSendAfter, sendAfter)
     }
 
-    function checkUpdateNotificationSend(sendBefore, sendSendAfter) {
-      return currentUserIsServiceAccount() &&
+    function checkUpdateNotificationSend(auth, sendBefore, sendSendAfter) {
+      return currentUserIsServiceAccount(auth) &&
         validateNotificationSend(sendSendAfter, sendBefore)
     }
 
-    function checkDeleteNotificationSend() {
-      return currentUserIsServiceAccount()
+    function checkDeleteNotificationSend(auth) {
+      return currentUserIsServiceAccount(auth)
     }
 
     match /Notifications/{sendId}/NotificationSends/{sendSendId} {
-      allow read: if checkReadNotificationSend(resource);
+      allow read: if checkReadNotificationSend(request.auth, resource);
       allow create: if checkCreateNotificationSend(
+        request.auth,
         getNotificationAfter(sendId),
         getNotificationSendAfter(sendId, sendSendId)
       );
       allow update: if checkUpdateNotificationSend(
+        request.auth,
         getNotificationBefore(sendId),
         getNotificationSendAfter(sendId, sendSendId)
       );
-      allow delete: if checkDeleteNotificationSend();
+      allow delete: if checkDeleteNotificationSend(request.auth);
     }
 
     match /{somePath=**}/NotificationSends/{sendSendId} {
-      allow read: if checkReadNotificationSend(resource);
+      allow read: if checkReadNotificationSend(request.auth, resource);
     }
 
 
@@ -1343,14 +1352,14 @@ service cloud.firestore {
 
     match /PhoneNumbers/{id} {
       // Only allow ServiceAccounts to read
-      allow read: if currentUserIsServiceAccount();
+      allow read: if currentUserIsServiceAccount(request.auth);
 
       // Anyone can add phone numbers
       allow create: if
         validatePhoneNumber(getPhoneNumberAfter(id)) &&
         indexedIdMatchesAfter('PhoneNumber', ['hash'], id) &&
         (
-          currentUserIsServiceAccount() ||
+          currentUserIsServiceAccount(request.auth) ||
           // Only allow users to create unclaimed phone numbers
           getPhoneNumberAfter(id).data.type == 'unclaimed'
         );
@@ -1359,15 +1368,15 @@ service cloud.firestore {
       allow update: if
         validatePhoneNumber(getPhoneNumberAfter(id)) &&
         indexedIdMatchesAfter('PhoneNumber', ['hash'], id) &&
-        currentUserIsServiceAccount();
+        currentUserIsServiceAccount(request.auth);
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/PhoneNumbers/hash/{hash} {
       allow read: if true;
       allow create: if indexedValueMatchesAfter('PhoneNumber', 'hash', hash);
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1399,7 +1408,7 @@ service cloud.firestore {
 
     match /PhoneNumberClaims/{id} {
       // Allow everyone to lookup user ids by phone number claims
-      allow read: if currentUserCanReadProtectedEntity(resource);
+      allow read: if currentUserCanReadProtectedEntity(request.auth, resource);
 
       // Anyone can add phone number claims if they do not exist in
       // UserPhoneNumbers or InternalPhoneNumbers
@@ -1409,21 +1418,21 @@ service cloud.firestore {
         indexedIdMatchesAfter('PhoneNumberClaim', ['phoneNumberId'], id);
 
       // ServiceAccounts can update PhoneNumberClaims
-      allow update: if currentUserIsServiceAccount();
+      allow update: if currentUserIsServiceAccount(request.auth);
 
       // Only ServiceAccounts can delete phone number claims
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/PhoneNumberClaims/phoneNumberId/{phoneNumberId} {
-      allow read: if currentUserIsServiceAccount();
+      allow read: if currentUserIsServiceAccount(request.auth);
       allow create: if indexedValueMatchesAfter(
         'PhoneNumberClaim',
         'phoneNumberId',
         phoneNumberId
       );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1458,32 +1467,32 @@ service cloud.firestore {
         validatePreferenceData(entity.data)
     }
 
-    function checkReadPreference(resource) {
-      return currentUserCanReadPublicEntity(resource, false)
+    function checkReadPreference(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
     }
 
-    function checkCreatePreference(id, key) {
+    function checkCreatePreference(auth, id, key) {
       let preference = getPreferenceAfter(id, key);
       return preference != null && validatePreference(preference) &&
-        currentUserCanCreateUserPreferences(preference.userPreferencesId)
+        currentUserCanCreateUserPreferences(auth, preference.userPreferencesId)
     }
 
-    function checkUpdatePreference(id, key) {
+    function checkUpdatePreference(auth, id, key) {
       let preference = getPreferenceAfter(id, key);
       return preference != null && validatePreference(preference) &&
-        currentUserCanUpdateUserPreferences(preference.userPreferencesId, true)
+        currentUserCanUpdateUserPreferences(auth, preference.userPreferencesId, true)
     }
 
-    function checkDeletePreference() {
+    function checkDeletePreference(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
     match /UserPreferences/{id}/Preferences/{key} {
-      allow read: if checkReadPreference(resource);
-      allow create: if checkCreatePreference(id, key);
-      allow update: if checkUpdatePreference(id, key);
-      allow delete: if checkDeletePreference();
+      allow read: if checkReadPreference(request.auth, resource);
+      allow create: if checkCreatePreference(request.auth, id, key);
+      allow update: if checkUpdatePreference(request.auth, id, key);
+      allow delete: if checkDeletePreference(request.auth);
     }
 
 
@@ -1521,37 +1530,37 @@ service cloud.firestore {
         validateQueueData(resource.data)
     }
 
-    function checkReadQueue(resource) {
-      return currentUserCanReadPublicEntity(resource, false)
+    function checkReadQueue(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
     }
 
-    function checkCreateQueue(id) {
+    function checkCreateQueue(auth, id) {
       let queue = getQueueAfter(id);
       return queue != null && validateQueue(queue)
-        && currentUserIsServiceAccount();
+        && currentUserIsServiceAccount(auth);
     }
 
-    function checkUpdateQueue(id) {
+    function checkUpdateQueue(auth, id) {
       let queue = getQueueAfter(id);
       return queue != null && validateQueue(queue)
-        && currentUserIsServiceAccount();
+        && currentUserIsServiceAccount(auth);
     }
 
-    function checkDeleteQueue() {
+    function checkDeleteQueue(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
-    function currentUserOwnsQueue(queueId) {
-      return currentUserIsServiceAccount() || currentUserHasAdminRole() ||
-        (getQueueAfter(queueId).userId == request.auth.uid)
+    function currentUserOwnsQueue(auth, queueId) {
+      return currentUserIsServiceAccount(auth) || currentUserHasAdminRole(auth) ||
+        (getQueueAfter(queueId).userId == auth.uid)
     }
 
     match /Queues/{id} {
-      allow read: if checkReadQueue(resource);
-      allow create: if checkCreateQueue(id);
-      allow update: if checkUpdateQueue(id);
-      allow delete: if checkDeleteQueue();
+      allow read: if checkReadQueue(request.auth, resource);
+      allow create: if checkCreateQueue(request.auth, id);
+      allow update: if checkUpdateQueue(request.auth, id);
+      allow delete: if checkDeleteQueue(request.auth);
     }
 
     // QueueEntity implementation
@@ -1585,32 +1594,32 @@ service cloud.firestore {
         validateQueueEntityData(entity.data)
     }
 
-    function checkReadQueueEntity(resource) {
-      return currentUserCanReadPublicEntity(resource, false)
+    function checkReadQueueEntity(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
     }
 
-    function checkCreateQueueEntity(id, index) {
+    function checkCreateQueueEntity(auth, id, index) {
       let queueEntity = getQueueEntityAfter(id, index);
       return queueEntity != null && validateQueueEntity(queueEntity) &&
-        currentUserOwnsQueue(queueEntity.queueId)
+        currentUserOwnsQueue(auth, queueEntity.queueId)
     }
 
-    function checkUpdateQueueEntity(id, index) {
+    function checkUpdateQueueEntity(auth, id, index) {
       let queueEntity = getQueueEntityAfter(id, index);
       return queueEntity != null && validateQueueEntity(queueEntity) &&
-        currentUserOwnsQueue(queueEntity.queueId)
+        currentUserOwnsQueue(auth, queueEntity.queueId)
     }
 
-    function checkDeleteQueueEntity() {
+    function checkDeleteQueueEntity(auth) {
       // Only allow ServiceAccounts to delete
-      return currentUserIsServiceAccount()
+      return currentUserIsServiceAccount(auth)
     }
 
     match /Queues/{id}/QueueEntities/{index} {
-      allow read: if checkReadQueueEntity(resource);
-      allow create: if checkCreateQueueEntity(id, index);
-      allow update: if checkUpdateQueueEntity(id, index);
-      allow delete: if checkDeleteQueueEntity();
+      allow read: if checkReadQueueEntity(request.auth, resource);
+      allow create: if checkCreateQueueEntity(request.auth, id, index);
+      allow update: if checkUpdateQueueEntity(request.auth, id, index);
+      allow delete: if checkDeleteQueueEntity(request.auth);
     }
 
 
@@ -1677,12 +1686,12 @@ service cloud.firestore {
 
     match /SMSChallenges/{id} {
       // NOTE: only allow ServiceAccounts to read and write
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateSMSChallenge(getSMSChallengeAfter(id));
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateSMSChallenge(resource);
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1711,18 +1720,25 @@ service cloud.firestore {
         phoneNumberExistsAfter(resource.data.userPhoneNumberId)
     }
 
-    match /SMSChannels/{id} {
-      // NOTE: only allow ServiceAccounts to read and write
-      allow read: if currentUserIsServiceAccount();
+    function checkReadSMSChannel(auth) {
+      return currentUserIsServiceAccount(auth);
+    }
 
-      allow create: if currentUserIsServiceAccount() &&
+    function checkCreateSMSChannel(auth, id) {
+      return currentUserIsServiceAccount(auth) &&
         validateSMSChannel(getSMSChannelAfter(id)) &&
         indexedIdMatchesAfter(
           'SMSChannel',
           ['userPhoneNumberId', 'internalPhoneNumberId'],
           id
         )
-      allow update: if currentUserIsServiceAccount() &&
+    }
+
+    match /SMSChannels/{id} {
+      // NOTE: only allow ServiceAccounts to read and write
+      allow read: if checkReadSMSChannel(request.auth)
+      allow create: if checkCreateSMSChannel(request.auth, id)
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateSMSChannel(resource) &&
         indexedIdMatchesAfter(
           'SMSChannel',
@@ -1730,19 +1746,19 @@ service cloud.firestore {
           id
         );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/SMSChannels/userPhoneNumberId_internalPhoneNumberId/{userPhoneNumberId_internalPhoneNumberId} {
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         indexedValueMatchesAfter(
           'SMSChannel',
           'userPhoneNumberId_internalPhoneNumberId',
           userPhoneNumberId_internalPhoneNumberId
         );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1752,8 +1768,8 @@ service cloud.firestore {
     match /SMSMessages/{id} {
       // TODO: Add validation
       // NOTE: only allow ServiceAccounts to read and write
-      allow read: if currentUserIsServiceAccount();
-      allow write: if currentUserIsServiceAccount();
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow write: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1797,31 +1813,31 @@ service cloud.firestore {
         validateUploadData(resource.data)
     }
 
-    function checkReadUpload(resource) {
-      return currentUserCanReadPrivateEntity(resource, resource.userId)
+    function checkReadUpload(auth, resource) {
+      return currentUserCanReadPrivateEntity(auth, resource, resource.userId)
     }
 
-    function checkCreateUpload(id) {
+    function checkCreateUpload(auth, id) {
       let upload = getUploadAfter(id);
       return upload != null && validateUpload(upload) &&
-        currentUserCanCreateEntity(upload)
+        currentUserCanCreateEntity(auth, upload)
     }
 
-    function checkUpdateUpload(id) {
+    function checkUpdateUpload(auth, id) {
       let upload = getUploadAfter(id);
-      return upload != null && currentUserIsServiceAccount() &&
+      return upload != null && currentUserIsServiceAccount(auth) &&
         validateUpload(upload)
     }
 
-    function checkDeleteUpload() {
-      return currentUserIsServiceAccount();
+    function checkDeleteUpload(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /Uploads/{id} {
-      allow read: if checkReadUpload(resource);
-      allow create: if checkCreateUpload(id);
-      allow update: if checkUpdateUpload(id);
-      allow delete: if checkDeleteUpload();
+      allow read: if checkReadUpload(request.auth, resource);
+      allow create: if checkCreateUpload(request.auth, id);
+      allow update: if checkUpdateUpload(request.auth, id);
+      allow delete: if checkDeleteUpload(request.auth);
     }
 
 
@@ -1859,31 +1875,31 @@ service cloud.firestore {
         validateUrlData(entity.data);
     }
 
-    function checkReadUrl() {
-      return currentUserIsServiceAccount();
+    function checkReadUrl(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
-    function checkCreateUrl(id) {
+    function checkCreateUrl(auth, id) {
       let urlAfter = getUrlAfter(id);
-      return currentUserIsServiceAccount() &&
+      return currentUserIsServiceAccount(auth) &&
         validateUrl(urlAfter);
     }
 
-    function checkUpdateUrl(id) {
+    function checkUpdateUrl(auth, id) {
       let urlAfter = getUrlAfter(id);
-      return currentUserIsServiceAccount() &&
+      return currentUserIsServiceAccount(auth) &&
         validateUrl(urlAfter);
     }
 
-    function checkDeleteUrl() {
-      return currentUserIsServiceAccount();
+    function checkDeleteUrl(auth) {
+      return currentUserIsServiceAccount(auth);
     }
 
     match /Urls/{id} {
-      allow read: if checkReadUrl();
-      allow create: if checkCreateUrl(id);
-      allow update: if checkUpdateUrl(id);
-      allow delete: if checkDeleteUrl();
+      allow read: if checkReadUrl(request.auth);
+      allow create: if checkCreateUrl(request.auth, id);
+      allow update: if checkUpdateUrl(request.auth, id);
+      allow delete: if checkDeleteUrl(request.auth);
     }
 
 
@@ -1914,10 +1930,10 @@ service cloud.firestore {
     }
 
     match /Users/{id} {
-      allow read: if currentUserCanReadProtectedEntity(resource);
+      allow read: if currentUserCanReadProtectedEntity(request.auth, resource);
 
       allow create: if validateUser(getUserAfter(id)) && (
-        currentUserIsServiceAccount() ||
+        currentUserIsServiceAccount(request.auth) ||
         // Users can only create Users that are pending
         (getUserAfter(id).data.state == 'pending')
       );
@@ -1925,10 +1941,10 @@ service cloud.firestore {
       // TODO BRN: For right now only ServiceAccounts can update users.
       // It would be best to move "name" to a UserProfile object that can safely
       // be managed by the user without tampering with system things
-      allow update: if currentUserIsServiceAccount()
+      allow update: if currentUserIsServiceAccount(request.auth)
 
       // Only allow ServiceAccounts to delete
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1959,11 +1975,11 @@ service cloud.firestore {
     }
 
     match /UserPhoneNumbers/{phoneNumberId} {
-      allow read: if currentUserCanReadProtectedEntity(resource);
+      allow read: if currentUserCanReadProtectedEntity(request.auth, resource);
 
-      allow create: if validateUserPhoneNumber(getUserPhoneNumberAfter(phoneNumberId)) && currentUserIsServiceAccount();
+      allow create: if validateUserPhoneNumber(getUserPhoneNumberAfter(phoneNumberId)) && currentUserIsServiceAccount(request.auth);
       allow update: if false;
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -1996,47 +2012,47 @@ service cloud.firestore {
         validateUserPreferencesData(userPreferences.data);
     }
 
-    function checkReadUserPreferences(resource) {
+    function checkReadUserPreferences(auth, resource) {
       // Only the owning user can read UserPreferences
-      return currentUserCanReadPrivateEntity(resource, false);
+      return currentUserCanReadPrivateEntity(auth, resource, false);
     }
 
-    function checkCreateUserPreferences(id) {
+    function checkCreateUserPreferences(auth, id) {
       // Users can create their own UserPreferences
       let userPreferencesAfter = getUserPreferencesAfter(id);
       return validateUserPreferences(userPreferencesAfter) &&
         id == userPreferencesAfter.data.userId &&
-        currentUserCanCreateEntity(userPreferencesAfter);
+        currentUserCanCreateEntity(auth, userPreferencesAfter);
     }
 
-    function checkUpdateUserPreferences(id) {
+    function checkUpdateUserPreferences(auth, id) {
       // Users can only update their own UserPreferences
       // TODO BRN: validate that createdAt times don't change
       let userPreferencesAfter = getUserPreferencesAfter(id);
       let userPreferencesBefore = getUserPreferencesBefore(id);
       return validateUserPreferences(userPreferencesAfter) &&
         id == userPreferencesAfter.data.userId &&
-        currentUserCanUpdateEntity(userPreferencesBefore, false);
+        currentUserCanUpdateEntity(auth, userPreferencesBefore, false);
     }
 
-    function checkDeleteUserPreferences() {
+    function checkDeleteUserPreferences(auth) {
       // Only allow ServiceAccounts to delete UserPreferences
-      return currentUserIsServiceAccount();
+      return currentUserIsServiceAccount(auth);
     }
 
-    function currentUserCanCreateUserPreferences(userPreferencesId) {
-      return currentUserCanCreateEntity(getUserPreferencesBefore(userPreferencesId))
+    function currentUserCanCreateUserPreferences(auth, userPreferencesId) {
+      return currentUserCanCreateEntity(auth, getUserPreferencesBefore(userPreferencesId))
     }
 
-    function currentUserCanUpdateUserPreferences(userPreferencesId, allowRestores) {
-      return currentUserCanUpdateEntity(getUserPreferencesBefore(userPreferencesId), allowRestores)
+    function currentUserCanUpdateUserPreferences(auth, userPreferencesId, allowRestores) {
+      return currentUserCanUpdateEntity(auth, getUserPreferencesBefore(userPreferencesId), allowRestores)
     }
 
     match /UserPreferences/{id} {
-      allow read: if checkReadUserPreferences(resource);
-      allow create: if checkCreateUserPreferences(id);
-      allow update: if checkUpdateUserPreferences(id);
-      allow delete: if checkDeleteUserPreferences();
+      allow read: if checkReadUserPreferences(request.auth, resource);
+      allow create: if checkCreateUserPreferences(request.auth, id);
+      allow update: if checkUpdateUserPreferences(request.auth, id);
+      allow delete: if checkDeleteUserPreferences(request.auth);
     }
 
 
@@ -2074,39 +2090,39 @@ service cloud.firestore {
         validateUserProfileData(userProfile.data);
     }
 
-    function checkReadUserProfile(resource) {
+    function checkReadUserProfile(auth, resource) {
       // Anyone can read UserProfiles
-      return currentUserCanReadPublicEntity(resource, false);
+      return currentUserCanReadPublicEntity(auth, resource, false);
     }
 
-    function checkCreateUserProfile(id) {
+    function checkCreateUserProfile(auth, id) {
       // Users can create their own UserProfiles
       let userProfileAfter = getUserProfileAfter(id);
       return validateUserProfile(userProfileAfter) &&
         id == userProfileAfter.data.userId &&
-        currentUserCanCreateEntity(userProfileAfter);
+        currentUserCanCreateEntity(auth, userProfileAfter);
     }
 
-    function checkUpdateUserProfile(id) {
+    function checkUpdateUserProfile(auth, id) {
       // Users can only update their own UserProfiles
       // TODO BRN: validate that createdAt times don't change
       let userProfileAfter = getUserProfileAfter(id);
       let userProfileBefore = getUserProfileBefore(id);
       return validateUserProfile(userProfileAfter) &&
         id == userProfileAfter.data.userId &&
-        currentUserCanUpdateEntity(userProfileBefore, false);
+        currentUserCanUpdateEntity(auth, userProfileBefore, false);
     }
 
-    function checkDeleteUserProfile() {
+    function checkDeleteUserProfile(auth) {
       // Only allow ServiceAccounts to delete UserProfiles
-      return currentUserIsServiceAccount();
+      return currentUserIsServiceAccount(auth);
     }
 
     match /UserProfiles/{id} {
-      allow read: if checkReadUserProfile(resource);
-      allow create: if checkCreateUserProfile(id);
-      allow update: if checkUpdateUserProfile(id);
-      allow delete: if checkDeleteUserProfile();
+      allow read: if checkReadUserProfile(request.auth, resource);
+      allow create: if checkCreateUserProfile(request.auth, id);
+      allow update: if checkUpdateUserProfile(request.auth, id);
+      allow delete: if checkDeleteUserProfile(request.auth);
     }
 
 
@@ -2136,9 +2152,9 @@ service cloud.firestore {
     }
 
     match /UserProfileImages/{id} {
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      allow read: if currentUserCanReadPublicEntity(request.auth, resource, false);
 
-      allow create: if currentUserIsServiceAccount() &&
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateUserProfileImage(getUserProfileImageAfter(id)) &&
         indexedIdMatchesAfter(
           'UserProfileImage',
@@ -2147,19 +2163,19 @@ service cloud.firestore {
         );
 
       allow update: if false;
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/UserProfileImages/userId_imageId/{userId_imageId} {
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         indexedValueMatchesAfter(
           'UserProfileImage',
           'userId_imageId',
           userId_imageId
         );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     // UserRoles implementation
@@ -2192,15 +2208,15 @@ service cloud.firestore {
     match /UserRoles/{id} {
       // NOTE BRN: We use the id here instead of the resouce so that the User
       // can query for the UserRole even if a role doesn't exist.
-      allow read: if currentUserCanReadPrivateEntity(resource, id)
+      allow read: if currentUserCanReadPrivateEntity(request.auth, resource, id)
 
-      allow create: if currentUserIsServiceAccount() &&
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateUserRole(getUserRoleAfter(id));
 
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateUserRole(getUserRoleAfter(id));
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -2230,11 +2246,11 @@ service cloud.firestore {
     }
 
     match /Variables/{id} {
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      allow read: if currentUserCanReadPublicEntity(request.auth, resource, false);
 
-      allow create: if validateVariable(getVariableAfter(id)) && currentUserIsServiceAccount();
-      allow update: if validateVariable(getVariableAfter(id)) && currentUserIsServiceAccount();
-      allow delete: if currentUserIsServiceAccount();
+      allow create: if validateVariable(getVariableAfter(id)) && currentUserIsServiceAccount(request.auth);
+      allow update: if validateVariable(getVariableAfter(id)) && currentUserIsServiceAccount(request.auth);
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
 
@@ -2264,9 +2280,9 @@ service cloud.firestore {
     }
 
     match /UserImages/{id} {
-      allow read: if currentUserCanReadPublicEntity(resource, false);
+      allow read: if currentUserCanReadPublicEntity(request.auth, resource, false);
 
-      allow create: if currentUserIsServiceAccount() &&
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         validateUserImage(getUserImageAfter(id)) &&
         indexedIdMatchesAfter(
           'UserImage',
@@ -2274,7 +2290,7 @@ service cloud.firestore {
           id
         );
 
-      allow update: if currentUserIsServiceAccount() &&
+      allow update: if currentUserIsServiceAccount(request.auth) &&
         validateUserImage(getUserImageAfter(id)) &&
         indexedIdMatchesAfter(
           'UserImage',
@@ -2282,19 +2298,19 @@ service cloud.firestore {
           id
         );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
 
     match /Indexes/UserImages/userId_imageId/{userId_imageId} {
-      allow read: if currentUserIsServiceAccount();
-      allow create: if currentUserIsServiceAccount() &&
+      allow read: if currentUserIsServiceAccount(request.auth);
+      allow create: if currentUserIsServiceAccount(request.auth) &&
         indexedValueMatchesAfter(
           'UserImage',
           'userId_imageId',
           userId_imageId
         );
 
-      allow delete: if currentUserIsServiceAccount();
+      allow delete: if currentUserIsServiceAccount(request.auth);
     }
   }
 }
