@@ -1,1 +1,1 @@
-export { isNaN as default } from 'moltres/lang'
+export { isNaN as default } from 'moltres'

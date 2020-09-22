@@ -1,1 +1,1 @@
-export { uuidv4 as default } from 'moltres/lang'
+export { uuidv4 as default } from 'moltres'

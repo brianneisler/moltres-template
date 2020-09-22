@@ -1,1 +1,1 @@
-export { weakMemoize as default } from 'moltres/lang'
+export { weakMemoize as default } from 'moltres'

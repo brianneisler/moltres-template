@@ -1,1 +1,1 @@
-export { pathExists as default } from 'moltres/fs'
+export { pathExists as default } from 'moltres'

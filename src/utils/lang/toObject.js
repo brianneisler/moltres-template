@@ -1,1 +1,1 @@
-export { toObject as default } from 'moltres/lang'
+export { toObject as default } from 'moltres'

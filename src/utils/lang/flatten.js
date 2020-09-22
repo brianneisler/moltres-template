@@ -1,1 +1,1 @@
-export { flatten as default } from 'moltres/lang'
+export { flatten as default } from 'moltres'

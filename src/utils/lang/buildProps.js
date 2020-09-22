@@ -1,1 +1,1 @@
-export { buildProps as default } from 'moltres/lang'
+export { buildProps as default } from 'moltres'

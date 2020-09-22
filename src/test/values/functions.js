@@ -1,1 +1,1 @@
-export { functions as default } from 'moltres/test'
+export { functions as default } from 'moltres'

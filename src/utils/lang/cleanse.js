@@ -1,1 +1,1 @@
-export { cleanse as default } from 'moltres/lang'
+export { cleanse as default } from 'moltres'

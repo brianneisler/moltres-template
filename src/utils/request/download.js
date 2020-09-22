@@ -1,1 +1,1 @@
-export { download as default } from 'moltres/request'
+export { download as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { cacheMethod as default } from 'moltres/lang'
+export { cacheMethod as default } from 'moltres'

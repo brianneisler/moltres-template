@@ -1,1 +1,1 @@
-export { dissocPath as default } from 'moltres/lang'
+export { dissocPath as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { mergeDeepCount as default } from 'moltres/lang'
+export { mergeDeepCount as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { isWeakSet as default } from 'moltres/lang'
+export { isWeakSet as default } from 'moltres'

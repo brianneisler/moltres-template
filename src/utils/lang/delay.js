@@ -1,1 +1,1 @@
-export { delay as default } from 'moltres/lang'
+export { delay as default } from 'moltres'

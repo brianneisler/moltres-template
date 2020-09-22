@@ -1,1 +1,1 @@
-export { loadConfig as default } from 'moltres/config'
+export { loadConfig as default } from 'moltres'

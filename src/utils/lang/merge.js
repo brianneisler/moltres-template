@@ -1,1 +1,1 @@
-export { merge as default } from 'moltres/lang'
+export { merge as default } from 'moltres'

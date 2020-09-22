@@ -1,1 +1,1 @@
-export { properties as default } from 'moltres/lang'
+export { properties as default } from 'moltres'

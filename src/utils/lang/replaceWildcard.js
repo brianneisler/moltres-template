@@ -1,1 +1,1 @@
-export { replaceWildcard as default } from 'moltres/lang'
+export { replaceWildcard as default } from 'moltres'

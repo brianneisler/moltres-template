@@ -1,1 +1,1 @@
-export { wait as default } from 'moltres/lang'
+export { wait as default } from 'moltres'

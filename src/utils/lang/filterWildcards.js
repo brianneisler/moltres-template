@@ -1,1 +1,1 @@
-export { filterWildcards as default } from 'moltres/lang'
+export { filterWildcards as default } from 'moltres'

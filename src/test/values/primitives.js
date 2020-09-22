@@ -1,1 +1,1 @@
-export { primitives as default } from 'moltres/test'
+export { primitives as default } from 'moltres'

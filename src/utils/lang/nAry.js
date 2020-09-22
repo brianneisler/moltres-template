@@ -1,1 +1,1 @@
-export { nAry as default } from 'moltres/lang'
+export { nAry as default } from 'moltres'

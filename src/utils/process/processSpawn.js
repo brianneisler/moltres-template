@@ -1,1 +1,1 @@
-export { processSpawn as default } from 'moltres/process'
+export { processSpawn as default } from 'moltres'

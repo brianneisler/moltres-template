@@ -1,1 +1,1 @@
-export { immutables as default } from 'moltres/test'
+export { immutables as default } from 'moltres'

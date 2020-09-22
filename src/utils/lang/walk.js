@@ -1,1 +1,1 @@
-export { walk as default } from 'moltres/lang'
+export { walk as default } from 'moltres'

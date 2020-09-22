@@ -1,1 +1,1 @@
-export { contagion as default } from 'moltres/lang'
+export { contagion as default } from 'moltres'

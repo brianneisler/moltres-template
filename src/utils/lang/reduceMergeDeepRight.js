@@ -1,1 +1,1 @@
-export { reduceMergeDeepRight as default } from 'moltres/lang'
+export { reduceMergeDeepRight as default } from 'moltres'

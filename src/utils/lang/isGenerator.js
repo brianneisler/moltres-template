@@ -1,1 +1,1 @@
-export { isGenerator as default } from 'moltres/lang'
+export { isGenerator as default } from 'moltres'

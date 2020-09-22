@@ -1,1 +1,1 @@
-export { pathStat as default } from 'moltres/fs'
+export { pathStat as default } from 'moltres'

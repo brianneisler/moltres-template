@@ -1,1 +1,1 @@
-export { random as default } from 'moltres/lang'
+export { random as default } from 'moltres'

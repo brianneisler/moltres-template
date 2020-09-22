@@ -5,7 +5,7 @@ import twilio from 'twilio'
  * @param {{ from: String, to: String, body: String, mediaUrl: String }} data
  */
 const sendSMSMessage = async ({ config }, { body, from, media, to }) => {
-  const { accountSid, authToken } = config.sms
+  const { accountSid, authToken } = config.twilio
   const client = twilio(accountSid, authToken)
   return client.messages.create({
     body,

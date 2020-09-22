@@ -1,1 +1,1 @@
-export { isPromise as default } from 'moltres/lang'
+export { isPromise as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { symbols as default } from 'moltres/test'
+export { symbols as default } from 'moltres'

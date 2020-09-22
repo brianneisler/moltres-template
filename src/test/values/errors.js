@@ -1,1 +1,1 @@
-export { errors as default } from 'moltres/test'
+export { errors as default } from 'moltres'

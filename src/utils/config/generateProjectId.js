@@ -1,1 +1,1 @@
-export { generateProjectId as default } from 'moltres/config'
+export { generateProjectId as default } from 'moltres'

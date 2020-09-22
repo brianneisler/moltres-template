@@ -1,1 +1,1 @@
-export { isImmutableList as default } from 'moltres/lang'
+export { isImmutableList as default } from 'moltres'

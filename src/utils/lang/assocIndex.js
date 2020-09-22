@@ -1,1 +1,1 @@
-export { assocIndex as default } from 'moltres/lang'
+export { assocIndex as default } from 'moltres'

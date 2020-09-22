@@ -1,1 +1,1 @@
-export { isArrayLike as default } from 'moltres/lang'
+export { isArrayLike as default } from 'moltres'

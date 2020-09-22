@@ -1,1 +1,1 @@
-export { compact as default } from 'moltres/lang'
+export { compact as default } from 'moltres'

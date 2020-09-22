@@ -1,1 +1,1 @@
-export { objects as default } from 'moltres/test'
+export { objects as default } from 'moltres'

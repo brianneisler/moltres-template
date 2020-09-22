@@ -1,1 +1,1 @@
-export { curryN as default } from 'moltres/lang'
+export { curryN as default } from 'moltres'

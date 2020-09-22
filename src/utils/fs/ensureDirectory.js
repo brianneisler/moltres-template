@@ -1,1 +1,1 @@
-export { ensureDirectory as default } from 'moltres/fs'
+export { ensureDirectory as default } from 'moltres'

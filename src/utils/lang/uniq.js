@@ -1,1 +1,1 @@
-export { uniq as default } from 'moltres/lang'
+export { uniq as default } from 'moltres'

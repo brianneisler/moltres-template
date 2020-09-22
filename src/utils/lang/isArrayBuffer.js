@@ -1,1 +1,1 @@
-export { isArrayBuffer as default } from 'moltres/lang'
+export { isArrayBuffer as default } from 'moltres'

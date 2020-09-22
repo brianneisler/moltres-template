@@ -1,1 +1,1 @@
-export { isRegExp as default } from 'moltres/lang'
+export { isRegExp as default } from 'moltres'

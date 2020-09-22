@@ -1,1 +1,1 @@
-export { concat as default } from 'moltres/lang'
+export { concat as default } from 'moltres'

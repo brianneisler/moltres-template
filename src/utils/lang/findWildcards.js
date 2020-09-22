@@ -1,1 +1,1 @@
-export { findWildcards as default } from 'moltres/lang'
+export { findWildcards as default } from 'moltres'

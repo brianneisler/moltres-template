@@ -1,1 +1,1 @@
-export { canBeSelector as default } from 'moltres/lang'
+export { canBeSelector as default } from 'moltres'

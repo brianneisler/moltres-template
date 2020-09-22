@@ -1,1 +1,1 @@
-export { select as default } from 'moltres/lang'
+export { select as default } from 'moltres'

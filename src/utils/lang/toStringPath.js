@@ -1,1 +1,1 @@
-export { toStringPath as default } from 'moltres/lang'
+export { toStringPath as default } from 'moltres'

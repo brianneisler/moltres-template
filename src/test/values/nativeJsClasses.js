@@ -1,1 +1,1 @@
-export { nativeJsClasses as default } from 'moltres/test'
+export { nativeJsClasses as default } from 'moltres'

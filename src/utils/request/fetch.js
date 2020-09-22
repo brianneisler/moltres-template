@@ -1,1 +1,1 @@
-export { fetch as default } from 'moltres/request'
+export { fetch as default } from 'moltres'

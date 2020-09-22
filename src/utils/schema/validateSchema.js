@@ -1,1 +1,1 @@
-export { validateSchema as default } from 'moltres/schema'
+export { validateSchema as default } from 'moltres'

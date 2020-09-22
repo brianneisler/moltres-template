@@ -1,1 +1,1 @@
-export { split as default } from 'moltres/lang'
+export { split as default } from 'moltres'

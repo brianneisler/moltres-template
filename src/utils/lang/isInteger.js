@@ -1,1 +1,1 @@
-export { isInteger as default } from 'moltres/lang'
+export { isInteger as default } from 'moltres'

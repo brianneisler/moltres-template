@@ -1,1 +1,1 @@
-export { toPlain as default } from 'moltres/lang'
+export { toPlain as default } from 'moltres'

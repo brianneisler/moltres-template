@@ -1,1 +1,1 @@
-export { assocKey as default } from 'moltres/lang'
+export { assocKey as default } from 'moltres'

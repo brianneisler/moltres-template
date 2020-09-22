@@ -1,1 +1,1 @@
-export { evolve as default } from 'moltres/lang'
+export { evolve as default } from 'moltres'

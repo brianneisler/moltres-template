@@ -1,1 +1,1 @@
-export { isImmutableMap as default } from 'moltres/lang'
+export { isImmutableMap as default } from 'moltres'

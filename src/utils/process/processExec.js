@@ -1,1 +1,1 @@
-export { processExec as default } from 'moltres/process'
+export { processExec as default } from 'moltres'

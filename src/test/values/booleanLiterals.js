@@ -1,1 +1,1 @@
-export { booleanLiterals as default } from 'moltres/test'
+export { booleanLiterals as default } from 'moltres'

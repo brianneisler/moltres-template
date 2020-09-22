@@ -1,1 +1,1 @@
-export { toPath as default } from 'moltres/lang'
+export { toPath as default } from 'moltres'

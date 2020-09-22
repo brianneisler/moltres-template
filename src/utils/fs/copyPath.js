@@ -1,1 +1,1 @@
-export { copyPath as default } from 'moltres/fs'
+export { copyPath as default } from 'moltres'

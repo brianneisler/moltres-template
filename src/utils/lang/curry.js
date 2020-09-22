@@ -1,1 +1,1 @@
-export { curry as default } from 'moltres/lang'
+export { curry as default } from 'moltres'

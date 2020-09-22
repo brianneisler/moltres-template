@@ -1,1 +1,1 @@
-export { join as default } from 'moltres/lang'
+export { join as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { reduce as default } from 'moltres/lang'
+export { reduce as default } from 'moltres'

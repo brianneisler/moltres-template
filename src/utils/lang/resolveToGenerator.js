@@ -1,1 +1,1 @@
-export { resolveToGenerator as default } from 'moltres/lang'
+export { resolveToGenerator as default } from 'moltres'

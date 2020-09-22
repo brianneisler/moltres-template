@@ -1,1 +1,1 @@
-export { ifElse as default } from 'moltres/lang'
+export { ifElse as default } from 'moltres'

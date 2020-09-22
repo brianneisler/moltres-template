@@ -1,1 +1,1 @@
-export { forEachObjIndexed as default } from 'moltres/lang'
+export { forEachObjIndexed as default } from 'moltres'

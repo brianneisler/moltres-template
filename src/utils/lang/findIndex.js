@@ -1,1 +1,1 @@
-export { findIndex as default } from 'moltres/lang'
+export { findIndex as default } from 'moltres'

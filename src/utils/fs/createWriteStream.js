@@ -1,1 +1,1 @@
-export { createWriteStream as default } from 'moltres/fs'
+export { createWriteStream as default } from 'moltres'

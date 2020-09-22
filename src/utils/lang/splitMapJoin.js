@@ -1,1 +1,1 @@
-export { splitMapJoin as default } from 'moltres/lang'
+export { splitMapJoin as default } from 'moltres'

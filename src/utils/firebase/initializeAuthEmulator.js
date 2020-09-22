@@ -24,7 +24,7 @@ const initializeAuthEmulator = ({ app, config }) => {
           sub: clientEmail,
           uid
         },
-        config.serviceAccount.private_key
+        config.firebase.serviceAccount.private_key
       )
     },
     get currentUser() {

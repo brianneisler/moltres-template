@@ -1,1 +1,1 @@
-export { pipe as default } from 'moltres/lang'
+export { pipe as default } from 'moltres'

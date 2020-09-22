@@ -1,1 +1,1 @@
-export { iterate as default } from 'moltres/lang'
+export { iterate as default } from 'moltres'

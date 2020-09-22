@@ -1,1 +1,1 @@
-export { isPathDirectory as default } from 'moltres/fs'
+export { isPathDirectory as default } from 'moltres'

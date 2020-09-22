@@ -1,4 +1,4 @@
-import { map, split } from 'ramda'
+import { map } from 'ramda'
 
 import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
 
@@ -7,7 +7,7 @@ import { setupScriptContexts } from './utils'
 const configure = async () => {
   const { context } = await setupScriptContexts()
   const { config, logger } = context
-  const internalPhoneNumbers = split(',', config.twilio.phoneNumbers)
+  const internalPhoneNumbers = config.twilio.phoneNumbers
 
   logger.info('Saving internal phone numbers')
   await Promise.all(

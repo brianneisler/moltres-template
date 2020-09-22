@@ -1,1 +1,1 @@
-export { replacePropWildcards as default } from 'moltres/lang'
+export { replacePropWildcards as default } from 'moltres'

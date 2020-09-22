@@ -1,1 +1,1 @@
-export { isPropStore as default } from 'moltres/lang'
+export { isPropStore as default } from 'moltres'

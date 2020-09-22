@@ -1,1 +1,1 @@
-export { booleans as default } from 'moltres/test'
+export { booleans as default } from 'moltres'

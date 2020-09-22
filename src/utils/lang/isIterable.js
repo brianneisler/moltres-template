@@ -1,1 +1,1 @@
-export { isIterable as default } from 'moltres/lang'
+export { isIterable as default } from 'moltres'

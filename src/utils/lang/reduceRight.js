@@ -1,1 +1,1 @@
-export { reduceRight as default } from 'moltres/lang'
+export { reduceRight as default } from 'moltres'

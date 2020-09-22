@@ -1,1 +1,1 @@
-export { externalPromise as default } from 'moltres/lang'
+export { externalPromise as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { cacheChain as default } from 'moltres/lang'
+export { cacheChain as default } from 'moltres'

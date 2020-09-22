@@ -1,1 +1,1 @@
-export { invariant as default } from 'moltres/lang'
+export { invariant as default } from 'moltres'

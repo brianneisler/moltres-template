@@ -1,1 +1,1 @@
-export { pathResolve as default } from 'moltres/path'
+export { pathResolve as default } from 'moltres'

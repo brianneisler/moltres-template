@@ -1,1 +1,1 @@
-export { testValues as default } from 'moltres/test'
+export { testValues as default } from 'moltres'

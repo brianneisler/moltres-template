@@ -1,1 +1,1 @@
-export { createSelector as default } from 'moltres/lang'
+export { createSelector as default } from 'moltres'

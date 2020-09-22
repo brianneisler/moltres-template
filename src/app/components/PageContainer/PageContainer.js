@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Fragment, MetaTags, View } from '..'
 import { selectAppConfig, selectSSRConfig } from '../../../core'
-import { compose } from '../../../utils/lang'
+import { compose, getProp } from '../../../utils/lang'
 import {
   connect,
   defaultProps,
@@ -69,10 +69,14 @@ const PageContainer = enhance(
               <meta content={title} property="og:title" />
               <meta content="website" property="og:type" />
               <meta content={app.url} property="og:url" />
-              <meta content={facebook.appId} property="fb:app_id" />
+              {getProp('appId', facebook) ? (
+                <meta content={facebook.appId} property="fb:app_id" />
+              ) : null}
               {/* TODO BRN: Not sure that this is the right type of twitter card */}
               <meta content="summary_large_image" property="twitter:card" />
-              <meta content={twitter.username} property="twitter:site" />
+              {getProp('username', twitter) ? (
+                <meta content={twitter.username} property="twitter:site" />
+              ) : null}
               <meta content={description} property="twitter:image:alt" />
               <meta content={robotsContent} name="robots" />
             </Fragment>

@@ -1,1 +1,1 @@
-export { nth as default } from 'moltres/lang'
+export { nth as default } from 'moltres'

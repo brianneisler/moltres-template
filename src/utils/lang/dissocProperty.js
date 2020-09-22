@@ -1,1 +1,1 @@
-export { dissocProperty as default } from 'moltres/lang'
+export { dissocProperty as default } from 'moltres'

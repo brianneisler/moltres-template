@@ -1,1 +1,1 @@
-export { nils as default } from 'moltres/test'
+export { nils as default } from 'moltres'

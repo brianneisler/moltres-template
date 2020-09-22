@@ -1,1 +1,1 @@
-export { isContext as default } from 'moltres/lang'
+export { isContext as default } from 'moltres'

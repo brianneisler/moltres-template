@@ -1,1 +1,1 @@
-export { sort as default } from 'moltres/lang'
+export { sort as default } from 'moltres'

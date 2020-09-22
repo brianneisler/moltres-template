@@ -1,1 +1,1 @@
-export { isDirectoryEmpty as default } from 'moltres/fs'
+export { isDirectoryEmpty as default } from 'moltres'

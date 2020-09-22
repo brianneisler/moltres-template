@@ -1,1 +1,1 @@
-export { mergeDeepRight as default } from 'moltres/lang'
+export { mergeDeepRight as default } from 'moltres'

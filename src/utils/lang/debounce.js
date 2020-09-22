@@ -1,1 +1,1 @@
-export { debounce as default } from 'moltres/lang'
+export { debounce as default } from 'moltres'

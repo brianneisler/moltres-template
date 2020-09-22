@@ -1,1 +1,1 @@
-export { noop as default } from 'moltres/lang'
+export { noop as default } from 'moltres'

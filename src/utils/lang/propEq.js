@@ -1,1 +1,1 @@
-export { propEq as default } from 'moltres/lang'
+export { propEq as default } from 'moltres'

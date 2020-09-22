@@ -1,1 +1,1 @@
-export { readFile as default } from 'moltres/fs'
+export { readFile as default } from 'moltres'

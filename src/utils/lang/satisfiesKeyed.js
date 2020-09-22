@@ -1,1 +1,1 @@
-export { satisfiesKeyed as default } from 'moltres/lang'
+export { satisfiesKeyed as default } from 'moltres'

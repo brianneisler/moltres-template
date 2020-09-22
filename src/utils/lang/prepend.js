@@ -1,1 +1,1 @@
-export { prepend as default } from 'moltres/lang'
+export { prepend as default } from 'moltres'

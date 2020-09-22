@@ -1,1 +1,1 @@
-export { toEqualPrintDiff as default } from 'moltres/test'
+export { toEqualPrintDiff as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { slice as default } from 'moltres/lang'
+export { slice as default } from 'moltres'

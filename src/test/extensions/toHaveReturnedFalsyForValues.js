@@ -1,1 +1,1 @@
-export { toHaveReturnedFalsyForValues as default } from 'moltres/test'
+export { toHaveReturnedFalsyForValues as default } from 'moltres'

@@ -1,1 +1,1 @@
-export { tail as default } from 'moltres/lang'
+export { tail as default } from 'moltres'

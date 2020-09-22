@@ -1,1 +1,1 @@
-export { forEach as default } from 'moltres/lang'
+export { forEach as default } from 'moltres'

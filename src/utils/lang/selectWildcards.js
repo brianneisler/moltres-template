@@ -1,1 +1,1 @@
-export { selectWildcards as default } from 'moltres/lang'
+export { selectWildcards as default } from 'moltres'

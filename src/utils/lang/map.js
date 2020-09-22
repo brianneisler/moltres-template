@@ -1,1 +1,1 @@
-export { map as default } from 'moltres/lang'
+export { map as default } from 'moltres'

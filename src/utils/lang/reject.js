@@ -1,1 +1,1 @@
-export { reject as default } from 'moltres/lang'
+export { reject as default } from 'moltres'

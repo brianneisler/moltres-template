@@ -1,1 +1,1 @@
-export { unexpected as default } from 'moltres/error'
+export { unexpected as default } from 'moltres'

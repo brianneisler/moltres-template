@@ -1,1 +1,1 @@
-export { isPathAbsolute as default } from 'moltres/path'
+export { isPathAbsolute as default } from 'moltres'

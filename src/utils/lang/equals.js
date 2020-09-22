@@ -1,1 +1,1 @@
-export { equals as default } from 'moltres/lang'
+export { equals as default } from 'moltres'

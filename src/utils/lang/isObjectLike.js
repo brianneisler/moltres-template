@@ -1,1 +1,1 @@
-export { isObjectLike as default } from 'moltres/lang'
+export { isObjectLike as default } from 'moltres'
