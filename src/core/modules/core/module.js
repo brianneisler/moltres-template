@@ -1,8 +1,9 @@
 import { externalPromise } from '../../../utils/lang'
 import { call, handleActions, take } from '../../../utils/redux'
-import { uncaughtExceptionAction } from '../error/actions'
 
-import { runSagaAction } from './actions'
+import * as actions from './actions'
+import { runSagaAction, uncaughtSagaErrorAction } from './actions'
+import * as schemas from './schemas'
 import { CoreConfig } from './schemas'
 import {
   createAsyncMiddleware,
@@ -37,9 +38,7 @@ const mod = () => {
   const sagaMiddleware = createSagaMiddleware({
     onError: (reason, saga) => {
       try {
-        _store.dispatch(
-          uncaughtExceptionAction(_store.getContext(), { reason, saga })
-        )
+        _store.dispatch(uncaughtSagaErrorAction({ reason, saga }))
       } catch (error) {
         // NOTE BRN: This is the ultimate fallback in case the above errors out
         // for some reason
@@ -69,6 +68,7 @@ const mod = () => {
   }
 
   return {
+    actions,
     middleware,
     reducer: handleActions(
       {},
@@ -77,6 +77,7 @@ const mod = () => {
       }
     ),
     run,
+    schemas,
     setup,
     start,
     stop

@@ -1,4 +1,4 @@
-import { User } from '../../../../db/User'
+import { User } from '../../../../modules/user'
 
 const CurrentUser = {
   name: 'auth.CurrentUser',

@@ -1,9 +1,9 @@
 import { basename, join, resolve } from 'path'
 
 import { readdir } from 'fs-extra'
-import { dropWhile, filter, map, reduce } from 'ramda'
+import { dropWhile, filter, map, reduce } from 'moltres'
 
-import { findVariableById, setVariable } from '../../src/db/Variable'
+import { findVariableById, setVariable } from '../../src/modules/variable'
 
 import setupScriptContexts from './utils/setupScriptContexts'
 

@@ -1,6 +1,6 @@
 import { NOT_FOUND } from '../../../../constants/Code'
 import { USER_PROFILE_UPDATE } from '../../../../constants/Overlay'
-import { queryAndWatchUserProfile } from '../../../../sdk/user_profile'
+import { queryAndWatchUserProfile } from '../../../../modules/user_profile'
 import { call, put } from '../../../../utils/redux'
 import { actions as overlayActions } from '../../overlay'
 import { setCurrentUserProfileAction } from '../actions'

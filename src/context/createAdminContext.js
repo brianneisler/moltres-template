@@ -1,7 +1,7 @@
 import * as firebaseMain from 'firebase'
 import * as firebaseAdmin from 'firebase-admin'
 
-import { createServiceAccount } from '../db/ServiceAccount'
+import { createServiceAccount } from '../modules/service_account'
 import { createCustomToken } from '../utils/auth'
 import { isTestAppConfigured } from '../utils/config'
 import {

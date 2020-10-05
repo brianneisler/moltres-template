@@ -1,6 +1,6 @@
 require('@babel/register')()
 const createExpoWebpackConfigAsync = require('@expo/webpack-config')
-const { merge } = require('ramda')
+const { merge } = require('moltres')
 const webpack = require('webpack')
 
 const loadProjectConfig = require('./src/config/loadProjectConfig').default

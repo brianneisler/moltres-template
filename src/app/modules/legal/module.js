@@ -1,6 +1,5 @@
 import { withConfig, withContext } from '../../../core'
-import { getPageByPath } from '../../../db/Page'
-import { queryAndWatchPage } from '../../../sdk/page'
+import { getPageByPath, queryAndWatchPage } from '../../../modules/page'
 import { compose } from '../../../utils/lang'
 import { call } from '../../../utils/redux'
 

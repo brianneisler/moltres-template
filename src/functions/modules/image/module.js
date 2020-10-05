@@ -1,8 +1,8 @@
 import { Code } from '../../../constants'
-import getImageById from '../../../db/Image/getImageById'
+import { getImageById } from '../../../modules/image'
 import { expected } from '../../../utils/error'
-import asyncHandler from '../../../utils/express/asyncHandler'
-import createFileReadStream from '../../../utils/storage/createFileReadStream'
+import { asyncHandler } from '../../../utils/express'
+import { createFileReadStream } from '../../../utils/storage'
 
 const mod = () => ({
   setupRouter(router) {

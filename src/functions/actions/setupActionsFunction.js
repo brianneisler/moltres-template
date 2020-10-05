@@ -1,6 +1,6 @@
 import { generateEngine } from '../../core'
-import { processAction, rejectAction, resolveAction } from '../../db/Action'
-import { User, findUserById } from '../../db/User'
+import { processAction, rejectAction, resolveAction } from '../../core/sdk'
+import { User, findUserById } from '../../modules/user'
 import { assoc, hasProperty } from '../../utils/lang'
 import setupFunctionContexts from '../setupFunctionContexts'
 

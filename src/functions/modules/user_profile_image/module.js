@@ -1,11 +1,11 @@
 import { Code } from '../../../constants'
-import getImageById from '../../../db/Image/getImageById'
-import findUserProfileImageById from '../../../db/UserProfileImage/findUserProfileImageById'
+import { getImageById } from '../../../modules/image'
+import { findUserProfileImageById } from '../../../modules/user_profile_image'
 import { expected } from '../../../utils/error'
-import asyncHandler from '../../../utils/express/asyncHandler'
-import resizeImageToStream from '../../../utils/image/resizeImageToStream'
-import downloadFile from '../../../utils/storage/downloadFile'
-// import findOrCreateUserProfileImageFromBuffer from '../../../sdk/user/findOrCreateUserProfileImageFromBuffer'
+import { asyncHandler } from '../../../utils/express'
+import { resizeImageToStream } from '../../../utils/image'
+import { downloadFile } from '../../../utils/storage'
+// import findOrCreateUserProfileImageFromBuffer from '../../../modules/user/findOrCreateUserProfileImageFromBuffer'
 
 const mod = () => ({
   setupRouter(router) {

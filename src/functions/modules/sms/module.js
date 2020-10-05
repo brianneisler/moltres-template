@@ -1,9 +1,9 @@
 import twilio from 'twilio'
 
 import { StatusCode } from '../../../constants'
-import { findRecentChannelContextByChannelId } from '../../../db/ChannelContext'
-import { saveSMSMessage } from '../../../db/SMSMessage'
-import { generateUserAndSMSChannel } from '../../../sdk/sms'
+import { findRecentChannelContextByChannelId } from '../../../modules/channel_context'
+import { generateUserAndSMSChannel } from '../../../modules/sms'
+import { saveSMSMessage } from '../../../modules/sms_message'
 import { asyncHandler } from '../../../utils/express'
 import { getProp } from '../../../utils/lang'
 

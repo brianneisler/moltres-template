@@ -5,16 +5,23 @@ import {
   isEmpty,
   isObject,
   isString,
-  isUndefined
+  isUndefined,
+  merge
 } from '../../../utils/lang'
 import { handleActions } from '../../../utils/redux'
 
-import { setContextAction } from './actions'
+import * as actions from './actions'
+import * as schemas from './schemas'
+import { MergeContextAction, SetContextAction } from './schemas'
+import * as selectors from './selectors'
 
 const mod = () => ({
+  actions,
   reducer: handleActions(
     {
-      [setContextAction]: (state, action) => {
+      [MergeContextAction.name]: (state, action) =>
+        merge(state, action.payload),
+      [SetContextAction.name]: (state, action) => {
         let context = state
         const { selector, value } = action.payload
         if (isUndefined(selector) && isObject(value)) {
@@ -34,7 +41,9 @@ const mod = () => ({
       }
     },
     {}
-  )
+  ),
+  schemas,
+  selectors
 })
 
 export default mod

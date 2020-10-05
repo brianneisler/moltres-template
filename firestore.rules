@@ -583,7 +583,7 @@ service cloud.firestore {
         type == 'ENTITY_CHANGED' &&
         validateEntityChangedPayload(payload)
       ) || (
-        type == 'USER_REGISTERED' &&
+        type == 'auth.UserRegisteredAction' &&
         validateUserRegisteredPayload(payload)
       ) || (
         type == 'STORAGE:OBJECT_DELETE' &&

@@ -2,7 +2,7 @@
 
 require('@babel/register')
 
-const { setupCli } = require('../src/cli')
+const { setupCli } = require('../index.cli')
 
 setupCli()
   .then((cli) => cli.exec(process.argv))

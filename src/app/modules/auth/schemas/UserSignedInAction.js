@@ -1,5 +1,4 @@
-import { Id, Object, Timestamp } from '../../../../core'
-import { Action } from '../../../../db/Action'
+import { Action, Id, Object, Timestamp } from '../../../../core'
 
 const UserSignedInAction = {
   name: 'auth.UserSignedInAction',

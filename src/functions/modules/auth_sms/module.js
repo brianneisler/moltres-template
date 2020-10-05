@@ -2,21 +2,21 @@ import bodyParser from 'body-parser'
 
 import { Code, StatusCode } from '../../../constants'
 import { withConfig, withContext } from '../../../core'
-import { getPhoneNumberById } from '../../../db/PhoneNumber'
-import {
-  createSMSChallenge,
-  getSMSChallengeById,
-  updateSMSChallenge
-} from '../../../db/SMSChallenge'
-import { findUserPhoneNumberByPhoneNumberId } from '../../../db/UserPhoneNumber'
-import { findUserRoleByUserId } from '../../../db/UserRole'
-import registerValidUser from '../../../sdk/auth/registerValidUser'
-import { UserRegisteredAction } from '../../../sdk/auth/schemas'
+import { registerValidUser } from '../../../modules/auth'
+import { UserRegisteredAction } from '../../../modules/auth/schemas'
+import { getPhoneNumberById } from '../../../modules/phone_number'
 import {
   generateSMSChannel,
   generateUserAndSMSChannel,
   sendSMSMessageToChannel
-} from '../../../sdk/sms'
+} from '../../../modules/sms'
+import {
+  createSMSChallenge,
+  getSMSChallengeById,
+  updateSMSChallenge
+} from '../../../modules/sms_challenge'
+import { findUserPhoneNumberByPhoneNumberId } from '../../../modules/user_phone_number'
+import { findUserRoleByUserId } from '../../../modules/user_role'
 import { createCustomToken } from '../../../utils/auth'
 import { nowTimestamp } from '../../../utils/db'
 import { expected } from '../../../utils/error'

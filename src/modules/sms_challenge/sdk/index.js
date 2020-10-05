@@ -1,0 +1,5 @@
+export { default as createSMSChallenge } from './createSMSChallenge'
+export { default as deleteSMSChallenge } from './deleteSMSChallenge'
+export { default as getSMSChallengeById } from './getSMSChallengeById'
+export { default as removeSMSChallenge } from './removeSMSChallenge'
+export { default as updateSMSChallenge } from './updateSMSChallenge'

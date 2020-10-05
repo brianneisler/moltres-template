@@ -1,5 +1,4 @@
-import { Integer, Object, String } from '../../../../core/schemas'
-import { Action } from '../../../../db/Action'
+import { Action, Integer, Object, String } from '../../../../core/schemas'
 
 const StorageObjectDeleteAction = {
   schema: Action.schema.keys({

@@ -1,4 +1,4 @@
-import { forEach } from 'ramda'
+import { forEach } from 'moltres'
 
 import createBuffer from './createBuffer'
 import isBuffer from './isBuffer'

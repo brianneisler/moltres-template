@@ -1,6 +1,0 @@
-export * from './schemas'
-export { default as createAccessToken } from './createAccessToken'
-export { default as deleteAccessToken } from './deleteAccessToken'
-export { default as getAccessTokenById } from './getAccessTokenById'
-export { default as removeAccessToken } from './removeAccessToken'
-export { default as updateAccessToken } from './updateAccessToken'

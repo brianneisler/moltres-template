@@ -18,8 +18,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+import {
+  difference,
+  includes,
+  isFunction,
+  merge,
+  omit,
+  template,
+  union
+} from 'moltres'
+
 const chalk = require('chalk')
-const _ = require('lodash')
 const winston = require('winston')
 
 /**
@@ -108,7 +117,7 @@ function ensureValidOptions(options) {
     )
   }
 
-  if (options.dynamicMeta && !_.isFunction(options.dynamicMeta)) {
+  if (options.dynamicMeta && !isFunction(options.dynamicMeta)) {
     throw new Error('`dynamicMeta` express-winston option should be a function')
   }
 }
@@ -136,11 +145,11 @@ function getRequestTemplate(loggerOptions, templateOptions) {
       expressMsgFormat = chalk.grey('REQUEST {{req.method}} {{req.url}}')
     }
 
-    return _.template(expressMsgFormat, templateOptions)
+    return template(expressMsgFormat, templateOptions)
   }
 
-  if (!_.isFunction(loggerOptions.requestMessage)) {
-    return _.template(loggerOptions.requestMessage, templateOptions)
+  if (!isFunction(loggerOptions.requestMessage)) {
+    return template(loggerOptions.requestMessage, templateOptions)
   }
 
   return function (data) {
@@ -155,7 +164,7 @@ function getRequestTemplate(loggerOptions, templateOptions) {
     // since options.requestMessage was a function, and the results seem to contain moustache
     // interpolation, we'll compile a new template for each request.
     // Warning: this eats a ton of memory under heavy load.
-    return _.template(message, templateOptions)(data)
+    return template(message, templateOptions)(data)
   }
 }
 
@@ -170,11 +179,11 @@ function getResponseTemplate(loggerOptions, templateOptions) {
         chalk.grey('{{res.responseTime}}ms')
     }
 
-    return _.template(expressMsgFormat, templateOptions)
+    return template(expressMsgFormat, templateOptions)
   }
 
-  if (!_.isFunction(loggerOptions.responseMessage)) {
-    return _.template(loggerOptions.responseMessage, templateOptions)
+  if (!isFunction(loggerOptions.responseMessage)) {
+    return template(loggerOptions.responseMessage, templateOptions)
   }
 
   return function (data) {
@@ -189,7 +198,7 @@ function getResponseTemplate(loggerOptions, templateOptions) {
     // since options.responseMessage was a function, and the results seem to contain moustache
     // interpolation, we'll compile a new template for each request.
     // Warning: this eats a ton of memory under heavy load.
-    return _.template(message, templateOptions)(data)
+    return template(message, templateOptions)(data)
   }
 }
 
@@ -205,11 +214,11 @@ function getErrorTemplate(loggerOptions, templateOptions) {
         chalk.grey('{{err.stack}}\n' + 'Caused By:{{err.causes}}\n')
     }
 
-    return _.template(expressMsgFormat, templateOptions)
+    return template(expressMsgFormat, templateOptions)
   }
 
-  if (!_.isFunction(loggerOptions.errorMessage)) {
-    return _.template(loggerOptions.errorMessage, templateOptions)
+  if (!isFunction(loggerOptions.errorMessage)) {
+    return template(loggerOptions.errorMessage, templateOptions)
   }
 
   return function (data) {
@@ -224,7 +233,7 @@ function getErrorTemplate(loggerOptions, templateOptions) {
     // since options.errorMessage was a function, and the results seem to contain moustache
     // interpolation, we'll compile a new template for each request.
     // Warning: this eats a ton of memory under heavy load.
-    return _.template(message, templateOptions)(data)
+    return template(message, templateOptions)(data)
   }
 }
 
@@ -267,7 +276,7 @@ exports.errorLogger = function errorLogger(options) {
 
   return function (err, req, res, next) {
     // Let winston gather all the error data
-    let exceptionMeta = _.omit(
+    let exceptionMeta = omit(
       options.exceptionToMeta(err),
       options.blacklistedMetaFields
     )
@@ -279,7 +288,7 @@ exports.errorLogger = function errorLogger(options) {
 
     if (options.dynamicMeta) {
       const dynamicMeta = options.dynamicMeta(req, res, err)
-      exceptionMeta = _.assign(exceptionMeta, dynamicMeta)
+      exceptionMeta = merge(exceptionMeta, dynamicMeta)
     }
 
     if (options.metaField) {
@@ -288,9 +297,9 @@ exports.errorLogger = function errorLogger(options) {
       exceptionMeta = newMeta
     }
 
-    exceptionMeta = _.assign(exceptionMeta, options.baseMeta)
+    exceptionMeta = merge(exceptionMeta, options.baseMeta)
 
-    const level = _.isFunction(options.level)
+    const level = isFunction(options.level)
       ? options.level(req, res, err)
       : options.level
 
@@ -340,7 +349,7 @@ function bodyToString(body, isJSON) {
 }
 
 function ensureValidLoggerOptions(options) {
-  if (options.ignoreRoute && !_.isFunction(options.ignoreRoute)) {
+  if (options.ignoreRoute && !isFunction(options.ignoreRoute)) {
     throw new Error('`ignoreRoute` express-winston option should be a function')
   }
 }
@@ -404,7 +413,7 @@ exports.logger = function logger(options) {
     const coloredRes = {}
 
     const currentUrl = req.originalUrl || req.url
-    if (currentUrl && _.includes(options.ignoredRoutes, currentUrl)) {
+    if (currentUrl && includes(options.ignoredRoutes, currentUrl)) {
       return next()
     }
     if (options.ignoreRoute(req, res)) {
@@ -416,7 +425,7 @@ exports.logger = function logger(options) {
 
     // This is fire and forget, we don't want logging to hold up the request so don't wait for the callback
     if (!options.skip(req)) {
-      const level = _.isFunction(options.level)
+      const level = isFunction(options.level)
         ? options.level(req)
         : options.level
       options.winstonInstance.log({ level, message: requestMessage })
@@ -456,7 +465,7 @@ exports.logger = function logger(options) {
 
         logData.res = res
 
-        if (_.includes(responseWhitelist, 'body')) {
+        if (includes(responseWhitelist, 'body')) {
           if (chunk) {
             const isJson =
               res.getHeader('content-type') &&
@@ -473,11 +482,11 @@ exports.logger = function logger(options) {
           options.responseFilter
         )
 
-        const bodyWhitelist = _.union(
+        const bodyWhitelist = union(
           options.bodyWhitelist,
           req._routeWhitelists.body || []
         )
-        const blacklist = _.union(
+        const blacklist = union(
           options.bodyBlacklist,
           req._routeBlacklists.body || []
         )
@@ -486,7 +495,7 @@ exports.logger = function logger(options) {
 
         if (req.body !== undefined) {
           if (blacklist.length > 0 && bodyWhitelist.length === 0) {
-            const whitelist = _.difference(Object.keys(req.body), blacklist)
+            const whitelist = difference(Object.keys(req.body), blacklist)
             filteredBody = filterObject(
               req.body,
               whitelist,
@@ -523,7 +532,7 @@ exports.logger = function logger(options) {
 
         if (options.dynamicMeta) {
           const dynamicMeta = options.dynamicMeta(req, res)
-          logData = _.assign(logData, dynamicMeta)
+          logData = merge(logData, dynamicMeta)
         }
 
         if (options.metaField) {
@@ -531,10 +540,10 @@ exports.logger = function logger(options) {
           newMeta[options.metaField] = logData
           logData = newMeta
         }
-        meta = _.assign(meta, logData)
+        meta = merge(meta, logData)
       }
 
-      meta = _.assign(meta, options.baseMeta)
+      meta = merge(meta, options.baseMeta)
 
       if (options.colorize) {
         // Palette from https://github.com/expressjs/morgan/blob/master/index.js#L205
@@ -552,12 +561,12 @@ exports.logger = function logger(options) {
 
       const responseMessage = responseTemplate({
         req,
-        res: _.assign({}, res, coloredRes)
+        res: merge({}, res, coloredRes)
       })
 
       // This is fire and forget, we don't want logging to hold up the request so don't wait for the callback
       if (!options.skip(req, res)) {
-        const level = _.isFunction(options.level)
+        const level = isFunction(options.level)
           ? options.level(req, res)
           : options.level
         options.winstonInstance.log({ level, message: responseMessage, meta })

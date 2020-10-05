@@ -1,6 +1,6 @@
-import { map } from 'ramda'
+import { map } from 'moltres'
 
-import { generateInternalPhoneNumber } from '../../src/sdk/phone_number'
+import { generateInternalPhoneNumber } from '../../src/modules/phone_number'
 
 import { setupScriptContexts } from './utils'
 

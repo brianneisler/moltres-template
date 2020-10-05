@@ -1,5 +1,6 @@
 export { default as auth } from './auth'
 export { default as auth_sms } from './auth_sms'
+export { default as context } from './context'
 export { default as error } from './error'
 export { default as error_logger } from './error_logger'
 export { default as short_url } from './short_url'

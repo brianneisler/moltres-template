@@ -91,6 +91,7 @@
     ],
     "rewrites": [
       { "source": "/link/**", "dynamicLinks": true },
+      { "source": "/graphql", "function": "graphql" },
       {
         "source": "**",
         "function": "app"

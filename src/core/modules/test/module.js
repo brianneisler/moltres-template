@@ -1,6 +1,9 @@
+import * as schemas from './schemas'
 import { TestConfig } from './schemas'
 
-const mod = () => ({})
+const mod = () => ({
+  schemas
+})
 
 mod.configSchema = TestConfig
 

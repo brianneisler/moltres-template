@@ -28,6 +28,9 @@ const createEngine = (
     config,
     context
   })
+  const getContext = (selector) => {
+    return select(selector, selectContext(_store.getState()))
+  }
   return {
     ..._store,
     dispatch(...args) {
@@ -36,13 +39,13 @@ const createEngine = (
     getConfig: (selector) => {
       return select(selector, selectConfig(_store.getState()))
     },
-    getContext: (selector) => {
-      return select(selector, selectContext(_store.getState()))
-    },
+    getContext,
     getModule: (selector) => getProp(selector, instances),
     getModules: () => instances,
     setContext: ({ selector, value }) => {
-      return _store.dispatch(setContextAction({ selector, value }))
+      return _store.dispatch(
+        setContextAction(getContext(), { selector, value })
+      )
     },
     setup: (store) => {
       context.logger.debug('Setting up engine...')

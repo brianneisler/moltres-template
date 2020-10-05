@@ -1,3 +1,4 @@
+import * as Algorithm from './Algorithm'
 import * as AllowedImageType from './AllowedImageType'
 import * as AuthState from './AuthState'
 import * as BrowserType from './BrowserType'
@@ -18,6 +19,7 @@ import * as StatusLevel from './StatusLevel'
 import * as UploadState from './UploadState'
 
 export {
+  Algorithm,
   AllowedImageType,
   AuthState,
   BrowserType,

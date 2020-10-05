@@ -1,1 +1,1 @@
-export { splitAt as default } from 'ramda'
+export { splitAt as default } from 'moltres'

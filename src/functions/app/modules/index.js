@@ -1,4 +1,3 @@
-export { default as context } from './context'
 export { default as cors } from './cors'
 export { default as middleware } from './middleware'
 export { default as performance } from './performance'

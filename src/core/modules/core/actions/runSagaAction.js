@@ -1,7 +1,7 @@
 import { createAction } from '../../../../utils/redux'
 
 const runSagaAction = createAction(
-  'RUN_SAGA',
+  'core.RunSagaAction',
   ({ args, reject, resolve, saga }) => ({
     args,
     reject,

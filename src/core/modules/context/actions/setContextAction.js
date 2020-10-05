@@ -1,8 +1,8 @@
-import { createAction } from '../../../../utils/redux'
+import { actionBuilder } from '../../../../utils/redux'
+import { SetContextAction } from '../schemas'
 
-const setContextAction = createAction('SET_CONTEXT', ({ selector, value }) => ({
-  selector,
-  value
-}))
+const setContextAction = actionBuilder({
+  Schema: SetContextAction
+})
 
 export default setContextAction

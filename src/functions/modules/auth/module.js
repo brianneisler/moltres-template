@@ -1,4 +1,4 @@
-import { getUserById } from '../../../db/User'
+import { getUserById } from '../../../modules/user'
 import { verifyIdToken } from '../../../utils/auth'
 
 const mod = () => ({

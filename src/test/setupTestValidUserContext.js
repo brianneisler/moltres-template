@@ -1,5 +1,5 @@
 import { createContext } from '../context'
-import { registerValidUser } from '../sdk/auth'
+import { registerValidUser } from '../modules/auth'
 import { createCustomToken, signInWithIdToken } from '../utils/auth'
 import { isTestAppConfigured } from '../utils/config'
 

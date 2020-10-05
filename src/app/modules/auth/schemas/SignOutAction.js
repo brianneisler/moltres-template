@@ -1,5 +1,4 @@
-import { Object } from '../../../../core/schemas'
-import { Action } from '../../../../db/Action'
+import { Action, Object } from '../../../../core/schemas'
 
 const SignOutAction = {
   name: 'auth.SignOutAction',

@@ -1,7 +1,8 @@
 import { AuthState } from '../../../constants'
-import { setContext, withConfig, withContext } from '../../../core'
+import { withConfig, withContext } from '../../../core'
+import { mergeContextAction } from '../../../core/actions'
 import { FirebaseAuthStateChangedAction } from '../../../core/schemas'
-import { findUserById } from '../../../db/User'
+import { findUserById } from '../../../modules/user'
 import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
 import { append, assoc, compose, getProp } from '../../../utils/lang'
 import {
@@ -170,13 +171,11 @@ const mod = () => ({
               return yield put(signOutAction(context))
             }
 
-            yield all([
-              call(setContext, 'currentUser', currentUser),
-              put([
-                setAuthIdTokenAction(context, idToken),
-                setCurrentUserAction(context, currentUser),
-                setAuthStateAction(context, AuthState.LOGGED_IN)
-              ])
+            yield put([
+              mergeContextAction(context, { currentUser }),
+              setAuthIdTokenAction(context, idToken),
+              setCurrentUserAction(context, currentUser),
+              setAuthStateAction(context, AuthState.LOGGED_IN)
             ])
             yield put(
               authStateChangedAction(context, {
@@ -185,16 +184,17 @@ const mod = () => ({
               })
             )
           } else {
-            yield all([
-              call(setContext, 'currentUser', null),
-              put([
-                setAuthIdTokenAction(context, null),
-                setCurrentUserAction(context, null),
-                setAuthStateAction(context, AuthState.LOGGED_OUT)
-              ])
+            yield put([
+              mergeContextAction(context, { currentUser: null }),
+              setAuthIdTokenAction(context, null),
+              setCurrentUserAction(context, null),
+              setAuthStateAction(context, AuthState.LOGGED_OUT)
             ])
+
             yield put(
-              authStateChangedAction({ authState: AuthState.LOGGED_OUT })
+              authStateChangedAction(context, {
+                authState: AuthState.LOGGED_OUT
+              })
             )
           }
         })

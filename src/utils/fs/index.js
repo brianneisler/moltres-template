@@ -1,4 +1,5 @@
 export { default as copyPath } from './copyPath'
+export { default as createReadStream } from './createReadStream'
 export { default as createWriteStream } from './createWriteStream'
 export { default as ensureDirectory } from './ensureDirectory'
 export { default as isPathDirectory } from './isPathDirectory'

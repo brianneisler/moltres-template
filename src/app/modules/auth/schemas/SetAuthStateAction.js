@@ -1,4 +1,4 @@
-import { Action } from '../../../../db/Action'
+import { Action } from '../../../../core'
 
 import AuthState from './AuthState'
 

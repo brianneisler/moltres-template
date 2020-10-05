@@ -1,17 +1,17 @@
 import { ChannelType, NotificationSendState } from '../../../../constants'
-import { createError } from '../../../../db/Error'
-import {
-  createNotificationSend,
-  updateNotificationSend
-} from '../../../../db/NotificationSend'
+import { createError } from '../../../../modules/error'
 import {
   renderNotification,
   validateNotification
-} from '../../../../sdk/notification'
+} from '../../../../modules/notification'
+import {
+  createNotificationSend,
+  updateNotificationSend
+} from '../../../../modules/notification_send'
 import {
   generateSMSChannel,
   sendSMSMessageToChannel
-} from '../../../../sdk/sms'
+} from '../../../../modules/sms'
 import { nowTimestamp } from '../../../../utils/db'
 import { call } from '../../../../utils/redux'
 

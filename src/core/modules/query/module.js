@@ -7,6 +7,8 @@ import {
   takeEvery
 } from '../../../utils/redux'
 
+import * as actions from './actions'
+import * as schemas from './schemas'
 import {
   ClearQueryAction,
   NextPageAction,
@@ -14,9 +16,11 @@ import {
   SetQueryCursorAction,
   SetQueryCursorNextAction
 } from './schemas'
+import * as selectors from './selectors'
 import { selectQuery } from './selectors'
 
 const mod = () => ({
+  actions,
   reducer: handleActions(
     {
       [ClearQueryAction.name]: (state, action) =>
@@ -51,7 +55,9 @@ const mod = () => ({
         return result
       })
     )
-  }
+  },
+  schemas,
+  selectors
 })
 
 export default mod

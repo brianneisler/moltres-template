@@ -1,5 +1,5 @@
 import { withConfig, withContext } from '../../../core'
-import { uploadUserProfileImage } from '../../../sdk/user_profile_image'
+import { uploadUserProfileImage } from '../../../modules/user_profile_image'
 import { compose } from '../../../utils/lang'
 import { call, handleAction, select, takeEvery } from '../../../utils/redux'
 import { selectIdToken } from '../auth'

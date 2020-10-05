@@ -10,15 +10,13 @@ import {
   filter,
   find,
   forEach,
+  getProperty,
   isEmpty,
   map,
-  prop,
   reduce
-} from 'ramda'
+} from 'moltres'
 
 import pack from '../../package.json'
-
-import { reduceObjectIndexed } from './utils'
 
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
@@ -103,7 +101,7 @@ const findSrcFiles = () =>
 
 const findCategory = (tags) => {
   const categoryTag = find((tag) => tag.type === 'category', tags)
-  return prop('string', categoryTag)
+  return getProperty('string', categoryTag)
 }
 
 const findExample = (tags) => {
@@ -126,7 +124,7 @@ const findReturns = (tags) => {
 
 const findSince = (tags) => {
   const sinceTag = find((tag) => tag.type === 'since', tags)
-  return prop('string', sinceTag)
+  return getProperty('string', sinceTag)
 }
 
 const findFunction = (tags) => {
@@ -316,7 +314,7 @@ const getType = (tags) => {
 }
 
 const getCategory = (name, categories) => {
-  let category = prop(name, categories)
+  let category = getProperty(name, categories)
   if (!category) {
     category = {
       functions: [],
@@ -371,7 +369,7 @@ const generateAPIDocs = (srcData) =>
       transforms: {
         METHODS() {
           const categories = generateCategoryDocs(srcData)
-          return reduceObjectIndexed(
+          return reduce(
             (markdown, category) => {
               return markdown + renderCategoryMarkdown(category)
             },

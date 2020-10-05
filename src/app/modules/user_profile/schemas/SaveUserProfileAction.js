@@ -1,5 +1,5 @@
 import { Action, Object } from '../../../../core'
-import { UserProfile } from '../../../../db/UserProfile/schemas'
+import { UserProfile } from '../../../../modules/user_profile'
 
 const SaveUserProfileAction = {
   name: 'user_profile.SaveUserProfileAction',

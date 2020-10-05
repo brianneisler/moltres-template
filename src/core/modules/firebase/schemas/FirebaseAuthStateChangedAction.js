@@ -1,4 +1,5 @@
-import { Action, Object } from '../../core/schemas'
+import { Action } from '../../action/schemas'
+import { Object } from '../../core/schemas'
 
 const FirebaseAuthStateChangedAction = {
   name: 'firebase.FirebaseAuthStateChangedAction',

@@ -1,5 +1,1 @@
-import _isURL from 'is-url'
-
-const isURL = (value) => _isURL(value)
-
-export default isURL
+export { isURL as default } from 'moltres'

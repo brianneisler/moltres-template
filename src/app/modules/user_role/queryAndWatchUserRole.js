@@ -1,5 +1,5 @@
 import { factoryAndWatchQuery } from '../../../core'
-import { refUserRoleById } from '../../../db/UserRole'
+import { refUserRoleById } from '../../../modules/user_role'
 import { invariant, isString } from '../../../utils/lang'
 import { call } from '../../../utils/redux'
 

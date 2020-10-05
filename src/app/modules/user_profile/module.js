@@ -1,7 +1,9 @@
 import { withConfig, withContext } from '../../../core'
-import { getUserById } from '../../../db/User'
-import { saveUserProfile } from '../../../db/UserProfile'
-import { queryAndWatchUserProfile } from '../../../sdk/user_profile'
+import { getUserById } from '../../../modules/user'
+import {
+  queryAndWatchUserProfile,
+  saveUserProfile
+} from '../../../modules/user_profile'
 import { assoc, compose } from '../../../utils/lang'
 import {
   call,

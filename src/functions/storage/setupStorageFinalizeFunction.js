@@ -1,4 +1,4 @@
-import { queueAction } from '../../db/Action'
+import { queueAction } from '../../core/sdk'
 import { actions, schemas } from '../modules/storage'
 import setupFunctionContexts from '../setupFunctionContexts'
 

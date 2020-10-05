@@ -3,13 +3,13 @@ import {
   findPreferenceById,
   removePreference,
   setPreference
-} from '../../../db/Preference'
-import { getUserById } from '../../../db/User'
-import { findExistingUserByPhoneNumber } from '../../../db/UserPhoneNumber'
+} from '../../../modules/preference'
+import { getUserById } from '../../../modules/user'
+import { findExistingUserByPhoneNumber } from '../../../modules/user_phone_number'
 import {
   findOrCreateUserPreferences,
   findUserPreferencesById
-} from '../../../db/UserPreferences'
+} from '../../../modules/user_preferences'
 import { isId } from '../../../utils/db'
 import { expected } from '../../../utils/error'
 import { isValidPhoneNumber } from '../../../utils/phonenumber'

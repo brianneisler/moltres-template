@@ -1,1 +1,1 @@
-export { zip as default } from 'ramda'
+export { zip as default } from 'moltres'

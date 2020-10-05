@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions'
 
 import { setupActionsFunction } from './actions'
 import { setupAppFunction } from './app'
+import { setupGraphQLFunction } from './graphql'
 import * as modules from './modules'
 import { setupScheduleFunctions } from './schedule'
 import setupFunctionConfig from './setupFunctionConfig'
@@ -26,6 +27,9 @@ const setupFunctions = () => {
     app: functions
       .runWith(runtimeOptions)
       .https.onRequest(setupAppFunction(modules, config)),
+    graphql: functions
+      .runWith(runtimeOptions)
+      .https.onRequest(setupGraphQLFunction(modules, config)),
     storage_delete: functions
       .runWith(runtimeOptions)
       .storage.object()

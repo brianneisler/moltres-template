@@ -1,6 +1,6 @@
 import tools from 'firebase-tools'
 import logger from 'firebase-tools/lib/logger'
-import { keys, map, prop } from 'ramda'
+import { getProperty, keys, map } from 'moltres'
 import winston from 'winston'
 
 class DeployLogger extends winston.Transport {
@@ -32,7 +32,7 @@ const setupLogger = () => {
 
 const convertConfig = (config) =>
   map((key) => {
-    const value = prop(key, config)
+    const value = getProperty(key, config)
     return `${key}=${value}`
   }, keys(config))
 
@@ -61,7 +61,7 @@ const commands = {
 }
 
 process.on('message', (message) => {
-  const command = prop(message.type, commands)
+  const command = getProperty(message.type, commands)
   if (!command) {
     throw new Error(`Could not find command of type ${message.type}`)
   }

@@ -1,4 +1,5 @@
-import { Action, Object, String } from '../../core/schemas'
+import { Action } from '../../action/schemas'
+import { Object, String } from '../../core/schemas'
 
 const NextPageAction = {
   name: 'query.NextPageAction',
