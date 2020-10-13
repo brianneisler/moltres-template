@@ -1,5 +1,5 @@
 import { batchCreateEntity } from '../../../core/sdk'
-import { assoc, getPropOr, omit } from '../../../utils/lang'
+import { assoc, getPropertyOr, omit } from '../../../utils/lang'
 import { EntityStats } from '../schemas'
 
 import batchCreateStatsShard from './batchCreateStatsShard'
@@ -16,7 +16,7 @@ const batchCreateEntityStats = (context, batch, data) => {
   // TODO BRN: replace this parentRef part with a parentRefIdField in the schema
   // (need to add that and update the StatsShard to include an entityStatsId field)
   batchCreateStatsShard(assoc('parentRef', ref, context), batch, {
-    data: getPropOr({}, 'data', data),
+    data: getPropertyOr({}, 'data', data),
     index: 0
   })
   return ref

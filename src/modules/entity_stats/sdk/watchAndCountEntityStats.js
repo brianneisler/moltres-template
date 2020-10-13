@@ -1,7 +1,7 @@
 import { EntityChangeType } from '../../../constants'
 import { withConfig, withContext } from '../../../core'
 import { takeEveryEntityChanged } from '../../../core/sdk'
-import { compose, getProp } from '../../../utils/lang'
+import { compose, getProperty } from '../../../utils/lang'
 import { handleAction } from '../../../utils/redux'
 
 import decrementEntityStat from './decrementEntityStat'
@@ -29,7 +29,7 @@ const watchAndCountEntityStats = function* ({
       enhance(function* (context, action) {
         const { data } = action.payload
         yield incrementEntityStat(context, {
-          entityId: getProp(linkEntityIdField, data),
+          entityId: getProperty(linkEntityIdField, data),
           entityType: statEntityType,
           stat
         })
@@ -48,7 +48,7 @@ const watchAndCountEntityStats = function* ({
         // NOTE BRN: only decrement if not already removed
         if (!prevData.removedAt) {
           yield decrementEntityStat(context, {
-            entityId: getProp(linkEntityIdField, prevData),
+            entityId: getProperty(linkEntityIdField, prevData),
             entityType: statEntityType,
             stat
           })
@@ -66,7 +66,7 @@ const watchAndCountEntityStats = function* ({
       enhance(function* (context, action) {
         const { prevData } = action.payload
         yield decrementEntityStat(context, {
-          entityId: getProp(linkEntityIdField, prevData),
+          entityId: getProperty(linkEntityIdField, prevData),
           entityType: statEntityType,
           stat
         })
@@ -84,7 +84,7 @@ const watchAndCountEntityStats = function* ({
         const { data, prevData } = action.payload
         if (prevData.removedAt && data.removedAt === null) {
           yield incrementEntityStat(context, {
-            entityId: getProp(linkEntityIdField, data),
+            entityId: getProperty(linkEntityIdField, data),
             entityType: statEntityType,
             stat
           })

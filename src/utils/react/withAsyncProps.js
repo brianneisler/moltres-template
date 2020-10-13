@@ -4,7 +4,7 @@ import {
   assoc,
   assocPath,
   forEach,
-  getProp,
+  getProperty,
   hasProperty,
   keys,
   map,
@@ -44,7 +44,7 @@ const addObserver = (observers, key, promisedAsyncProp, observer) => {
 }
 
 const removeObserver = (observers, key) => {
-  const observer = getProp(key, observers)
+  const observer = getProperty(key, observers)
   observer.unsubscribe()
   return omit([key], observers)
 }
@@ -98,8 +98,8 @@ const withAsyncProps = (selectors = [], asyncPropPromisers = {}) => (
 
       this.promises = reduce(
         (accum, key) => {
-          const promisedAsyncProp = getProp(key, promisedAsyncProps)
-          const asyncProp = getProp(key, promises)
+          const promisedAsyncProp = getProperty(key, promisedAsyncProps)
+          const asyncProp = getProperty(key, promises)
           if (asyncProp !== promisedAsyncProp) {
             if (asyncProp) {
               observers = removeObserver(observers, key, asyncProp)

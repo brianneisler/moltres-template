@@ -1,7 +1,7 @@
 import { unexpected } from '../../../../../utils/error'
 import {
   forEach,
-  getProp,
+  getProperty,
   isFunction,
   isObject,
   map
@@ -9,7 +9,7 @@ import {
 
 const setupMiddleware = (store, app, order) => {
   const modules = map((name) => {
-    const mod = getProp(name, store.getModules())
+    const mod = getProperty(name, store.getModules())
     if (!mod) {
       throw unexpected({
         message: `Module with the name '${name}', does not exist`

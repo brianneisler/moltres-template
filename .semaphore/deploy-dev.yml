@@ -45,9 +45,9 @@ blocks:
             - cache restore cache-$SEMAPHORE_GIT_BRANCH
 
             # Restore the built artifacts
-            - artifact push workflow dist
-            - artifact push workflow public
-            - artifact push workflow private
+            - artifact pull workflow dist
+            - artifact pull workflow public
+            - artifact pull workflow private
 
             # Run task as defined in package.json:
             - npm run deploy

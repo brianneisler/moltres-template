@@ -1,18 +1,16 @@
 import { put, select } from '../../../../utils/redux'
-import { buildLocation } from '../../../../utils/url'
+import { assocLocationQuery } from '../../../../utils/url'
 import { pushRouteAction, selectRouterLocation } from '../../router'
 
 const pushModalRoute = function* ({ name, options }) {
   const location = yield select(selectRouterLocation)
   yield put(
     pushRouteAction(
-      buildLocation({
-        ...location,
-        query: {
-          ...location.query,
-          showModal: JSON.stringify({ name, options })
-        }
-      })
+      assocLocationQuery(
+        'showModal',
+        JSON.stringify({ name, options }),
+        location
+      )
     )
   )
 }

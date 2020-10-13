@@ -1,4 +1,4 @@
-import getProp from '../lang/getProp'
+import getProperty from '../lang/getProperty'
 import invariant from '../lang/invariant'
 import isMap from '../lang/isMap'
 import isPlainObject from '../lang/isPlainObject'
@@ -20,7 +20,7 @@ const handleActions = (handlers, defaultProps, options = {}) => {
   const flattenedReducerMap = flattenReducerMap(handlers, options)
   const reducers = map(
     (type) =>
-      handleAction(getProp(type, flattenedReducerMap), type, defaultProps),
+      handleAction(getProperty(type, flattenedReducerMap), type, defaultProps),
     keys(flattenedReducerMap)
   )
   const reducer = reduceReducers(...reducers)

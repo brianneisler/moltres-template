@@ -6,7 +6,7 @@ import {
   createSelector,
   dissocProperty,
   equals,
-  getProp,
+  getProperty,
   identity,
   isSelector,
   join,
@@ -44,7 +44,7 @@ const createPropFactory = weakMemoize((selector, propBuilders, baseFactory) => {
       (accum, builtPropKey) =>
         assocPath(
           createPath(builtPropKey),
-          getProp(builtPropKey, builtProps),
+          getProperty(builtPropKey, builtProps),
           accum
         ),
       props,
@@ -65,7 +65,7 @@ const createWildcardPropFactory = (selector, propBuilders, baseFactory) => {
         propBuilders
       )
       const factoryKey = join(':', keys(targetPropBuilders))
-      let factory = getProp(factoryKey, factories)
+      let factory = getProperty(factoryKey, factories)
       if (!factory) {
         factory = createPropFactory(
           replaceWildcards(wildcardValues, selector),

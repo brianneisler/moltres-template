@@ -1,5 +1,5 @@
 import { bufferToStream, createBuffer } from '../buffer'
-import { assoc, getProp } from '../lang'
+import { assoc, getProperty } from '../lang'
 
 const createFile = () => {
   let data
@@ -26,7 +26,7 @@ const createFile = () => {
 const createBucket = () => {
   let files = {}
   const generateFile = (filePath) => {
-    let file = getProp(filePath, files)
+    let file = getProperty(filePath, files)
     if (file) {
       return file
     }
@@ -47,7 +47,7 @@ const initializeStorageEmulator = () => {
   let buckets = {}
 
   const generateBucket = (bucketName) => {
-    let bucket = getProp(bucketName, buckets)
+    let bucket = getProperty(bucketName, buckets)
     if (bucket) {
       return bucket
     }

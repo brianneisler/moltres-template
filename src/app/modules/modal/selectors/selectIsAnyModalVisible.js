@@ -1,14 +1,14 @@
 import {
   any,
   createSelector,
-  getProp,
+  getProperty,
   select,
   values
 } from '../../../../utils/lang'
 
 const selectIsAnyModalVisible = select(
   createSelector('modal.instances', (instances) =>
-    any(getProp('visible'), values(instances))
+    any(getProperty('visible'), values(instances))
   )
 )
 

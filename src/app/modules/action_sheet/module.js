@@ -1,5 +1,5 @@
 import { ACTION_SHEET } from '../../../constants/Modal'
-import { assoc, findIndex, getProp, map, noop } from '../../../utils/lang'
+import { assoc, findIndex, getProperty, map, noop } from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -39,7 +39,7 @@ const mod = () => ({
           (button) => button.type === 'destructive',
           buttons
         )
-        const options = map(getProp('text'), buttons)
+        const options = map(getProperty('text'), buttons)
         yield put(
           actions.setCurrentActionSheet({
             cancelButtonIndex,

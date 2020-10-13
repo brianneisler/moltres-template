@@ -1,5 +1,5 @@
 import { withConfig, withContext } from '../../../core'
-import { assocPath, compose, getPath, getProp, omit } from '../../../utils/lang'
+import { assocPath, compose, getPath, getProperty } from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -8,7 +8,7 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
-import { buildLocation, parseLocation } from '../../../utils/url'
+import { buildLocation, omitLocationQuery } from '../../../utils/url'
 import { pushRouteAction, selectRouterLocation } from '../router'
 import { trackAction } from '../tracking'
 
@@ -62,7 +62,8 @@ const mod = () => ({
         if (previousShowModal) {
           previousShowModal = JSON.parse(previousShowModal)
           if (
-            getProp('name', previousShowModal) !== getProp('name', showModal)
+            getProperty('name', previousShowModal) !==
+            getProperty('name', showModal)
           ) {
             yield put(actions.hideModal(previousShowModal.name))
           }
@@ -83,7 +84,7 @@ const mod = () => ({
       handleAction(
         enhance(function* (context, action) {
           const modal = yield select(selectModal(action.payload.name))
-          if (!getProp('visible', modal)) {
+          if (!getProperty('visible', modal)) {
             yield put(
               actions.setModal(action.payload.name, {
                 ...modal,
@@ -128,21 +129,12 @@ const mod = () => ({
     // in the url query. If so, remove the showModal from the parameters.
     yield takeEvery(actions.modalCancelled, function* (action) {
       let location = yield select(selectRouterLocation)
-      location = parseLocation(location)
+      location = buildLocation(location)
       let showModal = getPath(['query', 'showModal'], location)
       if (showModal) {
         showModal = JSON.parse(showModal)
         if (showModal.name === action.payload.name) {
-          yield put(
-            pushRouteAction(
-              buildLocation({
-                ...location,
-                query: {
-                  ...omit(['showModal'], location.query)
-                }
-              })
-            )
-          )
+          yield put(pushRouteAction(omitLocationQuery(['showModal'], location)))
         }
       }
     })

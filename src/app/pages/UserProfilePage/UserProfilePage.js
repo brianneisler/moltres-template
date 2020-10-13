@@ -7,7 +7,12 @@ import {
   selectLoggerContext,
   selectSSRConfig
 } from '../../../core'
-import { compose, getPathOr, getProp, getPropOr } from '../../../utils/lang'
+import {
+  compose,
+  getPathOr,
+  getProperty,
+  getPropertyOr
+} from '../../../utils/lang'
 import {
   connect,
   defaultProps,
@@ -87,10 +92,10 @@ const enhance = compose(
     userProfile: selectUserProfile(userId, state)
   })),
   withProps(({ app, userFollow, userId, userProfile }) => {
-    const description = getProp('name', userProfile) || 'Unknown'
+    const description = getProperty('name', userProfile) || 'Unknown'
     return {
       description,
-      isFollowingUser: getProp('followingUserId', userFollow) === userId,
+      isFollowingUser: getProperty('followingUserId', userFollow) === userId,
       title: `${description} - ${app.name}`
     }
   }),
@@ -134,7 +139,7 @@ const UserProfilePage = enhance(
               />
               <meta content={description} property="og:description" />
               <meta
-                content={`${app.url}/content/userprofileimage/${getProp(
+                content={`${app.url}/content/userprofileimage/${getProperty(
                   'userProfileImageId',
                   userProfile
                 )}`}
@@ -168,7 +173,10 @@ const UserProfilePage = enhance(
               <UserProfileImage
                 size={100}
                 style={styles.profileImage}
-                userProfileImageId={getProp('userProfileImageId', userProfile)}
+                userProfileImageId={getProperty(
+                  'userProfileImageId',
+                  userProfile
+                )}
               />
             </TouchableOpacity>
             <View style={styles.fillContainer}>
@@ -203,16 +211,16 @@ const UserProfilePage = enhance(
             </View>
           </View>
           <Text style={[styles.text, styles.profileText, styles.nameText]}>
-            {getPropOr('Unknown', 'name', userProfile)}
+            {getPropertyOr('Unknown', 'name', userProfile)}
           </Text>
           <Text style={[styles.text, styles.profileText]}>
-            {getPropOr('', 'bio', userProfile)}
+            {getPropertyOr('', 'bio', userProfile)}
           </Text>
           <Text style={[styles.text, styles.profileText]}>
-            {getPropOr('', 'location', userProfile)}
+            {getPropertyOr('', 'location', userProfile)}
           </Text>
           <Text style={[styles.text, styles.profileText]}>
-            {getPropOr('', 'website', userProfile)}
+            {getPropertyOr('', 'website', userProfile)}
           </Text>
         </View>
         <View style={styles.profileBody}>

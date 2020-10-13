@@ -1,1 +1,1 @@
-export { default } from 'lodash/padStart'
+export { padStart as default } from 'moltres'

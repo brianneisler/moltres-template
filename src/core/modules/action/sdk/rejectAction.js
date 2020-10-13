@@ -1,4 +1,4 @@
-import { getPropOr } from '../../../../utils/lang'
+import { getPropertyOr } from '../../../../utils/lang'
 
 import moveActionFromBucketToBucket from './moveActionFromBucketToBucket'
 
@@ -11,9 +11,9 @@ const rejectAction = async (context, document, error) =>
   moveActionToRejected(context, document, (data) => ({
     ...data,
     error: {
-      code: getPropOr(0, 'code', error),
-      message: getPropOr('', 'message', error),
-      stack: getPropOr('', 'stack', error)
+      code: getPropertyOr(0, 'code', error),
+      message: getPropertyOr('', 'message', error),
+      stack: getPropertyOr('', 'stack', error)
     }
   }))
 

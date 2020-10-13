@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 
 import { Icon, Link, Text, TouchableOpacity, UserProfileImage, View } from '..'
 import { AuthState } from '../../../constants'
-import { compose, getProp } from '../../../utils/lang'
+import { compose, getProperty } from '../../../utils/lang'
 import { connect, defaultProps, setDisplayName } from '../../../utils/react'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
 import { selectCurrentUserProfile } from '../../modules/user_profile'
@@ -75,7 +75,7 @@ const MainNav = enhance(
         </View>
         <View style={styles.navLink}>
           {authState === AuthState.LOGGED_IN ? (
-            <Link to={`/user/${getProp('id', currentUser)}`}>
+            <Link to={`/user/${getProperty('id', currentUser)}`}>
               <TouchableOpacity>
                 <UserProfileImage
                   size={34}

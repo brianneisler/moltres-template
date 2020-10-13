@@ -1,7 +1,7 @@
 import {
   assoc,
   createSelector,
-  getProp,
+  getProperty,
   invariant,
   isFunction
 } from '../utils/lang'
@@ -26,7 +26,7 @@ const createQueryFactoryBuilder = ({ createQuery, enhancer, factory }) => {
     const factoryKey = `key:${statePath}${
       queryOptions.cursor ? ':' + queryOptions.cursor.id : ''
     }${queryOptions.head ? ':head' : ''}`
-    let queryFactory = getProp(factoryKey, queryFactories)
+    let queryFactory = getProperty(factoryKey, queryFactories)
     if (!queryFactory) {
       queryFactory = createQueryFactory({
         createQuery,

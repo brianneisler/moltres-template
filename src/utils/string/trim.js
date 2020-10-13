@@ -1,1 +1,1 @@
-export { default } from 'lodash/trim'
+export { trim as default } from 'moltres'

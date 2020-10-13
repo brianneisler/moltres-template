@@ -1,11 +1,11 @@
-import { createSelector, getProp, select } from '../../../utils/lang'
+import { createSelector, getProperty, select } from '../../../utils/lang'
 
 import selectCurrentUserRole from './selectCurrentUserRole'
 
 const selectIsCurrentUserAdmin = select(
   createSelector(
     selectCurrentUserRole,
-    (currentUserRole) => getProp('role', currentUserRole) === 'admin'
+    (currentUserRole) => getProperty('role', currentUserRole) === 'admin'
   )
 )
 

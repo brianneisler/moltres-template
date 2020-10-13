@@ -1,5 +1,5 @@
 import forEach from '../lang/forEach'
-import getProp from '../lang/getProp'
+import getProperty from '../lang/getProperty'
 import keys from '../lang/keys'
 
 import { Delimiter, Namespace } from './constants'
@@ -36,7 +36,7 @@ const flattenWhenNode = (predicate) => {
 
     forEach((type) => {
       const nextNamespace = connectPrefix(connectNamespace(type))
-      const mapValue = getProp(type, map)
+      const mapValue = getProperty(type, map)
 
       if (predicate(mapValue)) {
         flatten(mapValue, { namespace, prefix }, partialFlatMap, nextNamespace)

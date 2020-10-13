@@ -10,11 +10,14 @@ const setupSdk = () => {
     ...topModules,
     ...sdkModules
   }
-  const context = setupSdkContext(modules)
+  // TODO BRN: Load SDK config
+  const config = {}
+  const context = setupSdkContext(config)
+  // TODO BRN: Authenticate the sdk
   const engine = generateEngine(modules, context, undefined, EngineState.SETUP)
 
-  const cli = engine.getModule('cli')
-  const program = cli.getProgram()
+  const sdkModule = engine.getModule('sdk')
+  return sdkModule.getSDK()
 }
 
 export default setupSdk

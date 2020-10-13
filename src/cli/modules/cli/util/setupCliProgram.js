@@ -10,7 +10,7 @@ import {
   equals,
   findIndex,
   forEach,
-  getProp,
+  getProperty,
   head,
   isArray,
   isString,
@@ -86,7 +86,7 @@ const assocCommand = (parts, command, group) => {
     return assocPath(parts, command, group)
   }
   const first = head(parts)
-  let parentCommand = getProp(first, group)
+  let parentCommand = getProperty(first, group)
   if (!parentCommand) {
     // If no parent command exists, create one. This is safe to do since we
     // sorted values earlier. If we haven't already created the parent by now it

@@ -9,7 +9,7 @@ const config = () => ({
   entry: [path.join(__dirname, '..', '..', 'index.ssr')],
   externals: [
     nodeExternals({
-      whitelist: [
+      allowlist: [
         'emoji-mart',
         'emoji-mart/css/emoji-mart.css',
         'expo-linear-gradient',

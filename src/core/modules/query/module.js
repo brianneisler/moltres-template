@@ -1,4 +1,9 @@
-import { assocPath, createPath, dissocPath, getProp } from '../../../utils/lang'
+import {
+  assocPath,
+  createPath,
+  dissocPath,
+  getProperty
+} from '../../../utils/lang'
 import {
   call,
   handleAction,
@@ -51,7 +56,7 @@ const mod = () => ({
       NextPageAction.name,
       handleAction(function* (context, action) {
         const query = yield select(selectQuery(action.payload.queryKey))
-        const result = yield call(getProp('nextPage', query))
+        const result = yield call(getProperty('nextPage', query))
         return result
       })
     )

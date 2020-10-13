@@ -1,9 +1,9 @@
-import { assoc, getProp, keys, reduce } from '../../utils/lang'
+import { assoc, getProperty, keys, reduce } from '../../utils/lang'
 
 const filterReducers = (modules) =>
   reduce(
     (reducers, key) => {
-      const { reducer } = getProp(key, modules)
+      const { reducer } = getProperty(key, modules)
       if (reducer) {
         return assoc(key, reducer, reducers)
       }

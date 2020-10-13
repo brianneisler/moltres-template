@@ -1,8 +1,6 @@
 import { graphqlHTTP } from 'express-graphql'
 import { buildSchema } from 'graphql'
 
-import * as db from '../../../../db'
-
 const mod = () => ({
   setupMiddleware() {
     const schema = buildSchema(`

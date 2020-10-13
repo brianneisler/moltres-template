@@ -1,4 +1,10 @@
-import { compact, flatten, getProp, keys, map } from '../../../../utils/lang'
+import {
+  compact,
+  flatten,
+  getProperty,
+  keys,
+  map
+} from '../../../../utils/lang'
 import { all, call } from '../../../../utils/redux'
 
 import runModule from './runModule'
@@ -6,7 +12,7 @@ import runModule from './runModule'
 function* runStore(store) {
   const modules = store.getModules()
   const mapResult = map((name) => {
-    const mod = getProp(name, modules)
+    const mod = getProperty(name, modules)
     return call(runModule, mod, name, store)
   }, keys(modules))
 

@@ -18,7 +18,7 @@ import {
   walkMap
 } from '../utils/lang'
 import { createHistory } from '../utils/react'
-import { parseURL } from '../utils/url'
+import { buildLocation } from '../utils/url'
 
 import setupSSRContext from './setupSSRContext'
 
@@ -103,7 +103,7 @@ const setupSSRApp = () => {
         const { element, getStyleElement } = AppRegistry.getApplication('App', {
           initialProps
         })
-        const location = parseURL(url)
+        const location = buildLocation(url)
 
         await store.dispatch(
           locationChangeAction(context, {

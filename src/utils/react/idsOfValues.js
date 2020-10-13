@@ -1,5 +1,5 @@
-import { getProp, map } from '../lang'
+import { getProperty, map } from '../lang'
 
-const idsOfValues = (vals) => map(getProp('id'), vals)
+const idsOfValues = (vals) => map(getProperty('id'), vals)
 
 export default idsOfValues

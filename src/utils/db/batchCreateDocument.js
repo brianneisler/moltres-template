@@ -1,4 +1,4 @@
-import { curry, getProp, isNil } from '../lang'
+import { curry, getProperty, isNil } from '../lang'
 
 import addTimestamps from './addTimestamps'
 import collection from './collection'
@@ -22,7 +22,7 @@ const batchCreateDocument = curry((Schema, context, batch, data) => {
   if (isNil(idField)) {
     ref = Collection.doc()
   } else {
-    ref = Collection.doc(getProp(idField, data).toString())
+    ref = Collection.doc(getProperty(idField, data).toString())
   }
 
   batch.set(ref, addTimestamps(context, data))

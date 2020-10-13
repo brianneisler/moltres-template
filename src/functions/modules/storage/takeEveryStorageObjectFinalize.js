@@ -1,6 +1,5 @@
-import { takeEvery } from 'redux-saga/effects'
-
-import matchPath from '../../../utils/url/matchPath'
+import { takeEvery } from '../../../utils/redux'
+import { matchPath } from '../../../utils/url'
 
 import { StorageObjectFinalizeAction } from './schemas'
 

@@ -10,7 +10,7 @@ import {
   evolve,
   filter,
   getPathOr,
-  getProp,
+  getProperty,
   inc,
   map,
   pipe,
@@ -25,7 +25,7 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
-import { matchPath, parseLocation } from '../../../utils/url'
+import { buildLocation, matchPath } from '../../../utils/url'
 
 import {
   preloadAction,
@@ -62,7 +62,7 @@ const matchRoutes = (routes, location) =>
       match: matchPath(location.pathname, route),
       route
     })),
-    filter(getProp('match'))
+    filter(getProperty('match'))
   )(routes)
 
 const handleRouting = function* (context, routing, routes) {
@@ -159,7 +159,7 @@ const mod = ({ config, history }) => {
             let { location } = action.payload
             // NOTE BRN: We do this to add additional properties to the location
             // (like origin)
-            location = parseLocation(location)
+            location = buildLocation(location)
 
             // NOTE BRN: determine if this is the first load.
             const preload = yield select(selectRouterPreload(location.pathname))

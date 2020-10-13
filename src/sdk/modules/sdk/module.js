@@ -1,4 +1,4 @@
-import { setupCliProgram } from './util'
+import { setupSdkMethods } from './util'
 
 const mod = () => {
   let sdk
@@ -7,7 +7,7 @@ const mod = () => {
       return sdk
     },
     setup: (store) => {
-      sdk = setupCliProgram(store)
+      sdk = setupSdkMethods(store)
     }
   }
 }

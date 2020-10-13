@@ -1,6 +1,6 @@
 import {
   compact,
-  getProp,
+  getProperty,
   isEmpty,
   join,
   map,
@@ -43,7 +43,7 @@ const renderScripts = (context, scripts, data) =>
       throw new Error(
         'renderScripts expects scripts to be an array of objects with at least a "props.src" or "content" property'
       )
-    }, sortBy(getProp('priority'), scripts))
+    }, sortBy(getProperty('priority'), scripts))
   )
 
 export default renderScripts

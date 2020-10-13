@@ -38,22 +38,87 @@ gcloud auth login
 ## SETUP LOCAL
 * these steps let you define and setup your local development environment
 
-* create your `.env-local` file in the root of the project
+* create your `stages/local/.env` file in the root of the project. Set this as
+  the contents of that file.
 ```
-API_URL="http://localhost:5000/api/v1"
-
-APP_DESCRIPTION="My awesome moltres app"
-APP_NAME="APP LOCAL"
-APP_URL="http://localhost:5000"
-
 BLUEBIRD_DEBUG=true
 
-FIRESTORE_EMULATOR_HOST=localhost:8080
-#TEST_INTEGRATION=true
+FIREBASE_PROJECT_ID="${config.firebase.projectId}"
+FIREBASE_TOKEN="${config.firebase.token}"
 
-TWILIO_ACCOUNT_SID=[twillio account sid from dev environment]
-TWILIO_AUTH_TOKEN=[twilio auth token from dev environment]
-TWILIO_PHONE_NUMBERS=[twilio phone numbers separated by commas]
+NODE_ENV=development
+```
+* create your `stages/local/config.yaml` file in the root of the project. Set
+  this as the contents of that file.
+```
+api:
+  url: "http://localhost:5000/api/v1"
+
+app:
+  description: "Moltres local app"
+  name: "Moltres Local"
+  slug: "moltres-local"
+  theme: "moltres"
+  url: "http://localhost:5000"
+
+core:
+  debug: true
+
+# facebook:
+#   appId: TODO
+
+firebase:
+  apiKey: "your firebase api key"
+  # appId: TODO
+  authDomain: "${this.firebase.projectId}.firebaseapp.com"
+  databaseURL: "https://${this.firebase.projectId}.firebaseio.com"
+  # measurementId: TODO
+  messagingSenderId: your firebase messaging sender id
+  projectId: "your firebase project id"
+  serviceAccount:
+    sensitive: true
+    value:
+      auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs
+      auth_uri: https://accounts.google.com/o/oauth2/auth
+      client_email: "your firebase client email"
+      client_id: "your firebase client id"
+      client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(this.firebase.serviceAccount.client_email)}"
+      private_key: "your firebase private key"
+      private_key_id: "your firbease private key id"
+      project_id: ${this.firebase.projectId}
+      token_uri: https://accounts.google.com/o/oauth2/token
+      type: 'service_account'
+  storageBucket: "${this.firebase.projectId}.appspot.com"
+  token:
+    sensitive: true
+    value: "your firebase token"
+
+# firestore:
+#   backupBucket: TODO
+
+# google_analytics:
+#   analyticsId: TODO
+
+# sentry:
+#   dsn: TODO
+
+ssr:
+  outputPath: "${project.dir}/private/dist"
+
+# test:
+#   integration: ${env.TEST_INTEGRATION}
+
+twilio:
+  sensitive: true
+  value:
+    accountSid: "your twillio sid"
+    authToken: "your twilio auth token"
+    phoneNumbers:
+      - "your twilio phone number"
+
+# twitter:
+#   username: TODO
+
 ```
 
 * Run setup script

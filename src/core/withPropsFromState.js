@@ -5,7 +5,7 @@ import {
   assocMerge,
   containsWildcard,
   createPropStore,
-  getProp,
+  getProperty,
   identity,
   keys,
   reduce,
@@ -46,12 +46,12 @@ const mergeProps = (stateProps, props) => {
       if (containsWildcard(selector)) {
         return assocWildProp(
           selector,
-          getProp(selector, stateProps),
+          getProperty(selector, stateProps),
           accum,
           props
         )
       }
-      return assoc(selector, getProp(selector, stateProps), accum)
+      return assoc(selector, getProperty(selector, stateProps), accum)
     },
     {},
     selectors

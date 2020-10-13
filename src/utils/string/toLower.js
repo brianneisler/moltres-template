@@ -1,1 +1,1 @@
-export { default } from 'lodash/toLower'
+export { toLower as default } from 'moltres'

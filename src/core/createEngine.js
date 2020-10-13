@@ -1,4 +1,10 @@
-import { forEachObjIndexed, getProp, map, select, values } from '../utils/lang'
+import {
+  forEachObjIndexed,
+  getProperty,
+  map,
+  select,
+  values
+} from '../utils/lang'
 
 import { setContextAction } from './actions'
 import _finally from './finally'
@@ -40,7 +46,7 @@ const createEngine = (
       return select(selector, selectConfig(_store.getState()))
     },
     getContext,
-    getModule: (selector) => getProp(selector, instances),
+    getModule: (selector) => getProperty(selector, instances),
     getModules: () => instances,
     setContext: ({ selector, value }) => {
       return _store.dispatch(

@@ -5,7 +5,7 @@ import { findRecentChannelContextByChannelId } from '../../../modules/channel_co
 import { generateUserAndSMSChannel } from '../../../modules/sms'
 import { saveSMSMessage } from '../../../modules/sms_message'
 import { asyncHandler } from '../../../utils/express'
-import { getProp } from '../../../utils/lang'
+import { getProperty } from '../../../utils/lang'
 
 import { generateSMSResponse, parseSMSMessage, setupSMSCommands } from './util'
 
@@ -75,7 +75,7 @@ const mod = () => ({
 
         const smsMessage = await saveSMSMessage(context, {
           ...smsMessageData,
-          channelContextId: getProp('id', channelContext),
+          channelContextId: getProperty('id', channelContext),
           smsChannelId: smsChannel.id
         })
 

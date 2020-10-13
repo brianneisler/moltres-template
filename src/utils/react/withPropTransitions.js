@@ -1,46 +1,63 @@
 import { lifecycle, setDisplayName, wrapDisplayName } from 'recompose'
 
-import { equals, forEach, getProp, isNil, keys } from '../lang'
+import { equals, forEach, getProperty, isNil, keys } from '../lang'
 
-const executePropTransitions = (propListenerMap, nextProps, oldProps = {}) =>
-  forEach((propName) => {
-    const getPropName = getProp(propName)
-    const listeners = getPropName(propListenerMap)
-    const oldPropVal = getPropName(oldProps)
-    const nextPropVal = getPropName(nextProps)
-    if (listeners.onSet && isNil(oldPropVal) && !isNil(nextPropVal)) {
-      listeners.onSet(nextPropVal)
+const executePropTransitions = (
+  propertyListenerMap,
+  nextProps,
+  oldProps = {}
+) =>
+  forEach((propertyName) => {
+    const getPropertyName = getProperty(propertyName)
+    const listeners = getPropertyName(propertyListenerMap)
+    const oldPropertyValue = getPropertyName(oldProps)
+    const nextPropertyValue = getPropertyName(nextProps)
+    if (
+      listeners.onSet &&
+      isNil(oldPropertyValue) &&
+      !isNil(nextPropertyValue)
+    ) {
+      listeners.onSet(nextPropertyValue)
     }
-    if (listeners.onUnset && !isNil(oldPropVal) && isNil(nextPropVal)) {
+    if (
+      listeners.onUnset &&
+      !isNil(oldPropertyValue) &&
+      isNil(nextPropertyValue)
+    ) {
       listeners.onUnset()
     }
-    if (listeners.becomesTrue && !oldPropVal && nextPropVal) {
+    if (listeners.becomesTrue && !oldPropertyValue && nextPropertyValue) {
       listeners.becomesTrue()
     }
-    if (listeners.becomesFalse && oldPropVal && !nextPropVal) {
+    if (listeners.becomesFalse && oldPropertyValue && !nextPropertyValue) {
       listeners.becomesFalse()
     }
     if (
       listeners.onIdChange &&
-      getProp('id', oldPropVal) !== getProp('id', nextPropVal)
+      getProperty('id', oldPropertyValue) !==
+        getProperty('id', nextPropertyValue)
     ) {
-      listeners.onIdChange(nextPropVal)
+      listeners.onIdChange(nextPropertyValue)
     }
-    if (listeners.onChange && !equals(oldPropVal, nextPropVal)) {
-      listeners.onChange(nextPropVal, nextProps)
+    if (listeners.onChange && !equals(oldPropertyValue, nextPropertyValue)) {
+      listeners.onChange(nextPropertyValue, nextProps)
     }
-    if (listeners.falseToTrue && oldPropVal === false && nextPropVal === true) {
+    if (
+      listeners.falseToTrue &&
+      oldPropertyValue === false &&
+      nextPropertyValue === true
+    ) {
       listeners.falseToTrue()
     }
-  }, keys(propListenerMap))
+  }, keys(propertyListenerMap))
 
-const withPropTransitions = (propListenerMap) => {
+const withPropTransitions = (propertyListenerMap) => {
   const hoc = lifecycle({
     componentDidMount() {
-      executePropTransitions(propListenerMap, this.props)
+      executePropTransitions(propertyListenerMap, this.props)
     },
     componentDidUpdate(prevProps) {
-      executePropTransitions(propListenerMap, this.props, prevProps)
+      executePropTransitions(propertyListenerMap, this.props, prevProps)
     }
   })
   if (process.env.NODE_ENV !== 'production') {

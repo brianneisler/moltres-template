@@ -1,7 +1,7 @@
 import {
   assoc,
   dissocProperty,
-  getProp,
+  getProperty,
   identity,
   keys,
   mergeAll,
@@ -31,7 +31,7 @@ const createWildcardQueryFactory = ({
       const targetStatePath = replaceWildcards(wildcardValues, statePath)
       const factoryKey = `key:${targetStatePath}`
       // NOTE BRN: We treat the path as an entire prop here
-      let factory = getProp(factoryKey, factories)
+      let factory = getProperty(factoryKey, factories)
       if (!factory) {
         factory = createSingleQueryFactory({
           baseFactory: identity,

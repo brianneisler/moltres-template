@@ -1,7 +1,7 @@
 import { Platform } from 'react-native'
 
 import { DeviceType, OSType, PlatformType } from '../../constants'
-import { getPropOr, weakMemoize } from '../lang'
+import { getPropertyOr, weakMemoize } from '../lang'
 
 import getUserAgentData from './getUserAgentData'
 
@@ -46,7 +46,7 @@ const getPlatformData = weakMemoize(() => {
       const uaData = getUserAgentData()
       return {
         ...uaData,
-        device: getPropOr(DeviceType.DESKTOP, 'device', uaData),
+        device: getPropertyOr(DeviceType.DESKTOP, 'device', uaData),
         native: false,
         platform: PlatformType.WEB
       }

@@ -242,7 +242,7 @@ function getErrorTemplate(loggerOptions, templateOptions) {
 // #### @options {Object} options to initialize the middleware.
 //
 
-exports.errorLogger = function errorLogger(options) {
+const errorLogger = function errorLogger(options) {
   ensureValidOptions(options)
 
   options.requestWhitelist =
@@ -358,7 +358,7 @@ function ensureValidLoggerOptions(options) {
 // ### function logger(options)
 // #### @options {Object} options to initialize the middleware.
 //
-exports.logger = function logger(options) {
+const logger = function logger(options) {
   ensureValidOptions(options)
   ensureValidLoggerOptions(options)
 
@@ -576,3 +576,5 @@ exports.logger = function logger(options) {
     next()
   }
 }
+
+export { errorLogger, logger }

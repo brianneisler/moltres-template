@@ -1,5 +1,5 @@
 import { withConfig, withContext } from '../../../core'
-import { assocPath, compose, getPath, getProp, omit } from '../../../utils/lang'
+import { assocPath, compose, getPath, getProperty } from '../../../utils/lang'
 import {
   handleAction,
   handleActions,
@@ -7,7 +7,7 @@ import {
   select,
   takeEvery
 } from '../../../utils/redux'
-import { buildLocation, parseLocation } from '../../../utils/url'
+import { buildLocation, omitLocationQuery } from '../../../utils/url'
 import { actions as modalActions } from '../modal'
 import { pushRouteAction, selectRouterLocation } from '../router'
 
@@ -50,8 +50,8 @@ const mod = () => ({
         if (previousShowOverlay) {
           previousShowOverlay = JSON.parse(previousShowOverlay)
           if (
-            getProp('name', previousShowOverlay) !==
-            getProp('name', showOverlay)
+            getProperty('name', previousShowOverlay) !==
+            getProperty('name', showOverlay)
           ) {
             yield put(modalActions.hideModal(previousShowOverlay.name))
           }
@@ -78,20 +78,13 @@ const mod = () => ({
     // in the url query. If so, remove the showOverlay from the parameters.
     yield takeEvery(modalActions.modalCancelled, function* (action) {
       let location = yield select(selectRouterLocation)
-      location = parseLocation(location)
+      location = buildLocation(location)
       let showOverlay = getPath(['query', 'showOverlay'], location)
       if (showOverlay) {
         showOverlay = JSON.parse(showOverlay)
         if (showOverlay.name === action.payload.name) {
           yield put(
-            pushRouteAction(
-              buildLocation({
-                ...location,
-                query: {
-                  ...omit(['showOverlay'], location.query)
-                }
-              })
-            )
+            pushRouteAction(omitLocationQuery(['showOverlay'], location))
           )
         }
       }

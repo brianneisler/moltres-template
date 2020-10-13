@@ -2,7 +2,7 @@ import { withQuery, withSelectedProps } from '../../../core'
 import {
   compose,
   createSelector,
-  getProp,
+  getProperty,
   invariant,
   isString,
   map,
@@ -78,7 +78,7 @@ const withEntityStats = ({
     }),
     withSelectedProps([`${statsStatePath}.shards`], {
       [`${statsStatePath}.data`]: (context, shards) => {
-        return mergeDeepCount(map(getProp('data'), values(shards)))
+        return mergeDeepCount(map(getProperty('data'), values(shards)))
       }
     })
   )

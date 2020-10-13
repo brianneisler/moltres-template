@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { compose, getProp, hasProperty } from '../../../utils/lang'
+import { compose, getProperty, hasProperty } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -23,9 +23,9 @@ const TYPE_TO_BUTTON_TEXT_STYLES = StyleSheet.create({
 
 const getButtonTextStyles = (type) => {
   if (hasProperty(type, TYPE_TO_BUTTON_TEXT_STYLES)) {
-    return getProp(type, TYPE_TO_BUTTON_TEXT_STYLES)
+    return getProperty(type, TYPE_TO_BUTTON_TEXT_STYLES)
   }
-  return getProp('default', TYPE_TO_BUTTON_TEXT_STYLES)
+  return getProperty('default', TYPE_TO_BUTTON_TEXT_STYLES)
 }
 
 const TYPE_TO_BUTTON_TEXT_HOVER_STYLES = StyleSheet.create({
@@ -36,9 +36,9 @@ const TYPE_TO_BUTTON_TEXT_HOVER_STYLES = StyleSheet.create({
 
 const getButtonTextHoverStyles = (type) => {
   if (hasProperty(type, TYPE_TO_BUTTON_TEXT_HOVER_STYLES)) {
-    return getProp(type, TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
+    return getProperty(type, TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
   }
-  return getProp('default', TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
+  return getProperty('default', TYPE_TO_BUTTON_TEXT_HOVER_STYLES)
 }
 
 const TYPE_TO_BUTTON_STYLES = StyleSheet.create({
@@ -55,9 +55,9 @@ const TYPE_TO_BUTTON_STYLES = StyleSheet.create({
 })
 const getButtonStyles = (type) => {
   if (hasProperty(type, TYPE_TO_BUTTON_STYLES)) {
-    return getProp(type, TYPE_TO_BUTTON_STYLES)
+    return getProperty(type, TYPE_TO_BUTTON_STYLES)
   }
-  return getProp('default', TYPE_TO_BUTTON_STYLES)
+  return getProperty('default', TYPE_TO_BUTTON_STYLES)
 }
 
 const TYPE_TO_BUTTON_HOVER_STYLES = StyleSheet.create({
@@ -75,9 +75,9 @@ const TYPE_TO_BUTTON_HOVER_STYLES = StyleSheet.create({
 
 const getButtonHoverStyles = (type) => {
   if (hasProperty(type, TYPE_TO_BUTTON_HOVER_STYLES)) {
-    return getProp(type, TYPE_TO_BUTTON_HOVER_STYLES)
+    return getProperty(type, TYPE_TO_BUTTON_HOVER_STYLES)
   }
-  return getProp('default', TYPE_TO_BUTTON_HOVER_STYLES)
+  return getProperty('default', TYPE_TO_BUTTON_HOVER_STYLES)
 }
 
 const enhance = compose(

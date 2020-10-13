@@ -1,1 +1,1 @@
-export { default } from 'lodash/toUpper'
+export { toUpper as default } from 'moltres'

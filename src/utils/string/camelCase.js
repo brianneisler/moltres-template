@@ -1,1 +1,1 @@
-export { default } from 'lodash/camelCase'
+export { camelCase as default } from 'moltres'

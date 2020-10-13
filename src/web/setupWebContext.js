@@ -1,5 +1,5 @@
 import createContext from '../context/createContext'
-import { parseURL } from '../utils/url'
+import { buildLocation } from '../utils/url'
 
 const setupWebContext = (config, history) =>
   createContext({
@@ -11,7 +11,7 @@ const setupWebContext = (config, history) =>
     source:
       typeof window === 'object'
         ? window.location.origin
-        : parseURL(config.api.url).origin
+        : buildLocation(config.api.url).origin
   })
 
 export default setupWebContext

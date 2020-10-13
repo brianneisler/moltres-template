@@ -4,7 +4,7 @@ import { mergeContextAction } from '../../../core/actions'
 import { FirebaseAuthStateChangedAction } from '../../../core/schemas'
 import { findUserById } from '../../../modules/user'
 import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
-import { append, assoc, compose, getProp } from '../../../utils/lang'
+import { append, assoc, compose, getProperty } from '../../../utils/lang'
 import {
   all,
   call,
@@ -130,17 +130,19 @@ const mod = () => ({
       if (payload.AuthStateChangedAction === AuthState.LOGGED_IN) {
         const afterLogin = yield select(selectAfterLogin)
         let actionSet = []
-        if (getProp('redirect', afterLogin)) {
+        if (getProperty('redirect', afterLogin)) {
           actionSet = append(
-            put(pushRouteAction(getProp('redirect', afterLogin))),
+            put(pushRouteAction(getProperty('redirect', afterLogin))),
             actionSet
           )
         } else {
           actionSet = append(put(pushRouteAction('/')), actionSet)
         }
-        if (getProp('showOverlay', afterLogin)) {
+        if (getProperty('showOverlay', afterLogin)) {
           actionSet = append(
-            put(overlayActions.showOverlay(getProp('showOverlay', afterLogin))),
+            put(
+              overlayActions.showOverlay(getProperty('showOverlay', afterLogin))
+            ),
             actionSet
           )
         }

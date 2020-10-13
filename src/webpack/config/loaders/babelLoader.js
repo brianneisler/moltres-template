@@ -24,7 +24,6 @@ const babelLoader = {
       plugins: [
         // TODO BRN: Not sure if commonjs is needed here
         ['react-native-web', { commonjs: true }],
-        '@babel/plugin-proposal-class-properties',
         '@babel/plugin-transform-runtime'
       ],
       presets: [

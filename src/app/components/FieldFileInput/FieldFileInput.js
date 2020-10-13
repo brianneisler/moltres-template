@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { compose, getProp } from '../../../utils/lang'
+import { compose, getProperty } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -109,8 +109,8 @@ const renderFileInput = enhance(
           >
             {source ? (
               <ImageView
-                imageHeight={getProp('height', input.value)}
-                imageWidth={getProp('width', input.value)}
+                imageHeight={getProperty('height', input.value)}
+                imageWidth={getProperty('width', input.value)}
                 source={source}
               />
             ) : (

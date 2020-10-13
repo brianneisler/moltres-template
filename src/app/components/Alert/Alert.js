@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import { ALERT } from '../../../constants/Modal'
-import { compose, getProp, map } from '../../../utils/lang'
+import { compose, getProperty, map } from '../../../utils/lang'
 import {
   defaultProps,
   memo,
@@ -172,7 +172,7 @@ const enhance = compose(
     handleModalRequestCancel: ({ options, requestCancelModal }) => ({
       name
     }) => {
-      if (getProp('cancelable', options)) {
+      if (getProperty('cancelable', options)) {
         requestCancelModal(name)
       }
     }
