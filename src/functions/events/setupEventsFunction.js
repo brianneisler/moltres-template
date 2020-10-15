@@ -3,17 +3,13 @@ import { generateEngine } from '../../core'
 import { EngineState } from '../../core/constants'
 import setupFunctionContexts from '../setupFunctionContexts'
 
-import * as graphqlModules from './modules'
+import { getRequestHandlerModuleName } from './util'
 
-const setupGraphQLFunction = (modules, config) => {
-  modules = {
-    ...modules,
-    ...graphqlModules
-  }
+const setupEventsFunction = (modules, config) => {
   return (request, response) => {
     // NOTE BRN: The setupFunctionContexts function is memoized, so it should return the same
     // contexts on each invocation
-    setupFunctionContexts(config, 'graphql')
+    setupFunctionContexts(config, 'events')
       .then(({ context }) => {
         // NOTE BRN: The generateEngine function is memoized, so it should return the same
         // contexts on each invocation
@@ -23,8 +19,12 @@ const setupGraphQLFunction = (modules, config) => {
           undefined,
           EngineState.SETUP
         )
-        const app = engine.getModule('middleware').getApp()
-        app(request, response)
+        const module = engine.getModule(getRequestHandlerModuleName(request))
+
+        if (module.handleEventRequest) {
+          return module.handleEventRequest(context, request, response)
+        }
+        return response.sendStatus(StatusCode.BAD_REQUEST)
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -34,4 +34,4 @@ const setupGraphQLFunction = (modules, config) => {
   }
 }
 
-export default setupGraphQLFunction
+export default setupEventsFunction
