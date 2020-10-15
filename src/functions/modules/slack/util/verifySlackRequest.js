@@ -2,7 +2,7 @@ import { hashHmacSha256 } from '../../../../utils/crypto'
 
 import getSlackAppConfig from './getSlackAppConfig'
 
-const verifySlackRequest = async (context, request) => {
+const verifySlackRequest = (context, request) => {
   const slackAppId = request.body.api_app_id
   if (!slackAppId) {
     throw new Error('could not find slack app id on request')
