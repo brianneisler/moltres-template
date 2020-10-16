@@ -43,7 +43,7 @@ const mod = () => ({
     })
     await queueProcessEventAction(
       context,
-      processEventAction({
+      processEventAction(context, {
         eventId: event.id
       })
     )

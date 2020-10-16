@@ -1,5 +1,28 @@
 TODO
 
+- [ ] Add auto event enrichment. This should be done by examining the schema and
+  loading any properties on it that need to be retrieved from the db
+
+```
+import { Action } from '../../action'
+import { Object, String } from '../../core'
+
+import Event from './Event'
+
+const ProcessEventAction = {
+  name: 'event.ProcessEventAction',
+  schema: Action.schema.keys({
+    payload: Object.schema.keys({
+      // This should be auto loaded...
+      event: Event.schema,
+      eventId: String.schema.required()
+    })
+  })
+}
+
+export default ProcessEventAction
+```
+
 - [ ] add new DB concepts to firestore.rules
   - App
   - File
@@ -10,8 +33,6 @@ TODO
 - [x] rename service folder to `sdk`
 - [ ] move all queryAndWatch and db enhancer functions into `sdk` folder
 
-- [ ] IMPROVEMENT: Switch to eslint-plugin-import for import order (remove sort-imports-es6-autofix)
-https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
 
 - [ ] Add a styles system that picks up styles from theme
   - should also allow for a feature similar to "class names" for overriding styles
