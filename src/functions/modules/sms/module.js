@@ -1,5 +1,3 @@
-import twilio from 'twilio'
-
 import { StatusCode } from '../../../constants'
 import { findRecentChannelContextByChannelId } from '../../../modules/channel_context'
 import { generateUserAndSMSChannel } from '../../../modules/sms'
@@ -7,7 +5,12 @@ import { saveSMSMessage } from '../../../modules/sms_message'
 import { asyncHandler } from '../../../utils/express'
 import { getProperty } from '../../../utils/lang'
 
-import { generateSMSResponse, parseSMSMessage, setupSMSCommands } from './util'
+import {
+  generateSMSResponse,
+  parseSMSMessage,
+  setupSMSCommands,
+  verifyTwilioRequest
+} from './util'
 
 const REGEX_HI = /^[\s]*hi[\s.!?,]*/i
 const containsHiCommand = (text) => text.match(REGEX_HI)
@@ -28,32 +31,22 @@ const COMMANDS = {
 const mod = () => ({
   setupRouter(router, store) {
     const commands = setupSMSCommands(COMMANDS, store)
-    const config = store.getConfig()
     router.post(
       '/api/v1/sms',
       asyncHandler(async (request, response) => {
         const { context } = request
-        let isValid = true
 
         // Only validate that requests came from Twilio when the function has been
         // deployed to production.
         if (process.env.NODE_ENV === 'production') {
-          isValid = twilio.validateExpressRequest(
-            request,
-            config.twilio.authToken,
-            {
-              url: `${config.api.url}/sms`
-            }
-          )
-        }
-
-        // Halt early if the request was not sent from Twilio
-        if (!isValid) {
-          return response
-            .type('text/plain')
-            .status(StatusCode.ACCESS_DENIED)
-            .send('Twilio Request Validation Failed.')
-            .end()
+          if (!verifyTwilioRequest(context, request)) {
+            // Halt early if the request was not sent from Twilio
+            return response
+              .type('text/plain')
+              .status(StatusCode.ACCESS_DENIED)
+              .send('Twilio Request Verification Failed.')
+              .end()
+          }
         }
 
         const smsMessageData = parseSMSMessage(request.body)
