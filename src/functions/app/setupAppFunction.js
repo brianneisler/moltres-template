@@ -1,3 +1,4 @@
+import { StatusCode } from '../../constants'
 import { generateEngine } from '../../core'
 import { EngineState } from '../../core/constants'
 import setupFunctionContexts from '../setupFunctionContexts'
@@ -28,7 +29,7 @@ const setupAppFunction = (modules, config) => {
       .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error)
-        response.sendStatus(500)
+        response.sendStatus(StatusCode.ERROR)
       })
   }
 }
