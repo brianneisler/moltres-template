@@ -4,7 +4,7 @@ import { uuidv4 } from '../utils/lang'
 const setupTestConfig = async () => {
   return await loadProjectConfig(
     {
-      target: 'test'
+      target: TEST_TARGET
     },
     {
       test: {

@@ -6,6 +6,9 @@ module.exports = {
     node: true
   },
   extends: ['prettier', 'prettier/react'],
+  globals: {
+    TEST_TARGET: 'readable'
+  },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {

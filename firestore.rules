@@ -175,6 +175,11 @@ service cloud.firestore {
       return role != null && role.data.role == 'admin';
     }
 
+    function currentUserHasHilRole(auth) {
+      let role = getUserRoleBefore(auth.uid);
+      return role != null && role.data.role == 'hil';
+    }
+
     function userIdEqualsAuthServiceAccountId(auth, userId) {
       let serviceAccount = getServiceAccountBefore(userId);
       return serviceAccount != null && serviceAccount.id == auth.token.serviceAccountId;
@@ -209,6 +214,9 @@ service cloud.firestore {
         'AccessToken': 'AccessTokens',
         'Action': 'Actions',
         'ChannelContext': 'ChannelContexts',
+        'Conversation': 'Conversations',
+        'ConversationMember': 'ConversationMembers',
+        'ConversationMessage': 'ConversationMessages',
         'EntityStats': 'EntityStats',
         'Error': 'Errors',
         'Host': 'Hosts',
@@ -753,6 +761,339 @@ service cloud.firestore {
       allow create: if checkCreateChannelContext(request.auth, id);
       allow update: if checkUpdateChannelContext();
       allow delete: if checkDeleteChannelContext(request.auth);
+    }
+
+
+    // Conversation implementation
+    // -----------------------------
+
+    function getConversationAfter(id) {
+      return getAfter(/$(databasePath())/Conversations/$(id))
+    }
+
+    function getConversationBefore(id) {
+      return get(/$(databasePath())/Conversations/$(id))
+    }
+
+    function conversationExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Conversations/$(id))
+    }
+
+    function conversationExistsBefore(id) {
+      return exists(/$(databasePath())/Conversations/$(id))
+    }
+
+    function currentUserCanReadConversation(auth, conversation) {
+      return (
+        (
+          conversation.data.visibility == 'PUBLIC' &&
+          dataIsNotRemoved(conversation.data)
+        ) || (
+          currentUserIsConversationMember(auth, conversation) &&
+          dataIsNotRemoved(conversation.data)
+        ) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function currentUserCanCreateConversation(auth, conversation) {
+      return (
+        currentUserWillBeConversationOwner(auth, conversation) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function currentUserCanUpdateConversation(auth, conversationAfter, conversationBefore) {
+      return (
+        currentUserIsConversationOwnerOrAdmin(auth, conversationBefore) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function validateConversationData(data) {
+      return isString(data.visibility)
+    }
+
+    function validateConversation(entity) {
+      return validateEntity(entity) &&
+        validateConversationData(entity.data)
+    }
+
+    function checkReadConversation(auth, conversation) {
+      return currentUserCanReadConversation(auth, conversation);
+    }
+
+    function checkCreateConversation(auth, id) {
+      let conversation = getConversationAfter(id);
+      return conversation != null &&
+        validateConversation(conversation) &&
+        currentUserCanCreateConversation(auth, conversation);
+    }
+
+    function checkUpdateConversation(auth, id) {
+      let conversationAfter = getConversationAfter(id);
+      let conversationBefore = getConversationBefore(id);
+      return conversationAfter != null &&
+        conversationBefore != null &&
+        validateConversation(conversationAfter) &&
+        currentUserCanUpdateConversation(auth, conversationAfter, conversationBefore);
+    }
+
+    function checkDeleteConversation(auth) {
+      return currentUserIsServiceAccount(auth);
+    }
+
+    match /Conversations/{id} {
+      allow read: if checkReadConversation(request.auth, resource);
+      allow create: if checkCreateConversation(request.auth, id);
+      allow update: if checkUpdateConversation(request.auth, id);
+      allow delete: if checkDeleteConversation(request.auth);
+    }
+
+
+    // ConversationMember implementation
+    // -----------------------------
+
+    function getConversationMemberAfter(conversationId, userId) {
+      return getAfter(/$(databasePath())/Conversations/$(conversationId)/ConversationMembers/$(userId))
+    }
+
+    function getConversationMemberBefore(conversationId, userId) {
+      return get(/$(databasePath())/Conversations/$(conversationId)/ConversationMembers/$(userId))
+    }
+
+    function conversationMemberExistsAfter(conversationId, userId) {
+      return existsAfter(/$(databasePath())/Conversations/$(conversationId)/ConversationMembers/$(userId))
+    }
+
+    function conversationMemberExistsBefore(conversationId, userId) {
+      return exists(/$(databasePath())/Conversations/$(conversationId)/ConversationMembers/$(userId))
+    }
+
+    function currentUserIsConversationMember(auth, conversation) {
+      let conversationMemberBefore = getConversationMemberBefore(conversation.id, auth.uid);
+      return conversationMemberBefore != null && !dataIsRemoved(conversationMemberBefore.data);
+    }
+
+    function currentUserIsConversationOwnerOrAdmin(auth, conversation) {
+      let conversationMemberBefore = getConversationMemberBefore(conversation.id, auth.uid);
+      return conversationMemberBefore != null &&
+        !dataIsRemoved(conversationMemberBefore.data) &&
+        includes(conversationMemberBefore.data.role, ['ADMIN', 'OWNER']);
+    }
+
+    function currentUserWillBeConversationOwner(auth, conversation) {
+      let conversationMember = getConversationMemberAfter(conversation.id, auth.uid);
+      return conversationMember.data.role == 'OWNER';
+    }
+
+    function currentUserCanReadConversationMember(auth, conversation, conversationMember) {
+      return (
+        currentUserIsConversationMember(auth, conversation) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function currentUserCanCreateConversationMember(auth, conversation, conversationMember) {
+      return (
+        (
+          conversation.data.visibility == 'PUBLIC' &&
+          conversationMember.data.role == 'MEMBER' &&
+          currentUserOwnsResource(auth, conversationMember)
+        ) ||
+        currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      );
+    }
+
+    function currentUserCanUpdateConversationMember(auth, conversation, conversationMemberAfter, conversationMemberBefore) {
+      // TODO BRN: need a way to ban users from conversations
+      // TODO BRN: Users should only be able to restore their ConversationMember
+      // record if the conversation is public and they have not been banned
+      return (
+        (
+          currentUserOwnsResource(auth, conversationMemberAfter) &&
+          currentUserOwnsResource(auth, conversationMemberBefore)
+        ) ||
+        currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function validateConversationMemberData(conversation, data) {
+      return conversationExistsAfter(data.conversationId) &&
+        data.conversationId == conversation.id &&
+        userExistsAfter(data.userId) &&
+        includes(data.role, [
+          'ADMIN',
+          'HIL',
+          'MEMBER',
+          'OWNER'
+        ])
+    }
+
+    function validateConversationMember(conversation, conversationMember) {
+      return validateEntity(conversationMember) &&
+        conversationMember.id == conversationMember.data.userId &&
+        validateConversationMemberData(conversation, conversationMember.data)
+    }
+
+    function checkReadConversationMember(auth, conversationId, userId, conversationMember) {
+      let conversation = getConversationAfter(conversationId);
+      return currentUserCanReadConversationMember(auth, conversation, conversationMember);
+    }
+
+    function checkCreateConversationMember(auth, conversationId, userId) {
+      let conversation = getConversationAfter(conversationId);
+      let conversationMember = getConversationMemberAfter(conversationId, userId);
+      return conversation != null &&
+        conversationMember != null &&
+        validateConversationMember(conversation, conversationMember) &&
+        currentUserCanCreateConversationMember(auth, conversation, conversationMember);
+    }
+
+    function checkUpdateConversationMember(auth, conversationId, userId) {
+      let conversation = getConversationAfter(conversationId);
+      let conversationMemberAfter = getConversationMemberAfter(conversationId, userId);
+      let conversationMemberBefore = getConversationMemberBefore(conversationId, userId);
+      return conversation != null &&
+        conversationMember != null &&
+        validateConversationMember(conversation, conversationMemberAfter) &&
+        currentUserCanUpdateConversationMember(auth, conversation, conversationMemberAfter, conversationMemberBefore);
+    }
+
+    function checkDeleteConversationMember(auth) {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount(auth)
+    }
+
+    match /Conversations/{conversationId}/ConversationMembers/{userId} {
+      allow read: if checkReadConversationMember(request.auth, conversationId, userId, resource);
+      allow create: if checkCreateConversationMember(request.auth, conversationId, userId);
+      allow update: if checkUpdateConversationMember(request.auth, conversationId, userId);
+      allow delete: if checkDeleteConversationMember(request.auth);
+    }
+
+
+    // ConversationMessage implementation
+    // -----------------------------
+
+    function getConversationMessageAfter(conversationId, messageId) {
+      return getAfter(/$(databasePath())/Conversations/$(conversationId)/ConversationMessages/$(messageId))
+    }
+
+    function getConversationMessageBefore(conversationId, messageId) {
+      return get(/$(databasePath())/Conversations/$(conversationId)/ConversationMessages/$(messageId))
+    }
+
+    function conversationMessageExistsAfter(conversationId, messageId) {
+      return existsAfter(/$(databasePath())/Conversations/$(conversationId)/ConversationMessages/$(messageId))
+    }
+
+    function conversationMessageExistsBefore(conversationId, messageId) {
+      return exists(/$(databasePath())/Conversations/$(conversationId)/ConversationMessages/$(messageId))
+    }
+
+    function currentUserCanReadConversationMessage(auth, conversation, conversationMessage) {
+      return (
+        (
+          conversation.id == conversationMessage.data.conversationId &&
+          currentUserIsConversationMember(auth, conversation)
+        ) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function currentUserCanCreateConversationMessage(auth, conversation, conversationMessage) {
+      return (
+        (
+          currentUserIsConversationMember(auth, conversation)  &&
+          currentUserOwnsResource(auth, conversationMessage)
+        ) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function currentUserCanUpdateConversationMessage(auth, conversation, conversationMessageAfter, conversationMessageBefore) {
+      // TODO BRN: need a way to separate removing a message vs updating the
+      // of the message. Admins and HILs should be able to remove messages but
+      // not be able to update the content of another user's message
+      return (
+        (
+          currentUserOwnsResource(auth, conversationMessageAfter) &&
+          currentUserOwnsResource(auth, conversationMessageBefore)
+        ) ||
+        currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
+        currentUserHasHilRole(auth) ||
+        currentUserHasAdminRole(auth) ||
+        currentUserIsServiceAccount(auth)
+      )
+    }
+
+    function validateConversationMessageData(conversation, data) {
+      return conversationExistsAfter(data.conversationId) &&
+        userExistsAfter(data.userId) &&
+        data.conversationId == conversation.id &&
+        (data.attachments == null || isList(data.attachments)) &&
+        (data.editedAt == null || isTimestamp(data.editedAt)) &&
+        (data.sentAt == null || isTimestamp(data.sentAt)) &&
+        isString(data.type);
+    }
+
+    function validateConversationMessage(conversation, conversationMessage) {
+      return validateEntity(conversationMessage) &&
+        validateConversationMessageData(conversation, conversationMessage.data)
+    }
+
+    function checkReadConversationMessage(auth, conversationId, messageId, conversationMessage) {
+      let conversation = getConversationAfter(conversationId);
+      return currentUserCanReadConversationMessage(auth, conversation, conversationMessage);
+    }
+
+    function checkCreateConversationMessage(auth, conversationId, messageId) {
+      let conversation = getConversationAfter(conversationId);
+      let conversationMessage = getConversationMessageAfter(conversationId, messageId);
+      return conversation != null &&
+        conversationMessage != null &&
+        validateConversationMessage(conversation, conversationMessage) &&
+        currentUserCanCreateConversationMessage(auth, conversation, conversationMessage);
+    }
+
+    function checkUpdateConversationMessage(auth, conversationId, messageId) {
+      let conversation = getConversationAfter(conversationId);
+      let conversationMessageAfter = getConversationMessageAfter(conversationId, messageId);
+      let conversationMessageBefore = getConversationMessageBefore(conversationId, messageId);
+      return conversation != null &&
+        conversationMessage != null &&
+        validateConversationMessage(conversation, conversationMessageAfter) &&
+        currentUserCanUpdateConversationMessage(auth, conversation, conversationMessageAfter, conversationMessageBefore);
+    }
+
+    function checkDeleteConversationMessage(auth) {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount(auth)
+    }
+
+    match /Conversations/{conversationId}/ConversationMessages/{messageId} {
+      allow read: if checkReadConversationMessage(request.auth, conversationId, messageId, resource);
+      allow create: if checkCreateConversationMessage(request.auth, conversationId, messageId);
+      allow update: if checkUpdateConversationMessage(request.auth, conversationId, messageId);
+      allow delete: if checkDeleteConversationMessage(request.auth);
     }
 
 
