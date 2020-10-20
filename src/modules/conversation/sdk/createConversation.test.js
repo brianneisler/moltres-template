@@ -33,20 +33,15 @@ const spec = describe('createConversation', () => {
 
     it('can create a Conversation', async () => {
       const data = {
-        parentEntityId: null,
-        parentEntityType: null
+        visibility: 'PUBLIC'
       }
       result = await createConversation(context, data)
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        headIndex: 0,
         id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
-        length: 0,
-        parentEntityId: null,
-        parentEntityType: null,
         removedAt: null,
-        tailIndex: -1,
-        updatedAt: expect.any(context.firebase.firestore.Timestamp)
+        updatedAt: expect.any(context.firebase.firestore.Timestamp),
+        visibility: 'PUBLIC'
       })
     }, 20000)
   })

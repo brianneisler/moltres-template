@@ -1,4 +1,4 @@
-import { Object } from '../../../../core/schemas'
+import { Object, String } from '../../../../core/schemas'
 
 const SlackApp = {
   name: 'slack.SlackApp',

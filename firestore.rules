@@ -214,6 +214,9 @@ service cloud.firestore {
         'AccessToken': 'AccessTokens',
         'Action': 'Actions',
         'ChannelContext': 'ChannelContexts',
+        'Conversation': 'Conversations',
+        'ConversationMember': 'ConversationMembers',
+        'ConversationMessage': 'ConversationMessages',
         'EntityStats': 'EntityStats',
         'Error': 'Errors',
         'Host': 'Hosts',
@@ -772,11 +775,11 @@ service cloud.firestore {
       return get(/$(databasePath())/Conversations/$(id))
     }
 
-    function errorExistsAfter(id) {
+    function conversationExistsAfter(id) {
       return existsAfter(/$(databasePath())/Conversations/$(id))
     }
 
-    function errorExistsBefore(id) {
+    function conversationExistsBefore(id) {
       return exists(/$(databasePath())/Conversations/$(id))
     }
 
@@ -879,15 +882,15 @@ service cloud.firestore {
     }
 
     function currentUserIsConversationOwnerOrAdmin(auth, conversation) {
-      let conversationMemberBefore = getConversationMemberBefore(conversationId, auth.uid);
+      let conversationMemberBefore = getConversationMemberBefore(conversation.id, auth.uid);
       return conversationMemberBefore != null &&
         !dataIsRemoved(conversationMemberBefore.data) &&
         includes(conversationMemberBefore.data.role, ['ADMIN', 'OWNER']);
     }
 
     function currentUserWillBeConversationOwner(auth, conversation) {
-      let conversationMember = getConversationMemberAfter(conversation.id, auth.uid)
-      return conversationMember.data.role === 'OWNER'
+      let conversationMember = getConversationMemberAfter(conversation.id, auth.uid);
+      return conversationMember.data.role == 'OWNER';
     }
 
     function currentUserCanReadConversationMember(auth, conversation, conversationMember) {
@@ -910,7 +913,7 @@ service cloud.firestore {
         currentUserHasHilRole(auth) ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
-      )
+      );
     }
 
     function currentUserCanUpdateConversationMember(auth, conversation, conversationMemberAfter, conversationMemberBefore) {
@@ -929,8 +932,9 @@ service cloud.firestore {
       )
     }
 
-    function validateConversationMemberData(data) {
+    function validateConversationMemberData(conversation, data) {
       return conversationExistsAfter(data.conversationId) &&
+        data.conversationId == conversation.id &&
         userExistsAfter(data.userId) &&
         includes(data.role, [
           'ADMIN',
@@ -940,14 +944,14 @@ service cloud.firestore {
         ])
     }
 
-    function validateConversationMember(conversationMember) {
+    function validateConversationMember(conversation, conversationMember) {
       return validateEntity(conversationMember) &&
         conversationMember.id == conversationMember.data.userId &&
-        validateConversationMemberData(conversationMember.data)
+        validateConversationMemberData(conversation, conversationMember.data)
     }
 
-    function checkReadConversationMember(auth, conversationMember) {
-      let conversation = getConversationMemberAfter(conversationMember.data.conversationId);
+    function checkReadConversationMember(auth, conversationId, userId, conversationMember) {
+      let conversation = getConversationAfter(conversationId);
       return currentUserCanReadConversationMember(auth, conversation, conversationMember);
     }
 
@@ -956,7 +960,7 @@ service cloud.firestore {
       let conversationMember = getConversationMemberAfter(conversationId, userId);
       return conversation != null &&
         conversationMember != null &&
-        validateConversationMember(conversationMember) &&
+        validateConversationMember(conversation, conversationMember) &&
         currentUserCanCreateConversationMember(auth, conversation, conversationMember);
     }
 
@@ -966,7 +970,7 @@ service cloud.firestore {
       let conversationMemberBefore = getConversationMemberBefore(conversationId, userId);
       return conversation != null &&
         conversationMember != null &&
-        validateConversationMember(conversationMemberAfter) &&
+        validateConversationMember(conversation, conversationMemberAfter) &&
         currentUserCanUpdateConversationMember(auth, conversation, conversationMemberAfter, conversationMemberBefore);
     }
 
@@ -976,7 +980,7 @@ service cloud.firestore {
     }
 
     match /Conversations/{conversationId}/ConversationMembers/{userId} {
-      allow read: if checkReadConversationMember(request.auth, resource);
+      allow read: if checkReadConversationMember(request.auth, conversationId, userId, resource);
       allow create: if checkCreateConversationMember(request.auth, conversationId, userId);
       allow update: if checkUpdateConversationMember(request.auth, conversationId, userId);
       allow delete: if checkDeleteConversationMember(request.auth);
@@ -1005,7 +1009,7 @@ service cloud.firestore {
     function currentUserCanReadConversationMessage(auth, conversation, conversationMessage) {
       return (
         (
-          conversation.id === conversationMessage.data.conversationId &&
+          conversation.id == conversationMessage.data.conversationId &&
           currentUserIsConversationMember(auth, conversation)
         ) ||
         currentUserHasHilRole(auth) ||
@@ -1041,22 +1045,23 @@ service cloud.firestore {
       )
     }
 
-    function validateConversationMessageData(data) {
+    function validateConversationMessageData(conversation, data) {
       return conversationExistsAfter(data.conversationId) &&
         userExistsAfter(data.userId) &&
+        data.conversationId == conversation.id &&
         (data.attachments == null || isList(data.attachments)) &&
         (data.editedAt == null || isTimestamp(data.editedAt)) &&
         (data.sentAt == null || isTimestamp(data.sentAt)) &&
         isString(data.type);
     }
 
-    function validateConversationMessage(conversationMessage) {
+    function validateConversationMessage(conversation, conversationMessage) {
       return validateEntity(conversationMessage) &&
-        validateConversationMessageData(conversationMessage.data)
+        validateConversationMessageData(conversation, conversationMessage.data)
     }
 
-    function checkReadConversationMessage(auth, conversationMessage) {
-      let conversation = getConversationMessageAfter(conversationMessage.data.conversationId);
+    function checkReadConversationMessage(auth, conversationId, messageId, conversationMessage) {
+      let conversation = getConversationAfter(conversationId);
       return currentUserCanReadConversationMessage(auth, conversation, conversationMessage);
     }
 
@@ -1065,7 +1070,7 @@ service cloud.firestore {
       let conversationMessage = getConversationMessageAfter(conversationId, messageId);
       return conversation != null &&
         conversationMessage != null &&
-        validateConversationMessage(conversationMessage) &&
+        validateConversationMessage(conversation, conversationMessage) &&
         currentUserCanCreateConversationMessage(auth, conversation, conversationMessage);
     }
 
@@ -1075,7 +1080,7 @@ service cloud.firestore {
       let conversationMessageBefore = getConversationMessageBefore(conversationId, messageId);
       return conversation != null &&
         conversationMessage != null &&
-        validateConversationMessage(conversationMessageAfter) &&
+        validateConversationMessage(conversation, conversationMessageAfter) &&
         currentUserCanUpdateConversationMessage(auth, conversation, conversationMessageAfter, conversationMessageBefore);
     }
 
@@ -1085,7 +1090,7 @@ service cloud.firestore {
     }
 
     match /Conversations/{conversationId}/ConversationMessages/{messageId} {
-      allow read: if checkReadConversationMessage(request.auth, resource);
+      allow read: if checkReadConversationMessage(request.auth, conversationId, messageId, resource);
       allow create: if checkCreateConversationMessage(request.auth, conversationId, messageId);
       allow update: if checkUpdateConversationMessage(request.auth, conversationId, messageId);
       allow delete: if checkDeleteConversationMessage(request.auth);
