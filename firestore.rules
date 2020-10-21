@@ -232,6 +232,7 @@ service cloud.firestore {
         'Preference': 'Preferences',
         'Queue':'Queues',
         'QueueEntity':'QueueEntities',
+        'Role':'Roles',
         'ServiceAccount': 'ServiceAccounts',
         'SMSChallenge': 'SMSChallenges',
         'SMSChannel': 'SMSChannels',
@@ -1965,6 +1966,60 @@ service cloud.firestore {
       allow delete: if checkDeleteQueueEntity(request.auth);
     }
 
+    // Roles implementation
+    // -----------------------------
+
+    function getRoleAfter(id, index) {
+      return getAfter(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function getRoleBefore(id, index) {
+      return get(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function roleExistsAfter(id, index) {
+      return existsAfter(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function roleExistsBefore(id, index) {
+      return exists(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function validateRole(resource) {
+      return isString(resource.data.roleName) &&
+      resource.id == resource.data.roleName &&
+      userExistsBefore(resource.data.userId) &&
+      (resource.data.roleName == 'admin' || resource.data.roleName == 'hil')
+    }
+
+    function checkReadRole(auth, resource) {
+      return currentUserCanReadPublicEntity(auth, resource, false)
+    }
+
+    function checkCreateRole(auth, id, index) {
+      let role = getRoleAfter(id, index);
+      return role != null && validateRole(role) &&
+        currentUserIsServiceAccount(auth)
+    }
+
+    function checkUpdateRole(auth, id, index) {
+      let queueEntity = getRoleAfter(id, index);
+      return queueEntity != null && validateRole(queueEntity) &&
+        currentUserIsServiceAccount(auth)
+    }
+
+    function checkDeleteRole(auth) {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount(auth)
+    }
+
+    match /UserRoles/{id}/Roles/{index} {
+      allow read: if checkReadRole(request.auth, resource);
+      allow create: if checkCreateRole(request.auth, id, index);
+      allow update: if checkUpdateRole(request.auth, id, index);
+      allow delete: if checkDeleteRole(request.auth);
+    }
+
 
     // ServiceAccount implementation
     // -----------------------------
@@ -2544,8 +2599,7 @@ service cloud.firestore {
     function validateUserRole(resource) {
       return validateEntity(resource) &&
         resource.id == resource.data.userId &&
-        userExistsAfter(resource.data.userId) &&
-        resource.data.role == 'admin' // the only type of role at the moment
+        userExistsAfter(resource.data.userId)
     }
 
     match /UserRoles/{id} {
