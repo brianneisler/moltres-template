@@ -969,7 +969,8 @@ service cloud.firestore {
       let conversationMemberAfter = getConversationMemberAfter(conversationId, userId);
       let conversationMemberBefore = getConversationMemberBefore(conversationId, userId);
       return conversation != null &&
-        conversationMember != null &&
+        conversationMemberAfter != null &&
+        conversationMemberBefore != null &&
         validateConversationMember(conversation, conversationMemberAfter) &&
         currentUserCanUpdateConversationMember(auth, conversation, conversationMemberAfter, conversationMemberBefore);
     }
@@ -1079,7 +1080,8 @@ service cloud.firestore {
       let conversationMessageAfter = getConversationMessageAfter(conversationId, messageId);
       let conversationMessageBefore = getConversationMessageBefore(conversationId, messageId);
       return conversation != null &&
-        conversationMessage != null &&
+        conversationMessageAfter != null &&
+        conversationMessageBefore != null &&
         validateConversationMessage(conversation, conversationMessageAfter) &&
         currentUserCanUpdateConversationMessage(auth, conversation, conversationMessageAfter, conversationMessageBefore);
     }
