@@ -1,19 +1,6 @@
-import { buildQuery } from '../../../utils/db'
-import { curry, isUndefined } from '../../../utils/lang'
+import { queryEntities } from '../../../core/sdk'
 import { Role } from '../schemas'
 
-const queryRoles = curry((context, { userId }, queryOptions) =>
-  buildQuery(
-    (query) => {
-      if (!isUndefined(userId)) {
-        query = query.where('userId', '==', userId)
-      }
-      return query
-    },
-    Role,
-    context,
-    queryOptions
-  )
-)
+const queryRoles = queryEntities(Role)
 
 export default queryRoles

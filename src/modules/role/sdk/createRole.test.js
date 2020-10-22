@@ -5,8 +5,9 @@ import {
   tearDownTestServiceAccountContext
 } from '../../../test'
 import { createUser, deleteUser } from '../../user'
-import { createUserRole, deleteUserRole, UserRole } from '../../user_role'
+import { createUserRole, deleteUserRole } from '../../user_role'
 import createRole from './createRole'
+import deleteRole from './deleteRole'
 
 const spec = describe('createRole', () => {
   describe('ServiceAccount', () => {
@@ -24,7 +25,21 @@ const spec = describe('createRole', () => {
     afterEach(async () => {
       try {
         if (result) {
-          await deleteUser(adminContext, result.id)
+          await deleteRole(adminContext, [user.id, result.id])
+        }
+      } catch (error) {
+        context.logger.error(error)
+      }
+      try {
+        if (userRole) {
+          await deleteUserRole(adminContext, userRole.id)
+        }
+      } catch (error) {
+        context.logger.error(error)
+      }
+      try {
+        if (user) {
+          await deleteUser(adminContext, user.id)
         }
       } catch (error) {
         context.logger.error(error)
@@ -39,15 +54,11 @@ const spec = describe('createRole', () => {
         state: 'pending'
       }
       user = await createUser(context, userData)
-      console.log('User created:')
-      console.log(user)
 
       const userRoleData = {
         userId: user.id
       }
       userRole = await createUserRole(context, userRoleData)
-      console.log('User Role created:')
-      console.log(userRole)
 
       const roleData = {
         userId: user.id,
@@ -55,7 +66,7 @@ const spec = describe('createRole', () => {
       }
 
       result = await createRole(context, roleData)
-      console.log(result)
+
       expect(result).toEqual({
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching('admin'),
