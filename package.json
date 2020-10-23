@@ -50,8 +50,10 @@
     "start:webpack:web": "moltres run ./scripts/start-webpack-web.sh",
     "test": "moltres run ./scripts/test.sh --",
     "test:ci": "moltres run ./scripts/test-ci.sh",
+    "test:debug": "moltres run ./scripts/test-debug.sh",
     "test:integration": "moltres run ./scripts/test-integration.sh",
-    "test:run": "moltres run ./scripts/test-run.sh"
+    "test:run": "moltres run ./scripts/test-run.sh",
+    "test:run:debug": "moltres run ./scripts/test-run-debug.sh"
   },
   "dependencies": {
     "@firebase/component": "^0.1.19",
