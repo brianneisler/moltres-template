@@ -894,7 +894,7 @@ service cloud.firestore {
       return conversationMember.data.role == 'OWNER';
     }
 
-    function currentUserCanReadConversationMember(auth, conversation, conversationMember) {
+    function currentUserCanReadConversationMember(auth, conversation) {
       return (
         currentUserIsConversationMember(auth, conversation) ||
         currentUserHasHilRole(auth) ||
@@ -951,9 +951,9 @@ service cloud.firestore {
         validateConversationMemberData(conversation, conversationMember.data)
     }
 
-    function checkReadConversationMember(auth, conversationId, userId, conversationMember) {
+    function checkReadConversationMember(auth, conversationId) {
       let conversation = getConversationAfter(conversationId);
-      return currentUserCanReadConversationMember(auth, conversation, conversationMember);
+      return currentUserCanReadConversationMember(auth, conversation);
     }
 
     function checkCreateConversationMember(auth, conversationId, userId) {
@@ -982,7 +982,7 @@ service cloud.firestore {
     }
 
     match /Conversations/{conversationId}/ConversationMembers/{userId} {
-      allow read: if checkReadConversationMember(request.auth, conversationId, userId, resource);
+      allow read: if checkReadConversationMember(request.auth, conversationId);
       allow create: if checkCreateConversationMember(request.auth, conversationId, userId);
       allow update: if checkUpdateConversationMember(request.auth, conversationId, userId);
       allow delete: if checkDeleteConversationMember(request.auth);
@@ -1062,7 +1062,7 @@ service cloud.firestore {
         validateConversationMessageData(conversation, conversationMessage.data)
     }
 
-    function checkReadConversationMessage(auth, conversationId, messageId, conversationMessage) {
+    function checkReadConversationMessage(auth, conversationId, conversationMessage) {
       let conversation = getConversationAfter(conversationId);
       return currentUserCanReadConversationMessage(auth, conversation, conversationMessage);
     }
@@ -1093,7 +1093,7 @@ service cloud.firestore {
     }
 
     match /Conversations/{conversationId}/ConversationMessages/{messageId} {
-      allow read: if checkReadConversationMessage(request.auth, conversationId, messageId, resource);
+      allow read: if checkReadConversationMessage(request.auth, conversationId, resource);
       allow create: if checkCreateConversationMessage(request.auth, conversationId, messageId);
       allow update: if checkUpdateConversationMessage(request.auth, conversationId, messageId);
       allow delete: if checkDeleteConversationMessage(request.auth);

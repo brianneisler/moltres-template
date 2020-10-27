@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 
 import { compose } from '../../../utils/lang'
 import {
@@ -17,7 +16,7 @@ import {
   Text,
   View
 } from '../../components'
-import { Colors, Styles } from '../../styles'
+import { Colors, StyleSheet, Styles } from '../../styles'
 
 const enhance = compose(
   setDisplayName('MenuPage'),

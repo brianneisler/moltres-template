@@ -20,8 +20,9 @@ import React from 'react'
 import { InteractionManager, StyleSheet } from 'react-native'
 
 import { Scroll } from '../constants'
+import { selectAppConfig } from '../core'
 import { selectSSRConfig } from '../core/selectors'
-import { compose } from '../utils/lang'
+import { compose, getProperty } from '../utils/lang'
 import {
   connect,
   defaultProps,
@@ -207,6 +208,7 @@ const enhance = compose(
     uiInitialized: uiInitializedAction
   }),
   connect((state) => ({
+    app: selectAppConfig(state),
     currentActionSheet: selectCurrentActionSheet(state),
     currentAlert: selectCurrentAlert(state),
     scrollIsAtTop: selectScrollTargetIsAtTop('window', state),
@@ -245,6 +247,7 @@ const enhance = compose(
 let first = true
 const Main = enhance(
   ({
+    app,
     currentActionSheet,
     currentAlert,
     handleTitlePress,
@@ -267,7 +270,9 @@ const Main = enhance(
                   {'TODO Add icon config'}
                 </Link>
                 <TouchableOpacity onPress={handleTitlePress}>
-                  <Text style={styles.headerTitle}>WAT</Text>
+                  <Text style={styles.headerTitle}>
+                    {getProperty('name', app)}
+                  </Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.headerRight}>
