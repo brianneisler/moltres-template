@@ -1993,7 +1993,7 @@ service cloud.firestore {
     }
 
     function checkReadRole(auth, resource) {
-      return currentUserCanReadPublicEntity(auth, resource, false)
+      return currentUserCanReadPrivateEntity(auth, resource, resource.userId)
     }
 
     function checkCreateRole(auth, id, index) {

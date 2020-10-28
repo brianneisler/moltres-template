@@ -1,5 +1,6 @@
-import { ADMIN, HIL } from '../../../constants/Role'
 import { Entity, Id, String } from '../../../core/schemas'
+import { RoleValues } from '../constants'
+import { values } from '../../../utils/lang'
 import UserRole from '../../user_role/schemas/UserRole'
 
 const Role = {
@@ -10,7 +11,7 @@ const Role = {
   parentSchema: UserRole,
   schema: Entity.schema.keys({
     userId: Id.schema.required(),
-    roleName: String.schema.required()
+    roleName: String.schema.allow(...values(RoleValues)).required()
   })
 }
 
