@@ -1,6 +1,7 @@
 import * as firebaseMain from 'firebase'
 import * as firebaseAdmin from 'firebase-admin'
 
+import { createContext as createCoreContext } from '../core'
 import { createServiceAccount } from '../modules/service_account'
 import { createCustomToken } from '../utils/auth'
 import { isTestAppConfigured } from '../utils/config'
@@ -36,20 +37,19 @@ const createAdminContext = async ({ config, namespace, source, ...rest }) => {
   const logger = createLogger()
   const system = createSystem()
 
-  const context = {
+  const context = createCoreContext({
     app,
     auth,
     config,
     database,
     firebase,
-    isContext: true,
     logger,
     namespace,
     source,
     storage,
     system,
     ...rest
-  }
+  })
 
   const uid = uuidv4()
   const serviceAccount = await createServiceAccount(context, {

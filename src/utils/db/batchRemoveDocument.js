@@ -9,7 +9,7 @@ import refDocumentById from './refDocumentById'
 const batchRemoveDocument = curry((Schema, context, batch, id, data) => {
   const ref = refDocumentById(Schema, context, id)
   data = pipe(
-    cleanseData,
+    cleanseData(Schema),
     convertDataToFirebase(context),
     addRemovedAtTimestamp(context),
     addRemovedByEntity(context)

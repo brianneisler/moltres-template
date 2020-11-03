@@ -1,17 +1,19 @@
 import createModules from './createModules'
 
 test('createModules correctly combines modules', () => {
-  const context = {}
+  const context = {
+    foo: 'bar'
+  }
 
   const modules = {
     bar: (modContext) => {
-      expect(modContext).toBe(context)
+      expect(modContext).toEqual(expect.objectContaining(context))
       return {
         prop: 'bar'
       }
     },
     baz: (modContext) => {
-      expect(modContext).toBe(context)
+      expect(modContext).toEqual(expect.objectContaining(context))
       return {
         prop: 'baz'
       }

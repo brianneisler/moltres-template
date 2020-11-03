@@ -6,6 +6,7 @@ import 'firebase/performance'
 import 'firebase/storage'
 import firebase from 'firebase/app'
 
+import { createContext as createCoreContext } from '../core'
 import { isTestAppConfigured } from '../utils/config'
 import {
   initializeApp,
@@ -62,7 +63,7 @@ const createContext = ({
   const database = firebase.firestore(app)
   const realtime = firebase.database(app)
 
-  return {
+  return createCoreContext({
     analytics,
     app,
     auth,
@@ -70,7 +71,6 @@ const createContext = ({
     config,
     database,
     firebase,
-    isContext: true,
     logger,
     namespace,
     performance,
@@ -78,7 +78,7 @@ const createContext = ({
     storage,
     system,
     ...rest
-  }
+  })
 }
 
 export default createContext

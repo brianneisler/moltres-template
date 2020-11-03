@@ -10,7 +10,6 @@ describe('getConfig', () => {
     }
     const testContext = {
       config: testConfig,
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -28,7 +27,6 @@ describe('getConfig', () => {
     }
     const testContext = {
       config: testConfig,
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -46,7 +44,6 @@ describe('getConfig', () => {
     }
     const testContext = {
       config: testConfig,
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)

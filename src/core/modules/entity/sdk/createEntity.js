@@ -5,11 +5,10 @@ import batchCreateEntity from './batchCreateEntity'
 
 const createEntity = curry(async (Schema, context, value, options = {}) => {
   let ref
-  await commitBatch(
-    buildBatch(context, (batch) => {
-      ref = batchCreateEntity(Schema, context, batch, value, options)
-    })
-  )
+  const builtBatch = await buildBatch(context, (batch) => {
+    ref = batchCreateEntity(Schema, context, batch, value, options)
+  })
+  await commitBatch(builtBatch)
   return await getFromRef(context, ref)
 })
 

@@ -46,7 +46,6 @@ const mod = () => {
       }
     }
   })
-  const middleware = [createAsyncMiddleware(), sagaMiddleware]
   let promise
   let mainTask
 
@@ -69,7 +68,16 @@ const mod = () => {
 
   return {
     actions,
-    middleware,
+    middleware: [
+      {
+        insert: 'first',
+        middleware: createAsyncMiddleware()
+      },
+      {
+        insert: 'last',
+        middleware: sagaMiddleware
+      }
+    ],
     reducer: handleActions(
       {},
       {

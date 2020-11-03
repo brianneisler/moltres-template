@@ -35,7 +35,7 @@ describe('createQueryFactory', () => {
 
     const initialState = { barId: 'id1', bazId: 'id2' }
     const channel = { put: jest.fn() }
-    const context = { logger: console }
+    const context = {}
     const engine = generateEngine({}, context)
 
     const result = await runSaga(

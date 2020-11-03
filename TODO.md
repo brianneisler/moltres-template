@@ -23,6 +23,9 @@ const ProcessEventAction = {
 export default ProcessEventAction
 ```
 
+- [ ] upgrade to node 12
+- [ ] Setup vscode debugging for when code is running locally on emulators
+
 - [ ] add new DB concepts to firestore.rules
   - App
   - File
@@ -31,8 +34,9 @@ export default ProcessEventAction
   - PageContent
   - [x] Url
 - [x] rename service folder to `sdk`
-- [ ] move all queryAndWatch and db enhancer functions into `sdk` folder
-
+- [ ] move all queryAndWatch and db enhancer functions into `sdk` folders within
+  modules
+- [ ] complete sdk implementation
 
 - [ ] Add a styles system that picks up styles from theme
   - should also allow for a feature similar to "class names" for overriding styles

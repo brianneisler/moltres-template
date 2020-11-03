@@ -30,7 +30,7 @@ const setupActionsFunction = (modules, config) => async (
   { params }
 ) => {
   let { context } = await setupFunctionContexts(config, 'actions')
-  context.logger.info(
+  context.logger.debug(
     'action received - snapshot.data():',
     JSON.stringify(snapshot.data(), null, 2),
     ' params:',
@@ -46,7 +46,7 @@ const setupActionsFunction = (modules, config) => async (
 
   try {
     const results = await engine.dispatch(action)
-    await resolveAction(context, document, results[0])
+    await resolveAction(context, document, results)
   } catch (error) {
     await rejectAction(context, document, error)
     throw error

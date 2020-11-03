@@ -96,7 +96,13 @@ const createSingleQueryFactory = ({
       // queryPropStore
       if (first) {
         first = false
-        yield propStore.take()
+        yield new Promise((resolve, reject) => {
+          propStore.next({
+            complete: reject,
+            error: reject,
+            next: resolve
+          })
+        })
       }
     }
     return yield call(

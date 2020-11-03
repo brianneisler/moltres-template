@@ -12,7 +12,6 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -36,7 +35,6 @@ describe('withContext', () => {
         bay: 'bee',
         bim: 'bop'
       },
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -59,7 +57,6 @@ describe('withContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -77,14 +74,13 @@ describe('withContext', () => {
       bam: 'bow',
       bim: 'bop'
     })
-    expect(selector).toHaveBeenCalledWith(testContext)
+    expect(selector).toHaveBeenCalledWith(expect.objectContaining(testContext))
   })
 
   test('returns entire context when no parameters', async () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -95,20 +91,20 @@ describe('withContext', () => {
       return yield call(handler, { bam: 'bow' })
     }
 
-    expect(await runSaga(engine, method)).toEqual({
-      bam: 'bow',
-      bim: 'bop',
-      foo: 'bar',
-      logger: console,
-      source: 'https://moltres.io/test'
-    })
+    expect(await runSaga(engine, method)).toEqual(
+      expect.objectContaining({
+        bam: 'bow',
+        bim: 'bop',
+        foo: 'bar',
+        source: 'https://moltres.io/test'
+      })
+    )
   })
 
   test('returns entire context when no parameters', async () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -119,13 +115,14 @@ describe('withContext', () => {
       return yield call(handler, { bam: 'bow' })
     }
 
-    expect(await runSaga(engine, method)).toEqual({
-      bam: 'bow',
-      bim: 'bop',
-      foo: 'bar',
-      logger: console,
-      source: 'https://moltres.io/test'
-    })
+    expect(await runSaga(engine, method)).toEqual(
+      expect.objectContaining({
+        bam: 'bow',
+        bim: 'bop',
+        foo: 'bar',
+        source: 'https://moltres.io/test'
+      })
+    )
   })
 
   test('Integration: works in compose', async () => {
@@ -136,7 +133,6 @@ describe('withContext', () => {
       bim: 'bop',
       config: testConfig,
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -153,15 +149,16 @@ describe('withContext', () => {
       return yield call(handler, { bam: 'bow' })
     }
 
-    expect(await runSaga(engine, method)).toEqual({
-      bam: 'bow',
-      bim: 'bop',
-      config: {
-        fig: 'ure'
-      },
-      foo: 'bar',
-      logger: console,
-      source: 'https://moltres.io/test'
-    })
+    expect(await runSaga(engine, method)).toEqual(
+      expect.objectContaining({
+        bam: 'bow',
+        bim: 'bop',
+        config: {
+          fig: 'ure'
+        },
+        foo: 'bar',
+        source: 'https://moltres.io/test'
+      })
+    )
   })
 })

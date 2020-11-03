@@ -14,7 +14,7 @@ const renameCollection = async (context, OldSchema, NewSchema) => {
     const value = doc.data()
     await commitBatch(
       buildBatch(context, async (batch) => {
-        const data = validateSchema(NewSchema, cleanseData(value))
+        const data = validateSchema(NewSchema, cleanseData(NewSchema, value))
 
         const Collection = collection(NewSchema, context)
         const ref = Collection.doc(doc.id.toString())

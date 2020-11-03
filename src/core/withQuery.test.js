@@ -12,7 +12,6 @@ describe('withQuery', () => {
     }
     const testChannel = lockChannel()
     const testContext = {
-      logger: console,
       source: 'https://moltres.io/test'
     }
 
@@ -66,7 +65,6 @@ describe('withQuery', () => {
   test("if props don't change, should not call query builder", async () => {
     const testChannel = lockChannel()
     const testContext = {
-      logger: console,
       source: 'https://moltres.io/test'
     }
 
@@ -136,7 +134,6 @@ describe('withQuery', () => {
     }
     const testChannel = lockChannel()
     const testContext = {
-      logger: console,
       source: 'https://moltres.io/test'
     }
 
@@ -210,7 +207,6 @@ describe('withQuery', () => {
     }
     const testChannel = lockChannel()
     const testContext = {
-      logger: console,
       source: 'https://moltres.io/test'
     }
 

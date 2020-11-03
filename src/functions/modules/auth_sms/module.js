@@ -37,7 +37,7 @@ const enhance = compose(
 const mod = () => ({
   *run() {
     yield takeEvery(
-      UserRegisteredAction.type,
+      UserRegisteredAction.name,
       handleAction(
         enhance(function* (context, action) {
           const { config } = context
