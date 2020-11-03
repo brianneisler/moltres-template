@@ -7,7 +7,6 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -15,14 +14,15 @@ describe('getContext', () => {
       return yield* getContext()
     }
 
-    expect(await runSaga(engine, method)).toBe(testContext)
+    expect(await runSaga(engine, method)).toEqual(
+      expect.objectContaining(testContext)
+    )
   })
 
   test('gets the specified context path correctly', async () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -37,7 +37,6 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -56,7 +55,6 @@ describe('getContext', () => {
     const testContext = {
       bim: 'bop',
       foo: 'bar',
-      logger: console,
       source: 'https://moltres.io/test'
     }
     const engine = generateEngine({}, testContext)
@@ -64,11 +62,8 @@ describe('getContext', () => {
       return yield* getContext()
     }
 
-    expect(await runSaga(engine, method, testContext)).toEqual({
-      bim: 'bop',
-      foo: 'bar',
-      logger: console,
-      source: 'https://moltres.io/test'
-    })
+    expect(await runSaga(engine, method, testContext)).toEqual(
+      expect.objectContaining(testContext)
+    )
   })
 })

@@ -14,7 +14,7 @@ import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 
 const batchSetEntity = curry(
   async (Schema, context, batch, id, value, options = {}) => {
-    const data = validateSchema(Schema, cleanseData(value))
+    const data = validateSchema(Schema, cleanseData(Schema, value))
     const ref = refDocumentById(Schema, context, id)
     const document = await refGet(context, ref)
 

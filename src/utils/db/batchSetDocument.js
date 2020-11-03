@@ -10,12 +10,12 @@ const batchSetDocument = curry(
     const ref = refDocumentById(Schema, context, id)
     const prevData = document.data()
     if (!document.exists) {
-      data = addTimestamps(context, cleanseData(data))
+      data = addTimestamps(context, cleanseData(Schema, data))
     } else {
       data = addUpdatedAtTimestamp(
         context,
         // TODO BRN: Update this copy to use the Entity schema description
-        cleanseData({
+        cleanseData(Schema, {
           createdAt: prevData.createdAt,
           removedAt: prevData.removedAt,
           removedByEntityId: prevData.removedByEntityId,

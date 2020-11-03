@@ -21,7 +21,7 @@ const batchUpdateEntity = curry(
     const prevData = document.data()
     const nextData = validateSchema(
       Schema,
-      cleanseData({
+      cleanseData(Schema, {
         ...prevData,
         ...data
       })
@@ -34,7 +34,7 @@ const batchUpdateEntity = curry(
         batch,
         entityChangedAction(context, {
           changeType: UPDATE,
-          data: cleanseData(data),
+          data: cleanseData(Schema, data),
           entityId: ref.id,
           entityPath: ref.path,
           entityType: Schema.name,

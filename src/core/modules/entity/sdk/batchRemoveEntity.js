@@ -23,7 +23,7 @@ const batchRemoveEntity = curry(
     const prevData = document.data()
     validateSchema(
       Schema,
-      cleanseData({
+      cleanseData(Schema, {
         ...prevData,
         ...data
       })
@@ -34,7 +34,7 @@ const batchRemoveEntity = curry(
     if (!options.noChangeActions) {
       const action = entityChangedAction(context, {
         changeType: REMOVE,
-        data: cleanseData(data),
+        data: cleanseData(Schema, data),
         entityId: ref.id,
         entityPath: ref.path,
         entityType: Schema.name,

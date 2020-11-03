@@ -11,7 +11,7 @@ const batchUpdateDocument = curry((Schema, context, batch, id, data) => {
     ref,
     addUpdatedAtTimestamp(
       context,
-      convertDataToFirebase(context, cleanseData(data))
+      convertDataToFirebase(context, cleanseData(Schema, data))
     )
   )
   return ref

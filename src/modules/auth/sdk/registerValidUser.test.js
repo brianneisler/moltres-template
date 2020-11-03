@@ -26,7 +26,12 @@ const spec = describe('registerValidUser', () => {
 
     afterEach(async () => {
       try {
-        await deleteAction(context, action.action.type, action.action.id)
+        await deleteAction(
+          context,
+          action.action.type,
+          'queue',
+          action.action.id
+        )
       } catch (error) {
         context.logger.error(error)
       }
