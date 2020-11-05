@@ -5,10 +5,10 @@ const moveActionToResolved = moveActionFromBucketToBucket(
   'resolved'
 )
 
-const resolveAction = async (context, document, result) =>
+const resolveAction = async (context, document, results) =>
   moveActionToResolved(context, document, (data) => ({
     ...data,
-    result: JSON.stringify(result || null)
+    results: JSON.stringify(results || null)
   }))
 
 export default resolveAction

@@ -31,7 +31,7 @@ const mod = () => ({
 
     const contentType = request.get('content-type')
     const { body } = request
-    const event = await createEvent(context, {
+    const data = {
       data: encodeContentType(contentType, body),
       datacontenttype: contentType,
       id: `${body.team_id}:${body.event_id}`,
@@ -40,7 +40,8 @@ const mod = () => ({
       subject: 'slack',
       time: rfc3339TimestampString(new Date(body.event_time * 1000)),
       type: body.event.type
-    })
+    }
+    const event = await createEvent(context, data)
     await queueProcessEventAction(
       context,
       processEventAction(context, {

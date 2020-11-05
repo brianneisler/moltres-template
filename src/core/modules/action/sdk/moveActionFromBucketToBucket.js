@@ -24,7 +24,7 @@ const moveActionFromBucketToBucket = curry(
       }
 
       // WORKAROUND BRN: Firebase instance used to generate the Timestamp for this
-      // document is different then our firebase instance. So it thinks the
+      // document is different than our firebase instance. So it thinks the
       // Timestamps are custom objects when they really aren't.
       data = convertDataToFirebase(context, data)
       data = addUpdatedAtTimestamp(context, data)

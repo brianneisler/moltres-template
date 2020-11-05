@@ -12,7 +12,7 @@ import batchQueueEntityChangedAction from './batchQueueEntityChangedAction'
 
 const batchCreateEntity = curry(
   (Schema, context, batch, value, options = {}) => {
-    const data = validateSchema(Schema, cleanseData(value))
+    const data = validateSchema(Schema, cleanseData(Schema, value))
     const ref = batchCreateDocument(Schema, context, batch, data)
     batchCreateIndexes(Schema, context, batch, data, ref)
 

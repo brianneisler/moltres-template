@@ -10,8 +10,7 @@ describe('generateEngine', () => {
     }
     const context = {
       bar: 'def',
-      config,
-      logger: console
+      config
     }
     const testAction = {
       payload: 'bar',
@@ -28,50 +27,48 @@ describe('generateEngine', () => {
     }
     const modules = {
       foo: (modContext) => {
-        expect(modContext).toBe(context)
+        expect(modContext).toEqual(expect.objectContaining(context))
         return {
           reducer: testReducer
         }
       }
     }
-    const store = generateEngine(modules, config, context)
+    const store = generateEngine(modules, context)
     expect(store.getModules()).toEqual({
+      action: expect.any(Object),
+      api: expect.any(Object),
+      app: expect.any(Object),
       config: expect.any(Object),
       context: expect.any(Object),
       core: expect.any(Object),
+      entity: expect.any(Object),
       error: expect.any(Object),
+      event: expect.any(Object),
       firebase: expect.any(Object),
       foo: {
         reducer: testReducer
       },
+      index: expect.any(Object),
       logger: expect.any(Object),
       query: expect.any(Object),
-      ssr: expect.any(Object)
+      ssr: expect.any(Object),
+      test: expect.any(Object)
     })
     expect(store.getConfig()).toEqual({
       foo: 'abc'
     })
-    expect(store.getContext()).toEqual({
-      bar: 'def',
-      logger: console
-    })
+    expect(store.getContext()).toEqual(expect.objectContaining(context))
 
     store.dispatch(testAction)
     const state = store.getState()
     expect(state).toEqual({
+      app: expect.any(Object),
       config: {
         foo: 'abc'
       },
-      context: {
-        bar: 'def',
-        config: {
-          foo: 'abc'
-        },
-        logger: console
-      },
+      context: expect.objectContaining(context),
       core: expect.any(Object),
       error: expect.any(Object),
-      firebase: expect.any(Object),
       foo: {
         foo: 'bar'
       },
@@ -81,12 +78,10 @@ describe('generateEngine', () => {
 
   test('starts the engine and calls the setup and start methods', async () => {
     const testContext = {
-      config: {},
-      logger: console,
       source: 'https://moltres.io/test'
     }
     let wasCancelled = false
-    const testModule = {
+    const instance = {
       finally: jest.fn(),
       *run() {
         try {
@@ -101,6 +96,7 @@ describe('generateEngine', () => {
       start: jest.fn(),
       stop: jest.fn()
     }
+    const testModule = () => instance
     const engine = generateEngine(
       {
         test: testModule
@@ -108,15 +104,15 @@ describe('generateEngine', () => {
       testContext
     )
 
-    expect(testModule.setup).toHaveBeenCalledWith(engine, testModule)
-    expect(testModule.start).toHaveBeenCalledWith(engine, testModule)
-    expect(testModule.stop).not.toHaveBeenCalled()
+    expect(instance.setup).toHaveBeenCalledWith(engine, instance)
+    expect(instance.start).toHaveBeenCalledWith(engine, instance)
+    expect(instance.stop).not.toHaveBeenCalled()
     expect(wasCancelled).toBe(false)
 
     await stop(engine)
 
-    expect(testModule.stop).toHaveBeenCalledWith(engine, testModule)
-    expect(testModule.finally).toHaveBeenCalledWith(engine, testModule)
+    expect(instance.stop).toHaveBeenCalledWith(engine, instance)
+    expect(instance.finally).toHaveBeenCalledWith(engine, instance)
     expect(wasCancelled).toBe(true)
   })
 })

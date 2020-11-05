@@ -4,11 +4,12 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
-import { ConversationType, ConversationVisibility } from '../constants'
+} from '../../../../test'
+import { emptyAction } from '../actions'
+import { EmptyAction } from '../schemas'
 
-import createConversation from './createConversation'
-import deleteConversation from './deleteConversation'
+import deleteAction from './deleteAction'
+import queueAction from './queueAction'
 
 const spec = describe('createConversation', () => {
   describe('ServiceAccount', () => {
@@ -23,7 +24,7 @@ const spec = describe('createConversation', () => {
     afterEach(async () => {
       try {
         if (result) {
-          await deleteConversation(adminContext, result.id)
+          await deleteAction(adminContext, result.type, 'queue', result.id)
         }
       } catch (error) {
         context.logger.error(error)
@@ -32,19 +33,23 @@ const spec = describe('createConversation', () => {
       adminContext = await tearDownTestAdminContext(adminContext)
     })
 
-    it('can create a Conversation', async () => {
-      const data = {
-        type: ConversationType.GROUP,
-        visibility: ConversationVisibility.PUBLIC
-      }
-      result = await createConversation(context, data)
+    it('can queue an EmptyAction', async () => {
+      result = await queueAction(EmptyAction, context, emptyAction(context))
       expect(result).toEqual({
+        action: {
+          id: result.id,
+          payload: null,
+          source: expect.any(String),
+          specversion: '0.3-wip',
+          time: expect.any(String),
+          type: EmptyAction.name
+        },
         createdAt: expect.any(context.firebase.firestore.Timestamp),
-        id: expect.stringMatching(/^[a-zA-Z0-9]{20}$/),
+        id: expect.stringMatching(
+          /^[a-f0-9]{8}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{4}\-[a-f0-9]{12}$/
+        ),
         removedAt: null,
-        type: ConversationType.GROUP,
-        updatedAt: expect.any(context.firebase.firestore.Timestamp),
-        visibility: ConversationVisibility.PUBLIC
+        updatedAt: expect.any(context.firebase.firestore.Timestamp)
       })
     }, 20000)
   })

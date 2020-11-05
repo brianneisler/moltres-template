@@ -1,4 +1,4 @@
-import { curry, getProperty, isNil } from '../lang'
+import { curry, getProperty, hasProperty, isNil } from '../lang'
 
 import addTimestamps from './addTimestamps'
 import collection from './collection'
@@ -19,10 +19,17 @@ const batchCreateDocument = curry((Schema, context, batch, data) => {
 
   const { idField } = Schema
   let ref
-  if (isNil(idField)) {
-    ref = Collection.doc()
-  } else {
+  if (!isNil(idField)) {
+    if (idField !== 'id' && hasProperty('id', data)) {
+      throw new Error(
+        `Cannot define 'id' field in 'data' when the idField is set to '${idField}'. This can only be done when 'idField' is not set or when it is set to 'id'`
+      )
+    }
     ref = Collection.doc(getProperty(idField, data).toString())
+  } else if (hasProperty('id', data)) {
+    ref = Collection.doc(data.id.toString())
+  } else {
+    ref = Collection.doc()
   }
 
   batch.set(ref, addTimestamps(context, data))

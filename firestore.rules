@@ -219,6 +219,7 @@ service cloud.firestore {
         'ConversationMessage': 'ConversationMessages',
         'EntityStats': 'EntityStats',
         'Error': 'Errors',
+        'Event': 'Events',
         'Host': 'Hosts',
         'Image': 'Images',
         'Index': 'Indexes',
@@ -531,6 +532,10 @@ service cloud.firestore {
       return currentUserCausedActionMeta(auth, action.data.action.meta)
     }
 
+    function validateProcessEventPayload(payload) {
+      return isString(payload.eventId) && eventExistsAfter(payload.eventId);
+    }
+
     function validateEntityChangedPayload(payload) {
       return (
         isString(payload.changeType) &&
@@ -586,10 +591,14 @@ service cloud.firestore {
       return validateStorageObjectPayload(payload)
     }
 
-    // TODO BRN: Add support for storage actions
     function validateActionPayload(payload, type) {
       return (
-        type == 'ENTITY_CHANGED' &&
+        type == 'action.EmptyAction'
+      ) || (
+        type == 'event.ProcessEventAction'
+        && validateProcessEventPayload(payload)
+      ) || (
+        type == 'entity.EntityChangedAction' &&
         validateEntityChangedPayload(payload)
       ) || (
         type == 'auth.UserRegisteredAction' &&
@@ -613,7 +622,7 @@ service cloud.firestore {
 
     function validateActionMeta(meta, type) {
       return (
-        type == 'ENTITY_CHANGED' &&
+        type == 'entity.EntityChangedAction' &&
         validateEntityChangedMeta(meta)
       )
     }
@@ -624,7 +633,7 @@ service cloud.firestore {
         isString(action.source) &&
         action.specversion == '0.3-wip' &&
         matchesRFC3339Timestamp(action.time) &&
-        isMap(action.payload) &&
+        (isMap(action.payload) || action.payload == null) &&
         validateActionPayload(action.payload, type) &&
         (!has('meta', action) || validateActionMeta(action.meta, type))
     }
@@ -636,8 +645,8 @@ service cloud.firestore {
 
     function validateAction(action, type, id) {
       return validateTimestamped(action) &&
-        matchesUuidV4(action.id) &&
-        validateActionData(action.data, type, id)
+        matchesUuidV4(action.id)
+        && validateActionData(action.data, type, id);
     }
 
     function checkCreateQueueAction(auth, type, id) {
@@ -646,7 +655,8 @@ service cloud.firestore {
         currentUserIsServiceAccount(auth) ||
         currentUserHasAdminRole(auth) ||
         currentUserCausedAction(auth, action)
-      ) && (
+      )
+      && (
         validateAction(action, type, id) &&
         !actionExistsAfter(type, 'processing', id) &&
         !actionExistsAfter(type, 'resolved', id) &&
@@ -818,7 +828,8 @@ service cloud.firestore {
     }
 
     function validateConversationData(data) {
-      return isString(data.visibility)
+      return isString(data.visibility) &&
+        includes(data.type, ['CHANNEL', 'DIRECT', 'GROUP']);
     }
 
     function validateConversation(entity) {
@@ -1250,6 +1261,66 @@ service cloud.firestore {
       allow create: if checkCreateError(request.auth, getErrorAfter(id));
       allow update: if checkUpdateError(request.auth, getErrorAfter(id));
       allow delete: if checkDeleteError(request.auth);
+    }
+
+    // Event implementation
+    // -----------------------------
+
+    function getEventAfter(id) {
+      return getAfter(/$(databasePath())/Events/$(id))
+    }
+
+    function getEventBefore(id) {
+      return get(/$(databasePath())/Events/$(id))
+    }
+
+    function eventExistsAfter(id) {
+      return existsAfter(/$(databasePath())/Events/$(id))
+    }
+
+    function eventExistsBefore(id) {
+      return exists(/$(databasePath())/Events/$(id))
+    }
+
+    function validateEventData(data) {
+      return (isString(data.data) || data.data == null) &&
+        isString(data.datacontenttype) &&
+        isString(data.id) &&
+        isString(data.source) &&
+        data.specversion == '1.0' &&
+        (isString(data.subject) || data.subject == null) &&
+        matchesRFC3339Timestamp(data.time) &&
+        isString(data.type);
+    }
+
+    function validateEvent(entity) {
+      return validateEntityData(entity.data) &&
+        validateEventData(entity.data);
+    }
+
+    function checkReadEvent(auth) {
+      return currentUserIsServiceAccount(auth);
+    }
+
+    function checkCreateEvent(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
+        validateEvent(resourceAfter);
+    }
+
+    function checkUpdateEvent(auth, resourceAfter) {
+      return currentUserIsServiceAccount(auth) &&
+        validateEvent(resourceAfter);
+    }
+
+    function checkDeleteEvent(auth) {
+      return currentUserIsServiceAccount(auth);
+    }
+
+    match /Events/{id} {
+      allow read: if checkReadEvent(request.auth);
+      allow create: if checkCreateEvent(request.auth, getEventAfter(id));
+      allow update: if checkUpdateEvent(request.auth, getEventAfter(id));
+      allow delete: if checkDeleteEvent(request.auth);
     }
 
 

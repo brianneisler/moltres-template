@@ -1,12 +1,14 @@
+import Joi from 'joi'
+
 import { Action } from '../../action/schemas'
-import { Any, Object, String } from '../../core/schemas'
+import { Any, Array, Object, String } from '../../core/schemas'
 
 const SetContextAction = {
   name: 'context.SetContextAction',
   schema: Action.schema.keys({
     payload: Object.schema
       .keys({
-        selector: String.schema,
+        selector: Joi.alternatives(String.schema, Array.schema),
         value: Any.schema
       })
       .required()

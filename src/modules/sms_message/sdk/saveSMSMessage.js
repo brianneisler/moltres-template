@@ -7,7 +7,7 @@ import findSMSMessageById from './findSMSMessageById'
 import updateSMSMessage from './updateSMSMessage'
 
 const saveSMSMessage = async (context, data) => {
-  const value = validateSchema(SMSMessage, cleanseData(data))
+  const value = validateSchema(SMSMessage, cleanseData(SMSMessage, data))
   const existingSMSMessage = await findSMSMessageById(
     context,
     value.messageSid,

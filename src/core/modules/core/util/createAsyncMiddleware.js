@@ -1,23 +1,9 @@
 import { listPromise } from '../../../../utils/lang'
 
 const createAsyncMiddleware = () => () => (next) => (action) => {
-  // const promise = listPromise()
-  // action.promise = promise
-  // const result = next(action)
-
-  // setTimeout(() => {
-  //   promise.resolve()
-  // }, 0)
-  // return result
-
   const promise = listPromise()
   action.promise = promise
-  next(action)
-
-  setTimeout(() => {
-    promise.resolve()
-  }, 0)
-  return promise
+  return Promise.resolve(next(action)).then(() => promise.resolve())
 }
 
 export default createAsyncMiddleware
