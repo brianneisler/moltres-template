@@ -171,13 +171,18 @@ service cloud.firestore {
     }
 
     function currentUserHasAdminRole(auth) {
-      let role = getUserRoleBefore(auth.uid);
-      return role != null && role.data.role == 'admin';
+      let userRole = getUserRoleBefore(auth.uid);
+      return userRole != null && userRoleHasRole(userRole, 'admin')
     }
 
-    function currentUserHasHilRole(auth) {
-      let role = getUserRoleBefore(auth.uid);
-      return role != null && role.data.role == 'hil';
+    function currentUserHasRole(auth, roleName) {
+      let userRole = getUserRoleBefore(auth.uid);
+      return userRole != null && userRoleHasRole(userRole, roleName);
+    }
+
+        function userRoleHasRole(userRole, roleName){
+      let role = getRoleBefore(userRole.id, roleName);
+      return userRole != null && role != null && role.data.roleName == roleName;
     }
 
     function userIdEqualsAuthServiceAccountId(auth, userId) {
@@ -803,7 +808,7 @@ service cloud.firestore {
           currentUserIsConversationMember(auth, conversation) &&
           dataIsNotRemoved(conversation.data)
         ) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -812,7 +817,7 @@ service cloud.firestore {
     function currentUserCanCreateConversation(auth, conversation) {
       return (
         currentUserWillBeConversationOwner(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -821,7 +826,7 @@ service cloud.firestore {
     function currentUserCanUpdateConversation(auth, conversationAfter, conversationBefore) {
       return (
         currentUserIsConversationOwnerOrAdmin(auth, conversationBefore) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -908,7 +913,7 @@ service cloud.firestore {
     function currentUserCanReadConversationMember(auth, conversation) {
       return (
         currentUserIsConversationMember(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -922,7 +927,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMember)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       );
@@ -938,7 +943,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMemberBefore)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -1025,7 +1030,7 @@ service cloud.firestore {
           conversation.id == conversationMessage.data.conversationId &&
           currentUserIsConversationMember(auth, conversation)
         ) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -1052,7 +1057,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMessageBefore)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
