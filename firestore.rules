@@ -171,13 +171,18 @@ service cloud.firestore {
     }
 
     function currentUserHasAdminRole(auth) {
-      let role = getUserRoleBefore(auth.uid);
-      return role != null && role.data.role == 'admin';
+      let userRole = getUserRoleBefore(auth.uid);
+      return userRole != null && userRoleHasRole(userRole, 'admin')
     }
 
-    function currentUserHasHilRole(auth) {
-      let role = getUserRoleBefore(auth.uid);
-      return role != null && role.data.role == 'hil';
+    function currentUserHasRole(auth, roleName) {
+      let userRole = getUserRoleBefore(auth.uid);
+      return userRole != null && userRoleHasRole(userRole, roleName);
+    }
+
+    function userRoleHasRole(userRole, roleName){
+      let role = getRoleBefore(userRole.id, roleName);
+      return userRole != null && role != null && role.data.roleName == roleName;
     }
 
     function userIdEqualsAuthServiceAccountId(auth, userId) {
@@ -233,6 +238,7 @@ service cloud.firestore {
         'Preference': 'Preferences',
         'Queue':'Queues',
         'QueueEntity':'QueueEntities',
+        'Role':'Roles',
         'ServiceAccount': 'ServiceAccounts',
         'SMSChallenge': 'SMSChallenges',
         'SMSChannel': 'SMSChannels',
@@ -802,7 +808,7 @@ service cloud.firestore {
           currentUserIsConversationMember(auth, conversation) &&
           dataIsNotRemoved(conversation.data)
         ) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -811,7 +817,7 @@ service cloud.firestore {
     function currentUserCanCreateConversation(auth, conversation) {
       return (
         currentUserWillBeConversationOwner(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -820,7 +826,7 @@ service cloud.firestore {
     function currentUserCanUpdateConversation(auth, conversationAfter, conversationBefore) {
       return (
         currentUserIsConversationOwnerOrAdmin(auth, conversationBefore) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -907,7 +913,7 @@ service cloud.firestore {
     function currentUserCanReadConversationMember(auth, conversation) {
       return (
         currentUserIsConversationMember(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -921,7 +927,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMember)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       );
@@ -937,7 +943,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMemberBefore)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -1024,7 +1030,7 @@ service cloud.firestore {
           conversation.id == conversationMessage.data.conversationId &&
           currentUserIsConversationMember(auth, conversation)
         ) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -1051,7 +1057,7 @@ service cloud.firestore {
           currentUserOwnsResource(auth, conversationMessageBefore)
         ) ||
         currentUserIsConversationOwnerOrAdmin(auth, conversation) ||
-        currentUserHasHilRole(auth) ||
+        currentUserHasRole(auth,'hil') ||
         currentUserHasAdminRole(auth) ||
         currentUserIsServiceAccount(auth)
       )
@@ -2036,6 +2042,60 @@ service cloud.firestore {
       allow delete: if checkDeleteQueueEntity(request.auth);
     }
 
+    // Roles implementation
+    // -----------------------------
+
+    function getRoleAfter(id, index) {
+      return getAfter(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function getRoleBefore(id, index) {
+      return get(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function roleExistsAfter(id, index) {
+      return existsAfter(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function roleExistsBefore(id, index) {
+      return exists(/$(databasePath())/UserRoles/$(id)/Roles/$(index))
+    }
+
+    function validateRole(resource) {
+      return isString(resource.data.roleName) &&
+      resource.id == resource.data.roleName &&
+      userExistsBefore(resource.data.userId) &&
+      (resource.data.roleName == 'admin' || resource.data.roleName == 'hil')
+    }
+
+    function checkReadRole(auth, resource) {
+      return currentUserCanReadPrivateEntity(auth, resource, resource.userId)
+    }
+
+    function checkCreateRole(auth, id, index) {
+      let role = getRoleAfter(id, index);
+      return role != null && validateRole(role) &&
+        currentUserIsServiceAccount(auth)
+    }
+
+    function checkUpdateRole(auth, id, index) {
+      let queueEntity = getRoleAfter(id, index);
+      return queueEntity != null && validateRole(queueEntity) &&
+        currentUserIsServiceAccount(auth)
+    }
+
+    function checkDeleteRole(auth) {
+      // Only allow ServiceAccounts to delete
+      return currentUserIsServiceAccount(auth)
+    }
+
+    match /UserRoles/{id}/Roles/{index} {
+      allow read: if checkReadRole(request.auth, resource);
+      allow create: if checkCreateRole(request.auth, id, index);
+      allow update: if checkUpdateRole(request.auth, id, index);
+      allow delete: if checkDeleteRole(request.auth);
+    }
+
 
     // ServiceAccount implementation
     // -----------------------------
@@ -2615,8 +2675,7 @@ service cloud.firestore {
     function validateUserRole(resource) {
       return validateEntity(resource) &&
         resource.id == resource.data.userId &&
-        userExistsAfter(resource.data.userId) &&
-        resource.data.role == 'admin' // the only type of role at the moment
+        userExistsAfter(resource.data.userId)
     }
 
     match /UserRoles/{id} {
