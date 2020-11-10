@@ -180,7 +180,7 @@ service cloud.firestore {
       return userRole != null && userRoleHasRole(userRole, roleName);
     }
 
-        function userRoleHasRole(userRole, roleName){
+    function userRoleHasRole(userRole, roleName){
       let role = getRoleBefore(userRole.id, roleName);
       return userRole != null && role != null && role.data.roleName == roleName;
     }
