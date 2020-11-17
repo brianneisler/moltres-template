@@ -1,5 +1,6 @@
-import { StatusCode } from '../../../constants'
-import { first, isEmpty, isNil, isString, values } from '../../../utils/lang'
+import { StatusCode } from 'moltres/constants'
+import { first, isEmpty, isNil, isString, values } from 'moltres/lang'
+
 import { getRandomInternalPhoneNumber } from '../../internal_phone_number'
 import {
   findPhoneNumberByPhoneNumber,

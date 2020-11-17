@@ -4,7 +4,7 @@ import {
   IndexInteger,
   PositiveInteger,
   String
-} from '../../../core/schemas'
+} from 'moltres/core'
 
 const Queue = {
   collectionName: 'Queues',

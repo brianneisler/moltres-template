@@ -1,5 +1,6 @@
-import { Entity, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { values } from 'moltres/lang'
+
+import { Entity, String } from 'moltres/core'
 import { ConversationType, ConversationVisibility } from '../constants'
 
 const Conversation = {

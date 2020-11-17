@@ -1,8 +1,4 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { SubmissionError, validatePhoneNumber } from '../../../utils/form'
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -11,8 +7,12 @@ import {
   withActions,
   withHandlers,
   withReduxForm
-} from '../../../utils/react'
-import { buildLocation } from '../../../utils/url'
+} from 'moltres/react'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+import { SubmissionError, validatePhoneNumber } from 'moltres/form'
+import { buildLocation } from 'moltres/url'
 import {
   FieldTextInput,
   PageContainer,

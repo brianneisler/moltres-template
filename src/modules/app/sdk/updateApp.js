@@ -1,4 +1,4 @@
-import { updateEntity } from '../../../core/sdk'
+import { updateEntity } from 'moltres/core'
 import { App } from '../schemas'
 
 const updateApp = updateEntity(App)

@@ -3,7 +3,7 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
 
 import deleteImage from './deleteImage'
 import saveImageFromURL from './saveImageFromURL'

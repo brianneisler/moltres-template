@@ -1,4 +1,4 @@
-import { random, toString } from '../../../utils/lang'
+import { random, toString } from 'moltres/lang'
 
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import updateStatsShard from './updateStatsShard'

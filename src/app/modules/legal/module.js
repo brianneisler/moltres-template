@@ -1,7 +1,7 @@
-import { withConfig, withContext } from '../../../core'
+import { withConfig, withContext } from 'moltres/core'
 import { getPageByPath, queryAndWatchPage } from '../../../modules/page'
-import { compose } from '../../../utils/lang'
-import { call } from '../../../utils/redux'
+import { compose } from 'moltres/lang'
+import { call } from 'moltres/redux'
 
 const enhance = compose(withConfig(), withContext())
 const mod = () => ({

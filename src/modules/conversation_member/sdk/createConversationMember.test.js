@@ -4,7 +4,8 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { createConversation, deleteConversation } from '../../conversation'
 import { createUser, deleteUser } from '../../user'
 import { ConversationMemberRoles } from '../constants'

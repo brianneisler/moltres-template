@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../../utils/lang'
+import { curry, getPath } from 'moltres/lang'
 
 const selectRouterPreload = curry((pathname, state) =>
   getPath(['router', 'preloads', pathname], state)

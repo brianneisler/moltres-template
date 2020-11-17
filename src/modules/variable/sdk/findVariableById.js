@@ -1,4 +1,4 @@
-import { findDocumentById } from '../../../utils/db'
+import { findDocumentById } from 'moltres/db'
 import { Variable } from '../schemas'
 
 const findVariableById = findDocumentById(Variable)

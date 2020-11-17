@@ -1,6 +1,6 @@
 import { props } from 'bluebird'
+import { map } from 'moltres/lang'
 
-import { map } from '../../../utils/lang'
 import { getPhoneNumberById } from '../../phone_number'
 
 import findUserPhoneNumbersByUserId from './findUserPhoneNumbersByUserId'

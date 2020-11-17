@@ -1,11 +1,11 @@
 import { getPoperty } from 'moltres'
-
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { createHost, deleteHost } from '../../host'
 
 import createUrl from './createUrl'

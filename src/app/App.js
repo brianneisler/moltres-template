@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { compose } from '../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   setDisplayName,
   setPropTypes,
   storeShape,
   withContext
-} from '../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import Main from './Main'
 import { ConnectedRouter, Provider } from './components'

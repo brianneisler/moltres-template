@@ -1,4 +1,4 @@
-import { Object, String } from '../../../../core/schemas'
+import { Object, String } from 'moltres/core'
 
 const SlackApp = {
   name: 'slack.SlackApp',

@@ -1,6 +1,6 @@
-import { factoryAndWatchQuery } from '../../../core'
-import { invariant, isString } from '../../../utils/lang'
-import { call } from '../../../utils/redux'
+import { factoryAndWatchQuery } from 'moltres/core'
+import { invariant, isString } from 'moltres/lang'
+import { call } from 'moltres/redux'
 
 import enhanceNotification from './enhanceNotification'
 import refNotificationById from './refNotificationById'

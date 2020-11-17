@@ -1,4 +1,4 @@
-import { Any, Entity, Id, String } from '../../../core/schemas'
+import { Any, Entity, Id, String } from 'moltres/core'
 import { UserPreferences } from '../../user_preferences/schemas'
 
 const Preference = {

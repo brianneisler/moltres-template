@@ -1,4 +1,5 @@
-import { transactionGetEntity } from '../../../core/sdk'
+import { transactionGetEntity } from 'moltres/core'
+
 import { Conversation } from '../schemas'
 
 const transactionGetConversation = transactionGetEntity(Conversation)

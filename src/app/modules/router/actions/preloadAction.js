@@ -1,4 +1,4 @@
-import { actionBuilder } from '../../../../utils/redux'
+import { actionBuilder } from 'moltres/redux'
 import { PreloadAction } from '../schemas'
 
 const preloadAction = actionBuilder({

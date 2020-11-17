@@ -1,5 +1,5 @@
-import { buildBatch, commitBatch } from '../../../utils/db'
-import { all } from '../../../utils/lang'
+import { buildBatch, commitBatch } from 'moltres/db'
+import { all } from 'moltres/lang'
 import { batchDeletePhoneNumber } from '../../phone_number/sdk'
 
 import batchDeleteInternalPhoneNumber from './batchDeleteInternalPhoneNumber'

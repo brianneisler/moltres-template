@@ -1,4 +1,5 @@
-import expected from '../../../utils/error/expected'
+import { expected } from 'moltres/error'
+
 import { createInternalPhoneNumber } from '../../internal_phone_number/sdk'
 
 import findPhoneNumberByPhoneNumber from './findPhoneNumberByPhoneNumber'

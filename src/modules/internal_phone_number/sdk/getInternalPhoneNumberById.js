@@ -1,4 +1,5 @@
-import { getDocumentById } from '../../../utils/db'
+import { getDocumentById } from 'moltres/db'
+
 import { InternalPhoneNumber } from '../schemas'
 
 const getInternalPhoneNumberById = getDocumentById(InternalPhoneNumber)

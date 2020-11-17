@@ -1,4 +1,4 @@
-import { Entity, Integer, Object } from '../../../core/schemas'
+import { Entity, Integer, Object } from 'moltres/core'
 
 import EntityStats from './EntityStats'
 

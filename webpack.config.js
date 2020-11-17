@@ -1,13 +1,13 @@
 require('@babel/register')()
 const createExpoWebpackConfigAsync = require('@expo/webpack-config')
-const { merge } = require('moltres')
+const { loadProjectConfig } = require('moltres/config')
+const { merge } = require('moltres/lang')
 const webpack = require('webpack')
-
-const loadProjectConfig = require('./src/config/loadProjectConfig').default
 
 // Expo CLI will await this method so you can optionally return a promise.
 module.exports = async function (env, argv) {
   const config = await loadProjectConfig({
+    cwd: __dirname,
     dropSensitive: true,
     target: 'webpack'
   })

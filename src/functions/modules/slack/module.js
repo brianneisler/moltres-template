@@ -1,11 +1,11 @@
-import { StatusCode } from '../../../constants'
+import { StatusCode } from 'moltres/constants'
 import {
   createEvent,
   processEventAction,
   queueProcessEventAction
-} from '../../../core/modules/event'
-import { encodeContentType } from '../../../utils/request'
-import { rfc3339TimestampString } from '../../../utils/time'
+} from 'moltres/core'
+import { encodeContentType } from 'moltres/request'
+import { rfc3339TimestampString } from 'moltres/time'
 
 import { SlackConfig } from './schemas'
 import { isRequestChallenge, verifySlackRequest } from './util'

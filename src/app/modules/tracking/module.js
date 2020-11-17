@@ -1,6 +1,6 @@
-import { withContext } from '../../../core'
-import { compose } from '../../../utils/lang'
-import { handleAction, takeEvery } from '../../../utils/redux'
+import { withContext } from 'moltres/core'
+import { compose } from 'moltres/lang'
+import { handleAction, takeEvery } from 'moltres/redux'
 
 import { TrackAction } from './schemas'
 

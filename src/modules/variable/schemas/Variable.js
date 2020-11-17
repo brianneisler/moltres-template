@@ -1,4 +1,4 @@
-import { Any, Entity } from '../../../core/schemas'
+import { Any, Entity } from 'moltres/core'
 
 const Variable = {
   collectionName: 'Variables',

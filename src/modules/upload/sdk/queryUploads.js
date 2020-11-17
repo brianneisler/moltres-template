@@ -1,5 +1,6 @@
-import { buildQuery } from '../../../utils/db'
-import { curry, isUndefined } from '../../../utils/lang'
+import { buildQuery } from 'moltres/db'
+import { curry, isUndefined } from 'moltres/lang'
+
 import { Upload } from '../schemas'
 
 const queryUploads = curry((context, { userId }, queryOptions) =>

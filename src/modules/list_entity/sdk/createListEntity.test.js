@@ -3,7 +3,7 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
 import { Image } from '../../image/schemas'
 import { createImage, deleteImage } from '../../image/sdk'
 import { createList, deleteList } from '../../list/sdk'

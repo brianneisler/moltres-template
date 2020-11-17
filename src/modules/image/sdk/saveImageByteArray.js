@@ -1,8 +1,8 @@
-import { bufferToStream, createBuffer } from '../../../utils/buffer'
-import { getImageMeta } from '../../../utils/image'
-import { contentTypeToExtension } from '../../../utils/mime'
-import { uploadFileByteArray } from '../../../utils/storage'
-import { hashStream } from '../../../utils/stream'
+import { bufferToStream, createBuffer } from 'moltres/buffer'
+import { getImageMeta } from 'moltres/image'
+import { contentTypeToExtension } from 'moltres/mime'
+import { uploadFileByteArray } from 'moltres/storage'
+import { hashStream } from 'moltres/stream'
 
 import createImage from './createImage'
 import updateImage from './updateImage'

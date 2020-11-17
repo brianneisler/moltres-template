@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { compose, getPath, negate, sortBy } from '../../../utils/lang'
+import { compose, getPath, negate, sortBy } from 'moltres/lang'
 import {
   defaultProps,
   flattenPages,
   setDisplayName,
   setPropTypes,
   withPropsOnChange
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { Styles } from '../../styles'
 import FlatList from '../FlatList'
 

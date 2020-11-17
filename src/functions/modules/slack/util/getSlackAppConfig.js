@@ -1,4 +1,4 @@
-import { find, getPath, propEq } from '../../../../utils/lang'
+import { find, getPath, propEq } from 'moltres/lang'
 
 const getSlackAppConfig = ({ config }, slackAppId) =>
   find(propEq('appId', slackAppId), getPath(['slack', 'apps'], config))

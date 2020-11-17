@@ -1,5 +1,5 @@
-import { asyncHandler } from '../../../../utils/express'
-import { map, values, weakMemoize } from '../../../../utils/lang'
+import { asyncHandler } from 'moltres/express'
+import { map, values, weakMemoize } from 'moltres/lang'
 
 import { setupWebpackSSRHandler } from './util'
 

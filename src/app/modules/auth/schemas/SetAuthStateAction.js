@@ -1,4 +1,4 @@
-import { Action } from '../../../../core'
+import { Action } from 'moltres/core'
 
 import AuthState from './AuthState'
 

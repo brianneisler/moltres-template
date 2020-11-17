@@ -1,4 +1,4 @@
-import { deleteEntity } from '../../../core/sdk'
+import { deleteEntity } from 'moltres/core'
 import { ConversationMessage } from '../schemas'
 
 const deleteConversationMessage = deleteEntity(ConversationMessage)

@@ -1,11 +1,11 @@
-import { v4 as uuidv4 } from 'uuid'
-
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+import { v4 as uuidv4 } from 'uuid'
+
 import { createUser, deleteUser } from '../../user/sdk'
 
 import createAccessToken from './createAccessToken'

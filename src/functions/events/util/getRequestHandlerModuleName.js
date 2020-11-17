@@ -1,4 +1,4 @@
-import { split } from '../../../utils/lang'
+import { split } from 'moltres/lang'
 
 const getRequestHandlerModuleName = (request) => {
   // get the name of the module to check for handlers.

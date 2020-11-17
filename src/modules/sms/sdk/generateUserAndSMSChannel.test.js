@@ -3,7 +3,8 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { deletePendingUser } from '../../auth'
 import { generateInternalPhoneNumber } from '../../phone_number'
 import { deleteSMSChannel } from '../../sms_channel'

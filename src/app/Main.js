@@ -16,13 +16,8 @@ import {
   faTimes,
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
-import { InteractionManager, StyleSheet } from 'react-native'
-
-import { Scroll } from '../constants'
-import { selectAppConfig } from '../core'
-import { selectSSRConfig } from '../core/selectors'
-import { compose, getProperty } from '../utils/lang'
+import { selectAppConfig, selectSSRConfig } from 'moltres/core'
+import { compose, getProperty } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -31,7 +26,11 @@ import {
   withActions,
   withHandlers,
   withProps
-} from '../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { InteractionManager, StyleSheet } from 'react-native'
+
+import { Scroll } from '../constants'
 
 import {
   ActionSheet,

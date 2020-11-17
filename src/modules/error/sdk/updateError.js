@@ -1,4 +1,4 @@
-import { updateEntity } from '../../../core/sdk'
+import { updateEntity } from 'moltres/core'
 import { Error } from '../schemas'
 
 const updateError = updateEntity(Error)

@@ -4,7 +4,7 @@ import {
   getProperty,
   select,
   values
-} from '../../../../utils/lang'
+} from 'moltres/lang'
 
 const selectIsAnyModalVisible = select(
   createSelector('modal.instances', (instances) =>

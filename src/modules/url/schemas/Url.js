@@ -1,4 +1,4 @@
-import { Entity, Id, Number, String } from '../../../core/schemas'
+import { Entity, Id, Number, String } from 'moltres/core'
 
 const _Url = {
   collectionName: 'Urls',

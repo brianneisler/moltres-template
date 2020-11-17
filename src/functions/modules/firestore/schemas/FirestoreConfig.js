@@ -1,4 +1,4 @@
-import { Object, Uri } from '../../../../core/schemas'
+import { Object, Uri } from 'moltres/core'
 
 const FirestoreConfig = {
   name: 'firestore.FirestoreConfig',

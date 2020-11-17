@@ -1,5 +1,6 @@
-import { assoc } from '../../../utils/lang'
-import { handleActions } from '../../../utils/redux'
+import { assoc } from 'moltres/lang'
+
+import { handleActions } from 'moltres/redux'
 
 import * as actions from './actions'
 

@@ -1,4 +1,4 @@
-import { batchDeleteEntity } from '../../../core/sdk'
+import { batchDeleteEntity } from 'moltres/core'
 import { InternalPhoneNumber } from '../schemas'
 
 const batchDeleteInternalPhoneNumber = batchDeleteEntity(InternalPhoneNumber)

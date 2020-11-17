@@ -1,6 +1,6 @@
 import { NotificationSendState } from '../../../constants'
-import { Entity, Id, Object, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { Entity, Id, Object, String } from 'moltres/core'
+import { values } from 'moltres/lang'
 import { Notification } from '../../notification/schemas'
 
 const NotificationSend = {

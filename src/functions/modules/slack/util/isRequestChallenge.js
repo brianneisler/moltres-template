@@ -1,4 +1,4 @@
-import { isString } from '../../../../utils/lang'
+import { isString } from 'moltres/lang'
 
 const isRequestChallenge = (request) =>
   request.body && isString(request.body.challenge)

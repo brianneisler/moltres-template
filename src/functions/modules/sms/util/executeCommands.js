@@ -1,4 +1,4 @@
-import { map, values } from '../../../../utils/lang'
+import { map, values } from 'moltres/lang'
 
 import matchCommand from './matchCommand'
 

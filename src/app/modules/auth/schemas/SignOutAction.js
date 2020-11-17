@@ -1,4 +1,4 @@
-import { Action, Object } from '../../../../core/schemas'
+import { Action, Object } from 'moltres/core'
 
 const SignOutAction = {
   name: 'auth.SignOutAction',

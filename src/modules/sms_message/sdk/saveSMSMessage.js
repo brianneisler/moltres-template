@@ -1,5 +1,6 @@
-import { cleanseData } from '../../../utils/db'
-import { validateSchema } from '../../../utils/schema'
+import { cleanseData } from 'moltres/db'
+import { validateSchema } from 'moltres/schema'
+
 import { SMSMessage } from '../schemas'
 
 import createSMSMessage from './createSMSMessage'

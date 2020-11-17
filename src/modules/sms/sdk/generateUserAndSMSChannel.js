@@ -1,5 +1,6 @@
-import { StatusCode } from '../../../constants'
-import { isString } from '../../../utils/lang'
+import { StatusCode } from 'moltres/constants'
+import { isString } from 'moltres/lang'
+
 import { registerPendingUser } from '../../auth'
 import {
   findPhoneNumberByPhoneNumber,

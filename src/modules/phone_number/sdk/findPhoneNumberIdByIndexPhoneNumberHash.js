@@ -1,5 +1,5 @@
-import { Index } from '../../../core/schemas'
-import { collection, refGet } from '../../../utils/db'
+import { Index } from 'moltres/core'
+import { collection, refGet } from 'moltres/db'
 import { PhoneNumber } from '../schemas'
 
 // NOTE BRN: This does not have options because it is an index lookup, not a

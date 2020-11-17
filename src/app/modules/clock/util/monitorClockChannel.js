@@ -1,4 +1,4 @@
-import { call, handleChannel, put } from '../../../../utils/redux'
+import { call, handleChannel, put } from 'moltres/redux'
 import { clockTicked, setCurrentClock } from '../actions'
 
 import createClockChannel from './createClockChannel'

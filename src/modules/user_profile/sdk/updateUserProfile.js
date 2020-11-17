@@ -1,4 +1,5 @@
-import { updateEntity } from '../../../core/sdk'
+import { updateEntity } from 'moltres/core'
+
 import { UserProfile } from '../schemas'
 
 const updateUserProfile = updateEntity(UserProfile)

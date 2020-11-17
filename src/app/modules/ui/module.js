@@ -1,5 +1,5 @@
-import { assoc } from '../../../utils/lang'
-import { handleActions, select, take } from '../../../utils/redux'
+import { assoc } from 'moltres/lang'
+import { handleActions, select, take } from 'moltres/redux'
 
 import { UIDeinitializedAction, UIInitializedAction } from './schemas'
 import { selectUIInitialized } from './selectors'

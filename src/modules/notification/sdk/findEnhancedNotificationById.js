@@ -1,6 +1,6 @@
-import { removeQueryWatcher, selectQueryResults } from '../../../core'
-import { invariant, isString } from '../../../utils/lang'
-import { call, select } from '../../../utils/redux'
+import { removeQueryWatcher, selectQueryResults } from 'moltres/core'
+import { invariant, isString } from 'moltres/lang'
+import { call, select } from 'moltres/redux'
 
 import queryAndWatchNotification from './queryAndWatchNotification'
 

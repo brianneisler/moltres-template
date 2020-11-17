@@ -1,4 +1,4 @@
-import { curry, getPath, split } from '../../../utils/lang'
+import { curry, getPath, split } from 'moltres/lang'
 
 const renderNotification = curry((context, channelType, notification) => {
   const render = getPath(

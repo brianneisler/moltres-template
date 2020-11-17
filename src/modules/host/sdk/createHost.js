@@ -1,4 +1,4 @@
-import { createEntity } from '../../../core/sdk'
+import { createEntity } from 'moltres/core'
 import { Host } from '../schemas'
 
 const createHost = createEntity(Host)

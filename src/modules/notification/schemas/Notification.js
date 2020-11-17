@@ -1,4 +1,4 @@
-import { Entity, Id, Object, String } from '../../../core/schemas'
+import { Entity, Id, Object, String } from 'moltres/core'
 
 const Notification = {
   collectionName: 'Notifications',

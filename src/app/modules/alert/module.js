@@ -1,5 +1,5 @@
 import { ALERT } from '../../../constants/Modal'
-import { assoc } from '../../../utils/lang'
+import { assoc } from 'moltres/lang'
 import {
   call,
   handleAction,
@@ -8,7 +8,7 @@ import {
   put,
   takeEvery,
   trigger
-} from '../../../utils/redux'
+} from 'moltres/redux'
 import { actions as modalActions } from '../modal'
 
 import * as actions from './actions'

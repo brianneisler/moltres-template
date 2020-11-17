@@ -1,4 +1,5 @@
-import { getDocumentById } from '../../../utils/db'
+import { getDocumentById } from 'moltres/db'
+
 import { Page } from '../schemas'
 
 const getPageById = getDocumentById(Page)

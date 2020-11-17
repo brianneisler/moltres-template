@@ -1,5 +1,5 @@
-import { eventChannel, expandingBuffer } from '../../../../utils/redux'
-import { getNetworkInformation } from '../../../../utils/web'
+import { eventChannel, expandingBuffer } from 'moltres/redux'
+import { getNetworkInformation } from 'moltres/web'
 
 const createNetworkInformationChannel = (context) => {
   return eventChannel((emitter) => {

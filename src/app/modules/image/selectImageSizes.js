@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../utils/lang'
+import { curry, getPath } from 'moltres/lang'
 
 const selectImageSize = curry((uri, state) =>
   getPath(['image', 'sizes', uri], state)

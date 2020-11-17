@@ -1,7 +1,4 @@
 import { getProperty } from 'moltres'
-import { v4 as uuidv4 } from 'uuid'
-
-import { ACCESS_DENIED } from '../../../constants/Code'
 import {
   setupTestAdminContext,
   setupTestAnonymousContext,
@@ -11,7 +8,10 @@ import {
   tearDownTestAnonymousContext,
   tearDownTestServiceAccountContext,
   tearDownTestValidUserContext
-} from '../../../test'
+} from 'moltres/test'
+import { v4 as uuidv4 } from 'uuid'
+
+import { ACCESS_DENIED } from '../../../constants/Code'
 import { createUser, deleteUser } from '../../user/sdk'
 
 import createAccessToken from './createAccessToken'

@@ -1,4 +1,4 @@
-import { curry, getPath } from '../../../utils/lang'
+import { curry, getPath } from 'moltres/lang'
 
 const selectScrollTarget = curry((name, state) =>
   getPath(['scroll', 'targets', name], state)

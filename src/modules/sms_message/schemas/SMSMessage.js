@@ -5,7 +5,7 @@ import {
   Integer,
   Object,
   String
-} from '../../../core/schemas'
+} from 'moltres/core'
 
 const SMSMessage = {
   collectionName: 'SMSMessages',

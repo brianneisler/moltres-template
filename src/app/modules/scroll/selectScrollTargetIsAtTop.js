@@ -1,5 +1,6 @@
+import { curry, getPath } from 'moltres/lang'
+
 import { Scroll } from '../../../constants'
-import { curry, getPath } from '../../../utils/lang'
 
 const selectScrollTargetIsAtTop = curry((name, state) => {
   const scrollTop = getPath(['scroll', 'targets', name, 'scrollTop'], state)

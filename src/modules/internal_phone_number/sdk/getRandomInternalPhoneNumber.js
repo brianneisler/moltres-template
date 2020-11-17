@@ -1,4 +1,4 @@
-import { isEmpty, random, values } from '../../../utils/lang'
+import { isEmpty, random, values } from 'moltres/lang'
 
 import findAllInternalPhoneNumbers from './findAllInternalPhoneNumbers'
 

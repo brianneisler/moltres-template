@@ -1,5 +1,6 @@
-import { buildQuery } from '../../../utils/db'
-import { curry, isUndefined } from '../../../utils/lang'
+import { curry, isUndefined } from 'moltres/lang'
+
+import { buildQuery } from 'moltres/db'
 import { Notification } from '../schemas'
 
 const queryNotifications = curry((context, { userId }, queryOptions) =>

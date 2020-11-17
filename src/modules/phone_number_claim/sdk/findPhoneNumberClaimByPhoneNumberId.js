@@ -1,4 +1,4 @@
-import { findOneFromQuery } from '../../../utils/db'
+import { findOneFromQuery } from 'moltres/db'
 
 import queryPhoneNumberClaims from './queryPhoneNumberClaims'
 

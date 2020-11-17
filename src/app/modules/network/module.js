@@ -1,14 +1,15 @@
-import { WARN } from '../../../constants/StatusLevel'
-import { getContext } from '../../../core'
-import { assoc } from '../../../utils/lang'
+import { StatusLevel } from 'moltres/constants'
+import { getContext } from 'moltres/core'
+import { assoc } from 'moltres/lang'
 import {
   fork,
   handleAction,
   handleActions,
   put,
   takeEvery
-} from '../../../utils/redux'
-import { getNetworkInformation } from '../../../utils/web'
+} from 'moltres/redux'
+import { getNetworkInformation } from 'moltres/web'
+
 import { actions as statusActions } from '../status'
 
 import { setNetworkInformation } from './actions'
@@ -38,7 +39,7 @@ const mod = () => ({
         if (information && !information.isConnected) {
           yield put(
             statusActions.showStatusWithOptions(STATUS_NETWORK, {
-              level: WARN,
+              level: StatusLevel.WARN,
               message: 'No internet connection'
             })
           )

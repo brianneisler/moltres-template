@@ -1,4 +1,4 @@
-import { Action, Boolean, Object } from '../../../../core/schemas'
+import { Action, Boolean, Object } from 'moltres/core'
 
 const PreloadAction = {
   schema: Action.schema.keys({

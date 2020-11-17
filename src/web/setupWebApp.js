@@ -1,19 +1,23 @@
 // import * as serviceWorker from './sdkWorker'
 import * as Sentry from '@sentry/browser'
+import { loadProjectConfigSync } from 'moltres/config'
+import { generateEngine } from 'moltres/core'
+import { processCwd } from 'moltres/process'
+import { createHistory } from 'moltres/react'
 import { AppRegistry } from 'react-native'
 
 import { App } from '../app'
 import * as modules from '../app/modules'
-import { loadProjectConfigSync } from '../config'
-import { generateEngine } from '../core'
-import { createHistory } from '../utils/react'
 
 import setupWebContext from './setupWebContext'
 
 const setupWebApp = () => {
   const rootTag = document.getElementById('root')
   const history = createHistory()
-  const config = loadProjectConfigSync({ target: 'web' })
+  const config = loadProjectConfigSync({
+    cwd: processCwd(),
+    target: 'web'
+  })
 
   // TODO BRN: This is here because it needs to start as early as possible. Not
   // as clean as having it in a module though... :/

@@ -1,4 +1,4 @@
-import { batchRemoveEntity } from '../../../core/sdk'
+import { batchRemoveEntity } from 'moltres/core'
 import { Queue } from '../schemas'
 
 const batchRemoveQueue = batchRemoveEntity(Queue)

@@ -1,8 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { Easing, StyleSheet } from 'react-native'
-
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -12,7 +8,11 @@ import {
   withHandlers,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Easing, StyleSheet } from 'react-native'
+
 import { selectRouterAction, selectRouterLocation } from '../../modules/router'
 import Animated from '../Animated'
 import Switch from '../Switch'

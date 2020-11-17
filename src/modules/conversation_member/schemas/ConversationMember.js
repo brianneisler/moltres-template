@@ -1,5 +1,6 @@
-import { Entity, Id, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { Entity, Id, String } from 'moltres/core'
+import { values } from 'moltres/lang'
+
 import { Conversation } from '../../conversation'
 import { ConversationMemberRoles } from '../constants'
 

@@ -1,4 +1,4 @@
-import { setEntity } from '../../../core/sdk'
+import { setEntity } from 'moltres/core'
 import { ConversationMember } from '../schemas'
 
 const setConversationMember = setEntity(ConversationMember)

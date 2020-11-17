@@ -1,5 +1,5 @@
-import { buildTransaction, formatDocument } from '../../../utils/db'
-import { curry } from '../../../utils/lang'
+import { buildTransaction, formatDocument } from 'moltres/db'
+import { curry } from 'moltres/lang'
 import { batchUpdateQueue, getQueueById } from '../../queue/sdk'
 
 import batchRemoveQueueEntity from './batchRemoveQueueEntity'

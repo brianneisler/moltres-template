@@ -1,6 +1,6 @@
 import twilio from 'twilio'
 
-import { forEach } from '../../../../utils/lang'
+import { forEach } from 'moltres/lang'
 
 const { twiml } = twilio
 

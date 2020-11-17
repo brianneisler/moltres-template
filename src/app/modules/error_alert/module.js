@@ -1,5 +1,5 @@
-import { UncaughtExceptionAction } from '../../../core'
-import { put, takeEvery } from '../../../utils/redux'
+import { UncaughtExceptionAction } from 'moltres/core'
+import { put, takeEvery } from 'moltres/redux'
 import { showAlertWithOptions } from '../alert/actions'
 
 const mod = () => ({

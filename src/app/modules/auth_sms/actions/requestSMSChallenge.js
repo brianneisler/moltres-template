@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const requestSMSChallenge = createAction(
   'REQUEST_SMS_CHALLENGE',

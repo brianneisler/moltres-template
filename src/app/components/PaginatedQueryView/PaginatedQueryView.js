@@ -1,12 +1,9 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
 import {
   nextPageAction,
   selectQueryCursorNext,
   selectQueryResults
-} from '../../../core'
-import { compose } from '../../../utils/lang'
+} from 'moltres/core'
+import { compose } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -15,7 +12,10 @@ import {
   withActions,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { selectScrollTargetDistanceNearBottom } from '../../modules/scroll'
 import { Styles } from '../../styles'
 import ActivityIndicator from '../ActivityIndicator'

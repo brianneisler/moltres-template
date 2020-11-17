@@ -1,8 +1,8 @@
+import { compose, invariant, shallowEquals } from 'moltres/lang'
+import { lifecycle, setDisplayName, setPropTypes } from 'moltres/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { compose, invariant, shallowEquals } from '../../../utils/lang'
-import { lifecycle, setDisplayName, setPropTypes } from '../../../utils/react'
 import ActivityIndicator from '../ActivityIndicator'
 
 const enhance = compose(

@@ -1,4 +1,4 @@
-import { copyBufferToUint8Array } from '../../../utils/buffer'
+import { copyBufferToUint8Array } from 'moltres/buffer'
 
 import saveImageByteArray from './saveImageByteArray'
 

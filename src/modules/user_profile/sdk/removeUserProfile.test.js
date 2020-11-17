@@ -1,6 +1,4 @@
 import { getProperty } from 'moltres'
-
-import { ACCESS_DENIED } from '../../../constants/Code'
 import {
   setupTestAdminContext,
   setupTestAnonymousContext,
@@ -10,7 +8,9 @@ import {
   tearDownTestAnonymousContext,
   tearDownTestServiceAccountContext,
   tearDownTestValidUserContext
-} from '../../../test'
+} from 'moltres/test'
+
+import { ACCESS_DENIED } from '../../../constants/Code'
 import { createUser, deleteUser } from '../../user'
 
 import createUserProfile from './createUserProfile'

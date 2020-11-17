@@ -1,5 +1,5 @@
-import { buildQuery, findOneFromQuery } from '../../../utils/db'
-import { assoc } from '../../../utils/lang'
+import { buildQuery, findOneFromQuery } from 'moltres/db'
+import { assoc } from 'moltres/lang'
 import { ChannelContext } from '../schemas'
 
 const queryRecentChannelContext = (context, channelId, queryOptions) =>

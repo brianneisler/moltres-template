@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const setScrollPathnameTarget = createAction(
   'SCROLL:SET_SCROLL_PATHNAME_TARGET',

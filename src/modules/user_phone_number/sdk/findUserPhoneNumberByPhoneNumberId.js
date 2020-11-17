@@ -1,5 +1,5 @@
-import { findOneFromQuery } from '../../../utils/db'
-import { assoc } from '../../../utils/lang'
+import { findOneFromQuery } from 'moltres/db'
+import { assoc } from 'moltres/lang'
 
 import queryUserPhoneNumbers from './queryUserPhoneNumbers'
 

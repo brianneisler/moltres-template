@@ -5,7 +5,7 @@ TODO
 
 ```
 import { Action } from '../../action'
-import { Object, String } from '../../core'
+import { Object, String } from 'moltres/core'
 
 import Event from './Event'
 

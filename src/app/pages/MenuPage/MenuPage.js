@@ -1,13 +1,8 @@
+import { compose } from 'moltres/lang'
+import { defaultProps, memo, setDisplayName, withHandlers } from 'moltres/react'
 import React from 'react'
 
-import { compose } from '../../../utils/lang'
-import {
-  defaultProps,
-  memo,
-  setDisplayName,
-  withHandlers
-} from '../../../utils/react'
-import { buildLocation } from '../../../utils/url'
+import { buildLocation } from 'moltres/url'
 import {
   Icon,
   Link,

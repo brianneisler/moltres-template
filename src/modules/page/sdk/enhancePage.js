@@ -1,10 +1,6 @@
-import { withQuery } from '../../../core'
-import {
-  compose,
-  createSelector,
-  curry,
-  weakMemoize
-} from '../../../utils/lang'
+import { withQuery } from 'moltres/core'
+import { compose, createSelector, curry, weakMemoize } from 'moltres/lang'
+
 import { queryPageContents } from '../../page_content/sdk'
 
 const enhancePage = curry(

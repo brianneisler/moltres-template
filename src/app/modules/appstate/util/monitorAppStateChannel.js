@@ -1,4 +1,4 @@
-import { call, handleChannel, put } from '../../../../utils/redux'
+import { call, handleChannel, put } from 'moltres/redux'
 import { setAppState } from '../actions'
 
 import createAppStateChannel from './createAppStateChannel'

@@ -1,4 +1,4 @@
-import { refDocumentById } from '../../../utils/db'
+import { refDocumentById } from 'moltres/db'
 import { Url } from '../schemas'
 
 const refUrlById = refDocumentById(Url)

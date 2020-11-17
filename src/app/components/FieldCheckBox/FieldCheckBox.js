@@ -1,7 +1,7 @@
+import { compose } from 'moltres/lang'
+import { defaultProps, setDisplayName } from 'moltres/react'
 import React from 'react'
 
-import { compose } from '../../../utils/lang'
-import { defaultProps, setDisplayName } from '../../../utils/react'
 import { Colors, Styles } from '../../styles'
 import CheckBox from '../CheckBox'
 import Field from '../Field'

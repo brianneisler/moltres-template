@@ -1,11 +1,11 @@
-import { unexpected } from '../../../../../utils/error'
+import { unexpected } from 'moltres/error'
 import {
   forEach,
   getProperty,
   isFunction,
   isObject,
   map
-} from '../../../../../utils/lang'
+} from 'moltres/lang'
 
 const setupMiddleware = (store, app, order) => {
   const modules = map((name) => {

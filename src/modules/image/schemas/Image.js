@@ -1,6 +1,6 @@
 import { AllowedImageType } from '../../../constants'
-import { Entity, Id, Integer, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { Entity, Id, Integer, String } from 'moltres/core'
+import { values } from 'moltres/lang'
 
 const Image = {
   collectionName: 'Images',

@@ -1,4 +1,4 @@
-import fetch from '../../../../utils/request/fetch'
+import { fetch } from 'molres/request'
 
 const loadImageHeaders = async (url) => {
   const response = await fetch(url, {

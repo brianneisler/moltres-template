@@ -1,6 +1,6 @@
-import { batchDeleteEntity } from '../../../core/sdk'
-import { refGet } from '../../../utils/db'
-import { map, range } from '../../../utils/lang'
+import { batchDeleteEntity } from 'moltres/core'
+import { refGet } from 'moltres/db'
+import { map, range } from 'moltres/lang'
 import { EntityStats } from '../schemas'
 
 import batchDeleteStatsShard from './batchDeleteStatsShard'

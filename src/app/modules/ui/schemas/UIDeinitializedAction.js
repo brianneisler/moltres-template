@@ -1,4 +1,4 @@
-import { Action } from '../../../../core/schemas'
+import { Action } from 'moltres/core'
 
 const UIDeinitializedAction = {
   name: 'ui.UIDeinitializedAction',

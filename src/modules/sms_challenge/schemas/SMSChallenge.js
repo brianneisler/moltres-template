@@ -1,4 +1,4 @@
-import { Boolean, Entity, Id, Object, String } from '../../../core/schemas'
+import { Boolean, Entity, Id, Object, String } from 'moltres/core'
 
 const SMSChallenge = {
   collectionName: 'SMSChallenges',

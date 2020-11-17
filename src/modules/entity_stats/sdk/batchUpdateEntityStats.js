@@ -1,6 +1,6 @@
-import { batchUpdateEntity } from '../../../core/sdk'
-import { refGet } from '../../../utils/db'
-import { assoc, getProperty, hasProperty, omit } from '../../../utils/lang'
+import { batchUpdateEntity } from 'moltres/core'
+import { refGet } from 'moltres/db'
+import { assoc, getProperty, hasProperty, omit } from 'moltres/lang'
 import { EntityStats } from '../schemas'
 
 import batchUpdateStatsShard from './batchUpdateStatsShard'

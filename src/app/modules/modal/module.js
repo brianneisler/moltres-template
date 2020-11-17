@@ -1,5 +1,5 @@
-import { withConfig, withContext } from '../../../core'
-import { assocPath, compose, getPath, getProperty } from '../../../utils/lang'
+import { withConfig, withContext } from 'moltres/core'
+import { assocPath, compose, getPath, getProperty } from 'moltres/lang'
 import {
   call,
   handleAction,
@@ -7,8 +7,8 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/redux'
-import { buildLocation, omitLocationQuery } from '../../../utils/url'
+} from 'moltres/redux'
+import { buildLocation, omitLocationQuery } from 'moltres/url'
 import { pushRouteAction, selectRouterLocation } from '../router'
 import { trackAction } from '../tracking'
 

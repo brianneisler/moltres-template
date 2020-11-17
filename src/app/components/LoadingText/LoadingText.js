@@ -1,13 +1,13 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes,
   styleShape
-} from '../../../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import { Colors, Styles } from '../../styles'
 import View from '../View'
 

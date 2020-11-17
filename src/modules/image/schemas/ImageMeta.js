@@ -1,6 +1,6 @@
 import { AllowedImageType } from '../../../constants'
-import { Integer, Object, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { Integer, Object, String } from 'moltres/core'
+import { values } from 'moltres/lang'
 
 const ImageMeta = Object.schema.keys({
   contentType: String.schema.valid(...values(AllowedImageType)).required(),

@@ -1,7 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { compose, getProperty, hasProperty } from '../../../utils/lang'
+import { compose, getProperty, hasProperty } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -9,7 +6,10 @@ import {
   styleShape,
   withHandlers,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
 import Hoverable from '../Hoverable'
 import Text from '../Text'

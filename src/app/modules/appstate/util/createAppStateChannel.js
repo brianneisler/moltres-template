@@ -1,6 +1,6 @@
 import { AppState } from 'react-native'
 
-import { createExpandingEventListenerChannel } from '../../../../utils/redux'
+import { createExpandingEventListenerChannel } from 'moltres/redux'
 
 const createAppStateChannel = () =>
   createExpandingEventListenerChannel(AppState, 'change')

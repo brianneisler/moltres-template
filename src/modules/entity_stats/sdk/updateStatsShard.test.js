@@ -1,11 +1,11 @@
 import { getProperty, map, range } from 'moltres'
-
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { User, createUser, deleteUser } from '../../user'
 
 import deleteEntityStats from './deleteEntityStats'

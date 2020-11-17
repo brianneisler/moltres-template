@@ -1,4 +1,4 @@
-import { batchUpdateEntity } from '../../../core/sdk'
+import { batchUpdateEntity } from 'moltres/core'
 import { Error } from '../schemas'
 
 const batchUpdateError = batchUpdateEntity(Error)

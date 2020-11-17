@@ -1,12 +1,7 @@
+import { compose } from 'moltres/lang'
+import { connect, defaultProps, memo, setDisplayName } from 'moltres/react'
 import React from 'react'
 
-import { compose } from '../../../utils/lang'
-import {
-  connect,
-  defaultProps,
-  memo,
-  setDisplayName
-} from '../../../utils/react'
 import { NotificationList, PageContainer } from '../../components'
 import { selectCurrentUser } from '../../modules/auth'
 import { Styles } from '../../styles'

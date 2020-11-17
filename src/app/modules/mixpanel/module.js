@@ -1,6 +1,6 @@
-import { withConfig, withContext } from '../../../core'
-import { compose } from '../../../utils/lang'
-import { call, handleAction, takeEvery } from '../../../utils/redux'
+import { withConfig, withContext } from 'moltres/core'
+import { compose } from 'moltres/lang'
+import { call, handleAction, takeEvery } from 'moltres/redux'
 import { TrackAction } from '../tracking'
 
 import { mixpanelTrack } from './util'

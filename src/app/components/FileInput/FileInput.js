@@ -1,9 +1,5 @@
 import exif from 'exif-js'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { compose, noop } from '../../../utils/lang'
+import { compose, noop } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -11,7 +7,11 @@ import {
   styleShape,
   withHandlers,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import { Styles } from '../../styles'
 import View from '../View'
 

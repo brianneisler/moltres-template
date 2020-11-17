@@ -1,8 +1,9 @@
+import { withConfig, withContext } from 'moltres/core'
+import { compose, getProperty } from 'moltres/lang'
+import { handleAction } from 'moltres/redux'
+
 import { EntityChangeType } from '../../../constants'
-import { withConfig, withContext } from '../../../core'
-import { takeEveryEntityChanged } from '../../../core/sdk'
-import { compose, getProperty } from '../../../utils/lang'
-import { handleAction } from '../../../utils/redux'
+import { takeEveryEntityChanged } from 'moltres/core'
 
 import decrementEntityStat from './decrementEntityStat'
 import incrementEntityStat from './incrementEntityStat'

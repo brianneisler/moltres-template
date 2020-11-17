@@ -1,5 +1,5 @@
-import { batchCreateEntity } from '../../../core/sdk'
-import { assoc, getPropertyOr, omit } from '../../../utils/lang'
+import { batchCreateEntity } from 'moltres/core'
+import { assoc, getPropertyOr, omit } from 'moltres/lang'
 import { EntityStats } from '../schemas'
 
 import batchCreateStatsShard from './batchCreateStatsShard'

@@ -1,5 +1,4 @@
-import { createLogger } from '../../../utils/logger'
-import { errorLogger } from '../../../utils/logger/express-winston'
+import { createLogger, errorLogger } from 'moltres/logger'
 
 const mod = () => ({
   setupMiddleware() {

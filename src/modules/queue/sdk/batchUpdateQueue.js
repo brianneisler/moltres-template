@@ -1,4 +1,4 @@
-import { batchUpdateEntity } from '../../../core/sdk'
+import { batchUpdateEntity } from 'moltres/core'
 import { Queue } from '../schemas'
 
 const batchUpdateQueue = batchUpdateEntity(Queue)

@@ -1,4 +1,4 @@
-import { map, range } from '../../../../utils/lang'
+import { map, range } from 'moltres/lang'
 
 const parseSMSMessage = (requestBody) => {
   // Body: message

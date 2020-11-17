@@ -1,9 +1,9 @@
+import { compose } from 'moltres/lang'
+import { setDisplayName, setPropTypes } from 'moltres/react'
 import PropTypes from 'prop-types'
 
 import { ChannelType } from '../../../constants'
 import { renderNotification } from '../../../modules/notification'
-import { compose } from '../../../utils/lang'
-import { setDisplayName, setPropTypes } from '../../../utils/react'
 
 const enhance = compose(
   setDisplayName('NotificationView'),

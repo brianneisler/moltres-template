@@ -1,5 +1,5 @@
-import { expected } from '../../../utils/error'
-import { all, isString } from '../../../utils/lang'
+import { expected } from 'moltres/error'
+import { all, isString } from 'moltres/lang'
 import { getPhoneNumberById } from '../../phone_number'
 import { getSMSChannelById } from '../../sms_channel'
 

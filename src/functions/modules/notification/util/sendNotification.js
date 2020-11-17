@@ -12,8 +12,8 @@ import {
   generateSMSChannel,
   sendSMSMessageToChannel
 } from '../../../../modules/sms'
-import { nowTimestamp } from '../../../../utils/db'
-import { call } from '../../../../utils/redux'
+import { nowTimestamp } from 'moltres/db'
+import { call } from 'moltres/redux'
 
 const sendNotification = function* (context, enhancedNotification) {
   const smsChannel = yield call(generateSMSChannel, context, {

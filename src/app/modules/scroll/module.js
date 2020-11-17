@@ -1,5 +1,5 @@
 import { Scroll } from '../../../constants'
-import { assocPath, map, values } from '../../../utils/lang'
+import { assocPath, map, values } from 'moltres/lang'
 import {
   all,
   fork,
@@ -9,13 +9,13 @@ import {
   take,
   takeEvery,
   takeLatest
-} from '../../../utils/redux'
+} from 'moltres/redux'
 import {
   getClientHeight,
   getScrollHeight,
   getScrollTop,
   getWindow
-} from '../../../utils/web'
+} from 'moltres/web'
 import {
   preloadAction,
   preloadCompleteAction,

@@ -1,8 +1,7 @@
 import { connectRouter, routerMiddleware } from 'connected-react-router'
-
-import { Code, StatusCode } from '../../../constants'
-import { withContext } from '../../../core'
-import { expected } from '../../../utils/error'
+import { Code, StatusCode } from 'moltres/constants'
+import { withContext } from 'moltres/core'
+import { expected } from 'moltres/error'
 import {
   assoc,
   assocPath,
@@ -15,7 +14,7 @@ import {
   map,
   pipe,
   reduceRight
-} from '../../../utils/lang'
+} from 'moltres/lang'
 import {
   all,
   call,
@@ -24,8 +23,8 @@ import {
   reduceReducers,
   select,
   takeEvery
-} from '../../../utils/redux'
-import { buildLocation, matchPath } from '../../../utils/url'
+} from 'moltres/redux'
+import { buildLocation, matchPath } from 'moltres/url'
 
 import {
   preloadAction,

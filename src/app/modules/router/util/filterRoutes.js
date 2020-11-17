@@ -1,4 +1,4 @@
-import { append, concat, isArray, reduce, values } from '../../../../utils/lang'
+import { append, concat, isArray, reduce, values } from 'moltres/lang'
 
 const filterRoutes = (modules) =>
   reduce(

@@ -1,5 +1,5 @@
-import { buildTransaction, getFromRef } from '../../../utils/db'
-import { assoc, curry } from '../../../utils/lang'
+import { buildTransaction, getFromRef } from 'moltres/db'
+import { assoc, curry } from 'moltres/lang'
 import { batchUpdateQueue, getQueueById } from '../../queue/sdk'
 
 import batchCreateQueueEntity from './batchCreateQueueEntity'

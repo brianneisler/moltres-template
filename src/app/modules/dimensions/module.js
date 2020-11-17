@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 
-import { merge } from '../../../utils/lang'
-import { fork, handleActions } from '../../../utils/redux'
+import { merge } from 'moltres/lang'
+import { fork, handleActions } from 'moltres/redux'
 
 import { DimensionsChangedAction } from './schemas'
 import { monitorDimensions } from './util'

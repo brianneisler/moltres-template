@@ -1,8 +1,4 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { AuthState } from '../../../constants'
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -10,8 +6,12 @@ import {
   setPropTypes,
   styleShape,
   withPropsOnChange
-} from '../../../utils/react'
-import { buildLocation } from '../../../utils/url'
+} from 'moltres/react'
+import { buildLocation } from 'moltres/url'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+import { AuthState } from '../../../constants'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
 import { selectRouterLocationPathname } from '../../modules/router'
 import { Colors, Styles } from '../../styles'

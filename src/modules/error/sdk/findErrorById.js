@@ -1,4 +1,5 @@
-import { findDocumentById } from '../../../utils/db'
+import { findDocumentById } from 'moltres/db'
+
 import { Error } from '../schemas'
 
 const findErrorById = findDocumentById(Error)

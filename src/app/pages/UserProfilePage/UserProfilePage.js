@@ -1,18 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import {
-  selectAppConfig,
-  selectLoggerContext,
-  selectSSRConfig
-} from '../../../core'
-import {
-  compose,
-  getPathOr,
-  getProperty,
-  getPropertyOr
-} from '../../../utils/lang'
+import { compose, getPathOr, getProperty, getPropertyOr } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -21,7 +7,16 @@ import {
   withActions,
   withHandlers,
   withProps
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+import {
+  selectAppConfig,
+  selectLoggerContext,
+  selectSSRConfig
+} from 'moltres/core'
 import {
   Fragment,
   Link,

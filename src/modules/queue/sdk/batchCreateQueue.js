@@ -1,5 +1,6 @@
-import { batchCreateEntity } from '../../../core/sdk'
-import { assoc } from '../../../utils/lang'
+import { assoc } from 'moltres/lang'
+
+import { batchCreateEntity } from 'moltres/core'
 import { Queue } from '../schemas'
 
 const batchCreateQueue = (context, batch, data) => {

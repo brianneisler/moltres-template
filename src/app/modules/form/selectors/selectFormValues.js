@@ -1,6 +1,6 @@
 import { getFormValues } from 'redux-form'
 
-import { curry } from '../../../../utils/lang'
+import { curry } from 'moltres/lang'
 
 const selectFormValues = curry((formName, state) =>
   getFormValues(formName)(state)

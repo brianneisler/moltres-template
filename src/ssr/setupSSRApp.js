@@ -1,13 +1,10 @@
-import ReactDOMServer from 'react-dom/server'
-import MetaTagsServer from 'react-meta-tags/server'
-import { AppRegistry } from 'react-native-web'
-
-import { App } from '../app'
-import * as modules from '../app/modules'
-import { selectRouterResponse } from '../app/modules/router'
-import { locationChangeAction } from '../app/modules/router/actions'
-import { loadProjectConfig } from '../config'
-import { createEngine, selectUncaughtException, setup, start } from '../core'
+import { loadProjectConfig } from 'moltres/config'
+import {
+  createEngine,
+  selectUncaughtException,
+  setup,
+  start
+} from 'moltres/core'
 import {
   cacheMethod,
   isArray,
@@ -16,9 +13,18 @@ import {
   isObject,
   omit,
   walkMap
-} from '../utils/lang'
-import { createHistory } from '../utils/react'
-import { buildLocation } from '../utils/url'
+} from 'moltres/lang'
+import { pathResolve } from 'moltres/path'
+import { createHistory } from 'moltres/react'
+import { buildLocation } from 'moltres/url'
+import ReactDOMServer from 'react-dom/server'
+import MetaTagsServer from 'react-meta-tags/server'
+import { AppRegistry } from 'react-native-web'
+
+import { App } from '../app'
+import * as modules from '../app/modules'
+import { selectRouterResponse } from '../app/modules/router'
+import { locationChangeAction } from '../app/modules/router/actions'
 
 import setupSSRContext from './setupSSRContext'
 
@@ -79,6 +85,7 @@ const setupSSRApp = () => {
       render: async (context, url) => {
         const config = await loadProjectConfig(
           {
+            cwd: pathResolve(__dirname, '..', '..'),
             stage: context.config.stage,
             target: 'ssr'
           },

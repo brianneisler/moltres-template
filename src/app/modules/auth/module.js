@@ -1,10 +1,11 @@
-import { AuthState } from '../../../constants'
-import { withConfig, withContext } from '../../../core'
-import { mergeContextAction } from '../../../core/actions'
-import { FirebaseAuthStateChangedAction } from '../../../core/schemas'
-import { findUserById } from '../../../modules/user'
-import { getUserIdToken, signInWithIdToken, signOut } from '../../../utils/auth'
-import { append, assoc, compose, getProperty } from '../../../utils/lang'
+import { getUserIdToken, signInWithIdToken, signOut } from 'moltres/auth'
+import {
+  FirebaseAuthStateChangedAction,
+  mergeContextAction,
+  withConfig,
+  withContext
+} from 'moltres/core'
+import { append, assoc, compose, getProperty } from 'moltres/lang'
 import {
   all,
   call,
@@ -13,7 +14,10 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/redux'
+} from 'moltres/redux'
+
+import { AuthState } from '../../../constants'
+import { findUserById } from '../../../modules/user'
 import { actions as overlayActions } from '../overlay'
 import { pushRouteAction } from '../router/actions'
 

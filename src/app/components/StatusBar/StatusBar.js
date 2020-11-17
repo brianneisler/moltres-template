@@ -1,8 +1,5 @@
-import React from 'react'
-import { Easing, StyleSheet } from 'react-native'
-
-import { StatusLevel } from '../../../constants'
-import { compose } from '../../../utils/lang'
+import { StatusLevel } from 'moltres/constants'
+import { compose } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -13,7 +10,10 @@ import {
   withProps,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { Easing, StyleSheet } from 'react-native'
+
 import { selectCurrentStatus } from '../../modules/status'
 import { Colors, Styles } from '../../styles'
 import Animated from '../Animated'

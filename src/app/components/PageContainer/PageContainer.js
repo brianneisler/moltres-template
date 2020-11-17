@@ -1,9 +1,5 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { Fragment, MetaTags, View } from '..'
-import { selectAppConfig, selectSSRConfig } from '../../../core'
-import { compose, getProperty } from '../../../utils/lang'
+import { selectAppConfig, selectSSRConfig } from 'moltres/core'
+import { compose, getProperty } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -11,10 +7,16 @@ import {
   setDisplayName,
   setPropTypes,
   withProps
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import { selectFacebookConfig } from '../../modules/facebook'
 import { selectTwitterConfig } from '../../modules/twitter'
 import { Styles } from '../../styles'
+import Fragment from '../Fragment'
+import MetaTags from '../MetaTags'
+import View from '../View'
 
 const enhance = compose(
   setDisplayName('Page'),

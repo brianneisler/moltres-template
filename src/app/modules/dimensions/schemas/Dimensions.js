@@ -1,4 +1,4 @@
-import { Integer, Object } from '../../../../core/schemas'
+import { Integer, Object } from 'moltres/core'
 
 const Dimensions = {
   schema: Object.schema.keys({

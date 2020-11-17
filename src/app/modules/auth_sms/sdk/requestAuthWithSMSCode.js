@@ -1,5 +1,5 @@
-import { expected } from '../../../../utils/error'
-import fetch from '../../../../utils/request/fetch'
+import { expected } from 'moltres/error'
+import { fetch } from 'moltres/request'
 
 const requestAuthWithSMSCode = async ({ api }, { code, smsChallengeId }) => {
   const response = await fetch(`${api.url}/auth/sms/${smsChallengeId}`, {

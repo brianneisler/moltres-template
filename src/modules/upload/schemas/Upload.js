@@ -1,6 +1,7 @@
+import { values } from 'moltres/lang'
+
 import { UploadState } from '../../../constants'
-import { Entity, Id, Object, String } from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+import { Entity, Id, Object, String } from 'moltres/core'
 
 const Upload = {
   collectionName: 'Uploads',

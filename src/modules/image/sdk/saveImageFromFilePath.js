@@ -1,6 +1,6 @@
-import { copyBufferToUint8Array, streamToBuffer } from '../../../utils/buffer'
-import { createReadStream } from '../../../utils/fs'
-import { filePathToContentType } from '../../../utils/mime'
+import { copyBufferToUint8Array, streamToBuffer } from 'moltres/buffer'
+import { createReadStream } from 'moltres/fs'
+import { filePathToContentType } from 'moltres/mime'
 
 import saveImageByteArray from './saveImageByteArray'
 

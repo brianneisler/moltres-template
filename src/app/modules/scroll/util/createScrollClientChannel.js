@@ -1,6 +1,6 @@
 import { buffers, eventChannel } from 'redux-saga'
 
-import { getClientHeight, getScrollHeight } from '../../../../utils/web'
+import { getClientHeight, getScrollHeight } from 'moltres/web'
 
 const createScrollClientChannel = (target) => {
   let previousClientHeight = getClientHeight(target)

@@ -1,4 +1,4 @@
-import { deleteEntity } from '../../../core/sdk'
+import { deleteEntity } from 'moltres/core'
 import { ChannelContext } from '../schemas'
 
 const deleteChannelContext = deleteEntity(ChannelContext)
