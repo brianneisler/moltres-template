@@ -90,9 +90,18 @@
       }
     ],
     "rewrites": [
-      { "source": "/link/**", "dynamicLinks": true },
-      { "source": "/events/**", "function": "events" },
-      { "source": "/graphql", "function": "graphql" },
+      {
+        "source": "/link/**",
+        "dynamicLinks": true
+      },
+      {
+        "source": "/events/**",
+        "function": "events"
+      },
+      {
+        "source": "/graphql",
+        "function": "graphql"
+      },
       {
         "source": "**",
         "function": "app"
