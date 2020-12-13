@@ -1,14 +1,15 @@
 require('@babel/register')()
 const path = require('path')
 
+const { loadProjectConfig } = require('moltres/config')
+const { pathResolve } = require('moltres/path')
 const webpack = require('webpack')
-
-const loadProjectConfig = require('../../config/loadProjectConfig').default
 
 const { babelLoader } = require('./loaders')
 
 const webpackConfig = async () => {
   const config = await loadProjectConfig({
+    cwd: pathResolve(__dirname, '..', '..', '..'),
     dropSensitive: true,
     target: 'webpack'
   })

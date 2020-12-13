@@ -1,10 +1,10 @@
+import { compose, getProperty } from 'moltres/lang'
+import { connect, defaultProps, setDisplayName } from 'moltres/react'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import { Icon, Link, Text, TouchableOpacity, UserProfileImage, View } from '..'
 import { AuthState } from '../../../constants'
-import { compose, getProperty } from '../../../utils/lang'
-import { connect, defaultProps, setDisplayName } from '../../../utils/react'
 import { selectAuthState, selectCurrentUser } from '../../modules/auth'
 import { selectCurrentUserProfile } from '../../modules/user_profile'
 import { Styles } from '../../styles'

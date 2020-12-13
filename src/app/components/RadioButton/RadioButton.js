@@ -1,7 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { compose, noop, weakMemoize } from '../../../utils/lang'
+import { compose, noop, weakMemoize } from 'moltres/lang'
 import {
   defaultProps,
   memo,
@@ -11,7 +8,10 @@ import {
   withHandlers,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
 import Hoverable from '../Hoverable'
 import TouchableOpacity from '../TouchableOpacity'
 import View from '../View'

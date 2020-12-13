@@ -1,4 +1,4 @@
-import { buildBatch, commitBatch, getFromRef } from '../../../utils/db'
+import { buildBatch, commitBatch, getFromRef } from 'moltres/db'
 import { batchUpdatePhoneNumber } from '../../phone_number'
 
 import batchCreateUserPhoneNumber from './batchCreateUserPhoneNumber'

@@ -1,4 +1,4 @@
-import { isURL } from '../../../utils/url'
+import { isURL } from 'moltres/url'
 
 import { loadImageHeaders } from './util'
 

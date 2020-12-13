@@ -1,4 +1,4 @@
-import { compact } from '../../../../utils/lang'
+import { compact } from 'moltres/lang'
 
 import executeCommands from './executeCommands'
 

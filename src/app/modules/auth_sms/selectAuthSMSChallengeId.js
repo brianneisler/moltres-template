@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../utils/lang'
+import { createSelector, select } from 'moltres/lang'
 
 const selectAuthSMSChallengeId = select(
   createSelector('auth_sms.smsChallengeId')

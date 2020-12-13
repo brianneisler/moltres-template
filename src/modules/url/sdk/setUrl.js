@@ -1,4 +1,4 @@
-import { setEntity } from '../../../core/sdk'
+import { setEntity } from 'moltres/core'
 import { Url } from '../schemas'
 
 const setUrl = setEntity(Url)

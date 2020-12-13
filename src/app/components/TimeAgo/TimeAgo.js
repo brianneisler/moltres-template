@@ -1,14 +1,14 @@
+import { compose } from 'moltres/lang'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes,
   styleShape
-} from '../../../utils/react'
-import { formatTimeAgo } from '../../../utils/time'
+} from 'moltres/react'
+import { formatTimeAgo } from 'moltres/time'
 import Text from '../Text'
 
 import _styleSheet from './styleSheet'

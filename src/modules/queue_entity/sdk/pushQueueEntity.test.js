@@ -3,7 +3,8 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { createQueue, deleteQueue, getQueueById } from '../../queue'
 import { User, createUser, deleteUser } from '../../user'
 

@@ -1,11 +1,13 @@
-import { batchCreateEntity } from '../../../core/sdk'
+import {
+  hashPhoneNumber,
+  vaidateAndFormatPhoneNumber
+} from 'moltes/phone_number'
+import { batchCreateEntity } from 'moltres/core'
+
 import { PhoneNumber } from '../schemas'
 
-import formatPhoneNumber from './formatPhoneNumber'
-import hashPhoneNumber from './hashPhoneNumber'
-
 const batchCreatePhoneNumber = (context, batch, data) => {
-  const phoneNumber = formatPhoneNumber(data.phoneNumber)
+  const phoneNumber = vaidateAndFormatPhoneNumber(data.phoneNumber)
   const hash = hashPhoneNumber(phoneNumber)
 
   return batchCreateEntity(PhoneNumber, context, batch, {

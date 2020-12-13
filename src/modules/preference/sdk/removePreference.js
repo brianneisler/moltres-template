@@ -1,4 +1,4 @@
-import { removeEntity } from '../../../core/sdk'
+import { removeEntity } from 'moltres/core'
 import { Preference } from '../schemas'
 
 const removePreference = removeEntity(Preference)

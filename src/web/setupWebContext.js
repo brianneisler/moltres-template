@@ -1,5 +1,5 @@
-import createContext from '../context/createContext'
-import { buildLocation } from '../utils/url'
+import { createContext } from 'moltres/context'
+import { buildLocation } from 'moltres/url'
 
 const setupWebContext = (config, history) =>
   createContext({

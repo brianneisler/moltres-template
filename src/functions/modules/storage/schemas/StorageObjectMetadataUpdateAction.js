@@ -1,4 +1,4 @@
-import { Action, Integer, Object, String } from '../../../../core/schemas'
+import { Action, Integer, Object, String } from 'moltres/core'
 
 const StorageObjectMetadataUpdateAction = {
   schema: Action.schema.keys({

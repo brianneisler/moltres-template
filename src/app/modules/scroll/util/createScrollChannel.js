@@ -1,4 +1,4 @@
-import { createSlidingEventListenerChannel } from '../../../../utils/redux'
+import { createSlidingEventListenerChannel } from 'moltres/redux'
 
 const createScrollChannel = (target) =>
   createSlidingEventListenerChannel(target, 'scroll')

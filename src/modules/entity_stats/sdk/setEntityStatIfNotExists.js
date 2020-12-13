@@ -4,7 +4,7 @@ import {
   mergeDeepRight,
   random,
   reduce
-} from '../../../utils/lang'
+} from 'moltres/lang'
 
 import findOrCreateEntityStats from './findOrCreateEntityStats'
 import queryStatsShards from './queryStatsShards'

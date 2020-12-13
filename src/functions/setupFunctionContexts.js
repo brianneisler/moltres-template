@@ -1,8 +1,8 @@
-import { createAdminContext, createContext } from '../context'
+import { createAdminContext, createContext } from 'moltres/context'
 import * as sms from '../notifications/sms'
-import { signInWithIdToken } from '../utils/auth'
-import { isTestAppConfigured } from '../utils/config'
-import { uuidv4, weakMemoize } from '../utils/lang'
+import { signInWithIdToken } from 'moltres/auth'
+import { isTestAppConfigured } from 'moltres/config'
+import { uuidv4, weakMemoize } from 'moltres/lang'
 
 // NOTE BRN: We memoize this function so that when used to build the contexts on
 // backend invocations, we always get the same context back after the first invocation

@@ -1,4 +1,5 @@
-import { createEntity } from '../../../core/sdk'
+import { createEntity } from 'moltres/core'
+
 import { AccessToken } from '../schemas'
 
 const createAccessToken = createEntity(AccessToken)

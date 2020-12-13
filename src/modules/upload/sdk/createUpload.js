@@ -1,4 +1,5 @@
-import { createEntity } from '../../../core/sdk'
+import { createEntity } from 'moltres/core'
+
 import { Upload } from '../schemas'
 
 const createUpload = createEntity(Upload)

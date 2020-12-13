@@ -1,6 +1,0 @@
-export const CONSOLE = 'console'
-export const DESKTOP = 'desktop'
-export const MOBILE = 'mobile'
-export const SMART_TV = 'smarttv'
-export const TABLET = 'tablet'
-export const WEARABLE = 'wearable'

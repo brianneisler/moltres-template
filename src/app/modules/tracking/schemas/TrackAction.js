@@ -1,4 +1,4 @@
-import { Action, Object, String } from '../../../../core/schemas'
+import { Action, Object, String } from 'moltres/core'
 
 const TrackAction = {
   name: 'tracking.TrackAction',

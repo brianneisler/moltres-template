@@ -1,5 +1,5 @@
-import { buildQuery } from '../../../utils/db'
-import { curry, isUndefined } from '../../../utils/lang'
+import { buildQuery } from 'moltres/db'
+import { curry, isUndefined } from 'moltres/lang'
 import { EntityStats } from '../schemas'
 
 const queryEntityStats = curry(

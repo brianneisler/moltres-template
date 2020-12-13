@@ -1,4 +1,4 @@
-import { queryEntities } from '../../../core/sdk'
+import { queryEntities } from 'moltres/core'
 import { Host } from '../schemas'
 
 const queryHosts = queryEntities(Host)

@@ -1,5 +1,5 @@
-import { put, select } from '../../../../utils/redux'
-import { assocLocationQuery } from '../../../../utils/url'
+import { put, select } from 'moltres/redux'
+import { assocLocationQuery } from 'moltres/url'
 import { pushRouteAction, selectRouterLocation } from '../../router'
 
 const pushModalRoute = function* ({ name, options }) {

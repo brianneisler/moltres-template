@@ -1,5 +1,6 @@
-import { buildQuery } from '../../../utils/db'
-import { curry, isUndefined } from '../../../utils/lang'
+import { curry, isUndefined } from 'moltres/lang'
+
+import { buildQuery } from 'moltres/db'
 import { UserRole } from '../schemas'
 
 const queryUserRoles = curry((context, { userId }, queryOptions) =>

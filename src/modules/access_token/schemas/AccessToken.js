@@ -1,4 +1,4 @@
-import { Boolean, Entity, Id, String } from '../../../core/schemas'
+import { Boolean, Entity, Id, String } from 'moltres/core'
 
 const AccessToken = {
   collectionName: 'AccessTokens',

@@ -1,4 +1,4 @@
-import { queueAction } from '../../core/sdk'
+import { queueAction } from 'moltres/core'
 import { actions, schemas } from '../modules/storage'
 import setupFunctionContexts from '../setupFunctionContexts'
 

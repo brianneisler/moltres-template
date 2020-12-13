@@ -1,4 +1,4 @@
-import { removeEntity } from '../../../core/sdk'
+import { removeEntity } from 'moltres/core'
 import { QueueEntity } from '../schemas'
 
 const removeQueueEntity = removeEntity(QueueEntity)

@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const authWithSMSCode = createAction(
   'AUTH_WITH_SMS_CODE',

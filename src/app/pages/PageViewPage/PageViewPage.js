@@ -1,9 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { selectQueryResults } from '../../../core'
-import { hasNotFoundOrAccessDeniedError } from '../../../utils/db'
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   branch,
   connect,
@@ -12,7 +7,12 @@ import {
   renderComponent,
   setDisplayName,
   setPropTypes
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+
+import { selectQueryResults } from 'moltres/core'
+import { hasNotFoundOrAccessDeniedError } from 'moltres/db'
 import { PageView } from '../../components'
 import { Styles } from '../../styles'
 import NotFound404Page from '../NotFound404Page'

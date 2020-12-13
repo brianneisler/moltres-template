@@ -1,4 +1,4 @@
-import expected from '../../../utils/error/expected'
+import { expected } from 'moltres/error'
 
 const verifyPhoneNumber = (phoneNumber, { id, statusCode } = {}) => {
   if (!phoneNumber) {

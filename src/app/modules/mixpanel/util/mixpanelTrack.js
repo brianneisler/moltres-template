@@ -1,4 +1,4 @@
-import { append } from '../../../../utils/lang'
+import { append } from 'moltres/lang'
 
 const mixpanelTrack = async (mixpanel, { eventName, options, properties }) =>
   new Promise((resolve) => {

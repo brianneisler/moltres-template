@@ -1,4 +1,5 @@
-import { updateEntity } from '../../../core/sdk'
+import { updateEntity } from 'moltres/core'
+
 import { AccessToken } from '../schemas'
 
 const updateAccessToken = updateEntity(AccessToken)

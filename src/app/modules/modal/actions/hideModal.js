@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const hideModal = createAction('MODAL:HIDE_MODAL', (name) => ({
   name

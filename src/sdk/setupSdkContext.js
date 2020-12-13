@@ -1,4 +1,4 @@
-import createContext from '../context/createContext'
+import { createContext } from 'moltres/context'
 
 const setupSdkContext = (config) =>
   createContext({

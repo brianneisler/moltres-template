@@ -1,6 +1,6 @@
-import { StatusCode } from '../../constants'
-import { generateEngine } from '../../core'
-import { EngineState } from '../../core/constants'
+import { EngineState, StatusCode } from 'moltres/constants'
+import { generateEngine } from 'moltres/core'
+
 import setupFunctionContexts from '../setupFunctionContexts'
 
 import * as appModules from './modules'

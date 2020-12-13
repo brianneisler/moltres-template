@@ -3,7 +3,7 @@ import {
   call,
   handleChannel,
   slidingBuffer
-} from '../../../utils/redux'
+} from 'moltres/redux'
 
 import { clockTicked } from './actions'
 

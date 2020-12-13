@@ -1,4 +1,4 @@
-import { actionBuilder } from '../../../../utils/redux'
+import { actionBuilder } from 'moltres/redux'
 import { DimensionsChangedAction } from '../schemas'
 
 const dimensionsChangedAction = actionBuilder({

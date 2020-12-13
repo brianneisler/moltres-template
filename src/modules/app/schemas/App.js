@@ -1,4 +1,4 @@
-import { Entity, String } from '../../../core/schemas'
+import { Entity, String } from 'moltres/core'
 
 const App = {
   collectionName: 'Apps',

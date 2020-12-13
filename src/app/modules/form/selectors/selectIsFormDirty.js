@@ -1,6 +1,6 @@
 import { isDirty } from 'redux-form'
 
-import { curry } from '../../../../utils/lang'
+import { curry } from 'moltres/lang'
 
 const selectIsFormDirty = curry((formName, state) => isDirty(formName)(state))
 

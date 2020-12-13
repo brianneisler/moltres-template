@@ -1,5 +1,5 @@
-import { expected } from '../../../../utils/error'
-import fetch from '../../../../utils/request/fetch'
+import { expected } from 'moltres/error'
+import { fetch } from 'moltres/request'
 
 const requestAuthSMSChallenge = async ({ api }, { phoneNumber }) => {
   // NOTE BRN: Cookies should automatically be included with the request since

@@ -1,4 +1,5 @@
-import { findOrCreateEntity } from '../../../core/sdk'
+import { findOrCreateEntity } from 'moltres/core'
+
 import { Conversation } from '../schemas'
 
 const findOrCreateConversation = findOrCreateEntity(Conversation)

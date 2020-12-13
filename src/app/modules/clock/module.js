@@ -1,5 +1,5 @@
-import { assoc } from '../../../utils/lang'
-import { fork, handleActions, put } from '../../../utils/redux'
+import { assoc } from 'moltres/lang'
+import { fork, handleActions, put } from 'moltres/redux'
 
 import { setCurrentClock } from './actions'
 import { monitorClockChannel } from './util'

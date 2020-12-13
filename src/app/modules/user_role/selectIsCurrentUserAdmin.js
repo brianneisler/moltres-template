@@ -1,4 +1,4 @@
-import { createSelector, getProperty, select } from '../../../utils/lang'
+import { createSelector, getProperty, select } from 'moltres/lang'
 
 import selectCurrentUserRole from './selectCurrentUserRole'
 

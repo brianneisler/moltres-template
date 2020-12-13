@@ -1,4 +1,5 @@
-import { batchUpdateEntity } from '../../../core/sdk'
+import { batchUpdateEntity } from 'moltres/core'
+
 import { Conversation } from '../schemas'
 
 const batchUpdateConversation = batchUpdateEntity(Conversation)

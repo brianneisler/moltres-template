@@ -1,5 +1,5 @@
-import { buildBatch, commitBatch, getFromRef } from '../../../utils/db'
-import { curry } from '../../../utils/lang'
+import { buildBatch, commitBatch, getFromRef } from 'moltres/db'
+import { curry } from 'moltres/lang'
 
 import batchCreateQueue from './batchCreateQueue'
 

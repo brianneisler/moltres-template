@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const setStatus = createAction('STATUS:SET_STATUS', (name, status) => ({
   name,

@@ -1,4 +1,4 @@
-import { getDocumentById } from '../../../utils/db'
+import { getDocumentById } from 'moltres/db'
 import { Notification } from '../schemas'
 
 const getNotificationById = getDocumentById(Notification)

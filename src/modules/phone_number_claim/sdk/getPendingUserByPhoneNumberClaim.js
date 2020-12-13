@@ -1,9 +1,10 @@
-import { isNil, isString } from '../../../utils/lang'
+import { isNil, isString } from 'moltres/lang'
 import {
-  findPhoneNumberIdByIndexPhoneNumberHash,
-  formatPhoneNumber,
-  hashPhoneNumber
-} from '../../phone_number/sdk'
+  hashPhoneNumber,
+  validateAndFormatPhoneNumber
+} from 'moltres/phone_number'
+
+import { findPhoneNumberIdByIndexPhoneNumberHash } from '../../phone_number/sdk'
 import { getUserById } from '../../user/sdk'
 
 import findPhoneNumberClaimByPhoneNumberId from './findPhoneNumberClaimByPhoneNumberId'
@@ -19,7 +20,7 @@ const getPendingUserByPhoneNumberClaim = async (
   try {
     let phoneNumberId
     if (isString(phoneNumber)) {
-      const formattedPhoneNumber = formatPhoneNumber(phoneNumber)
+      const formattedPhoneNumber = validateAndFormatPhoneNumber(phoneNumber)
       const phoneNumberHash = hashPhoneNumber(formattedPhoneNumber)
       // NOTE: This is a lookup against the index table so
       // that client side systems can perform this lookup. This is a secure way of

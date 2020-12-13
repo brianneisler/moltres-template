@@ -1,13 +1,9 @@
+import { compose } from 'moltres/lang'
+import { defaultProps, setDisplayName, setPropTypes } from 'moltres/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { compose } from '../../../utils/lang'
-import {
-  defaultProps,
-  setDisplayName,
-  setPropTypes
-} from '../../../utils/react'
 import { Colors, Styles } from '../../styles'
 import Link from '../Link'
 import Text from '../Text'

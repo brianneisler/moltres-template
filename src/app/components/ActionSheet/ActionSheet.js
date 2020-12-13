@@ -1,9 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { Easing, InteractionManager, StyleSheet } from 'react-native'
-
-import { ACTION_SHEET } from '../../../constants/Modal'
-import { compose, isUndefined } from '../../../utils/lang'
+import { compose, isUndefined } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -16,7 +11,12 @@ import {
   withProps,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Easing, InteractionManager, StyleSheet } from 'react-native'
+
+import { ACTION_SHEET } from '../../../constants/Modal'
 import { selectDimensionsWindowHeight } from '../../modules/dimensions'
 import { actions as modalActions } from '../../modules/modal'
 import { Colors, Constants, Styles } from '../../styles'

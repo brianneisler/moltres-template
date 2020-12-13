@@ -6,8 +6,8 @@ import {
   Integer,
   String,
   Timestamp
-} from '../../../core/schemas'
-import { values } from '../../../utils/lang'
+} from 'moltres/core'
+import { values } from 'moltres/lang'
 import { Page } from '../../page/schemas'
 
 const PageContent = {

@@ -1,8 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { Dimensions, Easing, StyleSheet } from 'react-native'
-
-import { compose, isFunction, noop } from '../../../utils/lang'
+import { compose, isFunction, noop } from 'moltres/lang'
 import {
   defaultProps,
   lifecycle,
@@ -10,7 +6,11 @@ import {
   setPropTypes,
   withHandlers,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Dimensions, Easing, StyleSheet } from 'react-native'
+
 import { Colors } from '../../styles'
 import Animated from '../Animated'
 import Portal from '../Portal'

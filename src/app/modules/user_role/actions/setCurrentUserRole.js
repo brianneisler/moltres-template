@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const setCurrentUserRole = createAction(
   'USER_ROLE:SET_CURRENT_USER_ROLE',

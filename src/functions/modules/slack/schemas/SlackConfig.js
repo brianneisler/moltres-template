@@ -1,4 +1,4 @@
-import { Array, Object } from '../../../../core/schemas'
+import { Array, Object } from 'moltres/core'
 
 import SlackApp from './SlackApp'
 

@@ -1,7 +1,7 @@
+import { compose } from 'moltres/lang'
+import { defaultProps, memo, setDisplayName } from 'moltres/react'
 import React from 'react'
 
-import { compose } from '../../../utils/lang'
-import { defaultProps, memo, setDisplayName } from '../../../utils/react'
 import { PageContainer, Text, View } from '../../components'
 import { Styles } from '../../styles'
 

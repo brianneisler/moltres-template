@@ -1,4 +1,5 @@
-import { batchCreateEntity } from '../../../core/sdk'
+import { batchCreateEntity } from 'moltres/core'
+
 import { UserPhoneNumber } from '../schemas'
 
 const batchCreateUserPhoneNumber = batchCreateEntity(UserPhoneNumber)

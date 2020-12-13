@@ -1,4 +1,4 @@
-import { actionBuilder } from '../../../../utils/redux'
+import { actionBuilder } from 'moltres/redux'
 import { StorageObjectMetadataUpdateAction } from '../schemas'
 
 const storageObjectMetadataUpdate = actionBuilder({

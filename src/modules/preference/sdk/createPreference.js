@@ -1,4 +1,4 @@
-import { createEntity } from '../../../core/sdk'
+import { createEntity } from 'moltres/core'
 import { Preference } from '../schemas'
 
 const createPreference = createEntity(Preference)

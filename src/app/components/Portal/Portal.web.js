@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
-
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   defaultProps,
   lifecycle,
   setDisplayName,
   setPropTypes
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
 
 const enhance = compose(
   setDisplayName('Portal'),

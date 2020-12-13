@@ -1,4 +1,4 @@
-import { INFO } from '../../../constants/StatusLevel'
+import { StatusLevel } from 'moltres/constants'
 import {
   assoc,
   assocPath,
@@ -9,7 +9,7 @@ import {
   sort,
   values,
   wait
-} from '../../../utils/lang'
+} from 'moltres/lang'
 import {
   call,
   handleAction,
@@ -17,7 +17,7 @@ import {
   put,
   select,
   takeEvery
-} from '../../../utils/redux'
+} from 'moltres/redux'
 
 import * as actions from './actions'
 import selectStatusInstances from './selectStatusInstances'
@@ -66,7 +66,7 @@ const mod = () => ({
           actions.setStatus(name, {
             ...options,
             createdAt: Date.now(),
-            level: options.level || INFO,
+            level: options.level || StatusLevel.INFO,
             name,
             priority: options.priority || 0
           })

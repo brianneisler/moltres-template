@@ -1,6 +1,6 @@
-import { createContext } from '../context'
+import { createContext } from 'moltres/context'
 import * as component from '../notifications/component'
-import { uuidv4 } from '../utils/lang'
+import { uuidv4 } from 'moltres/lang'
 
 const setupSSRContext = (config, serviceAccountContext, history) => {
   const { cache, currentUser, serviceAccount } = serviceAccountContext

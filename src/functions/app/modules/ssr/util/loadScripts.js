@@ -4,7 +4,7 @@ import {
   map,
   reduce,
   values
-} from '../../../../../utils/lang'
+} from 'moltres/lang'
 
 import createScript from './createScript'
 

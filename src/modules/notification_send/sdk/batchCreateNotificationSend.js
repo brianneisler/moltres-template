@@ -1,4 +1,4 @@
-import { batchCreateEntity } from '../../../core/sdk'
+import { batchCreateEntity } from 'moltres/core'
 import { NotificationSend } from '../schemas'
 
 const batchCreateNotificationSend = batchCreateEntity(NotificationSend)

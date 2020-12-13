@@ -1,6 +1,6 @@
 import { AuthState } from '../../../../constants'
-import { String } from '../../../../core'
-import { values } from '../../../../utils/lang'
+import { String } from 'moltres/core'
+import { values } from 'moltres/lang'
 
 const AuthStateSchema = {
   name: 'auth.AuthState',

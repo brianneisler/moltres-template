@@ -1,5 +1,5 @@
-import { buildBatch, commitBatch } from '../../../utils/db'
-import { curry } from '../../../utils/lang'
+import { buildBatch, commitBatch } from 'moltres/db'
+import { curry } from 'moltres/lang'
 
 import batchDeleteEntityStats from './batchDeleteEntityStats'
 

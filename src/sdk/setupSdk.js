@@ -1,5 +1,6 @@
-import { generateEngine } from '../core'
-import { EngineState } from '../core/constants'
+import { EngineState } from 'moltres/constants'
+import { generateEngine } from 'moltres/core'
+
 import * as topModules from '../modules'
 
 import * as sdkModules from './modules'

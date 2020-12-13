@@ -1,6 +1,6 @@
-import { StatusCode } from '../../constants'
-import { generateEngine } from '../../core'
-import { EngineState } from '../../core/constants'
+import { EngineState, StatusCode } from 'moltres/constants'
+import { generateEngine } from 'moltres/core'
+
 import setupFunctionContexts from '../setupFunctionContexts'
 
 import { getRequestHandlerModuleName } from './util'
@@ -24,7 +24,8 @@ const setupEventsFunction = (modules, config) => {
         if (module.handleEventRequest) {
           return module.handleEventRequest(context, request, response)
         }
-        return response.sendStatus(StatusCode.BAD_REQUEST)
+        const eventModule = engine.getModule('event')
+        return eventModule.handleEventRequest(context, request, response)
       })
       .catch((error) => {
         // eslint-disable-next-line no-console

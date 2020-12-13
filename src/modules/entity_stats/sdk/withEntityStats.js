@@ -1,4 +1,4 @@
-import { withQuery, withSelectedProps } from '../../../core'
+import { withQuery, withSelectedProps } from 'moltres/core'
 import {
   compose,
   createSelector,
@@ -8,7 +8,7 @@ import {
   map,
   mergeDeepCount,
   values
-} from '../../../utils/lang'
+} from 'moltres/lang'
 
 import queryEntityStats from './queryEntityStats'
 import queryStatsShards from './queryStatsShards'

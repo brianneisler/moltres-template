@@ -1,4 +1,5 @@
-import { removeEntity } from '../../../core/sdk'
+import { removeEntity } from 'moltres/core'
+
 import { Conversation } from '../schemas'
 
 const removeConversation = removeEntity(Conversation)

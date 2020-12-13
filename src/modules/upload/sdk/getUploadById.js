@@ -1,4 +1,5 @@
-import { getDocumentById } from '../../../utils/db'
+import { getDocumentById } from 'moltres/db'
+
 import { Upload } from '../schemas'
 
 const getUploadById = getDocumentById(Upload)

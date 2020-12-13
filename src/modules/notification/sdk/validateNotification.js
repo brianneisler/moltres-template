@@ -1,4 +1,4 @@
-import { curry, getPath, split } from '../../../utils/lang'
+import { curry, getPath, split } from 'moltres/lang'
 
 const validateNotification = curry((context, channelType, notification) => {
   const validate = getPath(

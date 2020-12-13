@@ -1,5 +1,6 @@
-import { assocPath } from '../../../utils/lang'
-import { handleActions } from '../../../utils/redux'
+import { assocPath } from 'moltres/lang'
+
+import { handleActions } from 'moltres/redux'
 
 import { setImageSizes } from './actions'
 

@@ -1,7 +1,4 @@
-import React from 'react'
-import { TextInput as RNTextInput } from 'react-native'
-
-import { compose } from '../../../utils/lang'
+import { compose } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
@@ -9,7 +6,10 @@ import {
   useEffect,
   useState,
   withProps
-} from '../../../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { TextInput as RNTextInput } from 'react-native'
+
 import { Colors, StyleSheet, StyleSheets } from '../../styles'
 
 const enhance = compose(

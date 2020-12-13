@@ -1,4 +1,4 @@
-import { Entity, Id } from '../../../core/schemas'
+import { Entity, Id } from 'moltres/core'
 
 const InternalPhoneNumber = {
   collectionName: 'InternalPhoneNumbers',

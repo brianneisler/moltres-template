@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions'
-
-import { loadProjectConfigSync } from '../config'
-import * as coreModules from '../core/modules'
-import { getPath } from '../utils/lang'
-import { pathResolve } from '../utils/path'
+import { loadProjectConfigSync } from 'moltres/config'
+import * as coreModules from 'moltres/core/modules'
+import { getPath } from 'moltres/lang'
+import { pathResolve } from 'moltres/path'
 
 const setupFunctionConfig = (modules) => {
   return loadProjectConfigSync({

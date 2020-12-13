@@ -1,13 +1,13 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { compose, getProperty } from '../../../utils/lang'
+import { compose, getProperty } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
   withPropsOnChange,
   withState
-} from '../../../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import { Colors, Styles } from '../../styles'
 import Field from '../Field'
 import FileInput from '../FileInput'

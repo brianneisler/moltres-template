@@ -1,4 +1,4 @@
-import { Array, Entity, Id, String, Timestamp } from '../../../core/schemas'
+import { Array, Entity, Id, String, Timestamp } from 'moltres/core'
 import { Conversation } from '../../conversation'
 
 const ConversationMessage = {

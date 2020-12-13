@@ -1,5 +1,5 @@
-import { findAllFromQuery } from '../../../utils/db'
-import { curry } from '../../../utils/lang'
+import { findAllFromQuery } from 'moltres/db'
+import { curry } from 'moltres/lang'
 import { refQueueById } from '../../queue/sdk'
 
 import queryQueueEntities from './queryQueueEntities'

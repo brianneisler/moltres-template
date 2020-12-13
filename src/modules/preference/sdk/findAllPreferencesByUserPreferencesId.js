@@ -1,5 +1,5 @@
-import { findAllFromQuery } from '../../../utils/db'
-import { curry } from '../../../utils/lang'
+import { findAllFromQuery } from 'moltres/db'
+import { curry } from 'moltres/lang'
 import { refUserPreferencesById } from '../../user_preferences/sdk'
 
 import queryPreferences from './queryPreferences'

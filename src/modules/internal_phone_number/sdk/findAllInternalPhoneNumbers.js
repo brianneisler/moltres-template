@@ -1,5 +1,5 @@
-import { findAllFromQuery } from '../../../utils/db'
-import { cacheMethod, getProperty } from '../../../utils/lang'
+import { findAllFromQuery } from 'moltres/db'
+import { cacheMethod, getProperty } from 'moltres/lang'
 import { InternalPhoneNumber } from '../schemas'
 
 import queryInternalPhoneNumbers from './queryInternalPhoneNumbers'

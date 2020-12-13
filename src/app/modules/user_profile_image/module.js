@@ -1,7 +1,7 @@
-import { withConfig, withContext } from '../../../core'
+import { withConfig, withContext } from 'moltres/core'
 import { uploadUserProfileImage } from '../../../modules/user_profile_image'
-import { compose } from '../../../utils/lang'
-import { call, handleAction, select, takeEvery } from '../../../utils/redux'
+import { compose } from 'moltres/lang'
+import { call, handleAction, select, takeEvery } from 'moltres/redux'
 import { selectIdToken } from '../auth'
 
 import { UploadUserProfileImageAction } from './schemas'

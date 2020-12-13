@@ -1,14 +1,14 @@
+import { compose, isNil, noop } from 'moltres/lang'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { compose, isNil, noop } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes,
   styleShape,
   withHandlers
-} from '../../../utils/react'
+} from 'moltres/react'
 import { Colors, StyleSheet, StyleSheets, Styles } from '../../styles'
 import RadioButton from '../RadioButton'
 import Text from '../Text'

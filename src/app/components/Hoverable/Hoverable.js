@@ -1,7 +1,4 @@
-import { bool, element, func, oneOfType } from 'prop-types'
-import React from 'react'
-
-import { compose, noop } from '../../../utils/lang'
+import { compose, noop } from 'moltres/lang'
 import {
   defaultProps,
   memo,
@@ -11,7 +8,10 @@ import {
   useSelector,
   useState,
   withProps
-} from '../../../utils/react'
+} from 'moltres/react'
+import { bool, element, func, oneOfType } from 'prop-types'
+import React from 'react'
+
 import { selectHoverIsEnabled } from '../../modules/hover'
 
 const enhance = compose(

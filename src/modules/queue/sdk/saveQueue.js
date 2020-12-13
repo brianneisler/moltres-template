@@ -1,4 +1,4 @@
-import { saveEntity } from '../../../core/sdk'
+import { saveEntity } from 'moltres/core'
 import { Queue } from '../schemas'
 
 const saveQueue = saveEntity(Queue)

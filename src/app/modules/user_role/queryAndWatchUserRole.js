@@ -1,7 +1,7 @@
-import { factoryAndWatchQuery } from '../../../core'
+import { factoryAndWatchQuery } from 'moltres/core'
 import { refUserRoleById } from '../../../modules/user_role'
-import { invariant, isString } from '../../../utils/lang'
-import { call } from '../../../utils/redux'
+import { invariant, isString } from 'moltres/lang'
+import { call } from 'moltres/redux'
 
 const queryAndWatchUserRole = function* (context, userId, { handler } = {}) {
   invariant(isString(userId), 'userId must be a String')

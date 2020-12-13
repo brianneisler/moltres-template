@@ -1,12 +1,13 @@
+import { withConfig, withContext } from 'moltres/core'
+import { compose } from 'moltres/lang'
+import { call, handleAction } from 'moltres/redux'
+
 import { EntityChangeType } from '../../../constants'
-import { withConfig, withContext } from '../../../core'
-import { takeEveryEntityChanged } from '../../../core/sdk'
+import { takeEveryEntityChanged } from 'moltres/core'
 import {
   Notification,
   findEnhancedNotificationById
 } from '../../../modules/notification'
-import { compose } from '../../../utils/lang'
-import { call, handleAction } from '../../../utils/redux'
 
 import { sendNotification } from './util'
 

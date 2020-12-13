@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../../utils/lang'
+import { createSelector, select } from 'moltres/lang'
 
 const selectRouterLocation = select(createSelector('router.location'))
 

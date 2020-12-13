@@ -1,6 +1,6 @@
-import { copyBufferToUint8Array } from '../../../utils/buffer'
-import { fetch } from '../../../utils/request'
-import { isURL } from '../../../utils/url'
+import { copyBufferToUint8Array } from 'moltres/buffer'
+import { fetch } from 'moltres/request'
+import { isURL } from 'moltres/url'
 
 import saveImageByteArray from './saveImageByteArray'
 

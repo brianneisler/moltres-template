@@ -1,4 +1,5 @@
-import { refDocumentById } from '../../../utils/db'
+import { refDocumentById } from 'moltres/db'
+
 import { UserPreferences } from '../schemas'
 
 const refUserPreferencesById = refDocumentById(UserPreferences)

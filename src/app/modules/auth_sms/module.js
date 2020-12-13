@@ -1,5 +1,5 @@
-import { withConfig, withContext } from '../../../core'
-import { assoc, compose } from '../../../utils/lang'
+import { withConfig, withContext } from 'moltres/core'
+import { assoc, compose } from 'moltres/lang'
 import {
   call,
   handleAction,
@@ -8,8 +8,8 @@ import {
   select,
   take,
   takeEvery
-} from '../../../utils/redux'
-import { buildLocation } from '../../../utils/url'
+} from 'moltres/redux'
+import { buildLocation } from 'moltres/url'
 import {
   AuthStateChangedAction,
   selectAfterLogin,

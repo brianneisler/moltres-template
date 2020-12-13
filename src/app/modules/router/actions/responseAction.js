@@ -1,4 +1,4 @@
-import { actionBuilder } from '../../../../utils/redux'
+import { actionBuilder } from 'moltres/redux'
 import { ResponseAction } from '../schemas'
 
 const responseAction = actionBuilder({

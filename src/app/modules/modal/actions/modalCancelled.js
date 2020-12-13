@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const modalCancelled = createAction('MODAL:CANCELLED', (name) => ({
   name

@@ -1,4 +1,5 @@
-import loadProjectConfig from '../../src/config/loadProjectConfig'
+import { loadProjectConfig } from 'moltres/config'
+import { pathResolve } from 'moltres/path'
 
 const { log } = console
 // Silence log since we're using this for stdout
@@ -6,7 +7,11 @@ const { log } = console
 console.log = () => {}
 
 const exec = async (stage, key) => {
-  const config = await loadProjectConfig({ stage, target: 'script' })
+  const config = await loadProjectConfig({
+    cwd: pathResolve(__dirname, '..', '..', '..'),
+    stage,
+    target: 'script'
+  })
   if (config[key]) {
     log(config[key])
   }

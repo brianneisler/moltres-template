@@ -1,6 +1,6 @@
 import { Dimensions } from 'react-native'
 
-import { createSlidingEventListenerChannel } from '../../../../utils/redux'
+import { createSlidingEventListenerChannel } from 'moltres/redux'
 
 const createDimensionsChannel = () =>
   createSlidingEventListenerChannel(Dimensions, 'change')

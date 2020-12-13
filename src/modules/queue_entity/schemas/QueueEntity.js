@@ -1,4 +1,4 @@
-import { Entity, Id, Integer, String } from '../../../core/schemas'
+import { Entity, Id, Integer, String } from 'moltres/core'
 import { Queue } from '../../queue/schemas'
 
 const QueueEntity = {

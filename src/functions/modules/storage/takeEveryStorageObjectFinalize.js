@@ -1,5 +1,5 @@
-import { takeEvery } from '../../../utils/redux'
-import { matchPath } from '../../../utils/url'
+import { takeEvery } from 'moltres/redux'
+import { matchPath } from 'moltres/url'
 
 import { StorageObjectFinalizeAction } from './schemas'
 

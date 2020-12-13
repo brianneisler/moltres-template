@@ -1,4 +1,4 @@
-import { Action } from '../../../../core'
+import { Action } from 'moltres/core'
 
 import CurrentUser from './CurrentUser'
 

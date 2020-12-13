@@ -1,4 +1,4 @@
-import { Entity, Id, Object } from '../../../core/schemas'
+import { Entity, Id, Object } from 'moltres/core'
 
 const ChannelContext = {
   collectionName: 'ChannelContexts',

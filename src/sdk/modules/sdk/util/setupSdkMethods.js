@@ -1,4 +1,4 @@
-import { isObject, merge, reduce, values } from '../../../../utils/lang'
+import { isObject, merge, reduce, values } from 'moltres/lang'
 
 const setupSdkMethods = (store) =>
   reduce(

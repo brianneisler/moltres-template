@@ -1,4 +1,4 @@
-import { findAllFromQuery } from '../../../utils/db'
+import { findAllFromQuery } from 'moltres/db'
 
 import querySMSChannels from './querySMSChannels'
 

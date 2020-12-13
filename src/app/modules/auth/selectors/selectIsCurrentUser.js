@@ -1,4 +1,4 @@
-import { curry } from '../../../../utils/lang'
+import { curry } from 'moltres/lang'
 
 import selectCurrentUser from './selectCurrentUser'
 

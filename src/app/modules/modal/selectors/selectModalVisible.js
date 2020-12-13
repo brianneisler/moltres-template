@@ -1,4 +1,4 @@
-import { curry, getPropertyOr } from '../../../../utils/lang'
+import { curry, getPropertyOr } from 'moltres/lang'
 
 import selectModal from './selectModal'
 

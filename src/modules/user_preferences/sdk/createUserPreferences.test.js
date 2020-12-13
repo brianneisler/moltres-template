@@ -1,11 +1,11 @@
 import { getProperty } from 'moltres'
-
 import {
   setupTestAdminContext,
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { createUser, deleteUser } from '../../user'
 
 import createUserPreferences from './createUserPreferences'

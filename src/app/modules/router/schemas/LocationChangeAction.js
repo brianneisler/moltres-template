@@ -1,4 +1,4 @@
-import { Action, Object } from '../../../../core/schemas'
+import { Action, Object } from 'moltres/core'
 
 const LocationChangeAction = {
   schema: Action.schema.keys({

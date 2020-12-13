@@ -1,7 +1,8 @@
-import { generateEngine } from '../../core'
-import { processAction, rejectAction, resolveAction } from '../../core/sdk'
+import { generateEngine } from 'moltres/core'
+
+import { processAction, rejectAction, resolveAction } from 'moltres/core'
 import { User, findUserById } from '../../modules/user'
-import { assoc, hasProperty } from '../../utils/lang'
+import { assoc, hasProperty } from 'moltres/lang'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 // perform desired operations ...

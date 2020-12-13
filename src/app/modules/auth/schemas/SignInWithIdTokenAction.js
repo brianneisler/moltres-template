@@ -1,4 +1,4 @@
-import { Action, Object, String } from '../../../../core'
+import { Action, Object, String } from 'moltres/core'
 
 const SignInWithIdTokenAction = {
   name: 'auth.SignInWithIdTokenAction',

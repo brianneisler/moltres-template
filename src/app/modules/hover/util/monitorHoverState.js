@@ -5,8 +5,8 @@ import {
   handleChannel,
   put,
   select
-} from '../../../../utils/redux'
-import { canUseDOM } from '../../../../utils/web'
+} from 'moltres/redux'
+import { canUseDOM } from 'moltres/web'
 import { hoverStateChangedAction } from '../actions'
 import { selectHoverIsEnabled } from '../selectors'
 

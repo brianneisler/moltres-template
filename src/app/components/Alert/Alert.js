@@ -1,9 +1,4 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { ALERT } from '../../../constants/Modal'
-import { compose, getProperty, map } from '../../../utils/lang'
+import { compose, getProperty, map } from 'moltres/lang'
 import {
   defaultProps,
   memo,
@@ -11,7 +6,12 @@ import {
   setPropTypes,
   withActions,
   withHandlers
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
+import { ALERT } from '../../../constants/Modal'
 import { actions as modalActions } from '../../modules/modal'
 import { Colors, StyleSheets, Styles } from '../../styles'
 import Button from '../Button'

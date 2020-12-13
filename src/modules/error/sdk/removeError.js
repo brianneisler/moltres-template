@@ -1,4 +1,4 @@
-import { removeEntity } from '../../../core/sdk'
+import { removeEntity } from 'moltres/core'
 import { Error } from '../schemas'
 
 const removeError = removeEntity(Error)

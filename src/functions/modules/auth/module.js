@@ -1,5 +1,6 @@
+import { verifyIdToken } from 'moltres/auth'
+
 import { getUserById } from '../../../modules/user'
-import { verifyIdToken } from '../../../utils/auth'
 
 const mod = () => ({
   setupMiddleware: () => (request, response, next) => {

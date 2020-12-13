@@ -1,13 +1,9 @@
+import { compose, getPath, negate, reject, sortBy } from 'moltres/lang'
+import { setDisplayName, setPropTypes, withHandlers } from 'moltres/react'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import { Code } from '../../../constants'
-import { compose, getPath, negate, reject, sortBy } from '../../../utils/lang'
-import {
-  setDisplayName,
-  setPropTypes,
-  withHandlers
-} from '../../../utils/react'
 import EntityView from '../EntityView'
 import PaginatedQueryView from '../PaginatedQueryView'
 

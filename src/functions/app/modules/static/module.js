@@ -1,5 +1,5 @@
-import { serveStatic } from '../../../../utils/express'
-import { pathResolve } from '../../../../utils/path'
+import { serveStatic } from 'moltres/express'
+import { pathResolve } from 'moltres/path'
 
 const mod = () => ({
   setupStaticRouter(router) {

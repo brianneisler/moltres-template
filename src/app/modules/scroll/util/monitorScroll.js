@@ -1,4 +1,4 @@
-import { all, call, handleChannel, put } from '../../../../utils/redux'
+import { all, call, handleChannel, put } from 'moltres/redux'
 import { scrollEvent } from '../actions'
 
 import createScrollChannel from './createScrollChannel'

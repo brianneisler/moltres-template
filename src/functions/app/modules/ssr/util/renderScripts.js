@@ -6,7 +6,7 @@ import {
   map,
   sortBy,
   values
-} from '../../../../../utils/lang'
+} from 'moltres/lang'
 
 const renderProp = (value, prop) => {
   if (!value) {

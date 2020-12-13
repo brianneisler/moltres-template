@@ -1,5 +1,5 @@
-import { selectContext } from '../../../../core'
-import { call, handleChannel, put, select } from '../../../../utils/redux'
+import { selectContext } from 'moltres/core'
+import { call, handleChannel, put, select } from 'moltres/redux'
 import { dimensionsChangedAction } from '../actions'
 
 import createDimensionsChannel from './createDimensionsChannel'

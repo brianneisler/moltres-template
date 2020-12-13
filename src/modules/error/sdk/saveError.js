@@ -1,4 +1,4 @@
-import { saveEntity } from '../../../core/sdk'
+import { saveEntity } from 'moltres/core'
 import { Error } from '../schemas'
 
 const saveError = saveEntity(Error)

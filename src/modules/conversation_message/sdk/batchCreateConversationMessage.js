@@ -1,4 +1,4 @@
-import { batchCreateEntity } from '../../../core/sdk'
+import { batchCreateEntity } from 'moltres/core'
 import { ConversationMessage } from '../schemas'
 
 const batchCreateConversationMessage = batchCreateEntity(ConversationMessage)

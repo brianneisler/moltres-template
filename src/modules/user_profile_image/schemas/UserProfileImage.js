@@ -1,4 +1,4 @@
-import { Entity, Id } from '../../../core/schemas'
+import { Entity, Id } from 'moltres/core'
 
 // NOTE: These are used to track all user profile images the user has added. In
 // the event the user changes their profile image, this maintains a record of which

@@ -1,6 +1,6 @@
 import { put, select } from 'redux-saga/effects'
 
-import { isURL } from '../../../utils/url'
+import { isURL } from 'moltres/url'
 
 import { setImageSizes } from './actions'
 import selectImageSizes from './selectImageSizes'

@@ -1,5 +1,5 @@
-import getImageMeta from '../../../utils/image/getImageMeta'
-import downloadFile from '../../../utils/storage/downloadFile'
+import { getImageMeta } from 'moltres/image'
+import { downloadFile } from 'moltres/storage'
 
 import getImageById from './getImageById'
 import updateImage from './updateImage'

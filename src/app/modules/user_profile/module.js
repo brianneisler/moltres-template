@@ -1,17 +1,18 @@
-import { withConfig, withContext } from '../../../core'
-import { getUserById } from '../../../modules/user'
-import {
-  queryAndWatchUserProfile,
-  saveUserProfile
-} from '../../../modules/user_profile'
-import { assoc, compose } from '../../../utils/lang'
+import { withConfig, withContext } from 'moltres/core'
+import { assoc, compose } from 'moltres/lang'
 import {
   call,
   fork,
   handleAction,
   handleActions,
   takeEvery
-} from '../../../utils/redux'
+} from 'moltres/redux'
+
+import { getUserById } from '../../../modules/user'
+import {
+  queryAndWatchUserProfile,
+  saveUserProfile
+} from '../../../modules/user_profile'
 import { watchCurrentUser } from '../auth'
 
 import { SaveUserProfileAction, SetCurrentUserProfileAction } from './schemas'

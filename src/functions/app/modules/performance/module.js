@@ -1,5 +1,6 @@
-import { readFileSync } from '../../../../utils/fs'
-import { pathResolve } from '../../../../utils/path'
+import { pathResolve } from 'moltres/path'
+
+import { readFileSync } from 'moltres/fs'
 
 // TODO BRN: Replace this with raw-loader once we swtich to using webpack for
 // `functions` code.

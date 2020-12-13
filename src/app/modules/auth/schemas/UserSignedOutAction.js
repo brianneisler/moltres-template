@@ -1,4 +1,4 @@
-import { Action, Id, Object, Timestamp } from '../../../../core'
+import { Action, Id, Object, Timestamp } from 'moltres/core'
 
 const UserSignedOutAction = {
   name: 'auth.UserSignedOutAction',

@@ -1,5 +1,5 @@
-import { merge } from '../../../utils/lang'
-import { fork, handleActions } from '../../../utils/redux'
+import { merge } from 'moltres/lang'
+import { fork, handleActions } from 'moltres/redux'
 
 import { HoverStateChangedAction } from './schemas'
 import { monitorHoverState } from './util'

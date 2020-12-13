@@ -1,5 +1,6 @@
-import { findOneFromQuery } from '../../../utils/db'
-import { assoc } from '../../../utils/lang'
+import { assoc } from 'moltres/lang'
+
+import { findOneFromQuery } from 'moltres/db'
 
 import queryUserImages from './queryUserImages'
 

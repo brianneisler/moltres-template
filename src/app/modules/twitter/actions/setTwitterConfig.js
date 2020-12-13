@@ -1,4 +1,4 @@
-import { createAction } from '../../../../utils/redux'
+import { createAction } from 'moltres/redux'
 
 const setTwitterConfig = createAction('SET_TWITTER_CONFIG', (config) => ({
   config

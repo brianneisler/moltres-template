@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { compose, noop } from '../../../utils/lang'
+import { compose, noop } from 'moltres/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes,
   styleShape
-} from '../../../utils/react'
+} from 'moltres/react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet } from 'react-native'
 
 const enhance = compose(
   setDisplayName('CheckBox'),

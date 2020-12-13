@@ -1,4 +1,4 @@
-import contextModule from '../../../core/modules/context'
+import { context as contextModule } from 'moltres/core/modules'
 
 // HACK BRN: For right now we extend the module in this way. Instead, it would
 // be better to use code splitting for this but we need to setup webpack for

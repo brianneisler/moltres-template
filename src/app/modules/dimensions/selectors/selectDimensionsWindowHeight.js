@@ -1,4 +1,4 @@
-import { createSelector, select } from '../../../../utils/lang'
+import { createSelector, select } from 'moltres/lang'
 
 const selectDimensionsWindowHeight = select(
   createSelector('dimensions.window.height')

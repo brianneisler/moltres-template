@@ -1,4 +1,5 @@
-import { compose, curry, weakMemoize } from '../../../utils/lang'
+import { compose, curry, weakMemoize } from 'moltres/lang'
+
 import { withEntityStats } from '../../entity_stats'
 import { User } from '../../user'
 

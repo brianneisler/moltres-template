@@ -1,4 +1,4 @@
-import { parseSearch } from '../../../../utils/url'
+import { parseSearch } from 'moltres/url'
 import { selectRouterLocationSearch } from '../../router'
 
 const selectAfterLogin = (state) => {

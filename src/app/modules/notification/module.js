@@ -1,8 +1,8 @@
 import { AuthState } from '../../../constants'
-import { withConfig, withContext } from '../../../core'
+import { withConfig, withContext } from 'moltres/core'
 import { queryAndWatchUserEnhancedNotifications } from '../../../modules/notification'
-import { compose } from '../../../utils/lang'
-import { call, fork, select } from '../../../utils/redux'
+import { compose } from 'moltres/lang'
+import { call, fork, select } from 'moltres/redux'
 import { selectAuthState, watchCurrentUser } from '../auth'
 
 const enhance = compose(withConfig(), withContext())

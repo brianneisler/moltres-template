@@ -1,4 +1,4 @@
-import { Action, Object } from '../../../../core'
+import { Action, Object } from 'moltres/core'
 import { UserProfile } from '../../../../modules/user_profile'
 
 const SetCurrentUserProfileAction = {

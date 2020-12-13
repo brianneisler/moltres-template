@@ -1,5 +1,5 @@
-import { getOneFromQuery } from '../../../utils/db'
-import { assoc } from '../../../utils/lang'
+import { getOneFromQuery } from 'moltres/db'
+import { assoc } from 'moltres/lang'
 
 import queryPages from './queryPages'
 

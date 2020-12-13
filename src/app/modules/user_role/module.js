@@ -1,6 +1,6 @@
-import { withConfig, withContext } from '../../../core'
-import { assoc, compose } from '../../../utils/lang'
-import { call, fork, handleAction, handleActions } from '../../../utils/redux'
+import { withConfig, withContext } from 'moltres/core'
+import { assoc, compose } from 'moltres/lang'
+import { call, fork, handleAction, handleActions } from 'moltres/redux'
 import { watchCurrentUser } from '../auth'
 
 import * as actions from './actions'

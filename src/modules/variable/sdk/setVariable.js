@@ -1,4 +1,4 @@
-import { setEntity } from '../../../core/sdk'
+import { setEntity } from 'moltres/core'
 import { Variable } from '../schemas'
 
 const setVariable = setEntity(Variable)

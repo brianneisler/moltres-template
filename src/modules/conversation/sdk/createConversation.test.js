@@ -4,7 +4,8 @@ import {
   setupTestServiceAccountContext,
   tearDownTestAdminContext,
   tearDownTestServiceAccountContext
-} from '../../../test'
+} from 'moltres/test'
+
 import { ConversationType, ConversationVisibility } from '../constants'
 
 import createConversation from './createConversation'

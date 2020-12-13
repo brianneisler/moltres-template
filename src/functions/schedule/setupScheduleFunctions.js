@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions'
 
-import { assoc, isFunction, keys, reduce } from '../../utils/lang'
-import { camelCase } from '../../utils/string'
+import { assoc, isFunction, keys, reduce } from 'moltres/lang'
+import { camelCase } from 'moltres/string'
 import setupFunctionContexts from '../setupFunctionContexts'
 
 const setupScheduleFunctions = (modules, config, runtimeOptions) =>

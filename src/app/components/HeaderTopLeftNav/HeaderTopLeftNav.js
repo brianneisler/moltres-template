@@ -1,7 +1,4 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
-
-import { compose, getPath } from '../../../utils/lang'
+import { compose, getPath } from 'moltres/lang'
 import {
   connect,
   defaultProps,
@@ -10,7 +7,10 @@ import {
   styleShape,
   withActions,
   withHandlers
-} from '../../../utils/react'
+} from 'moltres/react'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+
 import { goBackAction } from '../../modules/router/actions'
 import { selectRouterLocation } from '../../modules/router/selectors'
 import { Colors, Styles } from '../../styles'

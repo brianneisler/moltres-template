@@ -1,4 +1,4 @@
-import { batchDeleteEntity } from '../../../core/sdk'
+import { batchDeleteEntity } from 'moltres/core'
 import { Upload } from '../schemas'
 
 const batchDeleteUpload = batchDeleteEntity(Upload)

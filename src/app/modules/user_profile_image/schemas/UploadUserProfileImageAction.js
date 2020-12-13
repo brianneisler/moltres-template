@@ -1,4 +1,4 @@
-import { Action, Object } from '../../../../core'
+import { Action, Object } from 'moltres/core'
 
 const UploadUserProfileImageAction = {
   name: 'user_profile_image.UploadUserProfileImageAction',

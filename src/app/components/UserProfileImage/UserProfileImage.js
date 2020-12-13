@@ -1,15 +1,15 @@
+import { compose } from 'moltres/lang'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import { compose } from '../../../utils/lang'
 import {
   defaultProps,
   setDisplayName,
   setPropTypes,
   styleShape,
   withProps
-} from '../../../utils/react'
+} from 'moltres/react'
 import Image from '../Image'
 import View from '../View'
 

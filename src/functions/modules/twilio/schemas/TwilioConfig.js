@@ -1,4 +1,4 @@
-import { Array, Object, String } from '../../../../core/schemas'
+import { Array, Object, String } from 'moltres/core'
 
 const TwilioConfig = {
   name: 'twilio.TwilioConfig',

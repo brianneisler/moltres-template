@@ -1,5 +1,5 @@
 import { ACTION_SHEET } from '../../../constants/Modal'
-import { assoc, findIndex, getProperty, map, noop } from '../../../utils/lang'
+import { assoc, findIndex, getProperty, map, noop } from 'moltres/lang'
 import {
   call,
   handleAction,
@@ -7,7 +7,7 @@ import {
   put,
   takeEvery,
   trigger
-} from '../../../utils/redux'
+} from 'moltres/redux'
 import { actions as modalActions } from '../modal'
 
 import * as actions from './actions'

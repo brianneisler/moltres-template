@@ -1,4 +1,4 @@
-import { hashHmacSha256 } from '../../../../utils/crypto'
+import { hashHmacSha256 } from 'moltres/crypto'
 
 import getSlackAppConfig from './getSlackAppConfig'
 
