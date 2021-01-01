@@ -6,6 +6,7 @@ import {
 } from '../../../test'
 import { createUser, deleteUser } from '../../user'
 import { createUserRole, deleteUserRole } from '../../user_role'
+
 import createRole from './createRole'
 import deleteRole from './deleteRole'
 
@@ -61,8 +62,8 @@ const spec = describe('createRole', () => {
       userRole = await createUserRole(context, userRoleData)
 
       const roleData = {
-        userId: user.id,
-        roleName: 'admin'
+        roleName: 'admin',
+        userId: user.id
       }
 
       result = await createRole(context, roleData)
@@ -71,9 +72,9 @@ const spec = describe('createRole', () => {
         createdAt: expect.any(context.firebase.firestore.Timestamp),
         id: expect.stringMatching('admin'),
         removedAt: null,
-        userId: expect.stringMatching(user.id),
         roleName: expect.stringMatching('admin'),
-        updatedAt: expect.any(context.firebase.firestore.Timestamp)
+        updatedAt: expect.any(context.firebase.firestore.Timestamp),
+        userId: expect.stringMatching(user.id)
       })
     })
   })
