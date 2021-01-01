@@ -16,7 +16,7 @@ const Action = {
     payload: Object.schema.allow(null).required(),
     source: String.schema
       .uri({
-        scheme: ['http', 'https']
+        scheme: ['chrome', 'http', 'https']
       })
       .required(), // uri reference
     specversion: String.schema.valid('0.3-wip').required(),
