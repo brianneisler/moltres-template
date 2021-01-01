@@ -78,12 +78,6 @@ const mod = () => ({
             frameId,
             tabId
           })
-          // TODO BRN:
-          // - put the channel into state
-          // - execute the tab script
-          // - replace the INIT message below with an action
-          // - create a putTab helper method that retrieves the channel from
-          //   state. If the channel does not exist then it throws an error
 
           // NOTE BRN: Since the channel is paused, we use the lower level
           // sendTabMessage method to init the content_script since it would get
@@ -113,7 +107,6 @@ const mod = () => ({
       WebNavigationCompletedAction.name,
       handleAction(
         enhance(function* (context, { payload }) {
-          console.log('WebNavigationCompletedAction - payload:', payload)
           if (!hasProperty(getTabKey(payload), contentScripts)) {
             contentScripts = assocProperty(
               getTabKey(payload),

@@ -20,7 +20,7 @@ const createTabChannel = (
     if (closed) {
       return
     }
-    if (!isEmpty(takers) && !paused) {
+    if (!isEmpty(takers)) {
       const firstTaker = head(takers)
       takers = tail(takers)
       firstTaker(message)
@@ -33,11 +33,6 @@ const createTabChannel = (
   const drain = () => {
     while (!outboundBuffer.isEmpty()) {
       sendTabMessage({ frameId, tabId }, outboundBuffer.take())
-    }
-    while (!inboundBuffer.isEmpty() && !isEmpty(takers)) {
-      const taker = head(takers)
-      takers = tail(takers)
-      taker(inboundBuffer.take())
     }
   }
 

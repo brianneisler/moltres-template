@@ -1,1 +1,1 @@
-export { isAction as default } from 'moltres'
+export { isContext as default } from 'moltres'

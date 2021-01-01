@@ -1,4 +1,4 @@
-import { Action, Integer, Object, String } from '../../../../../core/schemas'
+import { Action, Integer, Object } from '../../../../../core/schemas'
 
 const SetTabChannelAction = {
   name: 'content_script.SetTabChannelAction',
@@ -6,7 +6,7 @@ const SetTabChannelAction = {
     payload: Object.schema
       .keys({
         frameId: Integer.schema.required(),
-        tabChannel: String.schema.required(),
+        tabChannel: Object.schema.required(),
         tabId: Integer.schema.required()
       })
       .required()

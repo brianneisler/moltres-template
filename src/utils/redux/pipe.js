@@ -1,18 +1,13 @@
 import { isAction } from '../lang'
 
-import call from './call'
 import put from './put'
-import take from './take'
+import takeEvery from './takeEvery'
 
-function* doPipe(channel) {
-  while (true) {
-    const action = yield take(channel)
-    if (isAction(action)) {
-      yield put(action)
+const pipe = (channel) =>
+  takeEvery(channel, function* (message) {
+    if (isAction(message)) {
+      yield put(message)
     }
-  }
-}
-
-const pipe = (channel) => call(doPipe, channel)
+  })
 
 export default pipe

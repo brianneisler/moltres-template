@@ -6,8 +6,6 @@ import createWebNavigationCompletedChannel from './createWebNavigationCompletedC
 function* monitorWebNavigationCompletedChannel(context) {
   const channel = createWebNavigationCompletedChannel()
   yield call(handleChannel, channel, function* (data) {
-    console.log('web navigation completed - data:', data)
-
     yield put(webNavigationCompletedAction(context, data))
   })
 }
