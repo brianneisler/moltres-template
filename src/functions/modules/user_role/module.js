@@ -45,8 +45,8 @@ const mod = () => ({
         logger.info(JSON.stringify(userRole, null, 2))
 
         const roleEntity = await createRole(context, {
-          userId: user.id,
-          roleName: role
+          roleName: role,
+          userId: user.id
         })
         logger.info('ROLE CREATED')
         logger.info(JSON.stringify(roleEntity, null, 2))

@@ -3,7 +3,8 @@ module.exports = {
     browser: true,
     es6: true,
     jest: true,
-    node: true
+    node: true,
+    webextensions: true
   },
   extends: ['prettier', 'prettier/react'],
   globals: {
