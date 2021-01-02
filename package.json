@@ -102,7 +102,7 @@
     "is-url": "^1.2.4",
     "joi": "^17.2.1",
     "mime-types": "^2.1.27",
-    "moltres": "^0.5.2",
+    "moltres": "^0.5.3",
     "moment": "^2.29.1",
     "parse-duration": "^0.4.4",
     "path-to-regexp": "^6.2.0",
