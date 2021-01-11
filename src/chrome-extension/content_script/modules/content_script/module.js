@@ -1,5 +1,6 @@
 import { getContext } from '../../../../core'
-import { createRuntimeMessageChannel } from '../../../../utils/chrome_extension'
+import { waitForDocumentReady } from '../../../../modules/web'
+import { createRuntimeChannel } from '../../../../utils/chrome_extension'
 import { pipe, put } from '../../../../utils/redux'
 
 import { contentScriptReadyAction } from './actions'
@@ -7,8 +8,10 @@ import { contentScriptReadyAction } from './actions'
 const mod = ({ config }) => ({
   *run() {
     const { frameId, tabId } = config
-    const runtimeChannel = createRuntimeMessageChannel()
+    const runtimeChannel = createRuntimeChannel()
     yield pipe(runtimeChannel)
+
+    yield waitForDocumentReady()
 
     const context = yield* getContext()
     yield put(

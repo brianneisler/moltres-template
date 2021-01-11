@@ -32,7 +32,8 @@ const createTabChannel = (
 
   const drain = () => {
     while (!outboundBuffer.isEmpty()) {
-      sendTabMessage({ frameId, tabId }, outboundBuffer.take())
+      const next = outboundBuffer.take()
+      sendTabMessage({ frameId, tabId }, next)
     }
   }
 

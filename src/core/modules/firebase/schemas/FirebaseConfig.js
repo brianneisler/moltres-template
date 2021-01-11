@@ -3,7 +3,7 @@ import { Domain, Email, Integer, Object, String, Url } from '../../core/schemas'
 const FirebaseConfig = {
   schema: Object.schema
     .keys({
-      apiKey: String.schema.required(),
+      apiKey: String.schema,
       appId: String.schema,
       authDomain: Domain.schema.required(),
       databaseURL: Url.schema.required(),

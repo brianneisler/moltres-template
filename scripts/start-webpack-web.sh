@@ -6,4 +6,4 @@ export NODE_ENV=${NODE_ENV:=development}
 
 echo "starting webpack for web..."
 
-webpack --watch --config "./src/webpack/config/webpack.${NODE_ENV}.config.js"
+webpack --watch --config "./src/webpack/config/webpack.web.${NODE_ENV}.config.js"
