@@ -112,7 +112,7 @@
     "react": "^16.13.1",
     "react-clone-referenced-element": "^1.1.0",
     "react-dom": "^16.13.1",
-    "react-meta-tags": "^0.7.4",
+    "react-meta-tags": "^1.0.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
     "react-native-markdown-display": "^6.1.6",
     "react-native-unimodules": "^0.11.0",
