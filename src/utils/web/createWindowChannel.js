@@ -2,14 +2,10 @@ import { append, forEach, head, isEmpty, tail } from '../lang'
 import { expandingBuffer } from '../redux'
 import { Channel } from '../redux/constants'
 
-import sendTabMessage from './sendTabMessage'
+import getWindow from './getWindow'
+import sendWindowMessage from './sendWindowMessage'
 
-const createTabChannel = (
-  { frameId, tabId },
-  inboundBuffer = expandingBuffer(1),
-  outboundBuffer = expandingBuffer(1)
-) => {
-  let paused = false
+const createWindowChannel = (buffer = expandingBuffer(1)) => {
   let closed = false
   let takers = []
 
@@ -17,6 +13,9 @@ const createTabChannel = (
   // If there are pending takers, then invoke the oldest taker with the message.
   // Otherwise put the message on the underlying buffer
   const listener = (message) => {
+    if (message.origin === getWindow().location.origin) {
+      return
+    }
     if (closed) {
       return
     }
@@ -26,25 +25,17 @@ const createTabChannel = (
       firstTaker(message)
       return
     }
-    inboundBuffer.put(message)
+    buffer.put(message)
   }
-  chrome.runtime.onMessage.addListener(listener)
-
-  const drain = () => {
-    while (!outboundBuffer.isEmpty()) {
-      const next = outboundBuffer.take()
-      sendTabMessage({ frameId, tabId }, next)
-    }
-  }
-
+  getWindow().addEventListener('message', listener, false)
   // Channel.take(callback): used to register a taker. The take is resolved using the following rules
   // If the channel has buffered messages, then callback will be invoked with the next message from the underlying buffer (using buffer.take())
   // If the channel is closed and there are no buffered messages, then callback is invoked with END
-  // Otherwisecallback will be queued until a message is put into the channel
+  // Otherwise callback will be queued until a message is put into the channel
 
   const take = (callback) => {
-    if (!inboundBuffer.isEmpty()) {
-      callback(inboundBuffer.take())
+    if (!buffer.isEmpty()) {
+      callback(buffer.take())
       return
     }
     if (closed) {
@@ -53,21 +44,15 @@ const createTabChannel = (
     takers = append(callback, takers)
   }
 
-  // Channel.put(message): Used to put message on the buffer. The put will be handled using the following rules
-
-  // If the channel is closed, then the put will have no effect.
-  // If there are pending takers, then invoke the oldest taker with the message.
-  // Otherwise put the message on the underlying buffer
-
+  /**
+   * If the channel is closed then the put has not effect
+   * Otherwise, push the message into the runtime
+   */
   const put = (message) => {
     if (closed) {
       return
     }
-    if (paused) {
-      outboundBuffer.put(message)
-      return
-    }
-    sendTabMessage({ frameId, tabId }, message)
+    sendWindowMessage(message)
   }
 
   // Channel.flush(callback): Used to extract all buffered messages from the channel. The flush is resolved using the following rules
@@ -76,15 +61,15 @@ const createTabChannel = (
   // Otherwise callback is invoked with all buffered messages.
 
   const flush = (callback) => {
-    if (inboundBuffer.isEmpty()) {
+    if (buffer.isEmpty()) {
       if (closed) {
         return callback(Channel.END)
       }
       return callback([])
     }
     const remaining = []
-    while (!inboundBuffer.isEmpty()) {
-      remaining.push(inboundBuffer.take())
+    while (!buffer.isEmpty()) {
+      remaining.push(buffer.take())
     }
     return remaining
   }
@@ -93,31 +78,19 @@ const createTabChannel = (
 
   const close = () => {
     closed = true
-    chrome.runtime.onMessage.removeListener(listener)
+    getWindow().removeEventListener('message', listener)
     forEach((taker) => {
       taker(Channel.END)
     }, takers)
     takers = []
   }
 
-  const pause = () => {
-    paused = true
-  }
-
-  const resume = () => {
-    paused = false
-    drain()
-  }
-
   return {
     close,
-    drain,
     flush,
-    pause,
     put,
-    resume,
     take
   }
 }
 
-export default createTabChannel
+export default createWindowChannel

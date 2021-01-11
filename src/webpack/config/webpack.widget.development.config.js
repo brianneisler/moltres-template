@@ -1,22 +1,25 @@
 require('@babel/register')()
-
 const path = require('path')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 const loadProjectConfig = require('../../config/loadProjectConfig').default
 
 const { babelLoader } = require('./loaders')
 
-const moltresConfig = async () => {
+const webpackConfig = async () => {
   const config = await loadProjectConfig({
     dropSensitive: true,
     target: 'webpack'
   })
   return {
-    entry: [path.join(__dirname, '..', '..', 'index')],
-    mode: 'production',
+    devtool: 'cheap-module-source-map',
+    entry: {
+      app: path.resolve(__dirname, '..', '..', 'widget', 'app.js'),
+      loader: path.resolve(__dirname, '..', '..', 'widget', 'loader.js')
+    },
+    mode: 'development',
     module: {
       rules: [
         babelLoader,
@@ -34,22 +37,9 @@ const moltresConfig = async () => {
         }
       ]
     },
-    optimization: {
-      moduleIds: 'hashed',
-      runtimeChunk: 'single',
-      splitChunks: {
-        cacheGroups: {
-          modules: {
-            chunks: 'all',
-            name: 'modules',
-            test: /[\\/]node_modules[\\/]/
-          }
-        }
-      }
-    },
     output: {
-      filename: '[name].[contenthash].js',
-      path: path.resolve(__dirname, '..', '..', '..', 'public', 'dist')
+      filename: '[name].js',
+      path: path.resolve(__dirname, '..', '..', '..', 'apps', 'widget', 'dist')
     },
     plugins: [
       new webpack.EnvironmentPlugin({
@@ -57,13 +47,25 @@ const moltresConfig = async () => {
         STAGE: config.stage,
         TARGET: 'web'
       }),
-      new ManifestPlugin({
-        publicPath: '/dist/'
-        // sort: (a, b) => {
-        //   console.log('a:', a)
-        //   console.log('b:', b)
-        //   return 0
-        // }
+      new HtmlWebpackPlugin({
+        chunks: ['app'],
+        filename: 'index.html',
+        hash: true,
+        meta: {
+          charset: 'utf-8',
+          'theme-color': '#000000',
+          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+        },
+        template: path.resolve(
+          __dirname,
+          '..',
+          '..',
+          'widget',
+          'app',
+          'templates',
+          'index.html'
+        ),
+        title: 'moltres widget'
       })
     ],
     resolve: {
@@ -73,10 +75,10 @@ const moltresConfig = async () => {
         'react-native': 'react-native-web',
         stream: 'readable-stream'
       },
-      extensions: ['.web.js', '.js', '.json']
+      extensions: ['.widget.js', '.web.js', '.js', '.json']
     },
     target: 'web'
   }
 }
 
-module.exports = moltresConfig
+module.exports = webpackConfig

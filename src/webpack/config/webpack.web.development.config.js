@@ -35,7 +35,7 @@ const webpackConfig = async () => {
       ]
     },
     output: {
-      path: path.resolve(__dirname, '..', '..', '..', 'public', 'dist')
+      path: path.resolve(__dirname, '..', '..', '..', 'apps', 'web', 'dist')
     },
     plugins: [
       new webpack.EnvironmentPlugin({
