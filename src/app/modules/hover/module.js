@@ -1,3 +1,4 @@
+import { getContext } from '../../../core'
 import { merge } from '../../../utils/lang'
 import { fork, handleActions } from '../../../utils/redux'
 
@@ -20,7 +21,8 @@ const mod = () => ({
     }
   ),
   *run() {
-    yield fork(monitorHoverState)
+    const context = yield* getContext()
+    yield fork(monitorHoverState, context)
   }
 })
 

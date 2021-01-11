@@ -20,7 +20,7 @@ import { selectHoverIsEnabled } from '../selectors'
  */
 const HOVER_THRESHOLD_MS = 1000
 
-function* monitorHoverState() {
+function* monitorHoverState(context) {
   if (canUseDOM()) {
     const touchStartChannel = createSlidingEventListenerChannel(
       document,
@@ -50,14 +50,14 @@ function* monitorHoverState() {
       if (isEnabled || Date.now() - lastTouchTimestamp < HOVER_THRESHOLD_MS) {
         return
       }
-      yield put(hoverStateChangedAction({ isEnabled: true }))
+      yield put(hoverStateChangedAction(context, { isEnabled: true }))
     }
 
     const disableHover = function* () {
       const isEnabled = yield select(selectHoverIsEnabled)
       lastTouchTimestamp = Date.now()
       if (isEnabled) {
-        yield put(hoverStateChangedAction({ isEnabled: false }))
+        yield put(hoverStateChangedAction(context, { isEnabled: false }))
       }
     }
 
