@@ -1,7 +1,9 @@
 import { createAction } from '../../../../utils/redux'
 
-// options =
 /**
+ * @function
+ * @since v0.1.0
+ * @category action_sheet.actions
  * @param {{
  *   cancelButtonIndex: int,  index of cancel button in options
  *   destructiveButtonIndex: int, - index of destructive button in options
@@ -11,6 +13,7 @@ import { createAction } from '../../../../utils/redux'
  *   options: Array, (array of strings) - a list of button titles (required)
  *   title: string, - a title to show above the action sheet
  * }} data
+ * @returns {Action}
  */
 const setCurrentActionSheet = createAction(
   'ACTION_SHEET:SET_CURRENT_ACTION_SHEET',

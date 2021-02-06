@@ -21,7 +21,7 @@ import pack from '../../package.json'
 const API_README_PATH = path.resolve(__dirname, '..', '..', 'docs', 'API.md')
 const SRC_PATH = path.resolve(__dirname, '..', '..', 'src')
 const CURRENT_VERSION = pack.version
-const GITHUB_TAG_URL = `https://github.com/serverless/utils/tree/v${CURRENT_VERSION}`
+const GITHUB_TAG_URL = `https://github.com/brianneisler/moltres-template/tree/v${CURRENT_VERSION}`
 const REGEX_RETURN_TYPE = /\{.*\}/s
 const REGEX_PARAM = /(\{.*\})\s*([a-zA-Z0-9$_]*)/s
 
@@ -66,16 +66,14 @@ const parseParamString = (string) => {
 }
 
 const parseSrcFiles = async (srcFiles) =>
-  Promise.all(
-    map(async (srcFile) => {
-      const fullPath = path.join(SRC_PATH, srcFile)
-      const contents = await fs.readFile(fullPath, 'utf8')
-      return {
-        meta: dox.parseComments(contents),
-        srcFile
-      }
-    }, srcFiles)
-  )
+  map(async (srcFile) => {
+    const fullPath = path.join(SRC_PATH, srcFile)
+    const contents = await fs.readFile(fullPath, 'utf8')
+    return {
+      meta: dox.parseComments(contents),
+      srcFile
+    }
+  }, srcFiles)
 
 const findSrcFiles = () =>
   new Promise((resolve, reject) => {
